@@ -1,0 +1,35 @@
+{
+  "date": "2026-03-25",
+  "window": "7d",
+  "metrics": {
+    "commits": 59,
+    "contributors": 1,
+    "prs_merged": 0,
+    "insertions": 3100,
+    "deletions": 600,
+    "net_loc": 2500,
+    "test_loc": 0,
+    "test_ratio": 0,
+    "active_days": 4,
+    "sessions": 6,
+    "deep_sessions": 3,
+    "avg_session_minutes": 300,
+    "loc_per_session_hour": 100,
+    "feat_pct": 0.02,
+    "fix_pct": 0,
+    "peak_hour": 13,
+    "ai_assisted_commits": 59
+  },
+  "authors": {
+    "Akira Motogami": {
+      "commits": 59,
+      "insertions": 3100,
+      "deletions": 600,
+      "test_ratio": 0,
+      "top_area": "memory/logs/"
+    }
+  },
+  "version_range": ["0.0.0", "0.0.0"],
+  "streak_days": 4,
+  "tweetable": "Week of Mar 18: 59 commits, 4 active days, +3.1k/-0.6k LOC, 100% AI-assisted | Streak: 4d"
+}
