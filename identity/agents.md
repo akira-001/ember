@@ -306,7 +306,9 @@ effectiveness / execution_time / error_rate が更新される。
           - skipped_step → 条件付き実行の注記を追加 or 削除
           - error_recovery → エラーハンドリング手順を追加
           - user_correction → 指摘内容を反映（最優先）
-        - **Edit 直後に必ず** `cogmem skills learn` を実行（Edit と learn はアトミック — 片方だけ実行しない）
+        - **Edit 直後に必ず** 以下を連続実行（アトミック — 途中でスキップしない）:
+          1. `cogmem skills resolve <skill-name>` — events を resolved にし、バージョンをインクリメント
+          2. `cogmem skills learn` — メトリクスを記録
      f. 引き継ぎに「スキル自動改善: [スキル名] 更新（理由）」と記録
 3.8. 行動パターンレビュー（未スキル化ワークフローの検知。cogmem.toml の `auto_improve` 設定に従う）:
      a. `auto_improve = "off"` の場合 → スキップ
