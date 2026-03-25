@@ -141,3 +141,29 @@ Eve: 元ベンチャー企業のSEOで、現場で様々な事業立ち上げの
 
 「アバントグループの成長戦略について、MeiとEveで20ターン意見交換して」
 「AI活用戦略についてMeiとEveで議論して」     
+
+Superpowers vs gstack 比較
+基本情報
+Superpowers (obra/Jesse Vincent)gstack (garrytan/Garry Tan)作者Jesse Vincent（Prime Radiant）Garry Tan（Y Combinator CEO）⭐ GitHub Stars108k— (3月17日公開、急速に拡大中)ライセンスMITMIT対応プラットフォームClaude Code, Cursor, Codex, OpenCode, Gemini CLIClaude Code専用インストール/plugin install (プラグインシステム)git clone → .claude/skills/ にコピー
+思想の違い
+Superpowersgstackコンセプトプロセスフレームワーク — 開発方法論そのものを教えるロールベースチーム — 専門家ペルソナを切り替えるメタファー「エージェントに開発方法論を叩き込む」「1人のアシスタントを仮想チームに変える」重視するものTDD、計画性、システマティックなデバッグプロダクト思考、CEO視点のレビュー、ビジュアルQAターゲット方法論を重視するエンジニア高速にプロダクトをシッピングしたいファウンダー/シニアエンジニア
+スキル構成の比較
+Superpowers（約15スキル） — 開発プロセスの各フェーズをカバー：
+
+brainstorming → writing-plans → subagent-driven-development → TDD → code review → finishing branch
+デバッグ専用スキル（systematic-debugging、root-cause-tracing）
+メタスキル（スキルの書き方を教えるスキル）
+
+gstack（25+コマンド） — ロール別に専門家を召喚：
+
+/office-hours — プロダクト壁打ち（6つの根本的質問）
+/plan-ceo-review — ファウンダーモード（ユーザー価値・市場フィット重視）
+/plan-eng-review — テックリードモード（アーキテクチャ・障害モード分析）
+/plan-design-review /design-consultation — デザインレビュー
+/review — 本番リスク重視のコードレビュー
+/ship /land-and-deploy /canary — デプロイ系
+/browse — 永続的Chromiumブラウザセッション（最大の差別化ポイント）
+/qa /qa-only — diffからルート特定→ブラウザで自動検証
+/retro — エンジニアリング振り返り
+/freeze /unfreeze /guard /careful — 安全管理系
+/cso /investigate /benchmark /document-release /codex — その他
