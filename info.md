@@ -167,3 +167,4 @@ gstack（25+コマンド） — ロール別に専門家を召喚：
 /retro — エンジニアリング振り返り
 /freeze /unfreeze /guard /careful — 安全管理系
 /cso /investigate /benchmark /document-release /codex — その他
+
