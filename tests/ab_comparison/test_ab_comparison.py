@@ -4,7 +4,7 @@ Runs each question through two agents:
 - Agent A: no cogmem context (just the question)
 - Agent B: with cogmem context (search results + knowledge)
 
-Uses Ollama local LLM to generate answers (zero API cost).
+Uses Claude API (Opus) for high-quality comparison.
 Grades answers against keyword-based correct answers.
 Saves detailed results to tests/ab_comparison/results/.
 """
@@ -12,6 +12,7 @@ Saves detailed results to tests/ab_comparison/results/.
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import time
 from datetime import datetime
@@ -24,28 +25,32 @@ from .grader import grade_answer, summarize_results, GradeResult
 
 QUESTIONS_PATH = Path(__file__).parent / "questions.json"
 RESULTS_DIR = Path(__file__).parent / "results"
+MODEL = os.environ.get("AB_TEST_MODEL", "claude-opus-4-6")
 
-requires_ollama = pytest.mark.skipif(
-    subprocess.run(
-        ["curl", "-s", "http://localhost:11434/api/tags"],
-        capture_output=True, timeout=3,
-    ).returncode != 0,
-    reason="Ollama not running",
+requires_api_key = pytest.mark.skipif(
+    not os.environ.get("ANTHROPIC_API_KEY"),
+    reason="ANTHROPIC_API_KEY not set",
 )
 
 
-def _ask_ollama(prompt: str, model: str = "qwen3:4b") -> str:
-    """Ask Ollama a question and return the response."""
+def _ask_claude(prompt: str, model: str | None = None) -> str:
+    """Ask Claude a question via the Anthropic API."""
     try:
-        result = subprocess.run(
-            ["ollama", "run", model, prompt],
-            capture_output=True,
-            text=True,
-            timeout=120,
+        import anthropic
+    except ImportError:
+        return "(anthropic パッケージ未インストール)"
+
+    model = model or MODEL
+    try:
+        client = anthropic.Anthropic()
+        response = client.messages.create(
+            model=model,
+            max_tokens=1024,
+            messages=[{"role": "user", "content": prompt}],
         )
-        return result.stdout.strip() if result.returncode == 0 else "(回答生成エラー)"
-    except subprocess.TimeoutExpired:
-        return "(タイムアウト)"
+        return response.content[0].text.strip()
+    except Exception as e:
+        return f"(API エラー: {e})"
 
 
 def _load_questions() -> list[dict]:
@@ -68,7 +73,7 @@ def ab_results(questions):
     for q in questions:
         # Agent A: no cogmem
         prompt_a = build_without_cogmem(q["question"])
-        answer_a = _ask_ollama(prompt_a)
+        answer_a = _ask_claude(prompt_a)
         grade_a = grade_answer(
             q["id"], answer_a, q["grading_keywords"], q["grading_anti_keywords"]
         )
@@ -76,7 +81,7 @@ def ab_results(questions):
 
         # Agent B: with cogmem
         prompt_b = build_with_cogmem(q["question"], q["cogmem_context_query"])
-        answer_b = _ask_ollama(prompt_b)
+        answer_b = _ask_claude(prompt_b)
         grade_b = grade_answer(
             q["id"], answer_b, q["grading_keywords"], q["grading_anti_keywords"]
         )
@@ -87,7 +92,7 @@ def ab_results(questions):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     output = {
         "timestamp": timestamp,
-        "model": "qwen3:4b",
+        "model": MODEL,
         "without_cogmem": summarize_results(results_a),
         "with_cogmem": summarize_results(results_b),
     }
@@ -98,7 +103,7 @@ def ab_results(questions):
     return results_a, results_b
 
 
-@requires_ollama
+@requires_api_key
 class TestABComparison:
     """A/B comparison: cogmem improves agent accuracy."""
 
