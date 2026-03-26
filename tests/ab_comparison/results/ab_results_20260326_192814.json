@@ -1,0 +1,1015 @@
+{
+  "timestamp": "20260326_192814",
+  "model": "qwen3:4b",
+  "without_cogmem": {
+    "total": 55,
+    "passed": 1,
+    "failed": 54,
+    "pass_rate": "2%",
+    "details": [
+      {
+        "id": "ep-001",
+        "passed": false,
+        "score": "1/3",
+        "missed": [
+          "marketplaces",
+          "ルート"
+        ]
+      },
+      {
+        "id": "ep-002",
+        "passed": false,
+        "score": "0/4",
+        "missed": [
+          "列ヘッダー",
+          "セル値",
+          "HTML",
+          "ソート"
+        ]
+      },
+      {
+        "id": "ep-003",
+        "passed": false,
+        "score": "1/3",
+        "missed": [
+          "open-claude",
+          "cwd"
+        ]
+      },
+      {
+        "id": "ep-004",
+        "passed": false,
+        "score": "0/5",
+        "missed": [
+          "メモリ",
+          "環境",
+          "top",
+          "free",
+          "プロセス"
+        ]
+      },
+      {
+        "id": "ep-005",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "claude_skill_name",
+          "マッピング",
+          "カラム"
+        ]
+      },
+      {
+        "id": "ctx-001",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "60",
+          "arousal",
+          "0.3"
+        ]
+      },
+      {
+        "id": "ctx-002",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "multilingual-e5-large",
+          "0.88"
+        ]
+      },
+      {
+        "id": "ctx-003",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "9",
+          "20"
+        ]
+      },
+      {
+        "id": "ctx-004",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "19",
+          "ir-news-check",
+          "1"
+        ]
+      },
+      {
+        "id": "ctx-005",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "30分",
+          "キーワード"
+        ]
+      },
+      {
+        "id": "ctx-006",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "sonnet",
+          "opus"
+        ]
+      },
+      {
+        "id": "ctx-007",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "バグ",
+          "chatHistory",
+          "20"
+        ]
+      },
+      {
+        "id": "ctx-008",
+        "passed": false,
+        "score": "0/1",
+        "missed": [
+          "516"
+        ]
+      },
+      {
+        "id": "ctx-009",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "getUploadURLExternal",
+          "PUT",
+          "completeUploadExternal"
+        ]
+      },
+      {
+        "id": "ctx-010",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "user-history",
+          "userId",
+          "20"
+        ]
+      },
+      {
+        "id": "ctx-011",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "0.4",
+          "ゲーティング",
+          "構造的"
+        ]
+      },
+      {
+        "id": "ctx-012",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "FTS5",
+          "ベクトル検索",
+          "正規化"
+        ]
+      },
+      {
+        "id": "ctx-013",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "cogmem watch",
+          "内省",
+          "auto_improve"
+        ]
+      },
+      {
+        "id": "ctx-014",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "メモリ",
+          "枯渇",
+          "スワップ"
+        ]
+      },
+      {
+        "id": "ctx-015",
+        "passed": false,
+        "score": "0/1",
+        "missed": [
+          "32"
+        ]
+      },
+      {
+        "id": "ctx-016",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "YAML frontmatter",
+          "cogmem skills learn",
+          ".claude/skills/"
+        ]
+      },
+      {
+        "id": "ctx-017",
+        "passed": false,
+        "score": "0/4",
+        "missed": [
+          "execSync",
+          "execFileSync",
+          "currentExecution",
+          "null"
+        ]
+      },
+      {
+        "id": "ctx-018",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "総合商社",
+          "CFO"
+        ]
+      },
+      {
+        "id": "ctx-019",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "アントレプレナー",
+          "フードテック"
+        ]
+      },
+      {
+        "id": "ctx-020",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "100",
+          "10"
+        ]
+      },
+      {
+        "id": "ctx-021",
+        "passed": false,
+        "score": "0/4",
+        "missed": [
+          "列",
+          "セル値",
+          "ソート",
+          "通ってしまった"
+        ]
+      },
+      {
+        "id": "ctx-022",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "FastAPI",
+          "HTMX"
+        ]
+      },
+      {
+        "id": "ctx-023",
+        "passed": false,
+        "score": "0/4",
+        "missed": [
+          "fix",
+          "revert",
+          "skill_signals",
+          "log_gaps"
+        ]
+      },
+      {
+        "id": "ctx-024",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "cogmem watch",
+          "fix_count",
+          "revert_count"
+        ]
+      },
+      {
+        "id": "ctx-025",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "記憶の定着",
+          "Memory Consolidation"
+        ]
+      },
+      {
+        "id": "ctx-026",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "cwd",
+          "process.cwd",
+          "open-claude"
+        ]
+      },
+      {
+        "id": "ctx-027",
+        "passed": false,
+        "score": "1/3",
+        "missed": [
+          "31GB",
+          "OLLAMA_KEEP_ALIVE"
+        ]
+      },
+      {
+        "id": "ctx-028",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "recall_count",
+          "arousal",
+          "+0.1"
+        ]
+      },
+      {
+        "id": "ctx-029",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "cogmem identity update",
+          "--target"
+        ]
+      },
+      {
+        "id": "ctx-030",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "INSERT OR IGNORE",
+          "旧エントリ",
+          "force"
+        ]
+      },
+      {
+        "id": "ctx-031",
+        "passed": true,
+        "score": "2/3",
+        "missed": [
+          "承認不要"
+        ]
+      },
+      {
+        "id": "ctx-032",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "41%",
+          "early return"
+        ]
+      },
+      {
+        "id": "ctx-033",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "gcalcli-mcp-server",
+          "5ツール"
+        ]
+      },
+      {
+        "id": "ctx-034",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "cogmem watch",
+          "Wrap",
+          "Step 0"
+        ]
+      },
+      {
+        "id": "ctx-035",
+        "passed": false,
+        "score": "0/4",
+        "missed": [
+          "Session Init",
+          "スキル実行中",
+          "Wrap",
+          "サブエージェント"
+        ]
+      },
+      {
+        "id": "ctx-036",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "153",
+          "hatchling"
+        ]
+      },
+      {
+        "id": "ctx-037",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "32",
+          "3152"
+        ]
+      },
+      {
+        "id": "ctx-038",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "458",
+          "200"
+        ]
+      },
+      {
+        "id": "ctx-039",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "31",
+          "40",
+          "open-claude"
+        ]
+      },
+      {
+        "id": "ctx-040",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "5.7MB",
+          "1.9KB",
+          "32x32"
+        ]
+      },
+      {
+        "id": "ctx-041",
+        "passed": false,
+        "score": "1/3",
+        "missed": [
+          "FTS5",
+          "ベクトル検索"
+        ]
+      },
+      {
+        "id": "ctx-042",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "コサイン類似度",
+          "min-max",
+          "score_map"
+        ]
+      },
+      {
+        "id": "ctx-043",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "記憶の定着",
+          "実装済み",
+          "consolidation"
+        ]
+      },
+      {
+        "id": "ctx-044",
+        "passed": false,
+        "score": "0/1",
+        "missed": [
+          "20:00"
+        ]
+      },
+      {
+        "id": "ctx-045",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "exhaustive-exploration",
+          "ルート"
+        ]
+      },
+      {
+        "id": "ctx-046",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "workflow_patterns",
+          "296"
+        ]
+      },
+      {
+        "id": "ctx-047",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "ファイル名",
+          "session:"
+        ]
+      },
+      {
+        "id": "ctx-048",
+        "passed": false,
+        "score": "0/1",
+        "missed": [
+          "C0AP2BD5HBJ"
+        ]
+      },
+      {
+        "id": "ctx-049",
+        "passed": false,
+        "score": "0/4",
+        "missed": [
+          "鮮明",
+          "薄れる",
+          "定着",
+          "忘却曲線"
+        ]
+      },
+      {
+        "id": "ctx-050",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "Steve Jobs",
+          "諸葛亮",
+          "Jensen Huang"
+        ]
+      }
+    ]
+  },
+  "with_cogmem": {
+    "total": 55,
+    "passed": 16,
+    "failed": 39,
+    "pass_rate": "29%",
+    "details": [
+      {
+        "id": "ep-001",
+        "passed": false,
+        "score": "1/3",
+        "missed": []
+      },
+      {
+        "id": "ep-002",
+        "passed": true,
+        "score": "3/4",
+        "missed": [
+          "セル値"
+        ]
+      },
+      {
+        "id": "ep-003",
+        "passed": true,
+        "score": "3/3",
+        "missed": []
+      },
+      {
+        "id": "ep-004",
+        "passed": false,
+        "score": "0/5",
+        "missed": [
+          "プロセス"
+        ]
+      },
+      {
+        "id": "ep-005",
+        "passed": true,
+        "score": "3/3",
+        "missed": []
+      },
+      {
+        "id": "ctx-001",
+        "passed": true,
+        "score": "3/3",
+        "missed": []
+      },
+      {
+        "id": "ctx-002",
+        "passed": true,
+        "score": "2/2",
+        "missed": []
+      },
+      {
+        "id": "ctx-003",
+        "passed": true,
+        "score": "1/2",
+        "missed": [
+          "9"
+        ]
+      },
+      {
+        "id": "ctx-004",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "19",
+          "ir-news-check",
+          "1"
+        ]
+      },
+      {
+        "id": "ctx-005",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "30分",
+          "キーワード"
+        ]
+      },
+      {
+        "id": "ctx-006",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "sonnet",
+          "opus"
+        ]
+      },
+      {
+        "id": "ctx-007",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "バグ",
+          "chatHistory",
+          "20"
+        ]
+      },
+      {
+        "id": "ctx-008",
+        "passed": false,
+        "score": "0/1",
+        "missed": [
+          "516"
+        ]
+      },
+      {
+        "id": "ctx-009",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "getUploadURLExternal",
+          "PUT",
+          "completeUploadExternal"
+        ]
+      },
+      {
+        "id": "ctx-010",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "user-history",
+          "userId",
+          "20"
+        ]
+      },
+      {
+        "id": "ctx-011",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "0.4",
+          "ゲーティング",
+          "構造的"
+        ]
+      },
+      {
+        "id": "ctx-012",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "FTS5",
+          "ベクトル検索",
+          "正規化"
+        ]
+      },
+      {
+        "id": "ctx-013",
+        "passed": true,
+        "score": "3/3",
+        "missed": []
+      },
+      {
+        "id": "ctx-014",
+        "passed": true,
+        "score": "3/3",
+        "missed": []
+      },
+      {
+        "id": "ctx-015",
+        "passed": true,
+        "score": "1/1",
+        "missed": []
+      },
+      {
+        "id": "ctx-016",
+        "passed": true,
+        "score": "3/3",
+        "missed": []
+      },
+      {
+        "id": "ctx-017",
+        "passed": false,
+        "score": "0/4",
+        "missed": [
+          "execSync",
+          "execFileSync",
+          "currentExecution",
+          "null"
+        ]
+      },
+      {
+        "id": "ctx-018",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "総合商社",
+          "CFO"
+        ]
+      },
+      {
+        "id": "ctx-019",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "アントレプレナー",
+          "フードテック"
+        ]
+      },
+      {
+        "id": "ctx-020",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "100",
+          "10"
+        ]
+      },
+      {
+        "id": "ctx-021",
+        "passed": true,
+        "score": "3/4",
+        "missed": [
+          "通ってしまった"
+        ]
+      },
+      {
+        "id": "ctx-022",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "FastAPI",
+          "HTMX"
+        ]
+      },
+      {
+        "id": "ctx-023",
+        "passed": false,
+        "score": "1/4",
+        "missed": [
+          "revert",
+          "skill_signals",
+          "log_gaps"
+        ]
+      },
+      {
+        "id": "ctx-024",
+        "passed": false,
+        "score": "1/3",
+        "missed": [
+          "fix_count",
+          "revert_count"
+        ]
+      },
+      {
+        "id": "ctx-025",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "記憶の定着",
+          "Memory Consolidation"
+        ]
+      },
+      {
+        "id": "ctx-026",
+        "passed": false,
+        "score": "1/3",
+        "missed": [
+          "cwd",
+          "process.cwd"
+        ]
+      },
+      {
+        "id": "ctx-027",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "31GB",
+          "OLLAMA_KEEP_ALIVE",
+          "-1"
+        ]
+      },
+      {
+        "id": "ctx-028",
+        "passed": false,
+        "score": "1/3",
+        "missed": [
+          "recall_count",
+          "+0.1"
+        ]
+      },
+      {
+        "id": "ctx-029",
+        "passed": true,
+        "score": "1/2",
+        "missed": [
+          "--target"
+        ]
+      },
+      {
+        "id": "ctx-030",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "INSERT OR IGNORE",
+          "旧エントリ",
+          "force"
+        ]
+      },
+      {
+        "id": "ctx-031",
+        "passed": true,
+        "score": "2/3",
+        "missed": [
+          "承認不要"
+        ]
+      },
+      {
+        "id": "ctx-032",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "41%",
+          "early return"
+        ]
+      },
+      {
+        "id": "ctx-033",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "gcalcli-mcp-server",
+          "5ツール"
+        ]
+      },
+      {
+        "id": "ctx-034",
+        "passed": true,
+        "score": "3/3",
+        "missed": []
+      },
+      {
+        "id": "ctx-035",
+        "passed": true,
+        "score": "2/4",
+        "missed": [
+          "スキル実行中",
+          "サブエージェント"
+        ]
+      },
+      {
+        "id": "ctx-036",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "153",
+          "hatchling"
+        ]
+      },
+      {
+        "id": "ctx-037",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "32",
+          "3152"
+        ]
+      },
+      {
+        "id": "ctx-038",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "458",
+          "200"
+        ]
+      },
+      {
+        "id": "ctx-039",
+        "passed": false,
+        "score": "1/3",
+        "missed": [
+          "31",
+          "40"
+        ]
+      },
+      {
+        "id": "ctx-040",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "5.7MB",
+          "1.9KB",
+          "32x32"
+        ]
+      },
+      {
+        "id": "ctx-041",
+        "passed": false,
+        "score": "1/3",
+        "missed": [
+          "FTS5",
+          "ベクトル検索"
+        ]
+      },
+      {
+        "id": "ctx-042",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "コサイン類似度",
+          "min-max",
+          "score_map"
+        ]
+      },
+      {
+        "id": "ctx-043",
+        "passed": false,
+        "score": "1/3",
+        "missed": [
+          "記憶の定着",
+          "実装済み"
+        ]
+      },
+      {
+        "id": "ctx-044",
+        "passed": false,
+        "score": "0/1",
+        "missed": [
+          "20:00"
+        ]
+      },
+      {
+        "id": "ctx-045",
+        "passed": true,
+        "score": "2/2",
+        "missed": []
+      },
+      {
+        "id": "ctx-046",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "workflow_patterns",
+          "296"
+        ]
+      },
+      {
+        "id": "ctx-047",
+        "passed": false,
+        "score": "0/2",
+        "missed": [
+          "ファイル名",
+          "session:"
+        ]
+      },
+      {
+        "id": "ctx-048",
+        "passed": false,
+        "score": "0/1",
+        "missed": [
+          "C0AP2BD5HBJ"
+        ]
+      },
+      {
+        "id": "ctx-049",
+        "passed": false,
+        "score": "0/4",
+        "missed": [
+          "鮮明",
+          "薄れる",
+          "定着",
+          "忘却曲線"
+        ]
+      },
+      {
+        "id": "ctx-050",
+        "passed": false,
+        "score": "0/3",
+        "missed": [
+          "Steve Jobs",
+          "諸葛亮",
+          "Jensen Huang"
+        ]
+      }
+    ]
+  }
+}
