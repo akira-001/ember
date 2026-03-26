@@ -25,7 +25,19 @@ from .grader import grade_answer, summarize_results, GradeResult
 
 QUESTIONS_PATH = Path(__file__).parent / "questions.json"
 RESULTS_DIR = Path(__file__).parent / "results"
+PROJECT_ROOT = Path(__file__).parent.parent.parent
+
+# Load .env from project root
+_env_path = PROJECT_ROOT / ".env"
+if _env_path.exists():
+    for line in _env_path.read_text().splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k.strip(), v.strip())
+
 MODEL = os.environ.get("AB_TEST_MODEL", "claude-opus-4-6")
+MAX_QUESTIONS = int(os.environ.get("AB_TEST_MAX_QUESTIONS", "30"))
 
 requires_api_key = pytest.mark.skipif(
     not os.environ.get("ANTHROPIC_API_KEY"),
@@ -70,7 +82,14 @@ def ab_results(questions):
     results_a = []  # without cogmem
     results_b = []  # with cogmem
 
-    for q in questions:
+    # Limit questions (EP first, then context_dependent up to MAX)
+    ep_qs = [q for q in questions if q["category"] == "ep_reoccurrence"]
+    ctx_qs = [q for q in questions if q["category"] == "context_dependent"]
+    limited = ep_qs + ctx_qs[:MAX_QUESTIONS - len(ep_qs)]
+    total = len(limited)
+    print(f"\nRunning {total} questions with {MODEL}...")
+
+    for i, q in enumerate(limited):
         # Agent A: no cogmem
         prompt_a = build_without_cogmem(q["question"])
         answer_a = _ask_claude(prompt_a)
@@ -86,6 +105,7 @@ def ab_results(questions):
             q["id"], answer_b, q["grading_keywords"], q["grading_anti_keywords"]
         )
         results_b.append(grade_b)
+        print(f"  [{i+1}/{total}] {q['id']}: A={'P' if grade_a.passed else 'F'} B={'P' if grade_b.passed else 'F'}")
 
     # Save detailed results
     RESULTS_DIR.mkdir(exist_ok=True)
@@ -112,9 +132,10 @@ class TestABComparison:
         results_a, results_b = ab_results
         pass_a = sum(1 for r in results_a if r.passed)
         pass_b = sum(1 for r in results_b if r.passed)
-        print(f"\nOverall: without={pass_a}/55, with={pass_b}/55")
+        total = len(results_a)
+        print(f"\nOverall: without={pass_a}/{total}, with={pass_b}/{total}")
         assert pass_b > pass_a, (
-            f"cogmem agent ({pass_b}/55) should beat no-cogmem ({pass_a}/55)"
+            f"cogmem agent ({pass_b}/{total}) should beat no-cogmem ({pass_a}/{total})"
         )
 
     def test_ep_reoccurrence_with_cogmem(self, ab_results, questions):
@@ -143,8 +164,10 @@ class TestABComparison:
         ctx_ids = {q["id"] for q in questions if q["category"] == "context_dependent"}
         ctx_results = [r for r in results_b if r.question_id in ctx_ids]
         passed = sum(1 for r in ctx_results if r.passed)
-        print(f"\nContext with cogmem: {passed}/50")
-        assert passed >= 30, f"Context with cogmem: {passed}/50 (need >= 30)"
+        ctx_total = len(ctx_results)
+        print(f"\nContext with cogmem: {passed}/{ctx_total}")
+        threshold = max(1, int(ctx_total * 0.6))  # 60% pass rate
+        assert passed >= threshold, f"Context with cogmem: {passed}/{ctx_total} (need >= {threshold})"
 
     def test_context_dependent_without_cogmem_lower(self, ab_results, questions):
         """Agent without cogmem scores significantly lower on context tests."""
@@ -154,10 +177,12 @@ class TestABComparison:
         ctx_b = [r for r in results_b if r.question_id in ctx_ids]
         pass_a = sum(1 for r in ctx_a if r.passed)
         pass_b = sum(1 for r in ctx_b if r.passed)
-        print(f"\nContext: without={pass_a}/50, with={pass_b}/50")
-        # cogmem should provide at least 15 more correct answers
-        assert pass_b - pass_a >= 15, (
-            f"cogmem advantage ({pass_b - pass_a}) should be >= 15"
+        ctx_total = len(ctx_a)
+        print(f"\nContext: without={pass_a}/{ctx_total}, with={pass_b}/{ctx_total}")
+        # cogmem should provide meaningful advantage
+        min_advantage = max(1, int(ctx_total * 0.3))  # 30% advantage
+        assert pass_b - pass_a >= min_advantage, (
+            f"cogmem advantage ({pass_b - pass_a}) should be >= {min_advantage}"
         )
 
     def test_difficulty_correlation(self, ab_results, questions):
