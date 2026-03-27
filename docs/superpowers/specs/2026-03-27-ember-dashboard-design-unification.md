@@ -1,7 +1,7 @@
 # Ember Dashboard Design Unification
 
 **Date:** 2026-03-27
-**Status:** Draft
+**Status:** Approved
 **Scope:** claude-code-slack-bot/dashboard (Ember Dashboard)
 
 ## Goal
@@ -30,7 +30,9 @@ Ember ダッシュボードのビジュアルを cogmem ダッシュボードの
   --surface-hover: #e4d8ca;
   --border: #d4c8b8;
   --text: #3a2e28;
-  --text-dim: #8a7060;
+  --text-dim: #705848;
+  --scrollbar-thumb: #9a8878;
+  --scrollbar-thumb-hover: #b8a898;
 }
 ```
 
@@ -38,9 +40,10 @@ Ember ダッシュボードのビジュアルを cogmem ダッシュボードの
 
 ```css
 :root {
-  --accent: #E8854A;
-  --accent-hover: #D4763A;
-  --accent-dim: #C06830;
+  --accent: #C06830;        /* darkened for WCAG AA on light bg */
+  --accent-hover: #A85828;
+  --accent-dim: #904820;
+  --accent-light: #E8854A;  /* original logo-derived orange, for decorative/large use */
 }
 ```
 
@@ -53,8 +56,8 @@ Ember ダッシュボードのビジュアルを cogmem ダッシュボードの
   --sidebar-border: #4a3e34;
   --sidebar-text: #a89888;
   --sidebar-text-active: #f0e8e0;
-  --sidebar-active-bg: rgba(232, 133, 74, 0.1);
-  --sidebar-active-dot: #E8854A;
+  --sidebar-active-bg: rgba(192, 104, 48, 0.12);
+  --sidebar-active-border: #C06830;  /* left border indicator, same as cogmem pattern */
 }
 ```
 
@@ -63,7 +66,7 @@ Ember ダッシュボードのビジュアルを cogmem ダッシュボードの
 ```css
 :root {
   --success: #4a8a4a;
-  --warning: #c08a30;
+  --warning: #8a6a20;       /* darkened for WCAG AA text contrast */
   --error: #b85040;
   --info: #5070a0;
 }
@@ -77,10 +80,11 @@ Ember ダッシュボードのビジュアルを cogmem ダッシュボードの
 | --surface | #e8e1d6 | #ede4d8 | 同上 |
 | --border | #d0c9be | #d4c8b8 | 同上 |
 | --text | #2c2826 | #3a2e28 | 微調整 |
-| --accent | #6b8a6b (sage) | #E8854A (orange) | ロゴ由来で独立 |
+| --text-dim | #8a8078 | #705848 | WCAG AA 確保のため暗く |
+| --accent | #6b8a6b (sage) | #C06830 (orange) | ロゴ由来で独立、AA 準拠 |
 | --sidebar-bg | #2a2726 | #31241e | Ember はチョコレート寄り |
 | --success | #5a9e5a | #4a8a4a | やや落ち着いた緑 |
-| --warning | #c08a30 | #c08a30 | 共通 |
+| --warning | #c08a30 | #8a6a20 | テキスト用に暗く |
 | --error | #c05050 | #b85040 | テラコッタ寄り |
 | --info | #5070b0 | #5070a0 | 微調整 |
 
@@ -205,7 +209,7 @@ tr:hover td {
 ## Button Styles
 
 ```css
-/* Primary button */
+/* Primary button — white on darkened accent (#C06830), ~3.3:1 contrast (AA-large) */
 .btn-primary {
   padding: 0.625rem 1.25rem;
   border-radius: 6px;
@@ -217,6 +221,89 @@ tr:hover td {
 }
 .btn-primary:hover {
   background: var(--accent-hover);
+}
+
+/* Danger button */
+.btn-danger {
+  padding: 0.625rem 1.25rem;
+  border-radius: 6px;
+  background: var(--error);
+  color: white;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+```
+
+## Sidebar Active State
+
+cogmem と同じ左ボーダーパターンを採用:
+
+```css
+/* Active nav item */
+.nav-active {
+  background: var(--sidebar-active-bg);
+  color: var(--sidebar-text-active);
+  border-left: 2px solid var(--sidebar-active-border);
+}
+
+/* Inactive nav item */
+.nav-item {
+  color: var(--sidebar-text);
+  border-left: 2px solid transparent;
+  transition: all 0.15s;
+}
+.nav-item:hover {
+  color: var(--sidebar-text-active);
+  background: var(--sidebar-surface);
+}
+```
+
+## CATEGORY_COLORS (types.ts)
+
+Ember Glow パレットに合わせた hex 値。badge の `+ '20'` 演算と Recharts stroke の両方で使用:
+
+```typescript
+export const CATEGORY_COLORS: Record<string, string> = {
+  email_reply: '#5070a0',
+  meeting_prep: '#6a5a9a',
+  deadline_risk: '#984030',
+  slack_followup: '#C06830',
+  energy_break: '#4a8a4a',
+  personal_event: '#8a6a20',
+  hobby_leisure: '#8a4a6a',
+  flashback: '#6a5a9a',
+};
+```
+
+## Chart Colors (Recharts)
+
+Recharts は CSS 変数を直接参照できないため、JS 定数として同じトークン値を持つ:
+
+```typescript
+export const CHART_COLORS = {
+  primary: '#C06830',
+  secondary: '#8a6a20',
+  tertiary: '#5070a0',
+  grid: '#d4c8b8',
+  axis: '#705848',
+  tooltip: {
+    bg: '#ede4d8',
+    border: '#d4c8b8',
+    text: '#3a2e28',
+  },
+};
+```
+
+## Scrollbar
+
+```css
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
 }
 ```
 
@@ -237,13 +324,19 @@ tr:hover td {
 | `tailwind.config.js` | 変更なし（カスタムテーマ不要） |
 | `src/components/Sidebar.tsx` | サイドバーの色クラスを CSS 変数に |
 | `src/components/Layout.tsx` | メイン背景の色クラスを CSS 変数に |
+| `src/components/BotSelector.tsx` | cyan-400 をアクセントカラーに置換 |
 | `src/pages/*.tsx` | カード、バッジ、テーブルの色・タイポグラフィを更新 |
-| `src/types.ts` | CATEGORY_COLORS を Ember Glow パレットに更新 |
+| `src/types.ts` | CATEGORY_COLORS + CHART_COLORS を Ember Glow パレットに更新 |
 | `public/favicon.svg` | 変更なし（既にロゴカラー） |
+
+### Notes
+
+- **stat-card vs content-card**: stat-card は shadow なし（数値を強調するフラットなカード）、content-card は subtle shadow あり（テーブルやリスト等のコンテナ）。意図的な使い分け。
+- **--accent-light (#E8854A)**: ロゴ本来の明るいオレンジ。stat 値やアイコン等の装飾的・大サイズ用途に使用。テキストリンクやボタンには --accent (#C06830) を使う。
+- **Font stack**: 'Helvetica Neue', Arial は削除。cogmem と同じ system-ui ベースに統一。
 
 ### Out of scope
 
 - cogmem ダッシュボード側の変更（既に完成しているため触らない）
-- チャートライブラリ（Recharts）の色変更（カラートークンを参照するだけで対応可能、実装時に自然に適用）
 - レスポンシブブレークポイントの変更
 - 機能追加・削除
