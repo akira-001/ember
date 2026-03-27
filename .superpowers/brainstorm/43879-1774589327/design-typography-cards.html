@@ -1,0 +1,160 @@
+<h2>Design Section 2: Typography, Cards & Badges</h2>
+<p class="subtitle">cogmem のスタイルに合わせつつ Ember Glow のカラーで統一</p>
+
+<!-- Typography -->
+<div class="section">
+  <h3>Typography</h3>
+  <div class="split">
+    <div class="mockup">
+      <div class="mockup-header">Before (Tailwind defaults)</div>
+      <div class="mockup-body" style="background: #111827; color: #f3f4f6; font-family: -apple-system, system-ui, sans-serif;">
+        <div style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">Page Title <span style="font-size: 10px; color: #9ca3af;">text-2xl bold</span></div>
+        <div style="font-size: 18px; font-weight: 600; margin-bottom: 6px;">Section <span style="font-size: 10px; color: #9ca3af;">text-lg semibold</span></div>
+        <div style="font-size: 14px; margin-bottom: 4px;">Body text <span style="font-size: 10px; color: #9ca3af;">text-sm</span></div>
+        <div style="font-size: 12px; color: #9ca3af;">Label text <span style="font-size: 10px;">text-xs gray-400</span></div>
+        <div style="font-size: 28px; font-weight: 700; color: #3b82f6; margin-top: 8px;">142 <span style="font-size: 10px; color: #9ca3af;">text-2xl stat</span></div>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mockup-header">After (cogmem-aligned)</div>
+      <div class="mockup-body" style="background: #f5ede4; color: #3a2e28; font-family: -apple-system, system-ui, sans-serif;">
+        <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 8px;">Page Title <span style="font-size: 10px; color: #8a7060;">1.5rem/600</span></div>
+        <div style="font-size: 0.875rem; font-weight: 600; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; color: #8a7060;">Section <span style="font-size: 10px; text-transform: none; letter-spacing: normal;">0.875rem/600 uppercase</span></div>
+        <div style="font-size: 0.8125rem; line-height: 1.6; margin-bottom: 4px;">Body text <span style="font-size: 10px; color: #8a7060;">0.8125rem/1.6</span></div>
+        <div style="font-size: 0.75rem; color: #8a7060;">Label text <span style="font-size: 10px;">0.75rem dim</span></div>
+        <div style="font-size: 1.75rem; font-weight: 700; color: #E8854A; margin-top: 8px; font-variant-numeric: tabular-nums;">142 <span style="font-size: 10px; color: #8a7060; font-weight: 400;">1.75rem stat</span></div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 1rem; font-size: 0.8125rem; color: #666; line-height: 1.6;">
+    <strong>Changes:</strong> font-size を rem 単位に統一 / section heading に uppercase + letter-spacing / stat に tabular-nums / line-height 1.6 / font-weight 600 優先（700 は stat のみ）
+  </div>
+</div>
+
+<!-- Cards -->
+<div class="section" style="margin-top: 2rem;">
+  <h3>Cards</h3>
+  <div class="split">
+    <div class="mockup">
+      <div class="mockup-header">Before</div>
+      <div class="mockup-body" style="background: #111827; padding: 16px;">
+        <div style="background: #1f2937; border: 1px solid #374151; border-radius: 8px; padding: 16px; margin-bottom: 8px;">
+          <div style="font-size: 12px; color: #9ca3af; margin-bottom: 4px;">Messages Today</div>
+          <div style="font-size: 24px; font-weight: 700; color: #3b82f6;">42</div>
+        </div>
+        <div style="background: #1f2937; border: 1px solid #374151; border-radius: 8px; padding: 16px;">
+          <div style="font-size: 12px; color: #9ca3af; margin-bottom: 4px;">Recent</div>
+          <div style="font-size: 13px; color: #d1d5db;">No shadow, sharp borders</div>
+        </div>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mockup-header">After</div>
+      <div class="mockup-body" style="background: #f5ede4; padding: 16px;">
+        <div style="background: #ede4d8; border: 1px solid #d4c8b8; border-radius: 8px; padding: 1.25rem; margin-bottom: 8px;">
+          <div style="font-size: 0.75rem; color: #8a7060; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Messages Today</div>
+          <div style="font-size: 1.75rem; font-weight: 700; color: #E8854A; font-variant-numeric: tabular-nums;">42</div>
+        </div>
+        <div style="background: #ede4d8; border: 1px solid #d4c8b8; border-radius: 8px; padding: 1.25rem; box-shadow: 0 1px 2px rgba(0,0,0,0.04);">
+          <div style="font-size: 0.75rem; color: #8a7060; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Recent</div>
+          <div style="font-size: 0.8125rem; color: #3a2e28; line-height: 1.6;">Subtle shadow, warm tones</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 1rem; font-size: 0.8125rem; color: #666; line-height: 1.6;">
+    <strong>Changes:</strong> border-radius 8px（維持）/ padding を rem 単位に / box-shadow: 0 1px 2px rgba(0,0,0,0.04) 追加 / ラベルに uppercase + letter-spacing + font-weight 500 / transition 0.15s
+  </div>
+</div>
+
+<!-- Badges -->
+<div class="section" style="margin-top: 2rem;">
+  <h3>Badges</h3>
+  <div class="split">
+    <div class="mockup">
+      <div class="mockup-header">Before</div>
+      <div class="mockup-body" style="background: #1f2937; padding: 16px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">
+        <span style="background: rgba(59,130,246,0.2); color: #3b82f6; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 500;">email_reply</span>
+        <span style="background: rgba(139,92,246,0.2); color: #8b5cf6; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 500;">meeting_prep</span>
+        <span style="background: rgba(239,68,68,0.2); color: #ef4444; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 500;">deadline_risk</span>
+        <span style="background: rgba(34,197,94,0.13); color: #22c55e; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 500;">enabled</span>
+        <span style="background: #374151; color: #9ca3af; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 500;">disabled</span>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mockup-header">After</div>
+      <div class="mockup-body" style="background: #ede4d8; padding: 16px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">
+        <span style="background: rgba(80,112,160,0.10); color: #405a8a; padding: 2px 8px; border-radius: 9999px; font-size: 0.75rem; font-weight: 500;">email_reply</span>
+        <span style="background: rgba(120,90,160,0.10); color: #6a5a9a; padding: 2px 8px; border-radius: 9999px; font-size: 0.75rem; font-weight: 500;">meeting_prep</span>
+        <span style="background: rgba(184,80,64,0.10); color: #984030; padding: 2px 8px; border-radius: 9999px; font-size: 0.75rem; font-weight: 500;">deadline_risk</span>
+        <span style="background: rgba(74,138,74,0.12); color: #3a7a3a; padding: 2px 8px; border-radius: 9999px; font-size: 0.75rem; font-weight: 500;">enabled</span>
+        <span style="background: rgba(138,112,96,0.15); color: #8a7060; padding: 2px 8px; border-radius: 9999px; font-size: 0.75rem; font-weight: 500;">disabled</span>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 1rem; font-size: 0.8125rem; color: #666; line-height: 1.6;">
+    <strong>Changes:</strong> border-radius を pill (9999px) に / 色を Ember Glow パレットにマッピング / ダーク背景のビビッドな色 → ライト背景のミュートした色 / font-size 0.75rem 統一
+  </div>
+</div>
+
+<!-- Table -->
+<div class="section" style="margin-top: 2rem;">
+  <h3>Tables</h3>
+  <div class="split">
+    <div class="mockup">
+      <div class="mockup-header">Before</div>
+      <div class="mockup-body" style="background: #1f2937; padding: 0; font-size: 11px; font-family: -apple-system, system-ui, sans-serif;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="color: #9ca3af; border-bottom: 1px solid #374151;">
+              <th style="padding: 8px 12px; text-align: left; font-weight: 400;">Time</th>
+              <th style="padding: 8px 12px; text-align: left; font-weight: 400;">Type</th>
+              <th style="padding: 8px 12px; text-align: right; font-weight: 400;">Score</th>
+            </tr>
+          </thead>
+          <tbody style="color: #d1d5db;">
+            <tr style="border-bottom: 1px solid rgba(55,65,81,0.5);">
+              <td style="padding: 8px 12px; font-family: monospace;">14:32</td>
+              <td style="padding: 8px 12px;">email_reply</td>
+              <td style="padding: 8px 12px; text-align: right; color: #22c55e; font-family: monospace;">0.85</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 12px; font-family: monospace;">13:10</td>
+              <td style="padding: 8px 12px;">slack_followup</td>
+              <td style="padding: 8px 12px; text-align: right; color: #f59e0b; font-family: monospace;">0.42</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mockup-header">After</div>
+      <div class="mockup-body" style="background: #ede4d8; padding: 0; font-size: 0.8125rem; font-family: -apple-system, system-ui, sans-serif;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="color: #8a7060; border-bottom: 1px solid #d4c8b8;">
+              <th style="padding: 0.75rem 1rem; text-align: left; font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">Time</th>
+              <th style="padding: 0.75rem 1rem; text-align: left; font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">Type</th>
+              <th style="padding: 0.75rem 1rem; text-align: right; font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">Score</th>
+            </tr>
+          </thead>
+          <tbody style="color: #3a2e28;">
+            <tr style="border-bottom: 1px solid #d4c8b8; transition: background 0.15s;" onmouseover="this.style.background='#e4d8ca'" onmouseout="this.style.background='transparent'">
+              <td style="padding: 0.75rem 1rem; font-variant-numeric: tabular-nums;">14:32</td>
+              <td style="padding: 0.75rem 1rem;">email_reply</td>
+              <td style="padding: 0.75rem 1rem; text-align: right; color: #4a8a4a; font-variant-numeric: tabular-nums;">0.85</td>
+            </tr>
+            <tr style="transition: background 0.15s;" onmouseover="this.style.background='#e4d8ca'" onmouseout="this.style.background='transparent'">
+              <td style="padding: 0.75rem 1rem; font-variant-numeric: tabular-nums;">13:10</td>
+              <td style="padding: 0.75rem 1rem;">slack_followup</td>
+              <td style="padding: 0.75rem 1rem; text-align: right; color: #c08a30; font-variant-numeric: tabular-nums;">0.42</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 1rem; font-size: 0.8125rem; color: #666; line-height: 1.6;">
+    <strong>Changes:</strong> th に uppercase + letter-spacing + font-weight 500 / tabular-nums で数値を等幅に / hover に transition 0.15s / monospace → system font + tabular-nums
+  </div>
+</div>
