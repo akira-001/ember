@@ -1,0 +1,159 @@
+<h2>Design Section 1: Color Palette</h2>
+<p class="subtitle">Ember Glow — CSS Custom Properties として定義するカラートークン</p>
+
+<div class="split">
+  <!-- Before -->
+  <div class="mockup">
+    <div class="mockup-header">Before: Current Ember (Dark)</div>
+    <div class="mockup-body" style="padding: 0;">
+      <div style="display: flex; height: 320px; font-family: -apple-system, system-ui, sans-serif; font-size: 11px;">
+        <div style="width: 90px; background: #030712; padding: 12px 8px; color: #9ca3af; border-right: 1px solid #1f2937;">
+          <div style="display: flex; align-items: center; gap: 4px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #1f2937;">
+            <div style="width: 14px; height: 14px; background: #FF6B35; border-radius: 50%;"></div>
+            <span style="color: #f3f4f6; font-size: 9px; font-weight: 600;">Ember</span>
+          </div>
+          <div style="padding: 4px 6px; margin-bottom: 2px; border-left: 2px solid #06b6d4; background: rgba(31,41,55,0.6); color: white; font-size: 10px; border-radius: 0 4px 4px 0;">Overview</div>
+          <div style="padding: 4px 6px; margin-bottom: 2px; font-size: 10px;">Activity</div>
+          <div style="padding: 4px 6px; margin-bottom: 2px; font-size: 10px;">Bots</div>
+          <div style="padding: 4px 6px; font-size: 10px;">Settings</div>
+        </div>
+        <div style="flex: 1; background: #111827; padding: 12px; color: #f3f4f6;">
+          <div style="font-size: 13px; font-weight: 700; margin-bottom: 10px;">Dashboard</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px;">
+            <div style="background: #1f2937; border: 1px solid #374151; border-radius: 6px; padding: 8px;">
+              <div style="font-size: 9px; color: #9ca3af;">Messages</div>
+              <div style="font-size: 16px; font-weight: 700; color: #3b82f6;">142</div>
+            </div>
+            <div style="background: #1f2937; border: 1px solid #374151; border-radius: 6px; padding: 8px;">
+              <div style="font-size: 9px; color: #9ca3af;">Active</div>
+              <div style="font-size: 16px; font-weight: 700; color: #22c55e;">3</div>
+            </div>
+          </div>
+          <div style="background: #1f2937; border: 1px solid #374151; border-radius: 6px; padding: 8px;">
+            <div style="font-size: 9px; color: #9ca3af; margin-bottom: 6px;">Recent Activity</div>
+            <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid rgba(55,65,81,0.5); font-size: 9px;">
+              <span style="color: #d1d5db;">email_reply</span>
+              <span style="background: rgba(59,130,246,0.2); color: #3b82f6; padding: 1px 6px; border-radius: 3px;">sent</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 4px 0; font-size: 9px;">
+              <span style="color: #d1d5db;">slack_followup</span>
+              <span style="background: rgba(6,182,212,0.2); color: #06b6d4; padding: 1px 6px; border-radius: 3px;">pending</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- After -->
+  <div class="mockup">
+    <div class="mockup-header">After: Ember Glow (Warm)</div>
+    <div class="mockup-body" style="padding: 0;">
+      <div style="display: flex; height: 320px; font-family: -apple-system, system-ui, sans-serif; font-size: 11px;">
+        <div style="width: 90px; background: #31241e; padding: 12px 8px; color: #a89888; border-right: 1px solid #4a3e34;">
+          <div style="display: flex; align-items: center; gap: 4px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #4a3e34;">
+            <div style="width: 14px; height: 14px; background: #FF6B35; border-radius: 50%;"></div>
+            <span style="color: #f0e8e0; font-size: 9px; font-weight: 600;">Ember</span>
+          </div>
+          <div style="padding: 4px 6px; margin-bottom: 2px; border-left: 2px solid #E8854A; background: rgba(232,133,74,0.1); color: #f0e8e0; font-size: 10px; border-radius: 0 4px 4px 0;">Overview</div>
+          <div style="padding: 4px 6px; margin-bottom: 2px; font-size: 10px;">Activity</div>
+          <div style="padding: 4px 6px; margin-bottom: 2px; font-size: 10px;">Bots</div>
+          <div style="padding: 4px 6px; font-size: 10px;">Settings</div>
+        </div>
+        <div style="flex: 1; background: #f5ede4; padding: 12px; color: #3a2e28;">
+          <div style="font-size: 13px; font-weight: 700; margin-bottom: 10px;">Dashboard</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px;">
+            <div style="background: #ede4d8; border: 1px solid #d4c8b8; border-radius: 8px; padding: 8px;">
+              <div style="font-size: 9px; color: #8a7060;">Messages</div>
+              <div style="font-size: 16px; font-weight: 700; color: #E8854A;">142</div>
+            </div>
+            <div style="background: #ede4d8; border: 1px solid #d4c8b8; border-radius: 8px; padding: 8px;">
+              <div style="font-size: 9px; color: #8a7060;">Active</div>
+              <div style="font-size: 16px; font-weight: 700; color: #4a8a4a;">3</div>
+            </div>
+          </div>
+          <div style="background: #ede4d8; border: 1px solid #d4c8b8; border-radius: 8px; padding: 8px;">
+            <div style="font-size: 9px; color: #8a7060; margin-bottom: 6px;">Recent Activity</div>
+            <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid rgba(212,200,184,0.8); font-size: 9px;">
+              <span style="color: #5a4e48;">email_reply</span>
+              <span style="background: rgba(74,138,74,0.12); color: #3a7a3a; padding: 1px 6px; border-radius: 9999px; font-weight: 500;">sent</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 4px 0; font-size: 9px;">
+              <span style="color: #5a4e48;">slack_followup</span>
+              <span style="background: rgba(232,133,74,0.12); color: #c06830; padding: 1px 6px; border-radius: 9999px; font-weight: 500;">pending</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Token definitions -->
+<div style="margin-top: 2rem;">
+  <h3>CSS Custom Properties 定義</h3>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+    <!-- Main area -->
+    <div style="background: #1a1a2e; border-radius: 8px; padding: 1rem; font-family: monospace; font-size: 11px; color: #e0e0e0; line-height: 1.8;">
+      <div style="color: #888; margin-bottom: 4px;">/* Main Content Area */</div>
+      <div><span style="color: #9cdcfe;">--bg</span>: <span style="color: #ce9178;">#f5ede4</span>;</div>
+      <div><span style="color: #9cdcfe;">--surface</span>: <span style="color: #ce9178;">#ede4d8</span>;</div>
+      <div><span style="color: #9cdcfe;">--surface-hover</span>: <span style="color: #ce9178;">#e4d8ca</span>;</div>
+      <div><span style="color: #9cdcfe;">--border</span>: <span style="color: #ce9178;">#d4c8b8</span>;</div>
+      <div><span style="color: #9cdcfe;">--text</span>: <span style="color: #ce9178;">#3a2e28</span>;</div>
+      <div><span style="color: #9cdcfe;">--text-dim</span>: <span style="color: #ce9178;">#8a7060</span>;</div>
+      <div style="margin-top: 8px; color: #888;">/* Accent (from logo) */</div>
+      <div><span style="color: #9cdcfe;">--accent</span>: <span style="color: #ce9178;">#E8854A</span>;</div>
+      <div><span style="color: #9cdcfe;">--accent-hover</span>: <span style="color: #ce9178;">#D4763A</span>;</div>
+      <div><span style="color: #9cdcfe;">--accent-dim</span>: <span style="color: #ce9178;">#C06830</span>;</div>
+    </div>
+    <!-- Sidebar + Status -->
+    <div style="background: #1a1a2e; border-radius: 8px; padding: 1rem; font-family: monospace; font-size: 11px; color: #e0e0e0; line-height: 1.8;">
+      <div style="color: #888; margin-bottom: 4px;">/* Sidebar */</div>
+      <div><span style="color: #9cdcfe;">--sidebar-bg</span>: <span style="color: #ce9178;">#31241e</span>;</div>
+      <div><span style="color: #9cdcfe;">--sidebar-surface</span>: <span style="color: #ce9178;">#3e3028</span>;</div>
+      <div><span style="color: #9cdcfe;">--sidebar-border</span>: <span style="color: #ce9178;">#4a3e34</span>;</div>
+      <div><span style="color: #9cdcfe;">--sidebar-text</span>: <span style="color: #ce9178;">#a89888</span>;</div>
+      <div><span style="color: #9cdcfe;">--sidebar-text-active</span>: <span style="color: #ce9178;">#f0e8e0</span>;</div>
+      <div><span style="color: #9cdcfe;">--sidebar-active-dot</span>: <span style="color: #ce9178;">#E8854A</span>;</div>
+      <div style="margin-top: 8px; color: #888;">/* Status */</div>
+      <div><span style="color: #9cdcfe;">--success</span>: <span style="color: #ce9178;">#4a8a4a</span>;</div>
+      <div><span style="color: #9cdcfe;">--warning</span>: <span style="color: #ce9178;">#c08a30</span>;</div>
+      <div><span style="color: #9cdcfe;">--error</span>: <span style="color: #ce9178;">#b85040</span>;</div>
+      <div><span style="color: #9cdcfe;">--info</span>: <span style="color: #ce9178;">#5070a0</span>;</div>
+    </div>
+  </div>
+</div>
+
+<!-- Color swatch comparison -->
+<div style="margin-top: 1.5rem;">
+  <h3>cogmem vs Ember Glow 比較</h3>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.75rem;">
+    <div>
+      <p class="label">cogmem (Teal)</p>
+      <div style="display: flex; gap: 4px;">
+        <div style="width: 36px; height: 36px; background: #2a2726; border-radius: 6px;" title="sidebar-bg"></div>
+        <div style="width: 36px; height: 36px; background: #f0ebe3; border-radius: 6px; border: 1px solid #d0c9be;" title="bg"></div>
+        <div style="width: 36px; height: 36px; background: #e8e1d6; border-radius: 6px;" title="surface"></div>
+        <div style="width: 36px; height: 36px; background: #6b8a6b; border-radius: 6px;" title="accent"></div>
+        <div style="width: 36px; height: 36px; background: #5a9e5a; border-radius: 6px;" title="success"></div>
+        <div style="width: 36px; height: 36px; background: #c08a30; border-radius: 6px;" title="warning"></div>
+        <div style="width: 36px; height: 36px; background: #c05050; border-radius: 6px;" title="error"></div>
+        <div style="width: 36px; height: 36px; background: #5070b0; border-radius: 6px;" title="info"></div>
+      </div>
+    </div>
+    <div>
+      <p class="label">Ember Glow (Orange)</p>
+      <div style="display: flex; gap: 4px;">
+        <div style="width: 36px; height: 36px; background: #31241e; border-radius: 6px;" title="sidebar-bg"></div>
+        <div style="width: 36px; height: 36px; background: #f5ede4; border-radius: 6px; border: 1px solid #d4c8b8;" title="bg"></div>
+        <div style="width: 36px; height: 36px; background: #ede4d8; border-radius: 6px;" title="surface"></div>
+        <div style="width: 36px; height: 36px; background: #E8854A; border-radius: 6px;" title="accent"></div>
+        <div style="width: 36px; height: 36px; background: #4a8a4a; border-radius: 6px;" title="success"></div>
+        <div style="width: 36px; height: 36px; background: #c08a30; border-radius: 6px;" title="warning"></div>
+        <div style="width: 36px; height: 36px; background: #b85040; border-radius: 6px;" title="error"></div>
+        <div style="width: 36px; height: 36px; background: #5070a0; border-radius: 6px;" title="info"></div>
+      </div>
+    </div>
+  </div>
+</div>
