@@ -38,20 +38,41 @@
 | **affinity** | ユーザーの好み | 反応が良かったカテゴリ | 無視されがちなカテゴリ |
 | **surprise** | 意外な面白さ | AIとゴルフの交差点記事 | いつものドジャーススコア |
 
-### 重み（動的に調整）
+### 重み（Thompson Sampling で学習 + 文脈で動的調整）
+
+重みは固定値ではなく、**Beta分布からサンプリング**して毎回決定する。
+ユーザーの反応を報酬信号として分布を更新し、どの軸が「良い話題選び」に効くかを学習する。
 
 ```
-base_weights = {
-  timeliness: 0.25,
-  novelty: 0.20,
-  continuity: 0.20,
-  emotional_fit: 0.15,
-  affinity: 0.10,
-  surprise: 0.10,
-}
+初期 priors（Beta分布の α, β）:
+  timeliness:    α=5, β=5   → 期待値 0.50（事前知識: 旬は重要）
+  novelty:       α=4, β=6   → 期待値 0.40
+  continuity:    α=4, β=6   → 期待値 0.40
+  emotional_fit: α=3, β=7   → 期待値 0.30
+  affinity:      α=2, β=8   → 期待値 0.20
+  surprise:      α=2, β=8   → 期待値 0.20
 ```
 
-状況による動的調整:
+**学習ループ:**
+```
+1. Beta(α, β) から各軸の重みをサンプリング → 正規化
+2. 文脈ボーナスを加算（朝→timeliness、週末→emotional_fit 等）
+3. 再正規化してスコアリングに使用
+4. ユーザー反応を観測
+5. 選んだ候補のスコアが高かった軸の α or β を更新
+```
+
+**候補選択の探索（B: バンディット）:**
+```
+スコア1位を常に選ぶと exploitation に偏る。
+Thompson Sampling の重みサンプリング自体が探索を内包するが、
+候補選択にも UCB ボーナスを加える:
+
+exploration_bonus = √(2 × ln(total_selections) / axis_selections)
+adjusted_score = final_score + exploration_coeff × exploration_bonus
+```
+
+**文脈ボーナス（ルールベース）:**
 - 朝一番 → timeliness +0.10（今日の情報を優先）
 - 前回の話題から2時間以内 → continuity +0.10（フォローアップの機会）
 - 直近3回無反応 → surprise +0.15（マンネリ打破）
@@ -59,7 +80,9 @@ base_weights = {
 
 ### 最終スコア
 ```
-final_score = Σ (axis_score × dynamic_weight) for each axis
+sampled_weights = normalize(sample(Beta(α_i, β_i)) + context_bonus_i)
+final_score = Σ (axis_score × sampled_weight) for each axis
+selection_score = final_score + exploration_bonus  # 候補選択時のみ
 ```
 
 ---
@@ -110,13 +133,51 @@ interface ConversationContext {
   lastSentMinutesAgo: number;
   consecutiveNoReaction: number; // 直近で連続して無反応の数
 }
+
+// --- Thompson Sampling 関連 ---
+
+interface WeightPrior {
+  alpha: number;           // positive signal の累積
+  beta: number;            // negative signal の累積
+}
+
+interface LearningState {
+  priors: Record<string, WeightPrior>;   // 各軸の Beta 分布パラメータ
+  totalSelections: number;               // 候補選択の総数
+  categorySelections: Record<string, number>;  // カテゴリ別選択回数（探索ボーナス用）
+  lastUpdated: string;                   // ISO8601
+  version: number;                       // 学習状態のバージョン（リセット時にインクリメント）
+}
+
+type Reaction = 'positive' | 'neutral' | 'negative';
 ```
 
 - [ ] **Step 1: ファイル作成 — 型定義とスケルトン**
 
 `src/conversation-scorer.ts` を作成。
-ScoredCandidate, ConversationContext インターフェースを定義。
-`scoreCandidate()` と `scoreCandidates()` のスケルトンを作成。
+ScoredCandidate, ConversationContext, WeightPrior, LearningState インターフェースを定義。
+`scoreCandidate()`, `scoreCandidates()`, `createInitialLearningState()` のスケルトンを作成。
+
+```typescript
+const DEFAULT_PRIORS: Record<string, WeightPrior> = {
+  timeliness:    { alpha: 5, beta: 5 },
+  novelty:       { alpha: 4, beta: 6 },
+  continuity:    { alpha: 4, beta: 6 },
+  emotional_fit: { alpha: 3, beta: 7 },
+  affinity:      { alpha: 2, beta: 8 },
+  surprise:      { alpha: 2, beta: 8 },
+};
+
+function createInitialLearningState(): LearningState {
+  return {
+    priors: structuredClone(DEFAULT_PRIORS),
+    totalSelections: 0,
+    categorySelections: {},
+    lastUpdated: new Date().toISOString(),
+    version: 1,
+  };
+}
+```
 
 - [ ] **Step 2: timeliness スコア実装**
 
@@ -210,38 +271,111 @@ function scoreSurprise(candidate: RawCandidate, ctx: ConversationContext): numbe
 }
 ```
 
-- [ ] **Step 8: 動的重み調整 + 最終スコア算出**
+- [ ] **Step 8: Thompson Sampling — Beta分布サンプリングと重み生成**
 
 ```typescript
-function getDynamicWeights(ctx: ConversationContext): Record<string, number> {
-  const weights = { ...BASE_WEIGHTS };
+// Beta分布からのサンプリング（Jöhnk's algorithm — 外部ライブラリ不要）
+function betaSample(alpha: number, beta: number): number {
+  // alpha, beta が共に1以上の場合は Gamma 経由が安定
+  const gammaA = gammaSample(alpha);
+  const gammaB = gammaSample(beta);
+  return gammaA / (gammaA + gammaB);
+}
+
+function gammaSample(shape: number): number {
+  // Marsaglia and Tsang's method
+  if (shape < 1) {
+    return gammaSample(shape + 1) * Math.pow(Math.random(), 1 / shape);
+  }
+  const d = shape - 1 / 3;
+  const c = 1 / Math.sqrt(9 * d);
+  while (true) {
+    let x: number, v: number;
+    do {
+      x = randn();
+      v = 1 + c * x;
+    } while (v <= 0);
+    v = v * v * v;
+    const u = Math.random();
+    if (u < 1 - 0.0331 * (x * x) * (x * x)) return d * v;
+    if (Math.log(u) < 0.5 * x * x + d * (1 - v + Math.log(v))) return d * v;
+  }
+}
+
+function randn(): number {
+  // Box-Muller transform
+  const u1 = Math.random();
+  const u2 = Math.random();
+  return Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
+}
+
+// 学習済み priors から重みをサンプリング
+function sampleWeights(priors: Record<string, WeightPrior>): Record<string, number> {
+  const sampled: Record<string, number> = {};
+  for (const [axis, prior] of Object.entries(priors)) {
+    sampled[axis] = betaSample(prior.alpha, prior.beta);
+  }
+  // 正規化して合計 1.0 に
+  const sum = Object.values(sampled).reduce((a, b) => a + b, 0);
+  for (const k of Object.keys(sampled)) sampled[k] /= sum;
+  return sampled;
+}
+```
+
+- [ ] **Step 9: 文脈ボーナス + 最終スコア算出**
+
+```typescript
+function getContextBonus(ctx: ConversationContext): Record<string, number> {
+  const bonus: Record<string, number> = {
+    timeliness: 0, novelty: 0, continuity: 0,
+    emotional_fit: 0, affinity: 0, surprise: 0,
+  };
 
   // 朝一番: タイムリーさ重視
-  if (ctx.currentHour >= 8 && ctx.currentHour <= 10) weights.timeliness += 0.10;
+  if (ctx.currentHour >= 8 && ctx.currentHour <= 10) bonus.timeliness += 0.10;
 
   // フォローアップ機会: 前回から2時間以内
-  if (ctx.lastSentMinutesAgo < 120) weights.continuity += 0.10;
+  if (ctx.lastSentMinutesAgo < 120) bonus.continuity += 0.10;
 
   // マンネリ打破: 3回連続無反応
-  if (ctx.consecutiveNoReaction >= 3) weights.surprise += 0.15;
+  if (ctx.consecutiveNoReaction >= 3) bonus.surprise += 0.15;
 
   // 週末: 感情フィット重視
-  if (ctx.dayOfWeek === 0 || ctx.dayOfWeek === 6) weights.emotional_fit += 0.10;
+  if (ctx.dayOfWeek === 0 || ctx.dayOfWeek === 6) bonus.emotional_fit += 0.10;
 
-  // 正規化（合計1.0に）
-  const sum = Object.values(weights).reduce((a, b) => a + b, 0);
-  for (const k of Object.keys(weights)) weights[k] /= sum;
+  return bonus;
+}
 
-  return weights;
+function getDynamicWeights(
+  learningState: LearningState,
+  ctx: ConversationContext
+): { weights: Record<string, number>; sampledRaw: Record<string, number>; bonus: Record<string, number> } {
+  // Step 1: Beta分布からサンプリング
+  const sampledRaw = sampleWeights(learningState.priors);
+
+  // Step 2: 文脈ボーナスを加算
+  const bonus = getContextBonus(ctx);
+  const combined: Record<string, number> = {};
+  for (const axis of Object.keys(sampledRaw)) {
+    combined[axis] = sampledRaw[axis] + (bonus[axis] || 0);
+  }
+
+  // Step 3: 再正規化
+  const sum = Object.values(combined).reduce((a, b) => a + b, 0);
+  const weights: Record<string, number> = {};
+  for (const k of Object.keys(combined)) weights[k] = combined[k] / sum;
+
+  return { weights, sampledRaw, bonus };
 }
 
 function scoreCandidates(
   rawCandidates: RawCandidate[],
-  ctx: ConversationContext
-): ScoredCandidate[] {
-  const weights = getDynamicWeights(ctx);
+  ctx: ConversationContext,
+  learningState: LearningState
+): { candidates: ScoredCandidate[]; weightsUsed: Record<string, number>; sampledRaw: Record<string, number>; bonus: Record<string, number> } {
+  const { weights, sampledRaw, bonus } = getDynamicWeights(learningState, ctx);
 
-  return rawCandidates.map(c => {
+  const candidates = rawCandidates.map(c => {
     const scores = {
       timeliness: scoreTimeliness(c),
       novelty: scoreNovelty(c, ctx),
@@ -257,10 +391,91 @@ function scoreCandidates(
 
     return { ...c, scores, finalScore, reasoning: buildReasoning(c, scores) };
   }).sort((a, b) => b.finalScore - a.finalScore);
+
+  return { candidates, weightsUsed: weights, sampledRaw, bonus };
 }
 ```
 
-- [ ] **Step 9: フォローアップ候補の自動生成**
+- [ ] **Step 10: 探索ボーナス — UCB で候補選択に多様性を注入**
+
+```typescript
+const EXPLORATION_COEFF = 0.1;  // 探索の強さ（0=exploitation only, 高い=探索強め）
+
+function addExplorationBonus(
+  candidates: ScoredCandidate[],
+  learningState: LearningState
+): ScoredCandidate[] {
+  const totalN = Math.max(learningState.totalSelections, 1);
+
+  return candidates.map(c => {
+    const categoryN = learningState.categorySelections[c.category] || 0;
+    // UCB1 探索項: あまり選ばれてないカテゴリにボーナス
+    const explorationBonus = categoryN === 0
+      ? EXPLORATION_COEFF * 2  // 未知のカテゴリには大きめのボーナス
+      : EXPLORATION_COEFF * Math.sqrt(2 * Math.log(totalN) / categoryN);
+
+    return {
+      ...c,
+      explorationBonus,
+      selectionScore: c.finalScore + explorationBonus,
+    };
+  }).sort((a, b) => b.selectionScore - a.selectionScore);
+}
+```
+
+- [ ] **Step 11: 報酬更新 — ユーザー反応で Beta 分布を更新**
+
+```typescript
+function updatePriors(
+  learningState: LearningState,
+  chosen: ScoredCandidate,
+  reaction: Reaction
+): LearningState {
+  const updated = structuredClone(learningState);
+
+  // Credit assignment: スコアが高い軸ほど強く更新
+  for (const [axis, score] of Object.entries(chosen.scores)) {
+    if (score < 0.3) continue;  // 寄与が小さい軸はスキップ
+
+    if (reaction === 'positive') {
+      updated.priors[axis].alpha += score;      // 成功軸を強化
+    } else if (reaction === 'negative') {
+      updated.priors[axis].beta += score * 0.7; // ペナルティは控えめ
+    } else {
+      // neutral: ごく弱いペナルティ（無反応は「悪い」ではなく「わからない」）
+      updated.priors[axis].beta += score * 0.2;
+    }
+  }
+
+  // 選択カウント更新
+  updated.totalSelections += 1;
+  updated.categorySelections[chosen.category] =
+    (updated.categorySelections[chosen.category] || 0) + 1;
+  updated.lastUpdated = new Date().toISOString();
+
+  return updated;
+}
+
+// 安全弁: α+β が大きくなりすぎると新しい反応の影響が薄まる
+// 定期的に rescale して「最近の反応」を重視する
+function rescalePriors(
+  learningState: LearningState,
+  maxSum: number = 50  // α+β の上限
+): LearningState {
+  const updated = structuredClone(learningState);
+  for (const [axis, prior] of Object.entries(updated.priors)) {
+    const sum = prior.alpha + prior.beta;
+    if (sum > maxSum) {
+      const scale = maxSum / sum;
+      updated.priors[axis].alpha *= scale;
+      updated.priors[axis].beta *= scale;
+    }
+  }
+  return updated;
+}
+```
+
+- [ ] **Step 12: フォローアップ候補の自動生成**
 
 ```typescript
 function generateFollowUpCandidates(ctx: ConversationContext): RawCandidate[] {
@@ -285,11 +500,11 @@ function generateFollowUpCandidates(ctx: ConversationContext): RawCandidate[] {
 }
 ```
 
-- [ ] **Step 10: コミット**
+- [ ] **Step 13: コミット**
 
 ```bash
 git add src/conversation-scorer.ts
-git commit -m "feat: add 6-axis conversation scoring engine"
+git commit -m "feat: add 6-axis conversation scoring engine with Thompson Sampling"
 ```
 
 ---
@@ -381,7 +596,7 @@ proactive-state から ConversationContext を構築。calendarDensity はカレ
 スコアは参考値です。あなたの直感で最終判断してください。
 ```
 
-- [ ] **Step 5: decision log にスコア内訳を保存**
+- [ ] **Step 5: decision log にスコア内訳 + 学習情報を保存**
 
 ```typescript
 state.lastDecisionLog = {
@@ -392,16 +607,81 @@ state.lastDecisionLog = {
     category: c.category,
     scores: c.scores,
     finalScore: c.finalScore,
+    explorationBonus: c.explorationBonus,
+    selectionScore: c.selectionScore,
     reasoning: c.reasoning,
   })),
+  weightsUsed,          // 今回使った重み（サンプリング + 文脈ボーナス後）
+  sampledRaw,           // Beta分布からの生サンプル値
+  contextBonus: bonus,  // 文脈ボーナスの内訳
+  priors: learningState.priors,  // 現在の学習状態
 };
 ```
 
-- [ ] **Step 6: コミット**
+- [ ] **Step 6: 反応観測 → priors 更新（学習ループ）**
+
+Slack からの反応（リアクション絵文字、返信、無反応）を検知して priors を更新する。
+
+```typescript
+// proactive-state.ts に追加
+interface ProactiveState {
+  // ... 既存フィールド
+  learningState: LearningState;         // Thompson Sampling の学習状態
+  pendingReward?: {                     // 反応待ちの候補
+    candidate: ScoredCandidate;
+    sentAt: string;
+    messageTs: string;
+  };
+}
+
+// skill-enhanced-proactive-agent.ts の run() 冒頭で
+// 前回送信の反応を確認して priors を更新
+function checkAndUpdateReward(state: ProactiveState): void {
+  if (!state.pendingReward) return;
+
+  const { candidate, sentAt, messageTs } = state.pendingReward;
+  const minutesSinceSent = (Date.now() - new Date(sentAt).getTime()) / 60000;
+
+  // 30分以上経過したら反応を確定
+  if (minutesSinceSent < 30) return;
+
+  // Slack API で反応を取得（既存の reaction tracking ロジックを流用）
+  const reaction = detectReaction(messageTs);  // 'positive' | 'neutral' | 'negative'
+
+  // Beta 分布を更新
+  state.learningState = updatePriors(state.learningState, candidate, reaction);
+
+  // rescale チェック（α+β が大きくなりすぎたら）
+  state.learningState = rescalePriors(state.learningState);
+
+  // ログに記録
+  console.log(`[TS] Reward observed: ${reaction} for "${candidate.topic}" (${candidate.category})`);
+
+  // pending をクリア
+  delete state.pendingReward;
+}
+
+// 送信後に pending を設定
+function setPendingReward(state: ProactiveState, chosen: ScoredCandidate, messageTs: string): void {
+  state.pendingReward = {
+    candidate: chosen,
+    sentAt: new Date().toISOString(),
+    messageTs,
+  };
+}
+```
+
+- [ ] **Step 7: learningState の永続化**
+
+`proactive-state.ts` の `loadState()` / `saveState()` に `learningState` フィールドを追加。
+既存の state ファイル（mei-state.json）に含めて永続化する。
+state に `learningState` がない場合は `createInitialLearningState()` で初期化。
+
+- [ ] **Step 8: コミット**
 
 ```bash
-git add src/skill-enhanced-proactive-agent.ts src/proactive-state.ts
-git commit -m "feat: integrate 6-axis scoring into proactive agent"
+git add src/skill-enhanced-proactive-agent.ts src/proactive-state.ts src/conversation-scorer.ts
+git commit -m "feat: integrate 6-axis scoring with Thompson Sampling into proactive agent"
 ```
 
 ---
@@ -447,15 +727,47 @@ const AXIS_LABELS: Record<string, string> = {
 };
 ```
 
-- [ ] **Step 4: 動的重みの表示**
+- [ ] **Step 4: 動的重みの表示（サンプリング + 文脈ボーナスの分解）**
 
-「今回の重み配分」セクションを追加。なぜこの重みになったか（朝だから、週末だから、等）を表示。
+「今回の重み配分」セクションを追加。3層構造で表示:
+1. **Beta分布からのサンプル**: 学習済みの生の重み
+2. **文脈ボーナス**: なぜこの重みになったか（朝だから、週末だから、等）
+3. **最終重み**: 正規化後の実際に使われた重み
 
-- [ ] **Step 5: コミット**
+- [ ] **Step 5: 学習状態の可視化**
+
+「学習状態（Thompson Sampling）」セクションを追加:
+
+```
+各軸の信頼度:
+  旬     ████████░░ α=12.3 β=7.1  期待値=0.63  [95%CI: 0.45-0.79]
+  新鮮さ  ██████░░░░ α=8.2  β=9.4  期待値=0.47  [95%CI: 0.30-0.64]
+  流れ   █████░░░░░ α=6.1  β=8.9  期待値=0.41  [95%CI: 0.23-0.60]
+  状態   ████░░░░░░ α=4.5  β=10.2 期待値=0.31  [95%CI: 0.14-0.50]
+  好み   ███░░░░░░░ α=3.8  β=11.1 期待値=0.26  [95%CI: 0.11-0.44]
+  意外性  ██░░░░░░░░ α=2.9  β=9.7  期待値=0.23  [95%CI: 0.08-0.42]
+
+学習回数: 47回 | 最終更新: 2分前
+```
+
+信頼区間（95% CI）は Beta 分布の 2.5% / 97.5% パーセンタイルで算出。
+CI が広い = まだ不確実 → 探索が多い。CI が狭い = 確信が高い → 活用に寄る。
+
+- [ ] **Step 6: 探索 vs 活用の透明性**
+
+候補リストの表示に `explorationBonus` を追加:
+```
+#1 ドジャース開幕戦結果 [0.82 + 0.02 = 0.84]
+                       ↑score   ↑exploration
+#3 天気（ゴルフ前日）    [0.54 + 0.18 = 0.72]  ← 探索ボーナスで浮上
+                                ↑ 選択回数が少ない
+```
+
+- [ ] **Step 7: コミット**
 
 ```bash
 git add dashboard/
-git commit -m "feat: add 6-axis score visualization to proactive dashboard"
+git commit -m "feat: add Thompson Sampling learning visualization to proactive dashboard"
 ```
 
 ---
@@ -505,3 +817,7 @@ $B screenshot /tmp/proactive-v3.png
 4. **会話の流れを大切にする** — 昨日ゴルフの話をしたら、今日はゴルフの話題よりゴルフのフォローアップ（「どうだった？」）の方がスコアが高い
 
 5. **相手の状態を想像する** — 忙しい日に重い話はしない、週末は楽しい話題を選ぶ
+
+6. **経験から学ぶ（Thompson Sampling）** — 「前にこういう話題で反応良かったから、似た状況ではこの軸を重視しよう」。人間が無意識にやっている「この人にはこの話の振り方が合う」を Beta 分布の更新で再現する
+
+7. **たまに冒険する（UCB 探索）** — いつも安全な話題だけだと関係が硬直する。試したことのないカテゴリに探索ボーナスを付けて、新しい反応パターンを発見する機会を作る
