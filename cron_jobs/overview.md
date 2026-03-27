@@ -12,7 +12,8 @@
 |---------|------------|------|--------|
 | tech-news-digest | 毎日 9:00 | Google News RSS / HN / GitHub からテックニュースを収集し、ローカル LLM で翻訳して投稿 | #tech-news (C0AJT8XU8G0) |
 | haru-nightly-reflection | 毎日 19:30 | 前回の定期実行以降の Slack やり取りを振り返り、Akira について新しく分かったこと（趣味・興味・好み・行動パターンなど）があれば Claude Code memory に保存 | DM (U3SFGQXNH) |
-| proactive-checkin | 毎日 9,11,14,17,20時 | proactive-agent が状況を判断し、必要に応じて Akira に話しかける（LLM 判断で NO_REPLY もあり） | DM (U3SFGQXNH) |
+| interest-scanner | 毎日 8:50,10:50,13:50,16:50,19:50 | Akiraさんの興味カテゴリ（AI、ドジャース、キャンピングカー等9カテゴリ）を Google News RSS でスキャン。スコアリングして interest-cache.json に保存 | DM (U3SFGQXNH) |
+| proactive-checkin | 毎日 9,11,14,17,20時 | ニーズアセスメント型。カレンダー + メール + cogmem記憶 + interest-cache を総合判断し、最も届けるべき情報を選択して話しかける | DM (U3SFGQXNH) |
 
 ## 週次
 
@@ -30,6 +31,7 @@
 |-----------|------|------|
 | tech_news.py | /Users/akira/workspace/ai-dev/web-search/tech_news.py | Python venv |
 | campingcar_search.py | /Users/akira/workspace/ai-dev/web-search/campingcar_search.py | Python venv |
+| interest_scanner.py | /Users/akira/workspace/ai-dev/web-search/interest_scanner.py | Python venv |
 | gmail_to_drive.py | /Users/akira/workspace/claude-code-slack-bot/scripts/gmail_to_drive.py | Gmail API (motogami), Drive API (redperth) |
 
 ## 外部データファイル
