@@ -168,3 +168,14 @@ gstack（25+コマンド） — ロール別に専門家を召喚：
 /freeze /unfreeze /guard /careful — 安全管理系
 /cso /investigate /benchmark /document-release /codex — その他
 
+  ## 日時の相対表現ルール                                                                
+                                                                                         
+  - Akira のタイムゾーンは JST（UTC+9）                                                  
+  - 外部ソース（ESPN、GitHub、API等）の日時は **JST                                      
+  に換算してから**「今日/昨日/明日」を判定する                                           
+  - 米国の夜の出来事は JST では翌日になることが多い                                 
+  - 換算前の日付で相対表現を使わない                                                     
+                                                                                         
+  これを ~/.claude/CLAUDE.md の「技術スタイル」セクションあたりに入れるのが良さそう。全プ
+  ロジェクト・全タスクで効くし、スキル個別のルールより上位で適用される。                 
+                                                                             
