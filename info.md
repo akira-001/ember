@@ -1,4 +1,7 @@
+cmux markdown open info.md
+
 Step 1: リポジトリのクローンと依存関係インストール
+
 
  cd ~/workspace
  git clone <https://github.com/mpociot/claude-code-slack-bot.git>
