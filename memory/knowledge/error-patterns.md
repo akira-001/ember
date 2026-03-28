@@ -1,6 +1,6 @@
 # エラーパターン
 
-*記憶の定着プロセスで更新されます。最終更新: 2026-03-26*
+*記憶の定着プロセスで更新されます。最終更新: 2026-03-29*
 
 ---
 
@@ -31,3 +31,21 @@
 **発生**: 2026-03-25 | **Arousal**: 0.8
 **パターン**: DB のスキル ID（ハッシュ値）と .claude/skills/ のディレクトリ名が一致しない。テキストマッチングを何度試しても失敗。
 **対策**: `claude_skill_name` カラムで明示的にマッピングする。新スキル追加時はマッピングを忘れない。
+
+## EP-006: 外部 API 実行前に確認を省いてコストを発生させた
+**発生**: 2026-03-27 | **Arousal**: 0.9
+**パターン**: 「外部 API を叩く = コストが発生する」と認識していながら、実行前の確認を省いた。skill-creator の run_loop.py を実行 → 270回の API コール → $15 消費。
+**具体例**: datetime-awareness スキルの description 最適化で run_loop.py を確認なしに実行。Akira が API Key を削除。
+**対策**: 外部 API キーを設定する操作 = コスト発生の警告サイン。キー設定前に必ず Akira に確認を取る。ローカル MLX（qwen32）は自由に使ってOK。
+
+## EP-007: 型の不一致で条件判定が常に false になる
+**発生**: 2026-03-28 | **Arousal**: 0.8
+**パターン**: 同じ「カテゴリ」という名前の2つのフィールドを比較しているが、実は型が違う（SuggestionCategory vs interestCategory）。条件が常に false になり、novelty スコアが常に高い値になる。
+**具体例**: ドジャースの話題が3回連続で来た。`recentHistory.category` は SuggestionCategory、`candidate.category` は interestCategory で型が違い、novelty 判定が常に false だった。
+**対策**: 同名フィールドを比較する前に両者の型・定義元を確認する。型エイリアスや同名の別型に注意。
+
+## EP-008: 認証情報のハードコーディングと git 履歴汚染
+**発生**: 2026-03-28 | **Arousal**: 0.7
+**パターン**: Slack の appToken を設定ファイルに直接記載し、git にコミットしてしまった。
+**具体例**: bot-configs.json に appToken を記載 → git push → 履歴に残存。git filter-repo で除去 → force push → フォーク private 化が必要になった。
+**対策**: 認証情報は必ず `.env` ファイルに記載し `.gitignore` に追加する。設定ファイルはテンプレート（`.example`）のみ commit する。
