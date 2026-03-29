@@ -28,7 +28,7 @@ checkpoint_count = 2
 auto_improve = "auto"  # "auto" | "ask" | "off"
 
 [cogmem.metrics]
-total_sessions = 20
+total_sessions = 21
 
 [cogmem.scoring]
 sim_weight = 0.7
