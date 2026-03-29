@@ -15,3 +15,7 @@
 ## 蓄積された知識
 
 @memory/knowledge/summary.md
+
+## 作業規約
+
+- プランファイルは `docs/plans/YYYY-MM-DD-{topic}.md` に出力する（`~/.claude/plans/` は使わない）
