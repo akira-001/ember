@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-04-01T21:31:33.921680",
+  "sources": {
+    "gstack": {
+      "type": "git",
+      "version": "0.13.0.0",
+      "local_sha": "78bc1d19",
+      "remote_sha": "6169273d",
+      "up_to_date": false,
+      "behind": 22
+    },
+    "plugin:frontend-design": {
+      "type": "plugin",
+      "version": "unknown",
+      "up_to_date": true
+    },
+    "plugin:superpowers": {
+      "type": "plugin",
+      "version": "5.0.5",
+      "up_to_date": true
+    },
+    "plugin:skill-creator": {
+      "type": "plugin",
+      "version": "unknown",
+      "up_to_date": true
+    }
+  }
+}
