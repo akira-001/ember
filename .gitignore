@@ -7,6 +7,7 @@ __pycache__/
 
 # Cognitive Memory
 *.db
+*.db-bak*
 *.db-shm
 *.db-wal
 cogmem.local.toml
