@@ -3,13 +3,23 @@
     "PreToolUse": [
       {
         "matcher": "Edit|Write",
-        "command": "cogmem hook skill-gate"
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cogmem hook skill-gate"
+          }
+        ]
       }
     ],
     "PostToolUse": [
       {
         "matcher": "Bash",
-        "command": "cogmem hook failure-breaker"
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cogmem hook failure-breaker"
+          }
+        ]
       }
     ]
   }
