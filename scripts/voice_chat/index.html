@@ -298,16 +298,21 @@ async function playBotMessage(botId) {
   const btns = document.querySelectorAll('.bot-btn');
   btns.forEach(b => b.disabled = true);
   try {
-    const speaker = voiceSelect.value;
-    const speed = speedSelect.value;
-    const resp = await fetch(`/api/bot-message/${botId}?speaker=${speaker}&speed=${speed}`);
-    if (!resp.ok) {
+    // テキスト取得
+    const textResp = await fetch(`/api/bot-text/${botId}`);
+    if (!textResp.ok) {
       addMessage(`[${botId}] メッセージが見つかりません`, 'status');
+      btns.forEach(b => b.disabled = false);
       return;
     }
-    const botText = decodeURIComponent(resp.headers.get('X-Bot-Text') || '');
-    if (botText) addMessage(`[${botId}] ${botText}`, 'assistant');
-    const buf = await resp.arrayBuffer();
+    const { text } = await textResp.json();
+    addMessage(`[${botId}] ${text}`, 'assistant');
+
+    // 音声取得・再生
+    const speaker = voiceSelect.value;
+    const speed = speedSelect.value;
+    const audioResp = await fetch(`/api/bot-audio/${botId}?speaker=${speaker}&speed=${speed}`);
+    const buf = await audioResp.arrayBuffer();
     playAudio(buf);
   } catch (e) {
     console.error(e);

@@ -110,24 +110,38 @@ async def preview_voice(speaker: int = 2, speed: float = 1.0):
     return Response(content=audio, media_type="audio/wav")
 
 
-@app.get("/api/bot-message/{bot_id}")
-async def get_bot_message(bot_id: str, speaker: int = 2, speed: float = 1.0):
+import re
+
+def _get_latest_bot_text(bot_id: str) -> str | None:
     state_file = BOT_STATE_DIR / f"{bot_id}-state.json"
     if not state_file.exists():
-        return Response(status_code=404)
+        return None
     state = json.loads(state_file.read_text())
     history = state.get("history", [])
     if not history:
-        return Response(status_code=404)
+        return None
     latest = history[-1]
     text = latest.get("fullText", latest.get("preview", ""))
-    # Markdown 記法を除去
-    import re
     text = re.sub(r'\*([^*]+)\*', r'\1', text)
     text = re.sub(r'<[^>]+>', '', text)
+    return text.strip()
+
+
+@app.get("/api/bot-text/{bot_id}")
+async def get_bot_text(bot_id: str):
+    text = _get_latest_bot_text(bot_id)
+    if not text:
+        return Response(status_code=404)
+    return {"text": text}
+
+
+@app.get("/api/bot-audio/{bot_id}")
+async def get_bot_audio(bot_id: str, speaker: int = 2, speed: float = 1.0):
+    text = _get_latest_bot_text(bot_id)
+    if not text:
+        return Response(status_code=404)
     audio = await synthesize_speech(text, speaker, speed)
-    return Response(content=audio, media_type="audio/wav",
-                    headers={"X-Bot-Text": text[:200]})
+    return Response(content=audio, media_type="audio/wav")
 
 
 @app.get("/api/speakers")
