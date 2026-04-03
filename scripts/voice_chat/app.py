@@ -88,6 +88,8 @@ async def get_models():
         ]
 
 
+BOT_STATE_DIR = Path("/Users/akira/workspace/claude-code-slack-bot/data")
+
 SAMPLE_TEXTS = [
     "こんにちは、今日はいい天気ですね。お散歩日和です。",
     "おはようございます。今日も一日頑張りましょう。",
@@ -106,6 +108,26 @@ async def preview_voice(speaker: int = 2, speed: float = 1.0):
     text = random.choice(SAMPLE_TEXTS)
     audio = await synthesize_speech(text, speaker, speed)
     return Response(content=audio, media_type="audio/wav")
+
+
+@app.get("/api/bot-message/{bot_id}")
+async def get_bot_message(bot_id: str, speaker: int = 2, speed: float = 1.0):
+    state_file = BOT_STATE_DIR / f"{bot_id}-state.json"
+    if not state_file.exists():
+        return Response(status_code=404)
+    state = json.loads(state_file.read_text())
+    history = state.get("history", [])
+    if not history:
+        return Response(status_code=404)
+    latest = history[-1]
+    text = latest.get("fullText", latest.get("preview", ""))
+    # Markdown 記法を除去
+    import re
+    text = re.sub(r'\*([^*]+)\*', r'\1', text)
+    text = re.sub(r'<[^>]+>', '', text)
+    audio = await synthesize_speech(text, speaker, speed)
+    return Response(content=audio, media_type="audio/wav",
+                    headers={"X-Bot-Text": text[:200]})
 
 
 @app.get("/api/speakers")
