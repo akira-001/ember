@@ -1,20 +1,39 @@
 """Voice Chat Web App - STT (Whisper) + LLM (Ollama) + TTS (VOICEVOX)"""
 import asyncio
 import json
+import os
 import tempfile
+import time
 from pathlib import Path
 
 import httpx
 import uvicorn
+from dotenv import load_dotenv
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse, Response
 
 from faster_whisper import WhisperModel
 
+load_dotenv(Path(__file__).parent / ".env")
+
 app = FastAPI()
 
 VOICEVOX_URL = "http://localhost:50021"
 VOICEVOX_SPEAKER = 2  # 四国めたん ノーマル
+
+# Slack config
+SLACK_USER_TOKENS = {
+    "mei": os.getenv("SLACK_USER_TOKEN_MEI", ""),
+    "eve": os.getenv("SLACK_USER_TOKEN_EVE", ""),
+}
+SLACK_DM_CHANNELS = {
+    "mei": os.getenv("SLACK_DM_CHANNEL_MEI", ""),
+    "eve": os.getenv("SLACK_DM_CHANNEL_EVE", ""),
+}
+SLACK_BOT_TOKENS = {
+    "mei": os.getenv("SLACK_BOT_TOKEN_MEI", ""),
+    "eve": os.getenv("SLACK_BOT_TOKEN_EVE", ""),
+}
 
 # --- Models (lazy load) ---
 _whisper_model = None
@@ -153,6 +172,57 @@ async def get_speakers():
         return resp.json()
 
 
+async def slack_post_message(bot_id: str, text: str) -> str | None:
+    """ユーザーとして Slack DM にメッセージを投稿し、ts を返す"""
+    token = SLACK_USER_TOKENS.get(bot_id)
+    channel = SLACK_DM_CHANNELS.get(bot_id)
+    if not token or not channel:
+        return None
+    async with httpx.AsyncClient(timeout=10) as client:
+        resp = await client.post(
+            "https://slack.com/api/chat.postMessage",
+            headers={"Authorization": f"Bearer {token}"},
+            json={"channel": channel, "text": text},
+        )
+        data = resp.json()
+        return data.get("ts") if data.get("ok") else None
+
+
+async def slack_poll_response(bot_id: str, after_ts: str, timeout: float = 60) -> str | None:
+    """Slack DM でボットの返信をポーリングする"""
+    token = SLACK_USER_TOKENS.get(bot_id)
+    channel = SLACK_DM_CHANNELS.get(bot_id)
+    if not token or not channel:
+        return None
+    deadline = time.time() + timeout
+    async with httpx.AsyncClient(timeout=10) as client:
+        while time.time() < deadline:
+            resp = await client.get(
+                "https://slack.com/api/conversations.history",
+                headers={"Authorization": f"Bearer {token}"},
+                params={"channel": channel, "oldest": after_ts, "limit": 5},
+            )
+            data = resp.json()
+            if data.get("ok"):
+                for msg in data.get("messages", []):
+                    # ボットからの返信を探す（bot_id or bot_profile がある）
+                    if msg.get("bot_id") or msg.get("bot_profile"):
+                        text = msg.get("text", "")
+                        text = re.sub(r'\*([^*]+)\*', r'\1', text)
+                        text = re.sub(r'<[^>]+>', '', text)
+                        return text.strip()
+            await asyncio.sleep(3)
+    return None
+
+
+@app.post("/api/slack/reply/{bot_id}")
+async def slack_reply(bot_id: str, speaker: int = 2, speed: float = 1.0):
+    """音声を受け取り、STT → Slack投稿 → ボット返信待ち → TTS"""
+    from fastapi import Request
+    # This endpoint is called from JS with audio blob
+    return {"error": "use websocket"}  # placeholder
+
+
 @app.get("/")
 async def index():
     html = (Path(__file__).parent / "index.html").read_text()
@@ -165,6 +235,9 @@ async def websocket_endpoint(ws: WebSocket):
     speaker_id = VOICEVOX_SPEAKER
     speed = 1.0
     model = "gemma4:e4b"
+    slack_reply_bot = None  # None = 通常モード, "mei"/"eve" = Slack返信モード
+    slack_reply_speaker = 2
+    slack_reply_speed = 1.0
     conversation: list[dict] = [
         {"role": "system", "content": (
             "あなたはフレンドリーな日本語の会話アシスタントです。"
@@ -185,6 +258,12 @@ async def websocket_endpoint(ws: WebSocket):
                     speed = data["speed"]
                 elif data.get("type") == "set_model":
                     model = data["model"]
+                elif data.get("type") == "slack_reply":
+                    slack_reply_bot = data.get("bot_id")
+                    slack_reply_speaker = data.get("speaker_id", 2)
+                    slack_reply_speed = data.get("speed", 1.0)
+                elif data.get("type") == "cancel_reply":
+                    slack_reply_bot = None
                 continue
 
             # バイナリ = 音声データ
@@ -199,7 +278,37 @@ async def websocket_endpoint(ws: WebSocket):
 
             await ws.send_json({"type": "user_text", "text": text})
 
-            # LLM
+            # Slack 返信モード
+            if slack_reply_bot:
+                bot_id = slack_reply_bot
+                await ws.send_json({"type": "status", "text": f"Slack ({bot_id}) に送信中..."})
+                ts = await slack_post_message(bot_id, text)
+                if not ts:
+                    await ws.send_json({"type": "assistant_text", "text": f"[Slack 送信失敗]"})
+                    slack_reply_bot = None
+                    await ws.send_json({"type": "reply_ended"})
+                    continue
+
+                await ws.send_json({"type": "status", "text": f"{bot_id} の返信を待っています..."})
+                reply = await slack_poll_response(bot_id, ts, timeout=120)
+                slack_reply_bot = None  # 1回で終了
+                await ws.send_json({"type": "reply_ended"})
+
+                if not reply:
+                    await ws.send_json({"type": "assistant_text", "text": f"[{bot_id} からの返信がタイムアウトしました]"})
+                    continue
+
+                # TTS
+                await ws.send_json({"type": "status", "text": "音声生成中..."})
+                try:
+                    audio = await synthesize_speech(reply, slack_reply_speaker, slack_reply_speed)
+                    await ws.send_json({"type": "assistant_text", "text": f"[{bot_id}] {reply}"})
+                    await ws.send_bytes(audio)
+                except Exception:
+                    await ws.send_json({"type": "assistant_text", "text": f"[{bot_id}] {reply}", "tts_fallback": True})
+                continue
+
+            # 通常モード: LLM
             await ws.send_json({"type": "status", "text": "考え中..."})
             conversation.append({"role": "user", "content": text})
             try:

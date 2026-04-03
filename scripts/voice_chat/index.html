@@ -145,6 +145,10 @@
   }
   .bot-row .bot-play:hover { background: rgba(233, 69, 96, 0.1); }
   .bot-row .bot-play:disabled { opacity: 0.4; }
+  .side-btn.reply-on { border-color: #e94560; color: #e94560; }
+  #talkBtn.reply-mode { border-color: #f39c12; color: #f39c12; }
+  #talkBtn.reply-mode:hover { background: rgba(243, 156, 18, 0.1); }
+  #talkBtn.reply-mode.recording { background: #f39c12; color: #fff; }
 </style>
 </head>
 <body>
@@ -192,6 +196,7 @@
 <div id="controls">
   <button id="stopBtn" class="side-btn" onclick="stopAudio()">Stop</button>
   <button id="proactiveBtn" class="side-btn" onclick="toggleProactive()">Proactive OFF</button>
+  <button id="replyBtn" class="side-btn" onclick="toggleReply()" style="display:none">Reply</button>
   <button id="previewBtn" class="side-btn" onclick="previewVoice()">Preview</button>
   <button id="talkBtn">TALK</button>
   <button id="ttsToggle" class="side-btn on" onclick="toggleTTS()">TTS ON</button>
@@ -218,6 +223,8 @@ let proactiveTimer = null;
 let lastSeen = { mei: '', eve: '' };
 let audioQueue = [];
 let isPlaying = false;
+let lastBotId = null;  // 最後にメッセージを送ったボット
+let replyMode = false; // Slack返信モード
 
 // --- localStorage 永続化 ---
 const STORAGE_KEY = 'voiceChatSettings';
@@ -304,7 +311,7 @@ function connect() {
       if (ttsEnabled) playAudio(e.data);
       processing = false;
       talkBtn.disabled = false;
-      talkBtn.textContent = 'TALK';
+      updateTalkBtn();
       return;
     }
 
@@ -319,8 +326,14 @@ function connect() {
         if (ttsEnabled) speak(msg.text);
         processing = false;
         talkBtn.disabled = false;
-        talkBtn.textContent = 'TALK';
+        updateTalkBtn();
       }
+    } else if (msg.type === 'reply_ended') {
+      replyMode = false;
+      updateReplyUI();
+      processing = false;
+      talkBtn.disabled = false;
+      updateTalkBtn();
     }
   };
 
@@ -419,6 +432,12 @@ async function startRecording() {
     const blob = new Blob(audioChunks, { type: 'audio/webm' });
     const buf = await blob.arrayBuffer();
     if (ws && ws.readyState === WebSocket.OPEN) {
+      // 返信モードの場合、音声送信前にコマンドを送る
+      if (replyMode && lastBotId) {
+        const speaker = document.getElementById(`${lastBotId}Voice`).value;
+        const speed = document.getElementById(`${lastBotId}Speed`).value;
+        wsSend({ type: 'slack_reply', bot_id: lastBotId, speaker_id: parseInt(speaker), speed: parseFloat(speed) });
+      }
       processing = true;
       talkBtn.disabled = true;
       talkBtn.textContent = '...';
@@ -478,6 +497,8 @@ async function playBotMessage(botId) {
     const { text, sentAt } = await textResp.json();
     addMessage(`[${botId}] ${text}`, 'assistant');
     lastSeen[botId] = sentAt;
+    lastBotId = botId;
+    updateReplyUI();
     saveSettings();
 
     const speaker = document.getElementById(`${botId}Voice`).value;
@@ -507,6 +528,47 @@ async function previewVoice() {
   }
   btn.disabled = false;
   btn.textContent = 'Preview';
+}
+
+// --- Slack 返信モード ---
+const replyBtn = document.getElementById('replyBtn');
+
+function updateReplyUI() {
+  if (lastBotId) {
+    replyBtn.style.display = '';
+    if (replyMode) {
+      replyBtn.textContent = `Reply ${lastBotId} ON`;
+      replyBtn.className = 'side-btn reply-on';
+    } else {
+      replyBtn.textContent = `Reply ${lastBotId}`;
+      replyBtn.className = 'side-btn';
+    }
+  } else {
+    replyBtn.style.display = 'none';
+  }
+  updateTalkBtn();
+}
+
+function updateTalkBtn() {
+  if (replyMode) {
+    talkBtn.textContent = 'REPLY';
+    talkBtn.classList.add('reply-mode');
+  } else {
+    talkBtn.textContent = 'TALK';
+    talkBtn.classList.remove('reply-mode');
+  }
+}
+
+function toggleReply() {
+  replyMode = !replyMode;
+  if (replyMode && lastBotId) {
+    const speaker = document.getElementById(`${lastBotId}Voice`).value;
+    const speed = document.getElementById(`${lastBotId}Speed`).value;
+    wsSend({ type: 'slack_reply', bot_id: lastBotId, speaker_id: parseInt(speaker), speed: parseFloat(speed) });
+  } else {
+    wsSend({ type: 'cancel_reply' });
+  }
+  updateReplyUI();
 }
 
 // --- プロアクティブモード ---
@@ -544,6 +606,8 @@ async function checkProactiveMessages() {
       const { text, sentAt } = await resp.json();
       if (sentAt && sentAt !== lastSeen[botId]) {
         lastSeen[botId] = sentAt;
+        lastBotId = botId;
+        updateReplyUI();
         saveSettings();
         addMessage(`[${botId}] ${text}`, 'assistant');
 
