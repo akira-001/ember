@@ -194,6 +194,20 @@ async def slack_poll_response(bot_id: str, after_ts: str, timeout: float = 60) -
     channel = SLACK_DM_CHANNELS.get(bot_id)
     if not token or not channel:
         return None
+
+    # ボットの bot user ID を取得（投稿者のフィルタリング用）
+    bot_token = SLACK_BOT_TOKENS.get(bot_id)
+    bot_user_id = None
+    if bot_token:
+        async with httpx.AsyncClient(timeout=10) as client:
+            resp = await client.post(
+                "https://slack.com/api/auth.test",
+                headers={"Authorization": f"Bearer {bot_token}"},
+            )
+            data = resp.json()
+            if data.get("ok"):
+                bot_user_id = data.get("user_id")
+
     deadline = time.time() + timeout
     async with httpx.AsyncClient(timeout=10) as client:
         while time.time() < deadline:
@@ -205,12 +219,22 @@ async def slack_poll_response(bot_id: str, after_ts: str, timeout: float = 60) -
             data = resp.json()
             if data.get("ok"):
                 for msg in data.get("messages", []):
-                    # ボットからの返信を探す（bot_id or bot_profile がある）
-                    if msg.get("bot_id") or msg.get("bot_profile"):
+                    # 投稿した本人のメッセージはスキップ
+                    if msg.get("ts") == after_ts:
+                        continue
+                    # ボットの user_id からの返信を探す
+                    if bot_user_id and msg.get("user") == bot_user_id:
                         text = msg.get("text", "")
                         text = re.sub(r'\*([^*]+)\*', r'\1', text)
                         text = re.sub(r'<[^>]+>', '', text)
                         return text.strip()
+                    # フォールバック: bot_user_id が不明な場合、自分以外の bot_id メッセージ
+                    if not bot_user_id and (msg.get("bot_id") or msg.get("bot_profile")):
+                        if msg.get("user") != "U3SFGQXNH":  # Akira のユーザーID
+                            text = msg.get("text", "")
+                            text = re.sub(r'\*([^*]+)\*', r'\1', text)
+                            text = re.sub(r'<[^>]+>', '', text)
+                            return text.strip()
             await asyncio.sleep(3)
     return None
 
