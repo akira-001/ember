@@ -118,6 +118,35 @@
     font-size: 11px;
     margin-right: -6px;
   }
+  .bot-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    background: #16213e;
+    border-bottom: 1px solid #0d1b2a;
+  }
+  .bot-row .bot-name {
+    color: #e94560;
+    font-size: 13px;
+    font-weight: bold;
+    min-width: 32px;
+  }
+  .bot-row select {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  .bot-row .bot-play {
+    background: none;
+    border: 1px solid #e94560;
+    color: #e94560;
+    padding: 4px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .bot-row .bot-play:hover { background: rgba(233, 69, 96, 0.1); }
+  .bot-row .bot-play:disabled { opacity: 0.4; }
 </style>
 </head>
 <body>
@@ -138,9 +167,31 @@
     <option value="2.0">2.0x</option>
   </select>
 </div>
+<div class="bot-row">
+  <span class="bot-name">Mei</span>
+  <select id="meiVoice" class="bot-voice-select"></select>
+  <select id="meiSpeed">
+    <option value="0.8">0.8x</option>
+    <option value="1.0" selected>1.0x</option>
+    <option value="1.2">1.2x</option>
+    <option value="1.5">1.5x</option>
+    <option value="2.0">2.0x</option>
+  </select>
+  <button class="bot-play" onclick="playBotMessage('mei')">Play</button>
+</div>
+<div class="bot-row">
+  <span class="bot-name">Eve</span>
+  <select id="eveVoice" class="bot-voice-select"></select>
+  <select id="eveSpeed">
+    <option value="0.8">0.8x</option>
+    <option value="1.0" selected>1.0x</option>
+    <option value="1.2">1.2x</option>
+    <option value="1.5">1.5x</option>
+    <option value="2.0">2.0x</option>
+  </select>
+  <button class="bot-play" onclick="playBotMessage('eve')">Play</button>
+</div>
 <div id="controls">
-  <button class="side-btn bot-btn" onclick="playBotMessage('mei')">Mei</button>
-  <button class="side-btn bot-btn" onclick="playBotMessage('eve')">Eve</button>
   <button id="previewBtn" class="side-btn" onclick="previewVoice()">Preview</button>
   <button id="talkBtn">TALK</button>
   <button id="ttsToggle" class="side-btn on" onclick="toggleTTS()">TTS ON</button>
@@ -295,10 +346,9 @@ voiceSelect.addEventListener('change', () => {
 
 // Bot メッセージ再生
 async function playBotMessage(botId) {
-  const btns = document.querySelectorAll('.bot-btn');
+  const btns = document.querySelectorAll('.bot-play');
   btns.forEach(b => b.disabled = true);
   try {
-    // テキスト取得
     const textResp = await fetch(`/api/bot-text/${botId}`);
     if (!textResp.ok) {
       addMessage(`[${botId}] メッセージが見つかりません`, 'status');
@@ -308,9 +358,8 @@ async function playBotMessage(botId) {
     const { text } = await textResp.json();
     addMessage(`[${botId}] ${text}`, 'assistant');
 
-    // 音声取得・再生
-    const speaker = voiceSelect.value;
-    const speed = speedSelect.value;
+    const speaker = document.getElementById(`${botId}Voice`).value;
+    const speed = document.getElementById(`${botId}Speed`).value;
     const audioResp = await fetch(`/api/bot-audio/${botId}?speaker=${speaker}&speed=${speed}`);
     const buf = await audioResp.arrayBuffer();
     playAudio(buf);
@@ -357,14 +406,23 @@ modelSelect.addEventListener('change', () => {
 async function loadSpeakers() {
   const resp = await fetch('/api/speakers');
   const speakers = await resp.json();
-  voiceSelect.innerHTML = '';
-  for (const s of speakers) {
-    for (const st of s.styles) {
-      const opt = document.createElement('option');
-      opt.value = st.id;
-      opt.textContent = `${s.name} - ${st.name}`;
-      if (st.id === 2) opt.selected = true;
-      voiceSelect.appendChild(opt);
+
+  // 全セレクターに反映 (メイン + Mei + Eve)
+  const selects = [
+    { el: voiceSelect, defaultId: 2 },
+    { el: document.getElementById('meiVoice'), defaultId: 2 },
+    { el: document.getElementById('eveVoice'), defaultId: 13 },
+  ];
+  for (const { el, defaultId } of selects) {
+    el.innerHTML = '';
+    for (const s of speakers) {
+      for (const st of s.styles) {
+        const opt = document.createElement('option');
+        opt.value = st.id;
+        opt.textContent = `${s.name} - ${st.name}`;
+        if (st.id === defaultId) opt.selected = true;
+        el.appendChild(opt);
+      }
     }
   }
 }
