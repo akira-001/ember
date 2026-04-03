@@ -620,22 +620,31 @@ function stopProactivePolling() {
 async function checkProactiveMessages() {
   for (const botId of ['mei', 'eve']) {
     try {
-      const resp = await fetch(`/api/bot-text/${botId}`);
+      // Slack DM の新着メッセージをチェック
+      const since = lastSeen[botId] || '';
+      const resp = await fetch(`/api/slack/new-messages/${botId}?since=${encodeURIComponent(since)}`);
       if (!resp.ok) continue;
-      const { text, sentAt } = await resp.json();
-      if (sentAt && sentAt !== lastSeen[botId]) {
-        lastSeen[botId] = sentAt;
+      const { messages } = await resp.json();
+      if (!messages || messages.length === 0) continue;
+
+      // 古い順に処理
+      const sorted = messages.sort((a, b) => parseFloat(a.ts) - parseFloat(b.ts));
+      for (const msg of sorted) {
+        addMessage(`[${botId}] ${msg.text}`, 'assistant');
+        lastSeen[botId] = msg.ts;
         lastBotId = botId;
         updateReplyUI();
-        saveSettings();
-        addMessage(`[${botId}] ${text}`, 'assistant');
 
+        // 音声合成して再生
         const speaker = document.getElementById(`${botId}Voice`).value;
         const speed = document.getElementById(`${botId}Speed`).value;
-        const audioResp = await fetch(`/api/bot-audio/${botId}?speaker=${speaker}&speed=${speed}`);
-        const buf = await audioResp.arrayBuffer();
-        playAudio(buf);
+        const audioResp = await fetch(`/api/tts?text=${encodeURIComponent(msg.text)}&speaker=${speaker}&speed=${speed}`);
+        if (audioResp.ok) {
+          const buf = await audioResp.arrayBuffer();
+          playAudio(buf);
+        }
       }
+      saveSettings();
     } catch (e) {
       console.error(`proactive check ${botId}:`, e);
     }

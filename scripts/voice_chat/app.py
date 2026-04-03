@@ -164,6 +164,66 @@ async def get_bot_audio(bot_id: str, speaker: int = 2, speed: float = 1.0):
     return Response(content=audio, media_type="audio/wav")
 
 
+# Slack DM 新着チェック用の最終既読 ts（ボット別）
+_last_seen_ts: dict[str, str] = {}
+
+
+@app.get("/api/slack/new-messages/{bot_id}")
+async def slack_new_messages(bot_id: str, since: str = ""):
+    """Slack DM の新着ボットメッセージを返す"""
+    token = SLACK_USER_TOKENS.get(bot_id)
+    channel = SLACK_DM_CHANNELS.get(bot_id)
+    if not token or not channel:
+        return {"messages": []}
+
+    # since が指定されていれば使う、なければサーバー側の最終既読
+    oldest = since or _last_seen_ts.get(bot_id, "")
+
+    async with httpx.AsyncClient(timeout=10) as client:
+        params = {"channel": channel, "limit": 10}
+        if oldest:
+            params["oldest"] = oldest
+        resp = await client.get(
+            "https://slack.com/api/conversations.history",
+            headers={"Authorization": f"Bearer {token}"},
+            params=params,
+        )
+        data = resp.json()
+
+    if not data.get("ok"):
+        return {"messages": []}
+
+    results = []
+    for msg in data.get("messages", []):
+        # ボットからのメッセージのみ（ユーザー自身のは除外）
+        msg_user = msg.get("user", "")
+        if msg_user == os.getenv("SLACK_USER_ID", "U3SFGQXNH"):
+            continue
+        # ts が since 以前ならスキップ（oldest は exclusive ではないため）
+        if oldest and msg.get("ts", "") <= oldest:
+            continue
+        text = msg.get("text", "")
+        text = re.sub(r'\*([^*]+)\*', r'\1', text)
+        text = re.sub(r'<[^>]+>', '', text)
+        text = text.strip()
+        if text:
+            results.append({"text": text, "ts": msg.get("ts", "")})
+
+    # 最新の ts を記録
+    if results:
+        max_ts = max(r["ts"] for r in results)
+        _last_seen_ts[bot_id] = max_ts
+
+    return {"messages": results}
+
+
+@app.get("/api/tts")
+async def tts_endpoint(text: str, speaker: int = 2, speed: float = 1.0):
+    """任意のテキストを音声合成して返す"""
+    audio = await synthesize_speech(text, speaker, speed)
+    return Response(content=audio, media_type="audio/wav")
+
+
 @app.get("/api/speakers")
 async def get_speakers():
     async with httpx.AsyncClient(timeout=10) as client:
