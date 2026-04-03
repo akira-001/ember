@@ -108,6 +108,8 @@ const ttsToggle = document.getElementById('ttsToggle');
 let ws = null;
 let mediaRecorder = null;
 let audioChunks = [];
+let recording = false;
+let processing = false;
 let ttsEnabled = true;
 let speaking = false;
 
@@ -124,7 +126,9 @@ function connect() {
     } else if (msg.type === 'assistant_text') {
       addMessage(msg.text, 'assistant');
       if (ttsEnabled) speak(msg.text);
+      processing = false;
       talkBtn.disabled = false;
+      talkBtn.textContent = 'TALK';
     }
   };
 
@@ -132,7 +136,6 @@ function connect() {
 }
 
 function addMessage(text, type) {
-  // status は前のを消す
   if (type === 'status') {
     const prev = chat.querySelector('.msg.status');
     if (prev) prev.remove();
@@ -149,7 +152,6 @@ function speak(text) {
   speaking = true;
   const u = new SpeechSynthesisUtterance(text);
   u.lang = 'ja-JP';
-  // 日本語ボイスを選択
   const voices = speechSynthesis.getVoices();
   const jaVoice = voices.find(v => v.lang.startsWith('ja'));
   if (jaVoice) u.voice = jaVoice;
@@ -179,30 +181,37 @@ async function startRecording() {
     const blob = new Blob(audioChunks, { type: 'audio/webm' });
     const buf = await blob.arrayBuffer();
     if (ws && ws.readyState === WebSocket.OPEN) {
+      processing = true;
+      talkBtn.disabled = true;
+      talkBtn.textContent = '...';
       ws.send(buf);
     }
   };
 
   mediaRecorder.start();
+  recording = true;
   talkBtn.classList.add('recording');
-  talkBtn.textContent = '...';
+  talkBtn.textContent = 'STOP';
 }
 
 function stopRecording() {
   if (mediaRecorder && mediaRecorder.state === 'recording') {
     mediaRecorder.stop();
+    recording = false;
     talkBtn.classList.remove('recording');
-    talkBtn.textContent = 'TALK';
-    talkBtn.disabled = true;
   }
 }
 
-// Push-to-talk (hold)
-talkBtn.addEventListener('mousedown', (e) => { e.preventDefault(); startRecording(); });
-talkBtn.addEventListener('mouseup', stopRecording);
-talkBtn.addEventListener('mouseleave', stopRecording);
-talkBtn.addEventListener('touchstart', (e) => { e.preventDefault(); startRecording(); });
-talkBtn.addEventListener('touchend', stopRecording);
+// Toggle recording on click
+talkBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (processing) return;
+  if (recording) {
+    stopRecording();
+  } else {
+    startRecording();
+  }
+});
 
 // 初期化
 speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();

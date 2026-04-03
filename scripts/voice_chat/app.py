@@ -40,7 +40,7 @@ async def transcribe(audio_bytes: bytes) -> str:
 
 async def chat_with_llm(messages: list[dict]) -> str:
     """Ollama でチャット応答を取得"""
-    async with httpx.AsyncClient(timeout=120) as client:
+    async with httpx.AsyncClient(timeout=300) as client:
         resp = await client.post(
             "http://localhost:11434/api/chat",
             json={
