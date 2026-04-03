@@ -40,13 +40,13 @@ async def transcribe(audio_bytes: bytes) -> str:
     return text
 
 
-async def chat_with_llm(messages: list[dict]) -> str:
+async def chat_with_llm(messages: list[dict], model: str = "gemma4:e4b") -> str:
     """Ollama でチャット応答を取得"""
     async with httpx.AsyncClient(timeout=300) as client:
         resp = await client.post(
             "http://localhost:11434/api/chat",
             json={
-                "model": "gemma4:e4b",
+                "model": model,
                 "messages": messages,
                 "stream": False,
             },
@@ -55,7 +55,7 @@ async def chat_with_llm(messages: list[dict]) -> str:
         return resp.json()["message"]["content"]
 
 
-async def synthesize_speech(text: str, speaker_id: int) -> bytes:
+async def synthesize_speech(text: str, speaker_id: int, speed: float = 1.0) -> bytes:
     """VOICEVOX でテキストを音声に変換"""
     async with httpx.AsyncClient(timeout=60) as client:
         resp = await client.post(
@@ -64,6 +64,7 @@ async def synthesize_speech(text: str, speaker_id: int) -> bytes:
         )
         resp.raise_for_status()
         query = resp.json()
+        query["speedScale"] = speed
 
         resp = await client.post(
             f"{VOICEVOX_URL}/synthesis",
@@ -72,6 +73,19 @@ async def synthesize_speech(text: str, speaker_id: int) -> bytes:
         )
         resp.raise_for_status()
         return resp.content
+
+
+@app.get("/api/models")
+async def get_models():
+    async with httpx.AsyncClient(timeout=10) as client:
+        resp = await client.get("http://localhost:11434/api/tags")
+        resp.raise_for_status()
+        models = resp.json()["models"]
+        return [
+            {"name": m["name"], "size": m["details"]["parameter_size"]}
+            for m in models
+            if "embed" not in m["name"] and "e5" not in m["name"]
+        ]
 
 
 @app.get("/api/speakers")
@@ -92,6 +106,8 @@ async def index():
 async def websocket_endpoint(ws: WebSocket):
     await ws.accept()
     speaker_id = VOICEVOX_SPEAKER
+    speed = 1.0
+    model = "gemma4:e4b"
     conversation: list[dict] = [
         {"role": "system", "content": (
             "あなたはフレンドリーな日本語の会話アシスタントです。"
@@ -108,6 +124,10 @@ async def websocket_endpoint(ws: WebSocket):
                 data = json.loads(msg["text"])
                 if data.get("type") == "set_speaker":
                     speaker_id = data["speaker_id"]
+                elif data.get("type") == "set_speed":
+                    speed = data["speed"]
+                elif data.get("type") == "set_model":
+                    model = data["model"]
                 continue
 
             # バイナリ = 音声データ
@@ -126,7 +146,7 @@ async def websocket_endpoint(ws: WebSocket):
             await ws.send_json({"type": "status", "text": "考え中..."})
             conversation.append({"role": "user", "content": text})
             try:
-                reply = await chat_with_llm(conversation)
+                reply = await chat_with_llm(conversation, model)
             except Exception as e:
                 conversation.pop()
                 await ws.send_json({"type": "assistant_text", "text": f"[LLM エラー: {e}]"})
@@ -136,7 +156,7 @@ async def websocket_endpoint(ws: WebSocket):
             # TTS (VOICEVOX)
             await ws.send_json({"type": "status", "text": "音声生成中..."})
             try:
-                audio = await synthesize_speech(reply, speaker_id)
+                audio = await synthesize_speech(reply, speaker_id, speed)
                 await ws.send_json({"type": "assistant_text", "text": reply})
                 await ws.send_bytes(audio)
             except Exception as e:

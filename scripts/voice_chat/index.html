@@ -90,26 +90,54 @@
     font-size: 13px;
   }
   .side-btn.on { border-color: #0f3460; color: #7ec8e3; }
-  #voiceSelect {
+  select, .ctrl-select {
     background: #0d1b2a;
     color: #aaa;
     border: 1px solid #555;
     padding: 8px 12px;
     border-radius: 8px;
     font-size: 13px;
-    max-width: 160px;
   }
-  #voiceSelect:focus { border-color: #0f3460; color: #7ec8e3; outline: none; }
+  select:focus, .ctrl-select:focus { border-color: #0f3460; color: #7ec8e3; outline: none; }
+  #voiceSelect { max-width: 160px; }
+  #modelSelect { max-width: 200px; }
+  #toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px 0;
+    background: #16213e;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .toolbar-label {
+    color: #666;
+    font-size: 11px;
+    margin-right: -6px;
+  }
 </style>
 </head>
 <body>
 
 <div id="chat"></div>
 
-<div id="controls">
+<div id="toolbar">
+  <span class="toolbar-label">Model</span>
+  <select id="modelSelect"></select>
+  <span class="toolbar-label">Voice</span>
   <select id="voiceSelect"></select>
-  <button id="talkBtn">TALK</button>
+  <span class="toolbar-label">Speed</span>
+  <select id="speedSelect">
+    <option value="0.8">0.8x</option>
+    <option value="1.0" selected>1.0x</option>
+    <option value="1.2">1.2x</option>
+    <option value="1.5">1.5x</option>
+    <option value="2.0">2.0x</option>
+  </select>
+</div>
+<div id="controls">
   <button id="ttsToggle" class="side-btn on" onclick="toggleTTS()">TTS ON</button>
+  <button id="talkBtn">TALK</button>
 </div>
 
 <script>
@@ -117,6 +145,8 @@ const chat = document.getElementById('chat');
 const talkBtn = document.getElementById('talkBtn');
 const ttsToggle = document.getElementById('ttsToggle');
 const voiceSelect = document.getElementById('voiceSelect');
+const modelSelect = document.getElementById('modelSelect');
+const speedSelect = document.getElementById('speedSelect');
 
 let ws = null;
 let micStream = null;
@@ -257,6 +287,21 @@ voiceSelect.addEventListener('change', () => {
   }
 });
 
+// スピード切り替え
+speedSelect.addEventListener('change', () => {
+  const speed = parseFloat(speedSelect.value);
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify({ type: 'set_speed', speed }));
+  }
+});
+
+// モデル切り替え
+modelSelect.addEventListener('change', () => {
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify({ type: 'set_model', model: modelSelect.value }));
+  }
+});
+
 // スピーカー一覧を取得
 async function loadSpeakers() {
   const resp = await fetch('/api/speakers');
@@ -273,9 +318,24 @@ async function loadSpeakers() {
   }
 }
 
+// モデル一覧を取得
+async function loadModels() {
+  const resp = await fetch('/api/models');
+  const models = await resp.json();
+  modelSelect.innerHTML = '';
+  for (const m of models) {
+    const opt = document.createElement('option');
+    opt.value = m.name;
+    opt.textContent = `${m.name} (${m.size})`;
+    if (m.name === 'gemma4:e4b') opt.selected = true;
+    modelSelect.appendChild(opt);
+  }
+}
+
 // 初期化
 speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
 loadSpeakers();
+loadModels();
 connect();
 </script>
 
