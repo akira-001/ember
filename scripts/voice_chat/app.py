@@ -1,6 +1,5 @@
-"""Voice Chat Web App - Push-to-talk with STT + LLM + TTS"""
+"""Voice Chat Web App - STT (Whisper) + LLM (Ollama) + TTS (VOICEVOX)"""
 import asyncio
-import io
 import json
 import tempfile
 from pathlib import Path
@@ -8,11 +7,14 @@ from pathlib import Path
 import httpx
 import uvicorn
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, Response
 
 from faster_whisper import WhisperModel
 
 app = FastAPI()
+
+VOICEVOX_URL = "http://localhost:50021"
+VOICEVOX_SPEAKER = 2  # 四国めたん ノーマル
 
 # --- Models (lazy load) ---
 _whisper_model = None
@@ -51,6 +53,27 @@ async def chat_with_llm(messages: list[dict]) -> str:
         )
         resp.raise_for_status()
         return resp.json()["message"]["content"]
+
+
+async def synthesize_speech(text: str) -> bytes:
+    """VOICEVOX でテキストを音声に変換"""
+    async with httpx.AsyncClient(timeout=60) as client:
+        # 1. 音声クエリ生成
+        resp = await client.post(
+            f"{VOICEVOX_URL}/audio_query",
+            params={"text": text, "speaker": VOICEVOX_SPEAKER},
+        )
+        resp.raise_for_status()
+        query = resp.json()
+
+        # 2. 音声合成
+        resp = await client.post(
+            f"{VOICEVOX_URL}/synthesis",
+            params={"speaker": VOICEVOX_SPEAKER},
+            json=query,
+        )
+        resp.raise_for_status()
+        return resp.content
 
 
 @app.get("/")
@@ -94,14 +117,20 @@ async def websocket_endpoint(ws: WebSocket):
                 continue
             conversation.append({"role": "assistant", "content": reply})
 
-            # 応答送信 (TTS はブラウザ側 SpeechSynthesis)
-            await ws.send_json({"type": "assistant_text", "text": reply})
+            # TTS (VOICEVOX)
+            await ws.send_json({"type": "status", "text": "音声生成中..."})
+            try:
+                audio = await synthesize_speech(reply)
+                await ws.send_json({"type": "assistant_text", "text": reply})
+                await ws.send_bytes(audio)
+            except Exception as e:
+                # VOICEVOX 失敗時はテキストのみ返す（ブラウザTTSにフォールバック）
+                await ws.send_json({"type": "assistant_text", "text": reply, "tts_fallback": True})
 
     except WebSocketDisconnect:
         pass
 
 
 if __name__ == "__main__":
-    # 起動時にモデルをプリロード
     get_whisper()
     uvicorn.run(app, host="0.0.0.0", port=8765)
