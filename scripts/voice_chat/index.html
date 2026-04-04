@@ -5,14 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ember Chat</title>
 <style>
+  :root {
+    --ember-bg: #1c1820;
+    --ember-surface: #252030;
+    --ember-surface-alt: #1e1928;
+    --ember-accent: #e94560;
+    --ember-accent-hover: #d63851;
+    --ember-accent-glow: rgba(233, 69, 96, 0.12);
+    --ember-warm: #f5a623;
+    --ember-text: #e8e4ed;
+    --ember-text-muted: #9a93a8;
+    --ember-text-dim: #6b6478;
+    --ember-border: #3a3344;
+    --ember-input-bg: #16121c;
+  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #1a1a2e;
-    color: #eee;
+    font-family: 'Helvetica Neue', 'Segoe UI', sans-serif;
+    background: var(--ember-bg);
+    color: var(--ember-text);
     height: 100vh;
     display: flex;
     flex-direction: column;
+  }
+  #appHeader {
+    padding: 12px 20px;
+    background: var(--ember-surface);
+    border-bottom: 1px solid var(--ember-border);
+    flex-shrink: 0;
+  }
+  #appHeader h1 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--ember-accent);
   }
   #chat {
     flex: 1;
@@ -21,6 +47,19 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+  }
+  #emptyState {
+    margin: auto;
+    text-align: center;
+    color: var(--ember-text-dim);
+  }
+  .empty-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    opacity: 0.6;
+  }
+  #emptyState p {
+    font-size: 15px;
   }
   .msg {
     max-width: 80%;
@@ -31,18 +70,18 @@
   }
   .msg.user {
     align-self: flex-end;
-    background: #0f3460;
+    background: #3a2040;
     border-bottom-right-radius: 4px;
   }
   .msg.assistant {
     align-self: flex-start;
-    background: #16213e;
+    background: var(--ember-surface);
     border-bottom-left-radius: 4px;
   }
   .msg.status {
     align-self: center;
     background: none;
-    color: #888;
+    color: var(--ember-text-dim);
     font-size: 13px;
     padding: 4px;
   }
@@ -52,139 +91,162 @@
     justify-content: center;
     gap: 12px;
     align-items: center;
-    background: #16213e;
+    background: var(--ember-surface);
     flex-wrap: wrap;
   }
   #talkBtn {
-    width: 80px;
-    height: 80px;
+    width: 72px;
+    height: 72px;
     border-radius: 50%;
-    border: 3px solid #e94560;
+    border: 3px solid var(--ember-accent);
     background: transparent;
-    color: #e94560;
-    font-size: 14px;
+    color: var(--ember-accent);
+    font-size: 13px;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: background 0.2s, transform 0.2s;
     user-select: none;
     -webkit-user-select: none;
   }
-  #talkBtn:hover { background: rgba(233, 69, 96, 0.1); }
+  #talkBtn:hover { background: var(--ember-accent-glow); }
   #talkBtn.recording {
-    background: #e94560;
+    background: var(--ember-accent);
     color: #fff;
     animation: pulse 1s infinite;
   }
   #talkBtn:disabled { opacity: 0.4; cursor: not-allowed; }
   @keyframes pulse {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.08); }
+    50% { transform: scale(1.06); }
   }
   .side-btn {
     background: none;
-    border: 1px solid #555;
-    color: #aaa;
-    padding: 8px 12px;
+    border: 1px solid var(--ember-border);
+    color: var(--ember-text-muted);
+    padding: 10px 14px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 13px;
+    min-height: 44px;
+    transition: border-color 0.15s, color 0.15s;
   }
-  .side-btn.on { border-color: #0f3460; color: #7ec8e3; }
+  .side-btn:hover { border-color: var(--ember-text-muted); }
+  .side-btn.on { border-color: var(--ember-accent); color: var(--ember-accent); }
   .side-btn.proactive-on { border-color: #2ecc71; color: #2ecc71; }
   select {
-    background: #0d1b2a;
-    color: #aaa;
-    border: 1px solid #555;
-    padding: 8px 12px;
+    background: var(--ember-input-bg);
+    color: var(--ember-text-muted);
+    border: 1px solid var(--ember-border);
+    padding: 10px 12px;
     border-radius: 8px;
     font-size: 13px;
+    min-height: 44px;
   }
-  select:focus { border-color: #0f3460; color: #7ec8e3; outline: none; }
+  select:focus { border-color: var(--ember-accent); color: var(--ember-text); outline: none; }
   #voiceSelect { max-width: 160px; }
   #modelSelect { max-width: 200px; }
   #toolbar {
     display: flex;
     justify-content: center;
     gap: 10px;
-    padding: 10px 20px 0;
-    background: #16213e;
+    padding: 10px 20px;
+    background: var(--ember-surface);
+    border-top: 1px solid var(--ember-border);
     flex-wrap: wrap;
     align-items: center;
   }
   .toolbar-label {
-    color: #666;
+    color: var(--ember-text-dim);
     font-size: 11px;
-    margin-right: -6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: -4px;
   }
   .bot-row {
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 8px 20px;
-    background: #16213e;
-    border-bottom: 1px solid #0d1b2a;
+    background: var(--ember-surface);
+    border-bottom: 1px solid var(--ember-border);
   }
   .bot-row .bot-name {
-    color: #e94560;
+    color: var(--ember-accent);
     font-size: 13px;
     font-weight: bold;
     min-width: 32px;
   }
   .bot-row select {
     font-size: 12px;
-    padding: 4px 8px;
+    padding: 6px 8px;
+    min-height: 36px;
   }
   .bot-row .bot-play {
     background: none;
-    border: 1px solid #e94560;
-    color: #e94560;
-    padding: 4px 12px;
+    border: 1px solid var(--ember-accent);
+    color: var(--ember-accent);
+    padding: 8px 16px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 12px;
+    min-height: 36px;
+    transition: background 0.15s;
   }
-  .bot-row .bot-play:hover { background: rgba(233, 69, 96, 0.1); }
+  .bot-row .bot-play:hover { background: var(--ember-accent-glow); }
   .bot-row .bot-play:disabled { opacity: 0.4; }
-  .side-btn.reply-on { border-color: #e94560; color: #e94560; }
-  #talkBtn.reply-mode { border-color: #f39c12; color: #f39c12; }
-  #talkBtn.reply-mode:hover { background: rgba(243, 156, 18, 0.1); }
-  #talkBtn.reply-mode.recording { background: #f39c12; color: #fff; }
+  .side-btn.reply-on { border-color: var(--ember-accent); color: var(--ember-accent); }
+  #talkBtn.reply-mode { border-color: var(--ember-warm); color: var(--ember-warm); }
+  #talkBtn.reply-mode:hover { background: rgba(245, 166, 35, 0.1); }
+  #talkBtn.reply-mode.recording { background: var(--ember-warm); color: #fff; }
   #textInputRow {
     display: flex;
     gap: 8px;
-    padding: 8px 20px;
-    background: #16213e;
-    border-top: 1px solid #0d1b2a;
+    padding: 10px 20px;
+    background: var(--ember-surface);
+    border-top: 1px solid var(--ember-border);
   }
   #textInput {
     flex: 1;
-    background: #0d1b2a;
-    color: #eee;
-    border: 1px solid #555;
-    padding: 10px 14px;
-    border-radius: 20px;
+    background: var(--ember-input-bg);
+    color: var(--ember-text);
+    border: 1px solid var(--ember-border);
+    padding: 12px 16px;
+    border-radius: 22px;
     font-size: 15px;
     outline: none;
+    min-height: 44px;
+    transition: border-color 0.15s;
   }
-  #textInput:focus { border-color: #e94560; }
-  #textInput::placeholder { color: #666; }
+  #textInput:focus { border-color: var(--ember-accent); }
+  #textInput::placeholder { color: var(--ember-text-dim); }
   #sendBtn {
-    background: #e94560;
+    background: var(--ember-accent);
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
+    padding: 12px 22px;
+    border-radius: 22px;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
+    min-height: 44px;
+    transition: background 0.15s;
   }
-  #sendBtn:hover { background: #d63851; }
+  #sendBtn:hover { background: var(--ember-accent-hover); }
   #sendBtn:disabled { opacity: 0.4; cursor: not-allowed; }
 </style>
 </head>
 <body>
 
-<div id="chat"></div>
+<header id="appHeader">
+  <h1>Ember Chat</h1>
+</header>
+<div id="chat">
+  <div id="emptyState">
+    <div class="empty-icon">&#x1F525;</div>
+    <p>Voice or text, your call.</p>
+  </div>
+</div>
 
 <div id="toolbar">
   <span class="toolbar-label">Model</span>
@@ -480,6 +542,8 @@ document.addEventListener('click', () => getAudioContext(), { once: true });
 
 // --- UI ---
 function addMessage(text, type) {
+  const empty = document.getElementById('emptyState');
+  if (empty) empty.remove();
   if (type === 'status') {
     const prev = chat.querySelector('.msg.status');
     if (prev) prev.remove();
