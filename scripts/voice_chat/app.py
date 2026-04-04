@@ -409,6 +409,15 @@ async def websocket_endpoint(ws: WebSocket):
                     slack_reply_speaker = data.get("speaker_id", 2)
                     slack_reply_speed = data.get("speed", 1.0)
                     continue
+                elif data.get("type") == "stop_audio":
+                    # 全クライアントへブロードキャスト（送信元含む）
+                    stop_msg = json.dumps({"type": "stop_audio"})
+                    for client in list(_clients):
+                        try:
+                            await client.send_text(stop_msg)
+                        except Exception:
+                            _clients.discard(client)
+                    continue
                 elif data.get("type") == "cancel_reply":
                     slack_reply_bot = None
                     continue

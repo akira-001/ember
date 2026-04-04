@@ -551,6 +551,10 @@ function connect() {
     }
 
     const msg = JSON.parse(e.data);
+    if (msg.type === 'stop_audio') {
+      stopAudio(false);
+      return;
+    }
     if (msg.type === 'sync_settings') {
       applySettings(msg.settings);
       // サーバー設定でローカルの WS 状態も更新
@@ -638,7 +642,7 @@ function processQueue() {
   });
 }
 
-function stopAudio() {
+function stopAudio(broadcast = true) {
   audioQueue.length = 0;
   if (currentSource) {
     try { currentSource.stop(); } catch {}
@@ -646,6 +650,7 @@ function stopAudio() {
   }
   isPlaying = false;
   speechSynthesis.cancel();
+  if (broadcast) wsSend({ type: 'stop_audio' });
 }
 
 // ユーザー操作で AudioContext を初期化（autoplay policy 対策）
