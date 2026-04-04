@@ -261,11 +261,11 @@ let isPlaying = false;
 let lastBotId = null;  // 最後にメッセージを送ったボット
 let replyMode = false; // Slack返信モード
 
-// --- localStorage 永続化 ---
-const STORAGE_KEY = 'emberChatSettings';
+// --- サーバー同期設定 ---
+let _syncing = false; // サーバーからの同期中フラグ（ループ防止）
 
-function saveSettings() {
-  const settings = {
+function getSettingsSnapshot() {
+  return {
     voiceSelect: voiceSelect.value,
     modelSelect: modelSelect.value,
     speedSelect: speedSelect.value,
@@ -277,22 +277,27 @@ function saveSettings() {
     proactiveEnabled,
     lastSeen,
   };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
 }
 
-function loadSettings() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
-    return JSON.parse(raw);
-  } catch { return null; }
+function saveSettings() {
+  if (_syncing) return;
+  const settings = getSettingsSnapshot();
+  // サーバーに送信（全ブラウザに同期される）
+  wsSend({ type: 'update_settings', settings });
 }
 
 function applySettings(settings) {
   if (!settings) return;
-  if (settings.voiceSelect) voiceSelect.value = settings.voiceSelect;
-  if (settings.modelSelect) modelSelect.value = settings.modelSelect;
-  if (settings.speedSelect) speedSelect.value = settings.speedSelect;
+  _syncing = true;
+  if (settings.voiceSelect && voiceSelect.value !== String(settings.voiceSelect)) {
+    voiceSelect.value = settings.voiceSelect;
+  }
+  if (settings.modelSelect && modelSelect.value !== settings.modelSelect) {
+    modelSelect.value = settings.modelSelect;
+  }
+  if (settings.speedSelect && speedSelect.value !== String(settings.speedSelect)) {
+    speedSelect.value = settings.speedSelect;
+  }
   if (settings.meiVoice) document.getElementById('meiVoice').value = settings.meiVoice;
   if (settings.meiSpeed) document.getElementById('meiSpeed').value = settings.meiSpeed;
   if (settings.eveVoice) document.getElementById('eveVoice').value = settings.eveVoice;
@@ -303,15 +308,17 @@ function applySettings(settings) {
     ttsToggle.className = ttsEnabled ? 'side-btn on' : 'side-btn';
   }
   if (settings.lastSeen) lastSeen = settings.lastSeen;
-  if (settings.proactiveEnabled) {
-    proactiveEnabled = true;
-    proactiveBtn.textContent = 'Proactive ON';
-    proactiveBtn.className = 'side-btn proactive-on';
-    startProactivePolling();
+  if (settings.proactiveEnabled !== undefined) {
+    const wasEnabled = proactiveEnabled;
+    proactiveEnabled = settings.proactiveEnabled;
+    proactiveBtn.textContent = proactiveEnabled ? 'Proactive ON' : 'Proactive OFF';
+    proactiveBtn.className = proactiveEnabled ? 'side-btn proactive-on' : 'side-btn';
+    if (proactiveEnabled && !wasEnabled) startProactivePolling();
+    if (!proactiveEnabled && wasEnabled) stopProactivePolling();
   }
+  _syncing = false;
 }
 
-// 全 select に change リスナーを付けて自動保存
 function autoSave() {
   document.querySelectorAll('select').forEach(el => {
     el.addEventListener('change', saveSettings);
@@ -359,13 +366,7 @@ function connect() {
   ws.binaryType = 'arraybuffer';
 
   ws.onopen = () => {
-    // 保存済み設定をサーバーに送信
-    const s = loadSettings();
-    if (s) {
-      if (s.voiceSelect) wsSend({ type: 'set_speaker', speaker_id: parseInt(s.voiceSelect) });
-      if (s.speedSelect) wsSend({ type: 'set_speed', speed: parseFloat(s.speedSelect) });
-      if (s.modelSelect) wsSend({ type: 'set_model', model: s.modelSelect });
-    }
+    // サーバーから sync_settings が送られてくるので待つだけ
   };
 
   ws.onmessage = (e) => {
@@ -382,6 +383,14 @@ function connect() {
     }
 
     const msg = JSON.parse(e.data);
+    if (msg.type === 'sync_settings') {
+      applySettings(msg.settings);
+      // サーバー設定でローカルの WS 状態も更新
+      if (msg.settings.voiceSelect) wsSend({ type: 'set_speaker', speaker_id: parseInt(msg.settings.voiceSelect) });
+      if (msg.settings.speedSelect) wsSend({ type: 'set_speed', speed: parseFloat(msg.settings.speedSelect) });
+      if (msg.settings.modelSelect) wsSend({ type: 'set_model', model: msg.settings.modelSelect });
+      return;
+    }
     if (msg.type === 'status') {
       addMessage(msg.text, 'status');
     } else if (msg.type === 'user_text') {
@@ -759,10 +768,8 @@ async function init() {
   speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
   await loadSpeakers();
   await loadModels();
-  const saved = loadSettings();
-  applySettings(saved);
   autoSave();
-  connect();
+  connect(); // 接続後にサーバーから設定が sync_settings で届く
 }
 
 init();

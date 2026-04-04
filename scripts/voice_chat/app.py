@@ -35,6 +35,42 @@ SLACK_BOT_TOKENS = {
     "eve": os.getenv("SLACK_BOT_TOKEN_EVE", ""),
 }
 
+# --- Shared settings (cross-browser sync) ---
+SETTINGS_FILE = Path(__file__).parent / "settings.json"
+_settings: dict = {}
+_clients: set[WebSocket] = set()
+
+
+def _load_settings() -> dict:
+    if SETTINGS_FILE.exists():
+        try:
+            return json.loads(SETTINGS_FILE.read_text())
+        except (json.JSONDecodeError, OSError):
+            pass
+    return {}
+
+
+def _save_settings(s: dict):
+    SETTINGS_FILE.write_text(json.dumps(s, ensure_ascii=False))
+
+
+async def _broadcast_settings(exclude: WebSocket | None = None):
+    msg = json.dumps({"type": "sync_settings", "settings": _settings})
+    for client in list(_clients):
+        if client is exclude:
+            continue
+        try:
+            await client.send_text(msg)
+        except Exception:
+            _clients.discard(client)
+
+
+@app.on_event("startup")
+async def _startup():
+    global _settings
+    _settings = _load_settings()
+
+
 # --- Models (lazy load) ---
 _whisper_model = None
 
@@ -320,9 +356,15 @@ async def index():
 @app.websocket("/ws")
 async def websocket_endpoint(ws: WebSocket):
     await ws.accept()
-    speaker_id = VOICEVOX_SPEAKER
-    speed = 1.0
-    model = "gemma4:e4b"
+    _clients.add(ws)
+
+    # 接続時に現在の設定を送信
+    if _settings:
+        await ws.send_json({"type": "sync_settings", "settings": _settings})
+
+    speaker_id = int(_settings.get("voiceSelect", VOICEVOX_SPEAKER))
+    speed = float(_settings.get("speedSelect", 1.0))
+    model = _settings.get("modelSelect", "gemma4:e4b")
     slack_reply_bot = None  # None = 通常モード, "mei"/"eve" = Slack返信モード
     slack_reply_speaker = 2
     slack_reply_speed = 1.0
@@ -348,6 +390,19 @@ async def websocket_endpoint(ws: WebSocket):
                     continue
                 elif data.get("type") == "set_model":
                     model = data["model"]
+                    continue
+                elif data.get("type") == "update_settings":
+                    # クライアントから設定変更 → 保存 & 他クライアントへブロードキャスト
+                    _settings.update(data.get("settings", {}))
+                    _save_settings(_settings)
+                    # サーバー側の変数も更新
+                    if "voiceSelect" in data.get("settings", {}):
+                        speaker_id = int(_settings["voiceSelect"])
+                    if "speedSelect" in data.get("settings", {}):
+                        speed = float(_settings["speedSelect"])
+                    if "modelSelect" in data.get("settings", {}):
+                        model = _settings["modelSelect"]
+                    await _broadcast_settings(exclude=ws)
                     continue
                 elif data.get("type") == "slack_reply":
                     slack_reply_bot = data.get("bot_id")
@@ -429,7 +484,7 @@ async def websocket_endpoint(ws: WebSocket):
                 await ws.send_json({"type": "assistant_text", "text": reply, "tts_fallback": True})
 
     except WebSocketDisconnect:
-        pass
+        _clients.discard(ws)
 
 
 if __name__ == "__main__":
