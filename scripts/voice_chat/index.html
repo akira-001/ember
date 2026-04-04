@@ -921,7 +921,7 @@ async function loadSpeakers() {
 }
 
 async function loadModels() {
-  const resp = await fetch(`${API_BASE}/models');
+  const resp = await fetch(`${API_BASE}/models`);
   const models = await resp.json();
   modelSelect.innerHTML = '';
   for (const m of models) {
