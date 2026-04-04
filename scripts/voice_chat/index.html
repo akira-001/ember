@@ -555,6 +555,10 @@ function connect() {
       stopAudio(false);
       return;
     }
+    if (msg.type === 'proactive_message') {
+      handleProactiveMessage(msg.botId, msg.text, msg.speaker, msg.speed);
+      return;
+    }
     if (msg.type === 'sync_settings') {
       applySettings(msg.settings);
       // サーバー設定でローカルの WS 状態も更新
@@ -885,24 +889,31 @@ async function checkProactiveMessages() {
       // 古い順に処理
       const sorted = messages.sort((a, b) => parseFloat(a.ts) - parseFloat(b.ts));
       for (const msg of sorted) {
-        addMessage(`[${botId}] ${msg.text}`, 'assistant');
         lastSeen[botId] = msg.ts;
         lastBotId = botId;
-        updateReplyUI();
 
-        // 音声合成して再生
+        // 全タブにブロードキャスト（自タブ含む）
         const speaker = document.getElementById(`${botId}Voice`).value;
         const speed = document.getElementById(`${botId}Speed`).value;
-        const audioResp = await fetch(`${API_BASE}/tts?text=${encodeURIComponent(msg.text)}&speaker=${speaker}&speed=${speed}`);
-        if (audioResp.ok) {
-          const buf = await audioResp.arrayBuffer();
-          playAudio(buf);
-        }
+        wsSend({ type: 'proactive_message', botId, text: msg.text, speaker, speed });
       }
       saveSettings();
     } catch (e) {
       console.error(`proactive check ${botId}:`, e);
     }
+  }
+}
+
+async function handleProactiveMessage(botId, text, speaker, speed) {
+  addMessage(`[${botId}] ${text}`, 'assistant');
+  lastBotId = botId;
+  updateReplyUI();
+
+  // 音声合成して再生
+  const audioResp = await fetch(`${API_BASE}/tts?text=${encodeURIComponent(text)}&speaker=${speaker}&speed=${speed}`);
+  if (audioResp.ok) {
+    const buf = await audioResp.arrayBuffer();
+    playAudio(buf);
   }
 }
 

@@ -409,12 +409,12 @@ async def websocket_endpoint(ws: WebSocket):
                     slack_reply_speaker = data.get("speaker_id", 2)
                     slack_reply_speed = data.get("speed", 1.0)
                     continue
-                elif data.get("type") == "stop_audio":
+                elif data.get("type") in ("stop_audio", "proactive_message"):
                     # 全クライアントへブロードキャスト（送信元含む）
-                    stop_msg = json.dumps({"type": "stop_audio"})
+                    broadcast = json.dumps(data)
                     for client in list(_clients):
                         try:
-                            await client.send_text(stop_msg)
+                            await client.send_text(broadcast)
                         except Exception:
                             _clients.discard(client)
                     continue
