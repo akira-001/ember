@@ -572,6 +572,11 @@ function connect() {
         updateTalkBtn();
       }
     } else if (msg.type === 'reply_ended') {
+      // Reply モードで受信済みの ts を記録し、proactive polling の重複再生を防ぐ
+      if (msg.bot_id && msg.reply_ts) {
+        lastSeen[msg.bot_id] = msg.reply_ts;
+        saveSettings();
+      }
       replyMode = false;
       updateReplyUI();
       processing = false;

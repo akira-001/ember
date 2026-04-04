@@ -288,8 +288,8 @@ async def slack_post_message(bot_id: str, text: str) -> str | None:
         return data.get("ts") if data.get("ok") else None
 
 
-async def slack_poll_response(bot_id: str, after_ts: str, timeout: float = 60) -> str | None:
-    """Slack DM でボットの返信をポーリングする"""
+async def slack_poll_response(bot_id: str, after_ts: str, timeout: float = 60) -> tuple[str, str] | tuple[None, None]:
+    """Slack DM でボットの返信をポーリングする。(text, ts) を返す"""
     token = SLACK_USER_TOKENS.get(bot_id)
     channel = SLACK_DM_CHANNELS.get(bot_id)
     if not token or not channel:
@@ -327,16 +327,16 @@ async def slack_poll_response(bot_id: str, after_ts: str, timeout: float = 60) -
                         text = msg.get("text", "")
                         text = re.sub(r'\*([^*]+)\*', r'\1', text)
                         text = re.sub(r'<[^>]+>', '', text)
-                        return text.strip()
+                        return text.strip(), msg.get("ts", "")
                     # フォールバック: bot_user_id が不明な場合、自分以外の bot_id メッセージ
                     if not bot_user_id and (msg.get("bot_id") or msg.get("bot_profile")):
                         if msg.get("user") != "U3SFGQXNH":  # Akira のユーザーID
                             text = msg.get("text", "")
                             text = re.sub(r'\*([^*]+)\*', r'\1', text)
                             text = re.sub(r'<[^>]+>', '', text)
-                            return text.strip()
+                            return text.strip(), msg.get("ts", "")
             await asyncio.sleep(3)
-    return None
+    return None, None
 
 
 @app.post("/api/slack/reply/{bot_id}")
@@ -443,7 +443,7 @@ async def websocket_endpoint(ws: WebSocket):
                     continue
 
                 await ws.send_json({"type": "status", "text": f"{bot_id} の返信を待っています..."})
-                reply = await slack_poll_response(bot_id, ts, timeout=120)
+                reply, reply_ts = await slack_poll_response(bot_id, ts, timeout=120)
                 slack_reply_bot = None  # 1回で終了
 
                 if not reply:
@@ -460,7 +460,7 @@ async def websocket_endpoint(ws: WebSocket):
                 except Exception as e:
                     print(f"TTS error: {e}")
                     await ws.send_json({"type": "assistant_text", "text": f"[{bot_id}] {reply}", "tts_fallback": True})
-                await ws.send_json({"type": "reply_ended"})
+                await ws.send_json({"type": "reply_ended", "bot_id": bot_id, "reply_ts": reply_ts})
                 continue
 
             # 通常モード: LLM
