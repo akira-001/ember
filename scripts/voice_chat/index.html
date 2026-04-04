@@ -277,7 +277,7 @@
 <header id="appHeader">
   <h1>Ember Chat</h1>
 </header>
-<div id="serverStatus">
+<div id="serverStatus" class="srv-bar">
   <span class="srv-item">
     <span id="srvWhisperDot" class="srv-dot"></span>
     <span>Whisper</span>
@@ -353,6 +353,12 @@
 </div>
 
 <script>
+const EMBED_MODE = new URLSearchParams(window.location.search).has('embed');
+if (EMBED_MODE) {
+  document.getElementById('appHeader').style.display = 'none';
+  document.getElementById('serverStatus').style.display = 'none';
+}
+
 const DASHBOARD_API = 'http://localhost:3456/api';
 
 // --- Server status check ---
