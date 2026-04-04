@@ -359,7 +359,10 @@ if (EMBED_MODE) {
   document.getElementById('serverStatus').style.display = 'none';
 }
 
-const DASHBOARD_API = 'http://localhost:3456/api';
+// embed モード時: 親オリジン経由（プロキシ）、スタンドアロン時: 直接
+const API_BASE = EMBED_MODE ? '/whisper/api' : '/api';
+const DASHBOARD_API = EMBED_MODE ? '/api' : 'http://localhost:3456/api';
+const WS_URL = EMBED_MODE ? `ws://${location.host}/ws` : `ws://${location.host}/ws`;
 
 // --- Server status check ---
 async function checkServerStatus() {
@@ -747,7 +750,7 @@ async function playBotMessage(botId) {
   const btns = document.querySelectorAll('.bot-play');
   btns.forEach(b => b.disabled = true);
   try {
-    const textResp = await fetch(`/api/bot-text/${botId}`);
+    const textResp = await fetch(`${API_BASE}/bot-text/${botId}`);
     if (!textResp.ok) {
       addMessage(`[${botId}] メッセージが見つかりません`, 'status');
       btns.forEach(b => b.disabled = false);
@@ -762,7 +765,7 @@ async function playBotMessage(botId) {
 
     const speaker = document.getElementById(`${botId}Voice`).value;
     const speed = document.getElementById(`${botId}Speed`).value;
-    const audioResp = await fetch(`/api/bot-audio/${botId}?speaker=${speaker}&speed=${speed}`);
+    const audioResp = await fetch(`${API_BASE}/bot-audio/${botId}?speaker=${speaker}&speed=${speed}`);
     const buf = await audioResp.arrayBuffer();
     playAudio(buf);
   } catch (e) {
@@ -779,7 +782,7 @@ async function previewVoice() {
   try {
     const speaker = voiceSelect.value;
     const speed = speedSelect.value;
-    const resp = await fetch(`/api/preview?speaker=${speaker}&speed=${speed}`);
+    const resp = await fetch(`${API_BASE}/preview?speaker=${speaker}&speed=${speed}`);
     const buf = await resp.arrayBuffer();
     playAudio(buf);
   } catch (e) {
@@ -864,7 +867,7 @@ async function checkProactiveMessages() {
       // lastSeen が ISO形式の場合は空にリセット（旧形式互換）
       let since = lastSeen[botId] || '';
       if (since && !since.match(/^\d+\.\d+$/)) since = '';
-      const resp = await fetch(`/api/slack/new-messages/${botId}?since=${encodeURIComponent(since)}`);
+      const resp = await fetch(`${API_BASE}/slack/new-messages/${botId}?since=${encodeURIComponent(since)}`);
       if (!resp.ok) continue;
       const { messages } = await resp.json();
       if (!messages || messages.length === 0) continue;
@@ -880,7 +883,7 @@ async function checkProactiveMessages() {
         // 音声合成して再生
         const speaker = document.getElementById(`${botId}Voice`).value;
         const speed = document.getElementById(`${botId}Speed`).value;
-        const audioResp = await fetch(`/api/tts?text=${encodeURIComponent(msg.text)}&speaker=${speaker}&speed=${speed}`);
+        const audioResp = await fetch(`${API_BASE}/tts?text=${encodeURIComponent(msg.text)}&speaker=${speaker}&speed=${speed}`);
         if (audioResp.ok) {
           const buf = await audioResp.arrayBuffer();
           playAudio(buf);
@@ -895,7 +898,7 @@ async function checkProactiveMessages() {
 
 // --- スピーカー・モデル読み込み ---
 async function loadSpeakers() {
-  const resp = await fetch('/api/speakers');
+  const resp = await fetch(`${API_BASE}/speakers`);
   const speakers = await resp.json();
 
   const selects = [
@@ -918,7 +921,7 @@ async function loadSpeakers() {
 }
 
 async function loadModels() {
-  const resp = await fetch('/api/models');
+  const resp = await fetch(`${API_BASE}/models');
   const models = await resp.json();
   modelSelect.innerHTML = '';
   for (const m of models) {
