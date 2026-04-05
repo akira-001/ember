@@ -124,7 +124,7 @@ async def chat_with_llm(messages: list[dict], model: str = "gemma4:e4b") -> str:
 
 
 async def synthesize_speech(text: str, speaker_id: int | str, speed: float = 1.0, engine: str | None = None) -> bytes:
-    """TTS エンジンでテキストを音声に変換（短期キャッシュ付き）"""
+    """TTS エンジンでテキストを音声に変換（ロック内 double-check キャッシュ）"""
     tts_engine = engine or _settings.get("ttsEngine", "voicevox")
     cache_key = f"{tts_engine}:{speaker_id}:{speed}:{text}"
     now = time.time()
@@ -132,17 +132,24 @@ async def synthesize_speech(text: str, speaker_id: int | str, speed: float = 1.0
     if cached and now - cached[0] < _TTS_CACHE_TTL:
         print(f"[synthesize_speech] cache hit, engine={tts_engine}, speaker_id={speaker_id}")
         return cached[1]
-    print(f"[synthesize_speech] engine={tts_engine}, speaker_id={speaker_id}, speed={speed}")
-    if tts_engine == "irodori":
-        audio = await synthesize_speech_irodori(text, str(speaker_id), speed)
-    else:
-        audio = await synthesize_speech_voicevox(text, int(speaker_id), speed)
-    _tts_cache[cache_key] = (now, audio)
-    # 古いキャッシュを掃除
-    expired = [k for k, (t, _) in _tts_cache.items() if now - t > _TTS_CACHE_TTL]
-    for k in expired:
-        del _tts_cache[k]
-    return audio
+    # ロック内で再チェック（同時リクエストの重複推論を防止）
+    async with _irodori_lock:
+        now = time.time()
+        cached = _tts_cache.get(cache_key)
+        if cached and now - cached[0] < _TTS_CACHE_TTL:
+            print(f"[synthesize_speech] cache hit (after lock), engine={tts_engine}, speaker_id={speaker_id}")
+            return cached[1]
+        print(f"[synthesize_speech] engine={tts_engine}, speaker_id={speaker_id}, speed={speed}")
+        if tts_engine == "irodori":
+            audio = await _synthesize_irodori_unlocked(text, str(speaker_id), speed)
+        else:
+            audio = await synthesize_speech_voicevox(text, int(speaker_id), speed)
+        _tts_cache[cache_key] = (time.time(), audio)
+        # 古いキャッシュを掃除
+        expired = [k for k, (t, _) in _tts_cache.items() if time.time() - t > _TTS_CACHE_TTL]
+        for k in expired:
+            del _tts_cache[k]
+        return audio
 
 
 async def synthesize_speech_voicevox(text: str, speaker_id: int, speed: float = 1.0) -> bytes:
@@ -168,9 +175,8 @@ async def synthesize_speech_voicevox(text: str, speaker_id: int, speed: float = 
 IRODORI_API_URL = "http://localhost:7860"
 
 
-async def synthesize_speech_irodori(text: str, voice_id: str, speed: float = 1.0) -> bytes:
-    """Irodori-TTS API サーバー経由でテキストを音声に変換。speed は num_steps として使用"""
-    # voice_id からキャプションを取得
+async def _synthesize_irodori_unlocked(text: str, voice_id: str, speed: float = 1.0) -> bytes:
+    """Irodori-TTS（ロックなし版 — 呼び出し元でロック取得済み前提）"""
     caption = "自然で聞き取りやすい声で読み上げてください。"
     for v in IRODORI_VOICES:
         if v["id"] == voice_id:
@@ -179,14 +185,15 @@ async def synthesize_speech_irodori(text: str, voice_id: str, speed: float = 1.0
 
     num_steps = int(speed) if speed >= 2 else 10
 
-    async with _irodori_lock:
-        async with httpx.AsyncClient(timeout=120) as client:
-            resp = await client.post(
-                f"{IRODORI_API_URL}/tts",
-                json={"text": text, "caption": caption, "num_steps": num_steps},
-            )
-            resp.raise_for_status()
-            return resp.content
+    print(f"[IRODORI TTS] voice_id={voice_id}, speed={speed}, num_steps={num_steps}, caption={caption[:30]}..., text_len={len(text)}")
+
+    async with httpx.AsyncClient(timeout=120) as client:
+        resp = await client.post(
+            f"{IRODORI_API_URL}/tts",
+            json={"text": text, "caption": caption, "num_steps": num_steps},
+        )
+        resp.raise_for_status()
+        return resp.content
 
 
 @app.get("/api/models")
@@ -322,37 +329,6 @@ async def tts_endpoint(text: str, speaker: str = "2", speed: float = 1.0):
     audio = await synthesize_speech(text, speaker, speed)
     return Response(content=audio, media_type="audio/wav")
 
-
-@app.post("/api/test-proactive")
-async def test_proactive(text: str = "テスト音声です"):
-    """テスト用: プロアクティブメッセージを全クライアントに送信"""
-    speaker = _settings.get("meiVoice", "2")
-    speed = _settings.get("meiSpeed", "1.0")
-    payload = json.dumps({
-        "type": "proactive_message",
-        "botId": "mei",
-        "text": text,
-        "speaker": speaker,
-        "speed": speed,
-        "ts": str(time.time()),
-    })
-    audio_bytes: bytes | None = None
-    try:
-        audio_bytes = await synthesize_speech(text, speaker, float(speed))
-        print(f"[test-proactive] TTS generated {len(audio_bytes)} bytes")
-    except Exception as e:
-        print(f"[test-proactive] TTS failed: {e}")
-    sent = 0
-    for client in list(_clients):
-        try:
-            await client.send_text(payload)
-            if audio_bytes:
-                await client.send_bytes(audio_bytes)
-            sent += 1
-        except Exception as exc:
-            print(f"[test-proactive] WS send failed: {exc}")
-            _clients.discard(client)
-    return {"sent": sent, "clients": len(_clients), "audio_size": len(audio_bytes) if audio_bytes else 0}
 
 
 @app.get("/api/speakers")
