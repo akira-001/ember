@@ -58,7 +58,6 @@ SLACK_BOT_TOKENS = {
 SETTINGS_FILE = Path(__file__).parent / "settings.json"
 _settings: dict = {}
 _clients: set[WebSocket] = set()
-_primary_client: WebSocket | None = None
 
 
 def _load_settings() -> dict:
@@ -347,13 +346,13 @@ async def test_proactive(text: str = "テスト音声です"):
     for client in list(_clients):
         try:
             await client.send_text(payload)
-            if audio_bytes and client is _primary_client:
+            if audio_bytes:
                 await client.send_bytes(audio_bytes)
             sent += 1
         except Exception as exc:
             print(f"[test-proactive] WS send failed: {exc}")
             _clients.discard(client)
-    return {"sent": sent, "clients": len(_clients), "primary": _primary_client is not None, "audio_size": len(audio_bytes) if audio_bytes else 0}
+    return {"sent": sent, "clients": len(_clients), "audio_size": len(audio_bytes) if audio_bytes else 0}
 
 
 @app.get("/api/speakers")
@@ -473,11 +472,9 @@ def _ensure_proactive_polling():
 
 @app.websocket("/ws")
 async def websocket_endpoint(ws: WebSocket):
-    global _primary_client
     await ws.accept()
     _clients.add(ws)
-    _primary_client = ws  # 最後に接続したクライアントがプライマリ
-    print(f"[WS] new connection (primary). total: {len(_clients)}")
+    print(f"[WS] new connection. total: {len(_clients)}")
     _ensure_proactive_polling()
 
     # 接続時に現在の設定を送信
@@ -618,10 +615,6 @@ async def websocket_endpoint(ws: WebSocket):
 
     except WebSocketDisconnect:
         _clients.discard(ws)
-        if _primary_client is ws:
-            _primary_client = next(iter(_clients), None)
-            if _primary_client:
-                print(f"[WS] primary transferred. total: {len(_clients)}")
         print(f"[WS] disconnected. total: {len(_clients)}")
 
 
@@ -666,14 +659,13 @@ async def _proactive_polling_loop():
                     for client in list(_clients):
                         try:
                             await client.send_text(payload)
-                            # 音声はプライマリクライアントにだけ送信
-                            if audio_bytes and client is _primary_client:
+                            if audio_bytes:
                                 await client.send_bytes(audio_bytes)
                             sent_count += 1
                         except Exception as exc:
                             print(f"[proactive] WS send failed: {exc}")
                             _clients.discard(client)
-                    print(f"[proactive] text={sent_count}/{active_clients}, audio=primary only")
+                    print(f"[proactive] sent to {sent_count}/{active_clients} clients (audio+text)")
                     # lastSeen を更新
                     if "lastSeen" not in _settings:
                         _settings["lastSeen"] = {}
