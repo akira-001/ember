@@ -18,6 +18,9 @@ load_dotenv(Path(__file__).parent / ".env")
 
 app = FastAPI()
 
+# Irodori TTS は GPU 推論のため、同時リクエストで品質が劣化する。排他ロックで直列化。
+_irodori_lock = asyncio.Lock()
+
 VOICEVOX_URL = "http://localhost:50021"
 VOICEVOX_SPEAKER = 2  # 四国めたん ノーマル
 
@@ -119,7 +122,6 @@ async def chat_with_llm(messages: list[dict], model: str = "gemma4:e4b") -> str:
 async def synthesize_speech(text: str, speaker_id: int | str, speed: float = 1.0, engine: str | None = None) -> bytes:
     """TTS エンジンでテキストを音声に変換"""
     tts_engine = engine or _settings.get("ttsEngine", "voicevox")
-    print(f"[synthesize_speech] engine={tts_engine}, speaker_id={speaker_id}, speed={speed}")
     if tts_engine == "irodori":
         return await synthesize_speech_irodori(text, str(speaker_id), speed)
     return await synthesize_speech_voicevox(text, int(speaker_id), speed)
@@ -159,15 +161,14 @@ async def synthesize_speech_irodori(text: str, voice_id: str, speed: float = 1.0
 
     num_steps = int(speed) if speed >= 2 else 10
 
-    print(f"[IRODORI TTS] voice_id={voice_id}, speed={speed}, num_steps={num_steps}, caption={caption[:30]}..., text_len={len(text)}")
-
-    async with httpx.AsyncClient(timeout=120) as client:
-        resp = await client.post(
-            f"{IRODORI_API_URL}/tts",
-            json={"text": text, "caption": caption, "num_steps": num_steps},
-        )
-        resp.raise_for_status()
-        return resp.content
+    async with _irodori_lock:
+        async with httpx.AsyncClient(timeout=120) as client:
+            resp = await client.post(
+                f"{IRODORI_API_URL}/tts",
+                json={"text": text, "caption": caption, "num_steps": num_steps},
+            )
+            resp.raise_for_status()
+            return resp.content
 
 
 @app.get("/api/models")
