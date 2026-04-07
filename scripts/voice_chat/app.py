@@ -2,6 +2,7 @@
 import asyncio
 import json
 import os
+import struct
 import tempfile
 import time
 from pathlib import Path
@@ -133,12 +134,40 @@ async def chat_with_llm(messages: list[dict], model: str = "gemma4:e4b") -> str:
         return resp.json()["message"]["content"]
 
 
+class TTSQualityError(Exception):
+    """TTS 生成結果が品質基準を満たさない場合の例外"""
+    def __init__(self, message: str, duration: float, size: int, text_len: int):
+        self.duration = duration
+        self.size = size
+        self.text_len = text_len
+        super().__init__(message)
+
+
 def _clean_text_for_tts(text: str) -> str:
     """TTS 用テキスト前処理: URL・絵文字を除去し空行を整理"""
     text = re.sub(r'https?://\S+', '', text)
     text = emoji_lib.replace_emoji(text, replace='')
     text = re.sub(r'\n{3,}', '\n\n', text)
     return text.strip()
+
+
+def _wav_duration(audio: bytes) -> float:
+    """WAV バイト列から再生時間（秒）を計算"""
+    if len(audio) < 44 or audio[:4] != b'RIFF':
+        return 0.0
+    # WAV header: bytes 24-27 = sample rate, 34-35 = bits per sample, 22-23 = channels
+    sample_rate = struct.unpack_from('<I', audio, 24)[0]
+    bits = struct.unpack_from('<H', audio, 34)[0]
+    channels = struct.unpack_from('<H', audio, 22)[0]
+    if sample_rate == 0 or bits == 0 or channels == 0:
+        return 0.0
+    data_size = len(audio) - 44
+    return data_size / (sample_rate * (bits // 8) * channels)
+
+
+_MIN_DURATION_SEC = 3.0
+_MIN_SIZE_BYTES = 50_000  # ~50KB
+_MIN_TEXT_LEN_FOR_CHECK = 30  # 短いテキストはチェック不要
 
 
 async def synthesize_speech(text: str, speaker_id: int | str, speed: float = 1.0, engine: str | None = None) -> bytes:
@@ -165,6 +194,17 @@ async def synthesize_speech(text: str, speaker_id: int | str, speed: float = 1.0
             audio = await synthesize_speech_gptsovits(text, str(speaker_id))
         else:
             audio = await synthesize_speech_voicevox(text, int(speaker_id), speed)
+
+        # --- 品質チェック: 長いテキストに対して短すぎる音声を検出 ---
+        if len(text) >= _MIN_TEXT_LEN_FOR_CHECK:
+            duration = _wav_duration(audio)
+            if duration < _MIN_DURATION_SEC or len(audio) < _MIN_SIZE_BYTES:
+                print(f"[TTS QUALITY ERROR] duration={duration:.1f}s, size={len(audio)} bytes, text_len={len(text)}, engine={tts_engine}, speaker={speaker_id}")
+                raise TTSQualityError(
+                    f"TTS生成異常: {duration:.1f}秒 / {len(audio)//1024}KB（テキスト{len(text)}文字に対して短すぎる）",
+                    duration=duration, size=len(audio), text_len=len(text),
+                )
+
         _tts_cache[cache_key] = (time.time(), audio)
         # 古いキャッシュを掃除
         expired = [k for k, (t, _) in _tts_cache.items() if time.time() - t > _TTS_CACHE_TTL]
@@ -354,7 +394,14 @@ async def get_bot_audio(bot_id: str, speaker: str = "2", speed: str = "auto", en
     if not entry:
         return Response(status_code=404)
     spd = 0 if speed == "auto" else float(speed)
-    audio = await synthesize_speech(entry["text"], speaker, spd, engine=engine)
+    try:
+        audio = await synthesize_speech(entry["text"], speaker, spd, engine=engine)
+    except TTSQualityError as e:
+        return Response(
+            content=json.dumps({"error": str(e), "duration": e.duration, "size": e.size, "text_len": e.text_len}),
+            status_code=422,
+            media_type="application/json",
+        )
     return Response(content=audio, media_type="audio/wav")
 
 
@@ -669,6 +716,10 @@ async def websocket_endpoint(ws: WebSocket):
                     audio = await synthesize_speech(reply, slack_reply_speaker, slack_reply_speed)
                     await ws.send_json({"type": "assistant_text", "text": f"[{bot_id}] {reply}"})
                     await ws.send_bytes(audio)
+                except TTSQualityError as e:
+                    print(f"TTS quality error: {e}")
+                    await ws.send_json({"type": "assistant_text", "text": f"[{bot_id}] {reply}"})
+                    await ws.send_json({"type": "status", "text": f"音声生成エラー: {e}"})
                 except Exception as e:
                     print(f"TTS error: {e}")
                     await ws.send_json({"type": "assistant_text", "text": f"[{bot_id}] {reply}", "tts_fallback": True})
@@ -692,6 +743,9 @@ async def websocket_endpoint(ws: WebSocket):
                 audio = await synthesize_speech(reply, speaker_id, speed)
                 await ws.send_json({"type": "assistant_text", "text": reply})
                 await ws.send_bytes(audio)
+            except TTSQualityError as e:
+                await ws.send_json({"type": "assistant_text", "text": reply})
+                await ws.send_json({"type": "status", "text": f"音声生成エラー: {e}"})
             except Exception as e:
                 await ws.send_json({"type": "assistant_text", "text": reply, "tts_fallback": True})
 
@@ -737,6 +791,8 @@ async def _proactive_polling_loop():
                         try:
                             audio_bytes = await synthesize_speech(msg_item["text"], speaker, 0 if speed == "auto" else float(speed), engine=engine)
                             print(f"[proactive] TTS generated {len(audio_bytes)} bytes for {bot_id}")
+                        except TTSQualityError as e:
+                            print(f"[proactive] TTS quality error for {bot_id}: {e}")
                         except Exception as e:
                             print(f"[proactive] TTS failed: {e}")
                     else:
