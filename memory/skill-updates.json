@@ -1,13 +1,13 @@
 {
-  "checked_at": "2026-04-07T15:34:02.913677",
+  "checked_at": "2026-04-08T07:11:07.559899",
   "sources": {
     "gstack": {
       "type": "git",
-      "version": "0.15.13.0",
-      "local_sha": "03973c2f",
-      "remote_sha": "6cc094cd",
+      "version": "0.15.15.0",
+      "local_sha": "6cc094cd",
+      "remote_sha": "1868636f",
       "up_to_date": false,
-      "behind": 3
+      "behind": 1
     },
     "plugin:frontend-design": {
       "type": "plugin",
