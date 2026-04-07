@@ -133,8 +133,17 @@ async def chat_with_llm(messages: list[dict], model: str = "gemma4:e4b") -> str:
         return resp.json()["message"]["content"]
 
 
+def _clean_text_for_tts(text: str) -> str:
+    """TTS 用テキスト前処理: URL・絵文字を除去し空行を整理"""
+    text = re.sub(r'https?://\S+', '', text)
+    text = emoji_lib.replace_emoji(text, replace='')
+    text = re.sub(r'\n{3,}', '\n\n', text)
+    return text.strip()
+
+
 async def synthesize_speech(text: str, speaker_id: int | str, speed: float = 1.0, engine: str | None = None) -> bytes:
     """TTS エンジンでテキストを音声に変換（ロック内 double-check キャッシュ）"""
+    text = _clean_text_for_tts(text)
     tts_engine = engine or _settings.get("ttsEngine", "voicevox")
     cache_key = f"{tts_engine}:{speaker_id}:{speed}:{text}"
     now = time.time()
