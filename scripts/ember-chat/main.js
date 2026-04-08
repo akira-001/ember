@@ -41,6 +41,13 @@ function createWindow() {
 
   mainWindow.loadFile(path.join(__dirname, 'renderer', 'index.html'));
 
+  // Forward renderer console.log to main process stdout for debugging
+  mainWindow.webContents.on('console-message', (_event, level, message) => {
+    if (message.includes('AlwaysOn')) {
+      console.log(`[renderer] ${message}`);
+    }
+  });
+
   mainWindow.on('closed', () => {
     mainWindow = null;
   });

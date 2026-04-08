@@ -85,7 +85,8 @@ class AlwaysOnListener {
     const SILENCE_TIMEOUT_MS = 800;
     let silenceTimer = null;
 
-    const check = () => {
+    // Use setInterval instead of requestAnimationFrame — rAF stops when window is hidden/background
+    const checkInterval = setInterval(() => {
       if (!this.enabled) return;
       analyser.getFloatTimeDomainData(dataArray);
       let rms = 0;
@@ -104,12 +105,14 @@ class AlwaysOnListener {
             this._handleSpeechSegmentWebm(buf);
           };
           recorder.start();
+          console.log('[AlwaysOn] RMS speech start');
         }
         if (silenceTimer) { clearTimeout(silenceTimer); silenceTimer = null; }
       } else if (speechStart) {
         if (!silenceTimer) {
           silenceTimer = setTimeout(() => {
             if (Date.now() - speechStart >= MIN_SPEECH_MS && recorder && recorder.state === 'recording') {
+              console.log('[AlwaysOn] RMS speech end, sending');
               recorder.stop();
             } else if (recorder && recorder.state === 'recording') {
               recorder.stop();
@@ -119,12 +122,11 @@ class AlwaysOnListener {
           }, SILENCE_TIMEOUT_MS);
         }
       }
-      requestAnimationFrame(check);
-    };
-    requestAnimationFrame(check);
+    }, 50); // 50ms = 20Hz check rate
 
     this._rmsCleanup = () => {
       this.enabled = false;
+      clearInterval(checkInterval);
       audioCtx.close();
     };
   }
