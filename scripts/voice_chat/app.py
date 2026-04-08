@@ -29,6 +29,10 @@ from fastapi.responses import HTMLResponse, Response
 
 from faster_whisper import WhisperModel
 
+from wake_detect import detect_wake_word
+from wake_response import WakeResponseCache
+import wake_response as _wake_response_module
+
 load_dotenv(Path(__file__).parent / ".env")
 
 app = FastAPI()
@@ -43,6 +47,8 @@ def _get_tts_lock(engine: str) -> asyncio.Lock:
 # TTS 結果の短期キャッシュ（重複リクエスト防止）
 _tts_cache: dict[str, tuple[float, bytes]] = {}
 _TTS_CACHE_TTL = 30  # seconds
+
+_wake_cache = WakeResponseCache()
 
 VOICEVOX_URL = "http://localhost:50021"
 VOICEVOX_SPEAKER = 2  # 四国めたん ノーマル
@@ -696,6 +702,44 @@ async def websocket_endpoint(ws: WebSocket):
                 elif data.get("type") == "cancel_reply":
                     slack_reply_bot = None
                     continue
+                elif data.get("type") == "always_on_audio":
+                    # Always-On mode: VAD-filtered audio from Electron
+                    # Next binary message contains the audio data
+                    audio_msg = await ws.receive()
+                    if "bytes" not in audio_msg:
+                        continue
+                    audio_data = audio_msg["bytes"]
+
+                    # Whisper STT
+                    text = await transcribe(audio_data)
+                    if not text:
+                        continue
+
+                    # Wake Word detection
+                    wake_result = detect_wake_word(text)
+                    if not wake_result.detected:
+                        logger.info(f"[always_on] heard: '{text[:50]}' (no wake word)")
+                        continue
+
+                    logger.info(f"[always_on] WAKE DETECTED: '{text}' → remaining: '{wake_result.remaining_text}'")
+
+                    # Send wake response immediately
+                    wake_resp = _wake_cache.get_random()
+                    if wake_resp:
+                        resp_text, resp_audio = wake_resp
+                        await ws.send_json({"type": "wake_detected", "keyword": wake_result.keyword, "response_text": resp_text})
+                        await ws.send_bytes(resp_audio)
+                    else:
+                        await ws.send_json({"type": "wake_detected", "keyword": wake_result.keyword, "response_text": ""})
+
+                    # If there's remaining text after wake word, process it through LLM
+                    if wake_result.remaining_text:
+                        text = wake_result.remaining_text
+                        await ws.send_json({"type": "user_text", "text": f"[voice] {text}"})
+                        # Fall through to LLM processing below
+                    else:
+                        # Just the wake word, response already sent
+                        continue
                 elif data.get("type") == "text_message":
                     text = data.get("text", "").strip()
                     if not text:
@@ -857,6 +901,17 @@ async def _warmup_irodori():
 @app.on_event("startup")
 async def on_startup():
     await _warmup_irodori()
+    # Wire up synthesize_speech for wake_response module
+    _wake_response_module.synthesize_speech = synthesize_speech
+    # Warm up wake response cache with mei's voice settings
+    _mei_speaker = _settings.get("meiVoice", "irodori-lora-emilia")
+    _mei_speed_raw = _settings.get("meiSpeed", "auto") or "auto"
+    _mei_speed = 0 if _mei_speed_raw == "auto" else float(_mei_speed_raw)
+    try:
+        await _wake_cache.warmup(speaker_id=_mei_speaker, speed=_mei_speed)
+        logger.info(f"[startup] Wake response cache ready ({_wake_cache.is_ready})")
+    except Exception as e:
+        logger.warning(f"[startup] Wake response cache warmup failed: {e}")
 
 
 if __name__ == "__main__":
