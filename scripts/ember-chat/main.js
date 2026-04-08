@@ -1,5 +1,6 @@
-const { app, BrowserWindow, ipcMain, nativeImage } = require('electron');
+const { app, BrowserWindow, ipcMain, nativeImage, Tray, Menu } = require('electron');
 const path = require('path');
+const fs = require('fs');
 const { exec } = require('child_process');
 
 const VOICE_CHAT_HOST = 'localhost';
@@ -15,6 +16,9 @@ if (app.dock) {
 }
 
 let mainWindow;
+let tray = null;
+let alwaysOnListening = false;
+const CONSENT_FILE = path.join(app.getPath('userData'), 'always-on-consent.json');
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -67,11 +71,69 @@ ipcMain.handle('get-config', () => ({
   port: VOICE_CHAT_PORT,
 }));
 
+// --- Always-On consent ---
+ipcMain.handle('check-consent', () => {
+  try {
+    const data = JSON.parse(fs.readFileSync(CONSENT_FILE, 'utf8'));
+    return !!data.consented;
+  } catch { return false; }
+});
+
+ipcMain.handle('save-consent', () => {
+  fs.writeFileSync(CONSENT_FILE, JSON.stringify({ consented: true, at: new Date().toISOString() }));
+  return true;
+});
+
+// --- Always-On state from renderer ---
+ipcMain.on('always-on-set', (_event, listening) => {
+  alwaysOnListening = listening;
+  updateTrayIcon();
+});
+
+function updateTrayIcon() {
+  if (!tray) return;
+  const iconName = alwaysOnListening ? 'listening.png' : 'muted.png';
+  const iconPath = path.join(__dirname, 'tray-icons', iconName);
+  try {
+    const img = nativeImage.createFromPath(iconPath);
+    tray.setImage(img.resize({ width: 18, height: 18 }));
+  } catch (err) {
+    console.error('[Tray] Failed to update icon:', err);
+  }
+}
+
+function createTray() {
+  const iconPath = path.join(__dirname, 'tray-icons', 'muted.png');
+  const img = nativeImage.createFromPath(iconPath);
+  tray = new Tray(img.resize({ width: 18, height: 18 }));
+  tray.setToolTip('Ember Chat');
+
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: 'Toggle Always-On',
+      click: () => {
+        alwaysOnListening = !alwaysOnListening;
+        updateTrayIcon();
+        if (mainWindow) mainWindow.webContents.send('always-on-toggle', alwaysOnListening);
+      },
+    },
+    { type: 'separator' },
+    {
+      label: 'Show Window',
+      click: () => { if (mainWindow) { mainWindow.show(); mainWindow.focus(); } },
+    },
+    { type: 'separator' },
+    { label: 'Quit', click: () => app.quit() },
+  ]);
+  tray.setContextMenu(contextMenu);
+}
+
 app.whenReady().then(() => {
   try {
     app.dock.setIcon(nativeImage.createFromPath(APP_ICON_PATH));
   } catch {}
   createWindow();
+  createTray();
 });
 
 app.on('window-all-closed', () => {
