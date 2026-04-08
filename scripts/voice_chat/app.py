@@ -131,14 +131,15 @@ def get_whisper():
     return _whisper_model
 
 
-async def transcribe(audio_bytes: bytes) -> str:
-    """音声バイト列をテキストに変換"""
+async def transcribe(audio_bytes: bytes, fast: bool = False) -> str:
+    """音声バイト列をテキストに変換。fast=True で always-on 用高速モード。"""
     with tempfile.NamedTemporaryFile(suffix=".webm", delete=True) as f:
         f.write(audio_bytes)
         f.flush()
         model = get_whisper()
         segments, info = model.transcribe(
-            f.name, language="ja", beam_size=5,
+            f.name, language="ja",
+            beam_size=1 if fast else 5,
             initial_prompt="ねぇメイ、メイ、今日のスケジュールは？",
         )
         text = "".join(seg.text for seg in segments).strip()
@@ -620,11 +621,23 @@ async def index():
 _proactive_task: asyncio.Task | None = None
 
 
+_always_on_echo_suppress_until: float = 0  # suppress echo after wake response
+
+
 async def _process_always_on(ws: WebSocket, audio_data: bytes):
     """Process always-on audio in background — doesn't block WS receive loop."""
+    global _always_on_echo_suppress_until
     try:
-        text = await transcribe(audio_data)
+        # Skip processing during echo suppression window
+        if time.time() < _always_on_echo_suppress_until:
+            return
+
+        text = await transcribe(audio_data, fast=True)
         if not text:
+            return
+
+        # Skip if still in echo suppression (transcription took time)
+        if time.time() < _always_on_echo_suppress_until:
             return
 
         wake_result = detect_wake_word(text)
@@ -641,12 +654,15 @@ async def _process_always_on(ws: WebSocket, audio_data: bytes):
             resp_text, resp_audio = wake_resp
             await ws.send_json({"type": "wake_detected", "keyword": wake_result.keyword, "response_text": resp_text})
             await ws.send_bytes(resp_audio)
+            # Suppress echo for 3 seconds after sending audio response
+            _always_on_echo_suppress_until = time.time() + 3.0
         else:
             await ws.send_json({"type": "wake_detected", "keyword": wake_result.keyword, "response_text": ""})
 
-        # If there's remaining text after wake word, send for LLM processing
-        if wake_result.remaining_text:
-            await ws.send_json({"type": "user_text", "text": f"[voice] {wake_result.remaining_text}"})
+        # If there's meaningful remaining text (not just "メイ" repeated), send for LLM
+        remaining = wake_result.remaining_text
+        if remaining and remaining not in ("メイ", "メイ。", "mei", "Mei"):
+            await ws.send_json({"type": "user_text", "text": f"[voice] {remaining}"})
     except Exception as e:
         logger.warning(f"[always_on] processing error: {e}")
 
