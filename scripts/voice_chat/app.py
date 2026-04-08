@@ -900,6 +900,8 @@ async def _warmup_irodori():
 
 @app.on_event("startup")
 async def on_startup():
+    global _settings
+    _settings = _load_settings()
     await _warmup_irodori()
     # Wire up synthesize_speech for wake_response module
     _wake_response_module.synthesize_speech = synthesize_speech
