@@ -1,12 +1,24 @@
 """Ember Chat Web App - STT (Whisper) + LLM (Ollama) + TTS (VOICEVOX)"""
 import asyncio
 import json
+import logging
 import os
 import re
 import struct
+import sys
 import tempfile
 import time
 from pathlib import Path
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler("/tmp/voice_chat_final.log"),
+        logging.StreamHandler(sys.stdout),
+    ],
+)
+logger = logging.getLogger("voice_chat")
 
 import emoji as emoji_lib
 import httpx
@@ -162,7 +174,7 @@ def _clean_text_for_tts(text: str) -> str:
         if pattern.search(text):
             before = text
             text = pattern.sub(yomi, text)
-            print(f"[YOMIGANA] '{pattern.pattern}' -> '{yomi}' | before='{before[:60]}' | after='{text[:60]}'")
+            logger.info(f"[YOMIGANA] '{pattern.pattern}' -> '{yomi}' | before='{before[:60]}' | after='{text[:60]}'")
     return text.strip()
 
 
@@ -193,16 +205,16 @@ async def synthesize_speech(text: str, speaker_id: int | str, speed: float = 1.0
     now = time.time()
     cached = _tts_cache.get(cache_key)
     if cached and now - cached[0] < _TTS_CACHE_TTL:
-        print(f"[synthesize_speech] cache hit, engine={tts_engine}, speaker_id={speaker_id}")
+        logger.info(f"[synthesize_speech] cache hit, engine={tts_engine}, speaker_id={speaker_id}")
         return cached[1]
     lock = _get_tts_lock(tts_engine)
     async with lock:
         now = time.time()
         cached = _tts_cache.get(cache_key)
         if cached and now - cached[0] < _TTS_CACHE_TTL:
-            print(f"[synthesize_speech] cache hit (after lock), engine={tts_engine}, speaker_id={speaker_id}")
+            logger.info(f"[synthesize_speech] cache hit (after lock), engine={tts_engine}, speaker_id={speaker_id}")
             return cached[1]
-        print(f"[synthesize_speech] engine={tts_engine}, speaker_id={speaker_id}, speed={speed}")
+        logger.info(f"[synthesize_speech] engine={tts_engine}, speaker_id={speaker_id}, speed={speed}")
         if tts_engine == "irodori":
             audio = await _synthesize_irodori_unlocked(text, str(speaker_id), speed)
         elif tts_engine == "gptsovits":
@@ -214,7 +226,7 @@ async def synthesize_speech(text: str, speaker_id: int | str, speed: float = 1.0
         if len(text) >= _MIN_TEXT_LEN_FOR_CHECK:
             duration = _wav_duration(audio)
             if duration < _MIN_DURATION_SEC or len(audio) < _MIN_SIZE_BYTES:
-                print(f"[TTS QUALITY ERROR] duration={duration:.1f}s, size={len(audio)} bytes, text_len={len(text)}, engine={tts_engine}, speaker={speaker_id}")
+                logger.error(f"[TTS QUALITY ERROR] duration={duration:.1f}s, size={len(audio)} bytes, text_len={len(text)}, engine={tts_engine}, speaker={speaker_id}")
                 raise TTSQualityError(
                     f"TTS生成異常: {duration:.1f}秒 / {len(audio)//1024}KB（テキスト{len(text)}文字に対して短すぎる）",
                     duration=duration, size=len(audio), text_len=len(text),
@@ -263,7 +275,7 @@ async def _synthesize_irodori_unlocked(text: str, voice_id: str, speed: float = 
             num_steps = 40 if len(text) > 120 else 30 if len(text) > 80 else 20
         else:
             num_steps = int(speed) if speed >= 2 else 20
-        print(f"[IRODORI TTS LoRA] voice_id={voice_id}, num_steps={num_steps}, text_len={len(text)}")
+        logger.info(f"[IRODORI TTS LoRA] voice_id={voice_id}, num_steps={num_steps}, text_len={len(text)}")
         async with httpx.AsyncClient(timeout=120) as client:
             resp = await client.post(
                 f"{IRODORI_API_URL}/tts-ref",
@@ -287,7 +299,7 @@ async def _synthesize_irodori_unlocked(text: str, voice_id: str, speed: float = 
     else:
         num_steps = int(speed) if speed >= 2 else 10
 
-    print(f"[IRODORI TTS] voice_id={voice_id}, speed={speed}, num_steps={num_steps}, caption={caption[:30]}..., text_len={len(text)}")
+    logger.info(f"[IRODORI TTS] voice_id={voice_id}, speed={speed}, num_steps={num_steps}, caption={caption[:30]}..., text_len={len(text)}")
 
     async with httpx.AsyncClient(timeout=120) as client:
         resp = await client.post(
@@ -323,7 +335,7 @@ async def synthesize_speech_gptsovits(text: str, voice_id: str) -> bytes:
             prompt_text = v["prompt_text"]
             break
     ref_path = os.path.join(GPTSOVITS_REF_DIR, ref_audio)
-    print(f"[GPT-SoVITS] voice_id={voice_id}, ref={ref_audio}, text_len={len(text)}")
+    logger.info(f"[GPT-SoVITS] voice_id={voice_id}, ref={ref_audio}, text_len={len(text)}")
     async with httpx.AsyncClient(timeout=120) as client:
         resp = await client.post(
             f"{GPTSOVITS_API_URL}/tts",
@@ -605,14 +617,14 @@ def _ensure_proactive_polling():
     if _proactive_task is None or _proactive_task.done():
         _settings = _load_settings()
         _proactive_task = asyncio.create_task(_proactive_polling_loop())
-        print("Proactive polling started")
+        logger.info("Proactive polling started")
 
 
 @app.websocket("/ws")
 async def websocket_endpoint(ws: WebSocket):
     await ws.accept()
     _clients.add(ws)
-    print(f"[WS] new connection. total: {len(_clients)}")
+    logger.info(f"[WS] new connection. total: {len(_clients)}")
     _ensure_proactive_polling()
 
     # 接続時に現在の設定を送信
@@ -764,7 +776,7 @@ async def websocket_endpoint(ws: WebSocket):
 
     except WebSocketDisconnect:
         _clients.discard(ws)
-        print(f"[WS] disconnected. total: {len(_clients)}")
+        logger.info(f"[WS] disconnected. total: {len(_clients)}")
 
 
 async def _proactive_polling_loop():
@@ -803,13 +815,13 @@ async def _proactive_polling_loop():
                     if i == latest_idx:
                         try:
                             audio_bytes = await synthesize_speech(msg_item["text"], speaker, 0 if speed == "auto" else float(speed), engine=engine)
-                            print(f"[proactive] TTS generated {len(audio_bytes)} bytes for {bot_id}")
+                            logger.info(f"[proactive] TTS generated {len(audio_bytes)} bytes for {bot_id}")
                         except TTSQualityError as e:
-                            print(f"[proactive] TTS quality error for {bot_id}: {e}")
+                            logger.warning(f"[proactive] TTS quality error for {bot_id}: {e}")
                         except Exception as e:
-                            print(f"[proactive] TTS failed: {e}")
+                            logger.error(f"[proactive] TTS failed: {e}")
                     else:
-                        print(f"[proactive] skipping TTS for older msg ({i+1}/{len(sorted_msgs)}) {bot_id}")
+                        logger.info(f"[proactive] skipping TTS for older msg ({i+1}/{len(sorted_msgs)}) {bot_id}")
                     active_clients = len(_clients)
                     sent_count = 0
                     for client in list(_clients):
@@ -819,26 +831,26 @@ async def _proactive_polling_loop():
                                 await client.send_bytes(audio_bytes)
                             sent_count += 1
                         except Exception as exc:
-                            print(f"[proactive] WS send failed: {exc}")
+                            logger.error(f"[proactive] WS send failed: {exc}")
                             _clients.discard(client)
-                    print(f"[proactive] sent to {sent_count}/{active_clients} clients ({'audio+text' if audio_bytes else 'text only'})")
+                    logger.info(f"[proactive] sent to {sent_count}/{active_clients} clients ({'audio+text' if audio_bytes else 'text only'})")
                     # lastSeen を更新
                     if "lastSeen" not in _settings:
                         _settings["lastSeen"] = {}
                     _settings["lastSeen"][bot_id] = msg_item["ts"]
                 _save_settings(_settings)
             except Exception as e:
-                print(f"proactive poll {bot_id}: {e}")
+                logger.error(f"proactive poll {bot_id}: {e}")
 
 
 async def _warmup_irodori():
     """起動時にダミー推論してGPUウォームアップ"""
     try:
-        print("[warmup] Irodori TTS warming up...")
+        logger.info("[warmup] Irodori TTS warming up...")
         await _synthesize_irodori_unlocked("ウォームアップ", "irodori-bright-female", 20.0)
-        print("[warmup] Irodori TTS ready")
+        logger.info("[warmup] Irodori TTS ready")
     except Exception as e:
-        print(f"[warmup] Irodori TTS warmup failed (non-fatal): {e}")
+        logger.warning(f"[warmup] Irodori TTS warmup failed (non-fatal): {e}")
 
 
 @app.on_event("startup")
