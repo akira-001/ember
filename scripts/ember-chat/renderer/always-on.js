@@ -150,6 +150,8 @@ class AlwaysOnListener {
     if (msg.type === 'wake_detected') {
       this._setState('processing');
       this.onWakeDetected(msg);
+      // Resume listening after echo window (audio playback + margin)
+      setTimeout(() => this.returnToListening(), 4000);
     } else if (msg.type === 'always_on_result') {
       // No wake word — already listening, nothing to do
     }
