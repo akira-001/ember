@@ -1,8 +1,9 @@
 /**
  * Always-On Listening Module for Ember Chat
  *
- * States: idle -> listening -> detected -> processing -> listening (loop)
+ * States: idle -> listening (continuous) -> processing (wake detected) -> listening
  *         idle -> muted (user toggle)
+ * Audio is sent to server while staying in 'listening' state (non-blocking).
  *
  * Uses @ricky0123/vad-web (Silero VAD ONNX) if available,
  * falls back to RMS-based voice activity detection.
@@ -21,7 +22,6 @@ class AlwaysOnListener {
     this.micStream = null;
     this.vad = null;
     this.enabled = false;
-    this._processingTimeout = null;
     this._rmsCleanup = null;
   }
 
@@ -54,10 +54,10 @@ class AlwaysOnListener {
       stream: this.micStream,
       onSpeechStart: () => {
         if (this.state !== 'listening') return;
-        this._setState('detected');
+        console.log('[AlwaysOn] speech detected');
       },
       onSpeechEnd: (audio) => {
-        if (this.state !== 'detected') return;
+        if (this.state !== 'listening') return;
         this._handleSpeechSegment(audio);
       },
       positiveSpeechThreshold: 0.8,
@@ -95,7 +95,6 @@ class AlwaysOnListener {
       if (rms > THRESHOLD) {
         if (!speechStart && this.state === 'listening') {
           speechStart = Date.now();
-          this._setState('detected');
           chunks = [];
           recorder = new MediaRecorder(this.micStream, { mimeType: 'audio/webm;codecs=opus' });
           recorder.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
@@ -114,7 +113,6 @@ class AlwaysOnListener {
               recorder.stop();
             } else if (recorder && recorder.state === 'recording') {
               recorder.stop();
-              this._setState('listening');
             }
             speechStart = null;
             silenceTimer = null;
@@ -132,41 +130,28 @@ class AlwaysOnListener {
   }
 
   async _handleSpeechSegment(audioFloat32) {
-    this._setState('processing');
     const wavBuffer = this._float32ToWav(audioFloat32, 16000);
     this._sendAlwaysOnAudio(wavBuffer);
   }
 
   async _handleSpeechSegmentWebm(webmBuffer) {
-    this._setState('processing');
     this._sendAlwaysOnAudio(webmBuffer);
   }
 
   _sendAlwaysOnAudio(audioBuffer) {
     const ws = this.wsRef();
-    if (!ws || ws.readyState !== WebSocket.OPEN) {
-      this._setState('listening');
-      return;
-    }
+    if (!ws || ws.readyState !== WebSocket.OPEN) return;
     ws.send(JSON.stringify({ type: 'always_on_audio', format: 'wav' }));
     ws.send(audioBuffer);
-
-    if (this._processingTimeout) clearTimeout(this._processingTimeout);
-    this._processingTimeout = setTimeout(() => {
-      if (this.state === 'processing') this._setState('listening');
-    }, 10000);
+    // Stay in 'listening' — server processes async, we keep capturing
   }
 
   handleServerMessage(msg) {
     if (msg.type === 'wake_detected') {
-      if (this._processingTimeout) { clearTimeout(this._processingTimeout); this._processingTimeout = null; }
+      this._setState('processing');
       this.onWakeDetected(msg);
-      setTimeout(() => {
-        if (this.state === 'processing') this._setState('listening');
-      }, 3000);
-    } else if (msg.type === 'always_on_result' && !msg.wake) {
-      if (this._processingTimeout) { clearTimeout(this._processingTimeout); this._processingTimeout = null; }
-      this._setState('listening');
+    } else if (msg.type === 'always_on_result') {
+      // No wake word — already listening, nothing to do
     }
   }
 
