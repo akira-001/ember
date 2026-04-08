@@ -621,14 +621,50 @@ async def index():
 _proactive_task: asyncio.Task | None = None
 
 
-_always_on_echo_suppress_until: float = 0  # suppress echo after wake response
+_always_on_echo_suppress_until: float = 0
+_always_on_conversation_until: float = 0  # conversation window after wake
+_always_on_conversation: list[dict] = [
+    {"role": "system", "content": "あなたはメイという名前のフレンドリーな日本語の会話アシスタントです。音声会話なので、簡潔に1-2文で返答してください。"}
+]
+
+
+async def _always_on_llm_reply(ws: WebSocket, text: str):
+    """Process text through LLM and send TTS response."""
+    global _always_on_echo_suppress_until, _always_on_conversation_until
+    try:
+        _always_on_conversation.append({"role": "user", "content": text})
+        if len(_always_on_conversation) > 11:  # system + 5 turns
+            _always_on_conversation[1:3] = []
+
+        await ws.send_json({"type": "status", "text": "考え中..."})
+        model = _settings.get("modelSelect", "gemma4:e4b")
+        reply = await chat_with_llm(_always_on_conversation, model)
+        _always_on_conversation.append({"role": "assistant", "content": reply})
+        logger.info(f"[always_on] LLM reply: '{reply[:80]}'")
+
+        # TTS
+        mei_speaker = _settings.get("meiVoice", "irodori-lora-emilia")
+        mei_speed_raw = _settings.get("meiSpeed", "auto") or "auto"
+        mei_speed = 0 if mei_speed_raw == "auto" else float(mei_speed_raw)
+        try:
+            audio = await synthesize_speech(reply, mei_speaker, mei_speed)
+            await ws.send_json({"type": "assistant_text", "text": reply})
+            await ws.send_bytes(audio)
+            _always_on_echo_suppress_until = time.time() + 4.0
+        except Exception as e:
+            await ws.send_json({"type": "assistant_text", "text": reply, "tts_fallback": True})
+            logger.warning(f"[always_on] TTS error: {e}")
+
+        # Extend conversation window
+        _always_on_conversation_until = time.time() + 30.0
+    except Exception as e:
+        logger.warning(f"[always_on] LLM error: {e}")
 
 
 async def _process_always_on(ws: WebSocket, audio_data: bytes):
     """Process always-on audio in background — doesn't block WS receive loop."""
-    global _always_on_echo_suppress_until
+    global _always_on_echo_suppress_until, _always_on_conversation_until
     try:
-        # Skip processing during echo suppression window
         if time.time() < _always_on_echo_suppress_until:
             return
 
@@ -636,33 +672,39 @@ async def _process_always_on(ws: WebSocket, audio_data: bytes):
         if not text:
             return
 
-        # Skip if still in echo suppression (transcription took time)
         if time.time() < _always_on_echo_suppress_until:
             return
 
+        # In conversation window? Send directly to LLM without wake word
+        in_conversation = time.time() < _always_on_conversation_until
         wake_result = detect_wake_word(text)
-        if not wake_result.detected:
+
+        if wake_result.detected:
+            logger.info(f"[always_on] WAKE DETECTED: '{text}' → remaining: '{wake_result.remaining_text}'")
+
+            # Send wake response
+            wake_resp = _wake_cache.get_random()
+            if wake_resp:
+                resp_text, resp_audio = wake_resp
+                await ws.send_json({"type": "wake_detected", "keyword": wake_result.keyword, "response_text": resp_text})
+                await ws.send_bytes(resp_audio)
+                _always_on_echo_suppress_until = time.time() + 3.0
+            else:
+                await ws.send_json({"type": "wake_detected", "keyword": wake_result.keyword, "response_text": ""})
+
+            # Start conversation window
+            _always_on_conversation_until = time.time() + 30.0
+
+            # Process remaining text through LLM
+            remaining = wake_result.remaining_text
+            if remaining and remaining not in ("メイ", "メイ。", "mei", "Mei"):
+                await _always_on_llm_reply(ws, remaining)
+        elif in_conversation:
+            logger.info(f"[always_on] conversation: '{text[:50]}'")
+            await _always_on_llm_reply(ws, text)
+        else:
             logger.info(f"[always_on] heard: '{text[:50]}' (no wake word)")
             await ws.send_json({"type": "always_on_result", "wake": False})
-            return
-
-        logger.info(f"[always_on] WAKE DETECTED: '{text}' → remaining: '{wake_result.remaining_text}'")
-
-        # Send wake response immediately
-        wake_resp = _wake_cache.get_random()
-        if wake_resp:
-            resp_text, resp_audio = wake_resp
-            await ws.send_json({"type": "wake_detected", "keyword": wake_result.keyword, "response_text": resp_text})
-            await ws.send_bytes(resp_audio)
-            # Suppress echo for 3 seconds after sending audio response
-            _always_on_echo_suppress_until = time.time() + 3.0
-        else:
-            await ws.send_json({"type": "wake_detected", "keyword": wake_result.keyword, "response_text": ""})
-
-        # If there's meaningful remaining text (not just "メイ" repeated), send for LLM
-        remaining = wake_result.remaining_text
-        if remaining and remaining not in ("メイ", "メイ。", "mei", "Mei"):
-            await ws.send_json({"type": "user_text", "text": f"[voice] {remaining}"})
     except Exception as e:
         logger.warning(f"[always_on] processing error: {e}")
 
