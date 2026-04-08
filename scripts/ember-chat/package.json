@@ -28,5 +28,8 @@
       "renderer/**/*",
       "assets/**/*"
     ]
+  },
+  "dependencies": {
+    "@ricky0123/vad-web": "^0.0.30"
   }
 }
