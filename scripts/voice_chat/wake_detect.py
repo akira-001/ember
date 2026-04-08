@@ -11,12 +11,19 @@ class WakeWordResult:
 
 
 _WAKE_PATTERNS = [
+    # Standard patterns
     re.compile(r'^(?:ねぇ|ねえ|ねー|ね)[、,\s]*メイ[、,。．.\s]*(.*)$', re.DOTALL),
     re.compile(r'^メイ[、,。．.\s]+(.*)$', re.DOTALL),
     re.compile(r'^メイ[、,。．.\s]*$'),
+    # Romaji
     re.compile(r'^(?:ねぇ|ねえ|ねー|ね)[、,\s]*[Mm]ei[、,。．.\s]*(.*)$', re.DOTALL | re.IGNORECASE),
     re.compile(r'^[Mm]ei[、,。．.\s]+(.*)$', re.DOTALL | re.IGNORECASE),
     re.compile(r'^[Mm]ei[、,。．.\s]*$', re.IGNORECASE),
+    # Common Whisper misrecognitions of "ねぇメイ"
+    re.compile(r'^ねえねえ[、,。．.\s]*(.*)$', re.DOTALL),
+    re.compile(r'^ねえ[、,\s]*めい[、,。．.\s]*(.*)$', re.DOTALL),
+    re.compile(r'^ねぇ[、,\s]*めい[、,。．.\s]*(.*)$', re.DOTALL),
+    re.compile(r'^ね[ぇえー][、,\s]*目[、,。．.\s]*(.*)$', re.DOTALL),
 ]
 
 

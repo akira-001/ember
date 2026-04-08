@@ -137,7 +137,10 @@ async def transcribe(audio_bytes: bytes) -> str:
         f.write(audio_bytes)
         f.flush()
         model = get_whisper()
-        segments, info = model.transcribe(f.name, language="ja", beam_size=5)
+        segments, info = model.transcribe(
+            f.name, language="ja", beam_size=5,
+            initial_prompt="ねぇメイ、メイ、今日のスケジュールは？",
+        )
         text = "".join(seg.text for seg in segments).strip()
     return text
 
