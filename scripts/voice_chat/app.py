@@ -2,6 +2,7 @@
 import asyncio
 import json
 import os
+import re
 import struct
 import tempfile
 import time
@@ -375,8 +376,6 @@ async def preview_voice(speaker: str = "2", speed: str = "auto"):
     audio = await synthesize_speech(text, speaker, spd)
     return Response(content=audio, media_type="audio/wav")
 
-
-import re
 
 
 def _get_latest_bot_entry(bot_id: str) -> dict | None:
