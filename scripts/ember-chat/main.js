@@ -15,11 +15,7 @@ if (!gotTheLock) {
   app.quit();
 }
 
-// Set Dock icon explicitly with high-res image
-if (app.dock) {
-  const dockIcon = nativeImage.createFromPath(APP_ICON_PATH);
-  app.dock.setIcon(dockIcon);
-}
+// Dock icon is set in app.whenReady() below
 
 let mainWindow;
 let tray = null;

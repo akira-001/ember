@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
+    "postinstall": "node -e \"const p=require('path'),f=require('fs'),d=p.join(__dirname,'node_modules/electron/dist/Ember Chat.app/Contents/Resources/app');try{f.unlinkSync(d)}catch{};f.symlinkSync(__dirname,d);const x=require('child_process');x.execSync('defaults write \\\"'+p.join(__dirname,'node_modules/electron/dist/Ember Chat.app/Contents/Info.plist')+'\\\" CFBundleIdentifier -string com.ember.chat')\"",
     "build": "electron-builder --mac",
     "dev": "NODE_ENV=development electron ."
   },
