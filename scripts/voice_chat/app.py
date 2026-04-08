@@ -617,6 +617,37 @@ async def index():
 _proactive_task: asyncio.Task | None = None
 
 
+async def _process_always_on(ws: WebSocket, audio_data: bytes):
+    """Process always-on audio in background — doesn't block WS receive loop."""
+    try:
+        text = await transcribe(audio_data)
+        if not text:
+            return
+
+        wake_result = detect_wake_word(text)
+        if not wake_result.detected:
+            logger.info(f"[always_on] heard: '{text[:50]}' (no wake word)")
+            await ws.send_json({"type": "always_on_result", "wake": False})
+            return
+
+        logger.info(f"[always_on] WAKE DETECTED: '{text}' → remaining: '{wake_result.remaining_text}'")
+
+        # Send wake response immediately
+        wake_resp = _wake_cache.get_random()
+        if wake_resp:
+            resp_text, resp_audio = wake_resp
+            await ws.send_json({"type": "wake_detected", "keyword": wake_result.keyword, "response_text": resp_text})
+            await ws.send_bytes(resp_audio)
+        else:
+            await ws.send_json({"type": "wake_detected", "keyword": wake_result.keyword, "response_text": ""})
+
+        # If there's remaining text after wake word, send for LLM processing
+        if wake_result.remaining_text:
+            await ws.send_json({"type": "user_text", "text": f"[voice] {wake_result.remaining_text}"})
+    except Exception as e:
+        logger.warning(f"[always_on] processing error: {e}")
+
+
 def _ensure_proactive_polling():
     """最初の WebSocket 接続時にポーリングタスクを開始"""
     global _proactive_task, _settings
@@ -710,37 +741,9 @@ async def websocket_endpoint(ws: WebSocket):
                         continue
                     audio_data = audio_msg["bytes"]
 
-                    # Whisper STT
-                    text = await transcribe(audio_data)
-                    if not text:
-                        continue
-
-                    # Wake Word detection
-                    wake_result = detect_wake_word(text)
-                    if not wake_result.detected:
-                        logger.info(f"[always_on] heard: '{text[:50]}' (no wake word)")
-                        await ws.send_json({"type": "always_on_result", "wake": False})
-                        continue
-
-                    logger.info(f"[always_on] WAKE DETECTED: '{text}' → remaining: '{wake_result.remaining_text}'")
-
-                    # Send wake response immediately
-                    wake_resp = _wake_cache.get_random()
-                    if wake_resp:
-                        resp_text, resp_audio = wake_resp
-                        await ws.send_json({"type": "wake_detected", "keyword": wake_result.keyword, "response_text": resp_text})
-                        await ws.send_bytes(resp_audio)
-                    else:
-                        await ws.send_json({"type": "wake_detected", "keyword": wake_result.keyword, "response_text": ""})
-
-                    # If there's remaining text after wake word, process it through LLM
-                    if wake_result.remaining_text:
-                        text = wake_result.remaining_text
-                        await ws.send_json({"type": "user_text", "text": f"[voice] {text}"})
-                        # Fall through to LLM processing below
-                    else:
-                        # Just the wake word, response already sent
-                        continue
+                    # Process in background task so WS handler keeps receiving
+                    asyncio.create_task(_process_always_on(ws, audio_data))
+                    continue
                 elif data.get("type") == "text_message":
                     text = data.get("text", "").strip()
                     if not text:
