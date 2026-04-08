@@ -719,6 +719,7 @@ async def websocket_endpoint(ws: WebSocket):
                     wake_result = detect_wake_word(text)
                     if not wake_result.detected:
                         logger.info(f"[always_on] heard: '{text[:50]}' (no wake word)")
+                        await ws.send_json({"type": "always_on_result", "wake": False})
                         continue
 
                     logger.info(f"[always_on] WAKE DETECTED: '{text}' → remaining: '{wake_result.remaining_text}'")
