@@ -836,11 +836,13 @@ async def _ambient_llm_reply(ws: WebSocket, trigger_text: str, method: str = "ke
 
         if reply.strip().upper() == "SKIP":
             _ambient_listener.record_judgment(method=method, result="skip", keyword=keyword)
+            await _broadcast_ambient_log()
             _ambient_listener.state = "listening"
             await _broadcast_ambient_state()
             return
 
         _ambient_listener.record_judgment(method=method, result="speak", keyword=keyword, utterance=reply)
+        await _broadcast_ambient_log()
         _ambient_listener.record_llm_cooldown()
 
         mei_speaker = _settings.get("meiVoice", "irodori-lora-emilia")
@@ -901,6 +903,19 @@ async def _broadcast_ambient_state():
         return
     snap = _ambient_listener.get_state_snapshot()
     msg = json.dumps({"type": "ambient_state", "data": snap})
+    for client in list(_clients):
+        try:
+            await client.send_text(msg)
+        except Exception:
+            _clients.discard(client)
+
+
+async def _broadcast_ambient_log():
+    """Push latest ambient log entry to all connected clients."""
+    if not _ambient_listener or not _ambient_listener.log_entries:
+        return
+    entry = _ambient_listener.log_entries[-1]
+    msg = json.dumps({"type": "ambient_log", "data": entry})
     for client in list(_clients):
         try:
             await client.send_text(msg)
