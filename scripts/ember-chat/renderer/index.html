@@ -154,6 +154,17 @@
     font-size: 12px;
     padding: 2px;
   }
+  .msg.debug {
+    align-self: flex-start;
+    background: rgba(34, 197, 94, 0.06);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    border-radius: 6px;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    font-size: 11px;
+    color: rgba(34, 197, 94, 0.7);
+    padding: 4px 8px;
+    max-width: 95%;
+  }
 
   /* Controls area */
   #toolbar {
@@ -459,7 +470,8 @@
   <button id="replyBtn" class="side-btn" onclick="toggleReply()" style="display:none">Reply</button>
   <button id="previewBtn" class="side-btn" onclick="previewVoice()">Preview</button>
   <button id="talkBtn">TALK</button>
-  <button id="ttsToggle" class="side-btn on" onclick="toggleTTS()">TTS ON</button>
+  <button id="ttsToggle" class="side-btn on" onclick="toggleTTS()">Sound</button>
+  <button id="debugBtn" class="side-btn" onclick="toggleDebug()">Debug</button>
 </div>
 <div id="textInputRow">
   <input type="text" id="textInput" placeholder="Type a message..." autocomplete="off">
@@ -494,6 +506,7 @@ let audioQueue = [];
 let isPlaying = false;
 let lastBotId = null;
 let replyMode = false;
+let listeningDebug = false;
 let playedMessageIds = new Set();
 let useNativeAudio = !!window.emberBridge;
 
@@ -519,6 +532,7 @@ function getSettingsSnapshot() {
     eveSpeed: document.getElementById('eveSpeed').value,
     ttsEnabled,
     proactiveEnabled,
+    listeningDebug,
     lastSeen,
   };
 }
@@ -546,7 +560,7 @@ async function applySettings(settings) {
   if (settings.eveSpeed) document.getElementById('eveSpeed').value = settings.eveSpeed;
   if (settings.ttsEnabled !== undefined) {
     ttsEnabled = settings.ttsEnabled;
-    ttsToggle.textContent = ttsEnabled ? 'TTS ON' : 'TTS OFF';
+    ttsToggle.textContent = ttsEnabled ? 'Sound' : 'Muted';
     ttsToggle.className = ttsEnabled ? 'side-btn on' : 'side-btn';
   }
   if (settings.lastSeen) lastSeen = settings.lastSeen;
@@ -554,6 +568,12 @@ async function applySettings(settings) {
     proactiveEnabled = settings.proactiveEnabled;
     proactiveBtn.textContent = proactiveEnabled ? 'Proactive ON' : 'Proactive OFF';
     proactiveBtn.className = proactiveEnabled ? 'side-btn proactive-on' : 'side-btn';
+  }
+  if (settings.listeningDebug !== undefined) {
+    listeningDebug = settings.listeningDebug;
+    const debugBtn = document.getElementById('debugBtn');
+    debugBtn.textContent = listeningDebug ? 'Debug ON' : 'Debug';
+    debugBtn.className = listeningDebug ? 'side-btn on' : 'side-btn';
   }
   _syncing = false;
 }
@@ -629,6 +649,7 @@ function connect() {
     wsStatusDot.classList.add('online');
     if (!alwaysOn) maybeStartAlwaysOn();
   };
+  ws.onerror = () => { addMessage('Server connection failed — retrying...', 'status'); };
   ws.onclose = () => { wsStatusDot.classList.remove('online'); setTimeout(connect, 2000); };
 
   ws.onmessage = async (e) => {
@@ -676,6 +697,13 @@ function connect() {
         talkBtn.disabled = false;
         updateTalkBtn();
       }
+    } else if (msg.type === 'ambient_response') {
+      addMessage(msg.text, 'assistant');
+      if (msg.tts_fallback) {
+        if (ttsEnabled) speak(msg.text);
+      }
+    } else if (msg.type === 'listening_debug') {
+      addMessage(msg.text, 'debug');
     } else if (msg.type === 'reply_ended') {
       if (msg.bot_id && msg.reply_ts) { lastSeen[msg.bot_id] = msg.reply_ts; saveSettings(); }
       replyMode = false;
@@ -797,9 +825,17 @@ function speak(text) {
 
 function toggleTTS() {
   ttsEnabled = !ttsEnabled;
-  ttsToggle.textContent = ttsEnabled ? 'TTS ON' : 'TTS OFF';
+  ttsToggle.textContent = ttsEnabled ? 'Sound' : 'Muted';
   ttsToggle.className = ttsEnabled ? 'side-btn on' : 'side-btn';
   if (!ttsEnabled) speechSynthesis.cancel();
+  saveSettings();
+}
+
+function toggleDebug() {
+  listeningDebug = !listeningDebug;
+  const debugBtn = document.getElementById('debugBtn');
+  debugBtn.textContent = listeningDebug ? 'Debug ON' : 'Debug';
+  debugBtn.className = listeningDebug ? 'side-btn on' : 'side-btn';
   saveSettings();
 }
 
@@ -1007,8 +1043,8 @@ async function init() {
   let saved = {};
   try { const r = await fetch(`${API_BASE}/settings`); saved = await r.json(); } catch {}
   if (saved.ttsEngine) ttsEngineSelect.value = saved.ttsEngine;
-  await loadSpeakers(saved.ttsEngine, saved);
-  await loadModels();
+  try { await loadSpeakers(saved.ttsEngine, saved); } catch (e) { console.warn('loadSpeakers failed:', e); addMessage('Speakers load failed — server may be starting up', 'status'); }
+  try { await loadModels(); } catch (e) { console.warn('loadModels failed:', e); addMessage('Models load failed — server may be starting up', 'status'); }
   if (saved.modelSelect) modelSelect.value = saved.modelSelect;
   if (saved.speedSelect) speedSelect.value = saved.speedSelect;
   autoSave();

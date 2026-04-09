@@ -15,6 +15,8 @@ _WAKE_PATTERNS = [
     re.compile(r'^(?:ねぇ|ねえ|ねー|ね)[、,\s]*メイ[、,。．.\s]*(.*)$', re.DOTALL),
     re.compile(r'^メイ[、,。．.\s]+(.*)$', re.DOTALL),
     re.compile(r'^メイ[、,。．.\s]*$'),
+    # No separator (e.g. "メイ聞こえる?")
+    re.compile(r'^メイ([^\s、,。．.].+)$', re.DOTALL),
     # Romaji
     re.compile(r'^(?:ねぇ|ねえ|ねー|ね)[、,\s]*[Mm]ei[、,。．.\s]*(.*)$', re.DOTALL | re.IGNORECASE),
     re.compile(r'^[Mm]ei[、,。．.\s]+(.*)$', re.DOTALL | re.IGNORECASE),

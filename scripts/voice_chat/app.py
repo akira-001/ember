@@ -8,23 +8,24 @@ import struct
 import sys
 import tempfile
 import time
+from datetime import datetime
 from pathlib import Path
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[
-        logging.FileHandler("/tmp/voice_chat_final.log"),
-        logging.StreamHandler(sys.stdout),
-    ],
-)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("voice_chat")
+logger.propagate = False
+logger.setLevel(logging.INFO)
+_fmt = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
+_sh = logging.StreamHandler(sys.stdout)
+_sh.setFormatter(_fmt)
+logger.addHandler(_sh)
 
 import emoji as emoji_lib
 import httpx
 import uvicorn
 from dotenv import load_dotenv
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, File, UploadFile, WebSocket, WebSocketDisconnect
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, Response
 
 from faster_whisper import WhisperModel
@@ -34,10 +35,17 @@ from wake_response import WakeResponseCache
 import wake_response as _wake_response_module
 from ambient_commands import detect_ambient_command
 from ambient_listener import AmbientListener
+from speaker_id import SpeakerIdentifier, audio_bytes_to_wav, compute_embedding
 
 load_dotenv(Path(__file__).parent / ".env")
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3456", "http://192.168.1.7:3456"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 _tts_locks: dict[str, asyncio.Lock] = {}
 
@@ -135,6 +143,19 @@ def get_whisper():
 
 async def transcribe(audio_bytes: bytes, fast: bool = False) -> str:
     """音声バイト列をテキストに変換。fast=True で always-on 用高速モード。"""
+    loop = asyncio.get_event_loop()
+    return await loop.run_in_executor(None, _transcribe_sync, audio_bytes, fast)
+
+
+_HALLUCINATION_RE = re.compile(
+    r"ご視聴|チャンネル登録|高評価|字幕|この動画|お届け|"
+    r"ありがとうございました。$|"
+    r"(.{5,})\1{2,}"  # 同じフレーズ3回以上繰り返し
+)
+
+
+def _transcribe_sync(audio_bytes: bytes, fast: bool) -> str:
+    """Whisper推論（同期）。run_in_executorからスレッドプールで実行。"""
     with tempfile.NamedTemporaryFile(suffix=".webm", delete=True) as f:
         f.write(audio_bytes)
         f.flush()
@@ -142,9 +163,26 @@ async def transcribe(audio_bytes: bytes, fast: bool = False) -> str:
         segments, info = model.transcribe(
             f.name, language="ja",
             beam_size=1 if fast else 5,
+            vad_filter=fast,  # always-on時のみSilero VADで非音声区間をカット
             initial_prompt="ねぇメイ、メイ、今日のスケジュールは？",
         )
-        text = "".join(seg.text for seg in segments).strip()
+        seg_list = list(segments)
+        text = "".join(seg.text for seg in seg_list).strip()
+
+    if not text:
+        return ""
+
+    # Hallucination filter: high no_speech_prob → likely silence misinterpreted
+    avg_no_speech = (sum(s.no_speech_prob for s in seg_list) / len(seg_list)) if seg_list else 0
+    if avg_no_speech > 0.6:
+        logger.info(f"[whisper] hallucination filtered (no_speech={avg_no_speech:.2f}): '{text[:40]}'")
+        return ""
+
+    # Hallucination filter: known phantom patterns from silent audio
+    if fast and avg_no_speech > 0.3 and _HALLUCINATION_RE.search(text):
+        logger.info(f"[whisper] hallucination filtered (pattern+no_speech={avg_no_speech:.2f}): '{text[:40]}'")
+        return ""
+
     return text
 
 
@@ -213,6 +251,9 @@ async def synthesize_speech(text: str, speaker_id: int | str, speed: float = 1.0
     """TTS エンジンでテキストを音声に変換（ロック内 double-check キャッシュ）"""
     text = _clean_text_for_tts(text)
     tts_engine = engine or _settings.get("ttsEngine", "voicevox")
+    # Auto-detect engine from speaker_id prefix
+    if tts_engine == "voicevox" and isinstance(speaker_id, str) and speaker_id.startswith("irodori-"):
+        tts_engine = "irodori"
     cache_key = f"{tts_engine}:{speaker_id}:{speed}:{text}"
     now = time.time()
     cached = _tts_cache.get(cache_key)
@@ -688,6 +729,80 @@ async def get_ambient_stats():
     return _ambient_listener.get_stats()
 
 
+@app.get("/api/speaker-id/profiles")
+async def list_speaker_profiles():
+    if not _speaker_id:
+        return {"profiles": []}
+    return {"profiles": _speaker_id.list_profiles()}
+
+
+@app.post("/api/speaker-id/enroll/start")
+async def start_enrollment(req: dict):
+    if not _speaker_id:
+        return {"ok": False, "message": "Speaker ID not initialized"}
+    name = req.get("name", "").strip()
+    display_name = req.get("display_name", "").strip()
+    if not name:
+        return {"ok": False, "message": "name is required"}
+    msg = _speaker_id.start_enrollment(name, display_name)
+    return {"ok": True, "message": msg}
+
+
+@app.post("/api/speaker-id/enroll/sample")
+async def upload_enrollment_sample(audio: UploadFile = File(...)):
+    """Upload an audio sample for enrollment (from dashboard mic recording)."""
+    if not _speaker_id:
+        return {"ok": False, "message": "Speaker ID not initialized"}
+    if not _speaker_id.is_enrolling:
+        return {"ok": False, "message": "Enrollment not started"}
+    audio_bytes = await audio.read()
+    if len(audio_bytes) < 1000:
+        return {"ok": False, "message": "Audio too short"}
+    result = _speaker_id.add_enrollment_sample(audio_bytes)
+    return result
+
+
+@app.post("/api/speaker-id/enroll/finish")
+async def finish_enrollment():
+    if not _speaker_id:
+        return {"ok": False, "message": "Speaker ID not initialized"}
+    return _speaker_id.finish_enrollment()
+
+
+@app.post("/api/speaker-id/enroll/guided")
+async def start_guided_enrollment_api(req: dict):
+    """Start Siri-style guided enrollment via REST."""
+    global _enrollment_active
+    if not _speaker_id:
+        return {"ok": False, "message": "Speaker ID not initialized"}
+    if _enrollment_active:
+        return {"ok": False, "message": "Enrollment already in progress"}
+    name = req.get("name", "").strip()
+    display_name = req.get("display_name", "").strip() or name
+    yomigana = req.get("yomigana", "").strip()
+    if not name:
+        return {"ok": False, "message": "name is required"}
+    asyncio.create_task(_guided_enrollment(name, display_name, yomigana))
+    return {"ok": True, "message": f"Guided enrollment started for {display_name}"}
+
+
+@app.post("/api/speaker-id/enroll/cancel")
+async def cancel_enrollment():
+    global _enrollment_active
+    if _speaker_id:
+        _speaker_id.cancel_enrollment()
+    _enrollment_active = False
+    return {"ok": True}
+
+
+@app.delete("/api/speaker-id/profiles/{name}")
+async def remove_speaker(name: str):
+    if not _speaker_id:
+        return {"ok": False}
+    ok = _speaker_id.remove_profile(name)
+    return {"ok": ok}
+
+
 @app.get("/")
 async def index():
     html = (Path(__file__).parent / "index.html").read_text()
@@ -699,11 +814,15 @@ _proactive_task: asyncio.Task | None = None
 
 _always_on_echo_suppress_until: float = 0
 _always_on_conversation_until: float = 0  # conversation window after wake
+_whisper_busy: bool = False  # drop new audio while Whisper is processing
 _always_on_conversation: list[dict] = [
     {"role": "system", "content": "あなたはメイという名前のフレンドリーな日本語の会話アシスタントです。音声会話なので、簡潔に1-2文で返答してください。"}
 ]
 _ambient_listener: AmbientListener | None = None
 _ambient_batch_task: asyncio.Task | None = None
+_speaker_id: SpeakerIdentifier | None = None
+_enrollment_active: bool = False
+_enrollment_queue: asyncio.Queue | None = None  # audio bytes queue for guided enrollment
 
 
 async def _always_on_llm_reply(ws: WebSocket, text: str):
@@ -719,6 +838,8 @@ async def _always_on_llm_reply(ws: WebSocket, text: str):
         reply = await chat_with_llm(_always_on_conversation, model)
         _always_on_conversation.append({"role": "assistant", "content": reply})
         logger.info(f"[always_on] LLM reply: '{reply[:80]}'")
+        if _ambient_listener:
+            _ambient_listener.record_mei_utterance(reply)
 
         # TTS
         mei_speaker = _settings.get("meiVoice", "irodori-lora-emilia")
@@ -728,7 +849,8 @@ async def _always_on_llm_reply(ws: WebSocket, text: str):
             audio = await synthesize_speech(reply, mei_speaker, mei_speed)
             await ws.send_json({"type": "assistant_text", "text": reply})
             await ws.send_bytes(audio)
-            _always_on_echo_suppress_until = time.time() + 4.0
+            duration = _wav_duration(audio)
+            _always_on_echo_suppress_until = time.time() + max(4.0, duration + 2.0)
         except Exception as e:
             await ws.send_json({"type": "assistant_text", "text": reply, "tts_fallback": True})
             logger.warning(f"[always_on] TTS error: {e}")
@@ -739,24 +861,254 @@ async def _always_on_llm_reply(ws: WebSocket, text: str):
         logger.warning(f"[always_on] LLM error: {e}")
 
 
-async def _process_always_on(ws: WebSocket, audio_data: bytes):
-    """Process always-on audio in background — doesn't block WS receive loop."""
-    global _always_on_echo_suppress_until, _always_on_conversation_until
+def _debug_ts() -> str:
+    return time.strftime("%H:%M:%S")
+
+
+async def _send_debug(ws: WebSocket, info: str):
+    """Send listening debug info to client if debug mode is enabled."""
+    if _settings.get("listeningDebug"):
+        try:
+            await ws.send_json({"type": "listening_debug", "text": f"{_debug_ts()} {info}"})
+        except Exception:
+            pass
+
+
+async def _broadcast_debug(info: str):
+    """Broadcast listening debug info to all clients."""
+    if not _settings.get("listeningDebug"):
+        return
+    payload = json.dumps({"type": "listening_debug", "text": f"{_debug_ts()} {info}"})
+    for client in list(_clients):
+        try:
+            await client.send_text(payload)
+        except Exception:
+            _clients.discard(client)
+
+
+def _identify_speaker_sync(audio_data: bytes) -> dict | None:
+    """Synchronous speaker identification (runs in executor)."""
+    if not _speaker_id:
+        return None
     try:
+        return _speaker_id.identify(audio_data)
+    except Exception as e:
+        logger.warning(f"[speaker_id] error: {e}")
+        return None
+
+
+# --- Guided Enrollment (Siri-style voice enrollment) ---
+
+_ENROLLMENT_PROMPTS = [
+    "メイ、今日の天気はどう？",
+    "メイ、おはよう",
+    "メイ、今何時？",
+    "メイ、音楽をかけて",
+    "メイ、おやすみ",
+]
+
+
+async def _broadcast_tts(text: str):
+    """Send TTS audio + text to all connected clients."""
+    global _always_on_echo_suppress_until
+    mei_speaker = _settings.get("meiVoice", "irodori-lora-emilia")
+    mei_speed_raw = _settings.get("meiSpeed", "auto") or "auto"
+    mei_speed = 0 if mei_speed_raw == "auto" else float(mei_speed_raw)
+    try:
+        audio = await synthesize_speech(text, mei_speaker, mei_speed)
+        payload = json.dumps({"type": "assistant_text", "text": text})
+        for client in list(_clients):
+            try:
+                await client.send_text(payload)
+                await client.send_bytes(audio)
+            except Exception:
+                _clients.discard(client)
+        duration = _wav_duration(audio)
+        _always_on_echo_suppress_until = time.time() + max(5.0, duration + 2.0)
+    except Exception as e:
+        logger.warning(f"[enrollment] TTS error: {e}")
+        payload = json.dumps({"type": "assistant_text", "text": text, "tts_fallback": True})
+        for client in list(_clients):
+            try:
+                await client.send_text(payload)
+            except Exception:
+                _clients.discard(client)
+
+
+async def _guided_enrollment(name: str, display_name: str, yomigana: str = ""):
+    """Siri-style guided voice enrollment.
+
+    MEI speaks prompts via TTS, always-on listener captures responses,
+    and audio is routed to enrollment via _enrollment_queue.
+    """
+    global _enrollment_active, _enrollment_queue
+    if not _speaker_id:
+        return
+
+    _enrollment_queue = asyncio.Queue()
+    _enrollment_active = True
+    _speaker_id.start_enrollment(name, display_name)
+    # Use yomigana for TTS pronunciation, fallback to display_name
+    tts_name = yomigana or display_name
+    logger.info(f"[enrollment] guided enrollment started for '{display_name}' (yomigana='{tts_name}')")
+
+    try:
+        # Opening prompt
+        await _broadcast_tts(
+            f"{tts_name}さんの声を登録するね。"
+            f"私が言うフレーズを繰り返してね。"
+        )
+        await asyncio.sleep(4.0)  # wait for TTS playback
+
+        samples_collected = 0
+        for i, phrase in enumerate(_ENROLLMENT_PROMPTS):
+            if samples_collected >= 5:
+                break
+
+            # Announce the phrase
+            prompt_text = f"「{phrase}」と言ってください"
+            await _broadcast_tts(prompt_text)
+            await asyncio.sleep(3.5)  # wait for TTS playback
+
+            # Wait for audio from always-on listener (timeout 10s)
+            try:
+                audio_data = await asyncio.wait_for(
+                    _enrollment_queue.get(), timeout=10.0
+                )
+            except asyncio.TimeoutError:
+                logger.warning(f"[enrollment] timeout waiting for sample {i+1}")
+                await _broadcast_tts("聞き取れませんでした。もう一度お願いします")
+                await asyncio.sleep(3.0)
+                # Retry once
+                try:
+                    audio_data = await asyncio.wait_for(
+                        _enrollment_queue.get(), timeout=10.0
+                    )
+                except asyncio.TimeoutError:
+                    logger.warning(f"[enrollment] retry timeout for sample {i+1}")
+                    continue
+
+            # Add sample
+            result = _speaker_id.add_enrollment_sample(audio_data)
+            if result.get("ok"):
+                samples_collected = result.get("samples", samples_collected + 1)
+                logger.info(f"[enrollment] sample {samples_collected} accepted")
+                # Brief acknowledgment
+                if samples_collected < 3:
+                    await _broadcast_tts("OK")
+                    await asyncio.sleep(1.5)
+                elif result.get("can_finish"):
+                    await _broadcast_tts("いい感じ")
+                    await asyncio.sleep(1.5)
+            else:
+                msg = result.get("message", "")
+                logger.warning(f"[enrollment] sample rejected: {msg}")
+                await _broadcast_tts("もう一度お願いします")
+                await asyncio.sleep(2.5)
+
+        # Finish enrollment
+        if samples_collected >= 3:
+            result = _speaker_id.finish_enrollment()
+            if result.get("ok"):
+                await _broadcast_tts(
+                    f"登録完了。{tts_name}さんの声を覚えたよ。"
+                    f"これからは声で誰が話しているかわかるようになるね。"
+                )
+                logger.info(f"[enrollment] completed with {samples_collected} samples")
+            else:
+                await _broadcast_tts("登録に失敗しました。もう一度やり直してください。")
+                logger.warning(f"[enrollment] finish failed: {result}")
+        else:
+            _speaker_id.cancel_enrollment()
+            await _broadcast_tts(
+                f"サンプルが足りなかったので登録できませんでした。"
+                f"もう一度やり直してね。"
+            )
+            logger.warning(f"[enrollment] insufficient samples ({samples_collected})")
+
+    except Exception as e:
+        logger.error(f"[enrollment] error: {e}")
+        _speaker_id.cancel_enrollment()
+        await _broadcast_tts("エラーが発生しました。登録を中断します。")
+    finally:
+        _enrollment_active = False
+        _enrollment_queue = None
+        logger.info("[enrollment] guided enrollment ended")
+
+    # Broadcast updated profiles
+    payload = json.dumps({
+        "type": "speaker_profiles",
+        "profiles": _speaker_id.list_profiles(),
+    })
+    for client in list(_clients):
+        try:
+            await client.send_text(payload)
+        except Exception:
+            _clients.discard(client)
+
+
+async def _process_always_on(ws: WebSocket, audio_data: bytes, *, speech_ts: int | None = None):
+    """Process always-on audio in background — doesn't block WS receive loop."""
+    global _always_on_echo_suppress_until, _always_on_conversation_until, _whisper_busy
+    try:
+        # Route to enrollment if active
+        if _enrollment_active and _enrollment_queue:
+            await _enrollment_queue.put(audio_data)
+            return
+
         if time.time() < _always_on_echo_suppress_until:
             return
 
-        text = await transcribe(audio_data, fast=True)
+        if _whisper_busy:
+            return
+
+        _whisper_busy = True
+        try:
+            # Run Whisper STT and speaker ID in parallel
+            loop = asyncio.get_event_loop()
+            whisper_task = asyncio.ensure_future(transcribe(audio_data, fast=True))
+            speaker_task = loop.run_in_executor(
+                None, _identify_speaker_sync, audio_data
+            ) if _speaker_id and _speaker_id.profiles else None
+
+            text = await whisper_task
+            speaker_result = await speaker_task if speaker_task else None
+        finally:
+            _whisper_busy = False
         if not text:
+            if len(audio_data) > 5000:
+                await _send_debug(ws, f"[hallucination] filtered (audio={len(audio_data)}bytes, no text)")
             return
 
+        # Log speaker identification and track for multi-speaker detection
+        spk_name_global = None
+        if speaker_result and speaker_result.get("speaker"):
+            spk_name_global = speaker_result["display_name"]
+            sim = speaker_result["similarity"]
+            logger.info(f"[speaker_id] identified: {spk_name_global} (sim={sim:.3f}) | '{text[:40]}'")
+        elif speaker_result:
+            sim = speaker_result["similarity"]
+            logger.info(f"[speaker_id] unknown speaker (best_sim={sim:.3f}) | '{text[:40]}'")
+        if _ambient_listener:
+            _ambient_listener.record_speaker(spk_name_global)
+
         if time.time() < _always_on_echo_suppress_until:
+            await _send_debug(ws, f"[echo suppress] '{text[:40]}'")
             return
+
+        # Format speech timestamp for debug display
+        if speech_ts:
+            speech_time = datetime.fromtimestamp(speech_ts / 1000).strftime("%H:%M:%S")
+            stt_delay = round(time.time() - speech_ts / 1000, 1)
+            await _send_debug(ws, f"[STT] '{text}' (spoke@{speech_time}, +{stt_delay}s)")
+        else:
+            await _send_debug(ws, f"[STT] '{text}'")
 
         # --- Ambient command detection (highest priority) ---
         cmd = detect_ambient_command(text)
         if cmd.type == "stop":
             logger.info(f"[ambient] STOP command: '{text}'")
+            await _send_debug(ws, f"[command] STOP")
             _always_on_conversation_until = 0
             if _ambient_listener:
                 _ambient_listener.state = "listening"
@@ -769,6 +1121,7 @@ async def _process_always_on(ws: WebSocket, audio_data: bytes):
 
         if cmd.type in ("quiet", "talk_more") and _ambient_listener:
             logger.info(f"[ambient] mode command: {cmd.type} delta={cmd.level_delta}")
+            await _send_debug(ws, f"[command] {cmd.type} (delta={cmd.level_delta})")
             _ambient_listener.apply_override(
                 level_delta=cmd.level_delta,
                 duration_sec=cmd.duration_sec,
@@ -788,6 +1141,7 @@ async def _process_always_on(ws: WebSocket, audio_data: bytes):
 
         if wake_result.detected:
             logger.info(f"[always_on] WAKE DETECTED: '{text}' → remaining: '{wake_result.remaining_text}'")
+            await _send_debug(ws, f"[wake] keyword='{wake_result.keyword}' remaining='{wake_result.remaining_text}'")
             wake_resp = _wake_cache.get_random()
             if wake_resp:
                 resp_text, resp_audio = wake_resp
@@ -798,25 +1152,46 @@ async def _process_always_on(ws: WebSocket, audio_data: bytes):
                 await ws.send_json({"type": "wake_detected", "keyword": wake_result.keyword, "response_text": ""})
             _always_on_conversation_until = time.time() + 30.0
             remaining = wake_result.remaining_text
-            if remaining and remaining not in ("メイ", "メイ。", "mei", "Mei"):
+            # Only send to LLM if remaining is a real question/request (>10 chars)
+            # Short remainders like "聞こえる?" "起きてる?" are covered by wake response
+            if remaining and len(remaining) > 10:
                 await _always_on_llm_reply(ws, remaining)
         elif in_conversation:
             logger.info(f"[always_on] conversation: '{text[:50]}'")
+            conv_remaining = int(_always_on_conversation_until - time.time())
+            await _send_debug(ws, f"[conversation] window={conv_remaining}s")
             await _always_on_llm_reply(ws, text)
         else:
             # --- Ambient processing ---
             if _ambient_listener and _ambient_listener.effective_reactivity > 0:
-                _ambient_listener.add_to_buffer(text)
-                kw_match = _ambient_listener.check_keywords(text)
-                if kw_match and not _ambient_listener.is_llm_in_cooldown():
-                    logger.info(f"[ambient] keyword hit: {kw_match['category']} in '{text[:50]}'")
-                    _ambient_listener.record_cooldown(kw_match["category"])
-                    await _ambient_llm_reply(ws, text, method="keyword", keyword=kw_match["category"])
+                # Pass speaker identity to ambient listener
+                spk_name = speaker_result.get("display_name") if speaker_result and speaker_result.get("speaker") else None
+                if spk_name:
+                    _ambient_listener.current_speaker = spk_name
                 else:
-                    logger.info(f"[ambient] buffered: '{text[:50]}'")
-            await ws.send_json({"type": "always_on_result", "wake": False})
+                    _ambient_listener.current_speaker = None
+                _ambient_listener.record_speaker(spk_name)
+
+                if not _ambient_listener.add_to_buffer(text):
+                    logger.info(f"[ambient] echo filtered: '{text[:50]}'")
+                    await _send_debug(ws, f"[ambient] echo filtered")
+                else:
+                    kw_match = _ambient_listener.check_keywords(text)
+                    if kw_match and not _ambient_listener.is_llm_in_cooldown():
+                        logger.info(f"[ambient] keyword hit: {kw_match['category']} in '{text[:50]}'")
+                        await _send_debug(ws, f"[ambient] keyword='{kw_match['category']}' → LLM")
+                        _ambient_listener.record_cooldown(kw_match["category"])
+                        await _ambient_llm_reply(ws, text, method="keyword", keyword=kw_match["category"])
+                    else:
+                        logger.info(f"[ambient] buffered: '{text[:50]}'")
+                        await _send_debug(ws, f"[ambient] buffered")
+            else:
+                await _send_debug(ws, f"[ignored] ambient off")
+            if ws in _clients:
+                await ws.send_json({"type": "always_on_result", "wake": False})
     except Exception as e:
-        logger.warning(f"[always_on] processing error: {e}")
+        if "websocket" not in str(e).lower() and "disconnect" not in str(e).lower():
+            logger.warning(f"[always_on] processing error: {e}")
 
 
 async def _ambient_llm_reply(ws: WebSocket, trigger_text: str, method: str = "keyword", keyword: str = ""):
@@ -826,22 +1201,44 @@ async def _ambient_llm_reply(ws: WebSocket, trigger_text: str, method: str = "ke
         return
     try:
         _ambient_listener.state = "processing"
-        prompt = _ambient_listener.build_llm_prompt()
+        source_hint = _ambient_listener.classify_source(trigger_text)
+        logger.info(f"[ambient] source: {source_hint} | '{trigger_text[:40]}'")
+        source_label = {"user_response": "User(応答)", "user_initiative": "User(呼びかけ)",
+                        "user_likely": "User(推定)", "user_identified": "User(声紋)",
+                        "media_likely": "Media(TV等)", "unknown": "不明"}.get(source_hint, source_hint)
+        await _broadcast_debug(f"[ambient LLM] method={method} source={source_label} text='{trigger_text[:50]}'")
+        prompt = _ambient_listener.build_llm_prompt(source_hint=source_hint)
         model = _settings.get("modelSelect", "gemma4:e4b")
         messages = [
             {"role": "system", "content": prompt},
             {"role": "user", "content": f"直近の発話: {trigger_text}"},
         ]
-        reply = await chat_with_llm(messages, model)
+        try:
+            logger.info(f"[ambient] LLM request starting (model={model})")
+            reply = await asyncio.wait_for(chat_with_llm(messages, model), timeout=60)
+            logger.info(f"[ambient] LLM response received ({len(reply)} chars)")
+        except asyncio.TimeoutError:
+            logger.warning(f"[ambient] LLM timeout (60s), skipping")
+            await _broadcast_debug(f"[ambient LLM] TIMEOUT (60s)")
+            _ambient_listener.record_judgment(method=method, result="timeout", keyword=keyword)
+            await _broadcast_ambient_log()
+            _ambient_listener.state = "listening"
+            await _broadcast_ambient_state()
+            return
 
         if reply.strip().upper() == "SKIP":
+            logger.info(f"[ambient] judgment: SKIP (method={method}, keyword={keyword})")
+            await _broadcast_debug(f"[ambient LLM] → SKIP")
             _ambient_listener.record_judgment(method=method, result="skip", keyword=keyword)
             await _broadcast_ambient_log()
             _ambient_listener.state = "listening"
             await _broadcast_ambient_state()
             return
 
+        logger.info(f"[ambient] judgment: SPEAK '{reply[:60]}' (method={method})")
+        await _broadcast_debug(f"[ambient LLM] → SPEAK '{reply[:40]}'")
         _ambient_listener.record_judgment(method=method, result="speak", keyword=keyword, utterance=reply)
+        _ambient_listener.record_mei_utterance(reply)
         await _broadcast_ambient_log()
         _ambient_listener.record_llm_cooldown()
 
@@ -857,7 +1254,8 @@ async def _ambient_llm_reply(ws: WebSocket, trigger_text: str, method: str = "ke
                     await client.send_bytes(audio)
                 except Exception:
                     _clients.discard(client)
-            _always_on_echo_suppress_until = time.time() + 4.0
+            duration = _wav_duration(audio)
+            _always_on_echo_suppress_until = time.time() + max(4.0, duration + 2.0)
         except Exception as e:
             logger.warning(f"[ambient] TTS error: {e}")
             payload = json.dumps({"type": "ambient_response", "text": reply, "method": method, "tts_fallback": True})
@@ -925,6 +1323,7 @@ async def _broadcast_ambient_log():
 
 async def _ambient_batch_loop():
     """Periodic LLM batch judgment for ambient audio."""
+    logger.info("[ambient] batch loop started")
     while True:
         try:
             if not _ambient_listener or not _clients:
@@ -937,6 +1336,7 @@ async def _ambient_batch_loop():
                 continue
 
             await asyncio.sleep(interval)
+            logger.info(f"[ambient] batch cycle: clients={len(_clients)} buffer={len(_ambient_listener.text_buffer)} cooldown={_ambient_listener.is_llm_in_cooldown()}")
 
             # Periodic state broadcast
             await _broadcast_ambient_state()
@@ -947,6 +1347,8 @@ async def _ambient_batch_loop():
                 continue
 
             logger.info(f"[ambient] batch judgment ({len(_ambient_listener.text_buffer)} texts)")
+            texts_preview = [e["text"][:30] for e in _ambient_listener.text_buffer[-3:]]
+            await _broadcast_debug(f"[batch] {len(_ambient_listener.text_buffer)}件 → LLM: {texts_preview}")
             ws = next(iter(_clients), None)
             if ws:
                 trigger = " ".join(e["text"] for e in _ambient_listener.text_buffer[-3:])
@@ -1042,8 +1444,31 @@ async def websocket_endpoint(ws: WebSocket):
                 elif data.get("type") == "cancel_reply":
                     slack_reply_bot = None
                     continue
+                elif data.get("type") == "start_guided_enrollment":
+                    # Siri-style guided enrollment via WS
+                    name = data.get("name", "").strip()
+                    display_name = data.get("display_name", "").strip() or name
+                    yomigana = data.get("yomigana", "").strip()
+                    if name and _speaker_id and not _enrollment_active:
+                        asyncio.create_task(_guided_enrollment(name, display_name, yomigana))
+                        await ws.send_json({"type": "enroll_status", "ok": True, "message": f"Guided enrollment started"})
+                    else:
+                        await ws.send_json({"type": "enroll_status", "ok": False, "message": "Cannot start enrollment"})
+                    continue
+                elif data.get("type") == "enroll_audio":
+                    # Voice enrollment: collect audio sample (manual mode)
+                    audio_msg = await ws.receive()
+                    if "bytes" not in audio_msg or not _speaker_id:
+                        continue
+                    result = _speaker_id.add_enrollment_sample(audio_msg["bytes"])
+                    await ws.send_json({"type": "enroll_status", **result})
+                    continue
                 elif data.get("type") == "always_on_audio":
                     # Always-On mode: VAD-filtered audio from Electron
+                    speech_ts = data.get("speech_ts")  # epoch ms from client
+                    recv_ts = time.time()
+                    if speech_ts:
+                        logger.info(f"[always_on] audio received: spoke {(recv_ts - speech_ts/1000):.1f}s ago")
                     # Next binary message contains the audio data
                     audio_msg = await ws.receive()
                     if "bytes" not in audio_msg:
@@ -1051,7 +1476,7 @@ async def websocket_endpoint(ws: WebSocket):
                     audio_data = audio_msg["bytes"]
 
                     # Process in background task so WS handler keeps receiving
-                    asyncio.create_task(_process_always_on(ws, audio_data))
+                    asyncio.create_task(_process_always_on(ws, audio_data, speech_ts=speech_ts))
                     continue
                 elif data.get("type") == "barge_in":
                     logger.info("[barge-in] Client detected user speech during playback")
@@ -1140,7 +1565,7 @@ async def websocket_endpoint(ws: WebSocket):
             except Exception as e:
                 await ws.send_json({"type": "assistant_text", "text": reply, "tts_fallback": True})
 
-    except WebSocketDisconnect:
+    except (WebSocketDisconnect, RuntimeError):
         _clients.discard(ws)
         logger.info(f"[WS] disconnected. total: {len(_clients)}")
 
@@ -1250,6 +1675,12 @@ async def on_startup():
     _ambient_listener.state = "listening"
     _ambient_batch_task = asyncio.create_task(_ambient_batch_loop())
     logger.info(f"[startup] Ambient listener ready (reactivity={_ambient_reactivity})")
+
+    # Initialize speaker identification
+    global _speaker_id
+    _profiles_dir = Path(__file__).parent / "speaker_profiles"
+    _speaker_id = SpeakerIdentifier(_profiles_dir)
+    logger.info(f"[startup] Speaker ID ready ({len(_speaker_id.profiles)} profile(s))")
 
 
 if __name__ == "__main__":

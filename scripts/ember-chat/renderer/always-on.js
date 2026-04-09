@@ -23,6 +23,7 @@ class AlwaysOnListener {
     this.vad = null;
     this.enabled = false;
     this._rmsCleanup = null;
+    this._speechStartTs = null;
   }
 
   async start() {
@@ -54,6 +55,7 @@ class AlwaysOnListener {
       stream: this.micStream,
       onSpeechStart: () => {
         if (this.state !== 'listening') return;
+        this._speechStartTs = Date.now();
         console.log('[AlwaysOn] speech detected');
       },
       onSpeechEnd: (audio) => {
@@ -80,7 +82,7 @@ class AlwaysOnListener {
     let speechStart = null;
     let recorder = null;
     let chunks = [];
-    const THRESHOLD = 0.015;
+    const THRESHOLD = 0.05;
     const MIN_SPEECH_MS = 500;
     const SILENCE_TIMEOUT_MS = 800;
     let silenceTimer = null;
@@ -106,6 +108,7 @@ class AlwaysOnListener {
       if (rms > THRESHOLD) {
         if (!speechStart && this.state === 'listening') {
           speechStart = Date.now();
+          this._speechStartTs = speechStart;
           chunks = [];
           recorder = new MediaRecorder(this.micStream, { mimeType: 'audio/webm;codecs=opus' });
           recorder.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
@@ -153,8 +156,13 @@ class AlwaysOnListener {
   _sendAlwaysOnAudio(audioBuffer) {
     const ws = this.wsRef();
     if (!ws || ws.readyState !== WebSocket.OPEN) return;
-    ws.send(JSON.stringify({ type: 'always_on_audio', format: 'wav' }));
+    ws.send(JSON.stringify({
+      type: 'always_on_audio',
+      format: 'wav',
+      speech_ts: this._speechStartTs || Date.now(),
+    }));
     ws.send(audioBuffer);
+    this._speechStartTs = null;
     // Stay in 'listening' — server processes async, we keep capturing
   }
 
