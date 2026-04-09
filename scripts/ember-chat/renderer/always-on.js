@@ -93,6 +93,16 @@ class AlwaysOnListener {
       for (let i = 0; i < dataArray.length; i++) rms += dataArray[i] * dataArray[i];
       rms = Math.sqrt(rms / dataArray.length);
 
+      // Barge-in: if audio is playing and user speaks loudly, send stop signal
+      if (rms > 0.04 && window._isPlayingAudio) {
+        const ws = this.wsRef();
+        if (ws && ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({ type: 'barge_in' }));
+          console.log('[AlwaysOn] barge-in detected (RMS:', rms.toFixed(3), ')');
+          window._isPlayingAudio = false; // prevent repeated sends
+        }
+      }
+
       if (rms > THRESHOLD) {
         if (!speechStart && this.state === 'listening') {
           speechStart = Date.now();

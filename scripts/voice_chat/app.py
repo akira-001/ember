@@ -1053,6 +1053,15 @@ async def websocket_endpoint(ws: WebSocket):
                     # Process in background task so WS handler keeps receiving
                     asyncio.create_task(_process_always_on(ws, audio_data))
                     continue
+                elif data.get("type") == "barge_in":
+                    logger.info("[barge-in] Client detected user speech during playback")
+                    _always_on_echo_suppress_until = 0
+                    for client in list(_clients):
+                        try:
+                            await client.send_json({"type": "stop_audio"})
+                        except Exception:
+                            _clients.discard(client)
+                    continue
                 elif data.get("type") == "text_message":
                     text = data.get("text", "").strip()
                     if not text:
