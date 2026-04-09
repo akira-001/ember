@@ -123,7 +123,7 @@ class AmbientListener:
             # Cooldown check
             category = kw["category"]
             if now < self._keyword_cooldowns.get(category, 0):
-                return None
+                continue
 
             if kw["_re"].search(text):
                 return {"category": category, "keyword": kw["pattern"], "id": kw["id"]}
