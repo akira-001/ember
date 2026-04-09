@@ -614,6 +614,80 @@ async def get_settings():
     return _settings
 
 
+# --- Ambient REST API ---
+
+@app.get("/api/ambient/rules")
+async def get_ambient_rules():
+    if not _ambient_listener:
+        return {"rules": [], "keywords": []}
+    return _ambient_listener.rules
+
+
+@app.post("/api/ambient/rules")
+async def add_ambient_rule(body: dict):
+    if not _ambient_listener:
+        return {"error": "ambient not initialized"}
+    rule = _ambient_listener.add_rule(body["text"], source=body.get("source", "manual"))
+    return rule
+
+
+@app.delete("/api/ambient/rules/{rule_id}")
+async def delete_ambient_rule(rule_id: str):
+    if not _ambient_listener:
+        return {"error": "ambient not initialized"}
+    _ambient_listener.remove_rule(rule_id)
+    return {"ok": True}
+
+
+@app.patch("/api/ambient/rules/{rule_id}")
+async def toggle_ambient_rule(rule_id: str, body: dict):
+    if not _ambient_listener:
+        return {"error": "ambient not initialized"}
+    _ambient_listener.toggle_rule(rule_id, enabled=body["enabled"])
+    return {"ok": True}
+
+
+@app.get("/api/ambient/examples")
+async def get_ambient_examples():
+    if not _ambient_listener:
+        return {"examples": []}
+    return _ambient_listener.examples
+
+
+@app.post("/api/ambient/examples")
+async def add_ambient_example(body: dict):
+    if not _ambient_listener:
+        return {"error": "ambient not initialized"}
+    ex = _ambient_listener.add_example(body["context"], body["response"], body.get("rating", "positive"))
+    return ex
+
+
+@app.delete("/api/ambient/examples/{example_id}")
+async def delete_ambient_example(example_id: str):
+    if not _ambient_listener:
+        return {"error": "ambient not initialized"}
+    _ambient_listener.remove_example(example_id)
+    return {"ok": True}
+
+
+@app.post("/api/ambient/reactivity")
+async def set_ambient_reactivity(body: dict):
+    if not _ambient_listener:
+        return {"error": "ambient not initialized"}
+    _ambient_listener.set_reactivity(body["level"])
+    _settings["ambient_reactivity"] = body["level"]
+    _save_settings(_settings)
+    await _broadcast_ambient_state()
+    return {"ok": True, "level": _ambient_listener.reactivity}
+
+
+@app.get("/api/ambient/stats")
+async def get_ambient_stats():
+    if not _ambient_listener:
+        return {"judgments_today": 0, "speaks_today": 0, "speak_rate": 0}
+    return _ambient_listener.get_stats()
+
+
 @app.get("/")
 async def index():
     html = (Path(__file__).parent / "index.html").read_text()
