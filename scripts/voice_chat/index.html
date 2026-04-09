@@ -270,6 +270,45 @@
   }
   .srv-start:hover { border-color: var(--ember-accent); color: var(--ember-accent); }
   .srv-start:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* --- Tab navigation --- */
+  .tab-bar { display: flex; gap: 0; background: var(--ember-surface); border-bottom: 1px solid var(--ember-border); flex-shrink: 0; }
+  .tab-bar button { flex: 1; padding: 10px 16px; background: none; border: none; color: var(--ember-text-muted); font-size: 14px; font-weight: 600; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
+  .tab-bar button.active { color: var(--ember-accent); border-bottom-color: var(--ember-accent); }
+  .tab-bar button:hover:not(.active) { color: var(--ember-text); }
+  .tab-content { display: none; flex-direction: column; }
+  .tab-content.active { display: flex; }
+
+  /* --- Ambient tab --- */
+  #ambientTab { padding: 16px; gap: 16px; overflow-y: auto; flex: 1; }
+  .ambient-section { background: var(--ember-surface); border-radius: 12px; padding: 14px; }
+  .ambient-section h3 { font-size: 13px; color: var(--ember-text-muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .ambient-status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ambient-status-item { font-size: 13px; }
+  .ambient-status-item .label { color: var(--ember-text-muted); }
+  .ambient-status-item .value { color: var(--ember-text); font-weight: 600; }
+  .reactivity-buttons { display: flex; gap: 6px; }
+  .reactivity-buttons button { flex: 1; padding: 8px 4px; border-radius: 8px; border: 1px solid var(--ember-border); background: var(--ember-surface-alt); color: var(--ember-text-muted); font-size: 12px; cursor: pointer; transition: all 0.2s; }
+  .reactivity-buttons button.active { background: var(--ember-accent); color: white; border-color: var(--ember-accent); }
+  .reactivity-buttons button:hover:not(.active) { border-color: var(--ember-accent); color: var(--ember-text); }
+  .ambient-log { max-height: 200px; overflow-y: auto; font-size: 12px; font-family: monospace; }
+  .ambient-log-entry { padding: 4px 0; border-bottom: 1px solid var(--ember-border); }
+  .ambient-log-entry .time { color: var(--ember-text-dim); }
+  .ambient-log-entry .method { color: var(--ember-warm); }
+  .ambient-log-entry .result-speak { color: #2ecc71; }
+  .ambient-log-entry .result-skip { color: var(--ember-text-dim); }
+  .ambient-list { max-height: 200px; overflow-y: auto; }
+  .ambient-list-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--ember-border); font-size: 13px; }
+  .ambient-list-item .toggle { cursor: pointer; opacity: 0.7; }
+  .ambient-list-item .toggle:hover { opacity: 1; }
+  .ambient-list-item .text { flex: 1; }
+  .ambient-list-item .delete { cursor: pointer; color: var(--ember-text-dim); font-size: 16px; }
+  .ambient-list-item .delete:hover { color: var(--ember-accent); }
+  .ambient-add-row { display: flex; gap: 6px; margin-top: 8px; }
+  .ambient-add-row input { flex: 1; background: var(--ember-input-bg); border: 1px solid var(--ember-border); border-radius: 6px; padding: 6px 10px; color: var(--ember-text); font-size: 13px; }
+  .ambient-add-row button { background: var(--ember-accent); border: none; border-radius: 6px; padding: 6px 12px; color: white; font-size: 12px; cursor: pointer; white-space: nowrap; }
+  .ambient-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 13px; }
+  .ambient-stats .stat-value { font-size: 20px; font-weight: 700; color: var(--ember-accent); }
 </style>
 </head>
 <body>
@@ -294,6 +333,11 @@
     <button id="srvOllamaBtn" class="srv-start" onclick="startServer('ollama')" style="display:none">Start</button>
   </span>
 </div>
+<div class="tab-bar">
+  <button id="tabChat" class="active" onclick="switchTab('chat')">Chat</button>
+  <button id="tabAmbient" onclick="switchTab('ambient')">Ambient</button>
+</div>
+<div id="chatTab" class="tab-content active" style="flex:1; display:flex; flex-direction:column;">
 <div id="chat">
   <div id="emptyState">
     <div class="empty-icon">&#x1F525;</div>
@@ -355,6 +399,64 @@
 <div id="textInputRow">
   <input type="text" id="textInput" placeholder="メッセージを入力..." autocomplete="off">
   <button id="sendBtn" onclick="sendTextMessage()">Send</button>
+</div>
+</div><!-- /chatTab -->
+
+<div id="ambientTab" class="tab-content">
+  <div class="ambient-section">
+    <h3>Current State</h3>
+    <div class="ambient-status-grid">
+      <div class="ambient-status-item"><span class="label">Reactivity: </span><span class="value" id="ambStatusLevel">3 (普通)</span></div>
+      <div class="ambient-status-item"><span class="label">Override: </span><span class="value" id="ambStatusOverride">-</span></div>
+      <div class="ambient-status-item"><span class="label">State: </span><span class="value" id="ambStatusState">idle</span></div>
+      <div class="ambient-status-item"><span class="label">Last: </span><span class="value" id="ambStatusLast">-</span></div>
+    </div>
+  </div>
+
+  <div class="ambient-section">
+    <h3>Reactivity Level</h3>
+    <div class="reactivity-buttons" id="reactivityBtns">
+      <button onclick="setReactivity(1)">1 静か</button>
+      <button onclick="setReactivity(2)">2 控えめ</button>
+      <button class="active" onclick="setReactivity(3)">3 普通</button>
+      <button onclick="setReactivity(4)">4 積極的</button>
+      <button onclick="setReactivity(5)">5 話好き</button>
+    </div>
+  </div>
+
+  <div class="ambient-section">
+    <h3>Judgment Log</h3>
+    <div class="ambient-log" id="ambientLog"></div>
+  </div>
+
+  <div class="ambient-section">
+    <h3>Rules <span id="ambRulesCount"></span></h3>
+    <div class="ambient-list" id="ambientRulesList"></div>
+    <div class="ambient-add-row">
+      <input type="text" id="ambNewRule" placeholder="新しいルールを追加...">
+      <button onclick="addAmbientRule()">Add</button>
+    </div>
+  </div>
+
+  <div class="ambient-section">
+    <h3>Examples <span id="ambExamplesCount"></span></h3>
+    <div class="ambient-list" id="ambientExamplesList"></div>
+    <div class="ambient-add-row">
+      <input type="text" id="ambNewExContext" placeholder="状況..." style="flex:1">
+      <input type="text" id="ambNewExResponse" placeholder="MEIの反応..." style="flex:1">
+      <button onclick="addAmbientExample()">Add</button>
+    </div>
+  </div>
+
+  <div class="ambient-section">
+    <h3>Stats (Today)</h3>
+    <div class="ambient-stats" id="ambientStats">
+      <div><div class="stat-value" id="statSpeaks">0</div><div class="label">Speaks</div></div>
+      <div><div class="stat-value" id="statJudgments">0</div><div class="label">Judgments</div></div>
+      <div><div class="stat-value" id="statRate">0%</div><div class="label">Rate</div></div>
+      <div><div class="stat-value" id="statFeedback">+0/-0</div><div class="label">Feedback</div></div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -577,6 +679,10 @@ function connect() {
     }
 
     const msg = JSON.parse(e.data);
+    if (msg.type && msg.type.startsWith('ambient')) {
+      handleAmbientWS(msg);
+      return;
+    }
     if (msg.type === 'stop_audio') {
       stopAudio(false);
       return;
@@ -975,6 +1081,169 @@ async function init() {
 }
 
 init();
+
+// --- Tab switching ---
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(el => { el.classList.remove('active'); el.style.display = 'none'; });
+  document.querySelectorAll('.tab-bar button').forEach(el => el.classList.remove('active'));
+  if (tab === 'chat') {
+    const ct = document.getElementById('chatTab');
+    ct.classList.add('active'); ct.style.display = 'flex';
+    document.getElementById('tabChat').classList.add('active');
+  } else {
+    const at = document.getElementById('ambientTab');
+    at.classList.add('active'); at.style.display = 'flex';
+    document.getElementById('tabAmbient').classList.add('active');
+    loadAmbientData();
+  }
+}
+
+// --- Ambient data loading ---
+async function loadAmbientData() {
+  try {
+    const [rulesRes, examplesRes, statsRes] = await Promise.all([
+      fetch(`${API_BASE}/ambient/rules`),
+      fetch(`${API_BASE}/ambient/examples`),
+      fetch(`${API_BASE}/ambient/stats`),
+    ]);
+    if (rulesRes.ok) renderRules(await rulesRes.json());
+    if (examplesRes.ok) renderExamples(await examplesRes.json());
+    if (statsRes.ok) renderStats(await statsRes.json());
+  } catch (e) { console.warn('[ambient] load error:', e); }
+}
+
+function renderRules(data) {
+  const list = document.getElementById('ambientRulesList');
+  const rules = data.rules || [];
+  document.getElementById('ambRulesCount').textContent = '(' + rules.length + ')';
+  list.innerHTML = rules.map(r =>
+    '<div class="ambient-list-item">' +
+      '<span class="toggle" onclick="toggleRule(\'' + r.id + '\', ' + !r.enabled + ')">' + (r.enabled ? '\u2713' : '\u2717') + '</span>' +
+      '<span class="text" style="' + (r.enabled ? '' : 'opacity:0.5') + '">' + r.text + '</span>' +
+      '<span class="delete" onclick="deleteRule(\'' + r.id + '\')">\u00d7</span>' +
+    '</div>'
+  ).join('');
+}
+
+function renderExamples(data) {
+  const list = document.getElementById('ambientExamplesList');
+  const examples = data.examples || [];
+  document.getElementById('ambExamplesCount').textContent = '(' + examples.length + ')';
+  list.innerHTML = examples.map(e =>
+    '<div class="ambient-list-item" style="flex-direction:column; align-items:flex-start; position:relative;">' +
+      '<div style="font-size:12px; color:var(--ember-text-dim);">\u72b6\u6cc1: ' + e.context + '</div>' +
+      '<div>MEI: ' + e.response + '</div>' +
+      '<span class="delete" style="position:absolute; right:0; top:6px;" onclick="deleteExample(\'' + e.id + '\')">\u00d7</span>' +
+    '</div>'
+  ).join('');
+}
+
+function renderStats(data) {
+  document.getElementById('statSpeaks').textContent = data.speaks_today || 0;
+  document.getElementById('statJudgments').textContent = data.judgments_today || 0;
+  document.getElementById('statRate').textContent = ((data.speak_rate || 0) * 100).toFixed(1) + '%';
+  document.getElementById('statFeedback').textContent = '+' + (data.feedback_positive || 0) + '/-' + (data.feedback_negative || 0);
+}
+
+// --- Reactivity ---
+function setReactivity(level) {
+  fetch(API_BASE + '/ambient/reactivity', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({level}),
+  }).then(() => {
+    document.querySelectorAll('#reactivityBtns button').forEach((btn, i) => {
+      btn.classList.toggle('active', i + 1 === level);
+    });
+  });
+}
+
+// --- Rules CRUD ---
+async function addAmbientRule() {
+  const input = document.getElementById('ambNewRule');
+  const text = input.value.trim();
+  if (!text) return;
+  await fetch(API_BASE + '/ambient/rules', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({text: text, source: 'manual'}),
+  });
+  input.value = '';
+  loadAmbientData();
+}
+
+async function deleteRule(id) {
+  await fetch(API_BASE + '/ambient/rules/' + id, {method: 'DELETE'});
+  loadAmbientData();
+}
+
+async function toggleRule(id, enabled) {
+  await fetch(API_BASE + '/ambient/rules/' + id, {
+    method: 'PATCH',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({enabled: enabled}),
+  });
+  loadAmbientData();
+}
+
+// --- Examples CRUD ---
+async function addAmbientExample() {
+  const ctx = document.getElementById('ambNewExContext').value.trim();
+  const resp = document.getElementById('ambNewExResponse').value.trim();
+  if (!ctx || !resp) return;
+  await fetch(API_BASE + '/ambient/examples', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({context: ctx, response: resp, rating: 'positive'}),
+  });
+  document.getElementById('ambNewExContext').value = '';
+  document.getElementById('ambNewExResponse').value = '';
+  loadAmbientData();
+}
+
+async function deleteExample(id) {
+  await fetch(API_BASE + '/ambient/examples/' + id, {method: 'DELETE'});
+  loadAmbientData();
+}
+
+// --- Ambient WebSocket messages ---
+function handleAmbientWS(msg) {
+  if (msg.type === 'ambient_state') {
+    const d = msg.data;
+    const cfg = {1:'\u9759\u304b',2:'\u63a7\u3048\u3081',3:'\u666e\u901a',4:'\u7a4d\u6975\u7684',5:'\u8a71\u597d\u304d'};
+    const eff = d.effective_reactivity || d.reactivity;
+    document.getElementById('ambStatusLevel').textContent = eff + ' (' + (cfg[eff] || '?') + ')';
+    document.getElementById('ambStatusState').textContent = d.listener_state || '-';
+    if (d.override) {
+      const min = Math.floor(d.override.remaining_sec / 60);
+      const sec = d.override.remaining_sec % 60;
+      document.getElementById('ambStatusOverride').textContent = 'Lv' + d.override.level + ' (' + min + ':' + String(sec).padStart(2,'0') + ')';
+    } else {
+      document.getElementById('ambStatusOverride').textContent = '-';
+    }
+    if (d.last_judgment) {
+      document.getElementById('ambStatusLast').textContent = d.last_judgment.method + ': ' + d.last_judgment.result;
+    }
+    document.querySelectorAll('#reactivityBtns button').forEach((btn, i) => {
+      btn.classList.toggle('active', i + 1 === d.reactivity);
+    });
+  }
+  if (msg.type === 'ambient_log') {
+    const log = document.getElementById('ambientLog');
+    const d = msg.data;
+    const cls = d.result === 'speak' ? 'result-speak' : 'result-skip';
+    const extra = d.utterance ? ' \u2192 ' + d.utterance : (d.keyword ? ' (' + d.keyword + ')' : '');
+    const entry = document.createElement('div');
+    entry.className = 'ambient-log-entry';
+    entry.innerHTML = '<span class="time">' + d.timestamp + '</span> <span class="method">' + d.method + '</span> <span class="' + cls + '">' + d.result + '</span>' + extra;
+    log.appendChild(entry);
+    log.scrollTop = log.scrollHeight;
+    while (log.children.length > 20) log.removeChild(log.firstChild);
+  }
+  if (msg.type === 'ambient_response') {
+    addMessage(msg.text, 'assistant');
+  }
+}
 </script>
 
 </body>
