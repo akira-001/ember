@@ -336,6 +336,104 @@
   }
   #playbackMode .native { color: var(--ember-success); }
 
+  /* Voice Enrollment Modal */
+  #enrollOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.85);
+    align-items: center;
+    justify-content: center;
+  }
+  .enroll-modal {
+    background: var(--ember-surface);
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 380px;
+    width: 90%;
+    text-align: center;
+  }
+  .enroll-modal h2 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--ember-text);
+  }
+  .enroll-modal .enroll-status {
+    font-size: 12px;
+    color: var(--ember-text-muted);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .enroll-modal .enroll-prompt {
+    font-size: 14px;
+    color: var(--ember-primary);
+    font-weight: 600;
+    margin: 16px 0;
+    min-height: 20px;
+  }
+  .enroll-progress {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin: 12px 0;
+  }
+  .enroll-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--ember-border);
+    transition: background 0.3s;
+  }
+  .enroll-dot.done { background: var(--ember-success); }
+  .enroll-dot.active { background: var(--ember-primary); animation: pulse 1s infinite; }
+  #enrollRecBtn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 3px solid var(--ember-primary);
+    background: transparent;
+    color: var(--ember-primary);
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin: 8px 0;
+  }
+  #enrollRecBtn:hover { background: var(--ember-primary-glow); }
+  #enrollRecBtn.recording { background: var(--ember-primary); color: #fff; animation: pulse 1s infinite; }
+  #enrollRecBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .enroll-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 16px;
+  }
+  .enroll-actions button {
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+  }
+  .enroll-finish {
+    background: var(--ember-gradient);
+    color: #fff;
+    font-weight: 700;
+  }
+  .enroll-finish:disabled { opacity: 0.4; cursor: not-allowed; }
+  .enroll-cancel {
+    background: var(--ember-border);
+    color: var(--ember-text-muted);
+  }
+  .enroll-profile-info {
+    font-size: 11px;
+    color: var(--ember-text-dim);
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--ember-border);
+  }
+
   /* Always-On indicator */
   #alwaysOnIndicator { cursor: pointer; }
   #alwaysOnDot.listening {
@@ -368,6 +466,29 @@
     </p>
     <button id="consentAccept" style="background:var(--ember-gradient); color:#fff; border:none; border-radius:8px; padding:10px 24px; font-size:14px; cursor:pointer; margin-right:8px;">許可する</button>
     <button id="consentDecline" style="background:var(--ember-border); color:var(--ember-text-muted); border:none; border-radius:8px; padding:10px 24px; font-size:14px; cursor:pointer;">後で</button>
+  </div>
+</div>
+
+<div id="enrollOverlay">
+  <div class="enroll-modal">
+    <h2 id="enrollTitle">Voice ID</h2>
+    <div id="enrollStatusText" class="enroll-status">声紋を登録すると、あなたの声とTV音声を区別できます</div>
+    <div id="enrollPrompt" class="enroll-prompt"></div>
+    <div class="enroll-progress">
+      <div class="enroll-dot" id="eDot0"></div>
+      <div class="enroll-dot" id="eDot1"></div>
+      <div class="enroll-dot" id="eDot2"></div>
+      <div class="enroll-dot" id="eDot3"></div>
+      <div class="enroll-dot" id="eDot4"></div>
+    </div>
+    <button id="enrollRecBtn" style="display:none">REC</button>
+    <div id="enrollMessage" style="font-size:12px; color:var(--ember-success); min-height:18px; margin:4px 0;"></div>
+    <div class="enroll-actions">
+      <button class="enroll-finish" id="enrollFinishBtn" style="display:none" onclick="enrollFinish()">登録完了</button>
+      <button class="enroll-cancel" onclick="enrollClose()">閉じる</button>
+      <button class="enroll-cancel" id="enrollDeleteBtn" style="display:none" onclick="enrollDelete()">削除</button>
+    </div>
+    <div id="enrollProfileInfo" class="enroll-profile-info"></div>
   </div>
 </div>
 
@@ -424,6 +545,8 @@
 <div id="toolbar">
   <span class="toolbar-label">Model</span>
   <select id="modelSelect"></select>
+  <span class="toolbar-label">Ambient</span>
+  <select id="ambientModelSelect"></select>
   <span class="toolbar-label">TTS</span>
   <select id="ttsEngineSelect">
     <option value="voicevox">VOICEVOX</option>
@@ -472,6 +595,7 @@
   <button id="talkBtn">TALK</button>
   <button id="ttsToggle" class="side-btn on" onclick="toggleTTS()">Sound</button>
   <button id="debugBtn" class="side-btn" onclick="toggleDebug()">Debug</button>
+  <button id="voiceIdBtn" class="side-btn" onclick="openEnroll()">Voice ID</button>
 </div>
 <div id="textInputRow">
   <input type="text" id="textInput" placeholder="Type a message..." autocomplete="off">
@@ -488,6 +612,7 @@ const talkBtn = document.getElementById('talkBtn');
 const ttsToggle = document.getElementById('ttsToggle');
 const voiceSelect = document.getElementById('voiceSelect');
 const modelSelect = document.getElementById('modelSelect');
+const ambientModelSelect = document.getElementById('ambientModelSelect');
 const speedSelect = document.getElementById('speedSelect');
 const proactiveBtn = document.getElementById('proactiveBtn');
 const ttsEngineSelect = document.getElementById('ttsEngineSelect');
@@ -525,6 +650,7 @@ function getSettingsSnapshot() {
     ttsEngine: ttsEngineSelect.value,
     voiceSelect: voiceSelect.value,
     modelSelect: modelSelect.value,
+    ambientModel: ambientModelSelect.value,
     speedSelect: speedSelect.value,
     meiVoice: document.getElementById('meiVoice').value,
     meiSpeed: document.getElementById('meiSpeed').value,
@@ -553,6 +679,7 @@ async function applySettings(settings) {
   }
   if (settings.voiceSelect && voiceSelect.value !== String(settings.voiceSelect)) voiceSelect.value = settings.voiceSelect;
   if (settings.modelSelect && modelSelect.value !== settings.modelSelect) modelSelect.value = settings.modelSelect;
+  if (settings.ambientModel && ambientModelSelect.value !== settings.ambientModel) ambientModelSelect.value = settings.ambientModel;
   if (settings.speedSelect && speedSelect.value !== String(settings.speedSelect)) speedSelect.value = settings.speedSelect;
   if (settings.meiVoice) document.getElementById('meiVoice').value = settings.meiVoice;
   if (settings.meiSpeed) document.getElementById('meiSpeed').value = settings.meiSpeed;
@@ -894,6 +1021,10 @@ modelSelect.addEventListener('change', () => {
   wsSend({ type: 'set_model', model: modelSelect.value });
   saveSettings();
 });
+ambientModelSelect.addEventListener('change', () => {
+  wsSend({ type: 'update_settings', settings: { ambientModel: ambientModelSelect.value } });
+  saveSettings();
+});
 
 // --- Bot message playback ---
 async function playBotMessage(botId) {
@@ -1024,12 +1155,24 @@ async function loadModels() {
   const resp = await fetch(`${API_BASE}/models`);
   const models = await resp.json();
   modelSelect.innerHTML = '';
+  ambientModelSelect.innerHTML = '';
+  // "Claude (Slack Bot)" option for ambient
+  const claudeOpt = document.createElement('option');
+  claudeOpt.value = 'claude';
+  claudeOpt.textContent = 'Claude (Slack Bot)';
+  ambientModelSelect.appendChild(claudeOpt);
   for (const m of models) {
     const opt = document.createElement('option');
     opt.value = m.name;
     opt.textContent = `${m.name} (${m.size})`;
     if (m.name === 'gemma4:e4b') opt.selected = true;
     modelSelect.appendChild(opt);
+    // Also add to ambient selector
+    const aOpt = document.createElement('option');
+    aOpt.value = m.name;
+    aOpt.textContent = `${m.name} (${m.size})`;
+    if (m.name === 'gemma4:e4b') aOpt.selected = true;
+    ambientModelSelect.appendChild(aOpt);
   }
 }
 
@@ -1046,9 +1189,11 @@ async function init() {
   try { await loadSpeakers(saved.ttsEngine, saved); } catch (e) { console.warn('loadSpeakers failed:', e); addMessage('Speakers load failed — server may be starting up', 'status'); }
   try { await loadModels(); } catch (e) { console.warn('loadModels failed:', e); addMessage('Models load failed — server may be starting up', 'status'); }
   if (saved.modelSelect) modelSelect.value = saved.modelSelect;
+  if (saved.ambientModel) ambientModelSelect.value = saved.ambientModel;
   if (saved.speedSelect) speedSelect.value = saved.speedSelect;
   autoSave();
   connect();
+  checkVoiceProfile();
 }
 
 init();
@@ -1113,6 +1258,194 @@ function initAlwaysOn() {
       else if (!listening && alwaysOn.enabled) alwaysOn.stop();
     });
   }
+}
+
+// --- Voice Enrollment ---
+const ENROLL_PROMPTS = [
+  'メイ、今日の天気はどう？',
+  'メイ、おはよう',
+  'メイ、今何時？',
+  'メイ、音楽をかけて',
+  'メイ、おやすみ',
+];
+let enrollState = { active: false, samples: 0, recording: false, recorder: null, chunks: [] };
+
+async function openEnroll() {
+  const overlay = document.getElementById('enrollOverlay');
+  overlay.style.display = 'flex';
+  // Load current profile
+  try {
+    const res = await fetch(`${API_BASE}/speaker-id/profiles`);
+    const data = await res.json();
+    const profiles = data.profiles || [];
+    const info = document.getElementById('enrollProfileInfo');
+    if (profiles.length > 0) {
+      const p = profiles[0];
+      info.textContent = `登録済み: ${p.display_name}（${p.samples}サンプル）`;
+      document.getElementById('enrollDeleteBtn').style.display = '';
+      document.getElementById('voiceIdBtn').className = 'side-btn on';
+    } else {
+      info.textContent = '未登録';
+      document.getElementById('enrollDeleteBtn').style.display = 'none';
+    }
+  } catch { }
+  enrollReset();
+}
+
+function enrollReset() {
+  enrollState = { active: false, samples: 0, recording: false, recorder: null, chunks: [] };
+  document.getElementById('enrollRecBtn').style.display = 'none';
+  document.getElementById('enrollFinishBtn').style.display = 'none';
+  document.getElementById('enrollMessage').textContent = '';
+  document.getElementById('enrollPrompt').textContent = '';
+  document.getElementById('enrollStatusText').innerHTML =
+    '声紋を登録すると、あなたの声とTV音声を区別できます<br>' +
+    '<button onclick="enrollStart()" style="margin-top:12px;background:var(--ember-gradient);color:#fff;border:none;border-radius:8px;padding:8px 20px;font-size:13px;cursor:pointer;font-weight:600;">登録開始</button>';
+  for (let i = 0; i < 5; i++) {
+    document.getElementById(`eDot${i}`).className = 'enroll-dot';
+  }
+}
+
+async function enrollStart() {
+  try {
+    const res = await fetch(`${API_BASE}/speaker-id/enroll/start`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: 'akira', display_name: 'Akira' }),
+    });
+    const data = await res.json();
+    if (!data.ok) { document.getElementById('enrollMessage').textContent = data.message; return; }
+  } catch (e) { document.getElementById('enrollMessage').textContent = 'サーバーに接続できません'; return; }
+
+  enrollState.active = true;
+  enrollState.samples = 0;
+  document.getElementById('enrollStatusText').textContent = '下のフレーズを読み上げてください';
+  document.getElementById('enrollRecBtn').style.display = '';
+  enrollShowPrompt();
+}
+
+function enrollShowPrompt() {
+  const idx = enrollState.samples;
+  if (idx < ENROLL_PROMPTS.length) {
+    document.getElementById('enrollPrompt').textContent = `「${ENROLL_PROMPTS[idx]}」`;
+  } else {
+    document.getElementById('enrollPrompt').textContent = '自由に話してください';
+  }
+}
+
+const enrollRecBtn = document.getElementById('enrollRecBtn');
+enrollRecBtn.addEventListener('click', async () => {
+  if (enrollState.recording) {
+    enrollStopRec();
+  } else {
+    await enrollStartRec();
+  }
+});
+
+async function enrollStartRec() {
+  const stream = await getMicStream();
+  enrollState.chunks = [];
+  enrollState.recorder = new MediaRecorder(stream, { mimeType: 'audio/webm;codecs=opus' });
+  enrollState.recorder.ondataavailable = (e) => { if (e.data.size > 0) enrollState.chunks.push(e.data); };
+  enrollState.recorder.onstop = () => enrollSendSample();
+  enrollState.recorder.start();
+  enrollState.recording = true;
+  enrollRecBtn.classList.add('recording');
+  enrollRecBtn.textContent = 'STOP';
+  // Auto-stop after 4 seconds
+  setTimeout(() => { if (enrollState.recording) enrollStopRec(); }, 4000);
+}
+
+function enrollStopRec() {
+  if (enrollState.recorder && enrollState.recorder.state === 'recording') {
+    enrollState.recorder.stop();
+  }
+  enrollState.recording = false;
+  enrollRecBtn.classList.remove('recording');
+  enrollRecBtn.textContent = 'REC';
+}
+
+async function enrollSendSample() {
+  enrollRecBtn.disabled = true;
+  document.getElementById('enrollMessage').textContent = '処理中...';
+  const blob = new Blob(enrollState.chunks, { type: 'audio/webm' });
+  const form = new FormData();
+  form.append('audio', blob, 'sample.webm');
+  try {
+    const res = await fetch(`${API_BASE}/speaker-id/enroll/sample`, { method: 'POST', body: form });
+    const data = await res.json();
+    document.getElementById('enrollMessage').textContent = data.message || '';
+    if (data.ok) {
+      enrollState.samples = data.samples;
+      // Update dots
+      for (let i = 0; i < 5; i++) {
+        document.getElementById(`eDot${i}`).className = i < data.samples ? 'enroll-dot done' : 'enroll-dot';
+      }
+      if (data.can_finish) {
+        document.getElementById('enrollFinishBtn').style.display = '';
+      }
+      enrollShowPrompt();
+    }
+  } catch (e) {
+    document.getElementById('enrollMessage').textContent = 'サーバーエラー';
+  }
+  enrollRecBtn.disabled = false;
+}
+
+async function enrollFinish() {
+  try {
+    const res = await fetch(`${API_BASE}/speaker-id/enroll/finish`, { method: 'POST' });
+    const data = await res.json();
+    document.getElementById('enrollMessage').textContent = data.message || '';
+    if (data.ok) {
+      document.getElementById('enrollStatusText').textContent = '登録完了';
+      document.getElementById('enrollRecBtn').style.display = 'none';
+      document.getElementById('enrollFinishBtn').style.display = 'none';
+      document.getElementById('enrollPrompt').textContent = '';
+      document.getElementById('voiceIdBtn').className = 'side-btn on';
+      // Refresh profile info
+      const pRes = await fetch(`${API_BASE}/speaker-id/profiles`);
+      const pData = await pRes.json();
+      if (pData.profiles?.length > 0) {
+        const p = pData.profiles[0];
+        document.getElementById('enrollProfileInfo').textContent = `登録済み: ${p.display_name}（${p.samples}サンプル）`;
+        document.getElementById('enrollDeleteBtn').style.display = '';
+      }
+    }
+  } catch (e) {
+    document.getElementById('enrollMessage').textContent = 'サーバーエラー';
+  }
+}
+
+async function enrollDelete() {
+  if (!confirm('声紋プロファイルを削除しますか？')) return;
+  try {
+    await fetch(`${API_BASE}/speaker-id/profiles/akira`, { method: 'DELETE' });
+    document.getElementById('enrollProfileInfo').textContent = '未登録';
+    document.getElementById('enrollDeleteBtn').style.display = 'none';
+    document.getElementById('voiceIdBtn').className = 'side-btn';
+    document.getElementById('enrollMessage').textContent = '削除しました';
+  } catch { }
+}
+
+function enrollClose() {
+  document.getElementById('enrollOverlay').style.display = 'none';
+  if (enrollState.active) {
+    // Cancel enrollment if in progress
+    fetch(`${API_BASE}/speaker-id/enroll/cancel`, { method: 'POST' }).catch(() => {});
+  }
+  enrollState.active = false;
+}
+
+// Check voice profile on init
+async function checkVoiceProfile() {
+  try {
+    const res = await fetch(`${API_BASE}/speaker-id/profiles`);
+    const data = await res.json();
+    if (data.profiles?.length > 0) {
+      document.getElementById('voiceIdBtn').className = 'side-btn on';
+    }
+  } catch { }
 }
 
 async function maybeStartAlwaysOn() {

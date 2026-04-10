@@ -19,6 +19,30 @@ _fmt = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
 _sh = logging.StreamHandler(sys.stdout)
 _sh.setFormatter(_fmt)
 logger.addHandler(_sh)
+# Suppress noisy third-party logs
+logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.getLogger("faster_whisper").setLevel(logging.WARNING)
+logging.getLogger("speechbrain").setLevel(logging.WARNING)
+
+import warnings
+warnings.filterwarnings("ignore", message=".*encountered in matmul.*", category=RuntimeWarning)
+
+
+def _is_whisper_hallucination(text: str) -> bool:
+    """Detect Whisper hallucination patterns: repeated chars, gibberish, etc."""
+    cleaned = re.sub(r'[、。！？\s]', '', text)
+    if not cleaned:
+        return True
+    # Repeated single character dominates (e.g., "んんんんんんん")
+    from collections import Counter
+    counts = Counter(cleaned)
+    most_common_char, most_common_count = counts.most_common(1)[0]
+    if most_common_count / len(cleaned) > 0.5 and len(cleaned) > 4:
+        return True
+    # Very low unique char ratio (e.g., "あんまんまいいっんんんん")
+    if len(counts) <= 3 and len(cleaned) > 6:
+        return True
+    return False
 
 import emoji as emoji_lib
 import httpx
@@ -59,6 +83,13 @@ _tts_cache: dict[str, tuple[float, bytes]] = {}
 _TTS_CACHE_TTL = 30  # seconds
 
 _wake_cache = WakeResponseCache()
+_wait_cache = WakeResponseCache(responses=[
+    "ちょっと待ってね、調べてくる",
+    "わかった、確認するね",
+    "了解、ちょっと調べるね",
+    "はいはい、見てくるね",
+    "オッケー、ちょっと待って",
+])
 
 VOICEVOX_URL = "http://localhost:50021"
 VOICEVOX_SPEAKER = 2  # 四国めたん ノーマル
@@ -226,8 +257,22 @@ _YOMIGANA_MAP: list[tuple[re.Pattern, str]] = [
 ]
 
 
+_TTS_MAX_CHARS = 80
+
+# Instruction/technical question patterns — Claude Code向けの発話を検出
+_INSTRUCTION_PATTERN = re.compile(
+    r'(してください|を確認して|を調べて|を教えて|を開いて|を消して|を送って'
+    r'|作り替えて|変更して|修正して|立ち上げて|実行して|作成して|まとめて|揃えて'
+    r'|のせて|追加して|削除して|更新して|書いて|書き換えて|コミットして'
+    r'|設定して|フィルター.*して|表示して|非表示.*して|読み込んで'
+    r'|[てで]ください$|ます$'
+    r'|(?:設定|ファイル|コード|関数|変数|API|CSS|HTML|パス|ディレクトリ|データベース|サーバー|エンドポイント|ブランド|ロゴ|デザイン|カレンダー|アカウント|ダッシュボード).*(?:どこ|どう|どれ|何|なに|ですか|ますか)'
+    r'|(?:どこに|どうやって|どうすれば).*(?:ますか|ですか|する|した))',
+)
+
+
 def _clean_text_for_tts(text: str) -> str:
-    """TTS 用テキスト前処理: URL・絵文字を除去し空行を整理、名前を読み仮名に変換"""
+    """TTS 用テキスト前処理: URL・絵文字を除去し空行を整理、名前を読み仮名に変換、長文を切り詰め"""
     text = re.sub(r'https?://\S+', '', text)
     text = emoji_lib.replace_emoji(text, replace='')
     text = re.sub(r'\n{3,}', '\n\n', text)
@@ -236,7 +281,19 @@ def _clean_text_for_tts(text: str) -> str:
             before = text
             text = pattern.sub(yomi, text)
             logger.info(f"[YOMIGANA] '{pattern.pattern}' -> '{yomi}' | before='{before[:60]}' | after='{text[:60]}'")
-    return text.strip()
+    text = text.strip()
+    # Truncate long text for voice readability
+    if len(text) > _TTS_MAX_CHARS:
+        # Try to cut at sentence boundary
+        cut = text[:_TTS_MAX_CHARS]
+        for sep in ('。', '、', '！', '？', '…', '. '):
+            idx = cut.rfind(sep)
+            if idx > _TTS_MAX_CHARS // 2:
+                cut = cut[:idx + len(sep)]
+                break
+        text = cut.rstrip() + '…続きはチャットで確認してね'
+        logger.info(f"[TTS] truncated to {len(text)} chars")
+    return text
 
 
 def _wav_duration(audio: bytes) -> float:
@@ -260,7 +317,9 @@ _MIN_TEXT_LEN_FOR_CHECK = 30  # 短いテキストはチェック不要
 
 async def synthesize_speech(text: str, speaker_id: int | str, speed: float = 1.0, engine: str | None = None) -> bytes:
     """TTS エンジンでテキストを音声に変換（ロック内 double-check キャッシュ）"""
+    global _last_tts_text
     text = _clean_text_for_tts(text)
+    _last_tts_text = text  # エコー除去用に記録
     tts_engine = engine or _settings.get("ttsEngine", "voicevox")
     # Auto-detect engine from speaker_id prefix
     if tts_engine == "voicevox" and isinstance(speaker_id, str) and speaker_id.startswith("irodori-"):
@@ -826,6 +885,7 @@ _proactive_task: asyncio.Task | None = None
 _always_on_echo_suppress_until: float = 0
 _always_on_conversation_until: float = 0  # conversation window after wake
 _whisper_busy: bool = False  # drop new audio while Whisper is processing
+_last_tts_text: str = ""  # 直前のTTS出力テキスト（エコー除去用）
 _always_on_conversation: list[dict] = [
     {"role": "system", "content": "あなたはメイという名前のフレンドリーな日本語の会話アシスタントです。音声会話なので、簡潔に1-2文で返答してください。"}
 ]
@@ -834,6 +894,37 @@ _ambient_batch_task: asyncio.Task | None = None
 _speaker_id: SpeakerIdentifier | None = None
 _enrollment_active: bool = False
 _enrollment_queue: asyncio.Queue | None = None  # audio bytes queue for guided enrollment
+
+
+_TOOL_NEEDED_KEYWORDS = re.compile(
+    r'予定|スケジュール|カレンダー|天気|メール|リマインダー|タイマー|'
+    r'調べて|検索して|送って|教えて.*(今日|明日|来週|何時)'
+)
+
+_SLACK_BOT_API = "http://127.0.0.1:3457"
+
+
+async def _ask_slack_bot(question: str, speaker: str | None = None, *, system_prompt: str | None = None) -> str | None:
+    """Route question to Slack Bot (Claude + MCP tools) for tool-assisted answers."""
+    try:
+        payload: dict = {"question": question, "speaker": speaker}
+        if system_prompt:
+            payload["systemPrompt"] = system_prompt
+        async with httpx.AsyncClient(timeout=120) as client:
+            resp = await client.post(
+                f"{_SLACK_BOT_API}/internal/ask",
+                json=payload,
+            )
+            data = resp.json()
+            if data.get("ok"):
+                logger.info(f"[tool_route] Slack Bot replied in {data.get('durationMs')}ms")
+                return data["reply"]
+            else:
+                logger.warning(f"[tool_route] Slack Bot error: {data.get('error')}")
+                return None
+    except Exception as e:
+        logger.warning(f"[tool_route] Slack Bot unreachable: {e}")
+        return None
 
 
 async def _always_on_llm_reply(ws: WebSocket, text: str):
@@ -845,8 +936,33 @@ async def _always_on_llm_reply(ws: WebSocket, text: str):
             _always_on_conversation[1:3] = []
 
         await ws.send_json({"type": "status", "text": "考え中..."})
-        model = _settings.get("modelSelect", "gemma4:e4b")
-        reply = await chat_with_llm(_always_on_conversation, model)
+
+        # Check if external tools are needed
+        needs_tool = bool(_TOOL_NEEDED_KEYWORDS.search(text))
+        reply = None
+
+        if needs_tool:
+            logger.info(f"[tool_route] routing to Slack Bot: '{text[:50]}'")
+            await _send_debug(ws, f"[tool] Slack Bot に問い合わせ中...")
+
+            # Play pre-cached wait message instantly
+            wait_resp = _wait_cache.get_random()
+            if wait_resp:
+                wait_text, wait_audio = wait_resp
+                await ws.send_json({"type": "assistant_text", "text": wait_text})
+                await ws.send_bytes(wait_audio)
+                duration = _wav_duration(wait_audio)
+                _always_on_echo_suppress_until = time.time() + max(5.0, duration + 3.0)
+
+            speaker = _ambient_listener.current_speaker if _ambient_listener else None
+            reply = await _ask_slack_bot(text, speaker)
+
+        if not reply:
+            model = _settings.get("modelSelect", "gemma4:e4b")
+            reply = await chat_with_llm(_always_on_conversation, model)
+        reply = emoji_lib.replace_emoji(reply, replace='').strip()
+        if not reply:
+            reply = "ちょっとわからなかった"
         _always_on_conversation.append({"role": "assistant", "content": reply})
         logger.info(f"[always_on] LLM reply: '{reply[:80]}'")
         if _ambient_listener:
@@ -857,12 +973,14 @@ async def _always_on_llm_reply(ws: WebSocket, text: str):
         mei_speed_raw = _settings.get("meiSpeed", "auto") or "auto"
         mei_speed = 0 if mei_speed_raw == "auto" else float(mei_speed_raw)
         try:
+            _always_on_echo_suppress_until = time.time() + 3.0  # pre-emptive (短め、TTS後に実時間で上書き)
             audio = await synthesize_speech(reply, mei_speaker, mei_speed)
             await ws.send_json({"type": "assistant_text", "text": reply})
             await ws.send_bytes(audio)
             duration = _wav_duration(audio)
-            _always_on_echo_suppress_until = time.time() + max(4.0, duration + 2.0)
+            _always_on_echo_suppress_until = time.time() + max(3.0, duration + 2.0)
         except Exception as e:
+            _always_on_echo_suppress_until = 0
             await ws.send_json({"type": "assistant_text", "text": reply, "tts_fallback": True})
             logger.warning(f"[always_on] TTS error: {e}")
 
@@ -1067,10 +1185,19 @@ async def _process_always_on(ws: WebSocket, audio_data: bytes, *, speech_ts: int
             await _enrollment_queue.put(audio_data)
             return
 
-        if time.time() < _always_on_echo_suppress_until:
+        echo_remaining = _always_on_echo_suppress_until - time.time()
+        if echo_remaining > 0:
+            logger.info(f"[always_on] BLOCKED echo_suppress: {echo_remaining:.1f}s remain, {len(audio_data)}bytes")
+            return
+
+        # Filter out very short audio fragments
+        audio_duration = len(audio_data) / 32000  # rough estimate: 16kHz * 16bit = 32000 bytes/s
+        if audio_duration < 0.5:
+            logger.info(f"[always_on] BLOCKED short: {audio_duration:.1f}s ({len(audio_data)}bytes)")
             return
 
         if _whisper_busy:
+            logger.info(f"[always_on] BLOCKED whisper_busy: {audio_duration:.1f}s")
             return
 
         _whisper_busy = True
@@ -1094,6 +1221,28 @@ async def _process_always_on(ws: WebSocket, audio_data: bytes, *, speech_ts: int
                 await _send_debug(ws, f"[hallucination] filtered (audio={len(audio_data)}bytes, no text)")
             return
 
+        # Filter Whisper hallucinations (repeated chars, gibberish)
+        if _is_whisper_hallucination(text):
+            logger.debug(f"[hallucination] gibberish filtered: '{text[:40]}'")
+            await _send_debug(ws, f"[hallucination] '{text[:30]}' (gibberish)")
+            return
+
+        # Strip TTS echo from STT result (e.g. proactive "続きはチャットで確認してね" captured by mic)
+        if _last_tts_text and len(_last_tts_text) >= 6:
+            tts_clean = _last_tts_text.replace(" ", "").replace("　", "")
+            text_clean = text.replace(" ", "").replace("　", "")
+            # Check if TTS text appears as prefix of STT result
+            for prefix_len in range(min(len(tts_clean), len(text_clean)), 5, -1):
+                if text_clean[:prefix_len] == tts_clean[-prefix_len:]:
+                    stripped = text[prefix_len:].strip()
+                    if stripped:
+                        logger.info(f"[echo_strip] removed TTS echo prefix: '{text[:prefix_len]}' → remaining: '{stripped}'")
+                        text = stripped
+                    else:
+                        logger.info(f"[echo_strip] entire text was TTS echo: '{text[:40]}'")
+                        return
+                    break
+
         # Log speaker identification and track for multi-speaker detection
         spk_name_global = None
         if speaker_result and speaker_result.get("speaker"):
@@ -1102,7 +1251,10 @@ async def _process_always_on(ws: WebSocket, audio_data: bytes, *, speech_ts: int
             logger.info(f"[speaker_id] identified: {spk_name_global} (sim={sim:.3f}) | '{text[:40]}'")
         elif speaker_result:
             sim = speaker_result["similarity"]
-            logger.info(f"[speaker_id] unknown speaker (best_sim={sim:.3f}) | '{text[:40]}'")
+            if audio_duration < 4.0:
+                logger.debug(f"[speaker_id] unknown speaker (best_sim={sim:.3f}, short={audio_duration:.1f}s) | '{text[:40]}'")
+            else:
+                logger.info(f"[speaker_id] unknown speaker (best_sim={sim:.3f}) | '{text[:40]}'")
         if _ambient_listener:
             _ambient_listener.record_speaker(spk_name_global)
 
@@ -1167,11 +1319,37 @@ async def _process_always_on(ws: WebSocket, audio_data: bytes, *, speech_ts: int
                 await ws.send_json({"type": "wake_detected", "keyword": wake_result.keyword, "response_text": ""})
             _always_on_conversation_until = time.time() + 30.0
             remaining = wake_result.remaining_text
-            # Only send to LLM if remaining is a real question/request (>10 chars)
+            # Only send to LLM if remaining is a real question/request (>8 chars)
             # Short remainders like "聞こえる?" "起きてる?" are covered by wake response
-            if remaining and len(remaining) > 10:
+            if remaining and len(remaining) > 8:
                 await _always_on_llm_reply(ws, remaining)
         elif in_conversation:
+            # Echo check: skip if STT matches MEI's recent utterance
+            if _ambient_listener and _ambient_listener.is_echo(text):
+                logger.info(f"[always_on] conversation echo filtered: '{text[:50]}'")
+                await _send_debug(ws, f"[conversation] echo filtered")
+                return
+            # Instruction detection: Claude Code向けの指示は会話モードでも拒否
+            if _INSTRUCTION_PATTERN.search(text):
+                logger.info(f"[always_on] conversation instruction filtered: '{text[:50]}'")
+                await _send_debug(ws, f"[conversation] instruction → decline")
+                # 短く断って会話を続行可能にする
+                decline_reply = "それは私にはできないよ。Claude Code に聞いてみて。"
+                mei_speaker = _settings.get("meiVoice", "irodori-lora-emilia")
+                mei_speed_raw = _settings.get("meiSpeed", "auto") or "auto"
+                mei_speed = 0 if mei_speed_raw == "auto" else float(mei_speed_raw)
+                try:
+                    _always_on_echo_suppress_until = time.time() + 3.0
+                    audio = await synthesize_speech(decline_reply, mei_speaker, mei_speed)
+                    await ws.send_json({"type": "assistant_text", "text": decline_reply})
+                    await ws.send_bytes(audio)
+                    duration = _wav_duration(audio)
+                    _always_on_echo_suppress_until = time.time() + max(3.0, duration + 2.0)
+                    if _ambient_listener:
+                        _ambient_listener.record_mei_utterance(decline_reply)
+                except Exception:
+                    pass
+                return
             logger.info(f"[always_on] conversation: '{text[:50]}'")
             conv_remaining = int(_always_on_conversation_until - time.time())
             await _send_debug(ws, f"[conversation] window={conv_remaining}s")
@@ -1210,7 +1388,7 @@ async def _process_always_on(ws: WebSocket, audio_data: bytes, *, speech_ts: int
 
 
 async def _ambient_llm_reply(ws: WebSocket, trigger_text: str, method: str = "keyword", keyword: str = ""):
-    """Generate ambient response via LLM and broadcast to all clients."""
+    """Two-tier ambient response: fast local LLM first, then optional Claude follow-up."""
     global _always_on_echo_suppress_until
     if not _ambient_listener:
         return
@@ -1220,60 +1398,97 @@ async def _ambient_llm_reply(ws: WebSocket, trigger_text: str, method: str = "ke
         logger.info(f"[ambient] source: {source_hint} | '{trigger_text[:40]}'")
         source_label = {"user_response": "User(応答)", "user_initiative": "User(呼びかけ)",
                         "user_likely": "User(推定)", "user_identified": "User(声紋)",
-                        "media_likely": "Media(TV等)", "unknown": "不明"}.get(source_hint, source_hint)
-        await _broadcast_debug(f"[ambient LLM] method={method} source={source_label} text='{trigger_text[:50]}'")
-        prompt = _ambient_listener.build_llm_prompt(source_hint=source_hint)
-        model = _settings.get("modelSelect", "gemma4:e4b")
-        messages = [
-            {"role": "system", "content": prompt},
-            {"role": "user", "content": f"直近の発話: {trigger_text}"},
-        ]
-        try:
-            logger.info(f"[ambient] LLM request starting (model={model})")
-            reply = await asyncio.wait_for(chat_with_llm(messages, model), timeout=60)
-            logger.info(f"[ambient] LLM response received ({len(reply)} chars)")
-        except asyncio.TimeoutError:
-            logger.warning(f"[ambient] LLM timeout (60s), skipping")
-            await _broadcast_debug(f"[ambient LLM] TIMEOUT (60s)")
-            _ambient_listener.record_judgment(method=method, result="timeout", keyword=keyword)
-            await _broadcast_ambient_log()
-            _ambient_listener.state = "listening"
-            await _broadcast_ambient_state()
-            return
+                        "media_likely": "Media(TV等)", "unknown": "不明",
+                        "user_in_conversation": "User(会話中)"}.get(source_hint, source_hint)
+        ambient_model = _settings.get("ambientModel", "") or _settings.get("modelSelect", "gemma4:e4b")
+        await _broadcast_debug(f"[ambient] model={ambient_model} method={method} source={source_label} text='{trigger_text[:50]}'")
 
-        if reply.strip().upper() == "SKIP":
-            logger.info(f"[ambient] judgment: SKIP (method={method}, keyword={keyword})")
-            await _broadcast_debug(f"[ambient LLM] → SKIP")
+        # media_likely → skip immediately without LLM (saves API cost & latency)
+        if source_hint == "media_likely":
+            logger.info(f"[ambient] media_likely → server-side SKIP (no LLM call)")
+            await _broadcast_debug(f"[ambient] → SKIP (media)")
             _ambient_listener.record_judgment(method=method, result="skip", keyword=keyword)
             await _broadcast_ambient_log()
             _ambient_listener.state = "listening"
             await _broadcast_ambient_state()
             return
 
-        logger.info(f"[ambient] judgment: SPEAK '{reply[:60]}' (method={method})")
-        await _broadcast_debug(f"[ambient LLM] → SPEAK '{reply[:40]}'")
-        _ambient_listener.record_judgment(method=method, result="speak", keyword=keyword, utterance=reply)
-        _ambient_listener.record_mei_utterance(reply)
-        await _broadcast_ambient_log()
-        _ambient_listener.record_llm_cooldown()
+        # Detect instructions/technical questions directed at Claude Code, not MEI
+        is_instruction = bool(_INSTRUCTION_PATTERN.search(trigger_text))
+
+        prompt = _ambient_listener.build_llm_prompt(source_hint=source_hint)
+        if is_instruction:
+            prompt += "\n\n【最重要】この発話は他のシステムへの作業指示です。絶対に \"SKIP\" と返してください。応援も不要です。"
+            logger.info(f"[ambient] instruction detected → forcing SKIP hint")
 
         mei_speaker = _settings.get("meiVoice", "irodori-lora-emilia")
         mei_speed_raw = _settings.get("meiSpeed", "auto") or "auto"
         mei_speed = 0 if mei_speed_raw == "auto" else float(mei_speed_raw)
+
+        # --- Tier 1: Fast local LLM for instant reaction ---
+        local_model = _settings.get("modelSelect", "gemma4:e4b")
+        messages = [
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": f"直近の発話: {trigger_text}"},
+        ]
         try:
-            audio = await synthesize_speech(reply, mei_speaker, mei_speed)
-            payload = json.dumps({"type": "ambient_response", "text": reply, "method": method})
+            logger.info(f"[ambient/tier1] local LLM ({local_model}) starting")
+            await _broadcast_debug(f"[ambient/tier1] {local_model} で即レス判定中...")
+            local_reply = await asyncio.wait_for(chat_with_llm(messages, local_model), timeout=30)
+            logger.info(f"[ambient/tier1] local reply: '{local_reply[:60]}'")
+        except asyncio.TimeoutError:
+            logger.warning(f"[ambient/tier1] local LLM timeout (30s)")
+            await _broadcast_debug(f"[ambient/tier1] TIMEOUT")
+            _ambient_listener.record_judgment(method=method, result="timeout", keyword=keyword)
+            await _broadcast_ambient_log()
+            _ambient_listener.state = "listening"
+            await _broadcast_ambient_state()
+            return
+
+        if local_reply.strip().upper() == "SKIP":
+            logger.info(f"[ambient] judgment: SKIP (method={method})")
+            await _broadcast_debug(f"[ambient/tier1] → SKIP")
+            _ambient_listener.record_judgment(method=method, result="skip", keyword=keyword)
+            await _broadcast_ambient_log()
+            _ambient_listener.state = "listening"
+            await _broadcast_ambient_state()
+            return
+
+        # Tier 1 decided to SPEAK — sanitize emoji, strip stage directions (ト書き)
+        local_reply = emoji_lib.replace_emoji(local_reply, replace='').strip()
+        # Remove parenthetical stage directions: （動作描写）、(action)
+        local_reply = re.sub(r'[（(][^）)]*[）)]', '', local_reply).strip()
+        if not local_reply:
+            logger.info(f"[ambient/tier1] empty after sanitize (was stage direction), treating as SKIP")
+            _ambient_listener.state = "listening"
+            return
+        logger.info(f"[ambient/tier1] SPEAK '{local_reply[:60]}'")
+        await _broadcast_debug(f"[ambient/tier1] → SPEAK '{local_reply[:40]}'")
+        _ambient_listener.record_judgment(method=method, result="speak", keyword=keyword, utterance=local_reply)
+        _ambient_listener.record_mei_utterance(local_reply)
+        await _broadcast_ambient_log()
+        _ambient_listener.record_llm_cooldown()
+
+        try:
+            # Pre-emptive echo suppression: set BEFORE TTS to prevent recapture
+            _always_on_echo_suppress_until = time.time() + 3.0
+            audio = await synthesize_speech(local_reply, mei_speaker, mei_speed)
+            duration = _wav_duration(audio)
+            payload = json.dumps({"type": "ambient_response", "text": local_reply, "method": method})
+            sent = 0
             for client in list(_clients):
                 try:
                     await client.send_text(payload)
                     await client.send_bytes(audio)
+                    sent += 1
                 except Exception:
                     _clients.discard(client)
-            duration = _wav_duration(audio)
-            _always_on_echo_suppress_until = time.time() + max(4.0, duration + 2.0)
+            logger.info(f"[ambient/tier1] sent to {sent}/{len(_clients)+sent} clients (audio {len(audio)}bytes, {duration:.1f}s)")
+            _always_on_echo_suppress_until = time.time() + max(3.0, duration + 2.0)
         except Exception as e:
-            logger.warning(f"[ambient] TTS error: {e}")
-            payload = json.dumps({"type": "ambient_response", "text": reply, "method": method, "tts_fallback": True})
+            _always_on_echo_suppress_until = 0  # release on error
+            logger.warning(f"[ambient/tier1] TTS error: {e}")
+            payload = json.dumps({"type": "ambient_response", "text": local_reply, "method": method, "tts_fallback": True})
             for client in list(_clients):
                 try:
                     await client.send_text(payload)
@@ -1282,10 +1497,105 @@ async def _ambient_llm_reply(ws: WebSocket, trigger_text: str, method: str = "ke
 
         _ambient_listener.state = "listening"
         await _broadcast_ambient_state()
+
+        # --- Tier 2: Claude follow-up for quality comment (if ambient model is claude) ---
+        # Skip Tier 2 for instructions, short/trivial triggers, or non-claude mode
+        _skip_tier2 = (
+            ambient_model != "claude"
+            or is_instruction
+            or len(trigger_text) < 10
+        )
+        if ambient_model != "claude":
+            # Also handle tool routing for local-only mode
+            needs_tool = bool(_TOOL_NEEDED_KEYWORDS.search(trigger_text))
+            if needs_tool:
+                logger.info(f"[ambient/tool_route] routing to Slack Bot: '{trigger_text[:50]}'")
+                await _broadcast_debug(f"[ambient] tool routing → Slack Bot")
+                speaker = _ambient_listener.current_speaker if _ambient_listener else None
+                tool_reply = await _ask_slack_bot(trigger_text, speaker)
+                if tool_reply:
+                    await _ambient_broadcast_reply(tool_reply, "tool_route", method, keyword, mei_speaker, mei_speed)
+            return
+        if _skip_tier2:
+            logger.info(f"[ambient/tier2] skipped (instruction={is_instruction}, text_len={len(trigger_text)})")
+            await _broadcast_debug(f"[ambient/tier2] → skipped")
+            return
+
+        # Claude tier 2: deeper follow-up
+        # Build a prompt that asks for a quality comment, knowing the fast reply was already sent
+        tier2_prompt = prompt + f"""
+
+追加指示（Tier2 品質コメント）:
+先ほど「{local_reply[:40]}」と短く返した。
+もしこの会話トピックについて、もう少し面白い知識・視点・質問があれば、1-2文で追加コメントして。
+追加する価値がなければ "SKIP" と返して。
+先ほどの返答を繰り返さないこと。"""
+
+        logger.info(f"[ambient/tier2] Claude follow-up starting")
+        await _broadcast_debug(f"[ambient/tier2] Claude で品質コメント生成中...")
+        try:
+            speaker = _ambient_listener.current_speaker if _ambient_listener else None
+            claude_reply = await asyncio.wait_for(
+                _ask_slack_bot(trigger_text, speaker, system_prompt=tier2_prompt),
+                timeout=60,
+            )
+            if not claude_reply or claude_reply.strip().upper() == "SKIP":
+                logger.info(f"[ambient/tier2] Claude → SKIP (no follow-up needed)")
+                await _broadcast_debug(f"[ambient/tier2] → SKIP")
+                return
+            # Strip stage directions (ト書き)
+            claude_reply = re.sub(r'[（(][^）)]*[）)]', '', claude_reply).strip()
+            if not claude_reply or claude_reply.strip().upper() == "SKIP":
+                logger.info(f"[ambient/tier2] empty after stage-direction strip, treating as SKIP")
+                return
+            logger.info(f"[ambient/tier2] Claude follow-up: '{claude_reply[:60]}'")
+            await _broadcast_debug(f"[ambient/tier2] → SPEAK '{claude_reply[:40]}'")
+            _ambient_listener.record_mei_utterance(claude_reply)
+            await _ambient_broadcast_reply(claude_reply, "tier2_claude", method, keyword, mei_speaker, mei_speed)
+        except asyncio.TimeoutError:
+            logger.warning(f"[ambient/tier2] Claude timeout (60s)")
+            await _broadcast_debug(f"[ambient/tier2] TIMEOUT")
+        except Exception as e:
+            logger.warning(f"[ambient/tier2] Claude error: {e}")
+
     except Exception as e:
         logger.warning(f"[ambient] LLM error: {e}")
         if _ambient_listener:
             _ambient_listener.state = "listening"
+
+
+async def _ambient_broadcast_reply(reply: str, reply_method: str, method: str, keyword: str,
+                                    mei_speaker: str, mei_speed: float):
+    """Broadcast an ambient reply (text + TTS) to all clients."""
+    global _always_on_echo_suppress_until
+    reply = emoji_lib.replace_emoji(reply, replace='').strip()
+    if not reply:
+        return
+    _ambient_listener.record_judgment(method=reply_method, result="speak", keyword=keyword, utterance=reply)
+    _ambient_listener.record_mei_utterance(reply)
+    await _broadcast_ambient_log()
+    _ambient_listener.record_llm_cooldown()
+    try:
+        _always_on_echo_suppress_until = time.time() + 3.0  # pre-emptive
+        audio = await synthesize_speech(reply, mei_speaker, mei_speed)
+        payload = json.dumps({"type": "ambient_response", "text": reply, "method": reply_method})
+        for client in list(_clients):
+            try:
+                await client.send_text(payload)
+                await client.send_bytes(audio)
+            except Exception:
+                _clients.discard(client)
+        duration = _wav_duration(audio)
+        _always_on_echo_suppress_until = time.time() + max(3.0, duration + 2.0)
+    except Exception as e:
+        _always_on_echo_suppress_until = 0
+        logger.warning(f"[ambient/{reply_method}] TTS error: {e}")
+        payload = json.dumps({"type": "ambient_response", "text": reply, "method": reply_method, "tts_fallback": True})
+        for client in list(_clients):
+            try:
+                await client.send_text(payload)
+            except Exception:
+                _clients.discard(client)
 
 
 async def _ambient_broadcast_text(text: str, ws: WebSocket):
@@ -1366,7 +1676,14 @@ async def _ambient_batch_loop():
             await _broadcast_debug(f"[batch] {len(_ambient_listener.text_buffer)}件 → LLM: {texts_preview}")
             ws = next(iter(_clients), None)
             if ws:
-                trigger = " ".join(e["text"] for e in _ambient_listener.text_buffer[-3:])
+                # Filter out media markers (※音楽, ♪, BGM etc.) before joining
+                raw_texts = [e["text"] for e in _ambient_listener.text_buffer[-3:]]
+                filtered_texts = [t for t in raw_texts if not re.match(r'^[※♪♫☆★]', t.strip())]
+                if not filtered_texts:
+                    logger.info(f"[ambient] batch all media markers, skipping")
+                    _ambient_listener.flush_buffer()
+                    continue
+                trigger = " ".join(filtered_texts)
                 await _ambient_llm_reply(ws, trigger, method="llm_batch")
                 _ambient_listener.flush_buffer()
         except Exception as e:
@@ -1393,6 +1710,17 @@ async def websocket_endpoint(ws: WebSocket):
     # 接続時に現在の設定を送信
     if _settings:
         await ws.send_json({"type": "sync_settings", "settings": _settings})
+
+    # Send server status summary to debug panel
+    if _settings.get("listeningDebug"):
+        status_lines = []
+        status_lines.append(f"Whisper large-v3: {'ready' if _whisper_model else 'not loaded'}")
+        status_lines.append(f"Whisper small: {'ready' if _whisper_model_fast else 'not loaded'}")
+        status_lines.append(f"Wake cache: {'ready' if _wake_cache.is_ready else 'warming up...'}")
+        status_lines.append(f"Wait cache: {'ready' if _wait_cache.is_ready else 'warming up...'}")
+        if _ambient_listener:
+            status_lines.append(f"Ambient: {_ambient_listener.state}")
+        await ws.send_json({"type": "listening_debug", "text": f"{_debug_ts()} [server] {' | '.join(status_lines)}"})
 
     raw_voice = _settings.get("voiceSelect", VOICEVOX_SPEAKER)
     speaker_id = int(raw_voice) if str(raw_voice).isdigit() else raw_voice
@@ -1587,6 +1915,7 @@ async def websocket_endpoint(ws: WebSocket):
 
 async def _proactive_polling_loop():
     """サーバー側でプロアクティブメッセージをポーリングし、全クライアントへ配信"""
+    global _always_on_echo_suppress_until
     while True:
         await asyncio.sleep(10)
         if not _settings.get("proactiveEnabled"):
@@ -1641,6 +1970,12 @@ async def _proactive_polling_loop():
                             logger.error(f"[proactive] WS send failed: {exc}")
                             _clients.discard(client)
                     logger.info(f"[proactive] sent to {sent_count}/{active_clients} clients ({'audio+text' if audio_bytes else 'text only'})")
+                    # Echo suppression for proactive TTS — shorter window since
+                    # proactive is background; don't block user speech detection too long
+                    if audio_bytes:
+                        duration = _wav_duration(audio_bytes)
+                        _always_on_echo_suppress_until = time.time() + min(8.0, duration + 1.0)
+                        logger.info(f"[proactive] echo suppress for {min(8.0, duration + 1.0):.1f}s")
                     # lastSeen を更新
                     if "lastSeen" not in _settings:
                         _settings["lastSeen"] = {}
@@ -1672,10 +2007,17 @@ async def on_startup():
     _mei_speed_raw = _settings.get("meiSpeed", "auto") or "auto"
     _mei_speed = 0 if _mei_speed_raw == "auto" else float(_mei_speed_raw)
     try:
+        await _broadcast_debug("[startup] Wake cache warming up...")
         await _wake_cache.warmup(speaker_id=_mei_speaker, speed=_mei_speed)
         logger.info(f"[startup] Wake response cache ready ({_wake_cache.is_ready})")
+        await _broadcast_debug("[startup] Wake cache ready")
+        await _broadcast_debug("[startup] Wait cache warming up...")
+        await _wait_cache.warmup(speaker_id=_mei_speaker, speed=_mei_speed)
+        logger.info(f"[startup] Wait response cache ready ({_wait_cache.is_ready})")
+        await _broadcast_debug("[startup] Wait cache ready")
     except Exception as e:
-        logger.warning(f"[startup] Wake response cache warmup failed: {e}")
+        logger.warning(f"[startup] Wake/Wait response cache warmup failed: {e}")
+        await _broadcast_debug(f"[startup] Cache warmup failed: {e}")
 
     # Initialize ambient listener
     global _ambient_listener, _ambient_batch_task
@@ -1701,4 +2043,4 @@ async def on_startup():
 if __name__ == "__main__":
     get_whisper()
     get_whisper_fast()
-    uvicorn.run(app, host="0.0.0.0", port=8767)
+    uvicorn.run(app, host="0.0.0.0", port=8767, access_log=False)

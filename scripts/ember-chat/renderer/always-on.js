@@ -64,9 +64,9 @@ class AlwaysOnListener {
       },
       positiveSpeechThreshold: 0.8,
       negativeSpeechThreshold: 0.35,
-      minSpeechFrames: 4,
-      preSpeechPadFrames: 8,
-      redemptionFrames: 5,
+      minSpeechFrames: 8,
+      preSpeechPadFrames: 10,
+      redemptionFrames: 12,
     });
     this.vad.start();
   }

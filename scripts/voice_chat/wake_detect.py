@@ -31,6 +31,8 @@ _WAKE_PATTERNS = [
 
 def detect_wake_word(text: str) -> WakeWordResult:
     text = text.strip()
+    # Strip leading symbols that Whisper sometimes prepends (※, ♪, *, etc.)
+    text = re.sub(r'^[※♪♫★☆●○◆◇■□▲△▼▽*#→←↑↓・]+\s*', '', text)
     if not text:
         return WakeWordResult(detected=False)
 

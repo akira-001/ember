@@ -1,10 +1,8 @@
-"""Speaker identification using MFCC-based voice embeddings.
+"""Speaker identification using ECAPA-TDNN embeddings (SpeechBrain).
 
-Extracts mel-frequency cepstral coefficients (MFCCs) from audio,
-computes a fixed-length speaker embedding (mean + std of MFCCs),
-and compares against enrolled speaker profiles via cosine similarity.
-
-No torch/ML framework required — uses numpy, scipy, and ffmpeg only.
+Uses a pre-trained ECAPA-TDNN model for 192-dim speaker embeddings.
+EER ~1% on VoxCeleb1, vs ~15-20% for MFCC baseline.
+Runs on CPU, ~150ms per 1s audio on Apple Silicon.
 """
 import json
 import logging
@@ -14,94 +12,42 @@ import time
 from pathlib import Path
 
 import numpy as np
-from scipy.fft import dct
+import torch
 
 logger = logging.getLogger("voice_chat")
 
-# --- Audio feature extraction (no external ML deps) ---
+# --- ECAPA-TDNN Model (lazy-loaded singleton) ---
 
-_MEL_FILTERS: np.ndarray | None = None
-
-
-def _hz_to_mel(hz: float) -> float:
-    return 2595.0 * np.log10(1.0 + hz / 700.0)
+_ecapa_model = None
+_EMBEDDING_DIM = 192
 
 
-def _mel_to_hz(mel: float) -> float:
-    return 700.0 * (10.0 ** (mel / 2595.0) - 1.0)
-
-
-def _mel_filterbank(n_filters: int = 40, n_fft: int = 512, sr: int = 16000) -> np.ndarray:
-    """Create a mel-scale filterbank matrix."""
-    global _MEL_FILTERS
-    if _MEL_FILTERS is not None:
-        return _MEL_FILTERS
-
-    low_mel = _hz_to_mel(0)
-    high_mel = _hz_to_mel(sr / 2)
-    mel_points = np.linspace(low_mel, high_mel, n_filters + 2)
-    hz_points = np.array([_mel_to_hz(m) for m in mel_points])
-    bins = np.floor((n_fft + 1) * hz_points / sr).astype(int)
-
-    filters = np.zeros((n_filters, n_fft // 2 + 1))
-    for i in range(n_filters):
-        for j in range(bins[i], bins[i + 1]):
-            filters[i, j] = (j - bins[i]) / max(bins[i + 1] - bins[i], 1)
-        for j in range(bins[i + 1], bins[i + 2]):
-            filters[i, j] = (bins[i + 2] - j) / max(bins[i + 2] - bins[i + 1], 1)
-
-    _MEL_FILTERS = filters
-    return filters
-
-
-def extract_mfcc(wav: np.ndarray, sr: int = 16000, n_mfcc: int = 20,
-                 n_fft: int = 512, hop: int = 160) -> np.ndarray:
-    """Extract MFCCs from a float32 waveform. Returns (n_frames, n_mfcc)."""
-    # Pre-emphasis
-    emphasized = np.append(wav[0], wav[1:] - 0.97 * wav[:-1])
-
-    # Frame the signal
-    n_samples = len(emphasized)
-    n_frames = 1 + (n_samples - n_fft) // hop
-    if n_frames <= 0:
-        return np.zeros((1, n_mfcc))
-
-    indices = np.arange(n_fft)[None, :] + np.arange(n_frames)[:, None] * hop
-    frames = emphasized[indices]
-
-    # Hamming window
-    window = np.hamming(n_fft)
-    frames = frames * window
-
-    # FFT → power spectrum
-    fft_mag = np.abs(np.fft.rfft(frames, n=n_fft))
-    power = (fft_mag ** 2) / n_fft
-
-    # Mel filterbank
-    mel_fb = _mel_filterbank(n_filters=40, n_fft=n_fft, sr=sr)
-    mel_spec = np.dot(power, mel_fb.T)
-    mel_spec = np.maximum(mel_spec, 1e-10)
-    log_mel = np.log(mel_spec)
-
-    # DCT → MFCCs
-    mfccs = dct(log_mel, type=2, axis=1, norm="ortho")[:, :n_mfcc]
-    return mfccs
+def _get_ecapa():
+    global _ecapa_model
+    if _ecapa_model is None:
+        from speechbrain.inference.speaker import EncoderClassifier
+        logger.info("[speaker_id] Loading ECAPA-TDNN model...")
+        t0 = time.time()
+        _ecapa_model = EncoderClassifier.from_hparams(
+            source="speechbrain/spkrec-ecapa-voxceleb",
+            savedir="/tmp/sb_ecapa",
+        )
+        logger.info(f"[speaker_id] ECAPA-TDNN loaded in {time.time()-t0:.1f}s")
+    return _ecapa_model
 
 
 def compute_embedding(wav: np.ndarray, sr: int = 16000) -> np.ndarray:
-    """Compute a fixed-length speaker embedding from audio.
-
-    Returns a 40-dim vector: mean + std of 20 MFCCs across all frames.
-    """
-    mfccs = extract_mfcc(wav, sr=sr)
-    mean = np.mean(mfccs, axis=0)
-    std = np.std(mfccs, axis=0)
-    embedding = np.concatenate([mean, std])
+    """Compute 192-dim ECAPA-TDNN speaker embedding from float32 waveform."""
+    model = _get_ecapa()
+    signal = torch.tensor(wav, dtype=torch.float32).unsqueeze(0)
+    with torch.no_grad():
+        embedding = model.encode_batch(signal)
+    emb = embedding.squeeze().numpy()
     # L2 normalize
-    norm = np.linalg.norm(embedding)
+    norm = np.linalg.norm(emb)
     if norm > 0:
-        embedding = embedding / norm
-    return embedding
+        emb = emb / norm
+    return emb
 
 
 def cosine_similarity(a: np.ndarray, b: np.ndarray) -> float:
@@ -165,8 +111,15 @@ class SpeakerIdentifier:
         for name, info in meta.items():
             emb_file = self.profiles_dir / f"{name}.npy"
             if emb_file.exists():
+                emb = np.load(emb_file)
+                if emb.shape[0] != _EMBEDDING_DIM:
+                    logger.warning(
+                        f"[speaker_id] profile '{name}' has dim={emb.shape[0]}, "
+                        f"expected {_EMBEDDING_DIM} — skipping (re-enrollment needed)"
+                    )
+                    continue
                 self.profiles[name] = {
-                    "embedding": np.load(emb_file),
+                    "embedding": emb,
                     "samples": info.get("samples", 0),
                     "display_name": info.get("display_name", name),
                 }
@@ -207,8 +160,9 @@ class SpeakerIdentifier:
         energy = float(np.sqrt(np.mean(wav ** 2)))
         if duration < 0.5:
             return {"ok": False, "message": "音声が短すぎます（0.5秒以上必要）"}
-        if energy < 0.03:
+        if energy < 0.01:
             return {"ok": False, "message": "音声が小さすぎます。マイクに向かって話してください"}
+        logger.info(f"[speaker_id] enroll sample check: duration={duration:.1f}s, energy={energy:.4f}")
 
         embedding = compute_embedding(wav)
         self._enroll_samples.append(embedding)
@@ -276,10 +230,11 @@ class SpeakerIdentifier:
 
     # --- Identification ---
 
-    def identify(self, audio_bytes: bytes, threshold: float = 0.82) -> dict:
+    def identify(self, audio_bytes: bytes, threshold: float = 0.45) -> dict:
         """Identify speaker from audio bytes.
 
         Returns: {speaker: str|None, display_name: str, similarity: float, all_scores: dict}
+        Threshold 0.45 for ECAPA-TDNN (cross-device enrollment/identification).
         """
         if not self.profiles:
             return {"speaker": None, "display_name": "", "similarity": 0.0,
@@ -290,11 +245,19 @@ class SpeakerIdentifier:
             return {"speaker": None, "display_name": "", "similarity": 0.0,
                     "all_scores": {}}
 
+        duration = len(wav) / 16000
+        if duration < 1.0:
+            logger.info(f"[speaker_id] skip identify: too short ({duration:.1f}s)")
+            return {"speaker": None, "display_name": "", "similarity": 0.0,
+                    "all_scores": {}}
+
         embedding = compute_embedding(wav)
+        logger.debug(f"[speaker_id] identify: duration={duration:.1f}s, energy={float(np.sqrt(np.mean(wav**2))):.4f}, "
+                      f"emb[:3]={embedding[:3]}")
         return self.identify_from_embedding(embedding, threshold)
 
     def identify_from_embedding(self, embedding: np.ndarray,
-                                 threshold: float = 0.82) -> dict:
+                                 threshold: float = 0.45) -> dict:
         """Identify speaker from a pre-computed embedding."""
         scores = {}
         best_name = None
@@ -315,7 +278,7 @@ class SpeakerIdentifier:
         return {"speaker": None, "display_name": "", "similarity": round(best_sim, 4),
                 "all_scores": scores}
 
-    def identify_wav(self, wav: np.ndarray, threshold: float = 0.82) -> dict:
+    def identify_wav(self, wav: np.ndarray, threshold: float = 0.45) -> dict:
         """Identify speaker from float32 16kHz mono waveform."""
         if not self.profiles:
             return {"speaker": None, "display_name": "", "similarity": 0.0,

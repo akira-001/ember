@@ -12,7 +12,9 @@ class AmbientCommand:
 
 # Priority order: stop > quiet/talk_more
 _STOP_PATTERNS = [
-    re.compile(r'(?:やめて|止めて|ストップ|とめて)', re.IGNORECASE),
+    re.compile(r'(?:やめて|止めて|ストップ)', re.IGNORECASE),
+    # 「とめて」は先頭 or 助詞の後のみ（「まとめて」等の誤検知防止）
+    re.compile(r'(?:^|[をはがもにで])とめて'),
     re.compile(r'\b[Ss]top\b'),
 ]
 
