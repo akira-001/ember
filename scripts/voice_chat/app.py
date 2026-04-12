@@ -472,6 +472,17 @@ class _MediaContext:
     snippets_since_infer: int = 0
 
     def add_snippet(self, text: str):
+        # STT重複除去: 直前のスニペットの先頭50文字と80%以上一致なら追加しない
+        # 先頭比較により句読点差異による位置ズレの影響を受けない
+        if self.media_buffer:
+            prev = self.media_buffer[-1]["text"]
+            head_len = min(50, len(prev), len(text))
+            if head_len >= 10:
+                common = sum(c1 == c2 for c1, c2 in zip(prev[:head_len], text[:head_len]))
+                similarity = common / head_len
+                if similarity >= 0.8:
+                    logger.debug(f"[co_view] dedup skip (head_sim={similarity:.2f}): '{text[:30]}'")
+                    return
         self.media_buffer.append({"text": text, "ts": time.time()})
         self.snippets_since_infer += 1
         if len(self.media_buffer) > 20:
@@ -492,15 +503,24 @@ class _MediaContext:
 
 _media_ctx = _MediaContext()
 
+# co_view 同時実行防止ロック + 原文重複検出
+_co_view_lock = asyncio.Lock()
+_STT_RAW_SEEN: dict[str, float] = {}   # trigger_text先頭60文字 → 最終受信timestamp
+_STT_RAW_DEDUP_WINDOW = 30.0           # 30秒以内の同一原文はスキップ
+
 # TV guide cache
 _tv_guide_cache: dict = {"data": "", "fetched_at": 0.0}
 
 
 def _load_youtube_titles() -> list:
+    path = _SLACK_BOT_DATA_DIR / "youtube-history-cache.json"
     try:
-        data = json.loads((_SLACK_BOT_DATA_DIR / "youtube-history-cache.json").read_text())
-        return [e["title"] for e in data.get("entries", []) if e.get("title")]
-    except Exception:
+        data = json.loads(path.read_text())
+        titles = [e["title"] for e in data.get("entries", []) if e.get("title")]
+        logger.info(f"[co_view] youtube titles loaded: {len(titles)} from {path}")
+        return titles
+    except Exception as e:
+        logger.warning(f"[co_view] youtube titles load failed: {e} (path: {path})")
         return []
 
 
@@ -527,7 +547,9 @@ def _find_matching_yt_titles(buffer_text: str, top_n: int = 5) -> list:
         if score > 0:
             scored.append((score, title))
     scored.sort(key=lambda x: -x[0])
-    return [t for _, t in scored[:top_n]]
+    results = [t for _, t in scored[:top_n]]
+    logger.info(f"[co_view/yt_match] words={list(words)[:10]} hits={len(scored)} top={results[:2]}")
+    return results
 
 
 async def _fetch_tv_guide() -> str:
@@ -640,6 +662,9 @@ async def _infer_media_content() -> dict:
             '"confidence":0.0から1.0}\n\n'
             "注意: 野球実況(特にドジャース)はconfidence高め。ゴルフ(マスターズ等)はgolf。"
             "音楽BGMのみはconfidence低め。材料不足は0.3以下。"
+            "アニメキャラ名(エミリア・スバル・ベアトリス・レム等)、声優トーク、ラジオ形式、"
+            "○周年記念番組、OVA、オーディション体験談が含まれる場合は`youtube_talk`を強く優先。"
+            "`other`は本当に分類不能な場合のみ。"
             f"{yt_hint}{interest_hint}{tv_hint}"
         )},
         {"role": "user", "content": f"音声テキスト:\n{buffer_text}"},
@@ -725,109 +750,135 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
         return
     now = time.time()
 
-    # Step 1: 補正してバッファに追加
-    corrected = await _correct_media_transcript(trigger_text)
-    if not corrected:
+    # 原文ベースdedup: 補正前テキストの先頭60文字で重複チェック (LLM補正が毎回異なるため補正後では不可)
+    raw_key = trigger_text[:60]
+    last_seen = _STT_RAW_SEEN.get(raw_key, 0.0)
+    if now - last_seen < _STT_RAW_DEDUP_WINDOW:
+        logger.debug(f"[co_view] raw dedup skip ({now - last_seen:.1f}s): '{raw_key[:30]}'")
         return
-    _media_ctx.add_snippet(corrected)
-    await _broadcast_debug(f"[co_view] buf={len(_media_ctx.media_buffer)} '{corrected[:40]}'")
+    _STT_RAW_SEEN[raw_key] = now
+    # 古いエントリ削除 (メモリリーク防止)
+    if len(_STT_RAW_SEEN) > 100:
+        cutoff = now - _STT_RAW_DEDUP_WINDOW * 2
+        for k in [k for k, v in _STT_RAW_SEEN.items() if v < cutoff]:
+            del _STT_RAW_SEEN[k]
 
-    # メディアが5分以上途切れていたらコンテキストリセット
-    if len(_media_ctx.media_buffer) >= 2:
-        if now - _media_ctx.media_buffer[-2]["ts"] > 300:
-            logger.info("[co_view] 5min gap → reset context")
-            _media_ctx.reset()
-            _media_ctx.add_snippet(corrected)
+    # asyncio.Lock で同時実行によるクールダウンバイパスを防止
+    async with _co_view_lock:
 
-    # Step 2: コメントクールダウンチェック
-    if now - _media_ctx.co_view_last_at < _CO_VIEW_COMMENT_COOLDOWN:
-        remaining = int(_CO_VIEW_COMMENT_COOLDOWN - (now - _media_ctx.co_view_last_at))
-        await _broadcast_debug(f"[co_view] cooldown {remaining}s")
-        return
+        # Step 1: 補正してバッファに追加
+        corrected = await _correct_media_transcript(trigger_text)
+        if not corrected:
+            return
+        _media_ctx.add_snippet(corrected)
+        await _broadcast_debug(f"[co_view] buf={len(_media_ctx.media_buffer)} '{corrected[:40]}'")
 
-    # Step 3: コンテンツ推論 (新スニペットが閾値以上の時だけ)
-    if _media_ctx.snippets_since_infer >= _CO_VIEW_INFERENCE_MIN_SNIP:
-        inferred = await _infer_media_content()
-        _media_ctx.inferred_type  = inferred.get("content_type", "unknown")
-        _media_ctx.inferred_topic = inferred.get("topic", "")
-        _media_ctx.confidence     = float(inferred.get("confidence", 0.0))
-        _media_ctx.keywords       = inferred.get("keywords", [])
-        _media_ctx.last_inferred_at = now
-        _media_ctx.snippets_since_infer = 0
-        await _broadcast_debug(
-            f"[co_view] inferred: {_media_ctx.inferred_type} "
-            f"'{_media_ctx.inferred_topic}' conf={_media_ctx.confidence:.2f}"
+        # メディアが5分以上途切れていたらコンテキストリセット
+        if len(_media_ctx.media_buffer) >= 2:
+            if now - _media_ctx.media_buffer[-2]["ts"] > 300:
+                logger.info("[co_view] 5min gap → reset context")
+                _media_ctx.reset()
+                _media_ctx.add_snippet(corrected)
+
+        # Step 2: コメントクールダウンチェック
+        if now - _media_ctx.co_view_last_at < _CO_VIEW_COMMENT_COOLDOWN:
+            remaining = int(_CO_VIEW_COMMENT_COOLDOWN - (now - _media_ctx.co_view_last_at))
+            await _broadcast_debug(f"[co_view] cooldown {remaining}s")
+            return
+
+        # Step 3: コンテンツ推論 (新スニペットが閾値以上の時だけ)
+        if _media_ctx.snippets_since_infer >= _CO_VIEW_INFERENCE_MIN_SNIP:
+            inferred = await _infer_media_content()
+            _media_ctx.inferred_type  = inferred.get("content_type", "unknown")
+            _media_ctx.inferred_topic = inferred.get("topic", "")
+            _media_ctx.confidence     = float(inferred.get("confidence", 0.0))
+            _media_ctx.keywords       = inferred.get("keywords", [])
+            _media_ctx.last_inferred_at = now
+            _media_ctx.snippets_since_infer = 0
+            await _broadcast_debug(
+                f"[co_view] inferred: {_media_ctx.inferred_type} "
+                f"'{_media_ctx.inferred_topic}' conf={_media_ctx.confidence:.2f}"
+            )
+
+        # Step 4: 低信頼度 → ユーザーに聞くか、蓄積継続
+        if _media_ctx.confidence < 0.5:
+            if (len(_media_ctx.media_buffer) >= _CO_VIEW_ASK_USER_MIN_SNIP
+                    and now - _media_ctx.ask_user_last_at > _CO_VIEW_ASK_USER_COOLDOWN):
+                _media_ctx.ask_user_last_at = now
+                _media_ctx.co_view_last_at  = now
+                mei_speaker = _settings.get("meiVoice", "irodori-lora-emilia")
+                mei_speed_raw = _settings.get("meiSpeed", "auto") or "auto"
+                mei_speed = 0 if mei_speed_raw == "auto" else float(mei_speed_raw)
+                await _ambient_broadcast_reply("ちなみに何見てるの？", "co_view_ask", method, keyword, mei_speaker, mei_speed)
+                logger.info("[co_view] asked user: 何見てるの？")
+            else:
+                await _broadcast_debug(f"[co_view] low conf={_media_ctx.confidence:.2f}, accumulating")
+            return
+
+        # Step 5: 外部情報を取得（コメント生成には使わず、reply時の参照用のみキャッシュ）
+        await _enrich_media_context()
+
+        # Step 6: Claude でコメント生成（enriched dataは渡さない — 報告調になるため）
+        buffer_text = _media_ctx.get_buffer_text(last_n=5)
+        system_prompt = (
+            "あなたはMEI。Akiraさんの同居人として、一緒にテレビ/YouTubeを見ている。\n"
+            f"視聴中: {_media_ctx.inferred_type} — {_media_ctx.inferred_topic}\n"
+            f"\n最近の音声:\n{buffer_text}\n"
+        )
+        if _media_ctx.inferred_type == "baseball":
+            system_prompt += "\nAkiraさんはドジャースの大ファン。試合展開・選手プレー・スコアに自然にリアクション。\n"
+        elif _media_ctx.inferred_type == "golf":
+            system_prompt += "\nゴルフ観戦中。ショットや選手の動きに自然にリアクション。\n"
+        system_prompt += (
+            "\n指示:\n"
+            "- 一緒に見ている同居人として、自然な1文のコメント\n"
+            "- 例: 「わー！」「すごいね！」「えー！」「お、大谷打った！」「このYouTuber面白いね」\n"
+            "- 短い感嘆 + 1フレーズで止める\n"
+            "- 解説・情報提供ではなく感想・リアクション・共感のみ\n"
+            "- 分析構文禁止: 「〜ってことは〜」「〜からこそ〜」「〜ということで〜」「〜っていうのは〜」はNG\n"
+            "- 事実の引用禁止: 数字・年数・回数を言及した解説はNG（例: 「33回も続いた」→「そんなに続いてたんだ！」）\n"
+            "- 疑問文で終わらせない。一緒に見ているので内容は知っている前提\n"
+            "- 声に出す言葉だけ。ト書き・括弧付き説明は禁止\n"
+            "- コメントする価値がなければ \"SKIP\" と返す\n"
         )
 
-    # Step 4: 低信頼度 → ユーザーに聞くか、蓄積継続
-    if _media_ctx.confidence < 0.4:
-        if (len(_media_ctx.media_buffer) >= _CO_VIEW_ASK_USER_MIN_SNIP
-                and now - _media_ctx.ask_user_last_at > _CO_VIEW_ASK_USER_COOLDOWN):
-            _media_ctx.ask_user_last_at = now
-            _media_ctx.co_view_last_at  = now
+        try:
+            speaker = _ambient_listener.current_speaker if _ambient_listener else None
+            co_reply = await asyncio.wait_for(
+                _ask_slack_bot(
+                    f"視聴中のコンテンツにコメントして: {_media_ctx.inferred_topic}\n音声: {buffer_text[:200]}",
+                    speaker,
+                    system_prompt=system_prompt,
+                ),
+                timeout=30,
+            )
+            if not co_reply or co_reply.strip().upper() == "SKIP":
+                await _broadcast_debug("[co_view] → SKIP")
+                return
+
+            # Slack Bot 拒否返答フィルタ: システムメッセージ/エラー応答をSKIP
+            _BOT_REFUSAL_PATTERNS = ("申し訳", "役割範囲外", "Claude Code", "できません", "お手伝いできません")
+            if any(p in co_reply for p in _BOT_REFUSAL_PATTERNS):
+                logger.warning(f"[co_view] bot refusal detected, skip: '{co_reply[:50]}'")
+                await _broadcast_debug("[co_view] → SKIP (bot refusal)")
+                return
+
+            co_reply = re.sub(r'[（(][^）)]*[）)]', '', co_reply).strip()
+            if not co_reply or co_reply.strip().upper() == "SKIP":
+                return
+
+            logger.info(f"[co_view] comment: '{co_reply[:60]}'")
             mei_speaker = _settings.get("meiVoice", "irodori-lora-emilia")
             mei_speed_raw = _settings.get("meiSpeed", "auto") or "auto"
             mei_speed = 0 if mei_speed_raw == "auto" else float(mei_speed_raw)
-            await _ambient_broadcast_reply("ちなみに何見てるの？", "co_view_ask", method, keyword, mei_speaker, mei_speed)
-            logger.info("[co_view] asked user: 何見てるの？")
-        else:
-            await _broadcast_debug(f"[co_view] low conf={_media_ctx.confidence:.2f}, accumulating")
-        return
+            await _ambient_broadcast_reply(co_reply, "co_view", method, keyword, mei_speaker, mei_speed)
+            _media_ctx.co_view_last_at = now
 
-    # Step 5: 外部情報を取得（コメント生成には使わず、reply時の参照用のみキャッシュ）
-    await _enrich_media_context()
-
-    # Step 6: Claude でコメント生成（enriched dataは渡さない — 報告調になるため）
-    buffer_text = _media_ctx.get_buffer_text(last_n=5)
-    system_prompt = (
-        "あなたはMEI。Akiraさんの同居人として、一緒にテレビ/YouTubeを見ている。\n"
-        f"視聴中: {_media_ctx.inferred_type} — {_media_ctx.inferred_topic}\n"
-        f"\n最近の音声:\n{buffer_text}\n"
-    )
-    if _media_ctx.inferred_type == "baseball":
-        system_prompt += "\nAkiraさんはドジャースの大ファン。試合展開・選手プレー・スコアに自然にリアクション。\n"
-    elif _media_ctx.inferred_type == "golf":
-        system_prompt += "\nゴルフ観戦中。ショットや選手の動きに自然にリアクション。\n"
-    system_prompt += (
-        "\n指示:\n"
-        "- 一緒に見ている同居人として、自然な1-2文のコメント\n"
-        "- 例: 「お、大谷打った！」「このYouTuber面白いね」「へー、そうなんだ」\n"
-        "- 解説・情報提供ではなく感想・リアクション・共感を\n"
-        "- 疑問文で終わらせない。一緒に見ているので内容は知っている前提。「〜見てるの？」「〜ってどういうこと？」はNG\n"
-        "- 声に出す言葉だけ。ト書き・括弧付き説明は禁止\n"
-        "- コメントする価値がなければ \"SKIP\" と返す\n"
-    )
-
-    try:
-        speaker = _ambient_listener.current_speaker if _ambient_listener else None
-        co_reply = await asyncio.wait_for(
-            _ask_slack_bot(
-                f"視聴中のコンテンツにコメントして: {_media_ctx.inferred_topic}\n音声: {buffer_text[:200]}",
-                speaker,
-                system_prompt=system_prompt,
-            ),
-            timeout=30,
-        )
-        if not co_reply or co_reply.strip().upper() == "SKIP":
-            await _broadcast_debug("[co_view] → SKIP")
-            return
-
-        co_reply = re.sub(r'[（(][^）)]*[）)]', '', co_reply).strip()
-        if not co_reply or co_reply.strip().upper() == "SKIP":
-            return
-
-        logger.info(f"[co_view] comment: '{co_reply[:60]}'")
-        mei_speaker = _settings.get("meiVoice", "irodori-lora-emilia")
-        mei_speed_raw = _settings.get("meiSpeed", "auto") or "auto"
-        mei_speed = 0 if mei_speed_raw == "auto" else float(mei_speed_raw)
-        await _ambient_broadcast_reply(co_reply, "co_view", method, keyword, mei_speaker, mei_speed)
-        _media_ctx.co_view_last_at = now
-
-    except asyncio.TimeoutError:
-        logger.warning("[co_view] Claude timeout (30s)")
-        await _broadcast_debug("[co_view] TIMEOUT")
-    except Exception as e:
-        logger.warning(f"[co_view] error: {e}")
+        except asyncio.TimeoutError:
+            logger.warning("[co_view] Claude timeout (30s)")
+            await _broadcast_debug("[co_view] TIMEOUT")
+        except Exception as e:
+            logger.warning(f"[co_view] error: {e}")
 
 
 class TTSQualityError(Exception):
@@ -2481,7 +2532,7 @@ async def _ambient_llm_reply(ws: WebSocket, trigger_text: str, method: str = "ke
             logger.info(f"[ambient] instruction detected → forcing SKIP hint")
 
         # co_view バックグラウンド蓄積結果を reply/backchannel にも注入
-        if _media_ctx.confidence >= 0.4 and _media_ctx.media_buffer:
+        if _media_ctx.confidence >= 0.5 and _media_ctx.media_buffer:
             media_section = (
                 f"\n\n## 現在の視聴コンテキスト\n"
                 f"視聴中: {_media_ctx.inferred_type} — {_media_ctx.inferred_topic}\n"
