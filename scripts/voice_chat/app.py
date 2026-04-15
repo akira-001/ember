@@ -13,6 +13,7 @@ import tempfile
 import time
 import urllib.parse
 import xml.etree.ElementTree as ET
+from contextlib import asynccontextmanager
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -98,6 +99,8 @@ app.add_middleware(
 )
 
 _tts_locks: dict[str, asyncio.Lock] = {}
+_ambient_llm_gate = asyncio.Semaphore(1)
+_AMBIENT_LLM_GATE_TIMEOUT = 0.15
 
 def _get_tts_lock(engine: str) -> asyncio.Lock:
     if engine not in _tts_locks:
@@ -288,6 +291,64 @@ async def _send_diagnostic_event(rendered_text: str, target: WebSocket | None = 
             await client.send_text(payload)
         except Exception:
             _clients.discard(client)
+
+
+def _normalize_text_signature(text: str) -> str:
+    """Cheap canonical form for dedup / cache decisions."""
+    normalized = re.sub(r"[ \u3000\t\r\n、。．\.!！?？,:：;；「」『』（）()\[\]【】<>《》・…〜～\-—_]+", "", text)
+    return normalized.strip().lower()
+
+
+def _dedupe_texts_for_batch(texts: list[str]) -> list[str]:
+    """Keep first occurrence of semantically similar short snippets."""
+    deduped: list[str] = []
+    seen: set[str] = set()
+    for text in texts:
+        sig = _normalize_text_signature(text)
+        if not sig:
+            continue
+        if sig in seen:
+            continue
+        seen.add(sig)
+        deduped.append(text)
+    return deduped
+
+
+def _is_low_value_backchannel_text(text: str) -> bool:
+    """Decide whether a backchannel can be handled without LLM."""
+    sig = _normalize_text_signature(text)
+    if not sig:
+        return True
+    if len(sig) <= 8:
+        return True
+    return bool(re.fullmatch(r"(うん|はい|そう|なるほど|了解|たしかに|わかる|いいね|オッケー|OK)+", sig, re.IGNORECASE))
+
+
+def _pick_canned_backchannel(text: str) -> str:
+    """Short non-LLM response used for trivial backchannels."""
+    if "？" in text or "?" in text:
+        return "うんうん"
+    if len(_normalize_text_signature(text)) <= 12:
+        return "なるほど"
+    return "そうなんだね"
+
+
+@asynccontextmanager
+async def _acquire_semaphore(sem: asyncio.Semaphore, timeout: float | None = None):
+    acquired = False
+    try:
+        if timeout is None:
+            await sem.acquire()
+            acquired = True
+        else:
+            await asyncio.wait_for(sem.acquire(), timeout=timeout)
+            acquired = True
+        yield True
+    except asyncio.TimeoutError:
+        yield False
+    finally:
+        if acquired:
+            sem.release()
 
 
 # --- Models (lazy load) ---
@@ -2478,6 +2539,13 @@ def _clean_text_for_tts(text: str) -> str:
     return text
 
 
+def _tts_cache_text_key(text: str) -> str:
+    """Normalize text for TTS cache lookup without changing synthesized content."""
+    text = re.sub(r"[ \u3000\t\r\n]+", " ", text).strip()
+    text = re.sub(r"[。．\.!！?？]{2,}", "。", text)
+    return text
+
+
 def _wav_duration(audio: bytes) -> float:
     """WAV バイト列から再生時間（秒）を計算"""
     if len(audio) < 44 or audio[:4] != b'RIFF':
@@ -2619,7 +2687,8 @@ async def synthesize_speech(text: str, speaker_id: int | str, speed: float = 1.0
     # Auto-detect engine from speaker_id prefix
     if tts_engine == "voicevox" and isinstance(speaker_id, str) and speaker_id.startswith("irodori-"):
         tts_engine = "irodori"
-    cache_key = f"{tts_engine}:{speaker_id}:{speed}:{text}"
+    cache_text = _tts_cache_text_key(text)
+    cache_key = f"{tts_engine}:{speaker_id}:{speed}:{cache_text}"
     now = time.time()
     cached = _tts_cache.get(cache_key)
     if cached and now - cached[0] < _TTS_CACHE_TTL:
@@ -3994,8 +4063,9 @@ async def _process_always_on(ws: WebSocket, audio_data: bytes, *, speech_ts: int
                 _ambient_listener.record_speaker(spk_name)
 
                 if not _ambient_listener.add_to_buffer(text):
-                    logger.info(f"[ambient] echo filtered: '{text[:50]}'")
-                    await _send_debug(ws, f"[ambient] echo filtered")
+                    reason = getattr(_ambient_listener, "last_buffer_reject_reason", "") or "filtered"
+                    logger.info(f"[ambient] {reason} filtered: '{text[:50]}'")
+                    await _send_debug(ws, f"[ambient] {reason} filtered")
                 else:
                     kw_match = _ambient_listener.check_keywords(text)
                     if kw_match and not _ambient_listener.is_llm_in_cooldown():
@@ -4025,6 +4095,25 @@ async def _ambient_llm_reply(ws: WebSocket, trigger_text: str, method: str = "ke
         source_hint = _ambient_listener.classify_source(trigger_text)
         intervention = _ambient_listener.decide_intervention(trigger_text, source_hint)
         logger.info(f"[ambient] source: {source_hint} intervention={intervention} | '{trigger_text[:40]}'")
+        trigger_sig = _normalize_text_signature(trigger_text)
+        if not trigger_sig:
+            logger.info("[ambient] empty/normalized-empty trigger → skip")
+            _ambient_listener.record_judgment(method=method, result="skip", keyword=keyword, source_hint=source_hint, intervention=intervention)
+            await _broadcast_ambient_log()
+            _ambient_listener.state = "listening"
+            await _broadcast_ambient_state()
+            return
+        if intervention == "backchannel" and _is_low_value_backchannel_text(trigger_text):
+            canned = _pick_canned_backchannel(trigger_text)
+            logger.info(f"[ambient] backchannel shortcut: '{canned}'")
+            await _ambient_broadcast_text(canned, ws)
+            _ambient_listener.record_judgment(method=method, result="speak", keyword=keyword, utterance=canned, intervention="backchannel", source_hint=source_hint)
+            _ambient_listener.record_mei_utterance(canned)
+            await _broadcast_ambient_log()
+            _ambient_listener.record_llm_cooldown()
+            _ambient_listener.state = "listening"
+            await _broadcast_ambient_state()
+            return
         source_label = {"user_response": "User(応答)", "user_initiative": "User(呼びかけ)",
                         "user_likely": "User(推定)", "user_identified": "User(声紋)",
                         "media_likely": "Media(TV等)", "fragmentary": "Fragment", "unknown": "不明",
@@ -4082,9 +4171,18 @@ async def _ambient_llm_reply(ws: WebSocket, trigger_text: str, method: str = "ke
             {"role": "user", "content": f"直近の発話: {trigger_text}"},
         ]
         try:
-            logger.info(f"[ambient/tier1] local LLM ({local_model}) starting")
-            await _broadcast_debug(f"[ambient/tier1] {local_model} で即レス判定中...")
-            local_reply = await asyncio.wait_for(chat_with_llm(messages, local_model), timeout=30)
+            async with _acquire_semaphore(_ambient_llm_gate, _AMBIENT_LLM_GATE_TIMEOUT) as acquired:
+                if not acquired:
+                    logger.info("[ambient/tier1] busy → skip")
+                    await _broadcast_debug("[ambient/tier1] busy → skip")
+                    _ambient_listener.record_judgment(method=method, result="skip", keyword=keyword, source_hint=source_hint, intervention=intervention)
+                    await _broadcast_ambient_log()
+                    _ambient_listener.state = "listening"
+                    await _broadcast_ambient_state()
+                    return
+                logger.info(f"[ambient/tier1] local LLM ({local_model}) starting")
+                await _broadcast_debug(f"[ambient/tier1] {local_model} で即レス判定中...")
+                local_reply = await asyncio.wait_for(chat_with_llm(messages, local_model), timeout=30)
             logger.info(f"[ambient/tier1] local reply: '{local_reply[:60]}'")
         except asyncio.TimeoutError:
             logger.warning(f"[ambient/tier1] local LLM timeout (30s)")
@@ -4185,11 +4283,16 @@ async def _ambient_llm_reply(ws: WebSocket, trigger_text: str, method: str = "ke
         logger.info(f"[ambient/tier2] Claude follow-up starting")
         await _broadcast_debug(f"[ambient/tier2] Claude で品質コメント生成中...")
         try:
-            speaker = _ambient_listener.current_speaker if _ambient_listener else None
-            claude_reply = await asyncio.wait_for(
-                _ask_slack_bot(trigger_text, speaker, system_prompt=tier2_prompt),
-                timeout=60,
-            )
+            async with _acquire_semaphore(_ambient_llm_gate, _AMBIENT_LLM_GATE_TIMEOUT) as acquired:
+                if not acquired:
+                    logger.info("[ambient/tier2] busy → skip")
+                    await _broadcast_debug("[ambient/tier2] busy → skip")
+                    return
+                speaker = _ambient_listener.current_speaker if _ambient_listener else None
+                claude_reply = await asyncio.wait_for(
+                    _ask_slack_bot(trigger_text, speaker, system_prompt=tier2_prompt),
+                    timeout=60,
+                )
             if not claude_reply or claude_reply.strip().upper() == "SKIP":
                 logger.info(f"[ambient/tier2] Claude → SKIP (no follow-up needed)")
                 await _broadcast_debug(f"[ambient/tier2] → SKIP")
@@ -4332,11 +4435,16 @@ async def _ambient_batch_loop():
                 # Filter out media markers (※音楽, ♪, BGM etc.) before joining
                 raw_texts = [e["text"] for e in _ambient_listener.text_buffer[-3:]]
                 filtered_texts = [t for t in raw_texts if not re.match(r'^[※♪♫☆★]', t.strip())]
+                filtered_texts = _dedupe_texts_for_batch(filtered_texts)
                 if not filtered_texts:
                     logger.info(f"[ambient] batch all media markers, skipping")
                     _ambient_listener.flush_buffer()
                     continue
                 trigger = " ".join(filtered_texts)
+                if _is_low_value_backchannel_text(trigger):
+                    logger.info(f"[ambient] batch low-value trigger skipped: '{trigger[:40]}'")
+                    _ambient_listener.flush_buffer()
+                    continue
                 await _ambient_llm_reply(ws, trigger, method="llm_batch")
                 _ambient_listener.flush_buffer()
         except Exception as e:

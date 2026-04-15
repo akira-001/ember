@@ -102,6 +102,11 @@ class TestAmbientListener:
         listener.add_to_buffer("テスト2")
         assert len(listener.text_buffer) == 2
 
+    def test_add_text_to_buffer_filters_duplicates(self, listener):
+        assert listener.add_to_buffer("テスト1") is True
+        assert listener.add_to_buffer("テスト1") is False
+        assert listener.last_buffer_reject_reason == "repeat"
+
     def test_flush_buffer(self, listener):
         listener.add_to_buffer("テスト1")
         listener.add_to_buffer("テスト2")

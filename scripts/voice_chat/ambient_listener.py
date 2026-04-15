@@ -37,6 +37,8 @@ class AmbientListener:
 
         # Buffers
         self.text_buffer: list[dict] = []  # [{"text": str, "ts": float}]
+        self._recent_text_signatures: dict[str, float] = {}
+        self.last_buffer_reject_reason: str = ""
 
         # MEI's last utterance tracking (for source classification)
         self.last_mei_utterance: str = ""
@@ -212,9 +214,10 @@ class AmbientListener:
 
     @property
     def _in_media_context(self) -> bool:
-        """Recent classification was media → carry forward for 2 minutes."""
+        """Recent classification was media → carry forward for 5 minutes.
+        5min covers the gap between YouTube segments (5min gap reset)."""
         return (self._last_source == "media_likely"
-                and time.time() - self._last_source_at < 120)
+                and time.time() - self._last_source_at < 300)
 
     def classify_source(self, text: str) -> str:
         """Classify whether the text is from user or media.
@@ -247,7 +250,8 @@ class AmbientListener:
             return "user_identified"
 
         # MEI spoke recently → likely user responding
-        if self.mei_spoke_ago < 30:
+        # media_context 中はYouTube/TV音声の誤判定を防ぐため無効化
+        if self.mei_spoke_ago < 30 and not self._in_media_context:
             return "user_response"
 
         # Direct call to MEI (strong user signal, overrides media context)
@@ -337,10 +341,28 @@ class AmbientListener:
 
     def add_to_buffer(self, text: str) -> bool:
         """Add text to buffer. Returns False if filtered as echo."""
+        self.last_buffer_reject_reason = ""
         if self.is_echo(text):
+            self.last_buffer_reject_reason = "echo"
             return False
+        signature = self._text_signature(text)
+        now = time.time()
+        if not signature:
+            self.last_buffer_reject_reason = "empty"
+            return False
+        last_seen = self._recent_text_signatures.get(signature, 0)
+        if now - last_seen < 20:
+            self.last_buffer_reject_reason = "repeat"
+            return False
+        self._recent_text_signatures[signature] = now
+        cutoff = now - 120
+        self._recent_text_signatures = {sig: ts for sig, ts in self._recent_text_signatures.items() if ts >= cutoff}
         self.text_buffer.append({"text": text, "ts": time.time()})
         return True
+
+    @staticmethod
+    def _text_signature(text: str) -> str:
+        return re.sub(r"[ \u3000\t\r\n、。．\.!！?？,:：;；「」『』（）()\[\]【】<>《》・…〜～\-—_]+", "", text).strip().lower()
 
     def flush_buffer(self) -> list[dict]:
         buf = self.text_buffer[:]
