@@ -1,3 +1,7 @@
+from unittest import mock
+
+import pytest
+
 import app
 
 
@@ -12,3 +16,39 @@ def test_dedupe_texts_for_batch_removes_duplicate_snippets():
 def test_low_value_backchannel_detection_distinguishes_short_acknowledgements():
     assert app._is_low_value_backchannel_text("うんうん") is True
     assert app._is_low_value_backchannel_text("次回までに資料を整理して共有するね") is False
+
+
+def test_meeting_hint_score_rewards_calendar_and_meeting_language():
+    score = app._meeting_hint_score(
+        "進捗を共有します。決定事項は次回までに整理します。",
+        gcal_title="週次定例",
+        keywords=["進捗", "確認"],
+    )
+    assert score >= 6
+
+
+def test_should_promote_to_meeting_accepts_strong_meeting_context():
+    assert app._should_promote_to_meeting(
+        "youtube_talk",
+        0.52,
+        "進捗を共有します。決定事項は次回までに整理します。",
+        gcal_title="週次定例",
+        keywords=["進捗", "確認"],
+    ) is True
+
+
+@pytest.mark.asyncio
+async def test_infer_media_content_promotes_meeting_from_calendar_and_phrases():
+    app._media_ctx.reset()
+    app._media_ctx.add_snippet("進捗を共有します")
+    app._media_ctx.add_snippet("決定事項は明日確認します")
+    app._media_ctx.add_snippet("次回までにTODOを整理します")
+
+    with mock.patch("app.chat_with_llm", return_value='{"content_type":"youtube_talk","topic":"雑談","matched_title":"","keywords":["進捗","確認"],"confidence":0.52}'), \
+         mock.patch("app._fetch_current_gcal_meeting", return_value="週次定例"), \
+         mock.patch("app._fetch_tv_guide", return_value=""):
+        result = await app._infer_media_content()
+
+    assert result["content_type"] == "meeting"
+    assert result["topic"] == "週次定例"
+    assert result["confidence"] >= 0.65
