@@ -41,12 +41,16 @@ def reset_meeting_state():
     app._media_ctx.last_meeting_digest_signature = ""
     app._media_ctx.last_meeting_digest_at = 0.0
     app._ambient_listener = object()
+    app._meeting_digest_batch_task = None
+    app._meeting_digest_idle_task = None
     app.SLACK_USER_TOKENS["mei"] = "token"
     app.SLACK_DM_CHANNELS["mei"] = "channel"
     app.MEETING_SUMMARY_TARGET_BOTS = ["mei"]
     yield
     app._media_ctx.reset()
     app._ambient_listener = None
+    app._meeting_digest_batch_task = None
+    app._meeting_digest_idle_task = None
 
 
 @pytest.mark.asyncio
@@ -130,6 +134,28 @@ async def test_format_meeting_digest_message_fills_all_sections_from_transcript(
 
 
 @pytest.mark.asyncio
+async def test_meeting_digest_batch_accumulates_transcript():
+    import app
+
+    app._media_ctx.add_snippet("進捗を確認します")
+    app._media_ctx.add_snippet("A案で進めることで合意しました")
+    app._media_ctx.add_snippet("資料は今日中に更新します")
+    app._media_ctx.add_snippet("夕方にお客さんへ確認します")
+
+    sig1 = app._start_or_update_meeting_digest_batch()
+    assert sig1
+    first_transcript = app._media_ctx.meeting_digest_pending_transcript
+    assert "A案で進めることで合意しました" in first_transcript
+
+    app._media_ctx.add_snippet("次回までにTODOを整理します")
+    sig2 = app._start_or_update_meeting_digest_batch()
+    assert sig2
+    assert app._media_ctx.meeting_digest_pending_signature == sig2
+    assert "次回までにTODOを整理します" in app._media_ctx.meeting_digest_pending_transcript
+    assert len(app._media_ctx.meeting_digest_pending_transcript) >= len(first_transcript)
+
+
+@pytest.mark.asyncio
 async def test_maybe_send_meeting_digest_posts_to_slack_once():
     import app
 
@@ -147,3 +173,27 @@ async def test_maybe_send_meeting_digest_posts_to_slack_once():
     assert slack_post.call_count == 1
     assert app._media_ctx.last_meeting_digest_signature
     assert app._media_ctx.last_meeting_digest_at > 0
+
+
+@pytest.mark.asyncio
+async def test_maybe_send_meeting_digest_force_posts_after_meeting_end():
+    import app
+
+    app._media_ctx.meeting_digest_pending_signature = "digest-1"
+    app._media_ctx.meeting_digest_pending_title = "週次定例"
+    app._media_ctx.meeting_digest_pending_topic = "進捗共有"
+    app._media_ctx.meeting_digest_pending_transcript = (
+        "進捗を確認します。\n"
+        "A案で進めることで合意しました。\n"
+        "資料は今日中に更新します。\n"
+        "夕方にお客さんへ確認します。"
+    )
+    app._media_ctx.meeting_digest_pending_keywords = ["進捗", "確認"]
+    app._media_ctx.meeting_digest_pending_at = 0.0
+
+    with mock.patch("app._resolve_meeting_summary_bot_id", return_value="mei"), \
+         mock.patch("app.slack_post_message", return_value="123.456") as slack_post:
+        await app._maybe_send_meeting_digest(force=True)
+
+    assert slack_post.call_count == 1
+    assert app._media_ctx.last_meeting_digest_signature == "digest-1"

@@ -159,6 +159,7 @@ MEETING_SUMMARY_TARGET_BOTS = [
     if b.strip()
 ]
 MEETING_SUMMARY_MIN_SNIPPETS = int(os.getenv("MEETING_SUMMARY_MIN_SNIPPETS", "4"))
+MEETING_SUMMARY_BATCH_SEC = int(os.getenv("MEETING_SUMMARY_BATCH_SEC", "1800"))
 MEETING_SUMMARY_IDLE_SEC = int(os.getenv("MEETING_SUMMARY_IDLE_SEC", "120"))
 MEETING_SUMMARY_COOLDOWN_SEC = int(os.getenv("MEETING_SUMMARY_COOLDOWN_SEC", "1800"))
 
@@ -668,6 +669,8 @@ class _MediaContext:
     meeting_digest_pending_transcript: str = ""
     meeting_digest_pending_keywords: list = field(default_factory=list)
     meeting_digest_pending_at: float = 0.0
+    meeting_digest_pending_started_at: float = 0.0
+    meeting_digest_pending_buffer_len: int = 0
     # Patch Y1: enrich query rotation — 毎回同じニュースを繰り返さないよう検索suffixをローテーション
     enrich_query_idx: int = 0
     # Patch Y1補: 同一作品で既に返した記事タイトルを記憶して重複を除外
@@ -719,6 +722,8 @@ class _MediaContext:
         self.meeting_digest_pending_transcript = ""
         self.meeting_digest_pending_keywords = []
         self.meeting_digest_pending_at = 0.0
+        self.meeting_digest_pending_started_at = 0.0
+        self.meeting_digest_pending_buffer_len = 0
 
 
 _media_ctx = _MediaContext()
@@ -739,6 +744,7 @@ _STT_RAW_DEDUP_WINDOW = 30.0           # 30秒以内の同一原文はスキッ�
 # TV guide cache
 _tv_guide_cache: dict = {"data": "", "fetched_at": 0.0}
 _meeting_digest_lock = asyncio.Lock()
+_meeting_digest_batch_task: asyncio.Task | None = None
 _meeting_digest_idle_task: asyncio.Task | None = None
 
 
@@ -1114,32 +1120,64 @@ async def _fetch_current_gcal_meeting() -> str:
 
 def _meeting_digest_signature(title: str, topic: str, transcript: str) -> str:
     payload = {
-        "title": title.strip(),
-        "topic": topic.strip(),
-        "transcript": re.sub(r"\s+", " ", transcript.strip())[:600],
+        # Signatureは transcript 基準にして、会議タイトルの後追い補完で別バッチ扱いにならないようにする。
+        "transcript": re.sub(r"\s+", " ", transcript.strip())[:1200],
     }
     raw = json.dumps(payload, ensure_ascii=False, sort_keys=True)
     return hashlib.sha1(raw.encode("utf-8")).hexdigest()
 
 
-def _capture_meeting_digest_snapshot() -> str | None:
+def _start_or_update_meeting_digest_batch() -> str | None:
     if _media_ctx.inferred_type != "meeting":
         return None
     if len(_media_ctx.media_buffer) < MEETING_SUMMARY_MIN_SNIPPETS:
         return None
 
+    now = time.time()
     meeting_title = _gcal_meeting_cache.get("title", "") or ""
     topic = _media_ctx.inferred_topic or meeting_title or "会議"
-    transcript = _media_ctx.get_buffer_text(last_n=10)
-    signature = _meeting_digest_signature(meeting_title, topic, transcript)
+    current_len = len(_media_ctx.media_buffer)
+    batch_exists = bool(_media_ctx.meeting_digest_pending_signature)
+    buffer_reset = batch_exists and current_len < _media_ctx.meeting_digest_pending_buffer_len
+    if not batch_exists or buffer_reset:
+        transcript = _media_ctx.get_buffer_text(last_n=20)
+        _media_ctx.meeting_digest_pending_transcript = transcript
+        _media_ctx.meeting_digest_pending_started_at = now
+        _media_ctx.meeting_digest_pending_buffer_len = current_len
+    else:
+        new_items = _media_ctx.media_buffer[_media_ctx.meeting_digest_pending_buffer_len:]
+        if new_items:
+            addition = "\n".join(e["text"] for e in new_items if str(e.get("text", "")).strip())
+            if addition:
+                if _media_ctx.meeting_digest_pending_transcript:
+                    _media_ctx.meeting_digest_pending_transcript += "\n" + addition
+                else:
+                    _media_ctx.meeting_digest_pending_transcript = addition
+            _media_ctx.meeting_digest_pending_buffer_len = current_len
+            _media_ctx.meeting_digest_pending_at = now
+        elif not _media_ctx.meeting_digest_pending_started_at:
+            _media_ctx.meeting_digest_pending_started_at = now
 
-    _media_ctx.meeting_digest_pending_signature = signature
     _media_ctx.meeting_digest_pending_title = meeting_title
     _media_ctx.meeting_digest_pending_topic = topic
-    _media_ctx.meeting_digest_pending_transcript = transcript
     _media_ctx.meeting_digest_pending_keywords = list(_media_ctx.keywords or [])
-    _media_ctx.meeting_digest_pending_at = time.time()
+    signature = _meeting_digest_signature(meeting_title, topic, _media_ctx.meeting_digest_pending_transcript)
+    _media_ctx.meeting_digest_pending_signature = signature
+    _media_ctx.meeting_digest_pending_at = now
+    if not _media_ctx.meeting_digest_pending_started_at:
+        _media_ctx.meeting_digest_pending_started_at = now
     return signature
+
+
+def _clear_meeting_digest_batch() -> None:
+    _media_ctx.meeting_digest_pending_signature = ""
+    _media_ctx.meeting_digest_pending_title = ""
+    _media_ctx.meeting_digest_pending_topic = ""
+    _media_ctx.meeting_digest_pending_transcript = ""
+    _media_ctx.meeting_digest_pending_keywords = []
+    _media_ctx.meeting_digest_pending_at = 0.0
+    _media_ctx.meeting_digest_pending_started_at = 0.0
+    _media_ctx.meeting_digest_pending_buffer_len = 0
 
 
 def _cancel_meeting_digest_idle_task() -> None:
@@ -1149,9 +1187,41 @@ def _cancel_meeting_digest_idle_task() -> None:
     _meeting_digest_idle_task = None
 
 
+def _cancel_meeting_digest_batch_task() -> None:
+    global _meeting_digest_batch_task
+    if _meeting_digest_batch_task and not _meeting_digest_batch_task.done():
+        _meeting_digest_batch_task.cancel()
+    _meeting_digest_batch_task = None
+
+
+def _schedule_meeting_digest_batch_task() -> None:
+    global _meeting_digest_batch_task
+    signature = _start_or_update_meeting_digest_batch()
+    if not signature:
+        return
+
+    if _meeting_digest_batch_task and not _meeting_digest_batch_task.done():
+        return
+
+    async def _worker(expected_signature: str) -> None:
+        try:
+            await asyncio.sleep(MEETING_SUMMARY_BATCH_SEC)
+            if _media_ctx.meeting_digest_pending_signature != expected_signature:
+                return
+            if _media_ctx.last_meeting_digest_signature == expected_signature:
+                return
+            await _maybe_send_meeting_digest(force=True)
+        except asyncio.CancelledError:
+            return
+        except Exception as e:
+            logger.warning(f"[meeting_digest] batch worker failed: {e}")
+
+    _meeting_digest_batch_task = asyncio.create_task(_worker(signature))
+
+
 def _schedule_meeting_digest_idle_task() -> None:
     global _meeting_digest_idle_task
-    signature = _capture_meeting_digest_snapshot()
+    signature = _start_or_update_meeting_digest_batch()
     if not signature:
         return
 
@@ -1168,31 +1238,7 @@ def _schedule_meeting_digest_idle_task() -> None:
                 return
             if len(_media_ctx.meeting_digest_pending_transcript.strip()) < 10:
                 return
-
-            bot_id = _resolve_meeting_summary_bot_id()
-            if not bot_id:
-                logger.info("[meeting_digest] slack target not configured, skip")
-                return
-
-            async with _meeting_digest_lock:
-                if _media_ctx.meeting_digest_pending_signature != expected_signature:
-                    return
-                if _media_ctx.last_meeting_digest_signature == expected_signature:
-                    return
-
-                digest = await _generate_meeting_digest(
-                    meeting_title=_media_ctx.meeting_digest_pending_title,
-                    topic=_media_ctx.meeting_digest_pending_topic,
-                    transcript=_media_ctx.meeting_digest_pending_transcript,
-                    keywords=list(_media_ctx.meeting_digest_pending_keywords or []),
-                )
-                ts = await slack_post_message(bot_id, digest)
-                _media_ctx.last_meeting_digest_signature = expected_signature
-                _media_ctx.last_meeting_digest_at = time.time()
-                if ts:
-                    logger.info(f"[meeting_digest] sent to Slack bot={bot_id} ts={ts}")
-                else:
-                    logger.warning(f"[meeting_digest] failed to post to Slack bot={bot_id}")
+            await _maybe_send_meeting_digest(force=True)
         except asyncio.CancelledError:
             return
         except Exception as e:
@@ -1518,10 +1564,12 @@ def _resolve_meeting_summary_bot_id() -> str | None:
     return None
 
 
-async def _maybe_send_meeting_digest() -> None:
+async def _maybe_send_meeting_digest(*, force: bool = False) -> None:
     if not _ambient_listener:
         return
-    signature = _capture_meeting_digest_snapshot()
+    signature = _start_or_update_meeting_digest_batch()
+    if not signature and force and _media_ctx.meeting_digest_pending_signature:
+        signature = _media_ctx.meeting_digest_pending_signature
     if not signature:
         return
 
@@ -1530,7 +1578,7 @@ async def _maybe_send_meeting_digest() -> None:
     topic = _media_ctx.meeting_digest_pending_topic
     transcript = _media_ctx.meeting_digest_pending_transcript
 
-    if (
+    if not force and (
         _media_ctx.last_meeting_digest_signature == signature
         and now - _media_ctx.last_meeting_digest_at < MEETING_SUMMARY_COOLDOWN_SEC
     ):
@@ -1544,7 +1592,7 @@ async def _maybe_send_meeting_digest() -> None:
     async with _meeting_digest_lock:
         # Re-check after acquiring the lock to avoid duplicate sends.
         now = time.time()
-        if (
+        if not force and (
             _media_ctx.last_meeting_digest_signature == signature
             and now - _media_ctx.last_meeting_digest_at < MEETING_SUMMARY_COOLDOWN_SEC
         ):
@@ -1562,6 +1610,9 @@ async def _maybe_send_meeting_digest() -> None:
         ts = await slack_post_message(bot_id, digest)
         _media_ctx.last_meeting_digest_signature = signature
         _media_ctx.last_meeting_digest_at = now
+        _clear_meeting_digest_batch()
+        _cancel_meeting_digest_idle_task()
+        _cancel_meeting_digest_batch_task()
         if ts:
             logger.info(f"[meeting_digest] sent to Slack bot={bot_id} ts={ts}")
         else:
@@ -1774,6 +1825,7 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
         if _infer_early:
             logger.info(f"[co_view/infer] Patch AP1: early infer (conf=0.0, snips={_media_ctx.snippets_since_infer})")
         if _media_ctx.snippets_since_infer >= _CO_VIEW_INFERENCE_MIN_SNIP or _infer_early:
+            prev_content_type = _media_ctx.inferred_type
             inferred = await _infer_media_content()
             # Patch V1: content_type変化時にenrichキャッシュをリセット（前セッションの情報混入防止）
             # Patch V2: conf < 0.7 の低信頼度判定ではtype変更をスキップ（誤判定によるenrich cache resetを防ぐ）
@@ -1859,6 +1911,10 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
             _media_ctx.keywords       = inferred.get("keywords", [])
             _media_ctx.last_inferred_at = now
             _media_ctx.snippets_since_infer = 0
+            if prev_content_type == "meeting" and _media_ctx.inferred_type != "meeting":
+                if _media_ctx.meeting_digest_pending_signature:
+                    logger.info("[meeting_digest] meeting ended → flush final batch")
+                    asyncio.create_task(_maybe_send_meeting_digest(force=True))
             # Patch M1: matched_title が特定できた場合は last_valid を更新
             if _media_ctx.matched_title:
                 # Patch Y1: matched_title が変わったら enrich_query_idx と seen_titles をリセット
@@ -1920,6 +1976,7 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
         if _media_ctx.inferred_type == "meeting":
             gcal_title = await _fetch_current_gcal_meeting()
             if _media_ctx.confidence >= 0.6:
+                _schedule_meeting_digest_batch_task()
                 _schedule_meeting_digest_idle_task()
             enriched = ""
             _meeting_kws = _media_ctx.keywords[:2]
