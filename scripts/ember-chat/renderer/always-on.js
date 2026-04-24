@@ -24,6 +24,43 @@ class AlwaysOnListener {
     this.enabled = false;
     this._rmsCleanup = null;
     this._speechStartTs = null;
+    this._lastAudioSendTs = 0;
+    this._watchdogInterval = null;
+    this._isStale = false;
+  }
+
+  // Watchdog: detect silent failures where VAD stops emitting audio despite 'listening' state
+  _startWatchdog() {
+    this._stopWatchdog();
+    this._lastAudioSendTs = Date.now();
+    this._isStale = false;
+    const STALE_MS = 2 * 60 * 1000;
+    const RESTART_MS = 10 * 60 * 1000;
+    this._watchdogInterval = setInterval(() => {
+      if (!this.enabled || this.state !== 'listening') return;
+      const idle = Date.now() - this._lastAudioSendTs;
+      if (idle > RESTART_MS) {
+        console.warn(`[AlwaysOn] watchdog: no audio for ${Math.floor(idle/60000)}min, auto-restarting`);
+        this.restart();
+      } else if (idle > STALE_MS) {
+        this._setStale(true);
+      }
+    }, 30 * 1000);
+  }
+
+  _stopWatchdog() {
+    if (this._watchdogInterval) {
+      clearInterval(this._watchdogInterval);
+      this._watchdogInterval = null;
+    }
+  }
+
+  _setStale(stale) {
+    if (this._isStale === stale) return;
+    this._isStale = stale;
+    if (this.state === 'listening') {
+      this.onStateChange(stale ? 'listening_stale' : 'listening');
+    }
   }
 
   async start() {
@@ -47,6 +84,7 @@ class AlwaysOnListener {
 
     this.enabled = true;
     this._setState('listening');
+    this._startWatchdog();
   }
 
   async _initSileroVAD() {
@@ -162,6 +200,8 @@ class AlwaysOnListener {
       speech_ts: this._speechStartTs || Date.now(),
     }));
     ws.send(audioBuffer);
+    this._lastAudioSendTs = Date.now();
+    if (this._isStale) this._setStale(false);
     this._speechStartTs = null;
     // Stay in 'listening' — server processes async, we keep capturing
   }
@@ -182,6 +222,7 @@ class AlwaysOnListener {
   }
 
   stop() {
+    this._stopWatchdog();
     if (this.vad) this.vad.pause();
     if (this._rmsCleanup) this._rmsCleanup();
     this.enabled = false;
@@ -195,6 +236,18 @@ class AlwaysOnListener {
       this.start();
     }
     return this.enabled;
+  }
+
+  async restart() {
+    const wasEnabled = this.enabled;
+    console.log(`[AlwaysOn] restart requested (wasEnabled=${wasEnabled})`);
+    this.destroy();
+    if (wasEnabled) {
+      // Let WebAudio/MediaStream resources fully release before re-initializing —
+      // skipping this causes Silero VAD to silently fail on rapid destroy→new cycles.
+      await new Promise(r => setTimeout(r, 300));
+      await this.start();
+    }
   }
 
   _setState(newState) {
@@ -232,10 +285,12 @@ class AlwaysOnListener {
   }
 
   destroy() {
+    this._stopWatchdog();
     if (this.vad) { this.vad.destroy(); this.vad = null; }
     if (this._rmsCleanup) this._rmsCleanup();
     if (this.micStream) { this.micStream.getTracks().forEach(t => t.stop()); this.micStream = null; }
     this.enabled = false;
+    this._isStale = false;
     this._setState('idle');
   }
 }

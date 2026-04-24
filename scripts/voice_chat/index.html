@@ -195,6 +195,16 @@
   }
   .bot-row .bot-play:hover { background: var(--ember-accent-glow); }
   .bot-row .bot-play:disabled { opacity: 0.4; }
+  .session-error {
+    margin-left: auto;
+    font-size: 11px;
+    color: #ff6b6b;
+    background: rgba(255,107,107,0.12);
+    border: 1px solid rgba(255,107,107,0.35);
+    border-radius: 4px;
+    padding: 2px 6px;
+    white-space: nowrap;
+  }
   .side-btn.reply-on { border-color: var(--ember-accent); color: var(--ember-accent); }
   #talkBtn.reply-mode { border-color: var(--ember-warm); color: var(--ember-warm); }
   #talkBtn.reply-mode:hover { background: rgba(245, 166, 35, 0.1); }
@@ -378,6 +388,7 @@
     <option value="2.0">2.0x</option>
   </select>
   <button class="bot-play" onclick="playBotMessage('mei')">Play</button>
+  <span id="sessionError" class="session-error" style="display:none"></span>
 </div>
 <div class="bot-row">
   <span class="bot-name">Eve</span>
@@ -1283,6 +1294,10 @@ function handleAmbientWS(msg) {
   }
   if (msg.type === 'ambient_response') {
     addMessage(msg.text, 'assistant');
+  }
+  if (msg.type === 'session_error') {
+    const el = document.getElementById('sessionError');
+    if (el) { el.textContent = msg.msg; el.style.display = ''; }
   }
 }
 </script>

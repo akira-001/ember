@@ -171,6 +171,7 @@ SLACK_MENTION_USER_ID = os.getenv("SLACK_USER_ID", "U3SFGQXNH")
 # --- Shared settings (cross-browser sync) ---
 SETTINGS_FILE = Path(__file__).parent / "settings.json"
 CO_VIEW_AUTO_APPROVE_FILE = Path("/tmp/co_view_auto_approve")
+CO_VIEW_LOOP_DISABLED_FILE = Path("/tmp/co_view_loop_disabled")
 YOMIGANA_FILE = Path(__file__).parent / "yomigana_map.json"
 _settings: dict = {}
 _clients: set[WebSocket] = set()
@@ -195,6 +196,14 @@ def _sync_auto_approve_file(enabled: bool) -> None:
         CO_VIEW_AUTO_APPROVE_FILE.touch(exist_ok=True)
     else:
         CO_VIEW_AUTO_APPROVE_FILE.unlink(missing_ok=True)
+
+
+def _sync_improve_loop_disabled_file(enabled: bool) -> None:
+    """Presence of the sentinel disables co_view cron scripts. enabled=True removes it."""
+    if enabled:
+        CO_VIEW_LOOP_DISABLED_FILE.unlink(missing_ok=True)
+    else:
+        CO_VIEW_LOOP_DISABLED_FILE.touch(exist_ok=True)
 
 
 def _get_auto_approve_enabled() -> bool:
@@ -389,33 +398,41 @@ _HALLUCINATION_RE = re.compile(
     r"(.{5,})\1{2,}"  # 同じフレーズ3回以上繰り返し
 )
 
-_INITIAL_PROMPT_TEXT = "ねぇメイ、メイ、今日のスケジュールは？"
-_INITIAL_PROMPT_NORMALIZED = re.sub(r'[、。！？\s?]+', '', _INITIAL_PROMPT_TEXT)
+# 2026-04-19 実録の誤爆を受けて、verbose initial_prompt を廃止。
+# 旧: "ねぇメイ、メイ、今日のスケジュールは？" — "メイ"/"今日のスケジュールは" が
+#      強力なコンテキストとして効き、ユーザーが「スケジュール」関連の発話をすると
+#      STT が "メイ、" を先頭に幻覚・"スケジュール" を重複させる現象を誘発していた。
+# 新: hotwords のみで "メイ" の語彙バイアスだけ注入。文脈は与えない。
+_WHISPER_HOTWORDS = "メイ"
 
 
 def _looks_like_initial_prompt_echo(text: str) -> bool:
-    """Reject STT outputs that collapse into the seeded wake prompt."""
+    """STT 出力が過去の initial_prompt / hotword による幻覚に見えるかを判定。
+
+    prompt は削除したが、過去に蓄積したパターン（"メイメイ今日のスケジュールは" 等の
+    短尺完全エコー / "メイ + スケジュール重複" パターン）を safety net として残す。
+    """
     normalized = re.sub(r'[、。！？\s?]+', '', text)
     if not normalized:
         return False
 
-    prompt_variants = {
-        _INITIAL_PROMPT_NORMALIZED,
+    legacy_prompt_variants = {
         "メイ今日のスケジュールは",
         "メイメイ今日のスケジュールは",
         "ねぇメイメイ今日のスケジュールは",
         "ねえメイメイ今日のスケジュールは",
     }
-    if normalized in prompt_variants:
+    if normalized in legacy_prompt_variants:
         return True
 
     if "今日のスケジュールは" in normalized and normalized.startswith("メイ"):
         if len(normalized) <= len("メイメイ今日のスケジュールは"):
             return True
 
-    if normalized.startswith("メイ") and "今日のスケジュールは" in normalized:
-        if re.fullmatch(r"メイ(?:メイ)?今日のスケジュールは", normalized):
-            return True
+    # 2026-04-19 実録: 'メイ、甲子スケジュール、スケジュールに入れ込んだ'
+    # "メイ" 始まり + "スケジュール" 2回以上は prompt echo の強いシグナル。
+    if normalized.startswith("メイ") and normalized.count("スケジュール") >= 2:
+        return True
 
     return False
 
@@ -430,7 +447,7 @@ def _transcribe_sync(audio_bytes: bytes, fast: bool) -> str:
             f.name, language="ja",
             beam_size=1 if fast else 5,
             vad_filter=fast,  # always-on時のみSilero VADで非音声区間をカット
-            initial_prompt=_INITIAL_PROMPT_TEXT,
+            hotwords=_WHISPER_HOTWORDS,
         )
         seg_list = list(segments)
         text = "".join(seg.text for seg in seg_list).strip()
@@ -552,7 +569,7 @@ def _transcribe_sync_with_metrics(audio_bytes: bytes, fast: bool) -> dict:
             language="ja",
             beam_size=1 if fast else 5,
             vad_filter=False,
-            initial_prompt=_INITIAL_PROMPT_TEXT,
+            hotwords=_WHISPER_HOTWORDS,
         )
         seg_list = list(segments)
         text = "".join(seg.text for seg in seg_list).strip()
@@ -688,15 +705,64 @@ _MEETING_GENERIC_TERMS = frozenset([
 ])
 
 _MEETING_STRONG_HINT_RE = re.compile(
-    r'(?:では始めます|それでは|共有します|確認させてください|以上です|'
-    r'いかがでしょうか|よろしくお願いします|本日の|次回まで|'
+    r'(?:では始めます|共有します|確認させてください|以上です|'
+    r'いかがでしょうか|次回まで|'
     r'決定事項|TODO|NextAction|議事録|見積|要件定義|商談|定例)'
+    # Patch BI2: 「本日の」をSTRONG(+3)→SOFT(+1)に降格
+    # 背景: Whisperが initial_prompt echo として「本日のスケジュールは」を幻覚し
+    #       game/anime buffer に混入 → score=5 で meeting 誤昇格（2026-04-16実録）
+    #       「本日の」単独は YouTube ナレーション・アニメ台詞でも頻出するため弱シグナルが妥当
+    # Patch BJ2: 「よろしくお願いします」「それでは」をSTRONG(+3)→降格
+    # 背景: 「最後までよろしくお願いします」はアニメ/YouTube番組の冒頭・末尾フレーズで頻出（BI1期間のフリーレンSTT実録）
+    #       「それでは」単独は弱シグナルで「では始めます」があれば十分。BI2「本日の」と同じ判断根拠
 )
 _MEETING_SOFT_HINT_RE = re.compile(
-    r'(?:進捗|共有|確認|決定|提案|資料|要件|見積|納期|課題|対応|'
+    r'(?:本日の|よろしくお願い|進捗|共有|確認|決定|提案|資料|要件|見積|納期|課題|対応|'
     r'お客|クライアント|クライアント|フェーズ|マイルストーン|KPI|ROI|'
     r'アクション|次回|レビュー|商談|打ち合わせ|会議|ミーティング)'
 )
+
+# Patch P-DUP-3: LLM 生成直後の意味的重複 pre-validation（設計原則3: 関係性の最適化）
+# 背景: 直近30コメント重複率 13.3% (>10%目標)。「ここぞで刺さる1発」を残す方針。
+# 原則5（記憶と連続性）: 連続性語彙を含む場合は threshold を 0.9 に緩和（「また見てるね」は許容）
+_CO_VIEW_CONTINUITY_RE = re.compile(r'また|前も|やっぱり|やっぱ|相変わらず')
+
+
+_CO_VIEW_RECENT_MAX = 30  # Patch P-DUP-3.1: pre-validation 比較窓を 10→30 に拡張（skill 設計準拠）
+_CO_VIEW_SUBSTR_WINDOW = 10  # Patch AW1: 長共通部分文字列判定の比較窓（直近10件のみ）
+_CO_VIEW_SUBSTR_MIN_LEN = 6  # Patch AW1: 話題反復とみなす共通部分文字列の最低長
+
+
+def _has_long_common_substring(a: str, b: str, min_len: int) -> bool:
+    if len(a) < min_len or len(b) < min_len:
+        return False
+    for i in range(len(a) - min_len + 1):
+        if a[i:i + min_len] in b:
+            return True
+    return False
+
+
+def _is_semantic_dup_co_view(candidate: str, history: list, *, threshold: float = 0.75) -> bool:
+    cand = candidate.strip()
+    if not cand:
+        return False
+    head = cand[:12]
+    for past in history[-_CO_VIEW_RECENT_MAX:]:
+        past_head = (past or "").strip()[:12]
+        if not past_head:
+            continue
+        if difflib.SequenceMatcher(None, head, past_head).ratio() >= threshold:
+            return True
+    # Patch AW1: 長い共通部分文字列で話題反復を検知。連続性語彙（「また」「前も」等）時はskip（原則5保護）
+    if not _CO_VIEW_CONTINUITY_RE.search(cand):
+        for past in history[-_CO_VIEW_SUBSTR_WINDOW:]:
+            past_text = (past or "").strip()
+            if not past_text:
+                continue
+            if _has_long_common_substring(cand, past_text, _CO_VIEW_SUBSTR_MIN_LEN):
+                return True
+    return False
+
 
 # ---------------------------------------------------------------------------
 # Co-view: TV/YouTube 視聴中の同居人コメント生成
@@ -760,6 +826,8 @@ class _MediaContext:
     last_meeting_hint_score: int = 0
     last_meeting_hint_reasons: list = field(default_factory=list)
     last_meeting_hint_text: str = ""
+    # Patch BR1: 作品不明のままSKIPした連続回数（low conf skip → ask_user拡張用）
+    consecutive_unknown_skip_cnt: int = 0
 
     def add_snippet(self, text: str):
         # STT重複除去: 直前のスニペットの先頭50文字と80%以上一致なら追加しない
@@ -804,11 +872,20 @@ class _MediaContext:
         self.meeting_digest_pending_started_at = 0.0
         self.meeting_digest_pending_buffer_len = 0
         self.last_meeting_hint_score = 0
+        # Patch BT1: 5minギャップ後の新セッションでBR1カウンターを引き継がないようリセット
+        # 背景: consecutive_unknown_skip_cnt がresetでクリアされず、異なるコンテンツの視聴間でも
+        #       カウントが累積し、5回に達したときに誤って「何見てるの？」が発火するバグを修正
+        self.consecutive_unknown_skip_cnt = 0
         self.last_meeting_hint_reasons = []
         self.last_meeting_hint_text = ""
 
 
 _media_ctx = _MediaContext()
+
+# Patch BY1: meeting hard skip 連続検知（運用可視性向上）
+# 背景: 11:47以降3時間でmeeting modeが解除されずコメント生成0件継続。Z4 hard skip抑制状態を可視化する
+_meeting_skip_state: dict = {"streak": 0, "warned": False}
+_CO_VIEW_MEETING_SKIP_THRESHOLD = 10
 
 # Patch AQ2: グローバルenrich使用履歴（enrich cacheリセット後も同ニュース再利用を防ぐ）
 # key: enrich行の文字列、value: 使用したUnix時刻
@@ -877,7 +954,13 @@ def _meeting_hint_score(text: str, *, gcal_title: str = "", keywords: list[str] 
     }
     score += min(3, sum(1 for term in text_hits if term in text))
 
-    keyword_hits = [kw for kw in keywords if isinstance(kw, str) and kw and kw in text]
+    # Patch BK1: keyword_hits → meeting固有語のみカウント（循環参照防止）
+    # 背景: keywords は buffer_text から抽出されるため kw in text は常にtrue
+    #       → 非会議コンテンツでも常に+2が加算され、実効閾値が5→3相当に下がっていた
+    _BK1_MEETING_KW = frozenset({"会議", "ミーティング", "打ち合わせ", "商談", "定例", "議事録",
+                                  "アジェンダ", "PMO", "KPI", "ROI", "マイルストーン", "要件定義"})
+    keyword_hits = [kw for kw in keywords if isinstance(kw, str) and kw and
+                    any(m in kw for m in _BK1_MEETING_KW)]
     score += min(2, len(keyword_hits))
     return score
 
@@ -915,7 +998,11 @@ def _meeting_hint_details(text: str, *, gcal_title: str = "", keywords: list[str
         details.extend([f"text:{term}" for term in text_hits[:6]])
     score += min(3, len(text_hits))
 
-    keyword_hits = [kw for kw in keywords if isinstance(kw, str) and kw and kw in text]
+    # Patch BK1: _meeting_hint_score と同じ meeting固有語フィルタを適用
+    _BK1_MEETING_KW = frozenset({"会議", "ミーティング", "打ち合わせ", "商談", "定例", "議事録",
+                                  "アジェンダ", "PMO", "KPI", "ROI", "マイルストーン", "要件定義"})
+    keyword_hits = [kw for kw in keywords if isinstance(kw, str) and kw and
+                    any(m in kw for m in _BK1_MEETING_KW)]
     if keyword_hits:
         details.extend([f"kw:{kw}" for kw in keyword_hits[:6]])
     score += min(2, len(keyword_hits))
@@ -987,6 +1074,12 @@ _STT_LLM_DEFAULT_RE = re.compile(
     r'|ありがとうございます[。！]?)$'
 )
 
+# Patch BX1: LLM補正で挿入される不確実マーカー（「（選手名？）」「（？）」等）を検出
+# 背景: _correct_media_transcript が推測できない固有名詞を「（選手名？）」「（？）」で補うため、
+#       _infer_media_content の keywords が「選手名」等の汚染語で占められ matched_title 特定に至らなかった
+#       （2026-04-19 実録: '（選手名？）'→ kws=['選手名'] → type=other → low conf skip連鎖）
+_BX1_UNCERTAIN_RE = re.compile(r'（[^（）]{0,12}[？?]）')
+
 
 async def _correct_media_transcript(text: str) -> str:
     """メディア音声(実況・YouTubeなど)向けSTT補正。"""
@@ -1031,6 +1124,19 @@ async def _correct_media_transcript(text: str) -> str:
             if _has_repeated_phrase(corrected):
                 logger.info(f"[co_view/stt] hallucination(repeat): '{text[:40]}' → repeat pattern detected → keep original")
                 return text
+            # Patch BX1: 「（選手名？）」「（？）」等の不確実マーカーが入る補正は infer を汚染するため抑制
+            _bx1_markers = _BX1_UNCERTAIN_RE.findall(corrected)
+            if len(_bx1_markers) >= 2:
+                logger.info(f"[co_view/stt] BX1: {len(_bx1_markers)} uncertainty markers in corrected → keep original ('{text[:40]}')")
+                return text
+            if _bx1_markers:
+                stripped = _BX1_UNCERTAIN_RE.sub('', corrected).strip()
+                if stripped:
+                    logger.info(f"[co_view/stt] BX1: stripped 1 uncertainty marker → '{stripped[:40]}'")
+                    corrected = stripped
+                else:
+                    logger.info(f"[co_view/stt] BX1: strip resulted in empty → keep original")
+                    return text
             logger.info(f"[co_view/stt] '{text}' → '{corrected}'")
             return corrected
     except Exception as e:
@@ -1061,8 +1167,11 @@ async def _infer_media_content() -> dict:
     # Patch AE1: 900s→360sに短縮（長すぎると別コンテンツに切り替わっても古いtitleが引き継がれるため）
     import time as _time
     prev_match_hint = ""
+    # Patch BN1: Z4 prev_match_hint TTL 360s → 600s
+    # 背景: 視聴中に7分以上のギャップ（広告・休憩等）があると同一作品の連続性が切れ
+    #       matched_title=''→enrich=0→SKIP連発のリスクが残る。設計原則5「記憶と連続性」に基づく延長
     if (_media_ctx.last_valid_matched_title
-            and ((_time.time() - _media_ctx.last_valid_matched_at) < 360)
+            and ((_time.time() - _media_ctx.last_valid_matched_at) < 600)
             and _media_ctx.inferred_type != "meeting"):
         prev_match_hint = f"\n\n直前に特定済みの作品(参考): {_media_ctx.last_valid_matched_title}\n※この会話が同じ作品に関するアフタートーク等の場合、matched_titleに引き継ぐこと"
 
@@ -1100,6 +1209,10 @@ async def _infer_media_content() -> dict:
             "matched_title 推定方法(登場人物名・固有名詞から作品名を推定):\n"
             "- エミリア/レム/スバル/プリシラ/ベアトリス/クリスタ/パンドラ/エレシア/ヘルム/テレシア/ビルフェル/ラインハルト/フォルトナ/エキドナ/サテラ/ロズワール/ペテルギウス → Re:ゼロから始める異世界生活\n"
             "- 知夏/大輝/矢野晴/美咲/西田(ラブコメ文脈) → 青の箱 ※youtube_talkで感想を話していても対象作品をmatched_titleにセット\n"
+            # Patch BL1: 葬送のフリーレンSTT誤変換バリアント→matched_titleマッピングをLLMプロンプトに追加
+            # 背景: gemma4がフリーレン語彙（フリーゼン等STT誤変換含む）を知らずmatched_title=''を返し続けた
+            #       BI1+BK2コード補完の前段で LLM が直接推定できれば精度・新キャラ対応力が上がる（2026-04-17）
+            "- フリーレン/フリーゼン/フリーレーン/ゼーリエ/デンケン/ラント/ユーベル/ヴィルベル/ザイン/第二頂点/フェルン/シュタルク/ハイター/アイゼン/ヒンメル/葬送/一等魔法使い/一級魔法使い(Frierenキャラ・用語) → 葬送のフリーレン\n"
             "- 白上フブキ/宝鐘マリン/兎田ぺこら → ホロライブ\n"
             "- ゼルダ/リンク/ガノン → ゼルダの伝説\n"
             "- 声優名・スタッフ名からも推定可。確信がなければ空文字。\n"
@@ -1199,6 +1312,26 @@ async def _infer_media_content() -> dict:
                     if float(result.get("confidence") or 0.0) < 0.75:
                         result["confidence"] = 0.75
                     logger.info(f"[co_view/infer] Patch AR1: buffer_text直接マッチ '{_ar1_char}' → matched_title=青の箱")
+                    break
+        # Patch BI1: 葬送のフリーレン STT誤変換バリアントでbuffer_text/topic直接マッチ
+        # 背景: 「フリーレン」→「フリーゼン」というSTT誤変換により matched_title=''のまま
+        #       enrich 0件→AA1/BE1でSKIP連発→2日半コメント停止の根本原因を修正する
+        if not result.get("matched_title"):
+            _BI1_FRIEREN = ["フリーレン", "フリーゼン", "フリーレーン",  # STT誤変換バリアント
+                            "フェルン", "シュタルク", "ハイター", "アイゼン",  # キャラ名
+                            "葬送", "ヒンメル",  # 作品名・キャラ名
+                            # Patch BK2: 第2クールキャラ・固有語追加（4/16セッション実録）
+                            "ゼーリエ", "デンケン", "ラント", "ユーベル", "ヴィルベル",
+                            "ザイン", "第二頂点", "一等魔法使い", "一級魔法使い"]
+            _bi1_search_text = buffer_text + " " + result.get("topic", "")
+            for _bi1_char in _BI1_FRIEREN:
+                if _bi1_char in _bi1_search_text:
+                    result["matched_title"] = "葬送のフリーレン"
+                    if result.get("content_type") in ("unknown", "youtube_talk"):
+                        result["content_type"] = "anime"
+                    if float(result.get("confidence") or 0.0) < 0.75:
+                        result["confidence"] = 0.75
+                    logger.info(f"[co_view/infer] Patch BI1: buffer_text/topic直接マッチ '{_bi1_char}' → matched_title=葬送のフリーレン")
                     break
         gcal_title = await _fetch_current_gcal_meeting()
         hint_score, hint_details = _meeting_hint_details(
@@ -1860,12 +1993,40 @@ async def _enrich_media_context() -> str:
                             results.append(f"ニュース: {title}")
 
             # Pattern O: matched_title が特定できている場合は優先してそのタイトルで検索
-            if _media_ctx.matched_title:
-                wiki = await _tool_wikipedia_summary(_media_ctx.matched_title)
+            # Patch BM1: matched_titleが空でもlast_valid_matched_titleが360s以内なら fallback として使用
+            # 背景: BI1が1サイクル失敗してmatched_title=''になっても、前回特定済みタイトルでenrichできるようにする
+            # 4/16実録: フリーレン視聴中にinfer cycleでmatched=''連発→enrich=0→コメント0件が根本原因
+            # Patch BN1: BM1 fallback TTL 360s → 600s（Z4と統一・視聴ギャップカバー）
+            import time as _bm1_time
+            _bm1_valid_fallback = (
+                _media_ctx.last_valid_matched_title
+                if (_media_ctx.last_valid_matched_title
+                    and (_bm1_time.time() - _media_ctx.last_valid_matched_at) < 600)
+                else ""
+            )
+            _enrich_title = _media_ctx.matched_title or _bm1_valid_fallback
+            if _enrich_title and not _media_ctx.matched_title:
+                logger.info(f"[co_view/enrich] Patch BM1: matched_title='' → fallback to last_valid '{_enrich_title}'")
+            # Patch BO1: フリーレン系語がkeywordsにある場合 matched_title未特定でもenrich可能にする
+            # 背景: BI1でtopic/buffer直接マッチが失敗するサイクルで「フリーゼンの第二頂点」等が
+            #       keywordsに残りenrich=0になるケース（4/16フリーレンセッション実録）
+            if not _enrich_title and keywords:
+                _BO1_FRIEREN = frozenset(["フリーレン", "フリーゼン", "フリーレーン",
+                                          "フェルン", "シュタルク", "ハイター", "アイゼン",
+                                          "葬送", "ヒンメル", "ゼーリエ", "デンケン", "ラント",
+                                          "ユーベル", "ヴィルベル", "ザイン", "第二頂点",
+                                          "一等魔法使い", "一級魔法使い"])
+                for _kw in keywords:
+                    if any(_v in _kw for _v in _BO1_FRIEREN):
+                        _enrich_title = "葬送のフリーレン"
+                        logger.info(f"[co_view/enrich] Patch BO1: keyword '{_kw}' → enrich_title='葬送のフリーレン'")
+                        break
+            if _enrich_title:
+                wiki = await _tool_wikipedia_summary(_enrich_title)
                 if not wiki:
                     # Patch V3: "〜ラジオ" 等の略称でWikipedia 0 results の場合、suffix除去で再検索
-                    fallback_title = re.sub(r'ラジオ$|Radio$|radio$', '', _media_ctx.matched_title).strip()
-                    if fallback_title and fallback_title != _media_ctx.matched_title:
+                    fallback_title = re.sub(r'ラジオ$|Radio$|radio$', '', _enrich_title).strip()
+                    if fallback_title and fallback_title != _enrich_title:
                         wiki = await _tool_wikipedia_summary(fallback_title)
                         if wiki:
                             logger.info(f"[co_view/enrich] Patch V3: wiki fallback '{fallback_title}' hit")
@@ -1876,7 +2037,7 @@ async def _enrich_media_context() -> str:
                 suffix = _ENRICH_QUERY_SUFFIXES[_media_ctx.enrich_query_idx % len(_ENRICH_QUERY_SUFFIXES)]
                 _media_ctx.enrich_query_idx += 1
                 logger.debug(f"[co_view/enrich] query suffix={suffix!r} (idx={_media_ctx.enrich_query_idx-1})")
-                query = urllib.parse.quote(_media_ctx.matched_title + suffix)
+                query = urllib.parse.quote(_enrich_title + suffix)
                 rss_url = f"https://news.google.com/rss/search?q={query}&hl=ja&gl=JP&ceid=JP:ja"
                 resp = await client.get(rss_url)
                 if resp.status_code == 200:
@@ -1976,7 +2137,23 @@ async def _enrich_media_context() -> str:
     _media_ctx.enriched_info = enriched
     _media_ctx.last_enriched_at = now
     # Patch V2: enrich取得内容をログに出力（次回分析で根拠追跡可能にする）
-    logger.info(f"[co_view/enrich] {len(results)} results: {results}")
+    # Patch P-LOG-1: skill 1-F regex (`N results=[1-9]`) との互換タグを併記
+    logger.info(f"[co_view/enrich] count={len(results)} results: {results}")
+    # Patch P-OBS-1: enrich 0 results の診断タグ（改善ループで失敗パターンを分類集計するため）
+    if not results:
+        _obs_reasons = []
+        try:
+            if not _enrich_title:
+                _obs_reasons.append("no_enrich_title")
+            else:
+                _obs_reasons.append(f"enrich_title='{_enrich_title}'_no_hit")
+            if _yt_no_specific:
+                _obs_reasons.append("yt_no_specific_kw")
+            if not keywords:
+                _obs_reasons.append("no_keywords")
+        except NameError:
+            _obs_reasons.append("pre_enrich_path")
+        logger.info(f"[co_view/enrich/empty] reasons={_obs_reasons} matched_title={_media_ctx.matched_title!r} type={content_type!r}")
     return enriched
 
 
@@ -2104,7 +2281,16 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
                 _media_ctx._pending_type_count = 0
             _media_ctx.inferred_type  = new_content_type
             _media_ctx.inferred_topic = inferred.get("topic", "")
-            _media_ctx.matched_title  = inferred.get("matched_title", "")
+            # Patch CA1: V2でtype変化をスキップした場合は matched_title も前回値を維持する
+            # 背景: AP1 early infer (conf=0.0) で matched_title='' が返った時、V2 は type を守るが
+            #       matched_title は inferred.get() で '' に上書きされていた。fallback (L2275) は
+            #       last_valid TTL 600s に依存するため、短期ゆらぎで作品特定が外れていた。
+            #       AO1 の confidence 保護と同構造で matched_title も守る（設計原則5「記憶と連続性」）。
+            _v2_skip_matched = _v2_type_skipped and not inferred.get("matched_title")
+            if _v2_skip_matched:
+                logger.info(f"[co_view/infer] Patch CA1: V2 skip → matched_title preserved '{_media_ctx.matched_title}'")
+            else:
+                _media_ctx.matched_title = inferred.get("matched_title", "")
             # Patch AO1: V2でtype変化をスキップした場合はconfidenceも前回値を維持する
             # 背景: infer失敗時にconf=0.00で上書きされるとAN3 bypass(conf>=0.65)が無効化され
             #       前回type(youtube_talk)を維持しているにもかかわらず5連続skipが発生していた
@@ -2128,8 +2314,9 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
                 _media_ctx.last_valid_matched_title = _media_ctx.matched_title
                 _media_ctx.last_valid_matched_at = now
                 _media_ctx.last_valid_inferred_type = _media_ctx.inferred_type  # Patch AL2: type記録
+                _media_ctx.consecutive_unknown_skip_cnt = 0  # Patch BR1: 作品特定時にカウンターリセット
                 logger.info(f"[co_view/infer] matched={_media_ctx.matched_title}")
-            elif (_media_ctx.last_valid_matched_title and (now - _media_ctx.last_valid_matched_at < 360)
+            elif (_media_ctx.last_valid_matched_title and (now - _media_ctx.last_valid_matched_at < 600)
                   and _media_ctx.inferred_type != "meeting"
                   # Patch AL2: youtube_talk→youtube_talkのfallback抑制
                   # 直前youtube_talkで特定したtitleを別のyoutube_talkには引き継がない
@@ -2140,6 +2327,7 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
                 # Patch Z3: 6分→15分に拡大（アフタートーク中のyoutube_talk一時判定で16分ロスが発生したため）
                 # Patch AE1: 15分(900s)→6分(360s)に短縮（別コンテンツへの誤引き継ぎを防ぐため）
                 # Patch X1: meeting中はfallback無効（前の作品タイトルで無関係なenrichが走るのを防ぐ）
+                # Patch BQ1: BN1の360s→600s適用漏れ修正（BM1/Z4は600s済みだがここだけ360sが残っていた）
                 _media_ctx.matched_title = _media_ctx.last_valid_matched_title
                 logger.info(f"[co_view/infer] matched fallback→{_media_ctx.matched_title} (last_valid {int(now - _media_ctx.last_valid_matched_at)}s ago)")
             await _broadcast_debug(
@@ -2153,13 +2341,49 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
         # AA1（youtube_talk + enrich=0 → hard SKIP）が第2防衛ラインとして機能
         _an3_bypass = (_media_ctx.inferred_type == "youtube_talk" and _media_ctx.confidence >= 0.65)
         _av2_meeting_bypass = (_media_ctx.inferred_type == "meeting" and _media_ctx.confidence >= 0.6)
-        if _media_ctx.confidence < 0.75 and not _media_ctx.matched_title and not _an3_bypass and not _av2_meeting_bypass:
+        # Patch BU1: baseball/golf型でconf>=0.65の場合もlow_conf_skip bypass
+        # 背景: 4/16実録でbaseball conf=0.70なのにlow conf skip（AN3相当のbypassがbaseball/golf未実装）
+        #       スポーツ観戦中はmatched_title不要（content typeが明確）。LLMのSKIP選択余地は維持
+        _bu1_bypass = (_media_ctx.inferred_type in ("baseball", "golf") and _media_ctx.confidence >= 0.65)
+        if _media_ctx.confidence < 0.75 and not _media_ctx.matched_title and not _an3_bypass and not _av2_meeting_bypass and not _bu1_bypass:
             # Patch AI2: low conf skipをログファイルに記録（_broadcast_debugのみでは不可視だったため）
             logger.info(f"[co_view] low conf skip (conf={_media_ctx.confidence:.2f}, no matched_title)")
             await _broadcast_debug(f"[co_view] low conf skip (conf={_media_ctx.confidence:.2f}, no matched_title)")
+            # Patch BX1: BR1 ask_user 会議音声検出時の抑制
+            # 背景: 4/20 10:03:31 会議音声の unknown phase (conf<0.5) で5回skip後「何見てるの？」が会議中に発火
+            #       meeting 確定前の unknown フェーズで BR1 が暴発する。buffer に会議語があれば counter reset + return
+            _BX1_MEETING_RE = re.compile(r'(アジェンダ|アクションアイテム|議事録|マイルストーン|PMO|KPI|ROI|中間報告|共有します|確認させて|ご意見|お疲れ様でした|検討事項|アクション管理)')
+            _bx1_recent = "".join(e.get("text", "") for e in _media_ctx.media_buffer[-5:])
+            if _BX1_MEETING_RE.search(_bx1_recent):
+                _media_ctx.consecutive_unknown_skip_cnt = 0
+                logger.info(f"[co_view] Patch BX1: BR1 ask_user suppressed (meeting keyword in buffer)")
+                return
+            # Patch BR1: 作品不明の連続SKIPカウンター → ask_user拡張
+            # 背景: conf<0.5 の ask_user は本ブロックより前に return されるため事実上到達不能（dead code）
+            #       conf 0.5〜0.74 + matched='' が5回以上続く場合もユーザーに問い合わせるよう統一する
+            _media_ctx.consecutive_unknown_skip_cnt += 1
+            # Patch BW2: consecutive_unknown_skip_cnt increment時のDEBUGログ追加
+            # 背景: BT1(reset修正)/BR1(count=5で ask_user)の動作をログで確認する手段がなかった
+            logger.debug(f"[co_view] BW2/BR1: consecutive_unknown_skip_cnt={_media_ctx.consecutive_unknown_skip_cnt}/5")
+            if (_media_ctx.consecutive_unknown_skip_cnt >= 5
+                    and len(_media_ctx.media_buffer) >= _CO_VIEW_ASK_USER_MIN_SNIP
+                    and now - _media_ctx.ask_user_last_at > _CO_VIEW_ASK_USER_COOLDOWN):
+                _br1_cnt = _media_ctx.consecutive_unknown_skip_cnt
+                _media_ctx.consecutive_unknown_skip_cnt = 0
+                _media_ctx.ask_user_last_at = now
+                _media_ctx.co_view_last_at = now
+                _br1_speaker = _settings.get("meiVoice", "irodori-lora-emilia")
+                _br1_speed_raw = _settings.get("meiSpeed", "auto") or "auto"
+                _br1_speed = 0 if _br1_speed_raw == "auto" else float(_br1_speed_raw)
+                await _ambient_broadcast_reply("ちなみに何見てるの？", "co_view_ask", method, keyword, _br1_speaker, _br1_speed)
+                logger.info(f"[co_view] Patch BR1: {_br1_cnt} consecutive unknown skips → asked user: 何見てるの？")
             return
         if _an3_bypass and _media_ctx.confidence < 0.75 and not _media_ctx.matched_title:
             logger.info(f"[co_view] AN3: youtube_talk conf={_media_ctx.confidence:.2f}>=0.65, proceeding to enrich")
+        # Patch BW1: BU1 bypass時のINFOログ追加（AN3と同様の観測性を確保）
+        # 背景: BU1適用後、baseball/golfがlow_conf_skipをバイパスしているか確認する手段がなかった
+        if _bu1_bypass and _media_ctx.confidence < 0.75 and not _media_ctx.matched_title:
+            logger.info(f"[co_view] BW1/BU1: baseball/golf conf={_media_ctx.confidence:.2f}>=0.65, low_conf_skip bypassed → proceeding to enrich")
 
         if _media_ctx.confidence < 0.5:
             if (len(_media_ctx.media_buffer) >= _CO_VIEW_ASK_USER_MIN_SNIP
@@ -2239,8 +2463,24 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
             await _broadcast_debug(f"[co_view] enriched: {enriched[:60]}")
         # Patch Z4: meeting modeでenrich 0件時はコードレベルでskip（プロンプト指示に頼らない）
         if _media_ctx.inferred_type == "meeting" and not enriched:
+            # Patch BY1: streak をインクリメントし、閾値到達時に1度だけ WARNING
+            _meeting_skip_state["streak"] += 1
+            if (_meeting_skip_state["streak"] >= _CO_VIEW_MEETING_SKIP_THRESHOLD
+                    and not _meeting_skip_state["warned"]):
+                logger.warning(
+                    f"[co_view] Patch BY1: meeting hard skip streak={_meeting_skip_state['streak']} "
+                    f"(連続中、コメント抑制継続)。type誤判定の可能性 — 視聴コンテンツ確認を推奨"
+                )
+                _meeting_skip_state["warned"] = True
             logger.info("[co_view] Patch Z4: meeting mode enrich=0 → hard skip")
             return
+        # Patch BY1: meeting以外 or enriched あり → streak リセット
+        if _meeting_skip_state["streak"] > 0:
+            logger.info(
+                f"[co_view] Patch BY1: meeting skip streak reset (was {_meeting_skip_state['streak']})"
+            )
+            _meeting_skip_state["streak"] = 0
+            _meeting_skip_state["warned"] = False
 
         buffer_text = _media_ctx.get_buffer_text(last_n=5)
         system_prompt = (
@@ -2256,6 +2496,13 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
         )
         if _media_ctx.matched_title:
             system_prompt += f"作品タイトル: {_media_ctx.matched_title}\n"
+        elif (_media_ctx.last_valid_matched_title
+                and (time.time() - _media_ctx.last_valid_matched_at) < 600):
+            # Patch BS2: 現サイクルのmatched_titleが空でもlast_validが新鮮ならsystem_promptに追加
+            # 背景: enrich=0+reaction-only時にLLMが作品タイトルを知らずSKIPしていた（フリーレン等）
+            #       BM1はenrich側にlast_validを渡すが、system_prompt(LLM本体への文脈)には渡せていなかった
+            system_prompt += f"視聴中の作品（直前から継続）: {_media_ctx.last_valid_matched_title}\n"
+            logger.debug(f"[co_view] Patch BS2: system_prompt fallback → '{_media_ctx.last_valid_matched_title}'")
         system_prompt += f"\n最近の音声:\n{buffer_text}\n"
         # Patch Z3: enrich繰り返し防止 — 直近30分以内に使用したenrich行を除外
         # Patch AQ2: グローバルenrich dedup — cacheリセット後も1時間は同じ行を除外
@@ -2288,19 +2535,73 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
                 filtered_enriched = "\n".join(aq2_fresh) if aq2_fresh else ""
         if filtered_enriched:
             _topic_hint = _media_ctx.matched_title or _media_ctx.inferred_topic
-            system_prompt += (
+            # Patch BJ1: baseball/golf時はスポーツenrichを「スポーツ禁止ルール」でブロックしないよう除外
+            # 背景: line S2/U1 の「映画・スポーツ...絶対使わない」ルールが baseball type でも適用されており
+            #       大谷ニュース等スポーツenrichが全件LLM→SKIPになっていた（2日間コメント停止の根本原因）
+            # Patch BP1: anime/vtuber時もアニメenrichを「アニメ禁止ルール」でブロックしないよう除外（BJ1と同設計）
+            # 背景: BI1でtype=animeに昇格後、BO1/BM1でフリーレンenrichが取得できても
+            #       forbidden_domainsに「アニメ」が含まれておりLLMがenrich情報をSKIPする可能性がある
+            #       (BJ1が解決したbaseball/golfと同じ構造バグ)
+            # Patch BQ1: matched_title が N1/BM1 fallback で設定された場合、inferred_type が youtube_talk に戻る
+            # 背景: BI1でcycle N → type=anime + matched_title=フリーレン → last_valid記録
+            #       cycle N+1 → LLM が youtube_talk を返す → BM1/N1 fallback で matched_title=フリーレン が設定されるが
+            #       inferred_type は youtube_talk のまま → BP1 の _is_anime_type=False → アニメ禁止ドメインがまた適用される
+            #       修正: last_valid_inferred_type も考慮して _is_anime_type を判定する
+            _is_sports_type = _media_ctx.inferred_type in ("baseball", "golf")
+            _is_anime_type = (
+                _media_ctx.inferred_type in ("anime", "vtuber") or
+                # Patch BQ1: fallback経由でmatched_titleが設定された場合は last_valid_inferred_type を使う
+                (bool(_media_ctx.matched_title) and _media_ctx.last_valid_inferred_type in ("anime", "vtuber"))
+            )
+            _forbidden_domains = (
+                "映画・アニメ・政治ニュース・国政・選挙・記者会見・議員・幹事長"
+                if _is_sports_type else
+                "映画・スポーツ・政治ニュース・国政・選挙・記者会見・議員・幹事長"
+                if _is_anime_type else
+                "映画・スポーツ・アニメ・政治ニュース・国政・選挙・記者会見・議員・幹事長"
+            )
+            if _is_sports_type:
+                # Patch BS1: 野球/ゴルフ型はAY1不使用 → シンプルな応援プロンプトでSKIP率を改善
+                # 背景: 4/16実録でbaseball+enrich(168〜183バイト)が全件LLM→SKIP(22/22回)
+                #       AY1の固有名詞チェック指示がローカルLLMに過負荷 → 保守的SKIP選択が根本原因
+                #       BJ1でスポーツ禁止ドメインは既に外してあるがAY1が残っていた設計漏れを修正
+                # Patch BT2: BS1プロンプト改善 — 条件節の曖昧さ除去 + SKIP禁止を明示
+                # 背景: 旧BS1の「ニュースの選手名またはチーム名が音声に出てきていれば使ってOK」が
+                #       「名前が一致する場合のみ反応してOK」と誤読され、SKIP選択の根拠になりうる
+                system_prompt += (
+                    f"\n最新スポーツニュース:\n{filtered_enriched}\n"
+                    "★ BT2: 野球/ゴルフ観戦中。1文で短い応援コメントを必ず返して（SKIP禁止）。"
+                    "例:「大谷すごいね！」「えー、逆転？！」「頑張れ〜！」「盛り上がってるね！」"
+                    "上記ニュースに音声の選手名・チーム名が含まれるなら積極的に使ってもOK。媒体名は不要。\n"
+                )
+            elif _is_anime_type and _media_ctx.matched_title:
+                # Patch BV1: anime/vtuber型でmatched_title確定時はAY1の「固有名詞不一致→SKIP」要件を除去
+                # 背景: enrichはmatched_titleで検索済み（例: 「葬送のフリーレン」Wikipedia/News）なので
+                #       関連性は既に保証されている。スポーツのBS1（AY1除去）と同じ設計原則。
+                #       AY1の「固有名詞が1つも一致しなければSKIPすること」がenrich活用を阻害していた。
+                #       forbidden_domainsフィルター（BP1）は維持して無関係ドメインは除外する。
+                system_prompt += (
+                f"\n関連情報（「{_topic_hint}」について、matched_titleで検索済み）:\n"
+                f"{filtered_enriched}\n"
+                f"★ 上記情報は「{_media_ctx.matched_title}」について調べた結果。関連情報があれば「〜らしいよ」「〜なんだって」「〜みたいよ」等の口語で自然に1文で盛り込む。"
+                "「さっきのニュースで」「〇〇によると」等の情報ソース明示フレーズは使わない。"
+                f"★★ 視聴コンテンツと明らかに無関係な情報（{_forbidden_domains}等）は絶対に使わない。\n"
+            )
+            else:
+                system_prompt += (
                 f"\n関連情報(現在視聴中の「{_topic_hint}」に"
                 "直接関連する情報のみ自然にコメントに盛り込む。「〇〇って最近△△らしいよ」「へー、〇〇なんだね」等の口語表現で盛り込む。"
                 # Patch AX1: 「さっきのニュースで」等の情報源明示フレーズは距離感を壊すため禁止（AW1 post-filterと整合）
                 "「さっきのニュースで」「〇〇によると」「〇〇から」等の情報ソース明示フレーズは使わない。"
                 # Patch S2: コンテキスト不一致時の禁止を強化
                 # Patch U1: 政治ニュース系ドメインを禁止リストに追加
-                "★★ 視聴コンテンツ（ビジネス会議・企業戦略等）と明らかに無関係な情報（映画・スポーツ・アニメ・政治ニュース・国政・選挙・記者会見・議員・幹事長等）は絶対に使わない。"
+                # Patch BJ1: baseball/golf時はスポーツを禁止ドメインから除外
+                f"★★ 視聴コンテンツと明らかに無関係な情報（{_forbidden_domains}等）は絶対に使わない。"
                 "無関係情報を使うくらいなら視聴内容だけにリアクションすること。"
                 # Patch AY1: enrich整合性チェック強化 — 単一汎用語マッチによる無関係ニュース使用防止
                 f"★★ Patch AY1: 以下の関連情報のタイトルに視聴コンテンツ（「{_topic_hint}」）に登場する具体的な固有名詞（人物名・チャンネル名・作品名）が含まれる場合のみ使うこと。"
                 "「イラスト」「料理」「音楽」「映像」のような一般的な語のみで一致した場合（同じ語が使われているだけで内容が全く別のトピック）は絶対に使わない。"
-                "視聴中のコンテンツと関係する固有名詞が1つも一致しなければSKIPすること):\n"
+                "視聴中のコンテンツと関係する固有名詞が1つも一致しなければSKIPすること:\n"  # Patch BV1b: stray ')' を修正
                 f"{filtered_enriched}\n"
             )
         if _media_ctx.recent_co_view_comments:
@@ -2401,13 +2702,31 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
                     # 背景: Z3クールダウン(1800s)中にyoutube_talkを30分以上視聴すると
                     #       AA1が連発してコメントが完全停止する問題を緩和する
                     logger.info(f"[co_view] Patch BE1: youtube_talk + enrich=0 + conf={_media_ctx.confidence:.2f} → reaction-only mode")
+                    # Patch BU1: inferred_topicが具体的な内容を持つ場合に自然なリアクション指示を追加
+                    # 背景: 4/16実録でtopic='フリーゼンの第二頂点の図...'があるのにLLM→SKIPが連発
+                    # 原因: BE1プロンプトに「topicからリアクションを引き出す」指示がなくSKIPバイアスが優勢
+                    # Patch BW1: 混合topic対応 — 「と、」「が、」「。」で分割して先頭句のみ抽出
+                    # 背景: 4/16実録でtopic='フリーゼンの第二頂点の図に関する説明と、夏の予定に関する雑談'が
+                    #       BE1に渡り「雑談」部分でLLMがSKIPを選択するケースを防ぐ
+                    _bw1_topic = _media_ctx.inferred_topic or ""
+                    for _bw1_sep in ("と、", "と,", "が、", "。"):
+                        _bw1_idx = _bw1_topic.find(_bw1_sep)
+                        if 0 < _bw1_idx < len(_bw1_topic) - 3:
+                            _bw1_topic = _bw1_topic[:_bw1_idx]
+                            logger.debug(f"[co_view] Patch BW1: topic trimmed at '{_bw1_sep}' → '{_bw1_topic[:30]}'")
+                            break
+                    _bu1_topic_hint = (
+                        f"- 話題のヒント: 「{_bw1_topic[:40]}」→ この話題への自然なリアクション（例：「へー、{_bw1_topic[:10]}か〜」「そこか！」など）でOK\n"
+                        if _bw1_topic and _bw1_topic != "不明" else ""
+                    )
                     system_prompt += (
                         "\n指示（Patch BE1 感想専用モード）:\n"
                         "- enrich情報なし。純粋な感想・リアクション・共感のみ1文。\n"
                         "- 例: 「へー！」「おもしろいね〜」「なるほどね。」「そういうことか！」「ほんとだ〜」「すごいね！」\n"
+                        f"{_bu1_topic_hint}"
                         "- ★★ 事実・情報・知識を提供する系（「〜らしいよ」「〜だって」）は禁止\n"
                         "- ★★ 視聴内容を要約・確認する系（「〜の話なんだね」「〜について言ってるね」）も禁止\n"
-                        "- 価値のある感想がなければ \"SKIP\" と返す\n"
+                        "- 話題への自然なリアクションがあれば出す。本当に何もなければ \"SKIP\" と返す\n"
                     )
                 else:
                     logger.info("[co_view] Patch AA1: youtube_talk + enrich=0 → hard skip")
@@ -2472,6 +2791,18 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
                 if _media_ctx.inferred_type == "meeting":
                     _media_ctx.co_view_last_at = time.time()
                     logger.info("[co_view] Patch AS1: meeting SKIP → co_view_last_at updated (5min cooldown)")
+                # Patch BR1: BE1 reaction-only (youtube_talk + enrich=0) SKIP後に120s短クールダウン
+                # 背景: 4/16実録でBE1 SKIPが10秒間隔で連発（enrich=0の同一バッファへの繰り返しLLMコール削減）
+                # AS1の5min完全ブロックに対し、120sにすることで次のバッファで再試行可能にする
+                elif _media_ctx.inferred_type == "youtube_talk" and not filtered_enriched:
+                    _media_ctx.co_view_last_at = time.time() - (_CO_VIEW_COMMENT_COOLDOWN - 120)
+                    logger.info("[co_view] Patch BR1: BE1 SKIP → 120s short cooldown")
+                # Patch BU2: baseball/golf SKIP後に120s短クールダウン（BR1と同設計）
+                # 背景: BS1(4/18 11:07)適用でbaseball/golfのAY1を除去→シンプル応援プロンプトにしたが、
+                # LLM→SKIP後のcooldown未設定。連発LLMコールのリスクを解消する
+                elif _media_ctx.inferred_type in ("baseball", "golf"):
+                    _media_ctx.co_view_last_at = time.time() - (_CO_VIEW_COMMENT_COOLDOWN - 120)
+                    logger.info(f"[co_view] Patch BU2: {_media_ctx.inferred_type} SKIP → 120s short cooldown")
                 return
 
             # Patch L1: bot refusal パターン追加
@@ -2491,6 +2822,14 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
             if not co_reply or co_reply.strip().upper() == "SKIP":
                 # Patch AH2: サイレントSKIPパスにINFOログ追加（括弧剥ぎ後にSKIPになったケースの追跡）
                 logger.info(f"[co_view] bracket-stripped→SKIP (type={_media_ctx.inferred_type} matched={_media_ctx.matched_title!r})")
+                return
+
+            # Patch P-DUP-3: 生成直後の意味的重複 pre-validation（連続性語彙は閾値を緩和）
+            _pdup3_continuity = bool(_CO_VIEW_CONTINUITY_RE.search(co_reply))
+            _pdup3_threshold = 0.9 if _pdup3_continuity else 0.75
+            logger.info(f"[co_view/pre-valid] generated='{co_reply[:30]}' threshold={_pdup3_threshold}")
+            if _is_semantic_dup_co_view(co_reply, _media_ctx.recent_co_view_comments, threshold=_pdup3_threshold):
+                logger.info(f"[co_view/pre-valid] reject semantic duplicate: '{co_reply[:40]}'")
                 return
 
             # Patch B3: 音声品質メタコメントが生成された場合は強制SKIP（プロンプト指示をLLMが無視した場合の安全網）
@@ -2538,8 +2877,8 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
             logger.info(f"[co_view] comment: '{co_reply[:100]}'")
             # Patch H2: コメント履歴に追加（enrich繰り返し防止）
             _media_ctx.recent_co_view_comments.append(co_reply)
-            if len(_media_ctx.recent_co_view_comments) > 5:
-                _media_ctx.recent_co_view_comments = _media_ctx.recent_co_view_comments[-5:]
+            if len(_media_ctx.recent_co_view_comments) > _CO_VIEW_RECENT_MAX:
+                _media_ctx.recent_co_view_comments = _media_ctx.recent_co_view_comments[-_CO_VIEW_RECENT_MAX:]
             # Patch Z3: 使用したenrich行を記録（30分間の繰り返し防止）
             # Patch AQ2: グローバルdedup dictにも記録（cacheリセット後も1時間は再使用しない）
             if filtered_enriched:
@@ -3871,6 +4210,19 @@ def _identify_speaker_sync(audio_data: bytes) -> dict | None:
         return None
 
 
+def _speaker_identified_not_akira(speaker_result: dict | None) -> bool:
+    """Wake ゲート判定。speaker_id が十分な音声で判定を実行し、akira 以外だった場合のみ True。
+
+    all_scores が空 = 識別未実行（プロファイル未登録 / 音声短すぎ / ffmpeg 失敗）→ ゲート skip。
+    all_scores が非空 = 識別実行済み。speaker != "akira" なら ambient / 他人 の確定シグナル。
+    """
+    if not speaker_result:
+        return False
+    if not speaker_result.get("all_scores"):
+        return False
+    return speaker_result.get("speaker") != "akira"
+
+
 # --- Guided Enrollment (Siri-style voice enrollment) ---
 
 _ENROLLMENT_PROMPTS = [
@@ -4183,6 +4535,17 @@ async def _process_always_on(ws: WebSocket, audio_data: bytes, *, speech_ts: int
 
         # --- Wake word detection ---
         if wake_result.detected:
+            # Speaker gating: reject wake if audio is clearly not Akira (e.g. YouTube audio from speakers).
+            # Uses all_scores non-empty as the "identification actually ran" signal
+            # (speaker_id.identify() already enforces its own ≥1.0s real-duration threshold
+            # via ffmpeg-decoded wav; the previous byte-based audio_duration check was
+            # unreliable because incoming audio is webm/Opus, not raw PCM).
+            if _speaker_identified_not_akira(speaker_result):
+                spk_name = speaker_result.get("speaker")
+                sim = speaker_result.get("similarity", 0.0)
+                logger.info(f"[always_on] WAKE BLOCKED (non-Akira): '{text}' speaker={spk_name or 'unknown'} sim={sim:.3f}")
+                await _send_debug(ws, f"[wake blocked] non-Akira voice (sim={sim:.3f})")
+                return
             logger.info(f"[always_on] WAKE DETECTED: '{text}' → remaining: '{wake_result.remaining_text}'")
             await _send_debug(ws, f"[wake] keyword='{wake_result.keyword}' remaining='{wake_result.remaining_text}'")
             wake_resp = _wake_cache.get_random()
@@ -4585,6 +4948,10 @@ async def _broadcast_ambient_log():
 async def _ambient_batch_loop():
     """Periodic LLM batch judgment for ambient audio."""
     logger.info("[ambient] batch loop started")
+    # Patch BX1: suppress verbose per-cycle log when silent (buffer=0, not in cooldown).
+    # Emit a compact silent-summary every 60 idle cycles (~10min), and announce
+    # when silence ends so the next activity is easy to spot.
+    _bx1_silent_cycles = 0
     while True:
         try:
             if not _ambient_listener or not _clients:
@@ -4597,7 +4964,20 @@ async def _ambient_batch_loop():
                 continue
 
             await asyncio.sleep(interval)
-            logger.info(f"[ambient] batch cycle: clients={len(_clients)} buffer={len(_ambient_listener.text_buffer)} cooldown={_ambient_listener.is_llm_in_cooldown()}")
+            _bx1_buffer_size = len(_ambient_listener.text_buffer)
+            _bx1_in_cooldown = _ambient_listener.is_llm_in_cooldown()
+            if _bx1_buffer_size == 0 and not _bx1_in_cooldown:
+                _bx1_silent_cycles += 1
+                if _bx1_silent_cycles % 60 == 0:
+                    _bx1_minutes = _bx1_silent_cycles * interval / 60
+                    logger.info(f"[ambient] silent batch cycle: clients={len(_clients)} silent_for={_bx1_minutes:.0f}min ({_bx1_silent_cycles} cycles)")
+                else:
+                    logger.debug(f"[ambient] batch cycle: clients={len(_clients)} buffer=0 cooldown=False")
+            else:
+                if _bx1_silent_cycles > 0:
+                    logger.info(f"[ambient] silence ended after {_bx1_silent_cycles} cycles")
+                    _bx1_silent_cycles = 0
+                logger.info(f"[ambient] batch cycle: clients={len(_clients)} buffer={_bx1_buffer_size} cooldown={_bx1_in_cooldown}")
 
             # Periodic state broadcast
             await _broadcast_ambient_state()
@@ -4701,6 +5081,8 @@ async def websocket_endpoint(ws: WebSocket):
                     _settings.update(data.get("settings", {}))
                     if "autoApproveEnabled" in data.get("settings", {}):
                         _sync_auto_approve_file(bool(_settings.get("autoApproveEnabled")))
+                    if "improveLoopEnabled" in data.get("settings", {}):
+                        _sync_improve_loop_disabled_file(bool(_settings.get("improveLoopEnabled")))
                     _save_settings(_settings)
                     # サーバー側の変数も更新
                     if "voiceSelect" in data.get("settings", {}):
@@ -4946,6 +5328,7 @@ async def on_startup():
     global _settings
     _settings = _load_settings()
     _sync_auto_approve_file(_get_auto_approve_enabled())
+    _sync_improve_loop_disabled_file(bool(_settings.get("improveLoopEnabled", True)))
     await _warmup_irodori()
     # Wire up synthesize_speech for wake_response module
     _wake_response_module.synthesize_speech = synthesize_speech

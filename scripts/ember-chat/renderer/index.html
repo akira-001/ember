@@ -544,6 +544,10 @@
     background: var(--ember-success);
     animation: pulse-green 2s ease-in-out infinite;
   }
+  #alwaysOnDot.listening-stale {
+    background: rgba(34, 197, 94, 0.3);
+    animation: none;
+  }
   #alwaysOnDot.processing {
     background: var(--ember-warm);
     animation: pulse-warm 1s ease-in-out infinite;
@@ -745,6 +749,7 @@
     <option value="60" selected>1時間</option>
     <option value="120">2時間</option>
   </select>
+  <button id="autoApproveBtn" class="side-btn" onclick="toggleAutoApprove()" style="font-size:11px; padding:2px 8px;" title="自動承認: Slackの👍なしで自動適用">自動承認 OFF</button>
   <span id="improveLoopStatus" style="color:#666; font-size:11px;"></span>
 </div>
 <div id="textInputRow">
@@ -967,6 +972,9 @@ function getSettingsSnapshot() {
     proactiveEnabled,
     listeningDebug,
     lastSeen,
+    improveLoopEnabled,
+    improveLoopSpanMin,
+    autoApproveEnabled,
   };
 }
 
@@ -1008,6 +1016,33 @@ async function applySettings(settings) {
     const debugBtn = document.getElementById('debugBtn');
     debugBtn.textContent = listeningDebug ? 'Debug ON' : 'Debug';
     debugBtn.className = listeningDebug ? 'side-btn on' : 'side-btn';
+    document.getElementById('improveLoopPanel').style.display = listeningDebug ? 'flex' : 'none';
+  }
+  if (settings.improveLoopSpanMin) {
+    improveLoopSpanMin = settings.improveLoopSpanMin;
+    document.getElementById('improveLoopSpan').value = String(improveLoopSpanMin);
+  }
+  if (settings.improveLoopEnabled !== undefined) {
+    improveLoopEnabled = settings.improveLoopEnabled;
+    const btn = document.getElementById('improveLoopBtn');
+    btn.textContent = improveLoopEnabled ? 'Loop ON' : 'Loop OFF';
+    btn.className = improveLoopEnabled ? 'side-btn on' : 'side-btn';
+    if (improveLoopEnabled) {
+      scheduleImproveLoop();
+      { const _t = new Date(Date.now() + improveLoopSpanMin * 60000); document.getElementById('improveLoopStatus').textContent = `次回: ${_t.getHours()}:${String(_t.getMinutes()).padStart(2,'0')}`; }
+    }
+  }
+  if (settings.autoApproveEnabled !== undefined) {
+    autoApproveEnabled = settings.autoApproveEnabled;
+    const btn = document.getElementById('autoApproveBtn');
+    btn.textContent = autoApproveEnabled ? '自動承認 ON' : '自動承認 OFF';
+    btn.className = autoApproveEnabled ? 'side-btn on' : 'side-btn';
+    const status = document.getElementById('improveLoopStatus');
+    if (autoApproveEnabled) {
+      status.textContent = '自動承認モード';
+    } else if (!improveLoopEnabled) {
+      status.textContent = '';
+    }
   }
   _syncing = false;
 }
@@ -1081,7 +1116,11 @@ function connect() {
   ws.binaryType = 'arraybuffer';
   ws.onopen = () => {
     wsStatusDot.classList.add('online');
-    if (!alwaysOn) maybeStartAlwaysOn();
+    if (!alwaysOn) {
+      maybeStartAlwaysOn();
+    } else if (alwaysOn.enabled) {
+      alwaysOn.restart();
+    }
   };
   ws.onerror = () => { addMessage('Server connection failed — retrying...', 'status'); };
   ws.onclose = () => { wsStatusDot.classList.remove('online'); setTimeout(connect, 2000); };
@@ -1278,6 +1317,47 @@ function toggleDebug() {
 let improveLoopEnabled = false;
 let improveLoopTimer = null;
 let improveLoopSpanMin = 60;
+let autoApproveEnabled = false;
+
+async function initAutoApprove() {
+  try {
+    const r = await fetch(`${API_BASE}/improve_loop/auto_approve`);
+    const d = await r.json();
+    autoApproveEnabled = d.enabled;
+    const btn = document.getElementById('autoApproveBtn');
+    btn.textContent = autoApproveEnabled ? '自動承認 ON' : '自動承認 OFF';
+    btn.className = autoApproveEnabled ? 'side-btn on' : 'side-btn';
+    const status = document.getElementById('improveLoopStatus');
+    if (autoApproveEnabled) {
+      status.textContent = '自動承認モード';
+    } else if (!improveLoopEnabled) {
+      status.textContent = '';
+    }
+  } catch (e) {}
+}
+
+async function toggleAutoApprove() {
+  try {
+    autoApproveEnabled = !autoApproveEnabled;
+    const btn = document.getElementById('autoApproveBtn');
+    btn.textContent = autoApproveEnabled ? '自動承認 ON' : '自動承認 OFF';
+    btn.className = autoApproveEnabled ? 'side-btn on' : 'side-btn';
+    const status = document.getElementById('improveLoopStatus');
+    if (autoApproveEnabled) {
+      status.textContent = '自動承認モード';
+    } else if (!improveLoopEnabled) {
+      status.textContent = '';
+    }
+    saveSettings();
+    fetch(`${API_BASE}/improve_loop/auto_approve`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ enabled: autoApproveEnabled }),
+    }).catch(() => {});
+  } catch (e) {
+    document.getElementById('improveLoopStatus').textContent = 'エラー';
+  }
+}
 
 function toggleImproveLoop() {
   improveLoopEnabled = !improveLoopEnabled;
@@ -1286,11 +1366,12 @@ function toggleImproveLoop() {
   btn.className = improveLoopEnabled ? 'side-btn on' : 'side-btn';
   if (improveLoopEnabled) {
     scheduleImproveLoop();
-    document.getElementById('improveLoopStatus').textContent = `次回: ${improveLoopSpanMin}分後`;
+    { const _t = new Date(Date.now() + improveLoopSpanMin * 60000); document.getElementById('improveLoopStatus').textContent = `次回: ${_t.getHours()}:${String(_t.getMinutes()).padStart(2,'0')}`; }
   } else {
     clearTimeout(improveLoopTimer);
     document.getElementById('improveLoopStatus').textContent = '';
   }
+  saveSettings();
 }
 
 function updateImproveLoopSpan() {
@@ -1298,8 +1379,9 @@ function updateImproveLoopSpan() {
   if (improveLoopEnabled) {
     clearTimeout(improveLoopTimer);
     scheduleImproveLoop();
-    document.getElementById('improveLoopStatus').textContent = `次回: ${improveLoopSpanMin}分後`;
+    { const _t = new Date(Date.now() + improveLoopSpanMin * 60000); document.getElementById('improveLoopStatus').textContent = `次回: ${_t.getHours()}:${String(_t.getMinutes()).padStart(2,'0')}`; }
   }
+  saveSettings();
 }
 
 function scheduleImproveLoop() {
@@ -1308,7 +1390,7 @@ function scheduleImproveLoop() {
     if (!improveLoopEnabled) return;
     document.getElementById('improveLoopStatus').textContent = '分析中...';
     try {
-      await fetch('/api/improve_loop/run', { method: 'POST' });
+      await fetch(`${API_BASE}/improve_loop/run`, { method: 'POST' });
       const next = new Date(Date.now() + improveLoopSpanMin * 60000);
       document.getElementById('improveLoopStatus').textContent =
         `実行済 | 次回: ${next.getHours()}:${String(next.getMinutes()).padStart(2,'0')}`;
@@ -1544,9 +1626,11 @@ async function init() {
   if (saved.modelSelect) modelSelect.value = saved.modelSelect;
   if (saved.ambientModel) ambientModelSelect.value = saved.ambientModel;
   if (saved.speedSelect) speedSelect.value = saved.speedSelect;
+  if (saved.autoApproveEnabled !== undefined) autoApproveEnabled = saved.autoApproveEnabled;
   autoSave();
   connect();
   checkVoiceProfile();
+  initAutoApprove();
 }
 
 init();
@@ -1586,6 +1670,9 @@ function initAlwaysOn() {
       if (state === 'listening') {
         dot.classList.add('online', 'listening');
         label.textContent = 'Listening';
+      } else if (state === 'listening_stale') {
+        dot.classList.add('online', 'listening-stale');
+        label.textContent = 'Listening (stale)';
       } else if (state === 'processing' || state === 'detected') {
         dot.classList.add('processing');
         label.textContent = 'Processing...';
@@ -1593,7 +1680,8 @@ function initAlwaysOn() {
         label.textContent = 'Muted';
       }
       if (window.emberBridge?.setAlwaysOn) {
-        window.emberBridge.setAlwaysOn(state === 'listening' || state === 'detected' || state === 'processing');
+        const active = state === 'listening' || state === 'listening_stale' || state === 'detected' || state === 'processing';
+        window.emberBridge.setAlwaysOn(active);
       }
     },
     onWakeDetected: (msg) => {
