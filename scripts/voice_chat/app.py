@@ -3502,7 +3502,7 @@ def _transcribe_file_sync(path: str) -> dict:
         path,
         language="ja",
         beam_size=5,
-        vad_filter=False,
+        vad_filter=True,
         hotwords=_WHISPER_HOTWORDS,
     )
     seg_list = list(segments)
