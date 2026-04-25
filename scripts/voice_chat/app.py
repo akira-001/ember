@@ -371,7 +371,8 @@ def get_whisper():
     global _whisper_model
     if _whisper_model is None:
         print("Whisper large-v3 読み込み中...")
-        _whisper_model = WhisperModel("large-v3", device="cpu", compute_type="int8")
+        # int8_float32: int8 量子化重み + fp32 演算。pure int8 より精度向上、CPU 速度ほぼ同等
+        _whisper_model = WhisperModel("large-v3", device="cpu", compute_type="int8_float32")
         print("Whisper 準備完了")
     return _whisper_model
 
@@ -404,6 +405,15 @@ _HALLUCINATION_RE = re.compile(
 #      STT が "メイ、" を先頭に幻覚・"スケジュール" を重複させる現象を誘発していた。
 # 新: hotwords のみで "メイ" の語彙バイアスだけ注入。文脈は与えない。
 _WHISPER_HOTWORDS = "メイ"
+
+# 会議録音向け: 固有名詞・SaaS・人名等を hotwords として注入する。
+# 短尺の always-on STT では誤爆リスクがあるためこちらのみで使う。
+_WHISPER_FILE_HOTWORDS = (
+    "メイ ボイスアップラボ ショピファイ Shopify クロードコード Claude Anthropic "
+    "OpenAI Gemini ChatGPT GitHub Slack Notion Vercel Cursor Ollama Bedrock "
+    "Whisper Ember Akira AIツールキット カブト ハーネス バーセル STORES SUZURI "
+    "Stripe Docker Codex LangChain Perplexity Electron TypeScript JavaScript Python"
+)
 
 
 def _looks_like_initial_prompt_echo(text: str) -> bool:
@@ -3527,7 +3537,9 @@ def _transcribe_file_sync(path: str) -> dict:
         language="ja",
         beam_size=5,
         vad_filter=True,
-        hotwords=_WHISPER_HOTWORDS,
+        hotwords=_WHISPER_FILE_HOTWORDS,
+        # temperature はデフォルト [0, 0.2, ..., 1.0] のフォールバックを使う。
+        # temperature=0 単独だとループ陥落（同じ語句を延々繰り返す）から脱出できないため。
     )
     seg_list = list(segments)
     corrected_segments = []
