@@ -3863,6 +3863,15 @@ _always_on_conversation: list[dict] = [
 ]
 _ambient_listener: AmbientListener | None = None
 _ambient_batch_task: asyncio.Task | None = None
+
+# --- Soliloquy (E1 共在感、ambient 5min 無音時の意味のある独り言) ---
+_soliloquy_task: asyncio.Task | None = None
+_soliloquy_count_today: int = 0
+_soliloquy_last_date: str = ""  # YYYY-MM-DD JST
+_soliloquy_last_at: float = 0.0
+SOLILOQUY_SILENT_THRESHOLD_SEC = 300  # 5 min
+SOLILOQUY_DAILY_LIMIT = 3
+SOLILOQUY_MIN_INTERVAL_SEC = 5400  # 1.5h between soliloquies
 _speaker_id: SpeakerIdentifier | None = None
 _enrollment_active: bool = False
 _enrollment_queue: asyncio.Queue | None = None  # audio bytes queue for guided enrollment
@@ -5012,6 +5021,149 @@ async def _ambient_batch_loop():
             await asyncio.sleep(5)
 
 
+async def _generate_soliloquy() -> str:
+    """Generate a meaningful soliloquy (意味のある独り言) using context + LLM.
+
+    Soliloquy = bot's own internal thought spoken aloud, not a question or push to Akira.
+    Used by _soliloquy_loop() when Akira is silent for ~5 min.
+    """
+    now_jst = datetime.now()
+    time_str = now_jst.strftime("%H:%M")
+    weekday_jp = ["月", "火", "水", "木", "金", "土", "日"][now_jst.weekday()]
+
+    # Recent ambient buffer (last 5 entries) for contextual hints
+    recent_texts = []
+    if _ambient_listener and _ambient_listener.text_buffer:
+        recent_texts = [e["text"][:60] for e in _ambient_listener.text_buffer[-5:]]
+
+    context_part = ""
+    if recent_texts:
+        context_part = f"\n直近の周囲の音声: {' / '.join(recent_texts)}"
+
+    system_prompt = """あなたは Akira さんの傍にいる Mei です。Akira さんは作業中で、5 分以上静かにしています。
+あなたが今ふと口にした「意味のある独り言」を 1 文だけ呟いてください。
+
+ルール:
+- Akira への問いかけや push にしない（純粋な独り言として）
+- 意味のある内容（時間帯・曜日・季節・bot 自身の思考から自然に出るもの）
+- 30 字以内、1 文
+- 「うん」「聞いてる」のような相槌は禁止
+- 日本語、口語調、Mei らしい品のあるカジュアル
+
+例:
+- 「あのキャンプ場、来週空いてるかな…」
+- 「今日もう 17 時か、早いな」
+- 「Akiraさん、4 時間集中してる、すごい」
+- 「来週水曜の会議、資料見直しておきたいな」
+
+本文のみ呟いて（引用符不要）:"""
+
+    user_prompt = f"現在 {time_str} {weekday_jp}曜日{context_part}"
+
+    try:
+        ambient_model = (_settings.get("ambientModel", "") or _settings.get("modelSelect", "gemma4:e4b"))
+        if ambient_model == "claude":
+            ambient_model = "gemma4:e4b"  # Use local for soliloquy
+        response = await chat_with_llm([
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ], model=ambient_model)
+
+        # Clean up
+        soliloquy = response.strip().strip('"').strip("「").strip("」").strip()
+        # Remove any leading "Mei:" or similar prefix
+        soliloquy = re.sub(r'^(Mei|メイ)[:：\s]+', '', soliloquy)
+
+        # Length guard
+        if len(soliloquy) > 60:
+            soliloquy = soliloquy[:60]
+
+        return soliloquy
+    except Exception as e:
+        logger.warning(f"[soliloquy] LLM generation error: {e}")
+        return ""
+
+
+async def _soliloquy_loop():
+    """Periodic 'meaningful soliloquy' (独り言) when Akira is silent for ~5 min.
+
+    Triggered when ambient is silent for >= SOLILOQUY_SILENT_THRESHOLD_SEC AND clients connected.
+    Generates a contextual, meaningful 独り言 and speaks it via TTS.
+    Daily limit: SOLILOQUY_DAILY_LIMIT.
+    """
+    global _soliloquy_count_today, _soliloquy_last_date, _soliloquy_last_at
+    logger.info("[soliloquy] loop started")
+
+    while True:
+        try:
+            await asyncio.sleep(60)  # check every 60s
+
+            if not _ambient_listener or not _clients:
+                continue
+
+            # Reset daily counter on date change (JST = system local)
+            today = datetime.now().strftime("%Y-%m-%d")
+            if _soliloquy_last_date != today:
+                _soliloquy_count_today = 0
+                _soliloquy_last_date = today
+
+            # Check daily limit
+            if _soliloquy_count_today >= SOLILOQUY_DAILY_LIMIT:
+                continue
+
+            # Check minimum interval since last soliloquy
+            now = time.time()
+            if now - _soliloquy_last_at < SOLILOQUY_MIN_INTERVAL_SEC:
+                continue
+
+            # Check ambient silence (last text in buffer or last mei utterance)
+            last_activity_at = 0.0
+            if _ambient_listener.text_buffer:
+                last_activity_at = max(
+                    last_activity_at,
+                    max(e.get("ts", 0) for e in _ambient_listener.text_buffer)
+                )
+            last_activity_at = max(last_activity_at, _ambient_listener.last_mei_spoke_at)
+
+            if last_activity_at == 0.0:
+                # No activity ever recorded since startup → wait
+                continue
+
+            silence_sec = now - last_activity_at
+            if silence_sec < SOLILOQUY_SILENT_THRESHOLD_SEC:
+                continue
+
+            # Check LLM cooldown
+            if _ambient_listener.is_llm_in_cooldown():
+                continue
+
+            # Settings opt-out
+            if not _settings.get("soliloquyEnabled", True):
+                continue
+
+            # Generate soliloquy
+            soliloquy = await _generate_soliloquy()
+            if not soliloquy:
+                continue
+
+            # Broadcast via TTS using existing infrastructure
+            mei_speaker = _settings.get("meiVoice", "irodori-lora-emilia")
+            mei_speed_raw = _settings.get("meiSpeed", "auto") or "auto"
+            mei_speed = 0 if mei_speed_raw == "auto" else float(mei_speed_raw)
+
+            await _ambient_broadcast_reply(
+                soliloquy, "soliloquy", "soliloquy", "",
+                mei_speaker, mei_speed
+            )
+            _soliloquy_count_today += 1
+            _soliloquy_last_at = now
+            logger.info(f"[soliloquy] spoke: '{soliloquy}' (count today: {_soliloquy_count_today}/{SOLILOQUY_DAILY_LIMIT}, silence: {silence_sec:.0f}s)")
+
+        except Exception as e:
+            logger.warning(f"[soliloquy] loop error: {e}")
+            await asyncio.sleep(60)
+
+
 def _ensure_proactive_polling():
     """最初の WebSocket 接続時にポーリングタスクを開始"""
     global _proactive_task, _settings
@@ -5362,6 +5514,11 @@ async def on_startup():
     _ambient_listener.state = "listening"
     _ambient_batch_task = asyncio.create_task(_ambient_batch_loop())
     logger.info(f"[startup] Ambient listener ready (reactivity={_ambient_reactivity})")
+
+    # Start soliloquy loop (E1 共在感: meaningful 独り言 every ~5min silence, daily limit 3)
+    global _soliloquy_task
+    _soliloquy_task = asyncio.create_task(_soliloquy_loop())
+    logger.info("[startup] Soliloquy loop started")
 
     # Initialize speaker identification
     global _speaker_id
