@@ -604,15 +604,35 @@ async def chat_with_llm(messages: list[dict], model: str = "gemma4:e4b") -> str:
 # 辞書ベース高速置換（LLM より先に適用、レイテンシゼロ）
 # (誤認識パターン, 正しいテキスト) — 音韻的に近い誤認識を収録
 _STT_DICT: list[tuple[re.Pattern, str]] = [
+    # 複合語（長い語を先に置いて部分マッチを防ぐ）
+    (re.compile(r'クロードコード'), 'Claude Code'),
+    (re.compile(r'チャットGPT|チャットジーピーティー'), 'ChatGPT'),
+    (re.compile(r'オープンエーアイ|オープンAI'), 'OpenAI'),
+    (re.compile(r'ハギングフェイス'), 'Hugging Face'),
     # 企業・サービス名
     (re.compile(r'アンソロピック|アンスロピック|アンソロッピック|アントロピック'), 'Anthropic'),
     (re.compile(r'クロード'), 'Claude'),
-    (re.compile(r'オープンエーアイ|オープンAI'), 'OpenAI'),
     (re.compile(r'ジェミニ|ジェミナイ'), 'Gemini'),
-    (re.compile(r'チャットGPT|チャットジーピーティー'), 'ChatGPT'),
     (re.compile(r'ギットハブ|ギッドハブ'), 'GitHub'),
     (re.compile(r'スラック'), 'Slack'),
     (re.compile(r'ノーション'), 'Notion'),
+    # SaaS / EC
+    (re.compile(r'ショッピファイ|ショピファイ|ショッパイファイ|ショッパイ'), 'Shopify'),
+    (re.compile(r'ストアーズ|ストーラズ|ストーラス'), 'STORES'),
+    (re.compile(r'スズリブース|すずりブース|スズりブース'), 'SUZURI'),
+    (re.compile(r'ストライプ(?!模様|柄)'), 'Stripe'),
+    # 開発ツール / CDN / ランタイム
+    (re.compile(r'バーセル|ヴァーセル|ヴェルセル'), 'Vercel'),
+    (re.compile(r'ネットリファイ'), 'Netlify'),
+    (re.compile(r'ドッカー'), 'Docker'),
+    (re.compile(r'カーソル(?!キー)'), 'Cursor'),
+    (re.compile(r'リプリット'), 'Replit'),
+    (re.compile(r'コーデックス|コデックス'), 'Codex'),
+    (re.compile(r'ラング?チェーン'), 'LangChain'),
+    (re.compile(r'オラマ'), 'Ollama'),
+    (re.compile(r'パープレキシティ'), 'Perplexity'),
+    (re.compile(r'ベッドロック'), 'Bedrock'),
+    (re.compile(r'バーテックス(?:エーアイ|AI)'), 'Vertex AI'),
     # 技術用語
     (re.compile(r'デンダー'), 'カレンダー'),
     (re.compile(r'ウィスパー'), 'Whisper'),
@@ -3496,7 +3516,11 @@ def _fmt_transcript_ts(seconds: float) -> str:
 
 
 def _transcribe_file_sync(path: str) -> dict:
-    """会議録音などの長尺ファイル向け文字起こし（large-v3、タイムスタンプ付き）"""
+    """会議録音などの長尺ファイル向け文字起こし（large-v3、タイムスタンプ付き）。
+
+    Whisper 出力に STT 辞書補正（_apply_stt_dict）を適用して固有名詞のローマ字化・
+    表記揺れを正規化する。
+    """
     model = get_whisper()
     segments, info = model.transcribe(
         path,
@@ -3506,14 +3530,28 @@ def _transcribe_file_sync(path: str) -> dict:
         hotwords=_WHISPER_HOTWORDS,
     )
     seg_list = list(segments)
-    plain_text = "".join(seg.text for seg in seg_list).strip()
-    lines = [f"[{_fmt_transcript_ts(s.start)}] {s.text.strip()}" for s in seg_list if s.text.strip()]
+    corrected_segments = []
+    correction_count = 0
+    for seg in seg_list:
+        original = seg.text.strip()
+        if not original:
+            continue
+        corrected = _apply_stt_dict(original)
+        if corrected != original:
+            correction_count += 1
+        corrected_segments.append((seg.start, corrected))
+
+    plain_text = "".join(text for _, text in corrected_segments).strip()
+    lines = [f"[{_fmt_transcript_ts(start)}] {text}" for start, text in corrected_segments]
+    if correction_count:
+        logger.info(f"[transcribe-file] STT dict corrections applied to {correction_count}/{len(seg_list)} segments")
     return {
         "text": plain_text,
         "transcript": "\n".join(lines),
         "duration": float(getattr(info, "duration", 0.0) or 0.0),
         "language": getattr(info, "language", "ja"),
         "segment_count": len(seg_list),
+        "dict_corrections": correction_count,
     }
 
 
