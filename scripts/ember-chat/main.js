@@ -6,6 +6,15 @@ const { exec } = require('child_process');
 const VOICE_CHAT_HOST = 'localhost';
 const VOICE_CHAT_PORT = 8767;
 const AUDIO_FIXTURE_INCOMING_DIR = path.resolve(__dirname, '../voice_chat/tests/fixtures/audio/incoming');
+const RECORDINGS_DIR = path.join(__dirname, 'recordings');
+
+function sanitizeRecordingFilename(raw) {
+  const base = String(raw || '').trim();
+  // Strip path separators and any character that isn't safe for a filename
+  const safe = base.replace(/[^A-Za-z0-9._\-]/g, '_');
+  if (!safe || safe === '.' || safe === '..') throw new Error('Invalid recording filename');
+  return safe;
+}
 
 const APP_ICON_PATH = path.join(__dirname, 'icon-1024.png');
 app.setName('Ember Chat');
@@ -124,6 +133,29 @@ ipcMain.handle('save-incoming-audio-fixture', async (_event, payload) => {
   fs.writeFileSync(wavPath, Buffer.from(payload.wavBuffer || []));
   fs.writeFileSync(jsonPath, JSON.stringify(normalized, null, 2) + '\n', 'utf8');
   return { ok: true, saved: { wav: wavPath, json: jsonPath } };
+});
+
+// --- Meeting recordings ---
+ipcMain.handle('save-recording-audio', async (_event, payload) => {
+  const filename = sanitizeRecordingFilename(payload?.filename);
+  ensureDir(RECORDINGS_DIR);
+  const filePath = path.join(RECORDINGS_DIR, filename);
+  fs.writeFileSync(filePath, Buffer.from(payload.buffer || []));
+  return { ok: true, path: filePath };
+});
+
+ipcMain.handle('save-recording-text', async (_event, payload) => {
+  const filename = sanitizeRecordingFilename(payload?.filename);
+  ensureDir(RECORDINGS_DIR);
+  const filePath = path.join(RECORDINGS_DIR, filename);
+  fs.writeFileSync(filePath, String(payload.text || ''), 'utf8');
+  return { ok: true, path: filePath };
+});
+
+ipcMain.handle('open-recordings-folder', async () => {
+  ensureDir(RECORDINGS_DIR);
+  exec(`open "${RECORDINGS_DIR}"`);
+  return { ok: true, path: RECORDINGS_DIR };
 });
 
 // --- Always-On consent ---

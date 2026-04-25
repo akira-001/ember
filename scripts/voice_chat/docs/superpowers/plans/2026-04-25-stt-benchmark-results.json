@@ -1,0 +1,1617 @@
+{
+  "metadata": {
+    "date": "2026-04-25",
+    "device": "cpu",
+    "compute_type": "int8",
+    "samples_count": 27,
+    "small_model": "small",
+    "kotoba_model": "kotoba-tech/kotoba-whisper-v2.0-faster"
+  },
+  "results": {
+    "keyboard_clicks": {
+      "category": "keyboard",
+      "expected": "カタ",
+      "expected_skip": false,
+      "duration_sec": 0.5,
+      "small": {
+        "text": "",
+        "latency_sec": 0.017896374978590757,
+        "cer": 1.0,
+        "outcome": "missed",
+        "avg_logprob": 0.0,
+        "extra": {
+          "no_speech_prob": 1.0,
+          "segment_count": 0
+        }
+      },
+      "kotoba": {
+        "text": "",
+        "latency_sec": 0.0012711250165011734,
+        "cer": 1.0,
+        "outcome": "missed",
+        "avg_logprob": 0.0,
+        "extra": {
+          "no_speech_prob": 1.0,
+          "segment_count": 0
+        }
+      },
+      "two_stage": {
+        "text": "",
+        "latency_sec": 0.0011002499959431589,
+        "cer": 1.0,
+        "outcome": "missed",
+        "avg_logprob": 0.0,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "",
+          "stage1_logprob": 0.0,
+          "stage1_latency": 0.001098584005376324
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "",
+        "latency_sec": 0.0011415420158300549,
+        "cer": 1.0,
+        "outcome": "missed",
+        "avg_logprob": 0.0,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "",
+          "stage1_logprob": 0.0,
+          "stage1_latency": 0.0010593750048428774,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.5625
+        }
+      }
+    },
+    "desk_monologue": {
+      "category": "desk",
+      "expected": "疲れたなあ",
+      "expected_skip": false,
+      "duration_sec": 1.1,
+      "small": {
+        "text": "んー",
+        "latency_sec": 3.6521209579950664,
+        "cer": 1.0,
+        "outcome": "wrong",
+        "avg_logprob": -1.0253860473632812,
+        "extra": {
+          "no_speech_prob": 0.27625519037246704,
+          "segment_count": 1
+        }
+      },
+      "kotoba": {
+        "text": "ん",
+        "latency_sec": 3.9568154999869876,
+        "cer": 1.0,
+        "outcome": "wrong",
+        "avg_logprob": -0.5126642435789108,
+        "extra": {
+          "no_speech_prob": 2.5515161095057692e-09,
+          "segment_count": 1
+        }
+      },
+      "two_stage": {
+        "text": "んー",
+        "latency_sec": 2.6104447079997044,
+        "cer": 1.0,
+        "outcome": "wrong",
+        "avg_logprob": -1.0253860473632812,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "んー",
+          "stage1_logprob": -1.0253860473632812,
+          "stage1_latency": 2.610440374992322
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "んー",
+        "latency_sec": 2.5702910000109114,
+        "cer": 1.0,
+        "outcome": "wrong",
+        "avg_logprob": -1.0253860473632812,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "んー",
+          "stage1_logprob": -1.0253860473632812,
+          "stage1_latency": 2.5701548749930225,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.1111111111111111
+        }
+      }
+    },
+    "direct_question": {
+      "category": "direct",
+      "expected": "今日の予定どうしようかな？",
+      "expected_skip": false,
+      "duration_sec": 1.5,
+      "small": {
+        "text": "うーん",
+        "latency_sec": 0.7527048329939134,
+        "cer": 0.9166666666666666,
+        "outcome": "wrong",
+        "avg_logprob": -0.8418804168701172,
+        "extra": {
+          "no_speech_prob": 0.29634249210357666,
+          "segment_count": 1
+        }
+      },
+      "kotoba": {
+        "text": "ん",
+        "latency_sec": 3.939101958007086,
+        "cer": 1.0,
+        "outcome": "wrong",
+        "avg_logprob": -0.5219982415437698,
+        "extra": {
+          "no_speech_prob": 1.9939534467994235e-09,
+          "segment_count": 1
+        }
+      },
+      "two_stage": {
+        "text": "うーん",
+        "latency_sec": 0.7411048329959158,
+        "cer": 0.9166666666666666,
+        "outcome": "wrong",
+        "avg_logprob": -0.8418804168701172,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "うーん",
+          "stage1_logprob": -0.8418804168701172,
+          "stage1_latency": 0.7411007909977343
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "うーん",
+        "latency_sec": 0.7366409589885734,
+        "cer": 0.9166666666666666,
+        "outcome": "wrong",
+        "avg_logprob": -0.8418804168701172,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "うーん",
+          "stage1_logprob": -0.8418804168701172,
+          "stage1_latency": 0.7364734580041841,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.6
+        }
+      }
+    },
+    "tv_outro": {
+      "category": "tv",
+      "expected": "この動画をご視聴いただきありがとうございました",
+      "expected_skip": false,
+      "duration_sec": 1.7,
+      "small": {
+        "text": "ん",
+        "latency_sec": 0.7305857089813799,
+        "cer": 1.0,
+        "outcome": "wrong",
+        "avg_logprob": -0.8998511731624603,
+        "extra": {
+          "no_speech_prob": 0.6087644100189209,
+          "segment_count": 1
+        }
+      },
+      "kotoba": {
+        "text": "ごめん",
+        "latency_sec": 3.931288375024451,
+        "cer": 0.9565217391304348,
+        "outcome": "wrong",
+        "avg_logprob": -0.797774096330007,
+        "extra": {
+          "no_speech_prob": 1.647616265643137e-09,
+          "segment_count": 1
+        }
+      },
+      "two_stage": {
+        "text": "ん",
+        "latency_sec": 0.7317884580115788,
+        "cer": 1.0,
+        "outcome": "wrong",
+        "avg_logprob": -0.8998511731624603,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "ん",
+          "stage1_logprob": -0.8998511731624603,
+          "stage1_latency": 0.7317841250041965
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "ん",
+        "latency_sec": 0.7317477079923265,
+        "cer": 1.0,
+        "outcome": "wrong",
+        "avg_logprob": -0.8998511731624603,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "ん",
+          "stage1_logprob": -0.8998511731624603,
+          "stage1_latency": 0.7315684589848388,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 1.0
+        }
+      }
+    },
+    "keyboard_mechanical_short_01": {
+      "category": "keyboard",
+      "expected": "無言のまま、キーボードを3回打って、1秒置いて、マウスを1回クリックしてください。",
+      "expected_skip": false,
+      "duration_sec": 9.78,
+      "small": {
+        "text": "",
+        "latency_sec": 0.014065625000512227,
+        "cer": 1.0,
+        "outcome": "missed",
+        "avg_logprob": 0.0,
+        "extra": {
+          "no_speech_prob": 1.0,
+          "segment_count": 0
+        }
+      },
+      "kotoba": {
+        "text": "",
+        "latency_sec": 0.013973207998787984,
+        "cer": 1.0,
+        "outcome": "missed",
+        "avg_logprob": 0.0,
+        "extra": {
+          "no_speech_prob": 1.0,
+          "segment_count": 0
+        }
+      },
+      "two_stage": {
+        "text": "",
+        "latency_sec": 0.01369095899281092,
+        "cer": 1.0,
+        "outcome": "missed",
+        "avg_logprob": 0.0,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "",
+          "stage1_logprob": 0.0,
+          "stage1_latency": 0.013689374987734482
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "ごめん",
+        "latency_sec": 8.872971917007817,
+        "cer": 1.0,
+        "outcome": "wrong",
+        "avg_logprob": -0.5013923843701681,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "ううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううう",
+          "stage1_logprob": -0.09774113337198893,
+          "stage1_latency": 4.875254458020208,
+          "stage2_text": "ごめん",
+          "stage2_logprob": -0.5013923843701681,
+          "stage2_latency": 3.9969393750070594,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.3312883435582822
+        }
+      }
+    },
+    "media_youtube_outro_01": {
+      "category": "media",
+      "expected": "この動画をご視聴いただきありがとうございました。また次回の動画でお会いしましょう。",
+      "expected_skip": false,
+      "duration_sec": 6.66,
+      "small": {
+        "text": "",
+        "latency_sec": 0.01052641699789092,
+        "cer": 1.0,
+        "outcome": "missed",
+        "avg_logprob": 0.0,
+        "extra": {
+          "no_speech_prob": 1.0,
+          "segment_count": 0
+        }
+      },
+      "kotoba": {
+        "text": "",
+        "latency_sec": 0.010669708019122481,
+        "cer": 1.0,
+        "outcome": "missed",
+        "avg_logprob": 0.0,
+        "extra": {
+          "no_speech_prob": 1.0,
+          "segment_count": 0
+        }
+      },
+      "two_stage": {
+        "text": "",
+        "latency_sec": 0.010495167021872476,
+        "cer": 1.0,
+        "outcome": "missed",
+        "avg_logprob": 0.0,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "",
+          "stage1_logprob": 0.0,
+          "stage1_latency": 0.010493459005374461
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "",
+        "latency_sec": 0.0005767500260844827,
+        "cer": 1.0,
+        "outcome": "missed",
+        "avg_logprob": 0.0,
+        "extra": {
+          "skipped_by_webrtcvad": true,
+          "voice_ratio": 0.036036036036036036,
+          "stage": 0
+        }
+      }
+    },
+    "monologue_tired_after_work_01": {
+      "category": "monologue",
+      "expected": "疲れたなあ、ちょっと休もうかな。",
+      "expected_skip": false,
+      "duration_sec": 3.18,
+      "small": {
+        "text": "疲れたなぁ ちょっと休もうかな",
+        "latency_sec": 0.8288592500030063,
+        "cer": 0.07142857142857142,
+        "outcome": "ok",
+        "avg_logprob": -0.33389492120061603,
+        "extra": {
+          "no_speech_prob": 0.09213439375162125,
+          "segment_count": 1
+        }
+      },
+      "kotoba": {
+        "text": "疲れたなちょっと休もうかな",
+        "latency_sec": 4.035410292010056,
+        "cer": 0.07142857142857142,
+        "outcome": "ok",
+        "avg_logprob": -0.2164914391257546,
+        "extra": {
+          "no_speech_prob": 4.492521021859375e-09,
+          "segment_count": 1
+        }
+      },
+      "two_stage": {
+        "text": "疲れたなちょっと休もうかな",
+        "latency_sec": 4.8155858750105835,
+        "cer": 0.07142857142857142,
+        "outcome": "ok",
+        "avg_logprob": -0.2164914391257546,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "疲れたなぁ ちょっと休もうかな",
+          "stage1_logprob": -0.33389492120061603,
+          "stage1_latency": 0.8032329580164514,
+          "stage2_text": "疲れたなちょっと休もうかな",
+          "stage2_logprob": -0.2164914391257546,
+          "stage2_latency": 4.012343916983809
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "疲れたなちょっと休もうかな",
+        "latency_sec": 4.846239834005246,
+        "cer": 0.07142857142857142,
+        "outcome": "ok",
+        "avg_logprob": -0.2164914391257546,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "疲れたなぁ ちょっと休もうかな",
+          "stage1_logprob": -0.33389492120061603,
+          "stage1_latency": 0.7995594159874599,
+          "stage2_text": "疲れたなちょっと休もうかな",
+          "stage2_logprob": -0.2164914391257546,
+          "stage2_latency": 4.046367249975447,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.6509433962264151
+        }
+      }
+    },
+    "question_schedule_planning_01": {
+      "category": "question",
+      "expected": "今日の予定どうしようかな？",
+      "expected_skip": false,
+      "duration_sec": 4.02,
+      "small": {
+        "text": "今日の予定どうしようかな",
+        "latency_sec": 0.7945623749983497,
+        "cer": 0.0,
+        "outcome": "ok",
+        "avg_logprob": -0.3184489707152049,
+        "extra": {
+          "no_speech_prob": 0.040974847972393036,
+          "segment_count": 1
+        }
+      },
+      "kotoba": {
+        "text": "今日の予定どうしようかな",
+        "latency_sec": 4.04850858298596,
+        "cer": 0.0,
+        "outcome": "ok",
+        "avg_logprob": -0.1022343635559082,
+        "extra": {
+          "no_speech_prob": 2.2197754745434395e-09,
+          "segment_count": 1
+        }
+      },
+      "two_stage": {
+        "text": "今日の予定どうしようかな",
+        "latency_sec": 4.829182125016814,
+        "cer": 0.0,
+        "outcome": "ok",
+        "avg_logprob": -0.1022343635559082,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "今日の予定どうしようかな",
+          "stage1_logprob": -0.3184489707152049,
+          "stage1_latency": 0.808601249998901,
+          "stage2_text": "今日の予定どうしようかな",
+          "stage2_logprob": -0.1022343635559082,
+          "stage2_latency": 4.020573041023454
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "今日の予定どうしようかな",
+        "latency_sec": 4.836009916005423,
+        "cer": 0.0,
+        "outcome": "ok",
+        "avg_logprob": -0.1022343635559082,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "今日の予定どうしようかな",
+          "stage1_logprob": -0.3184489707152049,
+          "stage1_latency": 0.8120062920206692,
+          "stage2_text": "今日の予定どうしようかな",
+          "stage2_logprob": -0.1022343635559082,
+          "stage2_latency": 4.023619665997103,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.5597014925373134
+        }
+      }
+    },
+    "wake_good_morning_01": {
+      "category": "wake",
+      "expected": "メイ、おはよう。",
+      "expected_skip": false,
+      "duration_sec": 2.16,
+      "small": {
+        "text": "メインおはよう",
+        "latency_sec": 0.7695582080050372,
+        "cer": 0.16666666666666666,
+        "outcome": "partial",
+        "avg_logprob": -0.668221632639567,
+        "extra": {
+          "no_speech_prob": 0.10347998887300491,
+          "segment_count": 1
+        }
+      },
+      "kotoba": {
+        "text": "メイおはよう",
+        "latency_sec": 3.984072124992963,
+        "cer": 0.0,
+        "outcome": "ok",
+        "avg_logprob": -0.33914966508746147,
+        "extra": {
+          "no_speech_prob": 1.935372750949682e-09,
+          "segment_count": 1
+        }
+      },
+      "two_stage": {
+        "text": "メイおはよう",
+        "latency_sec": 4.787814000010258,
+        "cer": 0.0,
+        "outcome": "ok",
+        "avg_logprob": -0.33914966508746147,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "メインおはよう",
+          "stage1_logprob": -0.668221632639567,
+          "stage1_latency": 0.7771479999937583,
+          "stage2_text": "メイおはよう",
+          "stage2_logprob": -0.33914966508746147,
+          "stage2_latency": 4.010658582992619
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "メイおはよう",
+        "latency_sec": 4.78182016700157,
+        "cer": 0.0,
+        "outcome": "ok",
+        "avg_logprob": -0.33914966508746147,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "メインおはよう",
+          "stage1_logprob": -0.668221632639567,
+          "stage1_latency": 0.7823622919968329,
+          "stage2_text": "メイおはよう",
+          "stage2_logprob": -0.33914966508746147,
+          "stage2_latency": 3.99922883301042,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.4444444444444444
+        }
+      }
+    },
+    "synthetic_silence": {
+      "category": "silence",
+      "expected": "",
+      "expected_skip": true,
+      "duration_sec": 3.0,
+      "small": {
+        "text": "",
+        "latency_sec": 0.005176167003810406,
+        "cer": 0.0,
+        "outcome": "ok_skip",
+        "avg_logprob": 0.0,
+        "extra": {
+          "no_speech_prob": 1.0,
+          "segment_count": 0
+        }
+      },
+      "kotoba": {
+        "text": "",
+        "latency_sec": 0.004935665987432003,
+        "cer": 0.0,
+        "outcome": "ok_skip",
+        "avg_logprob": 0.0,
+        "extra": {
+          "no_speech_prob": 1.0,
+          "segment_count": 0
+        }
+      },
+      "two_stage": {
+        "text": "",
+        "latency_sec": 0.004911958007141948,
+        "cer": 0.0,
+        "outcome": "ok_skip",
+        "avg_logprob": 0.0,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "",
+          "stage1_logprob": 0.0,
+          "stage1_latency": 0.004910791991278529
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "",
+        "latency_sec": 0.00023566698655486107,
+        "cer": 0.0,
+        "outcome": "ok_skip",
+        "avg_logprob": 0.0,
+        "extra": {
+          "skipped_by_webrtcvad": true,
+          "voice_ratio": 0.0,
+          "stage": 0
+        }
+      }
+    },
+    "synthetic_white_noise": {
+      "category": "noise",
+      "expected": "",
+      "expected_skip": true,
+      "duration_sec": 3.0,
+      "small": {
+        "text": "",
+        "latency_sec": 0.004917125013889745,
+        "cer": 0.0,
+        "outcome": "ok_skip",
+        "avg_logprob": 0.0,
+        "extra": {
+          "no_speech_prob": 1.0,
+          "segment_count": 0
+        }
+      },
+      "kotoba": {
+        "text": "",
+        "latency_sec": 0.004812708997633308,
+        "cer": 0.0,
+        "outcome": "ok_skip",
+        "avg_logprob": 0.0,
+        "extra": {
+          "no_speech_prob": 1.0,
+          "segment_count": 0
+        }
+      },
+      "two_stage": {
+        "text": "",
+        "latency_sec": 0.004952291987137869,
+        "cer": 0.0,
+        "outcome": "ok_skip",
+        "avg_logprob": 0.0,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "",
+          "stage1_logprob": 0.0,
+          "stage1_latency": 0.00495075000799261
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "",
+        "latency_sec": 0.00025675000506453216,
+        "cer": 0.0,
+        "outcome": "ok_skip",
+        "avg_logprob": 0.0,
+        "extra": {
+          "skipped_by_webrtcvad": true,
+          "voice_ratio": 0.03,
+          "stage": 0
+        }
+      }
+    },
+    "media__youtube_far_field__01": {
+      "category": "media_far_field",
+      "expected": "ボイスアップラボのギリギリ開発会議。はい、どうもボイスアップラボのトールです。",
+      "expected_skip": false,
+      "duration_sec": 7.0005,
+      "small": {
+        "text": "はい、どうも、ボイスアップのポールです",
+        "latency_sec": 0.8379674160096329,
+        "cer": 0.5555555555555556,
+        "outcome": "wrong",
+        "avg_logprob": -0.8320136911728803,
+        "extra": {
+          "no_speech_prob": 0.30150261521339417,
+          "segment_count": 1
+        }
+      },
+      "kotoba": {
+        "text": "はいどうもごちそうプラムのトールです",
+        "latency_sec": 4.02742933400441,
+        "cer": 0.6388888888888888,
+        "outcome": "wrong",
+        "avg_logprob": -0.4957856051623821,
+        "extra": {
+          "no_speech_prob": 3.973801732115589e-09,
+          "segment_count": 1
+        }
+      },
+      "two_stage": {
+        "text": "はい、どうも、ボイスアップのポールです",
+        "latency_sec": 0.8305026250018273,
+        "cer": 0.5555555555555556,
+        "outcome": "wrong",
+        "avg_logprob": -0.8320136911728803,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "はい、どうも、ボイスアップのポールです",
+          "stage1_logprob": -0.8320136911728803,
+          "stage1_latency": 0.830498583993176
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "おう",
+        "latency_sec": 2.597281374997692,
+        "cer": 0.9722222222222222,
+        "outcome": "wrong",
+        "avg_logprob": -1.5217100143432618,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "おう",
+          "stage1_logprob": -1.5217100143432618,
+          "stage1_latency": 2.596670583006926,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.6266094420600858
+        }
+      }
+    },
+    "media__youtube_far_field__02": {
+      "category": "media_far_field",
+      "expected": "はい。ちょっと今回はあの先週池田さんがショピファイのAIツールキットの話をしてくれたので",
+      "expected_skip": false,
+      "duration_sec": 7.0,
+      "small": {
+        "text": "今回は専州 ケドさんが処理入った処理を聞いてお話をしてくれた",
+        "latency_sec": 0.9504960410122294,
+        "cer": 0.6976744186046512,
+        "outcome": "wrong",
+        "avg_logprob": -0.8320703562349081,
+        "extra": {
+          "no_speech_prob": 0.4927520453929901,
+          "segment_count": 2
+        }
+      },
+      "kotoba": {
+        "text": "今回は先週けどさんが書きと話をしてくれた",
+        "latency_sec": 4.10552120898501,
+        "cer": 0.6511627906976745,
+        "outcome": "wrong",
+        "avg_logprob": -0.365213574634658,
+        "extra": {
+          "no_speech_prob": 2.6602291480770646e-09,
+          "segment_count": 1
+        }
+      },
+      "two_stage": {
+        "text": "今回は専州 ケドさんが処理入った処理を聞いてお話をしてくれた",
+        "latency_sec": 0.9261049579945393,
+        "cer": 0.6976744186046512,
+        "outcome": "wrong",
+        "avg_logprob": -0.8320703562349081,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "今回は専州 ケドさんが処理入った処理を聞いてお話をしてくれた",
+          "stage1_logprob": -0.8320703562349081,
+          "stage1_latency": 0.9261002499843016
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "おかしいおかしいおかしい",
+        "latency_sec": 0.8276120409718715,
+        "cer": 0.9767441860465116,
+        "outcome": "wrong",
+        "avg_logprob": -0.9896044805645943,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "おかしいおかしいおかしい",
+          "stage1_logprob": -0.9896044805645943,
+          "stage1_latency": 0.8269714170019142,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.7682403433476395
+        }
+      }
+    },
+    "media__youtube_far_field__03": {
+      "category": "media_far_field",
+      "expected": "なので、ま、とりあえずクロードコード広げて、ま、オンラインショップで、え、ものをちょっと売りたいんだ。だけど、ま、集客はちょっと",
+      "expected_skip": false,
+      "duration_sec": 7.0,
+      "small": {
+        "text": "どうぞどうぞとりあえずプロのコードを仕上げてオンラインショップで",
+        "latency_sec": 1.6773738749907352,
+        "cer": 0.6909090909090909,
+        "outcome": "wrong",
+        "avg_logprob": -0.6959736181630028,
+        "extra": {
+          "no_speech_prob": 0.5625399351119995,
+          "segment_count": 4
+        }
+      },
+      "kotoba": {
+        "text": "なのでとりあえずプロノコード広げてオンラインショップでやって",
+        "latency_sec": 4.1577482919965405,
+        "cer": 0.5272727272727272,
+        "outcome": "wrong",
+        "avg_logprob": -0.3386429601481983,
+        "extra": {
+          "no_speech_prob": 3.89942877987437e-09,
+          "segment_count": 2
+        }
+      },
+      "two_stage": {
+        "text": "どうぞまあとりあえずプロのことをしておいてまあオンラインショップで",
+        "latency_sec": 3.255041958997026,
+        "cer": 0.7090909090909091,
+        "outcome": "wrong",
+        "avg_logprob": -0.8652473457397954,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "どうぞまあとりあえずプロのことをしておいてまあオンラインショップで",
+          "stage1_logprob": -0.8652473457397954,
+          "stage1_latency": 3.2550374589918647
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "とりあえず黒の子の人別れ青村で一緒に",
+        "latency_sec": 10.918552582996199,
+        "cer": 0.8909090909090909,
+        "outcome": "wrong",
+        "avg_logprob": -0.6589434242248535,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "お前は もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう もう",
+          "stage1_logprob": -0.12792399300469293,
+          "stage1_latency": 6.728047874988988,
+          "stage2_text": "とりあえず黒の子の人別れ青村で一緒に",
+          "stage2_logprob": -0.6589434242248535,
+          "stage2_latency": 4.18989520901232,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.7896995708154506
+        }
+      }
+    },
+    "media__youtube_far_field__04": {
+      "category": "media_far_field",
+      "expected": "欲望を入れてみただけですね。欲望を入れた状態です。初心者ECオーナーがとりあえずやりたいこと書いた。",
+      "expected_skip": false,
+      "duration_sec": 7.0,
+      "small": {
+        "text": "欲望を入れてみただけですね欲望を入れた時お世話です先社インシーオーナーがとりあえずやりたいことを書いてああそうです",
+        "latency_sec": 1.1208599169913214,
+        "cer": 0.3829787234042553,
+        "outcome": "wrong",
+        "avg_logprob": -0.6260815209576062,
+        "extra": {
+          "no_speech_prob": 0.41351526975631714,
+          "segment_count": 4
+        }
+      },
+      "kotoba": {
+        "text": "欲望を入れてみた状態ですね写真者ECOーナーがとりあえずやりたいこと書いたありがとうございました",
+        "latency_sec": 8.214535250008339,
+        "cer": 0.5531914893617021,
+        "outcome": "wrong",
+        "avg_logprob": -0.401313171427474,
+        "extra": {
+          "no_speech_prob": 2.057405505221747e-09,
+          "segment_count": 3
+        }
+      },
+      "two_stage": {
+        "text": "欲望を入れてみた状態ですね写真者ECOーナーがとりあえずやりたいこと書いたありがとうございました",
+        "latency_sec": 9.217259917000774,
+        "cer": 0.5531914893617021,
+        "outcome": "wrong",
+        "avg_logprob": -0.401313171427474,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "欲望を入れてみただけですね欲望を入れた時お世話です先社インシーオーナーがとりあえずやりたいことを書いてああそうです",
+          "stage1_logprob": -0.6260815209576062,
+          "stage1_latency": 1.0845410829933826,
+          "stage2_text": "欲望を入れてみた状態ですね写真者ECOーナーがとりあえずやりたいこと書いたありがとうございました",
+          "stage2_logprob": -0.401313171427474,
+          "stage2_latency": 8.13270991598256
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "おうくんおうくんおうくん",
+        "latency_sec": 0.8451986660074908,
+        "cer": 1.0,
+        "outcome": "wrong",
+        "avg_logprob": -0.8533130633203608,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "おうくんおうくんおうくん",
+          "stage1_logprob": -0.8533130633203608,
+          "stage1_latency": 0.8445334999996703,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.9570815450643777
+        }
+      }
+    },
+    "media__youtube_far_field__05": {
+      "category": "media_far_field",
+      "expected": "サービスがいいよねというところで、ま、一応AI連携機能が豊富なサービスはどれですかっていう風に聞いてみました。",
+      "expected_skip": false,
+      "duration_sec": 7.0,
+      "small": {
+        "text": "いいよねというところで、一応AIで受け取るのが僕のサービスはどれですかっていうふうに聞いてみました",
+        "latency_sec": 1.0065985840046778,
+        "cer": 0.3269230769230769,
+        "outcome": "wrong",
+        "avg_logprob": -0.5205819732264468,
+        "extra": {
+          "no_speech_prob": 0.340939462184906,
+          "segment_count": 1
+        }
+      },
+      "kotoba": {
+        "text": "いいよねというところで一応AI連携機能が僕のサービスはどれですかって聞いてみました",
+        "latency_sec": 4.175458417012123,
+        "cer": 0.25,
+        "outcome": "partial",
+        "avg_logprob": -0.21892261505126953,
+        "extra": {
+          "no_speech_prob": 2.328470305457131e-09,
+          "segment_count": 1
+        }
+      },
+      "two_stage": {
+        "text": "いいよねというところで一応AI連携機能が僕のサービスはどれですかって聞いてみました",
+        "latency_sec": 5.118702207983006,
+        "cer": 0.25,
+        "outcome": "partial",
+        "avg_logprob": -0.21892261505126953,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "いいよねというところで、一応AIで受け取るのが僕のサービスはどれですかっていうふうに聞いてみました",
+          "stage1_logprob": -0.5205819732264468,
+          "stage1_latency": 0.9655426250246819,
+          "stage2_text": "いいよねというところで一応AI連携機能が僕のサービスはどれですかって聞いてみました",
+          "stage2_logprob": -0.21892261505126953,
+          "stage2_latency": 4.153151582984719
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "おうくん",
+        "latency_sec": 3.541746791015612,
+        "cer": 0.9807692307692307,
+        "outcome": "wrong",
+        "avg_logprob": -1.6486919607434953,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "おうくん",
+          "stage1_logprob": -1.6486919607434953,
+          "stage1_latency": 3.5411216669890564,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.9012875536480687
+        }
+      }
+    },
+    "media__youtube_far_field__06": {
+      "category": "media_far_field",
+      "expected": "ベースとかストアーズとかあるけど、ま、ちょっと商品説明を生成してくれる機能ぐらいあるかなぐらいのところで今は回ってるのかな。",
+      "expected_skip": false,
+      "duration_sec": 7.0,
+      "small": {
+        "text": "です とかすとはずとあるけどまあちょっと商品説明を 制施してくれますのぐらい",
+        "latency_sec": 0.9609184169967193,
+        "cer": 0.6101694915254238,
+        "outcome": "wrong",
+        "avg_logprob": -0.8845492443617653,
+        "extra": {
+          "no_speech_prob": 0.6671945452690125,
+          "segment_count": 2
+        }
+      },
+      "kotoba": {
+        "text": "ベースとかストアズとかあるけどちょっと商品説明を生成してくれる機能ぐらい",
+        "latency_sec": 4.19903891699505,
+        "cer": 0.3898305084745763,
+        "outcome": "wrong",
+        "avg_logprob": -0.2342698170292762,
+        "extra": {
+          "no_speech_prob": 1.4452162799827306e-09,
+          "segment_count": 2
+        }
+      },
+      "two_stage": {
+        "text": "です とかすとはずとあるけどまあちょっと商品説明を 制施してくれますのぐらい",
+        "latency_sec": 0.9374683329951949,
+        "cer": 0.6101694915254238,
+        "outcome": "wrong",
+        "avg_logprob": -0.8845492443617653,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "です とかすとはずとあるけどまあちょっと商品説明を 制施してくれますのぐらい",
+          "stage1_logprob": -0.8845492443617653,
+          "stage1_latency": 0.9374641659960616
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "おうくんおうくんおうくん",
+        "latency_sec": 0.8559605419868603,
+        "cer": 0.9830508474576272,
+        "outcome": "wrong",
+        "avg_logprob": -0.8987745862258109,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "おうくんおうくんおうくん",
+          "stage1_logprob": -0.8987745862258109,
+          "stage1_latency": 0.8553524580202065,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.8798283261802575
+        }
+      }
+    },
+    "media__youtube_far_field__07": {
+      "category": "media_far_field",
+      "expected": "それはまだできないっぽいですね。え、でもAIツールキット繋がってないんでしょ、まだ。AIツールキット繋がってないです。",
+      "expected_skip": false,
+      "duration_sec": 7.0,
+      "small": {
+        "text": "ペンの電話のツールキットはつながってないの?はい、ツールキットを",
+        "latency_sec": 0.943019500002265,
+        "cer": 0.7222222222222222,
+        "outcome": "wrong",
+        "avg_logprob": -0.8454959046456122,
+        "extra": {
+          "no_speech_prob": 0.3890223205089569,
+          "segment_count": 2
+        }
+      },
+      "kotoba": {
+        "text": "でも電話ツールキッドつながってないの?開発用トゥルキットを",
+        "latency_sec": 4.125067249988206,
+        "cer": 0.7222222222222222,
+        "outcome": "wrong",
+        "avg_logprob": -0.5550844053427378,
+        "extra": {
+          "no_speech_prob": 3.5026133105020563e-09,
+          "segment_count": 2
+        }
+      },
+      "two_stage": {
+        "text": "ペンの電話のツールキットはつながってないの?はい、ツールキットを",
+        "latency_sec": 0.9133831250073854,
+        "cer": 0.7222222222222222,
+        "outcome": "wrong",
+        "avg_logprob": -0.8454959046456122,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "ペンの電話のツールキットはつながってないの?はい、ツールキットを",
+          "stage1_logprob": -0.8454959046456122,
+          "stage1_latency": 0.913378625002224
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "お疲れ様です。",
+        "latency_sec": 4.921538416994736,
+        "cer": 0.9629629629629629,
+        "outcome": "wrong",
+        "avg_logprob": -1.2205739736557006,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "お疲れ様です。",
+          "stage1_logprob": -1.2205739736557006,
+          "stage1_latency": 4.920919083000626,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.8454935622317596
+        }
+      }
+    },
+    "media__youtube_far_field__08": {
+      "category": "media_far_field",
+      "expected": "ストアの作成はさすがに今はポチポチやってねというところがあったので、ま、それはやりました。",
+      "expected_skip": false,
+      "duration_sec": 7.0,
+      "small": {
+        "text": "そういう体験が行われていると ストアの作成はさっそくなりにごちごちやってね",
+        "latency_sec": 0.9861855829949491,
+        "cer": 0.9523809523809523,
+        "outcome": "wrong",
+        "avg_logprob": -0.7899530977010727,
+        "extra": {
+          "no_speech_prob": 0.4975185692310333,
+          "segment_count": 2
+        }
+      },
+      "kotoba": {
+        "text": "ストアの作成はスポチとしてやって",
+        "latency_sec": 4.163897916994756,
+        "cer": 0.7380952380952381,
+        "outcome": "wrong",
+        "avg_logprob": -0.4889671101289637,
+        "extra": {
+          "no_speech_prob": 3.901480027934667e-09,
+          "segment_count": 2
+        }
+      },
+      "two_stage": {
+        "text": "ストアの作成はスポチとしてやって",
+        "latency_sec": 5.051395542017417,
+        "cer": 0.7380952380952381,
+        "outcome": "wrong",
+        "avg_logprob": -0.4889671101289637,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "そういう体験が行われていると ストアの作成はさっそくなりにごちごちやってね",
+          "stage1_logprob": -0.7899530977010727,
+          "stage1_latency": 0.9545191670185886,
+          "stage2_text": "ストアの作成はスポチとしてやって",
+          "stage2_logprob": -0.4889671101289637,
+          "stage2_latency": 4.096868167020148
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "おう",
+        "latency_sec": 2.5528041670040693,
+        "cer": 0.9761904761904762,
+        "outcome": "wrong",
+        "avg_logprob": -1.715822982788086,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "おう",
+          "stage1_logprob": -1.715822982788086,
+          "stage1_latency": 2.552192457980709,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.9527896995708155
+        }
+      }
+    },
+    "media__youtube_far_field__09": {
+      "category": "media_far_field",
+      "expected": "ドメインを教えたらもうここの時点であのAIツールキットとかを紹介してくれて、で、ここでこの時点で",
+      "expected_skip": false,
+      "duration_sec": 7.0,
+      "small": {
+        "text": "ご迷いを教えたらこの時点で AIツールキットとかを紹介してくれて",
+        "latency_sec": 0.9135198750009295,
+        "cer": 0.391304347826087,
+        "outcome": "wrong",
+        "avg_logprob": -0.43116770471845356,
+        "extra": {
+          "no_speech_prob": 0.16277508437633514,
+          "segment_count": 1
+        }
+      },
+      "kotoba": {
+        "text": "この時点でAIツールキットとかを紹介してくれて",
+        "latency_sec": 4.08860816701781,
+        "cer": 0.5,
+        "outcome": "wrong",
+        "avg_logprob": -0.2964127816651997,
+        "extra": {
+          "no_speech_prob": 4.372975315192207e-09,
+          "segment_count": 1
+        }
+      },
+      "two_stage": {
+        "text": "この時点でAIツールキットとかを紹介してくれて",
+        "latency_sec": 4.944544625002891,
+        "cer": 0.5,
+        "outcome": "wrong",
+        "avg_logprob": -0.2964127816651997,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "ご迷いを教えたらこの時点で AIツールキットとかを紹介してくれて",
+          "stage1_logprob": -0.43116770471845356,
+          "stage1_latency": 0.8892468330159318,
+          "stage2_text": "この時点でAIツールキットとかを紹介してくれて",
+          "stage2_logprob": -0.2964127816651997,
+          "stage2_latency": 4.055287999974098
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "おうおうおうおう",
+        "latency_sec": 0.8182333750010002,
+        "cer": 0.9782608695652174,
+        "outcome": "wrong",
+        "avg_logprob": -0.8738006703993854,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "おうおうおうおう",
+          "stage1_logprob": -0.8738006703993854,
+          "stage1_latency": 0.8176174160034861,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.8540772532188842
+        }
+      }
+    },
+    "media__youtube_far_field__10": {
+      "category": "media_far_field",
+      "expected": "そしたらこの最初に初期設定で入れた情報がもう全部取れる状態で、これでもうクロードコードからも情報を、え、登録し放題みたいな",
+      "expected_skip": false,
+      "duration_sec": 7.0,
+      "small": {
+        "text": "それでは、このURLにアップスしてください。どうしたらこういう画面。",
+        "latency_sec": 0.8940966249792837,
+        "cer": 0.896551724137931,
+        "outcome": "wrong",
+        "avg_logprob": -0.7812481498718262,
+        "extra": {
+          "no_speech_prob": 0.5840733647346497,
+          "segment_count": 2
+        }
+      },
+      "kotoba": {
+        "text": "このURLにアクセスしてください出てきてきて",
+        "latency_sec": 4.043923375022132,
+        "cer": 0.9482758620689655,
+        "outcome": "wrong",
+        "avg_logprob": -0.3307583218529111,
+        "extra": {
+          "no_speech_prob": 2.1152264384483033e-09,
+          "segment_count": 2
+        }
+      },
+      "two_stage": {
+        "text": "このURLにアクセスしてください出てきてきて",
+        "latency_sec": 4.901941666990751,
+        "cer": 0.9482758620689655,
+        "outcome": "wrong",
+        "avg_logprob": -0.3307583218529111,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "それでは、このURLにアップスしてください。どうしたらこういう画面。",
+          "stage1_logprob": -0.7812481498718262,
+          "stage1_latency": 0.8714392090041656,
+          "stage2_text": "このURLにアクセスしてください出てきてきて",
+          "stage2_logprob": -0.3307583218529111,
+          "stage2_latency": 4.030494750011712
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "この人の人間が説明かされてきました",
+        "latency_sec": 6.96994070900837,
+        "cer": 0.896551724137931,
+        "outcome": "wrong",
+        "avg_logprob": -0.9398222530589384,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "おじいちゃんおじいちゃんおじいちゃんおじいちゃんおじいちゃんおじいちゃんおじいちゃんおじいちゃんおじいちゃんおじいちゃんおじいちゃんおじいちゃんおじいちゃんおじいちゃん",
+          "stage1_logprob": -0.25532238012136416,
+          "stage1_latency": 2.9194598750036675,
+          "stage2_text": "この人の人間が説明かされてきました",
+          "stage2_logprob": -0.9398222530589384,
+          "stage2_latency": 4.049834333010949,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.7854077253218884
+        }
+      }
+    },
+    "media__youtube_far_field__11": {
+      "category": "media_far_field",
+      "expected": "状態になって。で、ここからこの画像だけ与えて",
+      "expected_skip": false,
+      "duration_sec": 7.0,
+      "small": {
+        "text": "",
+        "latency_sec": 0.8326735000009649,
+        "cer": 1.0,
+        "outcome": "missed",
+        "avg_logprob": 0.0,
+        "extra": {
+          "no_speech_prob": 1.0,
+          "segment_count": 0
+        }
+      },
+      "kotoba": {
+        "text": "情報を登録しようないという状態があって",
+        "latency_sec": 4.029247667000163,
+        "cer": 0.95,
+        "outcome": "wrong",
+        "avg_logprob": -0.2944615307976218,
+        "extra": {
+          "no_speech_prob": 6.043045619463783e-09,
+          "segment_count": 1
+        }
+      },
+      "two_stage": {
+        "text": "",
+        "latency_sec": 0.8245615419873502,
+        "cer": 1.0,
+        "outcome": "missed",
+        "avg_logprob": 0.0,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "",
+          "stage1_logprob": 0.0,
+          "stage1_latency": 0.8245531249849591
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "情報ごちそうです",
+        "latency_sec": 9.404665290989215,
+        "cer": 0.95,
+        "outcome": "wrong",
+        "avg_logprob": -1.0634124279022217,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "小川 三日 高橋 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山本 山",
+          "stage1_logprob": -0.2377856085035536,
+          "stage1_latency": 5.149570375011535,
+          "stage2_text": "情報ごちそうです",
+          "stage2_logprob": -1.0634124279022217,
+          "stage2_latency": 4.254439457989065,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.8283261802575107
+        }
+      }
+    },
+    "media__youtube_far_field__12": {
+      "category": "media_far_field",
+      "expected": "カブトの画像を入れて、これを",
+      "expected_skip": false,
+      "duration_sec": 7.0,
+      "small": {
+        "text": "すみません、どうかの事項で入れてくれてさっきのクロードコードに",
+        "latency_sec": 0.9228808329789899,
+        "cer": 1.9230769230769231,
+        "outcome": "wrong",
+        "avg_logprob": -0.7466764589150746,
+        "extra": {
+          "no_speech_prob": 0.29867538809776306,
+          "segment_count": 2
+        }
+      },
+      "kotoba": {
+        "text": "説明文とかも自動で入れてくれてさっきのクロードコードに",
+        "latency_sec": 4.079593957983889,
+        "cer": 1.7692307692307692,
+        "outcome": "wrong",
+        "avg_logprob": -0.20675331141267503,
+        "extra": {
+          "no_speech_prob": 2.3192954223816287e-09,
+          "segment_count": 2
+        }
+      },
+      "two_stage": {
+        "text": "説明文とかも自動で入れてくれてさっきのクロードコードに",
+        "latency_sec": 4.957316042011371,
+        "cer": 1.7692307692307692,
+        "outcome": "wrong",
+        "avg_logprob": -0.20675331141267503,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "すみません、どうかの事項で入れてくれてさっきのクロードコードに",
+          "stage1_logprob": -0.7466764589150746,
+          "stage1_latency": 0.8990093329921365,
+          "stage2_text": "説明文とかも自動で入れてくれてさっきのクロードコードに",
+          "stage2_logprob": -0.20675331141267503,
+          "stage2_latency": 4.058297000010498
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "自分のことを自分で入れてくれて雑木の頃に",
+        "latency_sec": 7.927152250020299,
+        "cer": 1.1538461538461537,
+        "outcome": "wrong",
+        "avg_logprob": -0.47547558570901555,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "とりあえず、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、 彼女の人は、",
+          "stage1_logprob": -0.21113383399115668,
+          "stage1_latency": 3.849752499983879,
+          "stage2_text": "自分のことを自分で入れてくれて雑木の頃に",
+          "stage2_logprob": -0.47547558570901555,
+          "stage2_latency": 4.076778333983384,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.8626609442060086
+        }
+      }
+    },
+    "media__youtube_far_field__13": {
+      "category": "media_far_field",
+      "expected": "で、これ、ま、実際に手でやろうとするとちょっとややこしいですね。ショピファイの実際の画面はこんな感じで。",
+      "expected_skip": false,
+      "duration_sec": 7.0,
+      "small": {
+        "text": "",
+        "latency_sec": 0.779920166998636,
+        "cer": 1.0,
+        "outcome": "missed",
+        "avg_logprob": 0.0,
+        "extra": {
+          "no_speech_prob": 1.0,
+          "segment_count": 0
+        }
+      },
+      "kotoba": {
+        "text": "なるほど",
+        "latency_sec": 3.907147709018318,
+        "cer": 0.9787234042553191,
+        "outcome": "wrong",
+        "avg_logprob": -0.614958643913269,
+        "extra": {
+          "no_speech_prob": 1.885591016659305e-09,
+          "segment_count": 1
+        }
+      },
+      "two_stage": {
+        "text": "",
+        "latency_sec": 0.7581686250050552,
+        "cer": 1.0,
+        "outcome": "missed",
+        "avg_logprob": 0.0,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "",
+          "stage1_logprob": 0.0,
+          "stage1_latency": 0.7581654169771355
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "おはようございます",
+        "latency_sec": 1.162708207994001,
+        "cer": 0.9361702127659575,
+        "outcome": "wrong",
+        "avg_logprob": -1.4184930324554443,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "おはようございます",
+          "stage1_logprob": -1.4184930324554443,
+          "stage1_latency": 1.1620715830067638,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.9227467811158798
+        }
+      }
+    },
+    "media__youtube_far_field__14": {
+      "category": "media_far_field",
+      "expected": "まあ、でもそこら辺を知らずに何も知らないショピファイ初めて使ったんですけど",
+      "expected_skip": false,
+      "duration_sec": 7.0,
+      "small": {
+        "text": "まあそこら辺をしようぜになりますよ大衆議会の所持人のおかしです",
+        "latency_sec": 0.9219691659964155,
+        "cer": 0.75,
+        "outcome": "wrong",
+        "avg_logprob": -0.8878218159079552,
+        "extra": {
+          "no_speech_prob": 0.24557679891586304,
+          "segment_count": 2
+        }
+      },
+      "kotoba": {
+        "text": "そこら辺を知らずに何も知らない守備会も所持ちいい",
+        "latency_sec": 4.06197691700072,
+        "cer": 0.5833333333333334,
+        "outcome": "wrong",
+        "avg_logprob": -0.34164889263255255,
+        "extra": {
+          "no_speech_prob": 2.3685515770921484e-09,
+          "segment_count": 2
+        }
+      },
+      "two_stage": {
+        "text": "まあそこら辺をしようぜになりますよ大衆議会の所持人のおかしです",
+        "latency_sec": 0.9144245420175139,
+        "cer": 0.75,
+        "outcome": "wrong",
+        "avg_logprob": -0.8878218159079552,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "まあそこら辺をしようぜになりますよ大衆議会の所持人のおかしです",
+          "stage1_logprob": -0.8878218159079552,
+          "stage1_latency": 0.9144202920142561
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "おうおう",
+        "latency_sec": 1.727639624994481,
+        "cer": 1.0,
+        "outcome": "wrong",
+        "avg_logprob": -1.3257240719265408,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "おうおう",
+          "stage1_logprob": -1.3257240719265408,
+          "stage1_latency": 1.7270356670196634,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.944206008583691
+        }
+      }
+    },
+    "media__youtube_far_field__15": {
+      "category": "media_far_field",
+      "expected": "この色味とかもなんかカブトの色味とかを取ってきたりして、ちょっとそれっぽい感じ。ええ、画像に合わせてくれたわけです。",
+      "expected_skip": false,
+      "duration_sec": 7.0,
+      "small": {
+        "text": "うんこの色味とかもなんかカブトの色を踏みよってコントってことにしてちょっとそれが濃いからえぇ",
+        "latency_sec": 1.026158624998061,
+        "cer": 0.6111111111111112,
+        "outcome": "wrong",
+        "avg_logprob": -0.6747962664002958,
+        "extra": {
+          "no_speech_prob": 0.3673863410949707,
+          "segment_count": 6
+        }
+      },
+      "kotoba": {
+        "text": "この色味とかもなんかかぶての色を見るとかを撮っていきたいとしてちょっとそれっぽい感じ",
+        "latency_sec": 4.088708042021608,
+        "cer": 0.48148148148148145,
+        "outcome": "wrong",
+        "avg_logprob": -0.3815287702223834,
+        "extra": {
+          "no_speech_prob": 3.014732685713284e-09,
+          "segment_count": 2
+        }
+      },
+      "two_stage": {
+        "text": "この色味とかもなんかかぶての色を見るとかを撮っていきたいとしてちょっとそれっぽい感じ",
+        "latency_sec": 5.051240832981421,
+        "cer": 0.48148148148148145,
+        "outcome": "wrong",
+        "avg_logprob": -0.3815287702223834,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "うんこの色味とかもなんかカブトの色を踏みよってコントってことにしてちょっとそれが濃いからえぇ",
+          "stage1_logprob": -0.6747962664002958,
+          "stage1_latency": 0.9979105000093114,
+          "stage2_text": "この色味とかもなんかかぶての色を見るとかを撮っていきたいとしてちょっとそれっぽい感じ",
+          "stage2_logprob": -0.3815287702223834,
+          "stage2_latency": 4.053321832994698
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "おうおう",
+        "latency_sec": 2.665584000002127,
+        "cer": 1.0,
+        "outcome": "wrong",
+        "avg_logprob": -1.3188837899102106,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "おうおう",
+          "stage1_logprob": -1.3188837899102106,
+          "stage1_latency": 2.664978000015253,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.776824034334764
+        }
+      }
+    },
+    "media__youtube_far_field__16": {
+      "category": "media_far_field",
+      "expected": "そうですね。だからそこら辺もなんか何ができるかっていうところのリストも当然持ってるので、そういうアドバイスまでやってくれたんです。",
+      "expected_skip": false,
+      "duration_sec": 7.0,
+      "small": {
+        "text": "プロドコードが分かれ言ってくれてそういうアウトレイをポイポイっとプロドコードを足すからます",
+        "latency_sec": 0.9866761250013951,
+        "cer": 0.9032258064516129,
+        "outcome": "wrong",
+        "avg_logprob": -0.7306944451680998,
+        "extra": {
+          "no_speech_prob": 0.16532455384731293,
+          "segment_count": 2
+        }
+      },
+      "kotoba": {
+        "text": "コードコードから言ってくれてそのURAをポイポイッとコロドコロで渡したら",
+        "latency_sec": 4.126180084014777,
+        "cer": 0.8709677419354839,
+        "outcome": "wrong",
+        "avg_logprob": -0.4971977717736188,
+        "extra": {
+          "no_speech_prob": 2.056488535018275e-09,
+          "segment_count": 2
+        }
+      },
+      "two_stage": {
+        "text": "コードコードから言ってくれてそのURAをポイポイッとコロドコロで渡したら",
+        "latency_sec": 5.059393250005087,
+        "cer": 0.8709677419354839,
+        "outcome": "wrong",
+        "avg_logprob": -0.4971977717736188,
+        "extra": {
+          "stage": 2,
+          "stage1_text": "プロドコードが分かれ言ってくれてそういうアウトレイをポイポイっとプロドコードを足すからます",
+          "stage1_logprob": -0.7306944451680998,
+          "stage1_latency": 0.9664306660124566,
+          "stage2_text": "コードコードから言ってくれてそのURAをポイポイッとコロドコロで渡したら",
+          "stage2_logprob": -0.4971977717736188,
+          "stage2_latency": 4.0929539169883355
+        }
+      },
+      "two_stage_dualvad": {
+        "text": "おうくんは マイクで カッコいい大好きな マイクで カッコいい大好きな マイクで カッコいい",
+        "latency_sec": 5.8521742500015534,
+        "cer": 0.9193548387096774,
+        "outcome": "wrong",
+        "avg_logprob": -1.2906662225723267,
+        "extra": {
+          "stage": 1,
+          "stage1_text": "おうくんは マイクで カッコいい大好きな マイクで カッコいい大好きな マイクで カッコいい",
+          "stage1_logprob": -1.2906662225723267,
+          "stage1_latency": 5.851553957996657,
+          "skipped_by_webrtcvad": false,
+          "voice_ratio": 0.8583690987124464
+        }
+      }
+    }
+  },
+  "summary": {
+    "small": {
+      "avg_cer": 0.7427538139556319,
+      "avg_latency_sec": 0.8645291589232834,
+      "outcome_counts": {
+        "missed": 5,
+        "ok": 2,
+        "partial": 1,
+        "ok_skip": 2,
+        "wrong": 17
+      }
+    },
+    "kotoba": {
+      "avg_cer": 0.7032250707150954,
+      "avg_latency_sec": 3.4638867316329938,
+      "outcome_counts": {
+        "ok": 3,
+        "partial": 1,
+        "missed": 3,
+        "wrong": 18,
+        "ok_skip": 2
+      }
+    },
+    "two_stage": {
+      "avg_cer": 0.7257620166907056,
+      "avg_latency_sec": 2.6745377932610506,
+      "outcome_counts": {
+        "ok": 3,
+        "partial": 1,
+        "missed": 5,
+        "wrong": 16,
+        "ok_skip": 2
+      }
+    },
+    "two_stage_dualvad": {
+      "avg_cer": 0.8626051221471319,
+      "avg_latency_sec": 3.369137944445592,
+      "outcome_counts": {
+        "missed": 2,
+        "ok": 3,
+        "wrong": 20,
+        "ok_skip": 2
+      }
+    }
+  }
+}

@@ -63,6 +63,92 @@
     height: 20px;
     flex-shrink: 0;
   }
+  #recordControl {
+    -webkit-app-region: no-drag;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 1px solid var(--ember-border);
+    color: var(--ember-text-muted);
+    border-radius: 14px;
+    padding: 3px 9px 3px 7px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  #recordControl:hover {
+    background: var(--ember-surface-alt);
+    color: var(--ember-text);
+  }
+  #recordControl .rec-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ember-danger);
+    opacity: 0.55;
+    flex-shrink: 0;
+  }
+  #recordControl.is-recording {
+    background: rgba(239, 68, 68, 0.12);
+    border-color: rgba(239, 68, 68, 0.55);
+    color: #fecaca;
+  }
+  #recordControl.is-recording .rec-dot {
+    opacity: 1;
+    animation: recPulse 1.1s ease-in-out infinite;
+  }
+  #recordControl.is-busy {
+    background: rgba(249, 115, 22, 0.10);
+    border-color: rgba(249, 115, 22, 0.45);
+    color: #fed7aa;
+  }
+  #recordControl.is-busy .rec-dot {
+    background: var(--ember-primary);
+    animation: recPulse 0.8s ease-in-out infinite;
+  }
+  #recordQueueBadge {
+    display: none;
+    -webkit-app-region: no-drag;
+    position: absolute;
+    right: 78px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(249, 115, 22, 0.18);
+    border: 1px solid rgba(249, 115, 22, 0.5);
+    color: #fed7aa;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 10px;
+    letter-spacing: 0.02em;
+    pointer-events: none;
+  }
+  #recordQueueBadge::before {
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--ember-primary);
+    margin-right: 4px;
+    vertical-align: middle;
+    animation: recPulse 1.2s ease-in-out infinite;
+  }
+  #recordQueueBadge.visible {
+    display: inline-flex;
+    align-items: center;
+  }
+  @keyframes recPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55); }
+    50% { transform: scale(1.18); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+  }
 
   /* Server status */
   #serverStatus {
@@ -652,6 +738,11 @@
     </svg>
     EMBER CHAT
   </div>
+  <span id="recordQueueBadge" title="文字起こし待ちのファイル数"></span>
+  <button id="recordControl" type="button" title="会議録音 (webm/Opus)" aria-label="会議録音">
+    <span class="rec-dot"></span>
+    <span id="recordControlLabel">REC</span>
+  </button>
 </div>
 
 <div id="serverStatus">
@@ -758,6 +849,7 @@
 </div>
 
 <script src="always-on.js"></script>
+<script src="recorder.js"></script>
 <script>
 const API_BASE = 'http://localhost:8767/api';
 const WS_HOST = 'localhost:8767';
@@ -1953,6 +2045,79 @@ async function maybeStartAlwaysOn() {
     initAlwaysOn();
   }
 }
+
+// --- Meeting Recorder (titlebar) ---
+let meetingRecorder = null;
+
+function initMeetingRecorder() {
+  const btn = document.getElementById('recordControl');
+  const labelEl = document.getElementById('recordControlLabel');
+  const queueBadge = document.getElementById('recordQueueBadge');
+  if (!btn || !labelEl) return;
+
+  meetingRecorder = new MeetingRecorder({
+    onStateChange: (state) => {
+      btn.classList.remove('is-recording', 'is-busy');
+      if (state === 'recording') {
+        btn.classList.add('is-recording');
+        labelEl.textContent = '00:00';
+        btn.title = 'クリックで停止';
+      } else if (state === 'saving') {
+        btn.classList.add('is-busy');
+        labelEl.textContent = '保存中';
+        btn.title = '録音を保存しています';
+      } else {
+        labelEl.textContent = 'REC';
+        btn.title = '会議録音 (webm/Opus)';
+      }
+    },
+    onQueueChange: (count) => {
+      if (!queueBadge) return;
+      if (count > 0) {
+        queueBadge.textContent = `文字起こし ${count}`;
+        queueBadge.classList.add('visible');
+      } else {
+        queueBadge.classList.remove('visible');
+      }
+    },
+    onTick: (ms) => {
+      labelEl.textContent = window.formatRecorderElapsed(ms);
+    },
+    onSaved: (info) => {
+      if (info.phase === 'audio_saved') {
+        const sizeMb = (info.sizeBytes / (1024 * 1024)).toFixed(1);
+        addMessage(`録音保存: ${info.path.split('/').pop()} (${sizeMb}MB) — 文字起こし開始`, 'status');
+      } else if (info.phase === 'transcribed') {
+        const dur = info.duration ? `${(info.duration / 60).toFixed(1)}分` : '';
+        const took = info.elapsed ? ` / ${info.elapsed.toFixed(1)}s` : '';
+        const txtName = info.textPath ? info.textPath.split('/').pop() : '';
+        addMessage(`文字起こし完了: ${txtName} (${dur}${took}, ${info.segmentCount || 0}セグメント)`, 'status');
+      } else if (info.phase === 'transcribe_failed') {
+        addMessage(`文字起こし失敗: ${info.error}（録音は保存済み）`, 'status');
+      }
+    },
+    onError: (err) => {
+      console.error('[MeetingRecorder]', err);
+      addMessage(`録音エラー: ${err.message || err}`, 'status');
+    },
+  });
+
+  btn.addEventListener('click', () => meetingRecorder.toggle());
+  btn.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    if (window.emberBridge?.openRecordingsFolder) {
+      window.emberBridge.openRecordingsFolder();
+    }
+  });
+
+  if (!meetingRecorder.isAvailable()) {
+    btn.disabled = true;
+    btn.title = 'webm/Opus 録音はこの環境で未対応';
+    btn.style.opacity = '0.4';
+  }
+}
+
+initMeetingRecorder();
 </script>
 
 </body>

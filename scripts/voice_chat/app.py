@@ -3475,6 +3475,90 @@ async def tts_endpoint(text: str, speaker: str = "2", speed: str = "auto"):
     return Response(content=audio, media_type="audio/wav")
 
 
+_TRANSCRIBE_FILE_EXTS = {".webm", ".wav", ".m4a", ".mp3", ".ogg", ".opus", ".flac"}
+_TRANSCRIBE_FILE_LOCK: asyncio.Lock | None = None  # lazy-init in event loop
+
+
+def _get_transcribe_file_lock() -> asyncio.Lock:
+    """Whisper large-v3 への同時アクセスを直列化するロック（イベントループ生成後に初期化）"""
+    global _TRANSCRIBE_FILE_LOCK
+    if _TRANSCRIBE_FILE_LOCK is None:
+        _TRANSCRIBE_FILE_LOCK = asyncio.Lock()
+    return _TRANSCRIBE_FILE_LOCK
+
+
+def _fmt_transcript_ts(seconds: float) -> str:
+    seconds = max(0.0, float(seconds))
+    h = int(seconds // 3600)
+    m = int((seconds % 3600) // 60)
+    s = int(seconds % 60)
+    return f"{h:02d}:{m:02d}:{s:02d}" if h else f"{m:02d}:{s:02d}"
+
+
+def _transcribe_file_sync(path: str) -> dict:
+    """会議録音などの長尺ファイル向け文字起こし（large-v3、タイムスタンプ付き）"""
+    model = get_whisper()
+    segments, info = model.transcribe(
+        path,
+        language="ja",
+        beam_size=5,
+        vad_filter=False,
+        hotwords=_WHISPER_HOTWORDS,
+    )
+    seg_list = list(segments)
+    plain_text = "".join(seg.text for seg in seg_list).strip()
+    lines = [f"[{_fmt_transcript_ts(s.start)}] {s.text.strip()}" for s in seg_list if s.text.strip()]
+    return {
+        "text": plain_text,
+        "transcript": "\n".join(lines),
+        "duration": float(getattr(info, "duration", 0.0) or 0.0),
+        "language": getattr(info, "language", "ja"),
+        "segment_count": len(seg_list),
+    }
+
+
+@app.post("/api/transcribe-file")
+async def transcribe_file_endpoint(body: dict | None = None):
+    """ローカルの音声ファイル（会議録音など）を Whisper large-v3 で文字起こし。
+
+    body: {"path": "/abs/path/to/recording.webm"}
+    返却: {"ok": true, "text", "transcript", "duration", "language", "segment_count"}
+    """
+    if not body or not body.get("path"):
+        return {"ok": False, "error": "missing path"}
+    try:
+        p = Path(body["path"]).expanduser().resolve(strict=True)
+    except (OSError, RuntimeError) as e:
+        return {"ok": False, "error": f"invalid path: {e}"}
+    if not p.is_file():
+        return {"ok": False, "error": "not a file"}
+    if p.suffix.lower() not in _TRANSCRIBE_FILE_EXTS:
+        return {"ok": False, "error": f"unsupported format: {p.suffix}"}
+
+    queued_at = time.time()
+    lock = _get_transcribe_file_lock()
+    if lock.locked():
+        logger.info(f"[transcribe-file] queued (lock busy): {p.name}")
+    async with lock:
+        started = time.time()
+        wait = started - queued_at
+        logger.info(
+            f"[transcribe-file] start: {p} ({p.stat().st_size} bytes, queued {wait:.1f}s)"
+        )
+        loop = asyncio.get_event_loop()
+        try:
+            result = await loop.run_in_executor(None, _transcribe_file_sync, str(p))
+        except Exception as e:
+            logger.warning(f"[transcribe-file] failed: {e}")
+            return {"ok": False, "error": str(e)}
+        elapsed = time.time() - started
+        logger.info(
+            f"[transcribe-file] done: {p.name} {result['duration']:.1f}s audio → "
+            f"{result['segment_count']} segments in {elapsed:.1f}s"
+        )
+    return {"ok": True, **result, "elapsed": elapsed, "queue_wait": wait}
+
+
 
 @app.get("/api/speakers")
 async def get_speakers(engine: str | None = None):

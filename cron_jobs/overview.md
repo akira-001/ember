@@ -21,6 +21,7 @@
 |---------|------------|------|--------|
 | ir-news-check | 毎週月曜 9:00 | company_list.md の企業リストを元に、最新の決算短信を Web 検索で確認。新着があればサマリを送信 | DM (U3SFGQXNH) |
 | ~~gmail-to-drive~~ | ~~毎週月曜 9:00~~ | **【2026-04-24 移行・無効化】** GitHub Actions (`akira-001/claude-code-slack-bot/.github/workflows/gmail-to-drive.yml`) に移行済み。月曜 0:00 UTC (= 9:00 JST) に発火 | DM (U3SFGQXNH) |
+| ~~paper-digest-weekly~~ | ~~毎週土曜 8:00~~ | **【2026-04-24 移行・無効化】** claude.ai routine `daily-arxiv-digest` (trig_015a5QVcbrVpKNFpisGaFLx7) に統合。毎日 8:00 JST 実行、7カテゴリ（AIエージェント/ローカルLLM/AI動画生成/コード生成/マルチモーダル/RAG/AI安全性）から TOP5 を日本語要約投稿 | #secretary (C0AHPJMS5QE) |
 | campingcar-search-weekly | 毎週金曜 9:05 | campnofuji.jp からキャンピングカーの新着物件をスクレイピングし、SOLD OUT 除外・装備分離表示・ローカル LLM おすすめピック付きで投稿 | DM (U3SFGQXNH) |
 
 ---
