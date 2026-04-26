@@ -912,6 +912,8 @@ class _MediaContext:
     last_meeting_hint_text: str = ""
     # Patch BR1: 作品不明のままSKIPした連続回数（low conf skip → ask_user拡張用）
     consecutive_unknown_skip_cnt: int = 0
+    # ask_user 発火後、ユーザー回答の取り込み待ち期限（epoch sec）
+    awaiting_answer_until: float = 0.0
 
     def add_snippet(self, text: str):
         # STT重複除去: 直前のスニペットの先頭50文字と80%以上一致なら追加しない
@@ -989,6 +991,354 @@ _tv_guide_cache: dict = {"data": "", "fetched_at": 0.0}
 _meeting_digest_lock = asyncio.Lock()
 _meeting_digest_batch_task: asyncio.Task | None = None
 _meeting_digest_idle_task: asyncio.Task | None = None
+
+
+# --- Phase 1: 30min Rolling Transcript Buffer + 5min Context Summary ---
+# co_view 認識精度向上のための補助機構。
+# 過去30分の transcript から「ユーザーが今何してるか」を5分ごとに要約し、
+# _infer_media_content の system prompt に注入する。
+# media_ctx.media_buffer と異なり content_type 変化や 5min gap でリセットしない（長期保持）。
+
+CONTEXT_SUMMARY_INTERVAL = 300       # 5 min
+CONTEXT_SUMMARY_WINDOW = 1800        # 30 min
+CONTEXT_SUMMARY_MIN_CHARS = 50       # transcript がこれ未満なら要約スキップ
+CONTEXT_SUMMARY_STALE_SEC = 600      # 10 分以上更新ない要約は inject しない
+CONTEXT_SUMMARY_MIN_CONF = 0.3       # 信頼度これ未満は inject しない
+
+
+class TranscriptRollingBuffer:
+    """30 分ローリング transcript バッファ。"""
+
+    def __init__(self, window_seconds: int = CONTEXT_SUMMARY_WINDOW):
+        self._entries: list[tuple[float, str]] = []
+        self._lock = asyncio.Lock()
+        self._window = window_seconds
+
+    async def add(self, text: str) -> None:
+        if not text:
+            return
+        async with self._lock:
+            now = time.time()
+            self._entries.append((now, text))
+            cutoff = now - self._window
+            self._entries = [(t, x) for t, x in self._entries if t >= cutoff]
+
+    async def snapshot(self) -> list[tuple[float, str]]:
+        async with self._lock:
+            return list(self._entries)
+
+    async def text_with_timestamps(self) -> str:
+        snap = await self.snapshot()
+        if not snap:
+            return ""
+        return "\n".join(
+            f"[{time.strftime('%H:%M', time.localtime(ts))}] {text}"
+            for ts, text in snap
+        )
+
+
+@dataclass
+class ContextSummary:
+    """5 分ごとに更新される「ユーザーの現状」コンテキスト。"""
+    activity: str = ""
+    topic: str = ""
+    subtopics: list = field(default_factory=list)
+    is_meeting: bool = False
+    keywords: list = field(default_factory=list)
+    named_entities: list = field(default_factory=list)
+    language_register: str = ""
+    confidence: float = 0.0
+    evidence_snippets: list = field(default_factory=list)
+    updated_at: float = 0.0
+
+    def is_stale(self, max_age: float = CONTEXT_SUMMARY_STALE_SEC) -> bool:
+        return self.updated_at == 0.0 or (time.time() - self.updated_at) > max_age
+
+    def to_prompt_block(self) -> str:
+        if self.confidence < CONTEXT_SUMMARY_MIN_CONF or self.is_stale():
+            return ""
+        age_min = max(0, int((time.time() - self.updated_at) / 60))
+        lines = [f"\n\n[現在の状況コンテキスト] (信頼度 {self.confidence:.2f}, {age_min}分前更新)"]
+        if self.activity:
+            lines.append(f"- 活動: {self.activity}")
+        if self.topic:
+            lines.append(f"- トピック: {self.topic}")
+        if self.subtopics:
+            lines.append(f"- サブトピック: {', '.join(str(s) for s in self.subtopics[:5])}")
+        if self.is_meeting:
+            lines.append("- 会議モード")
+        if self.keywords:
+            lines.append(f"- 参考キーワード: {', '.join(str(s) for s in self.keywords[:8])}")
+        if self.named_entities:
+            lines.append(f"- 固有名詞: {', '.join(str(s) for s in self.named_entities[:6])}")
+        if self.language_register:
+            lines.append(f"- 発話レジスタ: {self.language_register}")
+        lines.append("※このコンテキストを参考に固有名詞・専門語の認識精度を上げてください")
+        return "\n".join(lines)
+
+
+_transcript_buffer = TranscriptRollingBuffer()
+_context_summary = ContextSummary()
+_context_summary_task: asyncio.Task | None = None
+CONTEXT_SUMMARY_FEEDBACK_FILE = Path(__file__).parent / "context_summary_feedback.jsonl"
+
+
+# --- Phase 2: 5min Audio Ring + large-v3 Chunk Transcription ---
+# co_view 即時応答は Whisper small（変更なし）。
+# context summary 用に 5 分ごとに直近 5 分の音声を large-v3 で再書き起こしし、
+# 高精度な 5 分単位テキストチャンクを最大 6 個（30 分）保持。
+# summary 推論時は chunk_buffer 優先、空なら small ベース transcript_buffer フォールバック。
+
+CHUNK_TRANSCRIBE_INTERVAL = 300  # 5 min
+CHUNK_AUDIO_RETENTION = 1800     # 30 min raw audio
+CHUNK_MAX_ENTRIES = 6            # 30 min ÷ 5 min
+CHUNK_MIN_PCM_SAMPLES = 16000    # 1 sec @ 16kHz — これ未満ならスキップ
+
+
+class AudioRingBuffer:
+    """30 分音声リングバッファ（PCM float32 16kHz mono）。large-v3 chunk transcription 用。"""
+
+    def __init__(self, retention_seconds: int = CHUNK_AUDIO_RETENTION):
+        self._entries: list = []  # list[tuple[float, np.ndarray]]
+        self._retention = retention_seconds
+        self._lock = asyncio.Lock()
+
+    async def add(self, pcm) -> None:
+        if pcm is None or len(pcm) == 0:
+            return
+        async with self._lock:
+            now = time.time()
+            self._entries.append((now, pcm))
+            cutoff = now - self._retention
+            self._entries = [(t, p) for t, p in self._entries if t >= cutoff]
+
+    async def slice_recent(self, seconds: float):
+        """直近 seconds 秒の PCM を時間順に結合。(pcm, ts_start, ts_end) を返す。"""
+        async with self._lock:
+            if not self._entries:
+                return np.array([], dtype=np.float32), 0.0, 0.0
+            cutoff = time.time() - seconds
+            recent = [(t, p) for t, p in self._entries if t >= cutoff]
+            if not recent:
+                return np.array([], dtype=np.float32), 0.0, 0.0
+            ts_start = recent[0][0]
+            ts_end = recent[-1][0]
+            pcm = np.concatenate([p for _, p in recent])
+            return pcm, ts_start, ts_end
+
+
+class TranscriptChunkBuffer:
+    """large-v3 で書き起こされた 5 分単位テキストチャンク。最大 CHUNK_MAX_ENTRIES 個保持。"""
+
+    def __init__(self, max_entries: int = CHUNK_MAX_ENTRIES):
+        self._entries: list = []  # list[tuple[float, float, str]]
+        self._max = max_entries
+        self._lock = asyncio.Lock()
+
+    async def add(self, ts_start: float, ts_end: float, text: str) -> None:
+        if not text:
+            return
+        async with self._lock:
+            self._entries.append((ts_start, ts_end, text))
+            if len(self._entries) > self._max:
+                self._entries = self._entries[-self._max:]
+
+    async def text_with_timestamps(self) -> str:
+        async with self._lock:
+            if not self._entries:
+                return ""
+            return "\n\n".join(
+                f"[{time.strftime('%H:%M', time.localtime(s))}-{time.strftime('%H:%M', time.localtime(e))}]\n{t}"
+                for s, e, t in self._entries
+            )
+
+    async def entry_count(self) -> int:
+        async with self._lock:
+            return len(self._entries)
+
+
+_audio_buffer = AudioRingBuffer()
+_chunk_buffer = TranscriptChunkBuffer()
+_chunk_transcribe_task: asyncio.Task | None = None
+_chunk_transcribe_lock = asyncio.Lock()
+
+
+async def _feed_audio_buffer(audio_data: bytes) -> None:
+    """always-on 音声を PCM 化して audio_buffer へ append（非ブロッキング）。"""
+    try:
+        loop = asyncio.get_event_loop()
+        pcm = await loop.run_in_executor(None, audio_bytes_to_wav, audio_data)
+        if pcm is not None and len(pcm) > 0:
+            await _audio_buffer.add(pcm)
+    except Exception as e:
+        logger.warning(f"[audio_buffer] feed failed: {e}")
+
+
+def _transcribe_pcm_sync_largev3(pcm) -> str:
+    """直接 PCM (float32 16kHz mono numpy) を Whisper large-v3 で書き起こす。"""
+    model = get_whisper()
+    segments, info = model.transcribe(
+        pcm, language="ja",
+        beam_size=5,
+        vad_filter=False,
+        hotwords=_WHISPER_FILE_HOTWORDS,
+    )
+    seg_list = list(segments)
+    text = "".join(seg.text for seg in seg_list).strip()
+    if not text:
+        return ""
+    avg_no_speech = (sum(s.no_speech_prob for s in seg_list) / len(seg_list)) if seg_list else 0
+    if avg_no_speech > 0.6:
+        logger.info(f"[chunk_transcribe] hallucination filtered (no_speech={avg_no_speech:.2f}): '{text[:40]}'")
+        return ""
+    return text
+
+
+async def _chunk_transcribe_loop():
+    """5 分ごとに直近 5 分の音声を large-v3 で書き起こしてチャンクバッファに追加。"""
+    while True:
+        try:
+            await asyncio.sleep(CHUNK_TRANSCRIBE_INTERVAL)
+            pcm, ts_start, ts_end = await _audio_buffer.slice_recent(CHUNK_TRANSCRIBE_INTERVAL)
+            if len(pcm) < CHUNK_MIN_PCM_SAMPLES:
+                logger.debug(
+                    f"[chunk_transcribe] skip: pcm samples={len(pcm)} (<{CHUNK_MIN_PCM_SAMPLES})"
+                )
+                continue
+            async with _chunk_transcribe_lock:
+                started = time.time()
+                try:
+                    loop = asyncio.get_event_loop()
+                    text = await loop.run_in_executor(None, _transcribe_pcm_sync_largev3, pcm)
+                except Exception as e:
+                    logger.warning(f"[chunk_transcribe] failed: {e}")
+                    continue
+                elapsed = time.time() - started
+            if not text:
+                logger.debug(
+                    f"[chunk_transcribe] empty result ({elapsed:.1f}s, audio={len(pcm)/16000:.1f}s)"
+                )
+                continue
+            await _chunk_buffer.add(ts_start, ts_end, text)
+            logger.info(
+                f"[chunk_transcribe] {len(pcm)/16000:.1f}s audio → {len(text)} chars in {elapsed:.1f}s "
+                f"({time.strftime('%H:%M', time.localtime(ts_start))}-{time.strftime('%H:%M', time.localtime(ts_end))})"
+            )
+        except asyncio.CancelledError:
+            raise
+        except Exception as e:
+            logger.warning(f"[chunk_transcribe] loop error: {e}")
+            await asyncio.sleep(60)
+
+
+def _context_summary_to_dict() -> dict:
+    return {
+        "activity": _context_summary.activity,
+        "topic": _context_summary.topic,
+        "subtopics": list(_context_summary.subtopics),
+        "is_meeting": _context_summary.is_meeting,
+        "keywords": list(_context_summary.keywords),
+        "named_entities": list(_context_summary.named_entities),
+        "language_register": _context_summary.language_register,
+        "confidence": _context_summary.confidence,
+        "evidence_snippets": list(_context_summary.evidence_snippets),
+        "updated_at": _context_summary.updated_at,
+    }
+
+
+async def _broadcast_context_summary():
+    """現在の context summary を全クライアントに配信。"""
+    payload = json.dumps({"type": "context_summary", "summary": _context_summary_to_dict()})
+    for client in list(_clients):
+        try:
+            await client.send_text(payload)
+        except Exception:
+            _clients.discard(client)
+
+
+async def _build_context_summary(transcript: str) -> dict:
+    """直近30分の transcript から ContextSummary を生成し _context_summary を更新する。"""
+    messages = [
+        {"role": "system", "content": (
+            "あなたはユーザーの状況を観察する解析者です。\n"
+            "直近30分の音声 transcript から、ユーザーが今何をしているかを推定し以下のJSONのみ返してください。\n"
+            "余分な文章は不要。\n"
+            "{\n"
+            '  "activity": "working|video_watching|reading|meeting|chatting|idle",\n'
+            '  "topic": "具体的なトピック (例: 強化学習論文の解説、京セラ案件の戦略会議)",\n'
+            '  "subtopics": ["サブテーマ1", "..."],\n'
+            '  "is_meeting": true|false,\n'
+            '  "keywords": ["固有名詞・専門語1", "..."],\n'
+            '  "named_entities": ["人名・会社名・作品名・ツール名", "..."],\n'
+            '  "language_register": "casual_solo|focused_solo|business_meeting|chat",\n'
+            '  "confidence": 0.0から1.0,\n'
+            '  "evidence_snippets": ["transcript からの根拠抜粋 1〜3件"]\n'
+            "}\n"
+            "判定ヒント:\n"
+            "- 複数話者のターンテイクがあれば is_meeting=true / activity=meeting\n"
+            "- 一人語り/相づちのみは casual_solo or focused_solo\n"
+            "- BGM・TV・YouTube ナレーション特徴があれば video_watching\n"
+            "- transcript に発話がほとんど無ければ activity=idle, confidence<=0.3\n"
+            "- keywords は固有名詞・専門語を優先（抽象カテゴリ語は最後）"
+        )},
+        {"role": "user", "content": f"直近30分の transcript:\n{transcript}"},
+    ]
+    raw = await asyncio.wait_for(chat_with_llm(messages, "gemma4:e4b"), timeout=30.0)
+    raw = raw.strip()
+    if raw.startswith("```"):
+        raw = re.sub(r'^```\w*\n?', '', raw)
+        raw = re.sub(r'\n?```$', '', raw)
+    result = json.loads(raw)
+    _context_summary.activity = str(result.get("activity") or "")
+    _context_summary.topic = str(result.get("topic") or "")
+    _context_summary.subtopics = [str(x) for x in (result.get("subtopics") or [])][:5]
+    _context_summary.is_meeting = bool(result.get("is_meeting"))
+    _context_summary.keywords = [str(x) for x in (result.get("keywords") or [])][:10]
+    _context_summary.named_entities = [str(x) for x in (result.get("named_entities") or [])][:8]
+    _context_summary.language_register = str(result.get("language_register") or "")
+    _context_summary.confidence = float(result.get("confidence") or 0.0)
+    _context_summary.evidence_snippets = [str(x) for x in (result.get("evidence_snippets") or [])][:3]
+    _context_summary.updated_at = time.time()
+    logger.info(
+        f"[context_summary] activity={_context_summary.activity} "
+        f"topic='{_context_summary.topic[:40]}' "
+        f"is_meeting={_context_summary.is_meeting} "
+        f"conf={_context_summary.confidence:.2f}"
+    )
+    await _broadcast_context_summary()
+    return result
+
+
+async def _summarize_context_loop():
+    """5 分ごとに transcript から context summary を更新する。
+    優先: large-v3 chunk_buffer。空なら small ベース transcript_buffer フォールバック。"""
+    while True:
+        try:
+            await asyncio.sleep(CONTEXT_SUMMARY_INTERVAL)
+            transcript = await _chunk_buffer.text_with_timestamps()
+            source = "large-v3"
+            if len(transcript) < CONTEXT_SUMMARY_MIN_CHARS:
+                transcript = await _transcript_buffer.text_with_timestamps()
+                source = "small_fallback"
+            if len(transcript) < CONTEXT_SUMMARY_MIN_CHARS:
+                logger.debug(
+                    f"[context_summary] skip: transcript len={len(transcript)} (<{CONTEXT_SUMMARY_MIN_CHARS})"
+                )
+                continue
+            try:
+                logger.info(f"[context_summary] building from {source} ({len(transcript)} chars)")
+                await _build_context_summary(transcript)
+            except asyncio.TimeoutError:
+                logger.warning("[context_summary] LLM timeout (>30s)")
+            except json.JSONDecodeError as e:
+                logger.warning(f"[context_summary] JSON parse failed: {e}")
+            except Exception as e:
+                logger.warning(f"[context_summary] build failed: {e}")
+        except asyncio.CancelledError:
+            raise
+        except Exception as e:
+            logger.warning(f"[context_summary] loop error: {e}")
+            await asyncio.sleep(60)
 
 
 def _load_youtube_titles() -> list:
@@ -1262,6 +1612,8 @@ async def _infer_media_content() -> dict:
     tv_guide = await _fetch_tv_guide()
     tv_hint = f"\n\nTV番組表(参考):\n{tv_guide[:300]}" if tv_guide else ""
 
+    context_hint = _context_summary.to_prompt_block()
+
     messages = [
         {"role": "system", "content": (
             "あなたはメディアコンテンツ分析者です。音声認識テキストから視聴コンテンツを推測してください。\n"
@@ -1314,7 +1666,7 @@ async def _infer_media_content() -> dict:
             "- 「起業」「財務」「マーケティング」のような抽象カテゴリ語は keywords に入れない\n"
             "- 例: 会話に「ドコモ」「ChatGPT」「孫正義」が出た → keywords: [\"ドコモ\", \"ChatGPT\", \"孫正義\"]\n"
             "- 固有名詞が1つも特定できない場合のみ抽象キーワードを使用"
-            f"{yt_hint}{interest_hint}{tv_hint}{prev_match_hint}"
+            f"{yt_hint}{interest_hint}{tv_hint}{prev_match_hint}{context_hint}"
         )},
         {"role": "user", "content": f"音声テキスト:\n{buffer_text}"},
     ]
@@ -2265,6 +2617,7 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
         if not corrected:
             return
         _media_ctx.add_snippet(corrected)
+        await _transcript_buffer.add(corrected)
         await _broadcast_debug(f"[co_view] buf={len(_media_ctx.media_buffer)} '{corrected[:40]}'")
 
         if len(_media_ctx.media_buffer) >= 2:
@@ -2456,11 +2809,12 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
                 _media_ctx.consecutive_unknown_skip_cnt = 0
                 _media_ctx.ask_user_last_at = now
                 _media_ctx.co_view_last_at = now
+                _media_ctx.awaiting_answer_until = now + 30  # 次30秒以内のuser発話を回答として処理
                 _br1_speaker = _settings.get("meiVoice", "irodori-lora-emilia")
                 _br1_speed_raw = _settings.get("meiSpeed", "auto") or "auto"
                 _br1_speed = 0 if _br1_speed_raw == "auto" else float(_br1_speed_raw)
                 await _ambient_broadcast_reply("ちなみに何見てるの？", "co_view_ask", method, keyword, _br1_speaker, _br1_speed)
-                logger.info(f"[co_view] Patch BR1: {_br1_cnt} consecutive unknown skips → asked user: 何見てるの？")
+                logger.info(f"[co_view] Patch BR1: {_br1_cnt} consecutive unknown skips → asked user: 何見てるの？ (awaiting_answer 30s)")
             return
         if _an3_bypass and _media_ctx.confidence < 0.75 and not _media_ctx.matched_title:
             logger.info(f"[co_view] AN3: youtube_talk conf={_media_ctx.confidence:.2f}>=0.65, proceeding to enrich")
@@ -2474,11 +2828,12 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
                     and now - _media_ctx.ask_user_last_at > _CO_VIEW_ASK_USER_COOLDOWN):
                 _media_ctx.ask_user_last_at = now
                 _media_ctx.co_view_last_at  = now
+                _media_ctx.awaiting_answer_until = now + 30  # 次30秒以内のuser発話を回答として処理
                 mei_speaker = _settings.get("meiVoice", "irodori-lora-emilia")
                 mei_speed_raw = _settings.get("meiSpeed", "auto") or "auto"
                 mei_speed = 0 if mei_speed_raw == "auto" else float(mei_speed_raw)
                 await _ambient_broadcast_reply("ちなみに何見てるの？", "co_view_ask", method, keyword, mei_speaker, mei_speed)
-                logger.info("[co_view] asked user: 何見てるの？")
+                logger.info("[co_view] asked user: 何見てるの？ (awaiting_answer 30s)")
             else:
                 await _broadcast_debug(f"[co_view] low conf={_media_ctx.confidence:.2f}, accumulating")
             return
@@ -3924,6 +4279,49 @@ async def delete_user_dict(entry_id: str):
     return {"ok": True, "entries": new_entries}
 
 
+@app.get("/api/context-summary")
+async def get_context_summary():
+    """現在の context summary を返す（クライアント初期化用）。"""
+    return {"ok": True, "summary": _context_summary_to_dict()}
+
+
+@app.post("/api/context-summary/feedback")
+async def post_context_summary_feedback(body: dict | None = None):
+    """Yes/No フィードバックを夜間学習用に記録。
+    body: {label: "yes"|"no", correction?: {activity?, topic?, is_meeting?, keywords?, named_entities?, language_register?, note?}}
+    """
+    if not body:
+        return {"ok": False, "error": "missing body"}
+    label = (body.get("label") or "").lower()
+    if label not in ("yes", "no"):
+        return {"ok": False, "error": "label must be 'yes' or 'no'"}
+    correction = body.get("correction") or None
+    if label == "no" and not correction:
+        return {"ok": False, "error": "correction required when label is 'no'"}
+
+    summary = _context_summary_to_dict()
+    if summary["updated_at"] == 0.0:
+        return {"ok": False, "error": "no context summary available yet"}
+
+    entry = {
+        "ts": datetime.now().astimezone().isoformat(timespec="seconds"),
+        "summary": summary,
+        "label": label,
+        "correction": correction,
+    }
+    try:
+        with CONTEXT_SUMMARY_FEEDBACK_FILE.open("a", encoding="utf-8") as f:
+            f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+    except OSError as e:
+        logger.warning(f"[context_summary/feedback] write failed: {e}")
+        return {"ok": False, "error": f"write failed: {e}"}
+    logger.info(
+        f"[context_summary/feedback] label={label} "
+        f"activity={summary['activity']} topic='{summary['topic'][:30]}'"
+    )
+    return {"ok": True}
+
+
 @app.post("/api/transcribe-file")
 async def transcribe_file_endpoint(body: dict | None = None):
     """ローカルの音声ファイル（会議録音など）を Whisper large-v3 で文字起こし。
@@ -4373,6 +4771,10 @@ _TOOL_NEEDED_KEYWORDS = re.compile(
     r'調べて|検索して|送って|教えて.*(今日|明日|来週|何時)'
 )
 
+# チャットパスのローカル LLM refusal 検知用（co_view 側 _BOT_REFUSAL_PATTERNS のサブセット、
+# 挨拶系ノイズは除外）。マッチしたら _ask_slack_bot 経由で Claude にフォールバック。
+_CHAT_REFUSAL_PATTERNS = ("申し訳", "役割範囲外", "Claude Code", "できません", "お手伝いできません", "専門外")
+
 _SLACK_BOT_API = "http://127.0.0.1:3457"
 _TOOL_ROUTE_FAIL_COUNT = 0
 _TOOL_ROUTE_COOLDOWN_UNTIL = 0.0
@@ -4543,10 +4945,22 @@ async def _ask_slack_bot(question: str, speaker: str | None = None, *, system_pr
     if remaining > 0:
         logger.info(f"[tool_route] bypass in cooldown ({remaining:.0f}s left)")
         return None
+    # 呼び出し元が system_prompt を指定しない時のデフォルト。
+    # 音声/TTS 制約と「Web で自発的に調べて答えて」を明示することで、
+    # 天気・ニュース・最新情報系の質問で Claude が WebFetch/WebSearch を使うよう誘導する。
+    if system_prompt is None:
+        speaker_label = speaker or "ユーザー"
+        system_prompt = (
+            f"{speaker_label}さんが音声で質問しました。"
+            "簡潔に（1〜2文で）回答してください。"
+            "音声で読み上げられるので、Markdown やリンク、絵文字は使わないでください。"
+            "リアルタイム情報・最新情報・天気・ニュース・株価・スポーツ結果など、"
+            "学習データに含まれない可能性のある内容については、"
+            "WebFetch / WebSearch ツールで自発的に調べてから答えてください。"
+        )
     try:
         payload: dict = {"question": question, "speaker": speaker}
-        if system_prompt:
-            payload["systemPrompt"] = system_prompt
+        payload["systemPrompt"] = system_prompt
         async with httpx.AsyncClient(timeout=120) as client:
             resp = await client.post(
                 f"{_SLACK_BOT_API}/internal/ask",
@@ -4711,16 +5125,22 @@ def _identify_speaker_sync(audio_data: bytes) -> dict | None:
 
 
 def _speaker_identified_not_akira(speaker_result: dict | None) -> bool:
-    """Wake ゲート判定。speaker_id が十分な音声で判定を実行し、akira 以外だった場合のみ True。
+    """Wake ゲート判定。akira score が明らかに低い時のみブロック。
 
-    all_scores が空 = 識別未実行（プロファイル未登録 / 音声短すぎ / ffmpeg 失敗）→ ゲート skip。
-    all_scores が非空 = 識別実行済み。speaker != "akira" なら ambient / 他人 の確定シグナル。
+    背景: 動画再生中など環境ノイズの影響で運用時 sim が大きく低下する。
+    enroll 閾値（0.45）を超えなくても、akira score が 0.05 以上なら本人候補として通す。
+    score < 0.05 = ランダム類似度レベル = 別人/動画音声の確定シグナル。
+    all_scores が空（識別未実行）の場合はゲートを skip。
+
+    speaker_id.identify() の all_scores は {name: score} の dict 形式。
     """
     if not speaker_result:
         return False
-    if not speaker_result.get("all_scores"):
+    all_scores: dict = speaker_result.get("all_scores") or {}
+    if not all_scores:
         return False
-    return speaker_result.get("speaker") != "akira"
+    akira_score = all_scores.get("akira", -1)
+    return akira_score < 0.05
 
 
 # --- Guided Enrollment (Siri-style voice enrollment) ---
@@ -4896,6 +5316,9 @@ async def _process_always_on(ws: WebSocket, audio_data: bytes, *, speech_ts: int
         if _whisper_busy:
             logger.info(f"[always_on] BLOCKED whisper_busy: {audio_duration:.1f}s")
             return
+
+        # Phase 2: feed verified-speech audio into the 30 min ring for large-v3 chunk transcription
+        asyncio.create_task(_feed_audio_buffer(audio_data))
 
         keyboard_like, keyboard_reason = _looks_like_keyboard_pulse(audio_data)
         if keyboard_like:
@@ -5138,6 +5561,34 @@ async def _ambient_llm_reply(ws: WebSocket, trigger_text: str, method: str = "ke
         source_hint = _ambient_listener.classify_source(trigger_text)
         intervention = _ambient_listener.decide_intervention(trigger_text, source_hint)
         logger.info(f"[ambient] source: {source_hint} intervention={intervention} | '{trigger_text[:40]}'")
+
+        # ask_user 後の回答キャプチャ:
+        # 「ちなみに何見てるの？」発火後30秒以内の発話を回答として取り込む。
+        # source_hint がメディア(media_likely)以外（user系/unknown）の場合のみ採用。
+        # speaker_id 壊れてる時に user_in_conversation 判定されても拾えるようにする。
+        _now_for_answer = time.time()
+        if (_media_ctx.awaiting_answer_until > _now_for_answer
+                and source_hint not in ("media_likely", "fragmentary")
+                and len(trigger_text.strip()) >= 2):
+            answer = trigger_text.strip()
+            _media_ctx.matched_title = answer[:50]
+            _media_ctx.inferred_topic = answer[:80]
+            _media_ctx.confidence = 0.95
+            _media_ctx.last_valid_matched_title = answer[:50]
+            _media_ctx.last_valid_matched_at = _now_for_answer
+            _media_ctx.last_inferred_at = _now_for_answer
+            _media_ctx.awaiting_answer_until = 0.0
+            _media_ctx.consecutive_unknown_skip_cnt = 0
+            logger.info(f"[co_view] ask_user 回答キャプチャ: '{answer[:50]}' → matched_title=conf=0.95")
+            await _broadcast_debug(f"[co_view] 回答取込: '{answer[:50]}' (以降コメント生成有効)")
+            _ambient_listener.record_judgment(method=method, result="speak", keyword=keyword,
+                                              utterance=f"[ack:{answer[:30]}]", intervention="ask_answer",
+                                              source_hint=source_hint)
+            await _broadcast_ambient_log()
+            _ambient_listener.state = "listening"
+            await _broadcast_ambient_state()
+            return
+
         trigger_sig = _normalize_text_signature(trigger_text)
         if not trigger_sig:
             logger.info("[ambient] empty/normalized-empty trigger → skip")
@@ -5501,10 +5952,17 @@ async def _ambient_batch_loop():
                     _ambient_listener.flush_buffer()
                     continue
                 trigger = " ".join(filtered_texts)
-                if _is_low_value_backchannel_text(trigger):
+                # 問いかけ（？/?で終わる）や Akira呼びかけ（ねえ/メイ等）は短くても
+                # LLM 経路に流す。これら抜けると user発話の "ねぇ聞こえる?" 等が
+                # 全部 skip されてしまう。
+                _is_question = bool(re.search(r'[？?]$', trigger.strip()))
+                _is_user_call = bool(_ambient_listener._USER_CALL_RE.search(trigger))
+                if _is_low_value_backchannel_text(trigger) and not (_is_question or _is_user_call):
                     logger.info(f"[ambient] batch low-value trigger skipped: '{trigger[:40]}'")
                     _ambient_listener.flush_buffer()
                     continue
+                if _is_question or _is_user_call:
+                    logger.info(f"[ambient] batch low-value bypass (question={_is_question}, call={_is_user_call}): '{trigger[:40]}'")
                 await _ambient_llm_reply(ws, trigger, method="llm_batch")
                 _ambient_listener.flush_buffer()
         except Exception as e:
@@ -5864,6 +6322,19 @@ async def websocket_endpoint(ws: WebSocket):
                 conversation.pop()
                 await ws.send_json({"type": "assistant_text", "text": f"[LLM エラー: {e}]"})
                 continue
+
+            # ローカル LLM が refusal を返したら Claude (Slack Bot) にフォールバック
+            if any(p in reply for p in _CHAT_REFUSAL_PATTERNS) and _tool_route_in_cooldown() <= 0:
+                logger.info(f"[chat] local refusal → Claude fallback: '{reply[:50]}'")
+                wait_resp = _wait_cache.get_random()
+                if wait_resp:
+                    wait_text, wait_audio = wait_resp
+                    await ws.send_json({"type": "assistant_text", "text": wait_text})
+                    await ws.send_bytes(wait_audio)
+                claude_reply = await _ask_slack_bot(text)
+                if claude_reply:
+                    reply = claude_reply
+
             conversation.append({"role": "assistant", "content": reply})
 
             # TTS (VOICEVOX)
@@ -6016,6 +6487,22 @@ async def on_startup():
     _profiles_dir = Path(__file__).parent / "speaker_profiles"
     _speaker_id = SpeakerIdentifier(_profiles_dir)
     logger.info(f"[startup] Speaker ID ready ({len(_speaker_id.profiles)} profile(s))")
+
+    # Phase 1: 5min context summary loop（co_view 認識精度向上）
+    global _context_summary_task
+    _context_summary_task = asyncio.create_task(_summarize_context_loop())
+    logger.info(
+        f"[startup] Context summary loop started "
+        f"(window={CONTEXT_SUMMARY_WINDOW}s, interval={CONTEXT_SUMMARY_INTERVAL}s)"
+    )
+
+    # Phase 2: 5min large-v3 chunk transcribe loop
+    global _chunk_transcribe_task
+    _chunk_transcribe_task = asyncio.create_task(_chunk_transcribe_loop())
+    logger.info(
+        f"[startup] Chunk transcribe loop started "
+        f"(audio_retention={CHUNK_AUDIO_RETENTION}s, interval={CHUNK_TRANSCRIBE_INTERVAL}s, model=large-v3)"
+    )
 
 
 if __name__ == "__main__":

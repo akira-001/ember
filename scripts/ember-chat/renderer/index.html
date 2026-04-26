@@ -925,6 +925,56 @@
   </select>
   <span id="reactivityStatus" style="color:#666; font-size:11px;"></span>
 </div>
+<div id="contextSummaryPanel" style="display:none; padding:6px 10px; background:#16181f; border-top:1px solid #2a2f3a; color:#cfd6e4; font-size:11px;">
+  <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+    <span style="color:#7da6ff; font-weight:600;">推測コンテキスト</span>
+    <span id="ctxConfBadge" style="color:#888;">—</span>
+    <span id="ctxAge" style="color:#666; margin-left:auto;"></span>
+  </div>
+  <div id="ctxBody" style="line-height:1.5;">
+    <div><span style="color:#888;">活動:</span> <span id="ctxActivity" style="color:#fff;">—</span> <span id="ctxMeeting" style="color:#ffb347; margin-left:6px;"></span></div>
+    <div><span style="color:#888;">トピック:</span> <span id="ctxTopic" style="color:#fff;">—</span></div>
+    <div><span style="color:#888;">固有名詞:</span> <span id="ctxEntities" style="color:#9fd8ff;">—</span></div>
+    <div><span style="color:#888;">キーワード:</span> <span id="ctxKeywords" style="color:#9fd8ff;">—</span></div>
+  </div>
+  <div style="display:flex; align-items:center; gap:6px; margin-top:6px;">
+    <button id="ctxYesBtn" onclick="submitContextFeedback('yes')" style="background:#1f5d3a; color:#dff5e3; border:1px solid #2c8a55; border-radius:4px; padding:3px 10px; cursor:pointer; font-size:11px;">Yes ✓ 正しい</button>
+    <button id="ctxNoBtn" onclick="toggleContextCorrection()" style="background:#5d1f1f; color:#f5dada; border:1px solid #8a2c2c; border-radius:4px; padding:3px 10px; cursor:pointer; font-size:11px;">No ✗ 違う</button>
+    <span id="ctxFeedbackStatus" style="color:#666; font-size:10px;"></span>
+  </div>
+  <div id="ctxCorrectionForm" style="display:none; margin-top:8px; padding:6px; background:#0f1116; border:1px solid #2a2f3a; border-radius:4px;">
+    <div style="display:grid; grid-template-columns:80px 1fr; gap:4px 6px; align-items:center;">
+      <label style="color:#888;">活動</label>
+      <select id="ctxFixActivity" style="background:#222; color:#ccc; border:1px solid #444; border-radius:3px; padding:2px;">
+        <option value="">(未指定)</option>
+        <option value="working">working</option>
+        <option value="video_watching">video_watching</option>
+        <option value="reading">reading</option>
+        <option value="meeting">meeting</option>
+        <option value="chatting">chatting</option>
+        <option value="idle">idle</option>
+      </select>
+      <label style="color:#888;">トピック</label>
+      <input type="text" id="ctxFixTopic" placeholder="例: ピアノ練習動画" style="background:#222; color:#ccc; border:1px solid #444; border-radius:3px; padding:2px 4px;">
+      <label style="color:#888;">会議?</label>
+      <select id="ctxFixMeeting" style="background:#222; color:#ccc; border:1px solid #444; border-radius:3px; padding:2px;">
+        <option value="">(未指定)</option>
+        <option value="true">はい</option>
+        <option value="false">いいえ</option>
+      </select>
+      <label style="color:#888;">キーワード</label>
+      <input type="text" id="ctxFixKeywords" placeholder="カンマ区切り: PPO, Atari" style="background:#222; color:#ccc; border:1px solid #444; border-radius:3px; padding:2px 4px;">
+      <label style="color:#888;">固有名詞</label>
+      <input type="text" id="ctxFixEntities" placeholder="カンマ区切り: DeepMind" style="background:#222; color:#ccc; border:1px solid #444; border-radius:3px; padding:2px 4px;">
+      <label style="color:#888;">メモ</label>
+      <input type="text" id="ctxFixNote" placeholder="補足（任意）" style="background:#222; color:#ccc; border:1px solid #444; border-radius:3px; padding:2px 4px;">
+    </div>
+    <div style="display:flex; gap:6px; margin-top:6px;">
+      <button onclick="submitContextCorrection()" style="background:#2a4a8a; color:#dde6ff; border:1px solid #3d6dc7; border-radius:4px; padding:3px 10px; cursor:pointer; font-size:11px;">保存</button>
+      <button onclick="toggleContextCorrection()" style="background:#333; color:#ccc; border:1px solid #555; border-radius:4px; padding:3px 10px; cursor:pointer; font-size:11px;">キャンセル</button>
+    </div>
+  </div>
+</div>
 <div id="textInputRow">
   <input type="text" id="textInput" placeholder="Type a message..." autocomplete="off">
   <button id="sendBtn" onclick="sendTextMessage()">Send</button>
@@ -1191,6 +1241,8 @@ async function applySettings(settings) {
     debugBtn.textContent = listeningDebug ? 'Debug ON' : 'Debug';
     debugBtn.className = listeningDebug ? 'side-btn on' : 'side-btn';
     document.getElementById('improveLoopPanel').style.display = listeningDebug ? 'flex' : 'none';
+    document.getElementById('contextSummaryPanel').style.display = listeningDebug ? 'block' : 'none';
+    if (listeningDebug) refreshContextSummary();
     if (listeningDebug) loadReactivity();
   }
   if (settings.improveLoopSpanMin) {
@@ -1352,6 +1404,8 @@ function connect() {
       }
     } else if (msg.type === 'listening_debug') {
       addMessage(msg.text, 'debug');
+    } else if (msg.type === 'context_summary') {
+      renderContextSummary(msg.summary);
     } else if (msg.type === 'reply_ended') {
       if (msg.bot_id && msg.reply_ts) { lastSeen[msg.bot_id] = msg.reply_ts; saveSettings(); }
       replyMode = false;
@@ -1485,8 +1539,139 @@ function toggleDebug() {
   debugBtn.textContent = listeningDebug ? 'Debug ON' : 'Debug';
   debugBtn.className = listeningDebug ? 'side-btn on' : 'side-btn';
   document.getElementById('improveLoopPanel').style.display = listeningDebug ? 'flex' : 'none';
-  if (listeningDebug) loadReactivity();
+  document.getElementById('contextSummaryPanel').style.display = listeningDebug ? 'block' : 'none';
+  if (listeningDebug) {
+    loadReactivity();
+    refreshContextSummary();
+  }
   saveSettings();
+}
+
+// --- Context summary panel ---
+let _ctxLastSummary = null;
+let _ctxAgeTimer = null;
+
+function _ctxAgeText(updatedAt) {
+  if (!updatedAt) return '';
+  const ageSec = Math.max(0, Math.floor(Date.now() / 1000 - updatedAt));
+  if (ageSec < 60) return `${ageSec}秒前更新`;
+  if (ageSec < 3600) return `${Math.floor(ageSec / 60)}分前更新`;
+  return `${Math.floor(ageSec / 3600)}時間前更新`;
+}
+
+function renderContextSummary(summary) {
+  if (!summary) return;
+  _ctxLastSummary = summary;
+  const conf = Number(summary.confidence || 0);
+  const confBadge = document.getElementById('ctxConfBadge');
+  confBadge.textContent = summary.updated_at ? `信頼度 ${conf.toFixed(2)}` : '未取得';
+  confBadge.style.color = conf >= 0.7 ? '#7dffaa' : conf >= 0.4 ? '#ffd17d' : '#888';
+  document.getElementById('ctxAge').textContent = _ctxAgeText(summary.updated_at);
+  document.getElementById('ctxActivity').textContent = summary.activity || '—';
+  document.getElementById('ctxMeeting').textContent = summary.is_meeting ? '【会議】' : '';
+  document.getElementById('ctxTopic').textContent = summary.topic || '—';
+  document.getElementById('ctxEntities').textContent = (summary.named_entities || []).join(', ') || '—';
+  document.getElementById('ctxKeywords').textContent = (summary.keywords || []).join(', ') || '—';
+  if (!_ctxAgeTimer) {
+    _ctxAgeTimer = setInterval(() => {
+      if (_ctxLastSummary) document.getElementById('ctxAge').textContent = _ctxAgeText(_ctxLastSummary.updated_at);
+    }, 30000);
+  }
+}
+
+async function refreshContextSummary() {
+  try {
+    const r = await fetch(`${API_BASE}/context-summary`);
+    const d = await r.json();
+    if (d.ok) renderContextSummary(d.summary);
+  } catch (err) {
+    console.warn('[context_summary] fetch failed', err);
+  }
+}
+
+function toggleContextCorrection() {
+  const form = document.getElementById('ctxCorrectionForm');
+  const open = form.style.display === 'none';
+  form.style.display = open ? 'block' : 'none';
+  if (open && _ctxLastSummary) {
+    document.getElementById('ctxFixActivity').value = _ctxLastSummary.activity || '';
+    document.getElementById('ctxFixTopic').value = _ctxLastSummary.topic || '';
+    document.getElementById('ctxFixMeeting').value = _ctxLastSummary.is_meeting ? 'true' : 'false';
+    document.getElementById('ctxFixKeywords').value = (_ctxLastSummary.keywords || []).join(', ');
+    document.getElementById('ctxFixEntities').value = (_ctxLastSummary.named_entities || []).join(', ');
+    document.getElementById('ctxFixNote').value = '';
+  }
+}
+
+function _setCtxFeedbackStatus(text, isError) {
+  const el = document.getElementById('ctxFeedbackStatus');
+  el.textContent = text;
+  el.style.color = isError ? '#ff6e6e' : '#7dffaa';
+  setTimeout(() => { el.textContent = ''; }, 4000);
+}
+
+async function submitContextFeedback(label) {
+  if (!_ctxLastSummary || !_ctxLastSummary.updated_at) {
+    _setCtxFeedbackStatus('まだコンテキストが取得されてないよ', true);
+    return;
+  }
+  if (label === 'no') {
+    toggleContextCorrection();
+    return;
+  }
+  try {
+    const r = await fetch(`${API_BASE}/context-summary/feedback`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ label: 'yes' }),
+    });
+    const d = await r.json();
+    if (d.ok) _setCtxFeedbackStatus('保存したよ ✓');
+    else _setCtxFeedbackStatus(`失敗: ${d.error}`, true);
+  } catch (err) {
+    _setCtxFeedbackStatus(`失敗: ${err.message || err}`, true);
+  }
+}
+
+async function submitContextCorrection() {
+  if (!_ctxLastSummary || !_ctxLastSummary.updated_at) {
+    _setCtxFeedbackStatus('まだコンテキストが取得されてないよ', true);
+    return;
+  }
+  const correction = {};
+  const activity = document.getElementById('ctxFixActivity').value.trim();
+  const topic = document.getElementById('ctxFixTopic').value.trim();
+  const meeting = document.getElementById('ctxFixMeeting').value;
+  const kwRaw = document.getElementById('ctxFixKeywords').value.trim();
+  const enRaw = document.getElementById('ctxFixEntities').value.trim();
+  const note = document.getElementById('ctxFixNote').value.trim();
+  if (activity) correction.activity = activity;
+  if (topic) correction.topic = topic;
+  if (meeting === 'true') correction.is_meeting = true;
+  else if (meeting === 'false') correction.is_meeting = false;
+  if (kwRaw) correction.keywords = kwRaw.split(',').map(s => s.trim()).filter(Boolean);
+  if (enRaw) correction.named_entities = enRaw.split(',').map(s => s.trim()).filter(Boolean);
+  if (note) correction.note = note;
+  if (Object.keys(correction).length === 0) {
+    _setCtxFeedbackStatus('正しい答えを1つ以上入力してね', true);
+    return;
+  }
+  try {
+    const r = await fetch(`${API_BASE}/context-summary/feedback`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ label: 'no', correction }),
+    });
+    const d = await r.json();
+    if (d.ok) {
+      _setCtxFeedbackStatus('修正を保存したよ ✓');
+      document.getElementById('ctxCorrectionForm').style.display = 'none';
+    } else {
+      _setCtxFeedbackStatus(`失敗: ${d.error}`, true);
+    }
+  } catch (err) {
+    _setCtxFeedbackStatus(`失敗: ${err.message || err}`, true);
+  }
 }
 
 // --- Reactivity (debug panel) ---

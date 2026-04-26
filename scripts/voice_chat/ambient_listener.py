@@ -180,13 +180,15 @@ class AmbientListener:
 
     @property
     def is_multi_speaker(self) -> bool:
-        """True if multiple distinct speakers detected in last 60s."""
+        """True if multiple distinct identified speakers detected in last 60s.
+
+        unknown は数えない（動画再生中の音声等は「環境音」扱い）。
+        名前付き話者が2人以上いる時のみ「複数話者の会話中」とみなす。
+        """
         now = time.time()
         recent = [s for s in self._recent_speakers if now - s["ts"] < 60]
-        speakers = set()
-        for s in recent:
-            speakers.add(s["speaker"] or "__unknown__")
-        return len(speakers) >= 2
+        named_speakers = {s["speaker"] for s in recent if s.get("speaker")}
+        return len(named_speakers) >= 2
 
     @property
     def recent_speaker_names(self) -> list[str]:
