@@ -143,6 +143,34 @@ pm2 list | grep claude-slack-bot
 
 ---
 
+## Task 3.5: monorepo-skeleton ブランチ作成
+
+**Files:** なし（git ブランチ操作のみ）
+
+main への commit を防ぐため、最初の commit が出る Task 4 の前に専用ブランチに切り替える。
+
+- [ ] **Step 1: 現在のブランチ確認**
+
+```bash
+cd /Users/akira/workspace/ember
+git branch --show-current
+```
+
+期待: `main`
+
+- [ ] **Step 2: monorepo-skeleton ブランチ作成 + 切替**
+
+```bash
+git checkout -b monorepo-skeleton
+git branch --show-current
+```
+
+期待: `monorepo-skeleton`
+
+- [ ] **Step 3: コミット不要**
+
+---
+
 ## Task 4: pnpm-workspace.yaml 作成
 
 **Files:**
@@ -580,19 +608,20 @@ git commit -m "docs(plan): add P0 monorepo skeleton plan"
 
 ---
 
-## Task 12: ブランチ作成 + push + PR 作成
+## Task 12: push + PR 作成
 
 **Files:** GitHub PR
 
-- [ ] **Step 1: 現在のブランチ確認 + 専用ブランチ作成**
+ブランチは Task 3.5 で既に `monorepo-skeleton` に切替済み。ここでは push と PR 作成のみ。
+
+- [ ] **Step 1: 現在のブランチ確認**
 
 ```bash
 cd /Users/akira/workspace/ember
 git branch --show-current
-git checkout -b monorepo-skeleton
 ```
 
-期待: `monorepo-skeleton` ブランチに切替。
+期待: `monorepo-skeleton`（Task 3.5 で切替済み）。
 
 - [ ] **Step 2: push**
 
