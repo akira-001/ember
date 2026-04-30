@@ -6682,7 +6682,7 @@ async def on_startup():
     global _settings
     _settings = _load_settings()
     _sync_auto_approve_file(_get_auto_approve_enabled())
-    _sync_improve_loop_disabled_file(bool(_settings.get("improveLoopEnabled", True)))
+    _sync_improve_loop_disabled_file(bool(_settings.get("improveLoopEnabled", False)))
     await _warmup_irodori()
     # Wire up synthesize_speech for wake_response module
     _wake_response_module.synthesize_speech = synthesize_speech
