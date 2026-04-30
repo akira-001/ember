@@ -18,3 +18,22 @@ memory/skills/meta-skills/
 scripts/voice_chat/.env
 scripts/voice_chat/settings.json
 scripts/ember-chat/recordings/
+
+# === Monorepo additions (P0) ===
+**/node_modules/
+.pnpm-store/
+**/dist/
+**/.next/
+**/.turbo/
+
+# Python (uv)
+**/.venv/
+**/__pycache__/
+.uv-cache/
+
+# Editor
+.vscode/
+.idea/
+
+# OS
+Thumbs.db

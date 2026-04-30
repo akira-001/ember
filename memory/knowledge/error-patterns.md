@@ -97,3 +97,15 @@
 **パターン**: distil 系 Whisper（kotoba-whisper-v1/v2 含む）は、訓練時に「ノイズのみのサンプルを空文字で学習」する anti-hallucination 機構を持つ（Distil-Whisper paper: 1% の training データが noise-only with empty transcripts）。さらに kotoba は ReazonSpeech（日本語クリーン TV 音声）+ WER>10 サンプル除外で訓練されているため、iPad 遠距離 + 室内反響のような OOD 音声を「ノイズ」と判定し意図的に 0 segments を返す。これは feature であってバグではない。
 **具体例**: iPad 遠距離音声（peak 0.05〜0.18, rms 0.006）を kotoba-v2 に渡すと `segments=0 lang=ja prob=1.00 duration=*s` で空文字。`chunk_length=15` `condition_on_previous_text=False`（公式推奨）/ `compute_type=int8` / 3 フィルタ閾値緩和（no_speech=0.95, log_prob=-2.0, compression=3.5）/ `vad_filter=False` / PCM gain 正規化（peak→0.5）/ kotoba-v1.0 への切替を全部試して 0 segments。同じ音声を Whisper large-v3（蒸留前）に渡すと precision 47% で transcribe 成功。
 **対策**: **Distil 系 Whisper は far-field/quiet/低 SNR 音声には使わない**。近接発話のクリーン音声専用。OOD で動かす可能性がある場合は Whisper large-v3 / **large-v3-turbo（OpenAI 蒸留版）** を選択する — turbo は速度を維持しつつ anti-hallucination 訓練を持たない。教訓: 同じ Whisper ファミリーでも distil 系 vs 非 distil 系で far-field 適性が決定的に違う。新モデル採用前にこの軸で評価する。
+
+## EP-017: Chromium を pkill すると認証 Cookie が flush 前に失われる
+**発生**: 2026-05-01 | **Arousal**: 0.9
+**パターン**: Chromium はセキュリティ強化のため認証 Cookie（`SID`, `HSID`, `SAPISID`, `__Secure-1PSID`, `__Secure-3PSID` 等）をメモリ優先で保持し、定期的に SQLite (`Cookies` ファイル) に flush する。`pkill -KILL` や `pkill -9` で強制終了すると flush が走らず、ディスク上の Cookie には認証情報が残らない。次回同じプロファイルで起動すると未ログイン状態になる。
+**具体例**: livebrowse 運用で YouTube ログイン後 `pkill -f "remote-debugging-port=9222"` で kill → 同プロファイルで Calendar を開くと marketing redirect（未ログイン挙動）。Cookie DB をスナップショットすると `.google.com` の認証 Cookie が全滅、`NID`（匿名）と `__Host-GAPS`（空）だけが残存。
+**対策**: graceful close を **2 段階**で行う。(1) Playwright `browser.close()` で CDP 切断（この時点で Cookie が flush される）→ (2) `pgrep -f "remote-debugging-port=9222" | while read PID; do kill -TERM $PID; done; sleep 3` で残プロセス kill。`browser.close()` だけでは Chromium プロセスは死なない（CDP 切断のみ）が、Cookie は確実に flush される。`pgrep` 戻り値を変数経由で `kill` に渡すと zsh で複数 PID パースエラーになるので while read ループ必須。SIGKILL（`kill -9`）は flush 機会ゼロで絶対 NG。
+
+## EP-018: Claude Code セッションの `currentDate` システム情報が古いことがある
+**発生**: 2026-05-01 | **Arousal**: 0.8
+**パターン**: Claude Code が起動時に提供する `currentDate` フィールド（CLAUDE.md コンテキスト末尾に挿入される `Today's date is YYYY-MM-DD`）は、セッション開始時刻でも実時刻でもなく古い snapshot のことがある。実測で 5 日のズレを確認。「今日」「明日」「昨日」を扱う処理でこの値を信じると、検索結果や API 応答との整合性が取れなくなる。
+**具体例**: ドジャースの「明日の試合」を調べる時、`currentDate: 2026-04-26` を信じて Google 検索したら結果が 4/27 試合「終了」と返ってきて齟齬発生。`date "+%Y-%m-%d %H:%M %A"` で確認したら実時刻は **JST 2026-05-01 金 07:42**（5 日新しい）だった。明日 = 5/2 で再検索して正しい試合情報を取得。
+**対策**: 日時を扱う前に必ず `date "+%Y-%m-%d %H:%M %A"` を実行して実時刻を取得する。`currentDate` は参考値とし、絶対視しない。`datetime-awareness` スキル + livebrowse SKILL.md にも明記済。海外スポーツ等は JST 換算（PT 19:15 ≈ JST 翌朝 09:15）も合わせて行う。

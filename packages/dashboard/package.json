@@ -1,0 +1,10 @@
+{
+  "name": "@ember/dashboard",
+  "version": "0.0.0",
+  "private": true,
+  "description": "React dashboard + Express server (P1 で移植予定)",
+  "scripts": {
+    "build": "echo 'P1 で実装' && exit 0",
+    "test": "echo 'P1 で実装' && exit 0"
+  }
+}
