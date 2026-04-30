@@ -43,3 +43,16 @@ WebRTC VAD は「人声成分の有無」しか見ない設計のため、近接
 **発生**: 2026-04-26 | **Arousal**: 0.7 | **ドメイン**: speech-recognition
 TVやスピーカーから流れる音声をマイクで遠距離録音した音声は、small/kotoba/2段階どの構成でも CER 0.72-0.79（27サンプル実測）。マイク → 空気 → スピーカー → 圧縮の劣化パイプは Whisper の品質改善でカバー不可能。
 **応用**: メディア音声を文字化する努力を諦め、別経路（NowPlaying API / 字幕API / mDNS Cast Discovery / 会話的確立）から取得する設計に切り替える。マイク STT は Akira 近接発話だけに使い、環境音は scene classifier（YAMNet/PANNs）で粗分類のみ。
+
+## INS-009: 外部ライブラリ・モデルでハマったらコード診断より先に Web Issue を確認
+**発生**: 2026-05-01 | **Arousal**: 0.85 | **ドメイン**: debugging-process
+外部ライブラリ・SDK・蒸留モデルなど「動くはずの構成が動かない」状態は、ライブラリ側の既知挙動（必須パラメータ、訓練データ起因の制約等）が原因のことが多い。これを自前のログ追加・統計収集で発見しようとすると数十分〜数時間溶かす。**Web 1 検索で 5 分で解決**できるケースが珍しくない。
+**確認順序**: (1) 公式モデルカード / README の Quick Start コード例を実装と差分比較 → (2) GitHub Issues で「empty / 0 / not working」系キーワード検索 → (3) HuggingFace Discussions（モデル特有の質問が集中）。当てはまる Issue を見つけたら、コード診断は中断して Issue の解決策を先に試す。
+**実例**: kotoba-whisper-v2 切替で 30 分以上、フィルタ緩和や PCM 統計ログを次々追加していたが、HF モデルカードに「`chunk_length=15` `condition_on_previous_text=False` 必須」と明記されていた（後で確認したら結局これでも 0 segments で別の構造的問題だったが、まず確認すべきだった）。
+**応用**: 新規ライブラリ・モデル採用時の最初の 5 分を「公式 Quick Start のコピペ実行」「Issues を 'empty/empty output/not working' で検索」に必ず使う。
+
+## INS-010: STT 系で peak/rms 比が連続発話の signature
+**発生**: 2026-05-01 | **Arousal**: 0.6 | **ドメイン**: audio-processing
+PCM 入力の peak と rms の比（peak/rms）が **5〜10x** なら通常の連続発話、**>50x** なら短い大音量パルス（キーボード・マウス・机振動等の transient noise）が静かな背景に乗っている状態。後者を Whisper に渡すと訓練データに無い波形でハルシネーション（英単語混在、繰り返し etc）。
+**実例**: PC 向きを変えて「音量が上がった」つもりで peak 0.47 / rms 0.0069（比 68x）になり、whisper の出力が「ERERERERER... boatswast Cypésulteemn」のような完全 garbage に。peak だけ見ると音量改善だが rms が伴わないと SNR は悪化している。
+**応用**: STT 入力前に peak/rms 統計をログし、比 >30x なら **transient-dominant** とフラグ立てて transcribe を skip する or 警告する。ゲイン正規化は peak だけでなく peak/rms 比のチェックとセットで行う。
