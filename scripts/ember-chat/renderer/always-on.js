@@ -82,9 +82,102 @@ class AlwaysOnListener {
       this._initRMSVAD();
     }
 
+    // Phase 2: 連続録音チャンク（VAD なし）— large-v3 chunk transcribe の素材
+    this._initRawChunkRecorder().catch((err) => {
+      console.warn('[AlwaysOn] raw chunk init failed', err);
+    });
+
     this.enabled = true;
     this._setState('listening');
     this._startWatchdog();
+  }
+
+  async _initRawChunkRecorder() {
+    if (!this.micStream || this._rawChunkInterval) return;
+    const RAW_MIME = 'audio/webm;codecs=opus';
+    if (typeof MediaRecorder === 'undefined' || !MediaRecorder.isTypeSupported(RAW_MIME)) {
+      console.warn('[AlwaysOn] raw chunk recorder unsupported in this env');
+      return;
+    }
+    const CHUNK_MS = 30000;
+
+    // EC/NS/AGC を無効にした別 stream を取得（room audio = iPad 等の遠方音を保つ）。
+    // always-on の VAD/STT は引き続き既存 micStream（EC/NS ON）を使う。
+    let chunkStream = null;
+    let streamMode = 'shared_fallback';
+    try {
+      chunkStream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: false,
+          noiseSuppression: false,
+          autoGainControl: false,
+        },
+      });
+      this._chunkStream = chunkStream;
+      streamMode = 'dedicated_no_ec_ns';
+      console.log('[AlwaysOn] raw chunk: dedicated stream (EC/NS/AGC OFF) acquired');
+    } catch (err) {
+      console.warn('[AlwaysOn] dedicated chunk stream failed, fallback to shared micStream', err);
+      chunkStream = this.micStream;
+    }
+    this._chunkStreamMode = streamMode;
+
+    // 各セッションごとに新 MediaRecorder を立ててヘッダ付き完結 webm を生成。
+    // start(timeslice) は 2 つ目以降のチャンクに EBML ヘッダがなく ffmpeg がデコード失敗するため使えない。
+    const startNewSession = () => {
+      try {
+        const rec = new MediaRecorder(chunkStream, {
+          mimeType: RAW_MIME,
+          audioBitsPerSecond: 32000,
+        });
+        const chunks = [];
+        rec.ondataavailable = (e) => { if (e.data && e.data.size > 0) chunks.push(e.data); };
+        rec.onstop = () => {
+          if (chunks.length === 0) return;
+          const blob = new Blob(chunks, { type: RAW_MIME });
+          const ws = this.wsRef();
+          if (!ws || ws.readyState !== WebSocket.OPEN) return;
+          blob.arrayBuffer().then((buf) => {
+            try {
+              ws.send(JSON.stringify({ type: 'raw_audio_chunk', ts: Date.now(), stream_mode: this._chunkStreamMode }));
+              ws.send(buf);
+            } catch (err) {
+              console.warn('[AlwaysOn] raw chunk send failed', err);
+            }
+          });
+        };
+        rec.onerror = (e) => console.warn('[AlwaysOn] raw chunk recorder error', e);
+        rec.start();
+        this._currentChunkRecorder = rec;
+      } catch (err) {
+        console.warn('[AlwaysOn] raw chunk recorder start failed', err);
+      }
+    };
+
+    startNewSession();
+    this._rawChunkInterval = setInterval(() => {
+      const rec = this._currentChunkRecorder;
+      if (rec && rec.state === 'recording') {
+        try { rec.stop(); } catch {}
+      }
+      startNewSession();
+    }, CHUNK_MS);
+    console.log('[AlwaysOn] raw chunk recorder started (30s rotate)');
+  }
+
+  _stopRawChunkRecorder() {
+    if (this._rawChunkInterval) {
+      clearInterval(this._rawChunkInterval);
+      this._rawChunkInterval = null;
+    }
+    if (this._currentChunkRecorder) {
+      try { this._currentChunkRecorder.stop(); } catch {}
+      this._currentChunkRecorder = null;
+    }
+    if (this._chunkStream && this._chunkStream !== this.micStream) {
+      try { this._chunkStream.getTracks().forEach(t => t.stop()); } catch {}
+    }
+    this._chunkStream = null;
   }
 
   async _initSileroVAD() {
@@ -225,6 +318,7 @@ class AlwaysOnListener {
     this._stopWatchdog();
     if (this.vad) this.vad.pause();
     if (this._rmsCleanup) this._rmsCleanup();
+    this._stopRawChunkRecorder();
     this.enabled = false;
     this._setState('muted');
   }
@@ -288,6 +382,7 @@ class AlwaysOnListener {
     this._stopWatchdog();
     if (this.vad) { this.vad.destroy(); this.vad = null; }
     if (this._rmsCleanup) this._rmsCleanup();
+    this._stopRawChunkRecorder();
     if (this.micStream) { this.micStream.getTracks().forEach(t => t.stop()); this.micStream = null; }
     this.enabled = false;
     this._isStale = false;

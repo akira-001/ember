@@ -370,10 +370,15 @@ _whisper_model_fast = None
 def get_whisper():
     global _whisper_model
     if _whisper_model is None:
-        print("Whisper large-v3 読み込み中...")
-        # int8_float32: int8 量子化重み + fp32 演算。pure int8 より精度向上、CPU 速度ほぼ同等
-        _whisper_model = WhisperModel("large-v3", device="cpu", compute_type="int8_float32")
-        print("Whisper 準備完了")
+        # whisper-large-v3-turbo: OpenAI 公式の蒸留版。large-v3 系譜のためノイズ耐性 OK、
+        # 速度は kotoba 並、CER は 2026 ベンチで最良（0.178）
+        print("Whisper large-v3-turbo 読み込み中...")
+        _whisper_model = WhisperModel(
+            "large-v3-turbo",
+            device="cpu",
+            compute_type="int8_float32",
+        )
+        print("Whisper large-v3-turbo 準備完了")
     return _whisper_model
 
 
@@ -897,6 +902,11 @@ class _MediaContext:
     meeting_digest_pending_at: float = 0.0
     meeting_digest_pending_started_at: float = 0.0
     meeting_digest_pending_buffer_len: int = 0
+    # 議事録ウィンドウ（カレンダー予定の時間枠 or 1時間バケット）
+    meeting_digest_pending_window_key: str = ""
+    meeting_digest_pending_window_end_ts: float = 0.0
+    # 直前にフラッシュしたウィンドウの後、次バッチをこの buffer 位置から開始する
+    meeting_digest_anchor_buffer_len: int = 0
     # Patch Y1: enrich query rotation — 毎回同じニュースを繰り返さないよう検索suffixをローテーション
     enrich_query_idx: int = 0
     # Patch Y1補: 同一作品で既に返した記事タイトルを記憶して重複を除外
@@ -957,6 +967,9 @@ class _MediaContext:
         self.meeting_digest_pending_at = 0.0
         self.meeting_digest_pending_started_at = 0.0
         self.meeting_digest_pending_buffer_len = 0
+        self.meeting_digest_pending_window_key = ""
+        self.meeting_digest_pending_window_end_ts = 0.0
+        self.meeting_digest_anchor_buffer_len = 0
         self.last_meeting_hint_score = 0
         # Patch BT1: 5minギャップ後の新セッションでBR1カウンターを引き継がないようリセット
         # 背景: consecutive_unknown_skip_cnt がresetでクリアされず、異なるコンテンツの視聴間でも
@@ -999,7 +1012,7 @@ _meeting_digest_idle_task: asyncio.Task | None = None
 # _infer_media_content の system prompt に注入する。
 # media_ctx.media_buffer と異なり content_type 変化や 5min gap でリセットしない（長期保持）。
 
-CONTEXT_SUMMARY_INTERVAL = 300       # 5 min
+CONTEXT_SUMMARY_INTERVAL = 180       # 3 min
 CONTEXT_SUMMARY_WINDOW = 1800        # 30 min
 CONTEXT_SUMMARY_MIN_CHARS = 50       # transcript がこれ未満なら要約スキップ
 CONTEXT_SUMMARY_STALE_SEC = 600      # 10 分以上更新ない要約は inject しない
@@ -1089,9 +1102,9 @@ CONTEXT_SUMMARY_FEEDBACK_FILE = Path(__file__).parent / "context_summary_feedbac
 # 高精度な 5 分単位テキストチャンクを最大 6 個（30 分）保持。
 # summary 推論時は chunk_buffer 優先、空なら small ベース transcript_buffer フォールバック。
 
-CHUNK_TRANSCRIBE_INTERVAL = 300  # 5 min
+CHUNK_TRANSCRIBE_INTERVAL = 180  # 3 min
 CHUNK_AUDIO_RETENTION = 1800     # 30 min raw audio
-CHUNK_MAX_ENTRIES = 6            # 30 min ÷ 5 min
+CHUNK_MAX_ENTRIES = 10           # 30 min ÷ 3 min
 CHUNK_MIN_PCM_SAMPLES = 16000    # 1 sec @ 16kHz — これ未満ならスキップ
 
 
@@ -1156,11 +1169,19 @@ class TranscriptChunkBuffer:
         async with self._lock:
             return len(self._entries)
 
+    async def snapshot(self) -> list:
+        async with self._lock:
+            return [
+                {"ts_start": s, "ts_end": e, "text": t}
+                for s, e, t in self._entries
+            ]
+
 
 _audio_buffer = AudioRingBuffer()
 _chunk_buffer = TranscriptChunkBuffer()
 _chunk_transcribe_task: asyncio.Task | None = None
 _chunk_transcribe_lock = asyncio.Lock()
+CHUNK_TRANSCRIPTS_FILE = Path(__file__).parent / "chunk_transcripts.jsonl"
 
 
 async def _feed_audio_buffer(audio_data: bytes) -> None:
@@ -1168,24 +1189,61 @@ async def _feed_audio_buffer(audio_data: bytes) -> None:
     try:
         loop = asyncio.get_event_loop()
         pcm = await loop.run_in_executor(None, audio_bytes_to_wav, audio_data)
-        if pcm is not None and len(pcm) > 0:
-            await _audio_buffer.add(pcm)
+        if pcm is None:
+            logger.warning(f"[audio_buffer] decode failed (ffmpeg returned None) for {len(audio_data)} bytes")
+            return
+        if len(pcm) == 0:
+            logger.warning(f"[audio_buffer] decode returned empty pcm for {len(audio_data)} bytes")
+            return
+        await _audio_buffer.add(pcm)
+        logger.debug(f"[audio_buffer] added {len(pcm)} samples ({len(pcm)/16000:.1f}s)")
     except Exception as e:
         logger.warning(f"[audio_buffer] feed failed: {e}")
 
 
-def _transcribe_pcm_sync_largev3(pcm) -> str:
-    """直接 PCM (float32 16kHz mono numpy) を Whisper large-v3 で書き起こす。"""
+def _transcribe_pcm_sync(pcm) -> str:
+    """直接 PCM (float32 16kHz mono numpy) を Whisper large-v3 で書き起こす。
+    raw_audio_chunk 経由の連続録音を入力するため、内部 VAD で沈黙を skip させる。
+    beam_size=2 で速度優先（密な発話で 5分窓を超えないため）。"""
+    # PCM 振幅統計＋ゲイン正規化（iPad 遠距離音声対策）
+    try:
+        peak = float(np.abs(pcm).max()) if len(pcm) > 0 else 0.0
+        rms = float(np.sqrt(np.mean(np.square(pcm)))) if len(pcm) > 0 else 0.0
+        # 発話レベル（peak ~0.5）に届かない時はゲインで持ち上げる
+        if 0 < peak < 0.3:
+            gain = 0.5 / peak
+            pcm = pcm * gain
+            logger.info(
+                f"[chunk_transcribe/_sync] pcm stats: peak={peak:.4f} rms={rms:.4f} → gain x{gain:.1f} → peak~0.5"
+            )
+        else:
+            logger.info(
+                f"[chunk_transcribe/_sync] pcm stats: peak={peak:.4f} rms={rms:.4f} (no gain)"
+            )
+    except Exception as e:
+        logger.warning(f"[chunk_transcribe/_sync] gain normalize failed: {e}")
+
     model = get_whisper()
+    # whisper-large-v3-turbo は標準 Whisper API で OK。
+    # iPad 遠距離音声（peak ~0.05〜0.18, rms ~0.006）対策でフィルタ 3 つ緩和:
     segments, info = model.transcribe(
         pcm, language="ja",
-        beam_size=5,
+        beam_size=2,
         vad_filter=False,
         hotwords=_WHISPER_FILE_HOTWORDS,
+        no_speech_threshold=0.95,
+        log_prob_threshold=-2.0,
+        compression_ratio_threshold=3.5,
     )
     seg_list = list(segments)
+    logger.info(
+        f"[chunk_transcribe/_sync] segments={len(seg_list)} "
+        f"lang={getattr(info, 'language', '?')} prob={getattr(info, 'language_probability', 0):.2f} "
+        f"duration={getattr(info, 'duration', 0):.1f}s"
+    )
     text = "".join(seg.text for seg in seg_list).strip()
     if not text:
+        logger.info(f"[chunk_transcribe/_sync] empty text: segments={len(seg_list)} (likely all silence per vad_filter)")
         return ""
     avg_no_speech = (sum(s.no_speech_prob for s in seg_list) / len(seg_list)) if seg_list else 0
     if avg_no_speech > 0.6:
@@ -1195,13 +1253,21 @@ def _transcribe_pcm_sync_largev3(pcm) -> str:
 
 
 async def _chunk_transcribe_loop():
-    """5 分ごとに直近 5 分の音声を large-v3 で書き起こしてチャンクバッファに追加。"""
+    """5 分ごとに直近 5 分の音声を large-v3 で書き起こしてチャンクバッファに追加。
+    前回の処理がまだ走ってる場合は今回をスキップ（lock 暴走防止）。"""
+    iteration = 0
     while True:
         try:
             await asyncio.sleep(CHUNK_TRANSCRIBE_INTERVAL)
+            iteration += 1
+            logger.info(f"[chunk_transcribe] iter#{iteration} fire")
+            if _chunk_transcribe_lock.locked():
+                logger.info("[chunk_transcribe] skip: previous run still in progress")
+                continue
             pcm, ts_start, ts_end = await _audio_buffer.slice_recent(CHUNK_TRANSCRIBE_INTERVAL)
+            logger.info(f"[chunk_transcribe] iter#{iteration} pcm slice len={len(pcm)}")
             if len(pcm) < CHUNK_MIN_PCM_SAMPLES:
-                logger.debug(
+                logger.info(
                     f"[chunk_transcribe] skip: pcm samples={len(pcm)} (<{CHUNK_MIN_PCM_SAMPLES})"
                 )
                 continue
@@ -1209,7 +1275,7 @@ async def _chunk_transcribe_loop():
                 started = time.time()
                 try:
                     loop = asyncio.get_event_loop()
-                    text = await loop.run_in_executor(None, _transcribe_pcm_sync_largev3, pcm)
+                    text = await loop.run_in_executor(None, _transcribe_pcm_sync, pcm)
                 except Exception as e:
                     logger.warning(f"[chunk_transcribe] failed: {e}")
                     continue
@@ -1220,6 +1286,19 @@ async def _chunk_transcribe_loop():
                 )
                 continue
             await _chunk_buffer.add(ts_start, ts_end, text)
+            try:
+                entry = {
+                    "ts": datetime.now().astimezone().isoformat(timespec="seconds"),
+                    "ts_start": ts_start,
+                    "ts_end": ts_end,
+                    "duration_sec": round(len(pcm) / 16000, 1),
+                    "elapsed_sec": round(elapsed, 1),
+                    "text": text,
+                }
+                with CHUNK_TRANSCRIPTS_FILE.open("a", encoding="utf-8") as f:
+                    f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+            except OSError as e:
+                logger.warning(f"[chunk_transcribe] persist failed: {e}")
             logger.info(
                 f"[chunk_transcribe] {len(pcm)/16000:.1f}s audio → {len(text)} chars in {elapsed:.1f}s "
                 f"({time.strftime('%H:%M', time.localtime(ts_start))}-{time.strftime('%H:%M', time.localtime(ts_end))})"
@@ -1824,12 +1903,41 @@ async def _infer_media_content() -> dict:
 
 # Patch W2: Google Calendar から現在の会議タイトルを取得するキャッシュ
 _gcal_token_cache: dict = {"access_token": "", "expires_at": 0.0}
-_gcal_meeting_cache: dict = {"title": "", "fetched_at": 0.0, "ttl": 300.0}
+_gcal_meeting_cache: dict = {
+    "title": "",
+    "start_ts": 0.0,
+    "end_ts": 0.0,
+    "event_id": "",
+    "fetched_at": 0.0,
+    "ttl": 300.0,
+}
+
+
+def _parse_gcal_dt(value: str | None) -> float:
+    """gcal の dateTime / date を epoch second に変換。失敗時は 0.0。"""
+    if not value:
+        return 0.0
+    import datetime as _dt
+    try:
+        # date のみ（終日イベント）は時刻情報がないので JST 0時として扱う
+        if len(value) == 10 and value.count("-") == 2:
+            jst = _dt.timezone(_dt.timedelta(hours=9))
+            d = _dt.date.fromisoformat(value)
+            return _dt.datetime.combine(d, _dt.time(0, 0, 0), tzinfo=jst).timestamp()
+        # ISO8601 with timezone
+        s = value.replace("Z", "+00:00")
+        return _dt.datetime.fromisoformat(s).timestamp()
+    except Exception:
+        return 0.0
+
 
 async def _fetch_current_gcal_meeting() -> str:
-    """Google Calendar API で現在時刻付近の会議タイトルを取得。5分キャッシュ。"""
+    """Google Calendar API で現在時刻付近の会議タイトル+時間枠を取得。5分キャッシュ。"""
     now = time.time()
-    if now - _gcal_meeting_cache["fetched_at"] < _gcal_meeting_cache["ttl"]:
+    cached_end = _gcal_meeting_cache.get("end_ts", 0.0) or 0.0
+    cache_age = now - _gcal_meeting_cache.get("fetched_at", 0.0)
+    # キャッシュ済みイベントが既に終了している場合は TTL 内でも再取得する
+    if cache_age < _gcal_meeting_cache["ttl"] and not (cached_end and now >= cached_end):
         return _gcal_meeting_cache["title"]
 
     try:
@@ -1863,16 +1971,38 @@ async def _fetch_current_gcal_meeting() -> str:
                 params={
                     "timeMin": t_min, "timeMax": t_max,
                     "singleEvents": "true", "orderBy": "startTime",
-                    "maxResults": 3, "fields": "items(summary,start,end,description)",
+                    "maxResults": 5, "fields": "items(id,summary,start,end,description)",
                 },
             )
             items = resp.json().get("items", [])
             title = ""
-            if items:
-                # 最初のイベントのタイトルを使う
-                title = items[0].get("summary", "")
-                logger.info(f"[co_view/gcal] current meeting: '{title}'")
+            start_ts = 0.0
+            end_ts = 0.0
+            event_id = ""
+            # 現在時刻に重なっているイベントを優先（なければ直近の未来イベント）
+            chosen = None
+            for it in items:
+                s = _parse_gcal_dt((it.get("start") or {}).get("dateTime") or (it.get("start") or {}).get("date"))
+                e = _parse_gcal_dt((it.get("end") or {}).get("dateTime") or (it.get("end") or {}).get("date"))
+                if s and e and s <= now < e:
+                    chosen = (it, s, e)
+                    break
+            if chosen is None:
+                for it in items:
+                    s = _parse_gcal_dt((it.get("start") or {}).get("dateTime") or (it.get("start") or {}).get("date"))
+                    e = _parse_gcal_dt((it.get("end") or {}).get("dateTime") or (it.get("end") or {}).get("date"))
+                    if s and e and s > now:
+                        chosen = (it, s, e)
+                        break
+            if chosen:
+                it, start_ts, end_ts = chosen
+                title = it.get("summary", "") or ""
+                event_id = it.get("id", "") or ""
+                logger.info(f"[co_view/gcal] current meeting: '{title}' window={start_ts:.0f}..{end_ts:.0f}")
             _gcal_meeting_cache["title"] = title
+            _gcal_meeting_cache["start_ts"] = start_ts
+            _gcal_meeting_cache["end_ts"] = end_ts
+            _gcal_meeting_cache["event_id"] = event_id
             _gcal_meeting_cache["fetched_at"] = now
             return title
     except Exception as e:
@@ -1881,9 +2011,40 @@ async def _fetch_current_gcal_meeting() -> str:
         return ""
 
 
-def _meeting_digest_signature(title: str, topic: str, transcript: str) -> str:
+def _current_digest_window() -> dict:
+    """現在の議事録ウィンドウを返す。
+    - カレンダーに進行中の予定があればその時間枠（key=cal:<event_id>:<start>, title, end_ts）
+    - なければ JST 1時間バケット（key=hour:<iso>, title="", end_ts=次の正時）
+    """
+    now = time.time()
+    title = _gcal_meeting_cache.get("title", "") or ""
+    start_ts = _gcal_meeting_cache.get("start_ts", 0.0) or 0.0
+    end_ts = _gcal_meeting_cache.get("end_ts", 0.0) or 0.0
+    event_id = _gcal_meeting_cache.get("event_id", "") or ""
+    if title and start_ts and end_ts and start_ts <= now < end_ts:
+        return {
+            "key": f"cal:{event_id or title}:{int(start_ts)}",
+            "title": title,
+            "end_ts": end_ts,
+            "is_cal": True,
+        }
+    import datetime as _dt
+    jst = _dt.timezone(_dt.timedelta(hours=9))
+    now_dt = _dt.datetime.fromtimestamp(now, jst)
+    hour_start = now_dt.replace(minute=0, second=0, microsecond=0)
+    hour_end = hour_start + _dt.timedelta(hours=1)
+    return {
+        "key": f"hour:{hour_start.isoformat()}",
+        "title": "",
+        "end_ts": hour_end.timestamp(),
+        "is_cal": False,
+    }
+
+
+def _meeting_digest_signature(window_key: str, transcript: str) -> str:
     payload = {
-        # Signatureは transcript 基準にして、会議タイトルの後追い補完で別バッチ扱いにならないようにする。
+        # Signatureは window_key + transcript。同一transcriptでもウィンドウが切り替われば別バッチ扱い。
+        "window": window_key,
         "transcript": re.sub(r"\s+", " ", transcript.strip())[:1200],
     }
     raw = json.dumps(payload, ensure_ascii=False, sort_keys=True)
@@ -1897,16 +2058,27 @@ def _start_or_update_meeting_digest_batch() -> str | None:
         return None
 
     now = time.time()
-    meeting_title = _gcal_meeting_cache.get("title", "") or ""
+    window = _current_digest_window()
+    meeting_title = window["title"]
     topic = _media_ctx.inferred_topic or meeting_title or "会議"
     current_len = len(_media_ctx.media_buffer)
     batch_exists = bool(_media_ctx.meeting_digest_pending_signature)
     buffer_reset = batch_exists and current_len < _media_ctx.meeting_digest_pending_buffer_len
+    # 直前にウィンドウフラッシュした場合、anchor 以降のスニペットだけを今ウィンドウに含める
+    anchor = _media_ctx.meeting_digest_anchor_buffer_len
     if not batch_exists or buffer_reset:
-        transcript = _media_ctx.get_buffer_text(last_n=20)
+        if anchor and current_len >= anchor:
+            items = _media_ctx.media_buffer[anchor:]
+            transcript = "\n".join(e["text"] for e in items if str(e.get("text", "")).strip())
+            # 旧ウィンドウ送信後、新ウィンドウのスニペットがまだ無いケース → バッチを開始しない
+            if not transcript.strip():
+                return None
+        else:
+            transcript = _media_ctx.get_buffer_text(last_n=20)
         _media_ctx.meeting_digest_pending_transcript = transcript
         _media_ctx.meeting_digest_pending_started_at = now
         _media_ctx.meeting_digest_pending_buffer_len = current_len
+        _media_ctx.meeting_digest_anchor_buffer_len = 0
     else:
         new_items = _media_ctx.media_buffer[_media_ctx.meeting_digest_pending_buffer_len:]
         if new_items:
@@ -1924,7 +2096,9 @@ def _start_or_update_meeting_digest_batch() -> str | None:
     _media_ctx.meeting_digest_pending_title = meeting_title
     _media_ctx.meeting_digest_pending_topic = topic
     _media_ctx.meeting_digest_pending_keywords = list(_media_ctx.keywords or [])
-    signature = _meeting_digest_signature(meeting_title, topic, _media_ctx.meeting_digest_pending_transcript)
+    _media_ctx.meeting_digest_pending_window_key = window["key"]
+    _media_ctx.meeting_digest_pending_window_end_ts = window["end_ts"]
+    signature = _meeting_digest_signature(window["key"], _media_ctx.meeting_digest_pending_transcript)
     _media_ctx.meeting_digest_pending_signature = signature
     _media_ctx.meeting_digest_pending_at = now
     if not _media_ctx.meeting_digest_pending_started_at:
@@ -1933,6 +2107,8 @@ def _start_or_update_meeting_digest_batch() -> str | None:
 
 
 def _clear_meeting_digest_batch() -> None:
+    # anchor は次バッチが「ウィンドウ境界以降」のみ取り込むために保持する
+    _media_ctx.meeting_digest_anchor_buffer_len = _media_ctx.meeting_digest_pending_buffer_len
     _media_ctx.meeting_digest_pending_signature = ""
     _media_ctx.meeting_digest_pending_title = ""
     _media_ctx.meeting_digest_pending_topic = ""
@@ -1941,6 +2117,8 @@ def _clear_meeting_digest_batch() -> None:
     _media_ctx.meeting_digest_pending_at = 0.0
     _media_ctx.meeting_digest_pending_started_at = 0.0
     _media_ctx.meeting_digest_pending_buffer_len = 0
+    _media_ctx.meeting_digest_pending_window_key = ""
+    _media_ctx.meeting_digest_pending_window_end_ts = 0.0
 
 
 def _cancel_meeting_digest_idle_task() -> None:
@@ -1966,11 +2144,21 @@ def _schedule_meeting_digest_batch_task() -> None:
     if _meeting_digest_batch_task and not _meeting_digest_batch_task.done():
         return
 
-    async def _worker(expected_signature: str) -> None:
+    expected_window_key = _media_ctx.meeting_digest_pending_window_key
+    window_end_ts = _media_ctx.meeting_digest_pending_window_end_ts
+    # 安全網: end_ts 未設定や過去の場合は最大 BATCH_SEC、最小 30 秒で発火
+    sleep_sec = max(30.0, min(float(MEETING_SUMMARY_BATCH_SEC), window_end_ts - time.time())) if window_end_ts else float(MEETING_SUMMARY_BATCH_SEC)
+
+    async def _worker(expected_signature: str, expected_key: str) -> None:
         try:
-            await asyncio.sleep(MEETING_SUMMARY_BATCH_SEC)
-            if _media_ctx.meeting_digest_pending_signature != expected_signature:
+            await asyncio.sleep(sleep_sec)
+            # 同じウィンドウが続いている場合のみ発火（ウィンドウ遷移時は別経路でフラッシュ済み）
+            if _media_ctx.meeting_digest_pending_window_key != expected_key:
                 return
+            if _media_ctx.meeting_digest_pending_signature != expected_signature:
+                # signature が更新されていてもウィンドウが同じなら発火する
+                if _media_ctx.last_meeting_digest_signature == _media_ctx.meeting_digest_pending_signature:
+                    return
             if _media_ctx.last_meeting_digest_signature == expected_signature:
                 return
             await _maybe_send_meeting_digest(force=True)
@@ -1979,7 +2167,7 @@ def _schedule_meeting_digest_batch_task() -> None:
         except Exception as e:
             logger.warning(f"[meeting_digest] batch worker failed: {e}")
 
-    _meeting_digest_batch_task = asyncio.create_task(_worker(signature))
+    _meeting_digest_batch_task = asyncio.create_task(_worker(signature, expected_window_key))
 
 
 def _schedule_meeting_digest_idle_task() -> None:
@@ -2008,6 +2196,34 @@ def _schedule_meeting_digest_idle_task() -> None:
             logger.warning(f"[meeting_digest] idle worker failed: {e}")
 
     _meeting_digest_idle_task = asyncio.create_task(_worker(signature))
+
+
+async def _maybe_flush_on_window_transition() -> None:
+    """ウィンドウキーが変化していて保留中のバッチがあれば旧ウィンドウの digest を即時フラッシュ。
+    呼び出し前に gcal キャッシュを最新化しておくこと（_fetch_current_gcal_meeting 後を想定）。
+    """
+    if not _media_ctx.meeting_digest_pending_signature:
+        return
+    pending_key = _media_ctx.meeting_digest_pending_window_key
+    if not pending_key:
+        return
+    current = _current_digest_window()
+    if current["key"] == pending_key:
+        return
+    transcript_len = len(_media_ctx.meeting_digest_pending_transcript.strip())
+    logger.info(
+        f"[meeting_digest] window transition old={pending_key} new={current['key']} "
+        f"transcript_len={transcript_len}"
+    )
+    if transcript_len < 10:
+        # 内容が薄い旧ウィンドウは送信せず破棄して新ウィンドウへ
+        _clear_meeting_digest_batch()
+        _cancel_meeting_digest_batch_task()
+        _cancel_meeting_digest_idle_task()
+        return
+    await _maybe_send_meeting_digest(force=True, skip_update=True)
+    _cancel_meeting_digest_batch_task()
+    _cancel_meeting_digest_idle_task()
 
 
 def _build_meeting_digest_messages(
@@ -2337,12 +2553,17 @@ def _with_user_mention(text: str) -> str:
     return f"{prefix} {text}".strip()
 
 
-async def _maybe_send_meeting_digest(*, force: bool = False) -> None:
+async def _maybe_send_meeting_digest(*, force: bool = False, skip_update: bool = False) -> None:
     if not _ambient_listener:
         return
-    signature = _start_or_update_meeting_digest_batch()
-    if not signature and force and _media_ctx.meeting_digest_pending_signature:
+    if skip_update:
+        # ウィンドウ遷移フラッシュ時は現在の pending 状態をそのまま送る（新ウィンドウのバッチ更新で
+        # 旧ウィンドウのタイトル/transcript を上書きしない）
         signature = _media_ctx.meeting_digest_pending_signature
+    else:
+        signature = _start_or_update_meeting_digest_batch()
+        if not signature and force and _media_ctx.meeting_digest_pending_signature:
+            signature = _media_ctx.meeting_digest_pending_signature
     if not signature:
         return
 
@@ -2843,6 +3064,8 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
         if _media_ctx.inferred_type == "meeting":
             gcal_title = await _fetch_current_gcal_meeting()
             if _media_ctx.confidence >= 0.6:
+                # カレンダー予定の終了 / 1時間バケット境界で旧ウィンドウを先に flush
+                await _maybe_flush_on_window_transition()
                 _schedule_meeting_digest_batch_task()
                 _schedule_meeting_digest_idle_task()
             enriched = ""
@@ -4285,6 +4508,12 @@ async def get_context_summary():
     return {"ok": True, "summary": _context_summary_to_dict()}
 
 
+@app.get("/api/chunk-transcripts")
+async def get_chunk_transcripts():
+    """chunk_buffer (RAM) の現在のスナップショット。直近 30 分の large-v3 chunk text。"""
+    return {"ok": True, "chunks": await _chunk_buffer.snapshot(), "file": str(CHUNK_TRANSCRIPTS_FILE)}
+
+
 @app.post("/api/context-summary/feedback")
 async def post_context_summary_feedback(body: dict | None = None):
     """Yes/No フィードバックを夜間学習用に記録。
@@ -5309,20 +5538,20 @@ async def _process_always_on(ws: WebSocket, audio_data: bytes, *, speech_ts: int
 
         # Filter out very short audio fragments
         audio_duration = len(audio_data) / 32000  # rough estimate: 16kHz * 16bit = 32000 bytes/s
-        if audio_duration < 0.5:
+        if audio_duration < 0.3:
             logger.info(f"[always_on] BLOCKED short: {audio_duration:.1f}s ({len(audio_data)}bytes)")
             return
-
-        if _whisper_busy:
-            logger.info(f"[always_on] BLOCKED whisper_busy: {audio_duration:.1f}s")
-            return
-
-        # Phase 2: feed verified-speech audio into the 30 min ring for large-v3 chunk transcription
-        asyncio.create_task(_feed_audio_buffer(audio_data))
 
         keyboard_like, keyboard_reason = _looks_like_keyboard_pulse(audio_data)
         if keyboard_like:
             logger.info(f"[always_on] BLOCKED keyboard_pulse: {keyboard_reason}")
+            return
+
+        # Phase 2 audio_buffer feed は raw_audio_chunk 経路に移行済み（連続録音）。
+        # always-on (VAD 経由) からの feed は冗長なので削除。
+
+        if _whisper_busy:
+            logger.info(f"[always_on] BLOCKED whisper_busy: {audio_duration:.1f}s")
             return
 
         _whisper_busy = True
@@ -6233,6 +6462,17 @@ async def websocket_endpoint(ws: WebSocket):
                     result = _speaker_id.add_enrollment_sample(audio_msg["bytes"])
                     await ws.send_json({"type": "enroll_status", **result})
                     continue
+                elif data.get("type") == "raw_audio_chunk":
+                    # Phase 2: 連続録音チャンク（VAD 通さない、large-v3 chunk transcribe 用）
+                    chunk_ts = data.get("ts")  # epoch ms (optional)
+                    audio_msg = await ws.receive()
+                    if "bytes" not in audio_msg:
+                        continue
+                    audio_data = audio_msg["bytes"]
+                    stream_mode = data.get("stream_mode", "unknown")
+                    logger.info(f"[raw_audio_chunk] received {len(audio_data)} bytes (stream={stream_mode})")
+                    asyncio.create_task(_feed_audio_buffer(audio_data))
+                    continue
                 elif data.get("type") == "always_on_audio":
                     # Always-On mode: VAD-filtered audio from Electron
                     speech_ts = data.get("speech_ts")  # epoch ms from client
@@ -6501,7 +6741,7 @@ async def on_startup():
     _chunk_transcribe_task = asyncio.create_task(_chunk_transcribe_loop())
     logger.info(
         f"[startup] Chunk transcribe loop started "
-        f"(audio_retention={CHUNK_AUDIO_RETENTION}s, interval={CHUNK_TRANSCRIBE_INTERVAL}s, model=large-v3)"
+        f"(audio_retention={CHUNK_AUDIO_RETENTION}s, interval={CHUNK_TRANSCRIBE_INTERVAL}s, model=large-v3-turbo)"
     )
 
 

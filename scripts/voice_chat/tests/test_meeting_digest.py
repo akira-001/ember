@@ -181,6 +181,108 @@ async def test_maybe_send_meeting_digest_posts_to_slack_once():
 
 
 @pytest.mark.asyncio
+async def test_current_digest_window_uses_calendar_when_event_active():
+    import app
+
+    now = 1_700_000_000.0
+    app._gcal_meeting_cache["title"] = "週次定例"
+    app._gcal_meeting_cache["start_ts"] = now - 600
+    app._gcal_meeting_cache["end_ts"] = now + 600
+    app._gcal_meeting_cache["event_id"] = "evt-abc"
+    app._gcal_meeting_cache["fetched_at"] = now
+
+    with mock.patch("app.time.time", return_value=now):
+        win = app._current_digest_window()
+
+    assert win["is_cal"] is True
+    assert win["title"] == "週次定例"
+    assert win["end_ts"] == now + 600
+    assert win["key"].startswith("cal:evt-abc:")
+
+    # キャッシュをクリーンアップ
+    app._gcal_meeting_cache["title"] = ""
+    app._gcal_meeting_cache["start_ts"] = 0.0
+    app._gcal_meeting_cache["end_ts"] = 0.0
+    app._gcal_meeting_cache["event_id"] = ""
+    app._gcal_meeting_cache["fetched_at"] = 0.0
+
+
+@pytest.mark.asyncio
+async def test_current_digest_window_falls_back_to_hourly_bucket():
+    import app
+
+    app._gcal_meeting_cache["title"] = ""
+    app._gcal_meeting_cache["start_ts"] = 0.0
+    app._gcal_meeting_cache["end_ts"] = 0.0
+    app._gcal_meeting_cache["event_id"] = ""
+
+    win = app._current_digest_window()
+
+    assert win["is_cal"] is False
+    assert win["title"] == ""
+    assert win["key"].startswith("hour:")
+    # end_ts は次の正時（JST）。差分は最大3600秒以内であることを確認
+    import time as _t
+    assert 0 < win["end_ts"] - _t.time() <= 3600
+
+
+@pytest.mark.asyncio
+async def test_window_transition_flushes_old_window_then_starts_new():
+    import app
+
+    app._media_ctx.add_snippet("進捗を確認します")
+    app._media_ctx.add_snippet("A案で進めることで合意しました")
+    app._media_ctx.add_snippet("資料は今日中に更新します")
+    app._media_ctx.add_snippet("夕方にお客さんへ確認します")
+
+    # カレンダー予定のウィンドウで最初のバッチを作る
+    import time as _t
+    now = _t.time()
+    app._gcal_meeting_cache["title"] = "週次定例"
+    app._gcal_meeting_cache["start_ts"] = now - 600
+    app._gcal_meeting_cache["end_ts"] = now + 600
+    app._gcal_meeting_cache["event_id"] = "evt-1"
+    app._gcal_meeting_cache["fetched_at"] = now
+
+    sig1 = app._start_or_update_meeting_digest_batch()
+    assert sig1
+    old_key = app._media_ctx.meeting_digest_pending_window_key
+    assert old_key.startswith("cal:evt-1:")
+    assert app._media_ctx.meeting_digest_pending_title == "週次定例"
+
+    # カレンダー予定が終了 → ウィンドウ遷移
+    app._gcal_meeting_cache["title"] = ""
+    app._gcal_meeting_cache["start_ts"] = 0.0
+    app._gcal_meeting_cache["end_ts"] = 0.0
+    app._gcal_meeting_cache["event_id"] = ""
+
+    with mock.patch("app._resolve_meeting_summary_bot_id", return_value="mei"), \
+         mock.patch("app._generate_meeting_digest", return_value="*会議メモ*\n- 旧ウィンドウ"), \
+         mock.patch("app.slack_post_channel_message", return_value="111.222") as slack_post:
+        await app._maybe_flush_on_window_transition()
+
+    # 旧ウィンドウは送信され、バッチはクリアされている
+    assert slack_post.call_count == 1
+    assert app._media_ctx.meeting_digest_pending_signature == ""
+    assert app._media_ctx.meeting_digest_pending_window_key == ""
+    # anchor が立つ → 新ウィンドウは新スニペット以降のみ取り込む
+    assert app._media_ctx.meeting_digest_anchor_buffer_len == 4
+
+    # 新スニペット無しでバッチ作成しても None（空ウィンドウ）
+    assert app._start_or_update_meeting_digest_batch() is None
+
+    # 新ウィンドウ用のスニペットが入ると新バッチが立つ
+    app._media_ctx.add_snippet("次の議題に移ります")
+    sig2 = app._start_or_update_meeting_digest_batch()
+    assert sig2
+    assert sig2 != sig1
+    assert app._media_ctx.meeting_digest_pending_window_key.startswith("hour:")
+    assert app._media_ctx.meeting_digest_pending_title == ""
+    assert "次の議題に移ります" in app._media_ctx.meeting_digest_pending_transcript
+    assert "進捗を確認します" not in app._media_ctx.meeting_digest_pending_transcript
+
+
+@pytest.mark.asyncio
 async def test_maybe_send_meeting_digest_force_posts_after_meeting_end():
     import app
 
