@@ -33,11 +33,13 @@
 - [ ] **Step 1: 両リポの作業状態確認**
 
 ```bash
-cd /Users/akira/workspace/open-claude && git status --short
-cd /Users/akira/workspace/claude-code-slack-bot && git status --short
+/usr/bin/git -C /Users/akira/workspace/open-claude status --porcelain
+/usr/bin/git -C /Users/akira/workspace/claude-code-slack-bot status --porcelain
 ```
 
-期待: 両方ほぼ空出力。ただし `open-claude` 側で `?? docs/superpowers/plans/2026-05-01-monorepo-skeleton.md` の untracked 行は OK（Task 11 でコミット予定）。それ以外の dirty 状態（modified / staged）があれば本タスク中断、`git stash` または個別コミットで処理してから再開。
+期待: 両方空出力（clean）。`/usr/bin/git` を直接使うのは rtk proxy のラップを回避するため（`git status` だとラップされる環境）。dirty なら本タスク中断、`git stash` または個別コミットで処理してから再開。
+
+注: P0 プラン文書は既に auto-commit hook により main にコミット済み（commit `4bab5a16` 等）。Task 11 では新規 add は不要、現状の HEAD に既に含まれている。
 
 - [ ] **Step 2: リモート push 状況確認**
 
@@ -586,25 +588,20 @@ git commit -m "docs: add monorepo README"
 
 ---
 
-## Task 11: P0 プランドキュメントをコミット
+## Task 11: P0 プランドキュメントの確認（コミットは既に完了）
 
-このプラン文書 (`docs/superpowers/plans/2026-05-01-monorepo-skeleton.md`) は既にローカル存在する。コミットするだけ。
+このプラン文書 (`docs/superpowers/plans/2026-05-01-monorepo-skeleton.md`) は session auto-commit hook により main にコミット済み（rename で ember 側にそのまま継承される）。新規 add は不要。
 
-- [ ] **Step 1: ファイル存在確認**
+- [ ] **Step 1: ファイル存在 & コミット済み確認**
 
 ```bash
 ls /Users/akira/workspace/ember/docs/superpowers/plans/2026-05-01-monorepo-skeleton.md
+/usr/bin/git -C /Users/akira/workspace/ember log --oneline --all -- docs/superpowers/plans/2026-05-01-monorepo-skeleton.md | head -5
 ```
 
-期待: ファイルが存在。
+期待: ファイルが存在し、log に commit が出る。
 
-- [ ] **Step 2: コミット**
-
-```bash
-cd /Users/akira/workspace/ember
-git add docs/superpowers/plans/2026-05-01-monorepo-skeleton.md
-git commit -m "docs(plan): add P0 monorepo skeleton plan"
-```
+- [ ] **Step 2: コミット不要（既存 commit を維持）**
 
 ---
 

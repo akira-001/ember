@@ -56,3 +56,14 @@ TVやスピーカーから流れる音声をマイクで遠距離録音した音
 PCM 入力の peak と rms の比（peak/rms）が **5〜10x** なら通常の連続発話、**>50x** なら短い大音量パルス（キーボード・マウス・机振動等の transient noise）が静かな背景に乗っている状態。後者を Whisper に渡すと訓練データに無い波形でハルシネーション（英単語混在、繰り返し etc）。
 **実例**: PC 向きを変えて「音量が上がった」つもりで peak 0.47 / rms 0.0069（比 68x）になり、whisper の出力が「ERERERERER... boatswast Cypésulteemn」のような完全 garbage に。peak だけ見ると音量改善だが rms が伴わないと SNR は悪化している。
 **応用**: STT 入力前に peak/rms 統計をログし、比 >30x なら **transient-dominant** とフラグ立てて transcribe を skip する or 警告する。ゲイン正規化は peak だけでなく peak/rms 比のチェックとセットで行う。
+
+## INS-011: 共有ブラウザはスクラッチ不要、Browserbase + Playwright で実現できる
+**発生**: 2026-05-01 | **Arousal**: 0.5 | **ドメイン**: browser-automation, ai-agent-architecture
+GitHub openagents-org/openagents の共有ブラウザ機能（複数エージェント + 人間が同じ画面を観察しながら操作する）はゼロから書かれていない。**Browserbase（クラウド SaaS、$0.10/min 程度）** で起動した Chromium インスタンスの `liveUrl` を iframe 表示し、Playwright が CDP 経由で操作、persistent context で認証永続化する。ローカル fallback は Playwright Chromium headless + スクショ画像で代替（ライブ感は弱い）。
+**応用**: Slack で同等機能を作る場合「Browserbase iframe を Canvas/メッセージに貼る」or「ローカル Playwright + スクショ投稿」の 2 択。ライブ性が必要なら課金、なくて良いなら無料で構築可能。Akiraさんの Mei + Eve + cogmem は意味記憶で OpenAgents を上回るが、ライブ操作機能は Browserbase 相当が必要。
+
+## INS-012: 認証必須 Web 調査は「人間ログイン → AI 抽出復帰」往復モデルが効く
+**発生**: 2026-05-01 | **Arousal**: 0.7 | **ドメイン**: human-ai-collaboration, browser-automation
+認証必須サイト（YouTube 履歴、Google Calendar、SaaS 管理画面、銀行サイト）への AI アクセスは、**human-only 領域（パスワード/2FA）と AI-only 領域（DOM 抽出）を明確に分離する**設計が成立する。具体: headed Chromium を CDP モードで起動 → AI が遷移しログアウト検知 → 人間に「ログインして」と依頼（パスワード手動入力、AI は介入しない）→ 完了通知を受けて AI が抽出再開。プロファイル `--user-data-dir=~/.cache/livebrowse-profiles/<name>` で認証情報は永続化、初回だけログインすれば次回以降は自動。
+**実例**: YouTube 視聴履歴 34 件 / Google Calendar 今日の予定 5 件を、Akiraさんが 1 回ログインしただけで以降ログイン不要で抽出。閉じる時の graceful shutdown を守れば Cookie は永続化される。
+**応用**: 機密性の高いデータ（クライアント企業の管理画面など）でも、Akiraさんが認証だけ手動で済ませれば AI が後続の収集・分析を担える分業が可能。`livebrowse` スキル（`~/.claude/skills/livebrowse/`）として運用化済。Slack ではこの往復が難しいので、ローカル CLI / 同じマシン上での運用に向く。
