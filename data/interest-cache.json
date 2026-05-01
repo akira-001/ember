@@ -1,12 +1,12 @@
 {
-  "lastUpdated": "2026-05-01T08:51:45.203868+00:00",
+  "lastUpdated": "2026-05-01T09:50:01.097125+00:00",
   "priorities": {
     "ai_agent": 0.7,
     "llm_local": 0.364,
     "dev_tools": 0.426,
     "business_strategy": 0.658,
     "ma_startup": 0.28,
-    "dodgers": 0.908,
+    "dodgers": 1.0,
     "golf": 0.607,
     "campingcar": 0.515,
     "onsen": 0.357,
@@ -844,7 +844,7 @@
       "priority": 0.5,
       "tier": "B",
       "emotion_type": "light",
-      "lastChecked": "2026-05-01T08:51:45.203706+00:00"
+      "lastChecked": "2026-05-01T09:50:01.097019+00:00"
     },
     "movie_theater": {
       "label": "映画・上映中",
