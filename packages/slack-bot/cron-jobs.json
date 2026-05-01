@@ -133,7 +133,12 @@
       "timeoutSeconds": 600,
       "enabled": true,
       "botId": "mei",
-      "disabledIfFileExists": "/tmp/co_view_loop_disabled"
+      "disabledIfApiSays": {
+        "url": "http://localhost:8767/api/improve_loop/state",
+        "expectedKey": "enabled",
+        "expectedValue": false,
+        "timeoutMs": 3000
+      }
     },
     {
       "name": "scheduler-watchdog",
