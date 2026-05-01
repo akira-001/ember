@@ -86,8 +86,32 @@ function createWindow() {
       contextIsolation: true,
       nodeIntegration: false,
       backgroundThrottling: false,
+      webSecurity: false,
     },
   });
+
+  // Auto-grant microphone permission requests so getUserMedia returns a
+  // real (non-silent) MediaStream from cold start, mirroring the legacy
+  // file:// renderer behavior.
+  mainWindow.webContents.session.setPermissionRequestHandler(
+    (_webContents, permission, callback) => {
+      if (
+        permission === 'media' ||
+        permission === 'microphone' ||
+        permission === 'audioCapture'
+      ) {
+        callback(true);
+        return;
+      }
+      callback(false);
+    },
+  );
+  mainWindow.webContents.session.setPermissionCheckHandler(
+    (_webContents, permission) =>
+      permission === 'media' ||
+      permission === 'microphone' ||
+      permission === 'audioCapture',
+  );
 
   if (saved?.isMaximized) mainWindow.maximize();
   if (saved?.isFullScreen) mainWindow.setFullScreen(true);
