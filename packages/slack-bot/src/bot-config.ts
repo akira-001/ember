@@ -148,6 +148,34 @@ function loadSharedCapabilities(): string {
 }
 
 // ---------------------------------------------------------------------------
+// Env var expansion (same pattern as mcp-manager.ts)
+// ---------------------------------------------------------------------------
+
+function expandEnvVars(value: unknown): unknown {
+  if (typeof value === 'string') {
+    return value.replace(/\$\{([A-Z_][A-Z0-9_]*)\}/g, (_match, name: string) => {
+      const v = process.env[name];
+      if (v === undefined) {
+        console.warn(`[bot-config] env var \${${name}} not set, leaving placeholder`);
+        return _match;
+      }
+      return v;
+    });
+  }
+  if (Array.isArray(value)) {
+    return value.map((v) => expandEnvVars(v));
+  }
+  if (value && typeof value === 'object') {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
+      out[k] = expandEnvVars(v);
+    }
+    return out;
+  }
+  return value;
+}
+
+// ---------------------------------------------------------------------------
 // JSON file operations
 // ---------------------------------------------------------------------------
 
@@ -155,7 +183,7 @@ export function loadBotConfigsJson(): BotConfigsFile {
   if (!existsSync(CONFIG_PATH)) {
     throw new Error(`Bot config file not found: ${CONFIG_PATH}`);
   }
-  return JSON.parse(readFileSync(CONFIG_PATH, 'utf-8'));
+  return expandEnvVars(JSON.parse(readFileSync(CONFIG_PATH, 'utf-8'))) as BotConfigsFile;
 }
 
 export function saveBotConfigsJson(configs: BotConfigsFile): void {

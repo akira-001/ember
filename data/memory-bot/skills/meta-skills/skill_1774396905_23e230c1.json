@@ -1,0 +1,48 @@
+{
+  "id": "skill_1774396905_23e230c1",
+  "name": "\u30e6\u30fc\u30b6\u30fc\u30a4\u30f3\u30b5\u30a4\u30c8 Skill",
+  "category": "meta-skills",
+  "description": "\u30e6\u30fc\u30b6\u30fc\u30a4\u30f3\u30b5\u30a4\u30c8: ",
+  "execution_pattern": "# Auto-generated execution pattern\n## Context: \u30e6\u30fc\u30b6\u30fc\u30a4\u30f3\u30b5\u30a4\u30c8: \n\n## Learned Parameters:\n- Base effectiveness: 0.50\n- User satisfaction: 0.50\n- Execution time: 1000ms\n- Error rate: 0.00\n\n## User Feedback Integration:\n\n\n## Execution Steps:\n\n1. **Context Analysis**\n   - Analyze current situation and requirements\n   - Identify key parameters and constraints\n   - Consider user preferences and feedback\n\n2. **Pattern Application**\n   - Apply learned strategies from similar contexts\n   - Adapt approach based on specific requirements\n   - Optimize for effectiveness and user satisfaction\n\n3. **Execution & Monitoring**\n   - Execute optimized approach\n   - Monitor intermediate results\n   - Adjust strategy if needed\n\n4. **Result Evaluation**\n   - Measure effectiveness against success metrics\n   - Collect user feedback\n   - Record lessons learned for future improvement\n\n## Success Indicators:\n- Task completion within expected time\n- User satisfaction score > 0.7\n- Error rate < 0.2\n- Positive user feedback\n",
+  "success_metrics": [
+    {
+      "name": "Effectiveness",
+      "description": "Overall success rate of skill execution",
+      "measurement_method": "User feedback and performance metrics",
+      "target_value": 0.8,
+      "current_value": 0.5
+    },
+    {
+      "name": "User Satisfaction",
+      "description": "User satisfaction score based on reactions and feedback",
+      "measurement_method": "User reactions, feedback, and ratings",
+      "target_value": 0.8,
+      "current_value": 0.5
+    },
+    {
+      "name": "Execution Speed",
+      "description": "Time to complete the task successfully",
+      "measurement_method": "Automated timing and performance monitoring",
+      "target_value": 800.0,
+      "current_value": 1000.0
+    },
+    {
+      "name": "Error Rate",
+      "description": "Frequency of errors during skill execution",
+      "measurement_method": "Error detection and logging",
+      "target_value": 0.1,
+      "current_value": 0.0
+    }
+  ],
+  "improvement_history": [],
+  "usage_stats": {
+    "total_executions": 0,
+    "successful_executions": 0,
+    "average_effectiveness": 0.5,
+    "last_used_at": null,
+    "frequency": 0.0
+  },
+  "created_at": "2026-03-25T09:01:45.138117",
+  "updated_at": "2026-03-25T09:01:45.138118",
+  "version": 1
+}
