@@ -11,6 +11,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { AlwaysOnState } from './ServerStatusBar';
 
 const CONSENT_KEY = 'ember.alwaysOn.consented';
+const ENABLED_KEY = 'ember.alwaysOn.enabled';
 
 const RMS_THRESHOLD = 0.05;
 const MIN_SPEECH_MS = 500;
@@ -43,10 +44,20 @@ interface InternalRefs {
 }
 
 export function useAlwaysOn({ wsRef }: UseAlwaysOnOptions): UseAlwaysOnReturn {
-  const [enabled, setEnabled] = useState(false);
+  const [enabled, setEnabled] = useState<boolean>(() => {
+    if (typeof localStorage === 'undefined') return false;
+    return localStorage.getItem(ENABLED_KEY) === 'true';
+  });
   const [consentRequired, setConsentRequired] = useState(false);
   const [stale, setStale] = useState(false);
   const [processing, setProcessing] = useState(false);
+
+  // Persist enabled state across launches
+  useEffect(() => {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(ENABLED_KEY, enabled ? 'true' : 'false');
+    }
+  }, [enabled]);
 
   const refs = useRef<InternalRefs>({
     micStream: null,

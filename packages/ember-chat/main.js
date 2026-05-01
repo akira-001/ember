@@ -85,8 +85,8 @@ function createWindow() {
   if (saved?.isMaximized) mainWindow.maximize();
   if (saved?.isFullScreen) mainWindow.setFullScreen(true);
 
-  // Open DevTools for diagnosis (set EMBER_NO_DEVTOOLS=1 to disable)
-  if (!process.env.EMBER_NO_DEVTOOLS) {
+  // Open DevTools on demand: set EMBER_DEVTOOLS=1 to enable.
+  if (process.env.EMBER_DEVTOOLS) {
     mainWindow.webContents.openDevTools({ mode: 'detach' });
   }
 
