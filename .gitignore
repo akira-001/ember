@@ -52,5 +52,4 @@ packages/voice-chat/chunk_transcripts.jsonl
 packages/voice-chat/context_summary_feedback.jsonl
 **/.pytest_cache/
 
-# Bot secrets — tokens stored in file, never commit
-data/bot-configs.json
+# bot-configs.json: secrets replaced with ${VAR} refs, now safe to track

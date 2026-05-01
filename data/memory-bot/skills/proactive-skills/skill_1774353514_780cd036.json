@@ -1,0 +1,56 @@
+{
+  "id": "skill_1774353514_780cd036",
+  "name": "Proactive Suggest Recommend Morning Skill",
+  "category": "proactive-skills",
+  "description": "proactive suggest recommend morning briefing schedule weather news alert",
+  "execution_pattern": "# Auto-generated execution pattern\n## Context: proactive suggest recommend morning briefing schedule weather news alert\n\n## Learned Parameters:\n- Base effectiveness: 0.40\n- User satisfaction: 0.50\n- Execution time: 10000ms\n- Error rate: 0.10\n\n## User Feedback Integration:\nThis would be amazing and great and excellent and very helpful and useful\n\n## Execution Steps:\n\n1. **Context Analysis**\n   - Analyze current situation and requirements\n   - Identify key parameters and constraints\n   - Consider user preferences and feedback\n\n2. **Pattern Application**\n   - Apply learned strategies from similar contexts\n   - Adapt approach based on specific requirements\n   - Optimize for effectiveness and user satisfaction\n\n3. **Execution & Monitoring**\n   - Execute optimized approach\n   - Monitor intermediate results\n   - Adjust strategy if needed\n\n4. **Result Evaluation**\n   - Measure effectiveness against success metrics\n   - Collect user feedback\n   - Record lessons learned for future improvement\n\n## Success Indicators:\n- Task completion within expected time\n- User satisfaction score > 0.7\n- Error rate < 0.2\n- Positive user feedback\n",
+  "success_metrics": [
+    {
+      "name": "Effectiveness",
+      "description": "Overall success rate of skill execution",
+      "measurement_method": "User feedback and performance metrics",
+      "target_value": 0.8,
+      "current_value": 0.4
+    },
+    {
+      "name": "User Satisfaction",
+      "description": "User satisfaction score based on reactions and feedback",
+      "measurement_method": "User reactions, feedback, and ratings",
+      "target_value": 0.8,
+      "current_value": 0.5
+    },
+    {
+      "name": "Execution Speed",
+      "description": "Time to complete the task successfully",
+      "measurement_method": "Automated timing and performance monitoring",
+      "target_value": 8000.0,
+      "current_value": 10000
+    },
+    {
+      "name": "Error Rate",
+      "description": "Frequency of errors during skill execution",
+      "measurement_method": "Error detection and logging",
+      "target_value": 0.1,
+      "current_value": 0.1
+    }
+  ],
+  "improvement_history": [
+    {
+      "timestamp": "2026-03-24T21:08:17.715579",
+      "description": "Performance adjustment based on feedback: Greeting was appropriate but could be more informative with proactive schedule reminders",
+      "before_value": 0.44000000000000006,
+      "after_value": 0.6,
+      "effectiveness_gain": 0.15999999999999992
+    }
+  ],
+  "usage_stats": {
+    "total_executions": 1,
+    "successful_executions": 0,
+    "average_effectiveness": 0.44000000000000006,
+    "last_used_at": "2026-03-24T21:08:17.714655",
+    "frequency": 0.0
+  },
+  "created_at": "2026-03-24T20:58:34.191944",
+  "updated_at": "2026-03-24T21:08:17.715581",
+  "version": 2
+}
