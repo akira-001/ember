@@ -9,6 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "server": "tsx server/api.ts",
+    "start": "pnpm build && pnpm server",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
