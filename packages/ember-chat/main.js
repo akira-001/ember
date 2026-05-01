@@ -2,6 +2,13 @@ const { app, BrowserWindow, nativeImage, Tray, Menu, screen } = require('electro
 const path = require('path');
 const fs = require('fs');
 
+// Chromium autoplay policy: by default http:// origins return a silent
+// MediaStream from getUserMedia() called before any user gesture. The old
+// Ember Chat used file:// (loadFile) which bypasses this. The new dashboard
+// uses http://localhost:3456, so we relax the policy explicitly to restore
+// auto-Listen on launch.
+app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
+
 // Default loads the Ember Chat page only (embedded=true hides sidebar in dashboard Layout).
 // Override with EMBER_DASHBOARD_URL=http://localhost:3456/ to get the full dashboard.
 const DASHBOARD_URL = process.env.EMBER_DASHBOARD_URL || 'http://localhost:3456/ember-chat?embedded=true';

@@ -11,6 +11,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { AlwaysOnState } from './ServerStatusBar';
 
 const CONSENT_KEY = 'ember.alwaysOn.consented';
+const ENABLED_KEY = 'ember.alwaysOn.enabled';
 
 const RMS_THRESHOLD = 0.05;
 const MIN_SPEECH_MS = 500;
@@ -43,13 +44,21 @@ interface InternalRefs {
 }
 
 export function useAlwaysOn({ wsRef }: UseAlwaysOnOptions): UseAlwaysOnReturn {
-  // Always start Muted on cold launch — autoplay policy makes auto-Listen
-  // unreliable (mic returns a silent stream without a prior user gesture).
-  // User must click the indicator each session to begin Listening.
-  const [enabled, setEnabled] = useState<boolean>(false);
+  // Restore enabled state from previous launch. Combined with Electron's
+  // autoplay-policy relaxation in main.js, mic auto-acquisition works.
+  const [enabled, setEnabled] = useState<boolean>(() => {
+    if (typeof localStorage === 'undefined') return false;
+    return localStorage.getItem(ENABLED_KEY) === 'true';
+  });
   const [consentRequired, setConsentRequired] = useState(false);
   const [stale, setStale] = useState(false);
   const [processing, setProcessing] = useState(false);
+
+  useEffect(() => {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(ENABLED_KEY, enabled ? 'true' : 'false');
+    }
+  }, [enabled]);
 
   const refs = useRef<InternalRefs>({
     micStream: null,
