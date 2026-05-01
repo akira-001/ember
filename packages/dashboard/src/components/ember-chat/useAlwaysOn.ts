@@ -62,8 +62,12 @@ export function useAlwaysOn({ wsRef }: UseAlwaysOnOptions): UseAlwaysOnReturn {
 
   const sendAudio = useCallback(async (buf: ArrayBuffer, speechTs: number) => {
     const ws = wsRef.current;
-    if (!ws || ws.readyState !== WebSocket.OPEN) return;
+    if (!ws || ws.readyState !== WebSocket.OPEN) {
+      console.warn('[AlwaysOn] cannot send: ws state =', ws?.readyState);
+      return;
+    }
     try {
+      console.log(`[AlwaysOn] sending always_on_audio: ${buf.byteLength} bytes, speech_ts=${speechTs}`);
       ws.send(JSON.stringify({
         type: 'always_on_audio',
         format: 'wav',
@@ -98,88 +102,67 @@ export function useAlwaysOn({ wsRef }: UseAlwaysOnOptions): UseAlwaysOnReturn {
   }, []);
 
   const start = useCallback(async () => {
+    console.log('[AlwaysOn] start() — requesting mic');
     let micStream: MediaStream;
     try {
       micStream = await navigator.mediaDevices.getUserMedia({
-        audio: { echoCancellation: true, noiseSuppression: true },
+        audio: {
+          echoCancellation: false,
+          noiseSuppression: false,
+          autoGainControl: false,
+        },
       });
+      const tracks = micStream.getTracks();
+      console.log('[AlwaysOn] mic stream acquired, tracks=', tracks.length);
     } catch (err) {
       console.error('[AlwaysOn] Mic access denied:', err);
       setEnabled(false);
       return;
     }
     refs.current.micStream = micStream;
-
-    const audioCtx = new AudioContext();
-    refs.current.audioCtx = audioCtx;
-    const source = audioCtx.createMediaStreamSource(micStream);
-    const analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 2048;
-    source.connect(analyser);
-    const dataArray = new Float32Array(analyser.fftSize);
-
     refs.current.lastAudioSendTs = Date.now();
 
+    // Continuous chunked recording (5s rotate). Each session generates a
+    // standalone webm with EBML header so server-side ffmpeg/whisper can decode.
+    // Bypasses AudioContext/AnalyserNode entirely — those return all-zero
+    // buffers in some Electron 35 + macOS configurations.
+    const CHUNK_MS = 5000;
+    const startNewRecorderSession = () => {
+      const r = refs.current;
+      if (!r.micStream) return;
+      try {
+        const recorder = new MediaRecorder(r.micStream, { mimeType: 'audio/webm;codecs=opus' });
+        const chunks: Blob[] = [];
+        recorder.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
+        recorder.onstop = async () => {
+          if (chunks.length === 0) return;
+          const blob = new Blob(chunks, { type: 'audio/webm' });
+          const buf = await blob.arrayBuffer();
+          console.log(`[AlwaysOn] chunk recorded ${buf.byteLength}b`);
+          await sendAudio(buf, Date.now());
+        };
+        recorder.start();
+        r.recorder = recorder;
+      } catch (err) {
+        console.warn('[AlwaysOn] recorder start failed', err);
+      }
+    };
+
+    startNewRecorderSession();
     refs.current.checkInterval = setInterval(() => {
       const r = refs.current;
-      if (!r.audioCtx) return;
-      analyser.getFloatTimeDomainData(dataArray);
-      let sum = 0;
-      for (let i = 0; i < dataArray.length; i++) sum += dataArray[i] * dataArray[i];
-      const rms = Math.sqrt(sum / dataArray.length);
-
-      if (rms > RMS_THRESHOLD) {
-        if (!r.speechStart) {
-          r.speechStart = Date.now();
-          r.chunks = [];
-          try {
-            const recorder = new MediaRecorder(micStream, { mimeType: 'audio/webm;codecs=opus' });
-            recorder.ondataavailable = (e) => { if (e.data.size > 0) r.chunks.push(e.data); };
-            recorder.onstop = async () => {
-              if (r.chunks.length === 0) return;
-              const blob = new Blob(r.chunks, { type: 'audio/webm' });
-              const buf = await blob.arrayBuffer();
-              const speechTs = r.speechStart ?? Date.now();
-              r.speechStart = null;
-              r.chunks = [];
-              await sendAudio(buf, speechTs);
-            };
-            recorder.start();
-            r.recorder = recorder;
-          } catch (err) {
-            console.warn('[AlwaysOn] recorder start failed', err);
-            r.speechStart = null;
-          }
-        }
-        if (r.silenceTimer) { clearTimeout(r.silenceTimer); r.silenceTimer = null; }
-      } else if (r.speechStart) {
-        if (!r.silenceTimer) {
-          r.silenceTimer = setTimeout(() => {
-            const cur = refs.current;
-            const elapsed = cur.speechStart ? Date.now() - cur.speechStart : 0;
-            if (cur.recorder && cur.recorder.state === 'recording') {
-              if (elapsed >= MIN_SPEECH_MS) {
-                try { cur.recorder.stop(); } catch {}
-              } else {
-                try { cur.recorder.stop(); } catch {}
-                cur.chunks = [];
-                cur.speechStart = null;
-              }
-            }
-            cur.silenceTimer = null;
-          }, SILENCE_TIMEOUT_MS);
-        }
+      if (r.recorder && r.recorder.state === 'recording') {
+        try { r.recorder.stop(); } catch {}
       }
-    }, 50);
+      startNewRecorderSession();
+    }, CHUNK_MS);
 
     // Watchdog: detect silent failures
     refs.current.watchdog = setInterval(() => {
       const idle = Date.now() - refs.current.lastAudioSendTs;
       if (idle > RESTART_MS) {
         console.warn('[AlwaysOn] watchdog: no audio for too long, restarting');
-        // Restart by toggling
         stop();
-        // re-enable on next tick so useEffect picks it up
         setTimeout(() => { setEnabled(true); }, 300);
       } else if (idle > STALE_MS) {
         setStale(true);

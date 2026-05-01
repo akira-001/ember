@@ -85,6 +85,11 @@ function createWindow() {
   if (saved?.isMaximized) mainWindow.maximize();
   if (saved?.isFullScreen) mainWindow.setFullScreen(true);
 
+  // Open DevTools for diagnosis (set EMBER_NO_DEVTOOLS=1 to disable)
+  if (!process.env.EMBER_NO_DEVTOOLS) {
+    mainWindow.webContents.openDevTools({ mode: 'detach' });
+  }
+
   mainWindow.webContents.on('did-fail-load', (_event, errorCode, errorDescription) => {
     console.warn(`[ember] did-fail-load (${errorCode}): ${errorDescription}. Retrying in ${RETRY_INTERVAL_MS}ms...`);
     setTimeout(loadDashboardWithRetry, RETRY_INTERVAL_MS);
