@@ -1,0 +1,26 @@
+[cogmem]
+logs_dir = "data/memory/logs"
+contexts_dir = "data/memory/contexts"
+db_path = "data/memory/vectors.db"
+
+[cogmem.session]
+total_sessions = 26
+recent_logs = 3
+prefer_compact = true
+token_budget = 8000
+
+[cogmem.scoring]
+sim_weight = 0.7
+arousal_weight = 0.3
+base_half_life = 90.0
+decay_floor = 0.3
+
+[cogmem.crystallization]
+last_checkpoint = "2026-04-26"
+checkpoint_count = 5
+log_days_threshold = 21
+[cogmem.embedding]
+provider = "ollama"
+model = "zylonai/multilingual-e5-large"
+url = "http://localhost:11434/api/embed"
+timeout = 10

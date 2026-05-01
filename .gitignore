@@ -37,3 +37,8 @@ scripts/ember-chat/recordings/
 
 # OS
 Thumbs.db
+**/mcp-servers.json
+
+# Slack-bot local symlinks (dangle on other checkouts)
+packages/slack-bot/data
+packages/slack-bot/memory
