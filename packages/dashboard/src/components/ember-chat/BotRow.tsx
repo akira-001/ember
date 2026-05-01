@@ -19,6 +19,7 @@ const DEFAULT_SPEEDS = ['0.8', '1.0', '1.2', '1.5', '2.0'];
 const containerStyle: CSSProperties = {
   display: 'flex',
   alignItems: 'center',
+  flexWrap: 'wrap',
   gap: 6,
   padding: '6px 14px',
   background: 'var(--ember-surface)',

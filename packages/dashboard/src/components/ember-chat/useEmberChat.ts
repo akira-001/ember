@@ -23,10 +23,10 @@ export function useEmberChat() {
   const wsRef = useRef<WebSocket | null>(null);
   const settingsRef = useRef(settings);
   const lastSaveTimeRef = useRef(0);
-  const audioCtxRef = useRef<AudioContext | null>(null);
   const audioQueueRef = useRef<ArrayBuffer[]>([]);
   const isPlayingRef = useRef(false);
-  const currentSourceRef = useRef<AudioBufferSourceNode | null>(null);
+  const currentAudioRef = useRef<HTMLAudioElement | null>(null);
+  const currentAudioUrlRef = useRef<string | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const micStreamRef = useRef<MediaStream | null>(null);
   const playedIdsRef = useRef(new Set<string>());
@@ -36,43 +36,48 @@ export function useEmberChat() {
   // Keep settingsRef in sync
   useEffect(() => { settingsRef.current = settings; }, [settings]);
 
-  // --- Audio ---
-  const getAudioCtx = useCallback(() => {
-    if (!audioCtxRef.current) {
-      audioCtxRef.current = new AudioContext();
+  // --- Audio playback via HTMLAudioElement (avoids Web Audio autoplay quirks) ---
+  const cleanupCurrentAudio = useCallback(() => {
+    if (currentAudioRef.current) {
+      try {
+        currentAudioRef.current.pause();
+        currentAudioRef.current.src = '';
+      } catch {}
+      currentAudioRef.current = null;
     }
-    if (audioCtxRef.current.state === 'suspended') {
-      audioCtxRef.current.resume();
+    if (currentAudioUrlRef.current) {
+      try { URL.revokeObjectURL(currentAudioUrlRef.current); } catch {}
+      currentAudioUrlRef.current = null;
     }
-    return audioCtxRef.current;
   }, []);
 
-  const processQueue = useCallback(async () => {
+  const processQueue = useCallback(() => {
     if (isPlayingRef.current || audioQueueRef.current.length === 0) return;
     isPlayingRef.current = true;
     const buf = audioQueueRef.current.shift()!;
-    const ctx = getAudioCtx();
-    if (ctx.state === 'suspended') {
-      try { await ctx.resume(); } catch {}
-    }
-    ctx.decodeAudioData(buf.slice(0), (audioBuffer) => {
-      const source = ctx.createBufferSource();
-      source.buffer = audioBuffer;
-      source.connect(ctx.destination);
-      currentSourceRef.current = source;
-      source.onended = () => {
-        currentSourceRef.current = null;
-        isPlayingRef.current = false;
-        processQueue();
-      };
-      source.start(0);
-    }, (err) => {
-      console.error('[ember-chat] decodeAudioData error:', err);
-      currentSourceRef.current = null;
+    const blob = new Blob([buf], { type: 'audio/wav' });
+    const url = URL.createObjectURL(blob);
+    const audio = new Audio(url);
+    currentAudioRef.current = audio;
+    currentAudioUrlRef.current = url;
+
+    const onDone = () => {
+      cleanupCurrentAudio();
       isPlayingRef.current = false;
       processQueue();
+    };
+
+    audio.onended = onDone;
+    audio.onerror = (e) => {
+      console.error('[ember-chat] audio play error:', e);
+      onDone();
+    };
+
+    audio.play().catch((err) => {
+      console.error('[ember-chat] audio.play() rejected:', err);
+      onDone();
     });
-  }, [getAudioCtx]);
+  }, [cleanupCurrentAudio]);
 
   const playAudio = useCallback((buf: ArrayBuffer) => {
     audioQueueRef.current.push(buf);
@@ -89,13 +94,10 @@ export function useEmberChat() {
 
   const stopAudio = useCallback((broadcast = true) => {
     audioQueueRef.current.length = 0;
-    if (currentSourceRef.current) {
-      try { currentSourceRef.current.stop(); } catch {}
-      currentSourceRef.current = null;
-    }
+    cleanupCurrentAudio();
     isPlayingRef.current = false;
     if (broadcast) wsSend({ type: 'stop_audio' });
-  }, [wsSend]);
+  }, [cleanupCurrentAudio, wsSend]);
 
   const addMessage = useCallback((text: string, type: ChatMessage['type'], botId?: string, diagnostic?: ChatMessage['diagnostic']) => {
     setMessages(prev => [...prev, {
@@ -358,12 +360,6 @@ export function useEmberChat() {
     })();
   }, [loadSpeakers, loadModels]);
 
-  // --- AudioContext init on first click ---
-  useEffect(() => {
-    const handler = () => getAudioCtx();
-    document.addEventListener('click', handler, { once: true });
-    return () => document.removeEventListener('click', handler);
-  }, [getAudioCtx]);
 
   // --- Thought trace polling (Debug mode only, #3 retro 2026-04-25) ---
   // When debugMode is on, poll /api/thought-trace every 30s and inject any

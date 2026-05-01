@@ -14,6 +14,7 @@ interface ServerStatusBarProps {
 const containerStyle: CSSProperties = {
   display: 'flex',
   alignItems: 'center',
+  flexWrap: 'wrap',
   gap: 14,
   padding: '6px 16px',
   background: 'var(--ember-surface-alt)',
