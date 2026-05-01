@@ -115,3 +115,11 @@
 **パターン**: claude-code-slack-bot の `data/conversations/YYYY-MM-DD.jsonl` は **DM 双方向対話のみ** を記録し、proactive 発火（cron 起動の自発メッセージ）は含まれない。Humanness v1 実装時、conversations を走査して「ユーザー発言なしの bot メッセージ」を proactive とみなそうとして 5 週間で 2 件しか検出できなかった（しかもエラー応答）。
 **正しいデータソース**: `data/mei-state.json` / `data/eve-state.json` の `history[]` 配列。各 100 件ローリングで `sentAt`, `category`, `reaction (null/text_engaged/ok_hand 等)`, `reactionDelta` を含む。`data/shared-proactive-history.json` は別物で 13 件しかない（用途未確認）。
 **対策**: proactive を扱う metric / debug は `mei-state.json` / `eve-state.json` を直読みする。長期トレンドが必要なら **日次スナップショット必須**（100 件は約 10 日分）。conversations/ は対話品質指標（friction 等）には使えるが engagement 指標には使えないと覚える。
+
+## EP-020: Electron で web 機能を loadFile→loadURL に移行すると getUserMedia が silent stream を返す
+**発生**: 2026-05-01 | **Arousal**: 0.9 | **ドメイン**: electron / web-audio
+**症状**: マイク許可済み + `mic stream acquired tracks=1` ログも出るのに、AnalyserNode の RMS が常に 0、MediaRecorder が 1323 byte (webm header のみ) chunk を吐き続ける。
+**原因**: 旧版 Ember Chat は `loadFile()` で `file://` origin だった。Chromium は `file://` を trusted origin として autoplay policy を適用しないため、user gesture 前の getUserMedia でも実マイクが取れていた。`loadURL('http://localhost:.../...')` に変えた瞬間、autoplay policy が厳格に効いて silent stream に切り替わる。
+**フィルタ撃沈履歴**: `echoCancellation: false` / `autoplay-policy=no-user-gesture-required` switch / silent gain → destination chain → どれも単独では効かない。
+**対策**: BrowserWindow の `webPreferences.webSecurity: false` + `session.setPermissionRequestHandler` / `setPermissionCheckHandler` で `media`/`microphone`/`audioCapture` を auto-grant する3点セット。旧 main.js の posture 復元が事実上の正解。
+**確認**: サーバ側で audio chunk size を見る (1323 byte = silent、数万 byte = OK)。
