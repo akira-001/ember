@@ -439,6 +439,38 @@
       ],
       "evaluate_score": 0.55,
       "sentAt": "2026-05-01T09:31:02.305Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "_cross",
+      "preview": "ね、Akiraさん。\n\nGolfWRXに、ミケルソンが伝説的コーチの *バッチ・ハーモン* と袂を分かって新しいスイングコーチを雇ったって出てたよ ⛳\n\nレッスン通ってると「コーチとの相性」って気になるよね。GWのゴルフ雑学にどうぞ。\nhttps://news.google.com/rss/arti",
+      "topic": "Mickelson splits with Butch Harmon, hires new swing coach - GolfWRX",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOcWlyQnhwNmE2R3BhTEVBWUlkU3Bqamw0NlJnTHFKN2xFbUg2SFZsZEpBeXVxdFd3d3htcUhnZDdPOXAyUExuZjRVWGpKNmVuTjRmb0NMR1NZQ2tTeVZTVC02T0wxVndnQUJMcVE1bjZZc2plTWpLZjFVUmhOOVhQSk4yLUVDUHZQdWIzTTRSdGt5YUll?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMilAFBVV95cUxOcWlyQnhwNmE2R3BhTEVBWUlkU3Bqamw0NlJnTHFKN2xFbUg2SFZsZEpBeXVxdFd3d3htcUhnZDdPOXAyUExuZjRVWGpKNmVuTjRmb0NMR1NZQ2tTeVZTVC02T0wxVndnQUJMcVE1bjZZc2plTWpLZjFVUmhOOVhQSk4yLUVDUHZQdWIzTTRSdGt5YUll?oc=5",
+      "sourceType": "interest-cache",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/golf",
+        "sports/golf/lesson",
+        "sports/golf/lesson/coach"
+      ],
+      "themeKey": "sports/golf/lesson/coach",
+      "inner_thought": "ミケルソンがバッチ・ハーモンと決別、ゴルフレッスン通ってるAkiraさんにはコーチ選びの話は刺さるはず",
+      "plan": [
+        "ミケルソンのコーチ変更ニュースを共有",
+        "宇宙ビジネスセミナー情報を共有",
+        "沈黙して様子見"
+      ],
+      "generate_score": [
+        0.72,
+        0.6,
+        0.3
+      ],
+      "evaluate_score": 0.65,
+      "sentAt": "2026-05-01T10:01:37.317Z"
     }
   ]
 }
