@@ -554,5 +554,7 @@ export function useEmberChat() {
     stopAudio, playBotMessage, previewVoice,
     toggleReply, setSettingsExpanded,
     setReplyBot, setLastBotId,
+    // Refs (for hook composition)
+    wsRef,
   };
 }

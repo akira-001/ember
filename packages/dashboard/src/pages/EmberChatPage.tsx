@@ -88,7 +88,7 @@ export default function EmberChatPage() {
   const [text, setText] = useState('');
 
   const chat = useEmberChat();
-  const alwaysOn = useAlwaysOn();
+  const alwaysOn = useAlwaysOn({ wsRef: chat.wsRef });
   const meetingRec = useMeetingRecorder();
 
   const refresh = useCallback(async () => {
