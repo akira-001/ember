@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ember Glow Design Tokens */
+:root {
+  /* Main Content Area */
+  --bg: #f5ede4;
+  --surface: #ede4d8;
+  --surface-hover: #e4d8ca;
+  --border: #d4c8b8;
+  --text: #3a2e28;
+  --text-dim: #705848;
+  --scrollbar-thumb: #9a8878;
+  --scrollbar-thumb-hover: #b8a898;
+
+  /* Accent (from Ember logo) */
+  --accent: #C06830;
+  --accent-hover: #A85828;
+  --accent-dim: #904820;
+  --accent-light: #E8854A;
+
+  /* Status + hover variants */
+  --success-hover: #3a7a3a;
+
+  /* Sidebar */
+  --sidebar-bg: #31241e;
+  --sidebar-surface: #3e3028;
+  --sidebar-border: #4a3e34;
+  --sidebar-text: #a89888;
+  --sidebar-text-active: #f0e8e0;
+  --sidebar-active-bg: rgba(192, 104, 48, 0.12);
+  --sidebar-active-border: #C06830;
+
+  /* Status */
+  --success: #4a8a4a;
+  --warning: #8a6a20;
+  --error: #b85040;
+  --info: #5070a0;
+}
+
+/* Eve theme — cool-tinted warmth */
+[data-bot="eve"] {
+  --bg: #eaecf0;
+  --surface: #e0e3e9;
+  --surface-hover: #d5d9e0;
+  --border: #c2c8d0;
+  --text: #282e38;
+  --text-dim: #4a5568;
+  --accent: #5070a0;
+  --accent-hover: #405e88;
+  --accent-dim: #3a5478;
+  --accent-light: #6888b8;
+  --sidebar-bg: #1e2430;
+  --sidebar-surface: #283040;
+  --sidebar-border: #343e50;
+  --sidebar-text: #8898a8;
+  --sidebar-text-active: #e0e8f0;
+  --sidebar-active-bg: rgba(80, 112, 160, 0.12);
+  --sidebar-active-border: #5070a0;
+}
+
+html, body {
+  background: var(--bg);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
