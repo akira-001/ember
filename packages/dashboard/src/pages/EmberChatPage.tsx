@@ -79,12 +79,49 @@ const fallbackPanelStyle: CSSProperties = {
   padding: 24,
 };
 
+const settingsToggleStyle: CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: '4px 14px',
+  background: 'var(--ember-surface)',
+  borderTop: '1px solid var(--ember-border)',
+  color: 'var(--ember-text-dim)',
+  fontSize: 10,
+  fontWeight: 600,
+  textTransform: 'uppercase',
+  letterSpacing: '0.06em',
+  cursor: 'pointer',
+  userSelect: 'none',
+};
+
+const SETTINGS_COLLAPSED_KEY = 'ember-chat:settings-collapsed';
+
 export default function EmberChatPage() {
   const navigate = useNavigate();
   const [status, setStatus] = useState<ServiceStatus>({ whisper: false, voicevox: false, ollama: false });
   const [loading, setLoading] = useState(true);
   const [starting, setStarting] = useState<string | null>(null);
   const [text, setText] = useState('');
+  const [settingsCollapsed, setSettingsCollapsed] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem(SETTINGS_COLLAPSED_KEY) === '1';
+    } catch {
+      return false;
+    }
+  });
+
+  const toggleSettings = useCallback(() => {
+    setSettingsCollapsed((prev) => {
+      const next = !prev;
+      try {
+        localStorage.setItem(SETTINGS_COLLAPSED_KEY, next ? '1' : '0');
+      } catch {
+        // ignore
+      }
+      return next;
+    });
+  }, []);
 
   const chat = useEmberChat();
   const alwaysOn = useAlwaysOn({ wsRef: chat.wsRef });
@@ -186,42 +223,65 @@ export default function EmberChatPage() {
             <ChatMessages messages={chat.messages} />
           </div>
 
-          <ChatToolbar
-            modelValue={chat.settings.modelSelect}
-            ambientModelValue={chat.settings.ambientModel ?? chat.settings.modelSelect}
-            ttsEngineValue={chat.settings.ttsEngine}
-            voiceValue={chat.settings.voiceSelect}
-            speedValue={chat.settings.speedSelect}
-            models={chat.models}
-            speakers={chat.speakers}
-            onModelChange={(v) => chat.updateSetting('modelSelect', v)}
-            onAmbientModelChange={(v) => chat.updateSetting('ambientModel', v)}
-            onTtsEngineChange={(v) => {
-              chat.updateSetting('ttsEngine', v);
-              chat.loadSpeakers(v);
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={toggleSettings}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleSettings();
+              }
             }}
-            onVoiceChange={(v) => chat.updateSetting('voiceSelect', v)}
-            onSpeedChange={(v) => chat.updateSetting('speedSelect', v)}
-          />
+            style={settingsToggleStyle}
+            aria-expanded={!settingsCollapsed}
+            aria-controls="ember-chat-settings"
+            title={settingsCollapsed ? '設定を開く' : '設定を閉じる'}
+          >
+            <span>Settings</span>
+            <span style={{ fontSize: 12, lineHeight: 1 }}>{settingsCollapsed ? '▾' : '▴'}</span>
+          </div>
 
-          <BotRow
-            botId="mei"
-            voiceValue={chat.settings.meiVoice}
-            speedValue={chat.settings.meiSpeed}
-            speakers={chat.botSpeakers.mei ?? chat.speakers}
-            onVoiceChange={(v) => chat.updateSetting('meiVoice', v)}
-            onSpeedChange={(v) => chat.updateSetting('meiSpeed', v)}
-            onPlay={() => chat.playBotMessage('mei')}
-          />
-          <BotRow
-            botId="eve"
-            voiceValue={chat.settings.eveVoice}
-            speedValue={chat.settings.eveSpeed}
-            speakers={chat.botSpeakers.eve ?? chat.speakers}
-            onVoiceChange={(v) => chat.updateSetting('eveVoice', v)}
-            onSpeedChange={(v) => chat.updateSetting('eveSpeed', v)}
-            onPlay={() => chat.playBotMessage('eve')}
-          />
+          {!settingsCollapsed && (
+            <div id="ember-chat-settings">
+              <ChatToolbar
+                modelValue={chat.settings.modelSelect}
+                ambientModelValue={chat.settings.ambientModel ?? chat.settings.modelSelect}
+                ttsEngineValue={chat.settings.ttsEngine}
+                voiceValue={chat.settings.voiceSelect}
+                speedValue={chat.settings.speedSelect}
+                models={chat.models}
+                speakers={chat.speakers}
+                onModelChange={(v) => chat.updateSetting('modelSelect', v)}
+                onAmbientModelChange={(v) => chat.updateSetting('ambientModel', v)}
+                onTtsEngineChange={(v) => {
+                  chat.updateSetting('ttsEngine', v);
+                  chat.loadSpeakers(v);
+                }}
+                onVoiceChange={(v) => chat.updateSetting('voiceSelect', v)}
+                onSpeedChange={(v) => chat.updateSetting('speedSelect', v)}
+              />
+
+              <BotRow
+                botId="mei"
+                voiceValue={chat.settings.meiVoice}
+                speedValue={chat.settings.meiSpeed}
+                speakers={chat.botSpeakers.mei ?? chat.speakers}
+                onVoiceChange={(v) => chat.updateSetting('meiVoice', v)}
+                onSpeedChange={(v) => chat.updateSetting('meiSpeed', v)}
+                onPlay={() => chat.playBotMessage('mei')}
+              />
+              <BotRow
+                botId="eve"
+                voiceValue={chat.settings.eveVoice}
+                speedValue={chat.settings.eveSpeed}
+                speakers={chat.botSpeakers.eve ?? chat.speakers}
+                onVoiceChange={(v) => chat.updateSetting('eveVoice', v)}
+                onSpeedChange={(v) => chat.updateSetting('eveSpeed', v)}
+                onPlay={() => chat.playBotMessage('eve')}
+              />
+            </div>
+          )}
 
           <ChatControls
             recording={chat.recording}
