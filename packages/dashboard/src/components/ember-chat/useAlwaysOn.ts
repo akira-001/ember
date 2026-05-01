@@ -11,7 +11,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { AlwaysOnState } from './ServerStatusBar';
 
 const CONSENT_KEY = 'ember.alwaysOn.consented';
-const ENABLED_KEY = 'ember.alwaysOn.enabled';
 
 const RMS_THRESHOLD = 0.05;
 const MIN_SPEECH_MS = 500;
@@ -44,20 +43,13 @@ interface InternalRefs {
 }
 
 export function useAlwaysOn({ wsRef }: UseAlwaysOnOptions): UseAlwaysOnReturn {
-  const [enabled, setEnabled] = useState<boolean>(() => {
-    if (typeof localStorage === 'undefined') return false;
-    return localStorage.getItem(ENABLED_KEY) === 'true';
-  });
+  // Always start Muted on cold launch — autoplay policy makes auto-Listen
+  // unreliable (mic returns a silent stream without a prior user gesture).
+  // User must click the indicator each session to begin Listening.
+  const [enabled, setEnabled] = useState<boolean>(false);
   const [consentRequired, setConsentRequired] = useState(false);
   const [stale, setStale] = useState(false);
   const [processing, setProcessing] = useState(false);
-
-  // Persist enabled state across launches
-  useEffect(() => {
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem(ENABLED_KEY, enabled ? 'true' : 'false');
-    }
-  }, [enabled]);
 
   const refs = useRef<InternalRefs>({
     micStream: null,
@@ -181,7 +173,8 @@ export function useAlwaysOn({ wsRef }: UseAlwaysOnOptions): UseAlwaysOnReturn {
     }, 30 * 1000);
   }, [sendAudio, stop]);
 
-  // Effect: enable / disable lifecycle
+  // Effect: enable / disable lifecycle (always triggered by user gesture
+  // since cold-start enabled=false, so no autoplay-policy issues)
   useEffect(() => {
     if (!enabled) return;
     const consented = typeof localStorage !== 'undefined'
@@ -190,36 +183,8 @@ export function useAlwaysOn({ wsRef }: UseAlwaysOnOptions): UseAlwaysOnReturn {
       setConsentRequired(true);
       return;
     }
-
-    // Chromium autoplay policy: getUserMedia called BEFORE the first user
-    // gesture in a session can return a "muted" silent stream (no
-    // permission prompt is shown either). After cold restart, the saved
-    // enabled=true triggers this path. Delay start() until the first
-    // click anywhere in the document.
-    let cancelled = false;
-    let started = false;
-    const tryStart = () => {
-      if (cancelled || started) return;
-      started = true;
-      void start();
-    };
-
-    if (typeof navigator !== 'undefined' && navigator.userActivation?.hasBeenActive) {
-      tryStart();
-    } else {
-      const onGesture = () => {
-        tryStart();
-        document.removeEventListener('click', onGesture);
-        document.removeEventListener('keydown', onGesture);
-      };
-      document.addEventListener('click', onGesture, { once: true });
-      document.addEventListener('keydown', onGesture, { once: true });
-    }
-
-    return () => {
-      cancelled = true;
-      stop();
-    };
+    void start();
+    return () => stop();
   }, [enabled, start, stop]);
 
   const toggle = useCallback(() => {
