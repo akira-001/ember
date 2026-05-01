@@ -60,6 +60,49 @@
   --sidebar-active-border: #5070a0;
 }
 
+/* Ember Chat scoped dark theme — restores the standalone Electron UI palette.
+ * Applied via data-ember-chat="true" only when Layout renders in embedded mode,
+ * so other dashboard pages stay on the light beige theme. */
+[data-ember-chat="true"] {
+  /* Raw ember-* tokens from the legacy renderer (packages/ember-chat/renderer/index.html L7-27) */
+  --ember-bg: #141820;
+  --ember-surface: #1e2430;
+  --ember-surface-alt: #1a2028;
+  --ember-primary: #f97316;
+  --ember-primary-hover: #ea580c;
+  --ember-primary-glow: rgba(249, 115, 22, 0.12);
+  --ember-primary-dim: rgba(249, 115, 22, 0.06);
+  --ember-warm: #fbbf24;
+  --ember-warm-glow: rgba(251, 191, 36, 0.10);
+  --ember-text: #f0ece5;
+  --ember-text-muted: #a09aae;
+  --ember-text-dim: #6b6478;
+  --ember-border: #283040;
+  --ember-input-bg: #101418;
+  --ember-success: #22c55e;
+  --ember-danger: #ef4444;
+  --ember-gradient: linear-gradient(135deg, #f97316, #fb923c);
+
+  /* Map dashboard tokens onto the ember palette so any component that uses
+   * var(--bg), var(--accent), etc. swaps to dark inside this scope. */
+  --bg: var(--ember-bg);
+  --surface: var(--ember-surface);
+  --surface-hover: var(--ember-surface-alt);
+  --border: var(--ember-border);
+  --text: var(--ember-text);
+  --text-dim: var(--ember-text-muted);
+  --accent: var(--ember-primary);
+  --accent-hover: var(--ember-primary-hover);
+  --accent-dim: var(--ember-primary-dim);
+  --accent-light: var(--ember-warm);
+  --success: var(--ember-success);
+  --error: var(--ember-danger);
+
+  /* Scrollbar tuned for dark surfaces */
+  --scrollbar-thumb: var(--ember-border);
+  --scrollbar-thumb-hover: var(--ember-text-muted);
+}
+
 html, body {
   background: var(--bg);
 }

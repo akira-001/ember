@@ -72,6 +72,7 @@ export interface EmberSettings {
   voiceSelect: string;
   speedSelect: string;
   modelSelect: string;
+  ambientModel: string;
   meiEngine: string;
   meiVoice: string;
   meiSpeed: string;
@@ -112,6 +113,7 @@ export const DEFAULT_SETTINGS: EmberSettings = {
   voiceSelect: '2',
   speedSelect: 'auto',
   modelSelect: 'gemma4:e4b',
+  ambientModel: 'gemma4:e4b',
   meiEngine: 'irodori',
   meiVoice: 'irodori-bright-female',
   meiSpeed: 'auto',

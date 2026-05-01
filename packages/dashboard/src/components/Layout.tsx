@@ -14,7 +14,7 @@ function LayoutInner() {
     // `-m-4 md:-m-8` (full-bleed 用 negative margin) が外側にはみ出さないようにする。
     // sidebar (`md:ml-60`) だけ embedded で外す。
     return (
-      <div className="flex min-h-screen bg-[var(--bg)]" data-bot={activeBotId}>
+      <div className="flex min-h-screen bg-[var(--bg)]" data-bot={activeBotId} data-ember-chat="true">
         <main className="flex-1 p-4 pt-16 md:p-8 md:pt-8">
           <Outlet />
         </main>

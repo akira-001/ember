@@ -1,12 +1,24 @@
 // dashboard/src/pages/EmberChatPage.tsx
-import { useEffect, useState, useCallback } from 'react';
+//
+// Restored to mirror the legacy standalone Ember Chat Electron UI
+// (packages/ember-chat/renderer/index.html). Uses dark ember-* tokens
+// scoped via [data-ember-chat="true"] (see Layout.tsx + index.css).
+
+import { useEffect, useState, useCallback, type CSSProperties } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getServerStatus, controlServer } from '../api';
 import { useEmberChat } from '../components/ember-chat/useEmberChat';
+import { useAlwaysOn } from '../components/ember-chat/useAlwaysOn';
+import { useMeetingRecorder } from '../components/ember-chat/useMeetingRecorder';
 import ChatMessages from '../components/ember-chat/ChatMessages';
-import ChatInput from '../components/ember-chat/ChatInput';
-import ChatSettings from '../components/ember-chat/ChatSettings';
-import DebugPanel from '../components/ember-chat/DebugPanel';
+import Titlebar from '../components/ember-chat/Titlebar';
+import ServerStatusBar from '../components/ember-chat/ServerStatusBar';
+import PlaybackModeBar from '../components/ember-chat/PlaybackModeBar';
+import ChatToolbar from '../components/ember-chat/ChatToolbar';
+import BotRow from '../components/ember-chat/BotRow';
+import ChatControls from '../components/ember-chat/ChatControls';
+import ImproveLoopPanel from '../components/ember-chat/ImproveLoopPanel';
+import ContextSummaryPanel from '../components/ember-chat/ContextSummaryPanel';
 
 interface ServiceStatus {
   whisper: boolean;
@@ -14,14 +26,77 @@ interface ServiceStatus {
   ollama: boolean;
 }
 
+const pageStyle: CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  height: 'calc(100vh - 0px)',
+  background: 'var(--ember-bg)',
+  color: 'var(--ember-text)',
+  fontFamily: "-apple-system, 'Helvetica Neue', 'Segoe UI', sans-serif",
+  margin: '-1rem',
+  marginTop: '-4rem',
+  overflow: 'hidden',
+};
+
+const pageStyleEmbedded: CSSProperties = {
+  ...pageStyle,
+  marginTop: '-1rem',
+};
+
+const textInputRowStyle: CSSProperties = {
+  display: 'flex',
+  gap: 8,
+  padding: '10px 14px',
+  background: 'var(--ember-surface)',
+  borderTop: '1px solid var(--ember-border)',
+};
+
+const textInputStyle: CSSProperties = {
+  flex: 1,
+  background: 'var(--ember-input-bg)',
+  color: 'var(--ember-text)',
+  border: '1px solid var(--ember-border)',
+  padding: '10px 14px',
+  borderRadius: 20,
+  fontSize: 14,
+  outline: 'none',
+  transition: 'border-color 0.15s',
+};
+
+const sendBtnStyle: CSSProperties = {
+  background: 'var(--ember-gradient)',
+  color: '#fff',
+  border: 'none',
+  padding: '10px 18px',
+  borderRadius: 20,
+  fontSize: 13,
+  fontWeight: 700,
+  cursor: 'pointer',
+  transition: 'opacity 0.15s',
+};
+
+const fallbackPanelStyle: CSSProperties = {
+  flex: 1,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: 24,
+};
+
 export default function EmberChatPage() {
   const navigate = useNavigate();
   const [status, setStatus] = useState<ServiceStatus>({ whisper: false, voicevox: false, ollama: false });
   const [loading, setLoading] = useState(true);
   const [starting, setStarting] = useState<string | null>(null);
   const [debugOpen, setDebugOpen] = useState(false);
+  const [text, setText] = useState('');
 
   const chat = useEmberChat();
+  const alwaysOn = useAlwaysOn();
+  const meetingRec = useMeetingRecorder();
+
+  const isEmbedded = typeof window !== 'undefined'
+    && new URLSearchParams(window.location.search).get('embedded') === 'true';
 
   const refresh = useCallback(async () => {
     try {
@@ -57,111 +132,283 @@ export default function EmberChatPage() {
     }
   };
 
+  const handleSend = useCallback(() => {
+    if (!text.trim() || chat.processing) return;
+    chat.sendText(text);
+    setText('');
+  }, [text, chat]);
+
+  const handleToggleTalk = useCallback(() => {
+    if (chat.processing) return;
+    if (chat.recording) chat.stopRecording();
+    else chat.startRecording();
+  }, [chat]);
+
+  const handleToggleTts = useCallback(() => {
+    const next = !chat.settings.ttsEnabled;
+    chat.updateSetting('ttsEnabled', next);
+    if (!next) chat.stopAudio();
+  }, [chat]);
+
+  const handleToggleProactive = useCallback(() => {
+    chat.updateSetting('proactiveEnabled', !chat.settings.proactiveEnabled);
+  }, [chat]);
+
+  const handleToggleReply = useCallback(() => {
+    chat.toggleReply(chat.lastBotId);
+  }, [chat]);
+
   if (loading) {
-    return <div className="text-[var(--text-dim)] p-6">読み込み中...</div>;
+    return (
+      <div style={pageStyle}>
+        <div style={fallbackPanelStyle}>
+          <span style={{ color: 'var(--ember-text-dim)' }}>読み込み中...</span>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="flex flex-col -m-4 md:-m-8 md:-mt-8" style={{ height: 'calc(100vh - 0px)' }}>
-      {/* Status bar */}
-      <div className="flex items-center gap-4 px-4 py-2 bg-[var(--surface)] border-b border-[var(--border)] flex-shrink-0">
-        <h2 className="text-sm font-semibold text-[var(--text)]">Ember Chat</h2>
-        <div className="flex items-center gap-4 ml-4">
-          {(['whisper', 'voicevox', 'ollama'] as const).map((svc) => (
-            <span key={svc} className="flex items-center gap-1.5 text-xs">
-              <span className={`inline-block w-2 h-2 rounded-full ${status[svc] ? 'bg-[var(--success)]' : 'bg-[var(--error)]'}`} />
-              <span className="text-[var(--text-dim)] capitalize">{svc === 'voicevox' ? 'VOICEVOX' : svc.charAt(0).toUpperCase() + svc.slice(1)}</span>
-              {!status[svc] && (
-                <button
-                  onClick={() => handleStart(svc)}
-                  disabled={starting !== null}
-                  className="px-2 py-0.5 rounded text-[10px] font-medium border border-[var(--border)] text-[var(--text-dim)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors disabled:opacity-40"
-                >
-                  {starting === svc ? '...' : 'Start'}
-                </button>
-              )}
-            </span>
-          ))}
-        </div>
-        {chat.wsConnected && (
-          <span className="ml-auto text-[10px] text-[var(--success)]">Connected</span>
-        )}
-      </div>
+    <div style={isEmbedded ? pageStyleEmbedded : pageStyle}>
+      <Titlebar
+        recording={meetingRec.recording}
+        busy={meetingRec.busy}
+        queueCount={meetingRec.queueCount}
+        onToggleRecord={() => { void meetingRec.toggle(); }}
+      />
 
-      {/* Main content */}
+      <ServerStatusBar
+        whisperOnline={status.whisper}
+        voicevoxOnline={status.voicevox}
+        ollamaOnline={status.ollama}
+        wsConnected={chat.wsConnected}
+        alwaysOnState={alwaysOn.state}
+        onToggleAlwaysOn={alwaysOn.toggle}
+      />
+
+      <PlaybackModeBar />
+
       {status.whisper ? (
         <>
-          <ChatMessages messages={chat.messages} />
+          <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+            <ChatMessages messages={chat.messages} />
+          </div>
 
-          {/* Settings panel (collapsible) */}
-          {chat.settingsExpanded && (
-            <ChatSettings
-              settings={chat.settings}
-              speakers={chat.speakers}
-              botSpeakers={chat.botSpeakers}
-              models={chat.models}
-              onUpdateSetting={chat.updateSetting}
-              onUpdateSettings={chat.updateSettings}
-              onLoadSpeakers={chat.loadSpeakers}
-              onBotEngineChange={chat.handleBotEngineChange}
-              onPreview={chat.previewVoice}
-              onStopAudio={chat.stopAudio}
-              onPlayBot={chat.playBotMessage}
-            />
-          )}
+          <ChatToolbar
+            modelValue={chat.settings.modelSelect}
+            ambientModelValue={chat.settings.ambientModel ?? chat.settings.modelSelect}
+            ttsEngineValue={chat.settings.ttsEngine}
+            voiceValue={chat.settings.voiceSelect}
+            speedValue={chat.settings.speedSelect}
+            models={chat.models}
+            speakers={chat.speakers}
+            onModelChange={(v) => chat.updateSetting('modelSelect', v)}
+            onAmbientModelChange={(v) => chat.updateSetting('ambientModel', v)}
+            onTtsEngineChange={(v) => {
+              chat.updateSetting('ttsEngine', v);
+              chat.loadSpeakers(v);
+            }}
+            onVoiceChange={(v) => chat.updateSetting('voiceSelect', v)}
+            onSpeedChange={(v) => chat.updateSetting('speedSelect', v)}
+          />
 
-          <ChatInput
-            onSendText={chat.sendText}
-            onStartRecording={chat.startRecording}
-            onStopRecording={chat.stopRecording}
+          <BotRow
+            botId="mei"
+            voiceValue={chat.settings.meiVoice}
+            speedValue={chat.settings.meiSpeed}
+            speakers={chat.botSpeakers.mei ?? chat.speakers}
+            onVoiceChange={(v) => chat.updateSetting('meiVoice', v)}
+            onSpeedChange={(v) => chat.updateSetting('meiSpeed', v)}
+            onPlay={() => chat.playBotMessage('mei')}
+          />
+          <BotRow
+            botId="eve"
+            voiceValue={chat.settings.eveVoice}
+            speedValue={chat.settings.eveSpeed}
+            speakers={chat.botSpeakers.eve ?? chat.speakers}
+            onVoiceChange={(v) => chat.updateSetting('eveVoice', v)}
+            onSpeedChange={(v) => chat.updateSetting('eveSpeed', v)}
+            onPlay={() => chat.playBotMessage('eve')}
+          />
+
+          <ChatControls
             recording={chat.recording}
             processing={chat.processing}
+            ttsEnabled={chat.settings.ttsEnabled}
+            proactiveEnabled={chat.settings.proactiveEnabled}
+            replyMode={chat.replyBot !== null}
             replyBot={chat.replyBot}
             lastBotId={chat.lastBotId}
-            onToggleReply={chat.toggleReply}
-            onPlayBot={chat.playBotMessage}
-            ttsEnabled={chat.settings.ttsEnabled}
-            onToggleTts={() => {
-              const next = !chat.settings.ttsEnabled;
-              chat.updateSetting('ttsEnabled', next);
-              if (!next) chat.stopAudio();
-            }}
-            onToggleSettings={() => chat.setSettingsExpanded(!chat.settingsExpanded)}
-            settingsExpanded={chat.settingsExpanded}
+            debugOpen={debugOpen}
+            onStopAudio={() => chat.stopAudio()}
+            onToggleProactive={handleToggleProactive}
+            onToggleReply={handleToggleReply}
+            onPreview={chat.previewVoice}
+            onToggleTalk={handleToggleTalk}
+            onToggleTts={handleToggleTts}
+            onToggleDebug={() => setDebugOpen((v) => !v)}
             onOpenRecording={() => navigate('/voice-enroll')}
           />
 
-          <DebugPanel
-            open={debugOpen}
-            onToggle={() => setDebugOpen((v) => !v)}
-          />
+          <ImproveLoopPanel open={debugOpen} />
+          <ContextSummaryPanel open={debugOpen} />
+
+          <div style={textInputRowStyle}>
+            <input
+              type="text"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && !e.nativeEvent.isComposing && e.keyCode !== 229) {
+                  e.preventDefault();
+                  handleSend();
+                }
+              }}
+              placeholder="Type a message..."
+              autoComplete="off"
+              style={textInputStyle}
+            />
+            <button
+              type="button"
+              onClick={handleSend}
+              disabled={chat.processing || !text.trim()}
+              style={{
+                ...sendBtnStyle,
+                opacity: chat.processing || !text.trim() ? 0.4 : 1,
+                cursor: chat.processing || !text.trim() ? 'not-allowed' : 'pointer',
+              }}
+            >
+              Send
+            </button>
+          </div>
+
+          {alwaysOn.consentRequired && (
+            <ConsentDialog
+              onAccept={alwaysOn.acceptConsent}
+              onDecline={alwaysOn.declineConsent}
+            />
+          )}
         </>
       ) : (
-        <div className="flex-1 flex items-center justify-center">
-          <div className="text-center max-w-md">
-            <div className="text-5xl mb-4 opacity-40">&#x1F525;</div>
-            <h3 className="text-lg font-semibold text-[var(--text)] mb-2">Ember Chat</h3>
-            <p className="text-sm text-[var(--text-dim)] mb-4">
+        <div style={fallbackPanelStyle}>
+          <div style={{ textAlign: 'center', maxWidth: 360 }}>
+            <div style={{ fontSize: 40, marginBottom: 12, opacity: 0.5 }}>&#x1F525;</div>
+            <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8, color: 'var(--ember-text)' }}>
+              Ember Chat
+            </h3>
+            <p style={{ fontSize: 13, color: 'var(--ember-text-muted)', marginBottom: 16 }}>
               音声会話を開始するには、以下のサービスを起動してください。
             </p>
-            <div className="flex flex-col gap-2 items-center">
-              {['Whisper', 'VOICEVOX', 'Ollama'].filter(svc => !status[svc.toLowerCase() as keyof ServiceStatus]).map((svc) => {
-                const key = svc.toLowerCase() as 'whisper' | 'voicevox' | 'ollama';
-                return (
-                  <button
-                    key={svc}
-                    onClick={() => handleStart(key)}
-                    disabled={starting !== null}
-                    className="px-4 py-2 rounded-lg text-sm font-medium bg-[var(--accent)]/20 text-[var(--accent)] border border-[var(--accent)]/30 hover:bg-[var(--accent)]/30 transition-colors disabled:opacity-40 min-w-[200px]"
-                  >
-                    {starting === key ? `${svc} を起動中...` : `${svc} を起動`}
-                  </button>
-                );
-              })}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center' }}>
+              {(['Whisper', 'VOICEVOX', 'Ollama'] as const)
+                .filter((svc) => !status[svc.toLowerCase() as keyof ServiceStatus])
+                .map((svc) => {
+                  const key = svc.toLowerCase() as 'whisper' | 'voicevox' | 'ollama';
+                  return (
+                    <button
+                      key={svc}
+                      type="button"
+                      onClick={() => handleStart(key)}
+                      disabled={starting !== null}
+                      style={{
+                        padding: '10px 18px',
+                        borderRadius: 8,
+                        fontSize: 13,
+                        fontWeight: 600,
+                        background: 'rgba(249, 115, 22, 0.18)',
+                        color: 'var(--ember-primary)',
+                        border: '1px solid rgba(249, 115, 22, 0.5)',
+                        cursor: starting !== null ? 'not-allowed' : 'pointer',
+                        opacity: starting !== null ? 0.4 : 1,
+                        minWidth: 200,
+                      }}
+                    >
+                      {starting === key ? `${svc} を起動中...` : `${svc} を起動`}
+                    </button>
+                  );
+                })}
             </div>
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+interface ConsentDialogProps {
+  onAccept: () => void;
+  onDecline: () => void;
+}
+
+function ConsentDialog({ onAccept, onDecline }: ConsentDialogProps) {
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 9999,
+        background: 'rgba(0,0,0,0.85)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <div
+        style={{
+          background: 'var(--ember-surface)',
+          borderRadius: 16,
+          padding: 32,
+          maxWidth: 360,
+          textAlign: 'center',
+          color: 'var(--ember-text)',
+        }}
+      >
+        <div style={{ fontSize: 32, marginBottom: 16 }}>🎙</div>
+        <h2 style={{ fontSize: 16, marginBottom: 12 }}>Always-On Listening</h2>
+        <p
+          style={{
+            fontSize: 13,
+            color: 'var(--ember-text-muted)',
+            lineHeight: 1.6,
+            marginBottom: 20,
+          }}
+        >
+          Ember Chat は常時マイクを使用して音声を監視します。
+          <br />
+          音声はローカルでのみ処理され、外部に送信されません。
+        </p>
+        <button
+          type="button"
+          onClick={onAccept}
+          style={{
+            background: 'var(--ember-gradient)',
+            color: '#fff',
+            border: 'none',
+            borderRadius: 8,
+            padding: '10px 24px',
+            fontSize: 14,
+            cursor: 'pointer',
+            marginRight: 8,
+          }}
+        >
+          許可する
+        </button>
+        <button
+          type="button"
+          onClick={onDecline}
+          style={{
+            background: 'var(--ember-border)',
+            color: 'var(--ember-text-muted)',
+            border: 'none',
+            borderRadius: 8,
+            padding: '10px 24px',
+            fontSize: 14,
+            cursor: 'pointer',
+          }}
+        >
+          後で
+        </button>
+      </div>
     </div>
   );
 }
