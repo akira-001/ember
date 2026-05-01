@@ -406,6 +406,39 @@
       ],
       "evaluate_score": 0.78,
       "sentAt": "2026-05-01T09:01:13.816Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "local_tokorozawa",
+      "preview": "ふふ、聞いてよ。\n\nウォーカープラスに *埼玉の春絶景* まとめが出てたよ 🌸 青空と桜と菜の花のコントラストが綺麗な写真特集みたい。\n\nGW、どこ行くか決まってなければ地元で探してみてもいいかも。\nhttps://news.google.com/rss/articles/CBMiaEFVX3lx",
+      "topic": "埼玉春絶景（青空・桜・菜の花）",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE56SmlJQkRKZjkwTFFyMTFvdTRfSkxKN21mSS13WUxZN3BvNjBLMWk3dS1IRE1ZS0I3ZTJ1WnNsOU1CeWloUEFEbU95bmJnMERmMzNYY01Zc2p0dWQ1SUVhX0RweW0xdzd4?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiaEFVX3lxTE56SmlJQkRKZjkwTFFyMTFvdTRfSkxKN21mSS13WUxZN3BvNjBLMWk3dS1IRE1ZS0I3ZTJ1WnNsOU1CeWloUEFEbU95bmJnMERmMzNYY01Zc2p0dWQ1SUVhX0RweW0xdzd4?oc=5",
+      "sourceType": "ウォーカープラス",
+      "skill": "general",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/event",
+        "local/saitama/tokorozawa/event/flower-sakura"
+      ],
+      "themeKey": "local/saitama/tokorozawa/event/flower-sakura",
+      "inner_thought": "今日もう何本も送ったし黙りたい。でも埼玉絶景、GW初日の夕方にさらっと届けるならギリいいかも",
+      "plan": [
+        "埼玉春絶景をGW候補として共有",
+        "Xbox情報を届ける",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.62,
+        0.41,
+        0.72
+      ],
+      "evaluate_score": 0.55,
+      "sentAt": "2026-05-01T09:31:02.305Z"
     }
   ]
 }
