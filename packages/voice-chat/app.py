@@ -4733,6 +4733,26 @@ async def toggle_improve_loop_auto_approve(body: dict | None = None):
     return {"ok": True, "enabled": enabled}
 
 
+@app.get("/api/improve_loop/state")
+async def get_improve_loop_state():
+    """source of truth for whether improve loop is enabled. Used by ember slack-bot scheduler."""
+    enabled = bool(_settings.get("improveLoopEnabled", False))
+    return {"enabled": enabled}
+
+
+@app.post("/api/improve_loop/state")
+async def set_improve_loop_state(payload: dict | None = None):
+    """update improve loop enabled state from external (e.g., dashboard or API client)."""
+    if payload is None:
+        payload = {}
+    enabled = bool(payload.get("enabled", False))
+    _settings["improveLoopEnabled"] = enabled
+    _sync_improve_loop_disabled_file(enabled)  # backward compat
+    _save_settings(_settings)
+    await _broadcast_settings()
+    return {"enabled": enabled}
+
+
 @app.post("/api/improve_loop/run")
 async def run_improve_loop():
     script = Path(__file__).parent / "co_view_hourly_analysis.sh"

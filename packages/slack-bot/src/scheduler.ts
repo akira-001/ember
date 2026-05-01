@@ -47,6 +47,12 @@ interface CronJob {
   silentMode?: boolean;  // true = run job but don't send output to Slack
   botId?: string;
   disabledIfFileExists?: string;  // skip execution if this sentinel path exists
+  disabledIfApiSays?: {
+    url: string;
+    expectedKey: string;
+    expectedValue?: any;  // undefined = truthy check, defined = strict equality check
+    timeoutMs?: number;   // default 3000
+  };
 }
 
 interface CronJobsConfig {
@@ -315,6 +321,41 @@ export class Scheduler {
         this.cronAdapter.notifyJobExecuted(job.name, job.botId || 'unknown', { status: 'skipped' });
       }
       return;
+    }
+
+    // disabledIfApiSays: HTTP API check (fail-open on error)
+    if (job.disabledIfApiSays) {
+      const { url, expectedKey, expectedValue, timeoutMs = 3000 } = job.disabledIfApiSays;
+      try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), timeoutMs);
+        const res = await fetch(url, { signal: controller.signal });
+        clearTimeout(timeout);
+        const data = await res.json() as Record<string, unknown>;
+        const actual = data[expectedKey];
+        const shouldSkip = expectedValue === undefined ? !!actual : actual === expectedValue;
+        if (shouldSkip) {
+          const now = new Date().toISOString();
+          this.logger.info(`Skipped: ${job.name} (API says ${expectedKey}=${actual})`);
+          this.logHistory({
+            jobName: job.name,
+            startedAt: now,
+            completedAt: now,
+            durationMs: 0,
+            status: 'skipped',
+            botId: job.botId || 'unknown',
+            error: null,
+            outputPreview: `disabled by API: ${url} ${expectedKey}=${JSON.stringify(actual)}`,
+          });
+          if (this.cronAdapter) {
+            this.cronAdapter.notifyJobExecuted(job.name, job.botId || 'unknown', { status: 'skipped' });
+          }
+          return;
+        }
+      } catch (e: any) {
+        // fail-open: API 不通なら通常実行
+        this.logger.warn(`disabledIfApiSays check failed for ${job.name} (fail-open, will run)`, { error: e?.message });
+      }
     }
 
     // Proactive agent handles its own execution
