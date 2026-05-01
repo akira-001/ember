@@ -8,17 +8,19 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const ROOT = path.resolve(__dirname, '..');
-const DATA_DIR = path.join(ROOT, 'data');
+const ROOT = path.resolve(__dirname, '..');                  // packages/dashboard (for vite dist/)
+const EMBER_ROOT = path.resolve(__dirname, '../../..');      // ember monorepo root
+const SLACK_BOT_ROOT = path.join(EMBER_ROOT, 'packages', 'slack-bot');
+const DATA_DIR = path.join(EMBER_ROOT, 'data');
 const BOT_CONFIGS_FILE = path.join(DATA_DIR, 'bot-configs.json');
 const INSIGHTS_FILE = path.join(DATA_DIR, 'user-insights.json');
 const PERSONALITY_TEMPLATES_FILE = path.join(DATA_DIR, 'personality-templates.json');
-const CRON_FILE = path.join(ROOT, 'cron-jobs.json');
+const CRON_FILE = path.join(SLACK_BOT_ROOT, 'cron-jobs.json');
 const DEFAULT_CRON_SLACK_TARGET = 'C0AHPJMS5QE';
-const MCP_FILE = path.join(ROOT, 'mcp-servers.json');
-const ENV_FILE = path.join(ROOT, '.env');
+const MCP_FILE = path.join(SLACK_BOT_ROOT, 'mcp-servers.json');
+const ENV_FILE = path.join(SLACK_BOT_ROOT, '.env');
 const STAMP_DIR = DATA_DIR; // stamp files in data/
-const AUDIO_FIXTURE_INCOMING_DIR = path.resolve(ROOT, '../voice-chat/tests/fixtures/audio/incoming');
+const AUDIO_FIXTURE_INCOMING_DIR = path.resolve(__dirname, '../../voice-chat/tests/fixtures/audio/incoming');
 
 const app = express();
 app.use(express.json({ limit: '1mb' }));
@@ -66,7 +68,7 @@ function findProactiveCronJob(cronData: any, botId: string): any | undefined {
 function getStatePath(botId: string): string {
   const configs = loadConfigs();
   const bot = findBot(configs, botId);
-  return bot ? path.join(ROOT, bot.statePath) : path.join(DATA_DIR, `${botId}-state.json`);
+  return bot ? path.join(EMBER_ROOT, bot.statePath) : path.join(DATA_DIR, `${botId}-state.json`);
 }
 
 function redactCredentials(bot: any): any {
@@ -816,7 +818,7 @@ app.get('/api/cron-jobs', (_req, res) => {
 });
 
 // Cron job detail with execution history
-const CRON_HISTORY_FILE = path.join(ROOT, 'data', 'cron-history.jsonl');
+const CRON_HISTORY_FILE = path.join(DATA_DIR, 'cron-history.jsonl');
 
 function readCronHistory(jobName?: string, limit = 50): any[] {
   if (!existsSync(CRON_HISTORY_FILE)) return [];
@@ -937,7 +939,7 @@ app.post('/api/cron-jobs/:name/run', (req, res) => {
           };
 
           try {
-            mkdirSync(path.join(ROOT, 'data'), { recursive: true });
+            mkdirSync(DATA_DIR, { recursive: true });
             appendFileSync(CRON_HISTORY_FILE, JSON.stringify(entry) + '\n');
           } catch { /* ignore */ }
 
@@ -989,7 +991,7 @@ app.post('/api/cron-jobs/:name/run', (req, res) => {
 
           // Append to history
           try {
-            mkdirSync(path.join(ROOT, 'data'), { recursive: true });
+            mkdirSync(DATA_DIR, { recursive: true });
             appendFileSync(CRON_HISTORY_FILE, JSON.stringify(entry) + '\n');
           } catch { /* ignore */ }
 
@@ -1038,7 +1040,7 @@ app.post('/api/cron-jobs/:name/run', (req, res) => {
 
       // Append to history
       try {
-        mkdirSync(path.join(ROOT, 'data'), { recursive: true });
+        mkdirSync(DATA_DIR, { recursive: true });
         appendFileSync(CRON_HISTORY_FILE, JSON.stringify(entry) + '\n');
       } catch { /* ignore */ }
 
@@ -1103,7 +1105,7 @@ app.post('/api/cron-jobs/:name/run', (req, res) => {
         };
 
         try {
-          mkdirSync(path.join(ROOT, 'data'), { recursive: true });
+          mkdirSync(DATA_DIR, { recursive: true });
           appendFileSync(CRON_HISTORY_FILE, JSON.stringify(entry) + '\n');
         } catch { /* ignore */ }
 
@@ -2323,7 +2325,7 @@ app.post('/api/local-models/ollama/unload', async (req, res) => {
 // PROFILE API
 // ===================================================================
 
-const PROFILE_FILE = path.join(ROOT, 'data', 'user-profile.json');
+const PROFILE_FILE = path.join(DATA_DIR, 'user-profile.json');
 
 // Layers and their valid fields
 const PROFILE_SCHEMA: Record<string, string[]> = {
