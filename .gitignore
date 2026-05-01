@@ -39,6 +39,9 @@ scripts/ember-chat/recordings/
 Thumbs.db
 **/mcp-servers.json
 
+# Local scratch (humanness persona cache 等)
+tmp/
+
 # Slack-bot local symlinks (dangle on other checkouts)
 packages/slack-bot/data
 packages/slack-bot/memory
