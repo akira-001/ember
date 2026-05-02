@@ -800,13 +800,16 @@ async def _chat_openai(messages: list[dict], model: str) -> str:
             proc.communicate(),
             timeout=60,
         )
+        # codex 0.128.0 は stdin DEVNULL でも exit code 1 を返すことがあるが
+        # output-last-message ファイルが書かれていれば応答は取得できている
+        if out_path.exists():
+            content = out_path.read_text(encoding="utf-8").strip()
+            if content:
+                return content
         if proc.returncode != 0:
             err = stderr_b.decode("utf-8", errors="replace")[:200]
             logger.warning(f"[llm/openai] CLI exit {proc.returncode}: {err}")
-            return await _chat_ollama(messages, "gemma4:e4b")
-        if out_path.exists():
-            return out_path.read_text(encoding="utf-8").strip()
-        return ""
+        return await _chat_ollama(messages, "gemma4:e4b")
     except asyncio.TimeoutError:
         logger.warning("[llm/openai] CLI timeout (60s), falling back to Ollama")
         return await _chat_ollama(messages, "gemma4:e4b")
