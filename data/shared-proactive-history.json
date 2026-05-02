@@ -857,6 +857,38 @@
       ],
       "evaluate_score": 0.62,
       "sentAt": "2026-05-02T08:31:17.507Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "hobby_leisure",
+      "interestCategory": "onsen",
+      "preview": "ねえ、知ってる？\n\nYouTubeに *「衰退した日本一有名な温泉街が凄い事になっていた」* って熱海の動画が上がってたよ ♨️\n\n「バブル遺産」ってタイトルが気になって。新時代を模索する熱海の今らしい。\nhttps://www.youtube.com/watch?v=ZeW2jzbnibg",
+      "topic": "熱海温泉街バブル遺産YouTube",
+      "url": "https://www.youtube.com/watch?v=ZeW2jzbnibg",
+      "candidateId": "url:https://www.youtube.com/watch?v=ZeW2jzbnibg",
+      "sourceType": "話題候補テーブル",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/youtube",
+        "entertainment/movie-drama/youtube/trailer"
+      ],
+      "themeKey": "entertainment/movie-drama/youtube/trailer",
+      "inner_thought": "今日温泉を1回送ったけど熱海の再生話は別角度。バブル遺産ってフレーズが気になりすぎる",
+      "plan": [
+        "熱海温泉街バブル遺産動画を届ける",
+        "スタートアップ資金調達まとめを届ける",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.65,
+        0.5,
+        0.72
+      ],
+      "evaluate_score": 0.6,
+      "sentAt": "2026-05-02T09:31:16.818Z"
     }
   ]
 }

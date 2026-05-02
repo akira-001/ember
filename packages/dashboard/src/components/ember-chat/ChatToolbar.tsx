@@ -87,7 +87,9 @@ export default function ChatToolbar({
         style={selectStyle}
       >
         <optgroup label="Cloud">
+          <option value="claude-opus-4-7">claude-opus-4-7</option>
           <option value="claude-sonnet-4-6">claude-sonnet-4-6</option>
+          <option value="gpt-5.5">gpt-5.5</option>
           <option value="gpt-5-mini">gpt-5-mini</option>
         </optgroup>
         <optgroup label="Local (Ollama)">

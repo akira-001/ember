@@ -782,10 +782,13 @@ async def _chat_openai(messages: list[dict], model: str) -> str:
     if not prompt:
         return ""
     out_path = Path(tempfile.mkdtemp()) / "codex_out.txt"
+    # model 名: gpt-5-mini / gpt-5.5 / gpt-5 等を codex CLI に渡す（既定: gpt-5-mini）
+    cli_model = model if model.startswith("gpt") else "gpt-5-mini"
     try:
         proc = await asyncio.create_subprocess_exec(
             "codex", "exec",
             "--skip-git-repo-check",
+            "--model", cli_model,
             "--output-last-message", str(out_path),
             "--dangerously-bypass-approvals-and-sandbox",
             prompt,
