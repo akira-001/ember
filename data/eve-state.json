@@ -5264,7 +5264,7 @@
       "themeKey": "entertainment/movie-drama/vivant"
     }
   ],
-  "lastCheckAt": "2026-05-02T13:31:14.063Z",
+  "lastCheckAt": "2026-05-02T14:30:50.220Z",
   "stats": {
     "totalSent": 569,
     "positiveReactions": 26,
@@ -5510,30 +5510,6 @@
   "todayDate": "2026-05-02",
   "lastScoredCandidates": [
     {
-      "topic": "最新ドラマ視聴データ速報【ビデオリサーチ調べ】（視聴率・視聴人数） - 株式会社ビデオリサーチ",
-      "source": "interest-cache",
-      "category": "tv_drama",
-      "pub_date": "2026-05-01T22:33:29+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5TR2RMQ01rMW0yNmtMclhEMUNRVm8xd3Z4dy01T3M3LUM1dVNDdHdSV0JFYkNCdTg4Tmx6bkVGMXpsakplanNidnRTMlIydzZYR0lJa3JYejNBUQ?oc=5",
-        "mediaSource": "株式会社ビデオリサーチ",
-        "emotion_type": "light",
-        "timeliness": 0.952
-      },
-      "scores": {
-        "timeliness": 0.6257775192901235,
-        "novelty": 0.1,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.7280505391144254,
-      "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.0280505391144255
-    },
-    {
       "topic": "両親を殺した犯人を、法律では裁けない――“切りつけられた少女”の正体が話題『田鎖ブラザーズ』が注目度上昇 - マイナビニュース",
       "source": "interest-cache",
       "category": "tv_drama",
@@ -5545,41 +5521,17 @@
         "timeliness": 0.919
       },
       "scores": {
-        "timeliness": 0.6041378549382715,
+        "timeliness": 0.5902450771604938,
         "novelty": 0.1,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.7249894315311032,
+      "finalScore": 0.7346189921705287,
       "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.0249894315311032
-    },
-    {
-      "topic": "4月27日〜5月1日 スタートアップ資金調達まとめ読み - 日本経済新聞",
-      "source": "interest-cache",
-      "category": "ma_startup",
-      "pub_date": "2026-05-01T20:00:00+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE41NDdDZ09RYjZhZTNwemdqbUNVTnQ2bzBnOHJ4a2hwUlVyMkVNVUV0YVY5b0FRUDAxTXpmYUZjLThwLTNFb21BeXZ4Qlc3d2ZqU3lsRHhPNGtoMl83ZGpUbEs4R1lxZ0ZFSUk3TA?oc=5",
-        "mediaSource": "日本経済新聞",
-        "emotion_type": "heavy",
-        "timeliness": 0.899
-      },
-      "scores": {
-        "timeliness": 0.5902490470679013,
-        "novelty": 0.1,
-        "continuity": 0.9,
-        "emotional_fit": 0.2,
-        "affinity": 0.4,
-        "surprise": 0.7
-      },
-      "finalScore": 0.7070874495476942,
-      "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.0070874495476942
+      "selectionScore": 1.0346189921705287
     },
     {
       "topic": "【2024年】川越の人気桜スポット9選！公園や寺院など、情緒あふれるお花見スポットを紹介 - ウォーカープラス",
@@ -5593,17 +5545,113 @@
         "timeliness": 0.87
       },
       "scores": {
-        "timeliness": 0.5715761766975309,
+        "timeliness": 0.5576834027777777,
         "novelty": 0.1,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.7012202810606617,
+      "finalScore": 0.7081168866531773,
       "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.0012202810606616
+      "selectionScore": 1.0081168866531773
+    },
+    {
+      "topic": "4月27日〜5月1日 スタートアップ資金調達まとめ読み - 日本経済新聞",
+      "source": "interest-cache",
+      "category": "ma_startup",
+      "pub_date": "2026-05-01T20:00:00+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE41NDdDZ09RYjZhZTNwemdqbUNVTnQ2bzBnOHJ4a2hwUlVyMkVNVUV0YVY5b0FRUDAxTXpmYUZjLThwLTNFb21BeXZ4Qlc3d2ZqU3lsRHhPNGtoMl83ZGpUbEs4R1lxZ0ZFSUk3TA?oc=5",
+        "mediaSource": "日本経済新聞",
+        "emotion_type": "heavy",
+        "timeliness": 0.899
+      },
+      "scores": {
+        "timeliness": 0.5763562808641975,
+        "novelty": 0.1,
+        "continuity": 0.9,
+        "emotional_fit": 0.2,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.684357630204156,
+      "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 0.9843576302041559
+    },
+    {
+      "topic": "MCP command execution flaw: what security teams need to know - VentureBeat",
+      "source": "interest-cache",
+      "category": "dev_tools",
+      "pub_date": "2026-05-01T20:35:46+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQelFXaE4zVFFELXN0NktnUWQ0LXdNVzZtZFZoeXltY2twWWJYNEJDWjhkTVFZX2o5anVQeVpvQ2V1RnZMamNacWo4MFBPU3ppUU50b0FjVDEzNG9GWmd5MEdUcnkwbHlTOE9VQ3YyYWVsOHhJUUlKd3BWbDIwNHpJcm9EZ2lqVWRxb0dyTWJBelBjdXMwWENZQlV0Sk9WUQ?oc=5",
+        "mediaSource": "VentureBeat",
+        "emotion_type": "medium",
+        "timeliness": 0.766
+      },
+      "scores": {
+        "timeliness": 0.5846356327160493,
+        "novelty": 0.1,
+        "continuity": 0.3,
+        "emotional_fit": 0.5,
+        "affinity": 0.5,
+        "surprise": 0.7
+      },
+      "finalScore": 0.6586174717648747,
+      "reasoning": "意外・サプライズ・タイムリー（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 0.9586174717648748
+    },
+    {
+      "topic": "「Llama」Metaが開発したオープンソースの大規模言語モデル - 窓の杜",
+      "source": "interest-cache",
+      "category": "llm_local",
+      "pub_date": "2026-05-01T21:05:00+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFAtc0lRNEdEakdmS3c0bVpMaDRLVGdoakhqY3d0NDFncDk5c0d4UmgzWk1Xcm9JM29WWExkZjdfUUhXRGVBQU5jQVd1MXByS1dRTFpmcG5zZ2JCTmdERGpmTG9obDRXX1BXWXc?oc=5",
+        "mediaSource": "窓の杜",
+        "emotion_type": "medium",
+        "timeliness": 0.922
+      },
+      "scores": {
+        "timeliness": 0.591402700617284,
+        "novelty": 0.1,
+        "continuity": 0.3,
+        "emotional_fit": 0.5,
+        "affinity": 0.5,
+        "surprise": 0.7
+      },
+      "finalScore": 0.6553827358317832,
+      "reasoning": "意外・サプライズ・タイムリー（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 0.9553827358317832
+    },
+    {
+      "topic": "University of Arkansas at Fort Smith to host open house, ribbon cutting for new manufacturing and workforce development centers - River Valley Democrat-Gazette",
+      "source": "interest-cache",
+      "category": "dev_tools",
+      "pub_date": "2026-05-01T18:55:00+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOdmtQRm0xLWlwVVpMN1M5YTRubWZkYk5kQldJZDFjUk94aHp5VGFsamNxQ2Qxa0poV0psWGRPY3k0bFRNNEgxTFlsWlZBQWRqalh6dTgxbDZDQXl6MURGZFM4MFJaY1F4WUE4cG40cWc1UGhjX2lQZEFkT2dQVlhvNDh0eVljMmtSMmk2cWdxWWQ0c0RwQUNLZ3UwQUVqeVFLQVFXQ3Vmczl2T0VBZGtv?oc=5",
+        "mediaSource": "River Valley Democrat-Gazette",
+        "emotion_type": "medium",
+        "timeliness": 0.731
+      },
+      "scores": {
+        "timeliness": 0.5613100115740741,
+        "novelty": 0.1,
+        "continuity": 0.3,
+        "emotional_fit": 0.5,
+        "affinity": 0.5,
+        "surprise": 0.7
+      },
+      "finalScore": 0.6533629615661884,
+      "reasoning": "意外・サプライズ・タイムリー（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 0.9533629615661885
     },
     {
       "topic": "映画『BLUE  GIANT』│「N.E.W.」ライブシーン特別映像【大ヒット上映中！】",
@@ -5625,10 +5673,34 @@
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.6657785077093262,
+      "finalScore": 0.6530440251650754,
       "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.9657785077093262
+      "selectionScore": 0.9530440251650754
+    },
+    {
+      "topic": "ATTOM Webinar Summary: Powering Property Intelligence: Inside the ATTOM API & MCP Server - attom",
+      "source": "interest-cache",
+      "category": "dev_tools",
+      "pub_date": "2026-05-01T16:33:58+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOTXAwV0gtbXFSOGlocEl0SjZMcFZpMWFhSU1DVHBLSXFnYUVzcGZFNzlLZXVSUFBZMS1wOFZScmpFM2xXNjlULUZFeFhQNm9DeGxaTTI2ZEk1SktjNXlZUGFodUx6dndQYzJERGhQNXIwNVhVTmR5T3N6dGFmbGZqdUNWUGZHSE4zMUQ2aVBPSkc1Wjc0V0JoaEViMHVyMzRxYmdaVnlfa240YmdWeTFBV2c4RFl6ZG5xWGtIaUVaZUhsMTMyekdJNQ?oc=5",
+        "mediaSource": "attom",
+        "emotion_type": "medium",
+        "timeliness": 0.682
+      },
+      "scores": {
+        "timeliness": 0.5286633989197531,
+        "novelty": 0.1,
+        "continuity": 0.3,
+        "emotional_fit": 0.5,
+        "affinity": 0.5,
+        "surprise": 0.7
+      },
+      "finalScore": 0.6460087325790773,
+      "reasoning": "意外・サプライズ・タイムリー（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 0.9460087325790774
     },
     {
       "topic": "2026年 ＃春ドラマ 紹介します",
@@ -5650,186 +5722,117 @@
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.6566133753680564,
+      "finalScore": 0.6438788928238056,
       "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.9566133753680564
+      "selectionScore": 0.9438788928238055
     },
     {
-      "topic": "MCP command execution flaw: what security teams need to know - VentureBeat",
+      "topic": "【東京・大門】肉塊にナイフが吸い込まれる！『ビストロ カリテプリ』で味わう極厚ポークステーキの衝撃 - Yahoo!ニュース",
       "source": "interest-cache",
-      "category": "dev_tools",
-      "pub_date": "2026-05-01T20:35:46+00:00",
+      "category": "food_dining",
+      "pub_date": "2026-05-01T14:53:07+00:00",
       "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQelFXaE4zVFFELXN0NktnUWQ0LXdNVzZtZFZoeXltY2twWWJYNEJDWjhkTVFZX2o5anVQeVpvQ2V1RnZMamNacWo4MFBPU3ppUU50b0FjVDEzNG9GWmd5MEdUcnkwbHlTOE9VQ3YyYWVsOHhJUUlKd3BWbDIwNHpJcm9EZ2lqVWRxb0dyTWJBelBjdXMwWENZQlV0Sk9WUQ?oc=5",
-        "mediaSource": "VentureBeat",
-        "emotion_type": "medium",
-        "timeliness": 0.766
+        "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNcm5xX2hEVFZVZXRjQ0oyU1J1dTFCbWRsd3lHckN0YTVTeG9XWUd3TkNXUDVHcjNtSXNuSnBnZGJIdWxmcHZ4MmZUbnV4QUI3TkgweElDYVFscFZGdU5tUk9oZEJjUXppTEdCUjVadEpqd3dIZWlaUGd6UVRYZldkS05ENjVLNjFB?oc=5",
+        "mediaSource": "Yahoo!ニュース",
+        "emotion_type": "light",
+        "timeliness": 0.792
       },
       "scores": {
-        "timeliness": 0.5985283950617284,
+        "timeliness": 0.5053184490740741,
         "novelty": 0.1,
         "continuity": 0.3,
-        "emotional_fit": 0.5,
+        "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.6562808647890657,
-      "reasoning": "意外・サプライズ・タイムリー（interest-cache）",
+      "finalScore": 0.6200122844734118,
+      "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.9562808647890657
-    },
-    {
-      "topic": "University of Arkansas at Fort Smith to host open house, ribbon cutting for new manufacturing and workforce development centers - River Valley Democrat-Gazette",
-      "source": "interest-cache",
-      "category": "dev_tools",
-      "pub_date": "2026-05-01T18:55:00+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOdmtQRm0xLWlwVVpMN1M5YTRubWZkYk5kQldJZDFjUk94aHp5VGFsamNxQ2Qxa0poV0psWGRPY3k0bFRNNEgxTFlsWlZBQWRqalh6dTgxbDZDQXl6MURGZFM4MFJaY1F4WUE4cG40cWc1UGhjX2lQZEFkT2dQVlhvNDh0eVljMmtSMmk2cWdxWWQ0c0RwQUNLZ3UwQUVqeVFLQVFXQ3Vmczl2T0VBZGtv?oc=5",
-        "mediaSource": "River Valley Democrat-Gazette",
-        "emotion_type": "medium",
-        "timeliness": 0.731
-      },
-      "scores": {
-        "timeliness": 0.5752027700617284,
-        "novelty": 0.1,
-        "continuity": 0.3,
-        "emotional_fit": 0.5,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.6529812642771418,
-      "reasoning": "意外・サプライズ・タイムリー（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 0.9529812642771418
-    },
-    {
-      "topic": "「Llama」Metaが開発したオープンソースの大規模言語モデル - 窓の杜",
-      "source": "interest-cache",
-      "category": "llm_local",
-      "pub_date": "2026-05-01T21:05:00+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFAtc0lRNEdEakdmS3c0bVpMaDRLVGdoakhqY3d0NDFncDk5c0d4UmgzWk1Xcm9JM29WWExkZjdfUUhXRGVBQU5jQVd1MXByS1dRTFpmcG5zZ2JCTmdERGpmTG9obDRXX1BXWXc?oc=5",
-        "mediaSource": "窓の杜",
-        "emotion_type": "medium",
-        "timeliness": 0.922
-      },
-      "scores": {
-        "timeliness": 0.6052954513888888,
-        "novelty": 0.1,
-        "continuity": 0.3,
-        "emotional_fit": 0.5,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.6527171434243152,
-      "reasoning": "意外・サプライズ・タイムリー（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 0.9527171434243151
-    },
-    {
-      "topic": "ATTOM Webinar Summary: Powering Property Intelligence: Inside the ATTOM API & MCP Server - attom",
-      "source": "interest-cache",
-      "category": "dev_tools",
-      "pub_date": "2026-05-01T16:33:58+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOTXAwV0gtbXFSOGlocEl0SjZMcFZpMWFhSU1DVHBLSXFnYUVzcGZFNzlLZXVSUFBZMS1wOFZScmpFM2xXNjlULUZFeFhQNm9DeGxaTTI2ZEk1SktjNXlZUGFodUx6dndQYzJERGhQNXIwNVhVTmR5T3N6dGFmbGZqdUNWUGZHSE4zMUQ2aVBPSkc1Wjc0V0JoaEViMHVyMzRxYmdaVnlfa240YmdWeTFBV2c4RFl6ZG5xWGtIaUVaZUhsMTMyekdJNQ?oc=5",
-        "mediaSource": "attom",
-        "emotion_type": "medium",
-        "timeliness": 0.682
-      },
-      "scores": {
-        "timeliness": 0.542556161265432,
-        "novelty": 0.1,
-        "continuity": 0.3,
-        "emotional_fit": 0.5,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.6483631343407801,
-      "reasoning": "意外・サプライズ・タイムリー（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 0.9483631343407801
+      "selectionScore": 0.9200122844734118
     }
   ],
   "lastDecisionLog": {
     "premise": {
       "estimatedMode": "達成モード・低エネルギー",
-      "modeReason": "22:30土曜夜。今日11本送信済み。21:31にVIVANT続編を送った直後。GW初日を過ごし切った疲労ピーク帯。",
-      "targetLayer": 5,
-      "layerReason": "深夜帯・低エネルギー状態を最優先に考慮。重い話題は避ける。",
+      "modeReason": "23:30の深夜土曜。GW初日で今日は11本以上メッセージを送った。疲労ピークに近い時間帯",
+      "targetLayer": 4,
+      "layerReason": "ai/local-llmテーマ在庫不足（目標4・現在1）で、Ember開発との接続がある実行層の話題がある",
       "interventionType": "情報提供",
-      "interventionReason": "コンサル業に直結する週次まとめ情報なら、軽く流せる読み物として22:30でも受け入れられる可能性がある。",
+      "interventionReason": "深夜なので極めて短く、技術的な興味に刺さるものを1本だけ届ける",
+      "reason": "ai/local-llm在庫補充かつEmber接続で、深夜でも刺さる可能性がある",
       "informationGap": null,
       "collectionHint": null
     },
     "decision": "send",
-    "need": "情報収集・軽い刺激",
-    "reason": "business/consulting/finance/kpiテーマ在庫不足 + 週次まとめは軽いトーンで届けられる",
+    "need": "知的刺激・Ember開発の参考",
+    "reason": "ai/local-llmテーマ在庫不足、かつEmber開発との接続がある",
     "candidates": [
       {
-        "topic": "4月27日〜5月1日 スタートアップ資金調達まとめ読み",
-        "source": "日本経済新聞",
-        "score": 0.71
+        "topic": "Llama Meta オープンソースLLM - 窓の杜",
+        "source": "topics",
+        "score": 0.66
       },
       {
-        "topic": "最新ドラマ視聴データ速報",
-        "source": "ビデオリサーチ",
-        "score": 0.48
+        "topic": "スタートアップ資金調達まとめ - 日経",
+        "source": "topics",
+        "score": 0.68
       },
       {
-        "topic": "MCP command execution flaw",
-        "source": "VentureBeat",
-        "score": 0.4
+        "topic": "田鎖ブラザーズ - マイナビニュース",
+        "source": "topics",
+        "score": 0.73
       }
     ],
-    "message": "ねえ、今いい？\n\n日経に *4月27日〜5月1日のスタートアップ資金調達まとめ* が出てたよ 📊\n\nGWの隙間にざっと流し読みするのによさそう。\nhttps://news.google.com/rss/articles/CBMibEFVX3lxTE41NDdDZ09RYjZhZTNwemdqbUNVTnQ2bzBnOHJ4a2hwUlVyMkVNVUV0YVY5b0FRUDAxTXpmYUZjLThwLTNFb21BeXZ4Qlc3d2ZqU3lsRHhPNGtoMl83ZGpUbEs0R1lxZ0ZFSUk3TA",
+    "message": "ね、Akiraさん。\n\n窓の杜に *Metaのオープンソース大規模言語モデル「Llama」* の解説記事が出てたよ 🦙\n\nEmber開発でローカルモデル検討するとき、参考になるかも。\nhttps://news.google.com/rss/articles/CBMiakFVX3lxTFAtc0lRNEdEakdmS3c0bVpMaDRLVGdoakhqY3d0NDFncDk5c0d4UmgzWk1Xcm9JM29WWExkZjdfUUhXRGVBQU5jQVd1MXByS1dRTFpmcG5zZ2JCTmdERGpmTG9obDRXX1BXWXc",
     "topicWeight": "light",
-    "inner_thought": "もう黙りたいけど、日経スタートアップ週次まとめはコンサルのAkiraさんに自然かも",
+    "inner_thought": "もう深夜だし黙りたい。でもLlamaのローカルLLM記事、Ember開発してるAkiraさんに1行だけ届けたい",
     "plan": [
-      "スタートアップ資金調達まとめを共有",
+      "Llama Meta ローカルLLM記事を届ける",
+      "スタートアップ資金調達まとめを届ける",
       "沈黙"
     ],
     "generate_score": [
-      0.52,
-      0.78
+      0.62,
+      0.4,
+      0.72
     ],
-    "evaluate_score": 0.45,
-    "timestamp": "2026-05-02T13:31:14.066Z",
+    "evaluate_score": 0.52,
+    "timestamp": "2026-05-02T14:30:50.230Z",
     "skill": "none",
     "scoredCandidates": [
-      {
-        "topic": "最新ドラマ視聴データ速報【ビデオリサーチ調べ】（視聴率・視聴人数） - 株式会社ビデオリサーチ",
-        "source": "interest-cache",
-        "category": "tv_drama",
-        "scores": {
-          "timeliness": 0.6257775192901235,
-          "novelty": 0.1,
-          "continuity": 0.3,
-          "emotional_fit": 0.9,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.7280505391144254,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.0280505391144255,
-        "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
-      },
       {
         "topic": "両親を殺した犯人を、法律では裁けない――“切りつけられた少女”の正体が話題『田鎖ブラザーズ』が注目度上昇 - マイナビニュース",
         "source": "interest-cache",
         "category": "tv_drama",
         "scores": {
-          "timeliness": 0.6041378549382715,
+          "timeliness": 0.5902450771604938,
           "novelty": 0.1,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.7249894315311032,
+        "finalScore": 0.7346189921705287,
         "explorationBonus": 0.3,
-        "selectionScore": 1.0249894315311032,
+        "selectionScore": 1.0346189921705287,
+        "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
+      },
+      {
+        "topic": "【2024年】川越の人気桜スポット9選！公園や寺院など、情緒あふれるお花見スポットを紹介 - ウォーカープラス",
+        "source": "interest-cache",
+        "category": "weather_seasonal",
+        "scores": {
+          "timeliness": 0.5576834027777777,
+          "novelty": 0.1,
+          "continuity": 0.3,
+          "emotional_fit": 0.9,
+          "affinity": 0.5,
+          "surprise": 0.7
+        },
+        "finalScore": 0.7081168866531773,
+        "explorationBonus": 0.3,
+        "selectionScore": 1.0081168866531773,
         "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
       },
       {
@@ -5837,34 +5840,68 @@
         "source": "interest-cache",
         "category": "ma_startup",
         "scores": {
-          "timeliness": 0.5902490470679013,
+          "timeliness": 0.5763562808641975,
           "novelty": 0.1,
           "continuity": 0.9,
           "emotional_fit": 0.2,
           "affinity": 0.4,
           "surprise": 0.7
         },
-        "finalScore": 0.7070874495476942,
+        "finalScore": 0.684357630204156,
         "explorationBonus": 0.3,
-        "selectionScore": 1.0070874495476942,
+        "selectionScore": 0.9843576302041559,
         "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）"
       },
       {
-        "topic": "【2024年】川越の人気桜スポット9選！公園や寺院など、情緒あふれるお花見スポットを紹介 - ウォーカープラス",
+        "topic": "MCP command execution flaw: what security teams need to know - VentureBeat",
         "source": "interest-cache",
-        "category": "weather_seasonal",
+        "category": "dev_tools",
         "scores": {
-          "timeliness": 0.5715761766975309,
+          "timeliness": 0.5846356327160493,
           "novelty": 0.1,
           "continuity": 0.3,
-          "emotional_fit": 0.9,
+          "emotional_fit": 0.5,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.7012202810606617,
+        "finalScore": 0.6586174717648747,
         "explorationBonus": 0.3,
-        "selectionScore": 1.0012202810606616,
-        "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
+        "selectionScore": 0.9586174717648748,
+        "reasoning": "意外・サプライズ・タイムリー（interest-cache）"
+      },
+      {
+        "topic": "「Llama」Metaが開発したオープンソースの大規模言語モデル - 窓の杜",
+        "source": "interest-cache",
+        "category": "llm_local",
+        "scores": {
+          "timeliness": 0.591402700617284,
+          "novelty": 0.1,
+          "continuity": 0.3,
+          "emotional_fit": 0.5,
+          "affinity": 0.5,
+          "surprise": 0.7
+        },
+        "finalScore": 0.6553827358317832,
+        "explorationBonus": 0.3,
+        "selectionScore": 0.9553827358317832,
+        "reasoning": "意外・サプライズ・タイムリー（interest-cache）"
+      },
+      {
+        "topic": "University of Arkansas at Fort Smith to host open house, ribbon cutting for new manufacturing and workforce development centers - River Valley Democrat-Gazette",
+        "source": "interest-cache",
+        "category": "dev_tools",
+        "scores": {
+          "timeliness": 0.5613100115740741,
+          "novelty": 0.1,
+          "continuity": 0.3,
+          "emotional_fit": 0.5,
+          "affinity": 0.5,
+          "surprise": 0.7
+        },
+        "finalScore": 0.6533629615661884,
+        "explorationBonus": 0.3,
+        "selectionScore": 0.9533629615661885,
+        "reasoning": "意外・サプライズ・タイムリー（interest-cache）"
       },
       {
         "topic": "映画『BLUE  GIANT』│「N.E.W.」ライブシーン特別映像【大ヒット上映中！】",
@@ -5878,10 +5915,27 @@
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.6657785077093262,
+        "finalScore": 0.6530440251650754,
         "explorationBonus": 0.3,
-        "selectionScore": 0.9657785077093262,
+        "selectionScore": 0.9530440251650754,
         "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
+      },
+      {
+        "topic": "ATTOM Webinar Summary: Powering Property Intelligence: Inside the ATTOM API & MCP Server - attom",
+        "source": "interest-cache",
+        "category": "dev_tools",
+        "scores": {
+          "timeliness": 0.5286633989197531,
+          "novelty": 0.1,
+          "continuity": 0.3,
+          "emotional_fit": 0.5,
+          "affinity": 0.5,
+          "surprise": 0.7
+        },
+        "finalScore": 0.6460087325790773,
+        "explorationBonus": 0.3,
+        "selectionScore": 0.9460087325790774,
+        "reasoning": "意外・サプライズ・タイムリー（interest-cache）"
       },
       {
         "topic": "2026年 ＃春ドラマ 紹介します",
@@ -5895,95 +5949,44 @@
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.6566133753680564,
+        "finalScore": 0.6438788928238056,
         "explorationBonus": 0.3,
-        "selectionScore": 0.9566133753680564,
+        "selectionScore": 0.9438788928238055,
         "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
       },
       {
-        "topic": "MCP command execution flaw: what security teams need to know - VentureBeat",
+        "topic": "【東京・大門】肉塊にナイフが吸い込まれる！『ビストロ カリテプリ』で味わう極厚ポークステーキの衝撃 - Yahoo!ニュース",
         "source": "interest-cache",
-        "category": "dev_tools",
+        "category": "food_dining",
         "scores": {
-          "timeliness": 0.5985283950617284,
+          "timeliness": 0.5053184490740741,
           "novelty": 0.1,
           "continuity": 0.3,
-          "emotional_fit": 0.5,
+          "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.6562808647890657,
+        "finalScore": 0.6200122844734118,
         "explorationBonus": 0.3,
-        "selectionScore": 0.9562808647890657,
-        "reasoning": "意外・サプライズ・タイムリー（interest-cache）"
-      },
-      {
-        "topic": "University of Arkansas at Fort Smith to host open house, ribbon cutting for new manufacturing and workforce development centers - River Valley Democrat-Gazette",
-        "source": "interest-cache",
-        "category": "dev_tools",
-        "scores": {
-          "timeliness": 0.5752027700617284,
-          "novelty": 0.1,
-          "continuity": 0.3,
-          "emotional_fit": 0.5,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.6529812642771418,
-        "explorationBonus": 0.3,
-        "selectionScore": 0.9529812642771418,
-        "reasoning": "意外・サプライズ・タイムリー（interest-cache）"
-      },
-      {
-        "topic": "「Llama」Metaが開発したオープンソースの大規模言語モデル - 窓の杜",
-        "source": "interest-cache",
-        "category": "llm_local",
-        "scores": {
-          "timeliness": 0.6052954513888888,
-          "novelty": 0.1,
-          "continuity": 0.3,
-          "emotional_fit": 0.5,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.6527171434243152,
-        "explorationBonus": 0.3,
-        "selectionScore": 0.9527171434243151,
-        "reasoning": "意外・サプライズ・タイムリー（interest-cache）"
-      },
-      {
-        "topic": "ATTOM Webinar Summary: Powering Property Intelligence: Inside the ATTOM API & MCP Server - attom",
-        "source": "interest-cache",
-        "category": "dev_tools",
-        "scores": {
-          "timeliness": 0.542556161265432,
-          "novelty": 0.1,
-          "continuity": 0.3,
-          "emotional_fit": 0.5,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.6483631343407801,
-        "explorationBonus": 0.3,
-        "selectionScore": 0.9483631343407801,
-        "reasoning": "意外・サプライズ・タイムリー（interest-cache）"
+        "selectionScore": 0.9200122844734118,
+        "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
       }
     ],
     "weightsUsed": {
-      "timeliness": 0.14145818223194598,
-      "novelty": 0.12346177296811132,
-      "continuity": 0.20774322629420364,
-      "emotional_fit": 0.16978765686149624,
-      "affinity": 0.09116630378680314,
-      "surprise": 0.2663828578574396
+      "timeliness": 0.22526775028642496,
+      "novelty": 0.1285666378586081,
+      "continuity": 0.17134001153323128,
+      "emotional_fit": 0.18743019747792566,
+      "affinity": 0.061163149649051826,
+      "surprise": 0.22623225319475823
     },
     "sampledRaw": {
-      "timeliness": 0.19096854601312713,
-      "novelty": 0.16667339350695032,
-      "continuity": 0.18045335549717495,
-      "emotional_fit": 0.12921333676301996,
-      "affinity": 0.12307451011218426,
-      "surprise": 0.20961685810754352
+      "timeliness": 0.3041114628866737,
+      "novelty": 0.17356496110912092,
+      "continuity": 0.13130901556986221,
+      "emotional_fit": 0.1530307665951996,
+      "affinity": 0.08257025202621995,
+      "surprise": 0.1554135418129236
     },
     "contextBonus": {
       "timeliness": 0,
@@ -6028,7 +6031,7 @@
   },
   "lastOAuthNotifyDate": "2026-04-26",
   "themeInventory": {
-    "updatedAt": "2026-05-02T13:30:07.389Z",
+    "updatedAt": "2026-05-02T14:30:08.387Z",
     "records": [
       {
         "themeKey": "lifestyle/food-wellness/gourmet",
@@ -6257,7 +6260,7 @@
         "supplyGap": 5,
         "rotationGap": 4,
         "freshnessDays": 7,
-        "freshnessScore": 0.05961987599206353,
+        "freshnessScore": 0.053665844907407445,
         "lastSentAt": "2026-04-25T23:31:05.490Z"
       },
       {
@@ -6326,7 +6329,7 @@
         "supplyGap": 3,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.6846046941137566,
+        "freshnessScore": 0.6786506630291005,
         "lastSentAt": "2026-04-30T08:30:56.308Z"
       },
       {
@@ -6349,7 +6352,7 @@
         "supplyGap": 2,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.4048543039021164,
+        "freshnessScore": 0.3989002728174603,
         "lastSentAt": "2026-04-28T09:31:03.272Z"
       },
       {
@@ -6362,18 +6365,18 @@
         ],
         "rootKey": "entertainment/entertainment/movie-drama",
         "availableCount": 1,
-        "sentFreshCount": 0,
-        "sent30dCount": 1,
+        "sentFreshCount": 1,
+        "sent30dCount": 2,
         "positive30dCount": 0,
         "negative30dCount": 0,
         "positiveRate30d": 0,
-        "uniqueSources30d": 2,
-        "targetCount": 3,
-        "supplyGap": 2,
+        "uniqueSources30d": 3,
+        "targetCount": 4,
+        "supplyGap": 3,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0,
-        "lastSentAt": "2026-04-23T14:30:12.583Z"
+        "freshnessScore": 0.9970327860449736,
+        "lastSentAt": "2026-05-02T14:00:13.816Z"
       },
       {
         "themeKey": "local/saitama/tokorozawa/event/food-fair",
@@ -6396,7 +6399,7 @@
         "supplyGap": 3,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.9227084060846561,
+        "freshnessScore": 0.916754375,
         "lastSentAt": "2026-05-02T00:31:01.433Z"
       },
       {
@@ -6507,7 +6510,7 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.845321884920635,
+        "freshnessScore": 0.8393678538359788,
         "lastSentAt": "2026-05-01T11:30:58.065Z"
       },
       {
@@ -6576,7 +6579,7 @@
         "supplyGap": 5,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.7858168369708995,
+        "freshnessScore": 0.7798628058862433,
         "lastSentAt": "2026-05-01T01:31:09.412Z"
       },
       {
@@ -6598,7 +6601,7 @@
         "supplyGap": -2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7917461326058202,
+        "freshnessScore": 0.785792101521164,
         "lastSentAt": "2026-05-01T02:30:55.450Z"
       },
       {
@@ -6621,7 +6624,7 @@
         "supplyGap": -1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.13105027777777778,
+        "freshnessScore": 0.1250962466931217,
         "lastSentAt": "2026-04-26T11:31:06.597Z"
       },
       {
@@ -6643,7 +6646,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.42863364252645497,
+        "freshnessScore": 0.422679611441799,
         "lastSentAt": "2026-04-28T13:30:45.016Z"
       },
       {
@@ -6666,7 +6669,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.2560257919973544,
+        "freshnessScore": 0.25007176091269845,
         "lastSentAt": "2026-04-27T08:30:51.788Z"
       },
       {
@@ -6688,7 +6691,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9643538277116402,
+        "freshnessScore": 0.9583997966269842,
         "lastSentAt": "2026-05-02T07:30:48.584Z"
       },
       {
@@ -6712,7 +6715,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8334241335978836,
+        "freshnessScore": 0.8274701025132275,
         "lastSentAt": "2026-05-01T09:31:02.305Z"
       },
       {
@@ -6734,7 +6737,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9941490244708995,
+        "freshnessScore": 0.9881949933862434,
         "lastSentAt": "2026-05-02T12:31:08.719Z"
       },
       {
@@ -6756,7 +6759,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.2619632738095239,
+        "freshnessScore": 0.2560092427248677,
         "lastSentAt": "2026-04-27T09:30:42.777Z"
       },
       {
@@ -6778,7 +6781,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6786682986111111,
+        "freshnessScore": 0.672714267526455,
         "lastSentAt": "2026-04-30T07:31:05.976Z"
       },
       {
@@ -6801,7 +6804,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.35128561507936507,
+        "freshnessScore": 0.345331583994709,
         "lastSentAt": "2026-04-28T00:31:04.929Z"
       },
       {
@@ -6823,7 +6826,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5001185648148148,
+        "freshnessScore": 0.4941645337301587,
         "lastSentAt": "2026-04-29T01:31:19.097Z"
       },
       {
@@ -6846,7 +6849,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5536422453703703,
+        "freshnessScore": 0.5476882142857142,
         "lastSentAt": "2026-04-29T10:30:50.219Z"
       },
       {
@@ -6869,7 +6872,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6667660598544973,
+        "freshnessScore": 0.6608120287698412,
         "lastSentAt": "2026-04-30T05:31:07.502Z"
       },
       {
@@ -6893,7 +6896,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7976304546957672,
+        "freshnessScore": 0.7916764236111111,
         "lastSentAt": "2026-05-01T03:30:14.288Z"
       },
       {
@@ -6917,7 +6920,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9584234920634921,
+        "freshnessScore": 0.952469460978836,
         "lastSentAt": "2026-05-02T06:31:01.917Z"
       },
       {
@@ -6940,7 +6943,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9494936772486773,
+        "freshnessScore": 0.9435396461640212,
         "lastSentAt": "2026-05-02T05:01:01.165Z"
       },
       {
@@ -6963,7 +6966,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9554501884920635,
+        "freshnessScore": 0.9494961574074074,
         "lastSentAt": "2026-05-02T06:01:03.663Z"
       },
       {
@@ -6987,7 +6990,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9614199189814815,
+        "freshnessScore": 0.9554658878968254,
         "lastSentAt": "2026-05-02T07:01:14.156Z"
       },
       {
@@ -7010,7 +7013,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.931655539021164,
+        "freshnessScore": 0.925701507936508,
         "lastSentAt": "2026-05-02T02:01:12.659Z"
       },
       {
@@ -7033,7 +7036,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.11915163525132277,
+        "freshnessScore": 0.11319760416666669,
         "lastSentAt": "2026-04-26T09:31:10.298Z"
       },
       {
@@ -7056,7 +7059,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.2202824933862434,
+        "freshnessScore": 0.2143284623015873,
         "lastSentAt": "2026-04-27T02:30:34.241Z"
       },
       {
@@ -7080,7 +7083,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.23816868716931217,
+        "freshnessScore": 0.23221465608465608,
         "lastSentAt": "2026-04-27T05:30:51.811Z"
       },
       {
@@ -7103,7 +7106,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.41676191468253965,
+        "freshnessScore": 0.41080788359788367,
         "lastSentAt": "2026-04-28T11:31:04.995Z"
       },
       {
@@ -7127,7 +7130,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.4226731762566137,
+        "freshnessScore": 0.41671914517195763,
         "lastSentAt": "2026-04-28T12:30:40.126Z"
       },
       {
@@ -7150,7 +7153,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.4881646560846561,
+        "freshnessScore": 0.482210625,
         "lastSentAt": "2026-04-28T23:30:49.373Z"
       },
       {
@@ -7173,7 +7176,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9464980638227514,
+        "freshnessScore": 0.9405440327380953,
         "lastSentAt": "2026-05-02T04:30:49.418Z"
       },
       {
@@ -7197,7 +7200,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6489369279100529,
+        "freshnessScore": 0.6429828968253968,
         "lastSentAt": "2026-04-30T02:31:24.443Z"
       },
       {
@@ -7219,7 +7222,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6905488988095239,
+        "freshnessScore": 0.6845948677248677,
         "lastSentAt": "2026-04-30T09:30:51.363Z"
       },
       {
@@ -7242,7 +7245,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.779822273478836,
+        "freshnessScore": 0.7738682423941798,
         "lastSentAt": "2026-05-01T00:30:43.900Z"
       },
       {
@@ -7266,7 +7269,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9822470701058201,
+        "freshnessScore": 0.976293039021164,
         "lastSentAt": "2026-05-02T10:31:10.417Z"
       },
       {
@@ -7288,7 +7291,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.800604171626984,
+        "freshnessScore": 0.7946501405423281,
         "lastSentAt": "2026-05-01T04:00:12.792Z"
       },
       {
@@ -7312,7 +7315,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8066366451719577,
+        "freshnessScore": 0.8006826140873016,
         "lastSentAt": "2026-05-01T05:01:01.232Z"
       },
       {
@@ -7335,7 +7338,7 @@
         "supplyGap": -10,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.7738847205687831,
+        "freshnessScore": 0.7679306894841269,
         "lastSentAt": "2026-04-30T23:30:52.868Z"
       },
       {
@@ -7358,7 +7361,7 @@
         "supplyGap": 0,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.916801357473545,
+        "freshnessScore": 0.9108473263888889,
         "lastSentAt": "2026-05-01T23:31:28.850Z"
       },
       {
@@ -7381,7 +7384,7 @@
         "supplyGap": 0,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.9882124619708995,
+        "freshnessScore": 0.9822584308862434,
         "lastSentAt": "2026-05-02T11:31:18.286Z"
       },
       {
@@ -7404,7 +7407,7 @@
         "supplyGap": 4,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.09524453703703706,
+        "freshnessScore": 0.08929050595238086,
         "lastSentAt": "2026-04-26T05:30:11.285Z"
       },
       {
@@ -7428,7 +7431,7 @@
         "supplyGap": 4,
         "rotationGap": 0,
         "freshnessDays": 7,
-        "freshnessScore": 0.8304669758597883,
+        "freshnessScore": 0.8245129447751323,
         "lastSentAt": "2026-05-01T09:01:13.816Z"
       },
       {
@@ -7451,7 +7454,7 @@
         "supplyGap": 5,
         "rotationGap": -5,
         "freshnessDays": 7,
-        "freshnessScore": 0.9763052711640212,
+        "freshnessScore": 0.9703512400793651,
         "lastSentAt": "2026-05-02T09:31:16.817Z"
       }
     ]
