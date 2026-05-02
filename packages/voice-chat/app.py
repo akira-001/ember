@@ -659,43 +659,91 @@ def _convert_messages_for_anthropic(messages: list[dict]) -> tuple[str, list[dic
     return system_text, converted
 
 
+def _messages_to_single_prompt(messages: list[dict]) -> str:
+    """OpenAI 形式メッセージリストを CLI subprocess 用の単一プロンプトに変換。
+    system → 先頭ブロック、それ以降は role: content 形式で連結。"""
+    sys_parts: list[str] = []
+    body_parts: list[str] = []
+    for msg in messages:
+        role = msg.get("role", "")
+        content = (msg.get("content") or "").strip()
+        if not content:
+            continue
+        if role == "system":
+            sys_parts.append(content)
+        elif role == "user":
+            body_parts.append(content)
+        elif role == "assistant":
+            body_parts.append(f"[前回の自分の応答]\n{content}")
+    sys_text = "\n\n".join(sys_parts)
+    body_text = "\n\n".join(body_parts)
+    if sys_text:
+        return f"{sys_text}\n\n---\n\n{body_text}"
+    return body_text
+
+
 async def _chat_claude(messages: list[dict], model: str) -> str:
-    """Anthropic Claude でチャット応答を取得"""
-    import anthropic as _anthropic
-    api_key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if not api_key:
-        logger.warning("[llm] ANTHROPIC_API_KEY not set, falling back to Ollama")
+    """Claude Code CLI subprocess 経由（サブスク OAuth 認証）で応答取得。"""
+    prompt = _messages_to_single_prompt(messages)
+    if not prompt:
+        return ""
+    # model 名: "claude-sonnet-4-6" → "sonnet" に正規化（CLI が短縮形を受け付けるため）
+    cli_model = "sonnet"
+    if "haiku" in model:
+        cli_model = "haiku"
+    elif "opus" in model:
+        cli_model = "opus"
+    try:
+        proc = await asyncio.create_subprocess_exec(
+            "claude", "-p", "--model", cli_model, "--bare",
+            stdin=asyncio.subprocess.PIPE,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+        )
+        stdout_b, stderr_b = await asyncio.wait_for(
+            proc.communicate(prompt.encode("utf-8")),
+            timeout=60,
+        )
+        if proc.returncode != 0:
+            err = stderr_b.decode("utf-8", errors="replace")[:200]
+            logger.warning(f"[llm/claude] CLI exit {proc.returncode}: {err}")
+            return await _chat_ollama(messages, "gemma4:e4b")
+        return stdout_b.decode("utf-8", errors="replace").strip()
+    except asyncio.TimeoutError:
+        logger.warning("[llm/claude] CLI timeout (60s), falling back to Ollama")
         return await _chat_ollama(messages, "gemma4:e4b")
-    client = _anthropic.AsyncAnthropic(api_key=api_key)
-    system_text, converted = _convert_messages_for_anthropic(messages)
-    resp = await asyncio.wait_for(
-        client.messages.create(
-            model=model,
-            max_tokens=1024,
-            system=system_text or _anthropic.NOT_GIVEN,
-            messages=converted,
-        ),
-        timeout=30,
-    )
-    return resp.content[0].text
+    except FileNotFoundError:
+        logger.warning("[llm/claude] claude CLI not found, falling back to Ollama")
+        return await _chat_ollama(messages, "gemma4:e4b")
 
 
 async def _chat_openai(messages: list[dict], model: str) -> str:
-    """OpenAI でチャット応答を取得"""
-    import openai as _openai
-    api_key = os.environ.get("OPENAI_API_KEY", "")
-    if not api_key:
-        logger.warning("[llm] OPENAI_API_KEY not set, falling back to Ollama")
+    """Codex CLI subprocess 経由（ChatGPT subscription OAuth）で応答取得。"""
+    prompt = _messages_to_single_prompt(messages)
+    if not prompt:
+        return ""
+    try:
+        proc = await asyncio.create_subprocess_exec(
+            "codex", "exec", "--skip-git-repo-check", prompt,
+            stdin=asyncio.subprocess.DEVNULL,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+        )
+        stdout_b, stderr_b = await asyncio.wait_for(
+            proc.communicate(),
+            timeout=60,
+        )
+        if proc.returncode != 0:
+            err = stderr_b.decode("utf-8", errors="replace")[:200]
+            logger.warning(f"[llm/openai] CLI exit {proc.returncode}: {err}")
+            return await _chat_ollama(messages, "gemma4:e4b")
+        return stdout_b.decode("utf-8", errors="replace").strip()
+    except asyncio.TimeoutError:
+        logger.warning("[llm/openai] CLI timeout (60s), falling back to Ollama")
         return await _chat_ollama(messages, "gemma4:e4b")
-    client = _openai.AsyncOpenAI(api_key=api_key)
-    resp = await asyncio.wait_for(
-        client.chat.completions.create(
-            model=model,
-            messages=messages,  # type: ignore[arg-type]
-        ),
-        timeout=30,
-    )
-    return resp.choices[0].message.content or ""
+    except FileNotFoundError:
+        logger.warning("[llm/openai] codex CLI not found, falling back to Ollama")
+        return await _chat_ollama(messages, "gemma4:e4b")
 
 
 async def _chat_ollama(messages: list[dict], model: str) -> str:
