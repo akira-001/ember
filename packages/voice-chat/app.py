@@ -683,7 +683,8 @@ def _messages_to_single_prompt(messages: list[dict]) -> str:
 
 
 async def _chat_claude(messages: list[dict], model: str) -> str:
-    """Claude Code CLI subprocess 経由（サブスク OAuth 認証）で応答取得。"""
+    """Claude Code CLI subprocess 経由（サブスク OAuth 認証 via macOS keychain）で応答取得。
+    `--bare` は OAuth/keychain を読まないため使わない。"""
     prompt = _messages_to_single_prompt(messages)
     if not prompt:
         return ""
@@ -695,7 +696,9 @@ async def _chat_claude(messages: list[dict], model: str) -> str:
         cli_model = "opus"
     try:
         proc = await asyncio.create_subprocess_exec(
-            "claude", "-p", "--model", cli_model, "--bare",
+            "claude", "-p", "--model", cli_model,
+            "--disable-slash-commands",
+            "--dangerously-skip-permissions",
             stdin=asyncio.subprocess.PIPE,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
@@ -718,18 +721,24 @@ async def _chat_claude(messages: list[dict], model: str) -> str:
 
 
 async def _chat_openai(messages: list[dict], model: str) -> str:
-    """Codex CLI subprocess 経由（ChatGPT subscription OAuth）で応答取得。"""
+    """Codex CLI subprocess 経由（ChatGPT subscription OAuth）で応答取得。
+    `--output-last-message` で最終回答だけを clean に取り出す。"""
     prompt = _messages_to_single_prompt(messages)
     if not prompt:
         return ""
+    out_path = Path(tempfile.mkdtemp()) / "codex_out.txt"
     try:
         proc = await asyncio.create_subprocess_exec(
-            "codex", "exec", "--skip-git-repo-check", prompt,
+            "codex", "exec",
+            "--skip-git-repo-check",
+            "--output-last-message", str(out_path),
+            "--dangerously-bypass-approvals-and-sandbox",
+            prompt,
             stdin=asyncio.subprocess.DEVNULL,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
         )
-        stdout_b, stderr_b = await asyncio.wait_for(
+        _stdout_b, stderr_b = await asyncio.wait_for(
             proc.communicate(),
             timeout=60,
         )
@@ -737,13 +746,22 @@ async def _chat_openai(messages: list[dict], model: str) -> str:
             err = stderr_b.decode("utf-8", errors="replace")[:200]
             logger.warning(f"[llm/openai] CLI exit {proc.returncode}: {err}")
             return await _chat_ollama(messages, "gemma4:e4b")
-        return stdout_b.decode("utf-8", errors="replace").strip()
+        if out_path.exists():
+            return out_path.read_text(encoding="utf-8").strip()
+        return ""
     except asyncio.TimeoutError:
         logger.warning("[llm/openai] CLI timeout (60s), falling back to Ollama")
         return await _chat_ollama(messages, "gemma4:e4b")
     except FileNotFoundError:
         logger.warning("[llm/openai] codex CLI not found, falling back to Ollama")
         return await _chat_ollama(messages, "gemma4:e4b")
+    finally:
+        try:
+            if out_path.exists():
+                out_path.unlink()
+            out_path.parent.rmdir()
+        except OSError:
+            pass
 
 
 async def _chat_ollama(messages: list[dict], model: str) -> str:
