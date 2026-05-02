@@ -761,6 +761,70 @@
       ],
       "evaluate_score": 0.68,
       "sentAt": "2026-05-02T06:31:01.918Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "local_tokorozawa",
+      "preview": "ね、Akiraさん。\n\n朝日新聞に *越生の五大尊つつじ公園* が見頃って出てたよ 🌺 斜面一面にツツジが咲いてるみたい。\n\n所沢からドライブがてら行ける距離だし、GW中に見頃が重なるのはちょうどいいかもね。\nhttps://news.google.com/rss/articles/CBMif0F",
+      "topic": "越生のツツジ見頃",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5zNWNaVWV5dExjZk80a0tqQlpybjNWQzc3X2JGTDlMZDVaNGl1UlJ4SlJPa05iaWhwSXI1ZkVwekRPTVNUSm1tUEN1czdtdzJmSEYwU0hEd1dPZTZzc0JMLXR3bVA3ZGdtNmdfOTBjSk5USWc3Q3VEaFUyTFUyOW8?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMif0FVX3lxTE5zNWNaVWV5dExjZk80a0tqQlpybjNWQzc3X2JGTDlMZDVaNGl1UlJ4SlJPa05iaWhwSXI1ZkVwekRPTVNUSm1tUEN1czdtdzJmSEYwU0hEd1dPZTZzc0JMLXR3bVA3ZGdtNmdfOTBjSk5USWc3Q3VEaFUyTFUyOW8?oc=5",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/recreation",
+        "local/saitama/tokorozawa/recreation/park-walk"
+      ],
+      "themeKey": "local/saitama/tokorozawa/recreation/park-walk",
+      "inner_thought": "越生のツツジが見頃、所沢から車で1時間くらい。GW中の今だからこそ伝えたい",
+      "plan": [
+        "越生ツツジの見頃情報を共有",
+        "沈黙して様子見",
+        "明日のドラムレッスン前の軽い話題"
+      ],
+      "generate_score": [
+        0.75,
+        0.4,
+        0.35
+      ],
+      "evaluate_score": 0.72,
+      "sentAt": "2026-05-02T07:01:14.156Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "ちょっとちょっと。\n\nフーズチャネルに *ステーキロッヂ* の *「大人のお子様ランチステーキ」* が5月2日〜6日のGW限定で登場ってニュースが出てたよ 🥩\n\n明日食事会あるし、ちょっと気になるかも。\nhttps://news.google.com/rss/articles/CBMiVkFVX3",
+      "topic": "ステーキロッヂGW限定大人のお子様ランチステーキ",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBnUnpsWDJWUFBRRDBfeE5VeU15emIxNmRQX1I0WlJWb09WbUZiYU90TzhnSURNSVFLLWlvaGJPanlUZ01BUmtjVS1PUm9GM3JPRUZJaXRB",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiVkFVX3lxTFBnUnpsWDJWUFBRRDBfeE5VeU15emIxNmRQX1I0WlJWb09WbUZiYU90TzhnSURNSVFLLWlvaGJPanlUZ01BUmtjVS1PUm9GM3JPRUZJaXRB",
+      "sourceType": "フーズチャネル",
+      "skill": "general",
+      "themePath": [
+        "lifestyle",
+        "lifestyle/food-wellness",
+        "lifestyle/food-wellness/lunch"
+      ],
+      "themeKey": "lifestyle/food-wellness/lunch",
+      "inner_thought": "明日食事会あるし、GW限定ステーキ情報、今日の夕方に届けるのいいかも",
+      "plan": [
+        "ステーキロッヂGW限定メニューを共有",
+        "沈黙",
+        "MCP記事を届ける"
+      ],
+      "generate_score": [
+        0.72,
+        0.55,
+        0.45
+      ],
+      "evaluate_score": 0.68,
+      "sentAt": "2026-05-02T07:30:48.584Z"
     }
   ]
 }
