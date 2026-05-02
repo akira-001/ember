@@ -624,3 +624,72 @@ class TestSummaryLoopSourceSelection:
             fallback_text = await app._transcript_buffer.text_with_timestamps()
             assert len(fallback_text) >= app.CONTEXT_SUMMARY_MIN_CHARS
         asyncio.run(run())
+
+
+# ---- GET /api/context-summary/history ----
+
+class TestContextSummaryHistoryEndpoint:
+    @pytest.fixture(autouse=True)
+    def reset_history(self, tmp_path, monkeypatch):
+        app._confidence_history.clear()
+        # redirect feedback file so tests don't read the real one
+        empty_file = tmp_path / "context_summary_feedback.jsonl"
+        monkeypatch.setattr(app, "CONTEXT_SUMMARY_FEEDBACK_FILE", empty_file)
+        yield
+        app._confidence_history.clear()
+
+    def test_empty_history(self):
+        async def run():
+            r = await app.get_context_summary_history()
+            assert r["ok"] is True
+            assert r["confidence_history"] == []
+            assert r["feedback_count"] == {"yes": 0, "no": 0, "total": 0}
+            assert r["last_feedback_ts"] is None
+        asyncio.run(run())
+
+    def test_confidence_history_appended_by_build(self):
+        async def run():
+            fake = json.dumps({
+                "activity": "working",
+                "confidence": 0.75,
+                "mood": "", "location": "", "time_context": "",
+            })
+            with mock.patch("app.chat_with_llm", return_value=fake):
+                await app._build_context_summary("dummy")
+            r = await app.get_context_summary_history()
+            assert r["ok"] is True
+            assert len(r["confidence_history"]) == 1
+            entry = r["confidence_history"][0]
+            assert abs(entry["confidence"] - 0.75) < 1e-6
+            assert entry["ts"] > 0
+        asyncio.run(run())
+
+    def test_feedback_count_from_jsonl(self, tmp_path, monkeypatch):
+        feedback_file = tmp_path / "context_summary_feedback.jsonl"
+        lines = [
+            json.dumps({"label": "yes", "ts": "2026-05-02T10:00:00+09:00"}),
+            json.dumps({"label": "yes", "ts": "2026-05-02T10:05:00+09:00"}),
+            json.dumps({"label": "no",  "ts": "2026-05-02T10:10:00+09:00"}),
+        ]
+        feedback_file.write_text("\n".join(lines), encoding="utf-8")
+        monkeypatch.setattr(app, "CONTEXT_SUMMARY_FEEDBACK_FILE", feedback_file)
+
+        async def run():
+            r = await app.get_context_summary_history()
+            assert r["ok"] is True
+            assert r["feedback_count"]["yes"] == 2
+            assert r["feedback_count"]["no"] == 1
+            assert r["feedback_count"]["total"] == 3
+            assert r["last_feedback_ts"] is not None and r["last_feedback_ts"] > 0
+        asyncio.run(run())
+
+    def test_missing_feedback_file_returns_zeros(self, tmp_path, monkeypatch):
+        missing = tmp_path / "nonexistent_feedback.jsonl"
+        monkeypatch.setattr(app, "CONTEXT_SUMMARY_FEEDBACK_FILE", missing)
+
+        async def run():
+            r = await app.get_context_summary_history()
+            assert r["ok"] is True
+            assert r["feedback_count"] == {"yes": 0, "no": 0, "total": 0}
+            assert r["last_feedback_ts"] is None
+        asyncio.run(run())

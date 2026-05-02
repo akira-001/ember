@@ -13,6 +13,7 @@ import tempfile
 import time
 import urllib.parse
 import xml.etree.ElementTree as ET
+from collections import deque
 from contextlib import asynccontextmanager
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -1102,6 +1103,7 @@ class ContextSummary:
 _transcript_buffer = TranscriptRollingBuffer()
 _context_summary = ContextSummary()
 _context_summary_task: asyncio.Task | None = None
+_confidence_history: deque = deque(maxlen=50)
 CONTEXT_SUMMARY_FEEDBACK_FILE = Path(__file__).parent / "context_summary_feedback.jsonl"
 
 
@@ -1399,6 +1401,7 @@ async def _build_context_summary(transcript: str) -> dict:
     _context_summary.location = str(result.get("location") or "")
     _context_summary.time_context = str(result.get("time_context") or "")
     _context_summary.updated_at = time.time()
+    _confidence_history.append({"ts": _context_summary.updated_at, "confidence": _context_summary.confidence})
     logger.info(
         f"[context_summary] activity={_context_summary.activity} "
         f"topic='{_context_summary.topic[:40]}' "
@@ -4530,6 +4533,53 @@ async def delete_user_dict(entry_id: str):
 async def get_context_summary():
     """現在の context summary を返す（クライアント初期化用）。"""
     return {"ok": True, "summary": _context_summary_to_dict()}
+
+
+def _count_feedback() -> dict:
+    """context_summary_feedback.jsonl の yes/no 件数を集計して返す。"""
+    yes = no = 0
+    last_ts: float | None = None
+    try:
+        if CONTEXT_SUMMARY_FEEDBACK_FILE.exists():
+            with CONTEXT_SUMMARY_FEEDBACK_FILE.open(encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        entry = json.loads(line)
+                        label = entry.get("label", "")
+                        if label == "yes":
+                            yes += 1
+                        elif label == "no":
+                            no += 1
+                        # ts は ISO8601 文字列なので unix timestamp に変換
+                        ts_str = entry.get("ts")
+                        if ts_str:
+                            from datetime import datetime as _dt
+                            try:
+                                ts = _dt.fromisoformat(ts_str).timestamp()
+                                if last_ts is None or ts > last_ts:
+                                    last_ts = ts
+                            except ValueError:
+                                pass
+                    except (json.JSONDecodeError, KeyError):
+                        pass
+    except OSError:
+        pass
+    return {"yes": yes, "no": no, "total": yes + no, "last_ts": last_ts}
+
+
+@app.get("/api/context-summary/history")
+async def get_context_summary_history():
+    """confidence 推移履歴とフィードバック件数を返す。"""
+    feedback = _count_feedback()
+    return {
+        "ok": True,
+        "confidence_history": list(_confidence_history),
+        "feedback_count": {"yes": feedback["yes"], "no": feedback["no"], "total": feedback["total"]},
+        "last_feedback_ts": feedback["last_ts"],
+    }
 
 
 @app.get("/api/chunk-transcripts")

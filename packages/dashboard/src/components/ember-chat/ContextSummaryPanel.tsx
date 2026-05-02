@@ -78,6 +78,33 @@ const chipActiveStyle: CSSProperties = {
 
 const STALE_THRESHOLD_SEC = 180;
 
+function ConfidenceChart({ data }: { data: { ts: number; confidence: number }[] }) {
+  if (!data || data.length === 0) {
+    return <div style={{ fontSize: 10, color: '#555' }}>confidence 履歴なし</div>;
+  }
+  const W = 200;
+  const H = 40;
+  const n = data.length;
+  const points = data.map((d, i) => {
+    const x = n === 1 ? W / 2 : (i / (n - 1)) * W;
+    const y = H - d.confidence * H;
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(' ');
+  return (
+    <svg width={W} height={H} style={{ display: 'block', background: '#0d1117', borderRadius: 4 }}>
+      {/* grid lines at 0.5 and 1.0 */}
+      <line x1={0} y1={H / 2} x2={W} y2={H / 2} stroke="#2a2f3a" strokeWidth={1} strokeDasharray="3,3" />
+      <line x1={0} y1={0} x2={W} y2={0} stroke="#2a2f3a" strokeWidth={1} />
+      <polyline points={points} fill="none" stroke="#7da6ff" strokeWidth={1.5} />
+      {data.map((d, i) => {
+        const x = n === 1 ? W / 2 : (i / (n - 1)) * W;
+        const y = H - d.confidence * H;
+        return <circle key={i} cx={x} cy={y} r={2} fill="#7da6ff" />;
+      })}
+    </svg>
+  );
+}
+
 function ageInfo(updatedAt?: number): { text: string; isStale: boolean } {
   if (!updatedAt) return { text: '', isStale: false };
   const ageSec = Math.max(0, Math.floor(Date.now() / 1000 - updatedAt));
@@ -93,6 +120,7 @@ export default function ContextSummaryPanel({ open, externalSummary }: ContextSu
   const [summary, setSummary] = useState<ContextSummary | null>(null);
   const [showCorrection, setShowCorrection] = useState(false);
   const [showEvidence, setShowEvidence] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
   const [feedbackStatus, setFeedbackStatus] = useState<{ text: string; error: boolean } | null>(null);
   const [, forceTick] = useState(0);
   const ageTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -112,6 +140,13 @@ export default function ContextSummaryPanel({ open, externalSummary }: ContextSu
   const [activeChip, setActiveChip] = useState<FieldKey | null>(null);
   const [chipValue, setChipValue] = useState('');
 
+  // History panel state
+  const [historyData, setHistoryData] = useState<{
+    confidence_history: { ts: number; confidence: number }[];
+    feedback_count: { yes: number; no: number; total: number };
+    last_feedback_ts: number | null;
+  } | null>(null);
+
   const refresh = useCallback(async () => {
     try {
       const r = await fetch(`${API_BASE}/context-summary`);
@@ -121,6 +156,20 @@ export default function ContextSummaryPanel({ open, externalSummary }: ContextSu
       // ignore
     }
   }, []);
+
+  const fetchHistory = useCallback(async () => {
+    try {
+      const r = await fetch(`${API_BASE}/context-summary/history`);
+      const d = await r.json();
+      if (d.ok) setHistoryData(d);
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  useEffect(() => {
+    if (showHistory) fetchHistory();
+  }, [showHistory, fetchHistory]);
 
   useEffect(() => {
     if (!open) return;
@@ -610,6 +659,41 @@ export default function ContextSummaryPanel({ open, externalSummary }: ContextSu
           )}
         </div>
       )}
+      <div style={{ marginTop: 6 }}>
+        <button
+          type="button"
+          onClick={() => setShowHistory((v) => !v)}
+          style={{
+            ...buttonStyle,
+            background: '#1a2a3a',
+            color: '#7da6ff',
+            borderColor: '#2a4a8a',
+            padding: '3px 10px',
+            cursor: 'pointer',
+          }}
+        >
+          学習状況 {showHistory ? '▲' : '▼'}
+        </button>
+        {showHistory && (
+          <div style={{ marginTop: 6, marginLeft: 2 }}>
+            {historyData ? (
+              <>
+                <ConfidenceChart data={historyData.confidence_history} />
+                <div style={{ marginTop: 4, fontSize: 10, color: '#aaa' }}>
+                  Yes: {historyData.feedback_count.yes} / No: {historyData.feedback_count.no} / 合計: {historyData.feedback_count.total}
+                </div>
+                {historyData.last_feedback_ts && (
+                  <div style={{ fontSize: 10, color: '#888', marginTop: 2 }}>
+                    最終フィードバック: {Math.floor((Date.now() / 1000 - historyData.last_feedback_ts) / 60)}分前
+                  </div>
+                )}
+              </>
+            ) : (
+              <div style={{ fontSize: 10, color: '#666' }}>読み込み中...</div>
+            )}
+          </div>
+        )}
+      </div>
       {showCorrection && (
         <div
           style={{
