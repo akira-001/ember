@@ -124,6 +124,29 @@ _wait_cache = WakeResponseCache(responses=[
 VOICEVOX_URL = "http://localhost:50021"
 VOICEVOX_SPEAKER = 2  # 四国めたん ノーマル
 
+# Phase H1: mood/time_context → VOICEVOX パラメータ調整マッピング
+# 値は audio_query デフォルト値への加算（speed は base speed への加算）
+# intonationScale/pitchScale は乗算係数ではなく最終値（clamp 後）
+TTS_MOOD_PARAMS: dict[str, dict[str, float]] = {
+    "excited":  {"speed_delta": +0.05, "intonation_mult": 1.20, "pitch_delta": +0.03},
+    "stressed": {"speed_delta": -0.05, "intonation_mult": 0.90, "pitch_delta": -0.02},
+    "calm":     {"speed_delta":  0.00, "intonation_mult": 1.00, "pitch_delta":  0.00},
+    "focused":  {"speed_delta": -0.03, "intonation_mult": 0.95, "pitch_delta":  0.00},
+    "neutral":  {"speed_delta":  0.00, "intonation_mult": 1.00, "pitch_delta":  0.00},
+}
+TTS_TIME_PARAMS: dict[str, dict[str, float]] = {
+    "morning":   {"speed_delta": +0.03, "intonation_mult": 1.05, "pitch_delta":  0.00},
+    "afternoon": {"speed_delta":  0.00, "intonation_mult": 1.00, "pitch_delta":  0.00},
+    "evening":   {"speed_delta":  0.00, "intonation_mult": 1.00, "pitch_delta":  0.00},
+    "night":     {"speed_delta": -0.08, "intonation_mult": 0.85, "pitch_delta": -0.03},
+}
+# VOICEVOX パラメータの許容範囲
+TTS_SPEED_MIN, TTS_SPEED_MAX = 0.5, 2.0
+TTS_INTONATION_MIN, TTS_INTONATION_MAX = 0.5, 1.5
+TTS_PITCH_MIN, TTS_PITCH_MAX = -0.15, 0.15
+# context_summary の confidence がこれ未満の場合はデフォルトパラメータを使用
+TTS_CONTEXT_MIN_CONF = 0.6
+
 # Irodori-TTS voice presets (caption-based voice design)
 IRODORI_VOICES = [
     {"id": "irodori-calm-female", "name": "落ち着いた女性", "caption": "落ち着いた女性の声で、近い距離感でやわらかく自然に読み上げてください。"},
@@ -1351,6 +1374,25 @@ async def _broadcast_context_summary():
 
 async def _build_context_summary(transcript: str) -> dict:
     """直近30分の transcript から ContextSummary を生成し _context_summary を更新する。"""
+    # Phase G2: co_view のメディアシグナルを補助ヒントとして注入（TTL=600s, conf>=0.5）
+    _MEDIA_HINT_TTL = 600
+    media_hint = ""
+    _mc = _media_ctx
+    if (
+        _mc.inferred_type not in ("unknown", "")
+        and _mc.confidence >= 0.5
+        and _mc.last_inferred_at > 0
+        and time.time() - _mc.last_inferred_at < _MEDIA_HINT_TTL
+    ):
+        media_hint = (
+            f"\n[co_view シグナル] 直近の推定コンテンツ種別: {_mc.inferred_type}"
+            f"（信頼度 {_mc.confidence:.2f}）"
+            "\n※ transcript の発話内容が優先。矛盾する場合は transcript を信じる。"
+            "\n※ このシグナルがある場合、transcript の発話量が少なくても activity を video_watching 等に補正してよい"
+        )
+        logger.info(
+            f"[context_summary] media_hint injected: type={_mc.inferred_type} conf={_mc.confidence:.2f}"
+        )
     messages = [
         {"role": "system", "content": (
             "あなたはユーザーの状況を観察する解析者です。\n"
@@ -1378,7 +1420,14 @@ async def _build_context_summary(transcript: str) -> dict:
             "- keywords は固有名詞・専門語を優先（抽象カテゴリ語は最後）\n"
             "- mood: 発話のトーンや内容から推定（calm/focused/excited/stressed/neutral）\n"
             "- location: 環境音・発話内容から推定、不明なら unknown\n"
-            "- time_context: transcript のタイムスタンプや発話内容から推定、不明なら unknown"
+            "- time_context: transcript のタイムスタンプや発話内容から推定、不明なら unknown\n"
+            "- confidence キャリブレーション基準:\n"
+            "  * transcript が 3 文以下 → confidence <= 0.5\n"
+            "  * transcript が 1 文以下または全体 100 文字未満 → confidence <= 0.3\n"
+            "  * 複数の根拠（keywords/topics/is_meeting）が揃っている → 0.7〜0.9\n"
+            "  * 曖昧・一般的な発話のみ → confidence <= 0.5\n"
+            "  * evidence_snippets を 1 件も抽出できない → confidence <= 0.3"
+            f"{media_hint}"
         )},
         {"role": "user", "content": f"直近30分の transcript:\n{transcript}"},
     ]
@@ -1395,8 +1444,24 @@ async def _build_context_summary(transcript: str) -> dict:
     _context_summary.keywords = [str(x) for x in (result.get("keywords") or [])][:10]
     _context_summary.named_entities = [str(x) for x in (result.get("named_entities") or [])][:8]
     _context_summary.language_register = str(result.get("language_register") or "")
-    _context_summary.confidence = float(result.get("confidence") or 0.0)
-    _context_summary.evidence_snippets = [str(x) for x in (result.get("evidence_snippets") or [])][:3]
+    _raw_confidence = float(result.get("confidence") or 0.0)
+    _evidence_snippets_raw = [str(x) for x in (result.get("evidence_snippets") or [])][:3]
+    # Phase G3: post-processing discount based on evidence quantity
+    _transcript_chars = len(transcript)
+    _evidence_count = len(_evidence_snippets_raw)
+    if _transcript_chars < 100 or _evidence_count == 0:
+        _discounted = min(_raw_confidence, 0.3)
+    elif _transcript_chars < 300 or _evidence_count == 1:
+        _discounted = min(_raw_confidence, 0.55)
+    else:
+        _discounted = _raw_confidence
+    if _discounted != _raw_confidence:
+        logger.info(
+            f"[context_summary] conf_discount: raw={_raw_confidence:.2f} → {_discounted:.2f}"
+            f" (chars={_transcript_chars}, evidence={_evidence_count})"
+        )
+    _context_summary.confidence = _discounted
+    _context_summary.evidence_snippets = _evidence_snippets_raw
     _context_summary.mood = str(result.get("mood") or "")
     _context_summary.location = str(result.get("location") or "")
     _context_summary.time_context = str(result.get("time_context") or "")
@@ -3452,6 +3517,12 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
                 "- コメントする価値がなければ \"SKIP\" と返す\n"
             )
 
+        # H2: context_summary をco_viewコメント生成プロンプトに注入
+        _h2_hint = _context_summary.to_prompt_block()
+        if _h2_hint:
+            system_prompt += _h2_hint
+            logger.debug("[H2] context_hint injected to co_view comment")
+
         # Patch AG1: コメント生成試行ログ（どこで止まるか追跡できるように）
         logger.info(
             f"[co_view] generating: type={_media_ctx.inferred_type} "
@@ -3856,7 +3927,16 @@ async def synthesize_speech(text: str, speaker_id: int | str, speed: float = 1.0
     if tts_engine == "voicevox" and isinstance(speaker_id, str) and speaker_id.startswith("irodori-"):
         tts_engine = "irodori"
     cache_text = _tts_cache_text_key(text)
-    cache_key = f"{tts_engine}:{speaker_id}:{speed}:{cache_text}"
+    # Phase H1: confidence >= TTS_CONTEXT_MIN_CONF のとき mood/time_context をキャッシュキーに含める
+    _cs = _context_summary
+    _tts_mood = ""
+    _tts_time_context = ""
+    if (tts_engine == "voicevox"
+            and not _cs.is_stale()
+            and _cs.confidence >= TTS_CONTEXT_MIN_CONF):
+        _tts_mood = _cs.mood
+        _tts_time_context = _cs.time_context
+    cache_key = f"{tts_engine}:{speaker_id}:{speed}:{_tts_mood}:{_tts_time_context}:{cache_text}"
     now = time.time()
     cached = _tts_cache.get(cache_key)
     if cached and now - cached[0] < _TTS_CACHE_TTL:
@@ -3875,7 +3955,7 @@ async def synthesize_speech(text: str, speaker_id: int | str, speed: float = 1.0
         elif tts_engine == "gptsovits":
             audio = await synthesize_speech_gptsovits(text, str(speaker_id))
         else:
-            audio = await synthesize_speech_voicevox(text, int(speaker_id), speed)
+            audio = await synthesize_speech_voicevox(text, int(speaker_id), speed, mood=_tts_mood, time_context=_tts_time_context)
 
         adjusted_audio, gain_db = _apply_wav_peak_guard(audio)
         if gain_db is not None:
@@ -3905,7 +3985,10 @@ async def synthesize_speech(text: str, speaker_id: int | str, speed: float = 1.0
         return audio
 
 
-async def synthesize_speech_voicevox(text: str, speaker_id: int, speed: float = 1.0) -> bytes:
+async def synthesize_speech_voicevox(
+    text: str, speaker_id: int, speed: float = 1.0,
+    mood: str = "", time_context: str = "",
+) -> bytes:
     """VOICEVOX でテキストを音声に変換"""
     async with httpx.AsyncClient(timeout=60) as client:
         resp = await client.post(
@@ -3914,7 +3997,32 @@ async def synthesize_speech_voicevox(text: str, speaker_id: int, speed: float = 
         )
         resp.raise_for_status()
         query = resp.json()
-        query["speedScale"] = speed
+
+        # Phase H1: mood/time_context に基づいてパラメータを動的調整
+        speed_delta = 0.0
+        intonation = float(query.get("intonationScale", 1.0))
+        pitch = float(query.get("pitchScale", 0.0))
+
+        mood_p = TTS_MOOD_PARAMS.get(mood, {})
+        time_p = TTS_TIME_PARAMS.get(time_context, {})
+
+        speed_delta += mood_p.get("speed_delta", 0.0) + time_p.get("speed_delta", 0.0)
+        intonation *= mood_p.get("intonation_mult", 1.0) * time_p.get("intonation_mult", 1.0)
+        pitch += mood_p.get("pitch_delta", 0.0) + time_p.get("pitch_delta", 0.0)
+
+        final_speed = max(TTS_SPEED_MIN, min(TTS_SPEED_MAX, speed + speed_delta))
+        final_intonation = max(TTS_INTONATION_MIN, min(TTS_INTONATION_MAX, intonation))
+        final_pitch = max(TTS_PITCH_MIN, min(TTS_PITCH_MAX, pitch))
+
+        query["speedScale"] = final_speed
+        query["intonationScale"] = final_intonation
+        query["pitchScale"] = final_pitch
+
+        logger.info(
+            f"[TTS] mood={mood!r} time={time_context!r} "
+            f"speed_delta={speed_delta:+.2f} speed={final_speed:.2f} "
+            f"intonation={final_intonation:.2f} pitch={final_pitch:.3f}"
+        )
 
         resp = await client.post(
             f"{VOICEVOX_URL}/synthesis",
@@ -5068,7 +5176,7 @@ async def index():
 
 
 _proactive_task: asyncio.Task | None = None
-
+_proactive_last_at: float = 0.0  # H4: last proactive intervention timestamp
 
 _always_on_echo_suppress_until: float = 0
 _always_on_conversation_until: float = 0  # conversation window after wake
@@ -5886,7 +5994,13 @@ async def _ambient_llm_reply(ws: WebSocket, trigger_text: str, method: str = "ke
     try:
         _ambient_listener.state = "processing"
         source_hint = _ambient_listener.classify_source(trigger_text)
-        intervention = _ambient_listener.decide_intervention(trigger_text, source_hint)
+        intervention = _ambient_listener.decide_intervention(trigger_text, source_hint, _context_summary)
+        if not _context_summary.is_stale():
+            logger.info(
+                f"[H3] ctx: is_meeting={_context_summary.is_meeting} "
+                f"activity={_context_summary.activity!r} mood={_context_summary.mood!r} "
+                f"conf={_context_summary.confidence:.2f}"
+            )
         logger.info(f"[ambient] source: {source_hint} intervention={intervention} | '{trigger_text[:40]}'")
 
         # ask_user 後の回答キャプチャ:
@@ -5969,6 +6083,11 @@ async def _ambient_llm_reply(ws: WebSocket, trigger_text: str, method: str = "ke
         if is_instruction:
             prompt += "\n\n【最重要】この発話は他のシステムへの作業指示です。絶対に \"SKIP\" と返してください。応援も不要です。"
             logger.info(f"[ambient] instruction detected → forcing SKIP hint")
+        # H2: context_summary をambientバッチ判定プロンプトに注入
+        _h2_amb_hint = _context_summary.to_prompt_block()
+        if _h2_amb_hint:
+            prompt += _h2_amb_hint
+            logger.debug("[H2] context_hint injected to ambient batch")
 
         # co_view バックグラウンド蓄積結果を reply/backchannel にも注入
         if _media_ctx.confidence >= 0.5 and _media_ctx.media_buffer:
@@ -6335,6 +6454,11 @@ async def _generate_soliloquy() -> str:
 本文のみ呟いて（引用符不要）:"""
 
     user_prompt = f"現在 {time_str} {weekday_jp}曜日{context_part}"
+    # H2: context_summary を独り言生成プロンプトに注入（mood/time_context を反映）
+    _h2_sol_hint = _context_summary.to_prompt_block()
+    if _h2_sol_hint:
+        user_prompt += f"\n{_h2_sol_hint}"
+        logger.debug("[H2] context_hint injected to soliloquy")
 
     try:
         ambient_model = (_settings.get("ambientModel", "") or (_settings.get("modelSelect") or "gemma4:e4b"))
@@ -6693,15 +6817,91 @@ async def websocket_endpoint(ws: WebSocket):
         logger.info(f"[WS] disconnected. total: {len(_clients)}")
 
 
+_PROACTIVE_FOCUSED_THROTTLE_SEC = 1200  # 20 min
+_PROACTIVE_STRESSED_REST_MSG = "少し休んだらどうかな？疲れが溜まっているみたいだよ。"
+
+
+def _h4_get_tts_suppressed() -> bool:
+    """Return True if TTS should be suppressed (night context with sufficient confidence)."""
+    cs = _context_summary
+    if cs.is_stale() or cs.confidence < 0.6:
+        return False
+    return cs.time_context == "night"
+
+
+def _h4_get_focused_throttled() -> bool:
+    """Return True if focused throttling applies (mood=focused, last intervention < 20 min)."""
+    cs = _context_summary
+    if cs.is_stale() or cs.confidence < 0.6:
+        return False
+    if cs.mood != "focused":
+        return False
+    return (time.time() - _proactive_last_at) < _PROACTIVE_FOCUSED_THROTTLE_SEC
+
+
+def _h4_get_stressed_rest_message() -> str | None:
+    """Return rest suggestion message if mood=stressed with sufficient confidence, else None."""
+    cs = _context_summary
+    if cs.is_stale() or cs.confidence < 0.6:
+        return None
+    if cs.mood == "stressed":
+        return _PROACTIVE_STRESSED_REST_MSG
+    return None
+
+
 async def _proactive_polling_loop():
     """サーバー側でプロアクティブメッセージをポーリングし、全クライアントへ配信"""
-    global _always_on_echo_suppress_until
+    global _always_on_echo_suppress_until, _proactive_last_at
     while True:
         await asyncio.sleep(10)
         if not _settings.get("proactiveEnabled"):
             continue
         if not _clients:
             continue
+
+        # H4: focused throttling — skip entire polling cycle if within 20 min
+        if _h4_get_focused_throttled():
+            elapsed = time.time() - _proactive_last_at
+            logger.debug(f"[H4] proactive throttled: mood=focused, last={elapsed:.0f}s ago")
+            continue
+
+        # H4: stressed — inject rest suggestion as a synthetic proactive message
+        stressed_msg = _h4_get_stressed_rest_message()
+        if stressed_msg:
+            logger.info("[H4] proactive: mood=stressed, injecting rest suggestion")
+            rest_payload = json.dumps({
+                "type": "proactive_message",
+                "botId": "mei",
+                "text": stressed_msg,
+                "speaker": _settings.get("meiVoice", "2"),
+                "speed": _settings.get("meiSpeed", "1.0"),
+                "ts": str(time.time()),
+            })
+            tts_suppressed = _h4_get_tts_suppressed()
+            rest_audio: bytes | None = None
+            if not tts_suppressed:
+                try:
+                    spd = _settings.get("meiSpeed", "1.0") or "1.0"
+                    engine = _settings.get("meiEngine", _settings.get("ttsEngine", "voicevox"))
+                    rest_audio = await synthesize_speech(stressed_msg, _settings.get("meiVoice", "2"), float(spd), engine=engine)
+                except Exception as e:
+                    logger.error(f"[H4] rest suggestion TTS failed: {e}")
+            for client in list(_clients):
+                try:
+                    await client.send_text(rest_payload)
+                    if rest_audio:
+                        await client.send_bytes(rest_audio)
+                except Exception as exc:
+                    logger.error(f"[H4] rest suggestion WS send failed: {exc}")
+                    _clients.discard(client)
+            _proactive_last_at = time.time()
+            continue
+
+        # H4: night — suppress TTS but continue text delivery (handled per-message below)
+        night_tts_suppressed = _h4_get_tts_suppressed()
+        if night_tts_suppressed:
+            logger.debug("[H4] proactive TTS suppressed: time_context=night")
+
         for bot_id in ["mei", "eve"]:
             try:
                 since = _settings.get("lastSeen", {}).get(bot_id, "") or _last_seen_ts.get(bot_id, "")
@@ -6727,7 +6927,7 @@ async def _proactive_polling_loop():
                         "ts": msg_item["ts"],
                     })
                     audio_bytes: bytes | None = None
-                    if i == latest_idx:
+                    if i == latest_idx and not night_tts_suppressed:
                         try:
                             _spd_p = speed or "auto"
                             audio_bytes = await synthesize_speech(msg_item["text"], speaker, 0 if _spd_p == "auto" else float(_spd_p), engine=engine)
@@ -6756,6 +6956,8 @@ async def _proactive_polling_loop():
                         duration = _wav_duration(audio_bytes)
                         _always_on_echo_suppress_until = time.time() + min(8.0, duration + 1.0)
                         logger.info(f"[proactive] echo suppress for {min(8.0, duration + 1.0):.1f}s")
+                    # H4: update last intervention timestamp
+                    _proactive_last_at = time.time()
                     # lastSeen を更新
                     if "lastSeen" not in _settings:
                         _settings["lastSeen"] = {}

@@ -15,6 +15,11 @@ REACTIVITY_CONFIG = {
     5: {"label": "おしゃべり", "batch_interval_sec": 10, "keyword_ratio": 1.0, "cooldown_multiplier": 0.5},
 }
 
+# H3: Ambient 静粛ルール — confidence 閾値
+# G3 のキャリブレーション後に confidence が正確になってから適切に機能する
+AMBIENT_MEETING_SUPPRESS_CONF = 0.6  # is_meeting=True かつこの値以上で ambient 抑制
+AMBIENT_IDLE_SUPPRESS_CONF = 0.6     # activity=idle かつこの値以上で ambient 抑制
+
 _BASE_KEYWORD_COOLDOWN = 60  # seconds
 _BASE_LLM_COOLDOWN = 30     # seconds (90sでは長すぎて返答なしが頻発)
 
@@ -280,11 +285,26 @@ class AmbientListener:
 
         return "unknown"
 
-    def decide_intervention(self, text: str, source_hint: str) -> str:
-        """Choose whether MEI should skip, give a backchannel, or reply."""
+    def decide_intervention(self, text: str, source_hint: str, context_summary=None) -> str:
+        """Choose whether MEI should skip, give a backchannel, or reply.
+
+        context_summary: optional ContextSummary-like object with is_meeting, activity,
+        mood, confidence, is_stale(). When provided, H3 quiet rules are applied.
+        """
         normalized = text.strip()
         if not normalized:
             return "skip"
+
+        # H3: context_summary による ambient 静粛ルール（早期リターン）
+        if context_summary is not None and not context_summary.is_stale():
+            # 会議中: reply は backchannel に降格（完全にサイレントにはしない）
+            if (context_summary.is_meeting
+                    and context_summary.confidence >= AMBIENT_MEETING_SUPPRESS_CONF):
+                return "backchannel"
+            # idle 中: 完全スキップ
+            if (context_summary.activity == "idle"
+                    and context_summary.confidence >= AMBIENT_IDLE_SUPPRESS_CONF):
+                return "skip"
 
         if source_hint == "fragmentary":
             return "skip"
@@ -299,18 +319,24 @@ class AmbientListener:
             return "backchannel" if self._USER_CALL_RE.search(normalized) else "skip"
 
         if source_hint in {"user_identified", "user_initiative"}:
-            return "reply"
+            result = "reply"
+        elif source_hint == "user_response":
+            result = "reply" if len(normalized) >= 8 else "backchannel"
+        elif source_hint == "user_likely":
+            result = "reply" if len(normalized) >= 12 or self._USER_QUESTION_RE.search(normalized) else "backchannel"
+        else:
+            # unknown source: treat same as media_likely (skip or co_view at level 5)
+            result = "co_view" if self.effective_reactivity >= 5 else "skip"
 
-        if source_hint == "user_response":
-            return "reply" if len(normalized) >= 8 else "backchannel"
+        # H3: stressed 中は reply → backchannel に降格
+        if (result == "reply"
+                and context_summary is not None
+                and not context_summary.is_stale()
+                and getattr(context_summary, "mood", "") == "stressed"
+                and context_summary.confidence >= AMBIENT_MEETING_SUPPRESS_CONF):
+            result = "backchannel"
 
-        if source_hint == "user_likely":
-            return "reply" if len(normalized) >= 12 or self._USER_QUESTION_RE.search(normalized) else "backchannel"
-
-        # unknown source: treat same as media_likely (skip or co_view at level 5)
-        if self.effective_reactivity >= 5:
-            return "co_view"
-        return "skip"
+        return result
 
     # --- Echo Detection ---
 

@@ -205,7 +205,9 @@ class TestBuildContextSummary:
         app._context_summary.location = ""
         app._context_summary.time_context = ""
         app._context_summary.updated_at = 0.0
+        app._media_ctx.reset()
         yield
+        app._media_ctx.reset()
 
     def test_parses_valid_json(self):
         async def run():
@@ -218,13 +220,15 @@ class TestBuildContextSummary:
                 "named_entities": ["DeepMind"],
                 "language_register": "casual_solo",
                 "confidence": 0.83,
-                "evidence_snippets": ["PPOってAtariでも安定するのかな"],
+                "evidence_snippets": ["PPOってAtariでも安定するのかな", "報酬関数の設計が重要だと思う"],
                 "mood": "focused",
                 "location": "home",
                 "time_context": "afternoon",
             })
+            # Use a long transcript (≥300 chars, ≥2 evidence) so G3 discount does not apply
+            long_transcript = "PPOってAtariでも安定するのかな、という話をしていた。" * 15
             with mock.patch("app.chat_with_llm", return_value=fake):
-                await app._build_context_summary("dummy transcript")
+                await app._build_context_summary(long_transcript)
             cs = app._context_summary
             assert cs.activity == "video_watching"
             assert cs.topic == "強化学習論文の解説"
@@ -652,10 +656,13 @@ class TestContextSummaryHistoryEndpoint:
             fake = json.dumps({
                 "activity": "working",
                 "confidence": 0.75,
+                "evidence_snippets": ["作業中の発話だ", "もう一つの根拠"],
                 "mood": "", "location": "", "time_context": "",
             })
+            # Use a long transcript (≥300 chars, ≥2 evidence) so G3 discount does not apply
+            long_transcript = "作業中の発話だ、コードを書いている。" * 20
             with mock.patch("app.chat_with_llm", return_value=fake):
-                await app._build_context_summary("dummy")
+                await app._build_context_summary(long_transcript)
             r = await app.get_context_summary_history()
             assert r["ok"] is True
             assert len(r["confidence_history"]) == 1
@@ -693,3 +700,411 @@ class TestContextSummaryHistoryEndpoint:
             assert r["feedback_count"] == {"yes": 0, "no": 0, "total": 0}
             assert r["last_feedback_ts"] is None
         asyncio.run(run())
+
+
+# ---- Phase G2: media signal injection into _build_context_summary ----
+
+class TestBuildContextSummaryMediaHint:
+    """Phase G2: co_view media signal injected as hint into _build_context_summary system prompt."""
+
+    _FAKE_LLM_RESPONSE = json.dumps({
+        "activity": "video_watching",
+        "topic": "アニメ視聴",
+        "confidence": 0.8,
+        "mood": "",
+        "location": "",
+        "time_context": "",
+    })
+
+    @pytest.fixture(autouse=True)
+    def reset_state(self):
+        app._context_summary.activity = ""
+        app._context_summary.confidence = 0.0
+        app._context_summary.updated_at = 0.0
+        app._media_ctx.reset()
+        yield
+        app._media_ctx.reset()
+
+    def _setup_media_ctx(self, inferred_type="anime", confidence=0.8):
+        app._media_ctx.inferred_type = inferred_type
+        app._media_ctx.confidence = confidence
+        app._media_ctx.last_inferred_at = time.time()
+
+    def test_media_hint_injected_when_fresh_and_confident(self):
+        """Fresh signal with conf>=0.5 inserts co_view hint into system prompt."""
+        async def run():
+            self._setup_media_ctx("anime", confidence=0.8)
+            captured = {}
+
+            async def fake_llm(messages, model="gemma4:e4b"):
+                captured["system"] = messages[0]["content"]
+                return self._FAKE_LLM_RESPONSE
+
+            with mock.patch("app.chat_with_llm", side_effect=fake_llm):
+                await app._build_context_summary("ちょっと静かな場面だな")
+
+            assert "[co_view シグナル]" in captured["system"]
+            assert "anime" in captured["system"]
+        asyncio.run(run())
+
+    def test_media_hint_shows_type_and_confidence_value(self):
+        """Hint text contains the inferred_type and confidence rounded to 2 decimals."""
+        async def run():
+            self._setup_media_ctx("youtube_talk", confidence=0.75)
+            captured = {}
+
+            async def fake_llm(messages, model="gemma4:e4b"):
+                captured["system"] = messages[0]["content"]
+                return self._FAKE_LLM_RESPONSE
+
+            with mock.patch("app.chat_with_llm", side_effect=fake_llm):
+                await app._build_context_summary("なるほど")
+
+            assert "youtube_talk" in captured["system"]
+            assert "0.75" in captured["system"]
+        asyncio.run(run())
+
+    def test_media_hint_not_injected_when_stale(self):
+        """Signal older than 600s is not injected."""
+        async def run():
+            app._media_ctx.inferred_type = "anime"
+            app._media_ctx.confidence = 0.9
+            app._media_ctx.last_inferred_at = time.time() - 700
+            captured = {}
+
+            async def fake_llm(messages, model="gemma4:e4b"):
+                captured["system"] = messages[0]["content"]
+                return self._FAKE_LLM_RESPONSE
+
+            with mock.patch("app.chat_with_llm", side_effect=fake_llm):
+                await app._build_context_summary("テスト発話")
+
+            assert "[co_view シグナル]" not in captured["system"]
+        asyncio.run(run())
+
+    def test_media_hint_not_injected_when_low_confidence(self):
+        """Signal with confidence < 0.5 is not injected."""
+        async def run():
+            self._setup_media_ctx("anime", confidence=0.4)
+            captured = {}
+
+            async def fake_llm(messages, model="gemma4:e4b"):
+                captured["system"] = messages[0]["content"]
+                return self._FAKE_LLM_RESPONSE
+
+            with mock.patch("app.chat_with_llm", side_effect=fake_llm):
+                await app._build_context_summary("テスト発話")
+
+            assert "[co_view シグナル]" not in captured["system"]
+        asyncio.run(run())
+
+    def test_media_hint_not_injected_when_type_unknown(self):
+        """inferred_type='unknown' does not produce a hint."""
+        async def run():
+            self._setup_media_ctx("unknown", confidence=0.9)
+            captured = {}
+
+            async def fake_llm(messages, model="gemma4:e4b"):
+                captured["system"] = messages[0]["content"]
+                return self._FAKE_LLM_RESPONSE
+
+            with mock.patch("app.chat_with_llm", side_effect=fake_llm):
+                await app._build_context_summary("テスト発話")
+
+            assert "[co_view シグナル]" not in captured["system"]
+        asyncio.run(run())
+
+    def test_media_hint_not_injected_when_type_empty(self):
+        """inferred_type='' does not produce a hint."""
+        async def run():
+            app._media_ctx.inferred_type = ""
+            app._media_ctx.confidence = 0.9
+            app._media_ctx.last_inferred_at = time.time()
+            captured = {}
+
+            async def fake_llm(messages, model="gemma4:e4b"):
+                captured["system"] = messages[0]["content"]
+                return self._FAKE_LLM_RESPONSE
+
+            with mock.patch("app.chat_with_llm", side_effect=fake_llm):
+                await app._build_context_summary("テスト発話")
+
+            assert "[co_view シグナル]" not in captured["system"]
+        asyncio.run(run())
+
+    def test_media_hint_not_injected_when_never_inferred(self):
+        """last_inferred_at=0 (never run) does not produce a hint."""
+        async def run():
+            app._media_ctx.inferred_type = "anime"
+            app._media_ctx.confidence = 0.9
+            app._media_ctx.last_inferred_at = 0.0
+            captured = {}
+
+            async def fake_llm(messages, model="gemma4:e4b"):
+                captured["system"] = messages[0]["content"]
+                return self._FAKE_LLM_RESPONSE
+
+            with mock.patch("app.chat_with_llm", side_effect=fake_llm):
+                await app._build_context_summary("テスト発話")
+
+            assert "[co_view シグナル]" not in captured["system"]
+        asyncio.run(run())
+
+    def test_activity_video_watching_preserved_with_media_signal(self):
+        """LLM returning video_watching is correctly stored when media hint present."""
+        async def run():
+            self._setup_media_ctx("anime", confidence=0.8)
+            fake_response = json.dumps({
+                "activity": "video_watching",
+                "topic": "アニメ視聴",
+                "confidence": 0.85,
+                "mood": "calm",
+                "location": "home",
+                "time_context": "evening",
+            })
+
+            with mock.patch("app.chat_with_llm", return_value=fake_response):
+                await app._build_context_summary("しーん")
+
+            assert app._context_summary.activity == "video_watching"
+        asyncio.run(run())
+
+
+# ---- Phase G3: confidence discount ----
+
+class TestConfidenceDiscount:
+    """Phase G3: post-processing confidence discount based on transcript length and evidence count."""
+
+    @pytest.fixture(autouse=True)
+    def reset_summary(self):
+        app._context_summary.confidence = 0.0
+        app._context_summary.evidence_snippets = []
+        app._context_summary.updated_at = 0.0
+        app._media_ctx.reset()
+        yield
+        app._media_ctx.reset()
+
+    def _fake_llm_response(self, confidence=0.9, evidence_snippets=None):
+        return json.dumps({
+            "activity": "working",
+            "topic": "test",
+            "confidence": confidence,
+            "evidence_snippets": evidence_snippets or [],
+            "mood": "", "location": "", "time_context": "",
+        })
+
+    def test_short_transcript_and_no_evidence_caps_at_0_3(self):
+        """transcript < 100 chars + 0 evidence → confidence capped at 0.3."""
+        async def run():
+            fake = self._fake_llm_response(confidence=0.9, evidence_snippets=[])
+            with mock.patch("app.chat_with_llm", return_value=fake):
+                await app._build_context_summary("短い")  # 2 chars
+            assert app._context_summary.confidence <= 0.3
+        asyncio.run(run())
+
+    def test_short_transcript_with_one_evidence_caps_at_0_3(self):
+        """transcript < 100 chars → caps at 0.3 regardless of evidence count."""
+        async def run():
+            fake = self._fake_llm_response(confidence=0.9, evidence_snippets=["根拠一件"])
+            short_transcript = "a" * 50  # 50 chars < 100
+            with mock.patch("app.chat_with_llm", return_value=fake):
+                await app._build_context_summary(short_transcript)
+            assert app._context_summary.confidence <= 0.3
+        asyncio.run(run())
+
+    def test_zero_evidence_caps_at_0_3_regardless_of_length(self):
+        """0 evidence_snippets → confidence capped at 0.3 even with long transcript."""
+        async def run():
+            fake = self._fake_llm_response(confidence=0.9, evidence_snippets=[])
+            long_transcript = "発話の内容が長い。" * 40  # > 100 chars
+            with mock.patch("app.chat_with_llm", return_value=fake):
+                await app._build_context_summary(long_transcript)
+            assert app._context_summary.confidence <= 0.3
+        asyncio.run(run())
+
+    def test_medium_transcript_one_evidence_caps_at_0_55(self):
+        """100 ≤ chars < 300 with 1 evidence → capped at 0.55."""
+        async def run():
+            fake = self._fake_llm_response(confidence=0.9, evidence_snippets=["根拠一件"])
+            medium_transcript = "これは中程度の長さの発話です。" * 10  # ~150 chars
+            with mock.patch("app.chat_with_llm", return_value=fake):
+                await app._build_context_summary(medium_transcript)
+            assert app._context_summary.confidence <= 0.55
+        asyncio.run(run())
+
+    def test_long_transcript_multiple_evidence_no_discount(self):
+        """≥300 chars + ≥2 evidence → no discount applied."""
+        async def run():
+            fake = self._fake_llm_response(
+                confidence=0.85,
+                evidence_snippets=["具体的な根拠その一", "具体的な根拠その二"],
+            )
+            long_transcript = "会議中の具体的な発話で固有名詞も多い。京セラの案件について話し合った。" * 15
+            with mock.patch("app.chat_with_llm", return_value=fake):
+                await app._build_context_summary(long_transcript)
+            assert abs(app._context_summary.confidence - 0.85) < 1e-6
+        asyncio.run(run())
+
+    def test_discount_does_not_go_below_original_when_already_low(self):
+        """If LLM already returns low confidence, discount does not raise it."""
+        async def run():
+            fake = self._fake_llm_response(confidence=0.1, evidence_snippets=[])
+            with mock.patch("app.chat_with_llm", return_value=fake):
+                await app._build_context_summary("短い")
+            assert app._context_summary.confidence == 0.1  # min(0.1, 0.3) = 0.1
+        asyncio.run(run())
+
+    def test_discount_floor_is_not_zero(self):
+        """Discount uses min() so LLM values below cap are preserved (no forced floor)."""
+        async def run():
+            fake = self._fake_llm_response(confidence=0.2, evidence_snippets=[])
+            long_transcript = "発話内容。" * 50  # > 100 chars, 0 evidence
+            with mock.patch("app.chat_with_llm", return_value=fake):
+                await app._build_context_summary(long_transcript)
+            # 0 evidence → cap 0.3, but LLM returned 0.2 < 0.3, so preserved
+            assert app._context_summary.confidence == 0.2
+        asyncio.run(run())
+
+    def test_prompt_contains_calibration_guidance(self):
+        """System prompt includes confidence calibration guidelines."""
+        async def run():
+            captured = {}
+
+            async def fake_llm(messages, model="gemma4:e4b"):
+                captured["system"] = messages[0]["content"]
+                return json.dumps({
+                    "activity": "working", "confidence": 0.5,
+                    "mood": "", "location": "", "time_context": "",
+                })
+
+            with mock.patch("app.chat_with_llm", side_effect=fake_llm):
+                await app._build_context_summary("テスト")
+
+            assert "confidence キャリブレーション基準" in captured["system"]
+            assert "100 文字未満" in captured["system"]
+            assert "evidence_snippets を 1 件も抽出できない" in captured["system"]
+        asyncio.run(run())
+
+
+# ---- Phase H2: context_summary injection into soliloquy + ambient ----
+
+class TestH2InjectionSoliloquy:
+    """Phase H2: _generate_soliloquy includes context_summary in user_prompt."""
+
+    @pytest.fixture(autouse=True)
+    def reset_state(self):
+        app._context_summary.activity = ""
+        app._context_summary.confidence = 0.0
+        app._context_summary.updated_at = 0.0
+        yield
+        app._context_summary.activity = ""
+        app._context_summary.confidence = 0.0
+        app._context_summary.updated_at = 0.0
+
+    def test_context_hint_injected_into_user_prompt_when_active(self):
+        """Active context_summary appears in soliloquy user_prompt."""
+        async def run():
+            app._context_summary.activity = "meeting"
+            app._context_summary.topic = "京セラ案件"
+            app._context_summary.confidence = 0.8
+            app._context_summary.updated_at = time.time()
+
+            captured = {}
+
+            async def fake_llm(messages, model="gemma4:e4b"):
+                captured["user"] = messages[1]["content"]
+                return "今日の会議、長かったな"
+
+            with mock.patch("app.chat_with_llm", side_effect=fake_llm):
+                await app._generate_soliloquy()
+
+            assert "現在の状況コンテキスト" in captured["user"]
+            assert "京セラ案件" in captured["user"]
+        asyncio.run(run())
+
+    def test_context_hint_not_injected_when_low_confidence(self):
+        """Low-confidence context_summary is not injected into soliloquy."""
+        async def run():
+            app._context_summary.activity = "meeting"
+            app._context_summary.confidence = 0.1
+            app._context_summary.updated_at = time.time()
+
+            captured = {}
+
+            async def fake_llm(messages, model="gemma4:e4b"):
+                captured["user"] = messages[1]["content"]
+                return "静かだな"
+
+            with mock.patch("app.chat_with_llm", side_effect=fake_llm):
+                await app._generate_soliloquy()
+
+            assert "現在の状況コンテキスト" not in captured["user"]
+        asyncio.run(run())
+
+    def test_context_hint_not_injected_when_stale(self):
+        """Stale context_summary is not injected into soliloquy."""
+        async def run():
+            app._context_summary.activity = "working"
+            app._context_summary.confidence = 0.9
+            app._context_summary.updated_at = time.time() - 700
+
+            captured = {}
+
+            async def fake_llm(messages, model="gemma4:e4b"):
+                captured["user"] = messages[1]["content"]
+                return "もう夜か"
+
+            with mock.patch("app.chat_with_llm", side_effect=fake_llm):
+                await app._generate_soliloquy()
+
+            assert "現在の状況コンテキスト" not in captured["user"]
+        asyncio.run(run())
+
+
+class TestH2InjectionAmbientBatch:
+    """Phase H2: ambient batch LLM prompt includes context_summary."""
+
+    @pytest.fixture(autouse=True)
+    def reset_state(self, tmp_path):
+        app._context_summary.activity = ""
+        app._context_summary.confidence = 0.0
+        app._context_summary.updated_at = 0.0
+        # Set up a minimal ambient_listener for build_llm_prompt
+        import ambient_listener as al
+        rules_file = tmp_path / "ambient_rules.json"
+        rules_file.write_text('{"rules": [], "keywords": []}')
+        examples_file = tmp_path / "ambient_examples.json"
+        examples_file.write_text('{"examples": []}')
+        app._ambient_listener = al.AmbientListener(
+            rules_path=rules_file,
+            examples_path=examples_file,
+            reactivity=3,
+        )
+        yield
+        app._ambient_listener = None
+        app._context_summary.activity = ""
+        app._context_summary.confidence = 0.0
+        app._context_summary.updated_at = 0.0
+
+    def test_context_hint_present_in_ambient_prompt_when_active(self):
+        """Active context_summary is appended to ambient build_llm_prompt output."""
+        app._context_summary.activity = "meeting"
+        app._context_summary.topic = "戦略会議"
+        app._context_summary.confidence = 0.75
+        app._context_summary.updated_at = time.time()
+
+        base_prompt = app._ambient_listener.build_llm_prompt(source_hint="user_identified")
+        context_hint = app._context_summary.to_prompt_block()
+        assert context_hint  # must be non-empty
+        combined = base_prompt + context_hint
+        assert "現在の状況コンテキスト" in combined
+        assert "戦略会議" in combined
+
+    def test_context_hint_empty_when_low_confidence(self):
+        """Low-confidence context_summary produces empty to_prompt_block."""
+        app._context_summary.activity = "meeting"
+        app._context_summary.confidence = 0.1
+        app._context_summary.updated_at = time.time()
+
+        hint = app._context_summary.to_prompt_block()
+        assert hint == ""

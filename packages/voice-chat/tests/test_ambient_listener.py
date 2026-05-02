@@ -210,3 +210,81 @@ class TestAmbientListener:
         source = listener.classify_source("メイ、おはよう。")
         assert source == "user_initiative"
         assert listener.decide_intervention("メイ、おはよう。", source) == "reply"
+
+
+class FakeContextSummary:
+    """ContextSummary の最小モック（H3テスト用）。"""
+    def __init__(self, *, is_meeting=False, activity="", mood="", confidence=0.8, stale=False):
+        self.is_meeting = is_meeting
+        self.activity = activity
+        self.mood = mood
+        self.confidence = confidence
+        self._stale = stale
+
+    def is_stale(self):
+        return self._stale
+
+
+class TestDecideInterventionH3:
+    """Phase H3: Ambient 静粛ルールのテスト。"""
+
+    @pytest.fixture
+    def listener(self, tmp_path):
+        rules_file = tmp_path / "rules.json"
+        examples_file = tmp_path / "examples.json"
+        rules_file.write_text('{"rules": [], "keywords": []}')
+        examples_file.write_text('{"examples": []}')
+        return AmbientListener(rules_path=rules_file, examples_path=examples_file, reactivity=3)
+
+    def test_is_meeting_high_confidence_returns_backchannel(self, listener):
+        ctx = FakeContextSummary(is_meeting=True, confidence=0.7)
+        result = listener.decide_intervention("それで次のアジェンダは", "user_identified", ctx)
+        assert result == "backchannel"
+
+    def test_is_meeting_low_confidence_not_suppressed(self, listener):
+        # confidence < 0.6 では会議判定でも抑制しない（誤判定保護）
+        ctx = FakeContextSummary(is_meeting=True, confidence=0.4)
+        result = listener.decide_intervention("メイ、おはよう。", "user_initiative", ctx)
+        assert result == "reply"
+
+    def test_is_meeting_exactly_at_threshold_suppresses(self, listener):
+        ctx = FakeContextSummary(is_meeting=True, confidence=0.6)
+        result = listener.decide_intervention("どう思う？", "user_likely", ctx)
+        assert result == "backchannel"
+
+    def test_activity_idle_high_confidence_skips(self, listener):
+        ctx = FakeContextSummary(activity="idle", confidence=0.7)
+        result = listener.decide_intervention("ちょっと疲れた", "user_likely", ctx)
+        assert result == "skip"
+
+    def test_activity_idle_low_confidence_not_suppressed(self, listener):
+        ctx = FakeContextSummary(activity="idle", confidence=0.4)
+        result = listener.decide_intervention("今日の天気どうかな", "user_likely", ctx)
+        # confidence が低いので抑制されず通常判定（user_likely + 質問形 → reply）
+        assert result == "reply"
+
+    def test_mood_stressed_downgrades_reply_to_backchannel(self, listener):
+        ctx = FakeContextSummary(mood="stressed", confidence=0.8)
+        result = listener.decide_intervention("メイ、おはよう。", "user_initiative", ctx)
+        assert result == "backchannel"
+
+    def test_mood_stressed_low_confidence_keeps_reply(self, listener):
+        ctx = FakeContextSummary(mood="stressed", confidence=0.4)
+        result = listener.decide_intervention("メイ、おはよう。", "user_initiative", ctx)
+        assert result == "reply"
+
+    def test_stale_context_summary_ignored(self, listener):
+        ctx = FakeContextSummary(is_meeting=True, confidence=0.9, stale=True)
+        result = listener.decide_intervention("メイ、おはよう。", "user_initiative", ctx)
+        # stale なので H3 ルールが適用されず reply のまま
+        assert result == "reply"
+
+    def test_no_context_summary_keeps_original_behavior(self, listener):
+        result = listener.decide_intervention("メイ、おはよう。", "user_initiative")
+        assert result == "reply"
+
+    def test_meeting_suppression_takes_priority_over_mood(self, listener):
+        # is_meeting かつ mood=stressed でも is_meeting が先にヒットして backchannel
+        ctx = FakeContextSummary(is_meeting=True, mood="stressed", confidence=0.8)
+        result = listener.decide_intervention("どう？", "user_identified", ctx)
+        assert result == "backchannel"
