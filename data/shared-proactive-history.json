@@ -502,6 +502,104 @@
       ],
       "evaluate_score": 0.58,
       "sentAt": "2026-05-01T11:30:58.065Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "campingcar",
+      "preview": "ちょっとちょっと、Akiraさん。\n\nいこーよに *2026年GW関東おすすめ「道の駅」11選* が出てたよ  大型遊具・遊園地・プール付きの施設まで揃ってて、ドライブがてら立ち寄れるやつが11か所まとまってるみたい。\n\nキャンピングカー候補と合わせて眺めると楽しそうかも。\nhttps://news",
+      "topic": "関東GW道の駅11選",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE44M0dKWlpSUGdveTJTT2puUU53R2pSQTRuY2sySzYyOG1IWkpHbVVyUFNWQ0FfNHZ4akpRMWJ3dFBFSEM3TUxweGVjSE42WUE5cmc?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiUkFVX3lxTE44M0dKWlpSUGdveTJTT2puUU53R2pSQTRuY2sySzYyOG1IWkpHbVVyUFNWQ0FfNHZ4akpRMWJ3dFBFSEM3TUxweGVjSE42WUE5cmc?oc=5",
+      "sourceType": "いこーよニュース",
+      "skill": "general",
+      "themePath": [
+        "personal",
+        "personal/travel-tech",
+        "personal/travel-tech/campingcar",
+        "personal/travel-tech/campingcar/route"
+      ],
+      "themeKey": "personal/travel-tech/campingcar/route",
+      "inner_thought": "GW土曜日で今日カレンダー空、道の駅GWまとめはキャンピングカー好きのAkiraさんにも刺さりそう",
+      "plan": [
+        "関東道の駅GWまとめを共有",
+        "温泉関連記事を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.78,
+        0.61,
+        0.4
+      ],
+      "evaluate_score": 0.75,
+      "sentAt": "2026-05-01T23:31:28.850Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "hobby_leisure",
+      "interestCategory": "dodgers",
+      "preview": "ね、Akiraさん。\n\n本庄経済新聞に *西武が佐藤爽と支配下契約* ってニュースが出てたよ ⚾\n\n所沢ホームの地元球団の話、野球好きのAkiraさんに届けておきたくて。\nhttps://news.google.com/rss/articles/CBMiUkFVX3lxTE9DWEo3Qi05R2x",
+      "topic": "西武・佐藤爽と支配下契約",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9DWEo3Qi05R2xTczduS1RXR3lzcWg5TmM3S19tYzhydGFVemhvdHlmVzB3XzdpTXo2V0hWblRGcUk4S0NyRkNZVUE0cndRUnRxYmc?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiUkFVX3lxTE9DWEo3Qi05R2xTczduS1RXR3lzcWg5TmM3S19tYzhydGFVemhvdHlmVzB3XzdpTXo2V0hWblRGcUk4S0NyRkNZVUE0cndRUnRxYmc?oc=5",
+      "sourceType": "本庄経済新聞",
+      "skill": "general",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/event",
+        "local/saitama/tokorozawa/event/food-fair"
+      ],
+      "themeKey": "local/saitama/tokorozawa/event/food-fair",
+      "inner_thought": "所沢の地元ライオンズネタ、野球好きAkiraさんに届けたい",
+      "plan": [
+        "西武・佐藤爽の支配下契約を共有",
+        "池袋グルメ動画を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.78,
+        0.62,
+        0.3
+      ],
+      "evaluate_score": 0.76,
+      "sentAt": "2026-05-02T00:31:01.434Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "ね、今いい？\n\nるるぶに *5月2日〜6日の東京近郊GWイベント21選* が出てたよ 🎉\n\n今日カレンダー空だし、どこか気になるとこ見つかるかも。\nhttps://news.google.com/rss/articles/CBMiUEFVX3lxTE1uS2Z1dXNwbFVTdTNTSTNyMX",
+      "topic": "るるぶGWイベント21選（5/2〜6）",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1uS2Z1dXNwbFVTdTNTSTNyMXZPQ0xORWE0Q1d1bDZVUjRaUmlPb0szaXhtSWI3OHdkckRKV1lMX1dwVERwN0M5VFVSWWdMVUhQ?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiUEFVX3lxTE1uS2Z1dXNwbFVTdTNTSTNyMXZPQ0xORWE0Q1d1bDZVUjRaUmlPb0szaXhtSWI3OHdkckRKV1lMX1dwVERwN0M5VFVSWWdMVUhQ?oc=5",
+      "sourceType": "るるぶWeb",
+      "skill": "general",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/event",
+        "local/saitama/tokorozawa/event/market"
+      ],
+      "themeKey": "local/saitama/tokorozawa/event/market",
+      "inner_thought": "GW今日から使えるるるぶのイベント21選、今すぐ動けるAkiraさんにピッタリだと思う",
+      "plan": [
+        "るるぶGWイベント21選を共有",
+        "温泉バルコニー記事を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.84,
+        0.72,
+        0.2
+      ],
+      "evaluate_score": 0.82,
+      "sentAt": "2026-05-02T01:30:46.141Z"
     }
   ]
 }
