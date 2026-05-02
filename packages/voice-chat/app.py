@@ -8,6 +8,7 @@ import math
 import os
 import re
 import struct
+import subprocess
 import sys
 import tempfile
 import time
@@ -682,45 +683,96 @@ def _messages_to_single_prompt(messages: list[dict]) -> str:
     return body_text
 
 
-async def _chat_claude(messages: list[dict], model: str) -> str:
-    """Claude Code CLI subprocess 経由（サブスク OAuth 認証 via macOS keychain）で応答取得。
-    `--bare` は OAuth/keychain を読まないため使わない。"""
-    prompt = _messages_to_single_prompt(messages)
-    if not prompt:
-        return ""
-    # model 名: "claude-sonnet-4-6" → "sonnet" に正規化（CLI が短縮形を受け付けるため）
-    cli_model = "sonnet"
-    if "haiku" in model:
-        cli_model = "haiku"
-    elif "opus" in model:
-        cli_model = "opus"
-    # ANTHROPIC_API_KEY が無効でも OAuth keychain で動くよう env から除去
-    _claude_env = {k: v for k, v in os.environ.items() if k != "ANTHROPIC_API_KEY"}
+_CLAUDE_OAUTH_TOKEN_CACHE: dict = {"token": "", "fetched_at": 0.0}
+_CLAUDE_CODE_IDENTITY = "You are Claude Code, Anthropic's official CLI for Claude."
+
+
+def _read_claude_oauth_token() -> str:
+    """macOS keychain から Claude Code OAuth access token を取得（60s キャッシュ）。"""
+    now = time.time()
+    if (_CLAUDE_OAUTH_TOKEN_CACHE["token"]
+            and now - _CLAUDE_OAUTH_TOKEN_CACHE["fetched_at"] < 60):
+        return _CLAUDE_OAUTH_TOKEN_CACHE["token"]
     try:
-        proc = await asyncio.create_subprocess_exec(
-            "claude", "-p", "--model", cli_model,
-            "--disable-slash-commands",
-            "--dangerously-skip-permissions",
-            stdin=asyncio.subprocess.PIPE,
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE,
-            env=_claude_env,
+        result = subprocess.run(
+            ["security", "find-generic-password", "-s", "Claude Code-credentials", "-w"],
+            capture_output=True, text=True, timeout=5,
         )
-        stdout_b, stderr_b = await asyncio.wait_for(
-            proc.communicate(prompt.encode("utf-8")),
-            timeout=60,
-        )
-        if proc.returncode != 0:
-            err = stderr_b.decode("utf-8", errors="replace")[:200]
-            logger.warning(f"[llm/claude] CLI exit {proc.returncode}: {err}")
+        if result.returncode != 0:
+            return ""
+        creds = json.loads(result.stdout.strip())
+        token = creds.get("claudeAiOauth", {}).get("accessToken", "") or ""
+        _CLAUDE_OAUTH_TOKEN_CACHE["token"] = token
+        _CLAUDE_OAUTH_TOKEN_CACHE["fetched_at"] = now
+        return token
+    except (subprocess.SubprocessError, json.JSONDecodeError, OSError) as e:
+        logger.warning(f"[llm/claude] keychain read failed: {e}")
+        return ""
+
+
+async def _chat_claude(messages: list[dict], model: str) -> str:
+    """Anthropic API 直接呼び出し（Claude Code OAuth token 経由、サブスク認証）。
+    keychain 上の OAuth token を使い、Claude CLI subprocess の overhead (50-75s) を回避。"""
+    token = _read_claude_oauth_token()
+    if not token:
+        logger.warning("[llm/claude] OAuth token not found, falling back to Ollama")
+        return await _chat_ollama(messages, "gemma4:e4b")
+
+    # OAuth token は first-party Claude Code 用のため、system prompt 先頭に identity が必要
+    system_text, converted = _convert_messages_for_anthropic(messages)
+    full_system = _CLAUDE_CODE_IDENTITY
+    if system_text:
+        full_system = f"{_CLAUDE_CODE_IDENTITY}\n\n{system_text}"
+
+    # model 名正規化: "claude-sonnet-4-6" → "claude-sonnet-4-5" (実在モデル名)
+    api_model = model
+    if model in ("claude-sonnet-4-6", "claude-sonnet-4", "sonnet"):
+        api_model = "claude-sonnet-4-5"
+    elif model in ("claude-haiku-4-5", "haiku"):
+        api_model = "claude-haiku-4-5-20251001"
+    elif model in ("claude-opus-4-7", "opus"):
+        api_model = "claude-opus-4-7"
+
+    request_payload = {
+        "model": api_model,
+        "max_tokens": 1024,
+        "system": full_system,
+        "messages": converted,
+    }
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "anthropic-version": "2023-06-01",
+        "anthropic-beta": "oauth-2025-04-20",
+        "content-type": "application/json",
+    }
+    # 429 (rate limit) は指数バックオフで 2 回まで retry。それ以外は即フォールバック
+    backoff = 1.5
+    for attempt in range(3):
+        try:
+            async with httpx.AsyncClient(timeout=30) as client:
+                resp = await client.post(
+                    "https://api.anthropic.com/v1/messages",
+                    headers=headers,
+                    json=request_payload,
+                )
+            if resp.status_code == 200:
+                data = resp.json()
+                for block in data.get("content", []):
+                    if block.get("type") == "text":
+                        return block.get("text", "").strip()
+                return ""
+            if resp.status_code == 429 and attempt < 2:
+                logger.info(f"[llm/claude] 429, retry in {backoff:.1f}s (attempt {attempt+1}/3)")
+                await asyncio.sleep(backoff)
+                backoff *= 2
+                continue
+            err_body = resp.text[:200]
+            logger.warning(f"[llm/claude] API {resp.status_code}: {err_body}")
             return await _chat_ollama(messages, "gemma4:e4b")
-        return stdout_b.decode("utf-8", errors="replace").strip()
-    except asyncio.TimeoutError:
-        logger.warning("[llm/claude] CLI timeout (60s), falling back to Ollama")
-        return await _chat_ollama(messages, "gemma4:e4b")
-    except FileNotFoundError:
-        logger.warning("[llm/claude] claude CLI not found, falling back to Ollama")
-        return await _chat_ollama(messages, "gemma4:e4b")
+        except (httpx.HTTPError, asyncio.TimeoutError) as e:
+            logger.warning(f"[llm/claude] API error: {e}")
+            return await _chat_ollama(messages, "gemma4:e4b")
+    return await _chat_ollama(messages, "gemma4:e4b")
 
 
 async def _chat_openai(messages: list[dict], model: str) -> str:
