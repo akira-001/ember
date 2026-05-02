@@ -8,5 +8,49 @@
     ],
     "type": "organization",
     "added_at": "2026-04-26T09:58:05"
+  },
+  {
+    "id": "89d2da5f86f5",
+    "replacement": "Alpha March",
+    "patterns": [
+      "アルフマーチ"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T16:53:04",
+    "confidence": 0.9,
+    "reason": "固有名詞または専門用語をカタカナで誤って繰り返している可能性が高いため。"
+  },
+  {
+    "id": "36fd68aa13f7",
+    "replacement": "Craft Kit",
+    "patterns": [
+      "クランチキット"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T16:53:04",
+    "confidence": 0.85,
+    "reason": "頻出する固有名詞であり、音韻的に「Craft Kit」の誤認識と考えられるため。"
+  },
+  {
+    "id": "84554a0d2403",
+    "replacement": "Kabuto",
+    "patterns": [
+      "カブト"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T16:53:04",
+    "confidence": 0.8,
+    "reason": "文脈全体で特定の専門用語やブランド名として反復されているが、文脈からより明確な固有名詞（例：Character/Cabinetなど）に修正が必要な可能性があるため。"
+  },
+  {
+    "id": "f96a2e1dcdb0",
+    "replacement": "Containing",
+    "patterns": [
+      "コンナング"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T16:53:04",
+    "confidence": 0.75,
+    "reason": "英語の単語（Containingなど）を音韻的に誤認識した可能性が高いため。"
   }
 ]
