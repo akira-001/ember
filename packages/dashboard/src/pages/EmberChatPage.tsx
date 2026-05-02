@@ -303,7 +303,7 @@ export default function EmberChatPage() {
           />
 
           <ImproveLoopPanel open={chat.settings.debugMode} />
-          <ContextSummaryPanel open={chat.settings.debugMode} />
+          <ContextSummaryPanel open={chat.settings.debugMode} externalSummary={chat.contextSummary} />
 
           <div style={textInputRowStyle}>
             <input

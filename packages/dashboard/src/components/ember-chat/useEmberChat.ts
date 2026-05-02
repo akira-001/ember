@@ -1,6 +1,6 @@
 // dashboard/src/components/ember-chat/useEmberChat.ts
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { ChatMessage, EmberSettings, Speaker, OllamaModel } from './types';
+import type { ChatMessage, ContextSummary, EmberSettings, Speaker, OllamaModel } from './types';
 import { DEFAULT_SETTINGS } from './types';
 import { buildStatusDiagnostic, parseDiagnosticLine } from './diagnostics';
 
@@ -18,6 +18,7 @@ export function useEmberChat() {
   const [wsConnected, setWsConnected] = useState(false);
   const [replyBot, setReplyBot] = useState<string | null>(null);
   const [lastBotId, setLastBotId] = useState<string | null>(null);
+  const [contextSummary, setContextSummary] = useState<ContextSummary | null>(null);
   const settingsExpanded = settings.settingsExpanded ?? false;
 
   const wsRef = useRef<WebSocket | null>(null);
@@ -307,6 +308,8 @@ export function useEmberChat() {
           if (settingsRef.current.debugMode) {
             addMessage(msg.text, 'debug');
           }
+        } else if (msg.type === 'context_summary') {
+          if (msg.summary) setContextSummary(msg.summary as ContextSummary);
         } else if (msg.type === 'reply_ended') {
           if (msg.bot_id && msg.reply_ts) {
             updateSetting('lastSeen', { ...settingsRef.current.lastSeen, [msg.bot_id]: msg.reply_ts });
@@ -558,6 +561,7 @@ export function useEmberChat() {
     messages, settings, speakers, botSpeakers, models,
     recording, processing, wsConnected,
     replyBot, lastBotId, settingsExpanded,
+    contextSummary,
     // Actions
     sendText, startRecording, stopRecording,
     updateSetting, updateSettings, loadSpeakers, handleBotEngineChange,

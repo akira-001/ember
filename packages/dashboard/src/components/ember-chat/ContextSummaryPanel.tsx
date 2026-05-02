@@ -1,16 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
+import type { ContextSummary } from './types';
 
 const API_BASE = '/whisper/api';
-
-export interface ContextSummary {
-  activity?: string;
-  topic?: string;
-  is_meeting?: boolean;
-  keywords?: string[];
-  named_entities?: string[];
-  confidence?: number;
-  updated_at?: number;
-}
 
 interface ContextSummaryPanelProps {
   open: boolean;
@@ -65,12 +56,17 @@ const inputStyle: CSSProperties = {
   fontSize: 11,
 };
 
-function ageText(updatedAt?: number): string {
-  if (!updatedAt) return '';
+const STALE_THRESHOLD_SEC = 180;
+
+function ageInfo(updatedAt?: number): { text: string; isStale: boolean } {
+  if (!updatedAt) return { text: '', isStale: false };
   const ageSec = Math.max(0, Math.floor(Date.now() / 1000 - updatedAt));
-  if (ageSec < 60) return `${ageSec}秒前更新`;
-  if (ageSec < 3600) return `${Math.floor(ageSec / 60)}分前更新`;
-  return `${Math.floor(ageSec / 3600)}時間前更新`;
+  const isStale = ageSec >= STALE_THRESHOLD_SEC;
+  let text: string;
+  if (ageSec < 60) text = `${ageSec}秒前更新`;
+  else if (ageSec < 3600) text = `${Math.floor(ageSec / 60)}分前更新`;
+  else text = `${Math.floor(ageSec / 3600)}時間前更新`;
+  return { text, isStale };
 }
 
 export default function ContextSummaryPanel({ open, externalSummary }: ContextSummaryPanelProps) {
@@ -109,7 +105,7 @@ export default function ContextSummaryPanel({ open, externalSummary }: ContextSu
 
   useEffect(() => {
     if (!open) return;
-    ageTimerRef.current = setInterval(() => forceTick((n) => n + 1), 30_000);
+    ageTimerRef.current = setInterval(() => forceTick((n) => n + 1), 10_000);
     return () => {
       if (ageTimerRef.current) clearInterval(ageTimerRef.current);
     };
@@ -195,6 +191,7 @@ export default function ContextSummaryPanel({ open, externalSummary }: ContextSu
 
   const conf = summary?.confidence ?? 0;
   const confColor = conf >= 0.7 ? '#7dffaa' : conf >= 0.4 ? '#ffd17d' : '#888';
+  const { text: ageLabel, isStale } = ageInfo(summary?.updated_at);
 
   return (
     <div style={containerStyle}>
@@ -203,7 +200,38 @@ export default function ContextSummaryPanel({ open, externalSummary }: ContextSu
         <span style={{ color: confColor }}>
           {summary?.updated_at ? `信頼度 ${conf.toFixed(2)}` : '未取得'}
         </span>
-        <span style={{ color: '#666', marginLeft: 'auto' }}>{ageText(summary?.updated_at)}</span>
+        {isStale && (
+          <span
+            style={{
+              background: '#7a1a1a',
+              color: '#ff8080',
+              border: '1px solid #c0392b',
+              borderRadius: 3,
+              padding: '1px 6px',
+              fontSize: 10,
+              fontWeight: 700,
+              letterSpacing: '0.05em',
+            }}
+          >
+            STALE
+          </span>
+        )}
+        <span style={{ color: '#666', marginLeft: 'auto' }}>{ageLabel}</span>
+        <button
+          type="button"
+          onClick={refresh}
+          style={{
+            background: '#1e3050',
+            color: '#7da6ff',
+            border: '1px solid #2a4a8a',
+            borderRadius: 4,
+            padding: '2px 8px',
+            cursor: 'pointer',
+            fontSize: 10,
+          }}
+        >
+          更新
+        </button>
       </div>
       <div style={{ lineHeight: 1.5 }}>
         <div>

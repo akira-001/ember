@@ -1,5 +1,18 @@
 // dashboard/src/components/ember-chat/types.ts
 
+export interface ContextSummary {
+  activity?: string;
+  topic?: string;
+  is_meeting?: boolean;
+  keywords?: string[];
+  named_entities?: string[];
+  subtopics?: string[];
+  language_register?: string;
+  evidence_snippets?: string[];
+  confidence?: number;
+  updated_at?: number;
+}
+
 export interface ChatMessage {
   id: string;
   type: 'user' | 'assistant' | 'status' | 'proactive' | 'debug';
