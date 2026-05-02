@@ -272,5 +272,38 @@
     "added_at": "2026-05-02T19:33:35",
     "confidence": 0.85,
     "reason": "連続する技術用語の中で、区切り記号や分類を指す誤認識の可能性がある。"
+  },
+  {
+    "id": "3dd3063d0e84",
+    "replacement": "Rhino Coil",
+    "patterns": [
+      "ライノコレ"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T19:51:04",
+    "confidence": 0.8,
+    "reason": "音声から「ライノ」や「コイル」といった専門用語や製品名が混ざって誤認識された可能性が高い。"
+  },
+  {
+    "id": "f651e4cb730c",
+    "replacement": "Starter Pick Station",
+    "patterns": [
+      "パスターピックステース"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T19:51:04",
+    "confidence": 0.75,
+    "reason": "英語の技術用語や機械の名称を音声認識が誤って結合・音写したと思われる。"
+  },
+  {
+    "id": "682a335b85d4",
+    "replacement": "Smart Kit",
+    "patterns": [
+      "スムーズキット"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T19:51:04",
+    "confidence": 0.85,
+    "reason": "繰り返し出現し、製品名やセット名の響きを持つ固有名詞の誤認識と判断されるため。"
   }
 ]
