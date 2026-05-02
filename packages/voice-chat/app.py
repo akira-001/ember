@@ -694,6 +694,8 @@ async def _chat_claude(messages: list[dict], model: str) -> str:
         cli_model = "haiku"
     elif "opus" in model:
         cli_model = "opus"
+    # ANTHROPIC_API_KEY が無効でも OAuth keychain で動くよう env から除去
+    _claude_env = {k: v for k, v in os.environ.items() if k != "ANTHROPIC_API_KEY"}
     try:
         proc = await asyncio.create_subprocess_exec(
             "claude", "-p", "--model", cli_model,
@@ -702,6 +704,7 @@ async def _chat_claude(messages: list[dict], model: str) -> str:
             stdin=asyncio.subprocess.PIPE,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
+            env=_claude_env,
         )
         stdout_b, stderr_b = await asyncio.wait_for(
             proc.communicate(prompt.encode("utf-8")),
