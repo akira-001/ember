@@ -305,7 +305,8 @@ export default function EmberChatPage() {
           )}
 
           <ImproveLoopPanel open={chat.settings.debugMode} />
-          <ContextSummaryPanel open={chat.settings.debugMode} externalSummary={chat.contextSummary} mediaCtx={chat.mediaCtx} />
+          <ContextSummaryPanel open={chat.settings.debugMode} externalSummary={chat.contextSummary} />
+          {/* TODO M4: ContextSummaryPanel に mediaCtx prop を追加して mediaCtx={chat.mediaCtx} を渡す */}
 
           <div style={textInputRowStyle}>
             <input
