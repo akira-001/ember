@@ -16,61 +16,6 @@
   },
   "history": [
     {
-      "id": "1f41a16c-32c3-4fff-b547-915dbb411b8f",
-      "category": "flashback",
-      "interestCategory": "onsen",
-      "sentAt": "2026-04-21T09:30:58.432Z",
-      "slackTs": "1776763858.593459",
-      "slackChannel": "U3SFGQXNH",
-      "reaction": null,
-      "reactionDelta": 0,
-      "preview": "あ、そうだ、Akiraさん。\n\n*ムーミンバレーパーク（飯能）* が関東日帰りスポット13選に入ってた  自然・温泉・グルメ全部込みのやつ。所沢から30分圏内だし、週末の候補にどうかなって。\nhttps://news.google.com/",
-      "fullText": "あ、そうだ、Akiraさん。\n\n*ムーミンバレーパーク（飯能）* が関東日帰りスポット13選に入ってた  自然・温泉・グルメ全部込みのやつ。所沢から30分圏内だし、週末の候補にどうかなって。\nhttps://news.google.com/rss/articles/CBMiV0FVX3lxTE1XZnRtNGdJQVF6MUs5cFdIWGtyX19JRmRBYk1sMnp4WUVuQXpiWDhRbzREMWtzQ0hmdVpoUmJlbDlCS3E5dzZSRnRsNnM4N2tNekRaYzdJMA?oc=5\n\n今日もお疲れさま",
-      "sourceUrls": [
-        {
-          "title": "日帰り男一人旅・自然温泉グルメ関東13選（ムーミンバレーパーク）",
-          "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1XZnRtNGdJQVF6MUs5cFdIWGtyX19JRmRBYk1sMnp4WUVuQXpiWDhRbzREMWtzQ0hmdVpoUmJlbDlCS3E5dzZSRnRsNnM4N2tNekRaYzdJMA?oc=5",
-          "source": "ムーミンバレーパーク"
-        }
-      ],
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiV0FVX3lxTE1XZnRtNGdJQVF6MUs5cFdIWGtyX19JRmRBYk1sMnp4WUVuQXpiWDhRbzREMWtzQ0hmdVpoUmJlbDlCS3E5dzZSRnRsNnM4N2tNekRaYzdJMA?oc=5",
-      "candidateTopic": "日帰り男一人旅・自然温泉グルメ関東13選（ムーミンバレーパーク）",
-      "candidateUrl": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1XZnRtNGdJQVF6MUs5cFdIWGtyX19JRmRBYk1sMnp4WUVuQXpiWDhRbzREMWtzQ0hmdVpoUmJlbDlCS3E5dzZSRnRsNnM4N2tNekRaYzdJMA?oc=5",
-      "candidateSource": "ムーミンバレーパーク",
-      "skill": "hobby-trigger",
-      "sources": [
-        "calendar",
-        "email",
-        "interest-cache"
-      ],
-      "intrinsicReward": {
-        "signals": [],
-        "immediateTotal": 0,
-        "deferredTotal": 0,
-        "compositeBoost": 0
-      },
-      "premise": {
-        "estimatedMode": "達成モード・低エネルギー",
-        "modeReason": "18:30、会議12本超えの火曜夕方。退勤〜帰宅タイミングで疲労はあるが、一日を終えた達成感がある時間帯",
-        "targetLayer": 4,
-        "layerReason": "週末の行動候補を軽く仕込む好機。重くない情報提供で実行層にアプローチ",
-        "interventionType": "情報提供",
-        "interventionReason": "趣味（自然・温泉・グルメ）に関する週末候補を、疲れた夜に軽く提示するのが最適",
-        "reason": "ムーミンバレーパーク（飯能）は所沢から近く、関東日帰りスポット特集と組み合わせてローカル＋週末行動に自然につながる",
-        "informationGap": null,
-        "collectionHint": null
-      },
-      "emotionTag": "bright",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/tokorozawa",
-        "local/saitama/tokorozawa/event",
-        "local/saitama/tokorozawa/event/food-fair"
-      ],
-      "themeKey": "local/saitama/tokorozawa/event/food-fair"
-    },
-    {
       "id": "0d8a78c0-7970-46e6-86c4-4d28b1b3cb42",
       "category": "flashback",
       "interestCategory": "general",
@@ -5281,11 +5226,63 @@
         "lifestyle/food-wellness/spa/king-queen"
       ],
       "themeKey": "lifestyle/food-wellness/spa/king-queen"
+    },
+    {
+      "id": "d64ccc4c-7dbf-4451-bfcf-8e8a8422f251",
+      "category": "flashback",
+      "interestCategory": "local_tokorozawa",
+      "sentAt": "2026-05-02T06:31:01.917Z",
+      "slackTs": "1777703462.139079",
+      "slackChannel": "U3SFGQXNH",
+      "reaction": null,
+      "reactionDelta": 0,
+      "preview": "あのさ、Akiraさん。\n\nYouTubeに *所沢市100人カイギvol.7* の動画があってさ、「なぜポートランドは人を惹きつけるのか」ってテーマで登壇者が語ってるみたい 🏙️\n\n住んでる街のカイギイベント、どんな話が出てるか気になる",
+      "fullText": "あのさ、Akiraさん。\n\nYouTubeに *所沢市100人カイギvol.7* の動画があってさ、「なぜポートランドは人を惹きつけるのか」ってテーマで登壇者が語ってるみたい 🏙️\n\n住んでる街のカイギイベント、どんな話が出てるか気になるかも。\nhttps://www.youtube.com/watch?v=DPNqIbMMhG4",
+      "sourceUrls": [
+        {
+          "title": "なぜポートランドは人を惹きつけるのか？所沢市100人カイギ",
+          "url": "https://www.youtube.com/watch?v=DPNqIbMMhG4",
+          "source": "YouTube"
+        }
+      ],
+      "candidateId": "url:https://www.youtube.com/watch?v=DPNqIbMMhG4",
+      "candidateTopic": "なぜポートランドは人を惹きつけるのか？所沢市100人カイギ",
+      "candidateUrl": "https://www.youtube.com/watch?v=DPNqIbMMhG4",
+      "candidateSource": "YouTube",
+      "skill": "general",
+      "sources": [
+        "calendar",
+        "email",
+        "interest-cache"
+      ],
+      "intrinsicReward": {
+        "signals": [],
+        "immediateTotal": 0,
+        "deferredTotal": 0,
+        "compositeBoost": 0
+      },
+      "premise": {
+        "estimatedMode": "達成モード・回復中",
+        "modeReason": "GW土曜日の午後で今日のカレンダーは空。朝から複数メッセージを受け取っており、のんびりリラックスしている可能性が高い",
+        "targetLayer": 5,
+        "layerReason": "休日の午後・低負荷の状態で、軽い地元ネタで自然に話しかける好機",
+        "interventionType": "情報提供",
+        "interventionReason": "所沢ローカルの話題は過去の成功パターンにあり、プレッシャーなく受け取れる"
+      },
+      "emotionTag": "bright",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/event",
+        "local/saitama/tokorozawa/event/market"
+      ],
+      "themeKey": "local/saitama/tokorozawa/event/market"
     }
   ],
-  "lastCheckAt": "2026-05-02T05:31:14.461Z",
+  "lastCheckAt": "2026-05-02T06:31:01.916Z",
   "stats": {
-    "totalSent": 562,
+    "totalSent": 563,
     "positiveReactions": 26,
     "negativeReactions": 0
   },
@@ -5413,10 +5410,51 @@
         "lifestyle/food-wellness/spa/king-queen"
       ],
       "themeKey": "lifestyle/food-wellness/spa/king-queen"
+    },
+    {
+      "time": "15:31",
+      "summary": "なぜポートランドは人を惹きつけるのか？所沢市100人カイギ",
+      "source": "YouTube",
+      "interestCategory": "local_tokorozawa",
+      "topic": "なぜポートランドは人を惹きつけるのか？所沢市100人カイギ",
+      "url": "https://www.youtube.com/watch?v=DPNqIbMMhG4",
+      "candidateId": "url:https://www.youtube.com/watch?v=DPNqIbMMhG4",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/event",
+        "local/saitama/tokorozawa/event/market"
+      ],
+      "themeKey": "local/saitama/tokorozawa/event/market"
     }
   ],
   "todayDate": "2026-05-02",
   "lastScoredCandidates": [
+    {
+      "topic": "「絶好のおでかけ日和」は土曜だけ？ 富山県の週末、日曜は雨に備えを【気象予報士 解説】 - FNNプライムオンライン",
+      "source": "interest-cache",
+      "category": "local_tokorozawa",
+      "pub_date": "2026-05-01T11:05:00+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1objE2b04wN0I5c3RuUmZ3NTM4ZzRMaU5IZWRzWEc3d2Q0UHlTelJweWZjVmZYZkhtT2lvMHdPMncwck9McDgxSXZkR2xHdw?oc=5",
+        "mediaSource": "FNNプライムオンライン",
+        "emotion_type": "light",
+        "timeliness": 0.713
+      },
+      "scores": {
+        "timeliness": 0.5636243479938271,
+        "novelty": 0.1,
+        "continuity": 0.9,
+        "emotional_fit": 0.9,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.7516042334694009,
+      "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
+      "explorationBonus": 0.2617283990108391,
+      "selectionScore": 1.0133326324802399
+    },
     {
       "topic": "最新ドラマ視聴データ速報【ビデオリサーチ調べ】（視聴率・視聴人数） - 株式会社ビデオリサーチ",
       "source": "interest-cache",
@@ -5429,17 +5467,17 @@
         "timeliness": 0.952
       },
       "scores": {
-        "timeliness": 0.7368902083333333,
-        "novelty": 0.8,
+        "timeliness": 0.7229952932098765,
+        "novelty": 0.1,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.8390769517840493,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
+      "finalScore": 0.6918068590500068,
+      "reasoning": "気分に合う・タイムリー（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.1390769517840493
+      "selectionScore": 0.9918068590500069
     },
     {
       "topic": "両親を殺した犯人を、法律では裁けない――“切りつけられた少女”の正体が話題『田鎖ブラザーズ』が注目度上昇 - マイナビニュース",
@@ -5453,17 +5491,65 @@
         "timeliness": 0.919
       },
       "scores": {
-        "timeliness": 0.7152505401234568,
-        "novelty": 0.8,
+        "timeliness": 0.701355625,
+        "novelty": 0.1,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.8352857150152686,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
+      "finalScore": 0.6881032877515894,
+      "reasoning": "気分に合う・タイムリー（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.1352857150152686
+      "selectionScore": 0.9881032877515894
+    },
+    {
+      "topic": "4月27日〜5月1日 スタートアップ資金調達まとめ読み - 日本経済新聞",
+      "source": "interest-cache",
+      "category": "ma_startup",
+      "pub_date": "2026-05-01T20:00:00+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE41NDdDZ09RYjZhZTNwemdqbUNVTnQ2bzBnOHJ4a2hwUlVyMkVNVUV0YVY5b0FRUDAxTXpmYUZjLThwLTNFb21BeXZ4Qlc3d2ZqU3lsRHhPNGtoMl83ZGpUbEs4R1lxZ0ZFSUk3TA?oc=5",
+        "mediaSource": "日本経済新聞",
+        "emotion_type": "heavy",
+        "timeliness": 0.899
+      },
+      "scores": {
+        "timeliness": 0.687466875,
+        "novelty": 0.1,
+        "continuity": 0.9,
+        "emotional_fit": 0.2,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.6690987446469008,
+      "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 0.9690987446469008
+    },
+    {
+      "topic": "＜画像5 / 5＞東京から200km圏内！関東近郊の日帰り絶景温泉5選 - ウォーカープラス",
+      "source": "interest-cache",
+      "category": "onsen",
+      "pub_date": "2026-05-01T02:00:35+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5RTWJTSHRYeW5aS2IyTzJvS01HLThueG1uU25EM1dqTGJkNG1HUUhib2N3RGJrV1EzVjdwQWVoVkdLMFZobklMR0stR19OdVFtcDJKRTBKMXQ0S3FyWmxCRjcwQml5Tjd2?oc=5",
+        "mediaSource": "ウォーカープラス",
+        "emotion_type": "light",
+        "timeliness": 0.524
+      },
+      "scores": {
+        "timeliness": 0.40640308449074075,
+        "novelty": 0.1,
+        "continuity": 0.9,
+        "emotional_fit": 0.9,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.5980326746191168,
+      "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
+      "explorationBonus": 0.37013985153932566,
+      "selectionScore": 0.9681725261584424
     },
     {
       "topic": "【2024年】川越の人気桜スポット9選！公園や寺院など、情緒あふれるお花見スポットを紹介 - ウォーカープラス",
@@ -5477,17 +5563,92 @@
         "timeliness": 0.87
       },
       "scores": {
-        "timeliness": 0.6826889120370371,
-        "novelty": 0.8,
+        "timeliness": 0.6687939814814815,
+        "novelty": 0.1,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.8123227295540306,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
+      "finalScore": 0.6650340092664013,
+      "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.1123227295540306
+      "selectionScore": 0.9650340092664014
+    },
+    {
+      "topic": "なぜポートランドは人を惹きつけるのか？｜所沢市100人カイギvol.7登壇・豊田さんと語る",
+      "source": "interest-cache",
+      "category": "local_tokorozawa",
+      "pub_date": null,
+      "metadata": {
+        "url": "https://www.youtube.com/watch?v=DPNqIbMMhG4",
+        "mediaSource": "あぐぬく所沢",
+        "content_type": "video",
+        "emotion_type": "light",
+        "timeliness": 0.1
+      },
+      "scores": {
+        "timeliness": 0.3,
+        "novelty": 0.1,
+        "continuity": 0.9,
+        "emotional_fit": 0.9,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.6930605624214285,
+      "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
+      "explorationBonus": 0.2617283990108391,
+      "selectionScore": 0.9547889614322677
+    },
+    {
+      "topic": "【地方創生の要は大学】カレッジタウンが日本にない／九大の問題点／立命館は上手／APUと温泉街の融合／自動車通学を許可せよ／柏の葉が面白い／豊田市にウーブン・シティを／介護Uターンの支援／現代の参勤交代",
+      "source": "interest-cache",
+      "category": "onsen",
+      "pub_date": null,
+      "metadata": {
+        "url": "https://www.youtube.com/watch?v=J_5W3OiuxCg",
+        "mediaSource": "PIVOT 公式チャンネル",
+        "content_type": "video",
+        "emotion_type": "light",
+        "timeliness": 0.1
+      },
+      "scores": {
+        "timeliness": 0.3,
+        "novelty": 0.1,
+        "continuity": 0.9,
+        "emotional_fit": 0.9,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.5798220714822752,
+      "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
+      "explorationBonus": 0.37013985153932566,
+      "selectionScore": 0.9499619230216008
+    },
+    {
+      "topic": "【バブル遺産】衰退した日本一有名な温泉街が凄い事になっていました。新時代を模索する熱海の現在の姿とは。",
+      "source": "interest-cache",
+      "category": "onsen",
+      "pub_date": null,
+      "metadata": {
+        "url": "https://www.youtube.com/watch?v=ZeW2jzbnibg",
+        "mediaSource": "あかでみっくなカレッジ　-Academic な College-",
+        "content_type": "video",
+        "emotion_type": "light",
+        "timeliness": 0.1
+      },
+      "scores": {
+        "timeliness": 0.3,
+        "novelty": 0.1,
+        "continuity": 0.9,
+        "emotional_fit": 0.9,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.5798220714822752,
+      "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
+      "explorationBonus": 0.37013985153932566,
+      "selectionScore": 0.9499619230216008
     },
     {
       "topic": "斜面彩るツツジが見頃 埼玉・越生の五大尊つつじ公園（朝日新聞） - Yahoo!ニュース",
@@ -5501,410 +5662,251 @@
         "timeliness": 0.529
       },
       "scores": {
-        "timeliness": 0.43225674189814817,
-        "novelty": 0.8,
+        "timeliness": 0.41141434027777773,
+        "novelty": 0.1,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.7838046032368882,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
+      "finalScore": 0.6363413793290427,
+      "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.0838046032368882
-    },
-    {
-      "topic": "MCP command execution flaw: what security teams need to know - Venturebeat",
-      "source": "interest-cache",
-      "category": "dev_tools",
-      "pub_date": "2026-05-01T20:35:46+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQelFXaE4zVFFELXN0NktnUWQ0LXdNVzZtZFZoeXltY2twWWJYNEJDWjhkTVFZX2o5anVQeVpvQ2V1RnZMamNacWo4MFBPU3ppUU50b0FjVDEzNG9GWmd5MEdUcnkwbHlTOE9VQ3YyYWVsOHhJUUlKd3BWbDIwNHpJcm9EZ2lqVWRxb0dyTWJBelBjdXMwWENZQlV0Sk9WUQ?oc=5",
-        "mediaSource": "Venturebeat",
-        "emotion_type": "medium",
-        "timeliness": 0.911
-      },
-      "scores": {
-        "timeliness": 0.7096411921296296,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.5,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.7805899332029755,
-      "reasoning": "新鮮・タイムリー（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.0805899332029756
-    },
-    {
-      "topic": "＜画像1 / 5＞東京23区内の“コスパ最強”ステーキ5選 - ウォーカープラス",
-      "source": "interest-cache",
-      "category": "food_dining",
-      "pub_date": "2026-05-01T17:58:45+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5MOU03ZUVNSlllckJtVlNGYnVWNTlhbzdCUVlHbW1YeXFfZk9ncUo4MlZPN0NxSDItdVN1Q01qcEM0VFhVOW9uNC1zaGZrLUNvS0w5ODRGMEhzWGgyVXAxNWtJbTdMeGllWC1KR1JhLTJUVzhXWkFBcTF3?oc=5",
-        "mediaSource": "ウォーカープラス",
-        "emotion_type": "light",
-        "timeliness": 0.856
-      },
-      "scores": {
-        "timeliness": 0.6732946643518518,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.7660351376027177,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.0660351376027177
-    },
-    {
-      "topic": "【2026年最新】ガチで美味しかった！池袋駅グルメ10軒",
-      "source": "interest-cache",
-      "category": "food_dining",
-      "pub_date": null,
-      "metadata": {
-        "url": "https://www.youtube.com/watch?v=cg0irmI2JWA",
-        "mediaSource": "とみーtommie【グルメ&旅vlog】",
-        "content_type": "video",
-        "emotion_type": "light",
-        "timeliness": 0.1
-      },
-      "scores": {
-        "timeliness": 0.3,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.7625344555826683,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.0625344555826683
-    },
-    {
-      "topic": "Automated reliability-based multi-camera approach for excavator tracking (IMAGE) - EurekAlert!",
-      "source": "interest-cache",
-      "category": "dev_tools",
-      "pub_date": "2026-05-01T12:53:03+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9oQ1VlS3hSU0ZnMm44S201U2VEVkpJV2pLaWRqVmxyQV90eFcteWtJb2VIcktjRjgtQUd1Tlg2TmgyMmpDVFFEVzJUcUR5M0NVdUowNE0yVHU?oc=5",
-        "mediaSource": "EurekAlert!",
-        "emotion_type": "medium",
-        "timeliness": 0.751
-      },
-      "scores": {
-        "timeliness": 0.6025308333333333,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.5,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.7618243621855569,
-      "reasoning": "新鮮・意外・サプライズ（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.061824362185557
-    },
-    {
-      "topic": "【東京・大門】肉塊にナイフが吸い込まれる！『ビストロ カリテプリ』で味わう極厚ポークステーキの衝撃 - Yahoo!ニュース",
-      "source": "interest-cache",
-      "category": "food_dining",
-      "pub_date": "2026-05-01T14:53:07+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNcm5xX2hEVFZVZXRjQ0oyU1J1dTFCbWRsd3lHckN0YTVTeG9XWUd3TkNXUDVHcjNtSXNuSnBnZGJIdWxmcHZ4MmZUbnV4QUI3TkgweElDYVFscFZGdU5tUk9oZEJjUXppTEdCUjVadEpqd3dIZWlaUGd6UVRYZldkS05ENjVLNjFB?oc=5",
-        "mediaSource": "Yahoo!ニュース",
-        "emotion_type": "light",
-        "timeliness": 0.792
-      },
-      "scores": {
-        "timeliness": 0.6303239737654321,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.7585067383430293,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.0585067383430293
-    },
-    {
-      "topic": "映画『BLUE  GIANT』│「N.E.W.」ライブシーン特別映像【大ヒット上映中！】",
-      "source": "interest-cache",
-      "category": "movie_theater",
-      "pub_date": null,
-      "metadata": {
-        "url": "https://www.youtube.com/watch?v=KaB7tTJ2T5o",
-        "mediaSource": "TOHO animation チャンネル",
-        "content_type": "video",
-        "emotion_type": "light",
-        "timeliness": 0.1
-      },
-      "scores": {
-        "timeliness": 0.3,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.7482511164953668,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.0482511164953667
+      "selectionScore": 0.9363413793290427
     }
   ],
   "lastDecisionLog": {
     "premise": {
       "estimatedMode": "達成モード・回復中",
-      "modeReason": "GW土曜日で今日のカレンダーが空。朝から複数メッセージに反応しており、のんびりしている可能性が高い",
-      "targetLayer": 4,
-      "layerReason": "Ember開発という実行層の活動に直結するセキュリティ情報がある",
+      "modeReason": "GW土曜日の午後で今日のカレンダーは空。朝から複数メッセージを受け取っており、のんびりリラックスしている可能性が高い",
+      "targetLayer": 5,
+      "layerReason": "休日の午後・低負荷の状態で、軽い地元ネタで自然に話しかける好機",
       "interventionType": "情報提供",
-      "interventionReason": "MCP使ってEmber開発しているAkiraさんに、MCPのセキュリティ脆弱性の話は知識として必要",
-      "reason": "GW午後のゆったり時間帯、Ember開発に直結するMCPセキュリティ情報を届ける好機",
-      "informationGap": null,
-      "collectionHint": null
+      "interventionReason": "所沢ローカルの話題は過去の成功パターンにあり、プレッシャーなく受け取れる"
     },
     "decision": "send",
-    "need": "安全・知識",
-    "reason": "MCP使ってEmberを作っているAkiraさんに、MCPのコマンド実行系脆弱性情報は実務レベルで必要",
+    "need": "地元への興味・ゆるい刺激",
+    "reason": "GW午後の余白に所沢ローカルのゆるい話題が合う",
     "candidates": [
       {
-        "topic": "MCP command execution flaw - Venturebeat",
-        "source": "Venturebeat",
-        "score": 0.78
+        "topic": "なぜポートランドは人を惹きつけるのか？所沢市100人カイギ",
+        "source": "YouTube",
+        "score": 0.69
       },
       {
-        "topic": "東京コスパ最強ステーキ5選",
+        "topic": "スタートアップ資金調達まとめ",
+        "source": "日経",
+        "score": 0.67
+      },
+      {
+        "topic": "川越の桜スポット",
         "source": "ウォーカープラス",
-        "score": 0.77
-      },
-      {
-        "topic": "田鎖ブラザーズ注目度上昇",
-        "source": "マイナビニュース",
-        "score": 0.84
-      },
-      {
-        "topic": "ビデオリサーチ視聴率速報",
-        "source": "ビデオリサーチ",
-        "score": 0.84
-      },
-      {
-        "topic": "越生つつじ公園",
-        "source": "Yahoo!ニュース",
-        "score": 0.78
+        "score": 0.67
       }
     ],
-    "message": "ちょっとちょっと、Akiraさん。\n\nVenturebeatに *MCPのコマンド実行系の脆弱性* についてセキュリティチーム向けの記事が出てたよ ⚠️\n\nEmberでMCP使ってるし、設計段階で把握しておく価値ありそう。GWのどこかで眺めてみて。\nhttps://news.google.com/rss/articles/CBMingFBVV95cUxQelFXaE4zVFFELXN0NktnUWQ0LXdNVzZtZFZoeXltY2twWWJYNEJDWjhkTVFZX2o5anVQeVpvQ2V1RnZMamNacWo4MFBPU3ppUU50b0FjVDEzNG9GWmd5MEdUcnkwbHlTOE9VQ3YyYWVsOHhJUUlKd3BWbDIwNHpJcm9EZ2lqVWRxb0dyTWJBelBjdXMwWENZQlV0Sk9WUQ",
-    "topicWeight": "medium",
-    "inner_thought": "MCPのコマンド実行脆弱性、Ember開発してるAkiraさんに絶対届けておきたい",
+    "message": "あのさ、Akiraさん。\n\nYouTubeに *所沢市100人カイギvol.7* の動画があってさ、「なぜポートランドは人を惹きつけるのか」ってテーマで登壇者が語ってるみたい 🏙️\n\n住んでる街のカイギイベント、どんな話が出てるか気になるかも。\nhttps://www.youtube.com/watch?v=DPNqIbMMhG4",
+    "topicWeight": "light",
+    "inner_thought": "所沢カイギのポートランド話、地元愛あるAkiraさんに届けたい",
     "plan": [
-      "MCPセキュリティ脆弱性をEmber開発との接続で届ける",
-      "ステーキグルメ情報でGW気分を上げる",
-      "沈黙"
+      "所沢カイギの動画を共有",
+      "沈黙",
+      "天気情報を共有"
     ],
     "generate_score": [
-      0.8,
-      0.62,
-      0.4
+      0.71,
+      0.52,
+      0.48
     ],
-    "evaluate_score": 0.78,
-    "timestamp": "2026-05-02T05:31:14.469Z",
+    "evaluate_score": 0.68,
+    "timestamp": "2026-05-02T06:31:01.917Z",
     "skill": "none",
     "scoredCandidates": [
+      {
+        "topic": "「絶好のおでかけ日和」は土曜だけ？ 富山県の週末、日曜は雨に備えを【気象予報士 解説】 - FNNプライムオンライン",
+        "source": "interest-cache",
+        "category": "local_tokorozawa",
+        "scores": {
+          "timeliness": 0.5636243479938271,
+          "novelty": 0.1,
+          "continuity": 0.9,
+          "emotional_fit": 0.9,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.7516042334694009,
+        "explorationBonus": 0.2617283990108391,
+        "selectionScore": 1.0133326324802399,
+        "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
+      },
       {
         "topic": "最新ドラマ視聴データ速報【ビデオリサーチ調べ】（視聴率・視聴人数） - 株式会社ビデオリサーチ",
         "source": "interest-cache",
         "category": "tv_drama",
         "scores": {
-          "timeliness": 0.7368902083333333,
-          "novelty": 0.8,
+          "timeliness": 0.7229952932098765,
+          "novelty": 0.1,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.8390769517840493,
+        "finalScore": 0.6918068590500068,
         "explorationBonus": 0.3,
-        "selectionScore": 1.1390769517840493,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
+        "selectionScore": 0.9918068590500069,
+        "reasoning": "気分に合う・タイムリー（interest-cache）"
       },
       {
         "topic": "両親を殺した犯人を、法律では裁けない――“切りつけられた少女”の正体が話題『田鎖ブラザーズ』が注目度上昇 - マイナビニュース",
         "source": "interest-cache",
         "category": "tv_drama",
         "scores": {
-          "timeliness": 0.7152505401234568,
-          "novelty": 0.8,
+          "timeliness": 0.701355625,
+          "novelty": 0.1,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.8352857150152686,
+        "finalScore": 0.6881032877515894,
         "explorationBonus": 0.3,
-        "selectionScore": 1.1352857150152686,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
+        "selectionScore": 0.9881032877515894,
+        "reasoning": "気分に合う・タイムリー（interest-cache）"
+      },
+      {
+        "topic": "4月27日〜5月1日 スタートアップ資金調達まとめ読み - 日本経済新聞",
+        "source": "interest-cache",
+        "category": "ma_startup",
+        "scores": {
+          "timeliness": 0.687466875,
+          "novelty": 0.1,
+          "continuity": 0.9,
+          "emotional_fit": 0.2,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.6690987446469008,
+        "explorationBonus": 0.3,
+        "selectionScore": 0.9690987446469008,
+        "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）"
+      },
+      {
+        "topic": "＜画像5 / 5＞東京から200km圏内！関東近郊の日帰り絶景温泉5選 - ウォーカープラス",
+        "source": "interest-cache",
+        "category": "onsen",
+        "scores": {
+          "timeliness": 0.40640308449074075,
+          "novelty": 0.1,
+          "continuity": 0.9,
+          "emotional_fit": 0.9,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.5980326746191168,
+        "explorationBonus": 0.37013985153932566,
+        "selectionScore": 0.9681725261584424,
+        "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
       },
       {
         "topic": "【2024年】川越の人気桜スポット9選！公園や寺院など、情緒あふれるお花見スポットを紹介 - ウォーカープラス",
         "source": "interest-cache",
         "category": "weather_seasonal",
         "scores": {
-          "timeliness": 0.6826889120370371,
-          "novelty": 0.8,
+          "timeliness": 0.6687939814814815,
+          "novelty": 0.1,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.8123227295540306,
+        "finalScore": 0.6650340092664013,
         "explorationBonus": 0.3,
-        "selectionScore": 1.1123227295540306,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
+        "selectionScore": 0.9650340092664014,
+        "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
+      },
+      {
+        "topic": "なぜポートランドは人を惹きつけるのか？｜所沢市100人カイギvol.7登壇・豊田さんと語る",
+        "source": "interest-cache",
+        "category": "local_tokorozawa",
+        "scores": {
+          "timeliness": 0.3,
+          "novelty": 0.1,
+          "continuity": 0.9,
+          "emotional_fit": 0.9,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.6930605624214285,
+        "explorationBonus": 0.2617283990108391,
+        "selectionScore": 0.9547889614322677,
+        "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
+      },
+      {
+        "topic": "【地方創生の要は大学】カレッジタウンが日本にない／九大の問題点／立命館は上手／APUと温泉街の融合／自動車通学を許可せよ／柏の葉が面白い／豊田市にウーブン・シティを／介護Uターンの支援／現代の参勤交代",
+        "source": "interest-cache",
+        "category": "onsen",
+        "scores": {
+          "timeliness": 0.3,
+          "novelty": 0.1,
+          "continuity": 0.9,
+          "emotional_fit": 0.9,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.5798220714822752,
+        "explorationBonus": 0.37013985153932566,
+        "selectionScore": 0.9499619230216008,
+        "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
+      },
+      {
+        "topic": "【バブル遺産】衰退した日本一有名な温泉街が凄い事になっていました。新時代を模索する熱海の現在の姿とは。",
+        "source": "interest-cache",
+        "category": "onsen",
+        "scores": {
+          "timeliness": 0.3,
+          "novelty": 0.1,
+          "continuity": 0.9,
+          "emotional_fit": 0.9,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.5798220714822752,
+        "explorationBonus": 0.37013985153932566,
+        "selectionScore": 0.9499619230216008,
+        "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
       },
       {
         "topic": "斜面彩るツツジが見頃 埼玉・越生の五大尊つつじ公園（朝日新聞） - Yahoo!ニュース",
         "source": "interest-cache",
         "category": "weather_seasonal",
         "scores": {
-          "timeliness": 0.43225674189814817,
-          "novelty": 0.8,
+          "timeliness": 0.41141434027777773,
+          "novelty": 0.1,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.7838046032368882,
+        "finalScore": 0.6363413793290427,
         "explorationBonus": 0.3,
-        "selectionScore": 1.0838046032368882,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
-      },
-      {
-        "topic": "MCP command execution flaw: what security teams need to know - Venturebeat",
-        "source": "interest-cache",
-        "category": "dev_tools",
-        "scores": {
-          "timeliness": 0.7096411921296296,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.5,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.7805899332029755,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.0805899332029756,
-        "reasoning": "新鮮・タイムリー（interest-cache）"
-      },
-      {
-        "topic": "＜画像1 / 5＞東京23区内の“コスパ最強”ステーキ5選 - ウォーカープラス",
-        "source": "interest-cache",
-        "category": "food_dining",
-        "scores": {
-          "timeliness": 0.6732946643518518,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.9,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.7660351376027177,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.0660351376027177,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
-      },
-      {
-        "topic": "【2026年最新】ガチで美味しかった！池袋駅グルメ10軒",
-        "source": "interest-cache",
-        "category": "food_dining",
-        "scores": {
-          "timeliness": 0.3,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.9,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.7625344555826683,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.0625344555826683,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
-      },
-      {
-        "topic": "Automated reliability-based multi-camera approach for excavator tracking (IMAGE) - EurekAlert!",
-        "source": "interest-cache",
-        "category": "dev_tools",
-        "scores": {
-          "timeliness": 0.6025308333333333,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.5,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.7618243621855569,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.061824362185557,
-        "reasoning": "新鮮・意外・サプライズ（interest-cache）"
-      },
-      {
-        "topic": "【東京・大門】肉塊にナイフが吸い込まれる！『ビストロ カリテプリ』で味わう極厚ポークステーキの衝撃 - Yahoo!ニュース",
-        "source": "interest-cache",
-        "category": "food_dining",
-        "scores": {
-          "timeliness": 0.6303239737654321,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.9,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.7585067383430293,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.0585067383430293,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
-      },
-      {
-        "topic": "映画『BLUE  GIANT』│「N.E.W.」ライブシーン特別映像【大ヒット上映中！】",
-        "source": "interest-cache",
-        "category": "movie_theater",
-        "scores": {
-          "timeliness": 0.3,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.9,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.7482511164953668,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.0482511164953667,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
+        "selectionScore": 0.9363413793290427,
+        "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
       }
     ],
     "weightsUsed": {
-      "timeliness": 0.17519847032822827,
-      "novelty": 0.2477730448905537,
-      "continuity": 0.2024643184392157,
-      "emotional_fit": 0.13428258156058923,
-      "affinity": 0.09017124855763636,
-      "surprise": 0.15011033622377673
+      "timeliness": 0.17114732363258134,
+      "novelty": 0.20445714123367498,
+      "continuity": 0.16881351626275107,
+      "emotional_fit": 0.13250308302882763,
+      "affinity": 0.1421482459973502,
+      "surprise": 0.18093068984481456
     },
     "sampledRaw": {
-      "timeliness": 0.23651793494310816,
-      "novelty": 0.33449361060224747,
-      "continuity": 0.17332682989294115,
-      "emotional_fit": 0.08128148510679543,
-      "affinity": 0.12173118555280908,
-      "surprise": 0.05264895390209857
+      "timeliness": 0.23104888690398487,
+      "novelty": 0.2760171406654613,
+      "continuity": 0.127898246954714,
+      "emotional_fit": 0.07887916208891735,
+      "affinity": 0.19190013209642284,
+      "surprise": 0.09425643129049971
     },
     "contextBonus": {
       "timeliness": 0,
@@ -5949,7 +5951,7 @@
   },
   "lastOAuthNotifyDate": "2026-04-26",
   "themeInventory": {
-    "updatedAt": "2026-05-02T05:30:06.864Z",
+    "updatedAt": "2026-05-02T06:30:08.483Z",
     "records": [
       {
         "themeKey": "lifestyle/food-wellness/lunch",
@@ -6074,29 +6076,6 @@
           "webgpu"
         ],
         "rootKey": "ai/local-llm",
-        "availableCount": 1,
-        "sentFreshCount": 0,
-        "sent30dCount": 0,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0.5,
-        "uniqueSources30d": 0,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 4,
-        "freshnessDays": 7,
-        "freshnessScore": 1,
-        "lastSentAt": null
-      },
-      {
-        "themeKey": "ai/enterprise/governance/compliance",
-        "themePath": [
-          "ai",
-          "enterprise",
-          "governance",
-          "compliance"
-        ],
-        "rootKey": "ai/enterprise",
         "availableCount": 1,
         "sentFreshCount": 0,
         "sent30dCount": 0,
@@ -6246,7 +6225,7 @@
         "supplyGap": 5,
         "rotationGap": 4,
         "freshnessDays": 7,
-        "freshnessScore": 0.10723979166666664,
+        "freshnessScore": 0.10128473379629632,
         "lastSentAt": "2026-04-25T23:31:05.490Z"
       },
       {
@@ -6293,7 +6272,7 @@
         "supplyGap": 2,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.9703283217592593,
+        "freshnessScore": 0.9643732638888889,
         "lastSentAt": "2026-05-02T00:31:01.433Z"
       },
       {
@@ -6316,7 +6295,7 @@
         "supplyGap": 2,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.7322246097883598,
+        "freshnessScore": 0.7262695519179894,
         "lastSentAt": "2026-04-30T08:30:56.308Z"
       },
       {
@@ -6363,7 +6342,7 @@
         "supplyGap": 2,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.02974450892857139,
+        "freshnessScore": 0.023789451058201072,
         "lastSentAt": "2026-04-25T10:29:56.343Z"
       },
       {
@@ -6386,7 +6365,7 @@
         "supplyGap": 2,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.4524742195767196,
+        "freshnessScore": 0.4465191617063492,
         "lastSentAt": "2026-04-28T09:31:03.272Z"
       },
       {
@@ -6409,7 +6388,7 @@
         "supplyGap": 3,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.7143859755291005,
+        "freshnessScore": 0.7084309176587302,
         "lastSentAt": "2026-04-30T05:31:07.502Z"
       },
       {
@@ -6589,7 +6568,7 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.8929418005952381,
+        "freshnessScore": 0.8869867427248678,
         "lastSentAt": "2026-05-01T11:30:58.065Z"
       },
       {
@@ -6658,7 +6637,7 @@
         "supplyGap": 5,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.8334367526455027,
+        "freshnessScore": 0.8274816947751322,
         "lastSentAt": "2026-05-01T01:31:09.412Z"
       },
       {
@@ -6681,7 +6660,7 @@
         "supplyGap": 0,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7025006960978836,
+        "freshnessScore": 0.6965456382275133,
         "lastSentAt": "2026-04-30T03:31:19.285Z"
       },
       {
@@ -6704,7 +6683,7 @@
         "supplyGap": -1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.1786701934523809,
+        "freshnessScore": 0.17271513558201057,
         "lastSentAt": "2026-04-26T11:31:06.597Z"
       },
       {
@@ -6726,7 +6705,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.4762535582010582,
+        "freshnessScore": 0.4702985003306879,
         "lastSentAt": "2026-04-28T13:30:45.016Z"
       },
       {
@@ -6749,7 +6728,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9792754546957672,
+        "freshnessScore": 0.9733203968253968,
         "lastSentAt": "2026-05-02T02:01:12.659Z"
       },
       {
@@ -6773,7 +6752,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8810440492724868,
+        "freshnessScore": 0.8750889914021164,
         "lastSentAt": "2026-05-01T09:31:02.305Z"
       },
       {
@@ -6795,7 +6774,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.011992592592592666,
+        "freshnessScore": 0.0060375347222222375,
         "lastSentAt": "2026-04-25T07:30:59.984Z"
       },
       {
@@ -6817,7 +6796,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.309583189484127,
+        "freshnessScore": 0.3036281316137567,
         "lastSentAt": "2026-04-27T09:30:42.777Z"
       },
       {
@@ -6839,7 +6818,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7262882142857143,
+        "freshnessScore": 0.7203331564153439,
         "lastSentAt": "2026-04-30T07:31:05.976Z"
       },
       {
@@ -6862,7 +6841,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.3989055307539682,
+        "freshnessScore": 0.39295047288359786,
         "lastSentAt": "2026-04-28T00:31:04.929Z"
       },
       {
@@ -6885,7 +6864,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6012621610449735,
+        "freshnessScore": 0.5953071031746031,
         "lastSentAt": "2026-04-29T10:30:50.219Z"
       },
       {
@@ -6908,7 +6887,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9941179794973545,
+        "freshnessScore": 0.9881629216269842,
         "lastSentAt": "2026-05-02T04:30:49.418Z"
       },
       {
@@ -6932,7 +6911,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8452503703703704,
+        "freshnessScore": 0.8392953125,
         "lastSentAt": "2026-05-01T03:30:14.288Z"
       },
       {
@@ -6956,7 +6935,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9762554166666667,
+        "freshnessScore": 0.9703003587962963,
         "lastSentAt": "2026-05-02T01:30:46.140Z"
       },
       {
@@ -6979,8 +6958,31 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9971135929232804,
+        "freshnessScore": 0.9911585350529101,
         "lastSentAt": "2026-05-02T05:01:01.165Z"
+      },
+      {
+        "themeKey": "ai/enterprise/governance/compliance",
+        "themePath": [
+          "ai",
+          "ai/enterprise",
+          "ai/enterprise/governance",
+          "ai/enterprise/governance/compliance"
+        ],
+        "rootKey": "ai/ai/enterprise",
+        "availableCount": 1,
+        "sentFreshCount": 1,
+        "sent30dCount": 1,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 2,
+        "targetCount": 3,
+        "supplyGap": 2,
+        "rotationGap": 2,
+        "freshnessDays": 7,
+        "freshnessScore": 0.9971150462962963,
+        "lastSentAt": "2026-05-02T06:01:03.663Z"
       },
       {
         "themeKey": "ai/enterprise/adoption/enterprise",
@@ -7002,7 +7004,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.16677155092592588,
+        "freshnessScore": 0.16081649305555545,
         "lastSentAt": "2026-04-26T09:31:10.298Z"
       },
       {
@@ -7025,7 +7027,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.2679024090608466,
+        "freshnessScore": 0.2619473511904762,
         "lastSentAt": "2026-04-27T02:30:34.241Z"
       },
       {
@@ -7049,7 +7051,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.2857886028439154,
+        "freshnessScore": 0.27983354497354507,
         "lastSentAt": "2026-04-27T05:30:51.811Z"
       },
       {
@@ -7072,7 +7074,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.46438183035714287,
+        "freshnessScore": 0.45842677248677244,
         "lastSentAt": "2026-04-28T11:31:04.995Z"
       },
       {
@@ -7096,7 +7098,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.47029309193121693,
+        "freshnessScore": 0.4643380340608465,
         "lastSentAt": "2026-04-28T12:30:40.126Z"
       },
       {
@@ -7119,7 +7121,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5357845717592593,
+        "freshnessScore": 0.5298295138888889,
         "lastSentAt": "2026-04-28T23:30:49.373Z"
       },
       {
@@ -7141,7 +7143,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.547738480489418,
+        "freshnessScore": 0.5417834226190477,
         "lastSentAt": "2026-04-29T01:31:19.097Z"
       },
       {
@@ -7165,7 +7167,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6965568435846561,
+        "freshnessScore": 0.6906017857142857,
         "lastSentAt": "2026-04-30T02:31:24.443Z"
       },
       {
@@ -7187,7 +7189,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.738168814484127,
+        "freshnessScore": 0.7322137566137565,
         "lastSentAt": "2026-04-30T09:30:51.363Z"
       },
       {
@@ -7210,7 +7212,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8274421891534391,
+        "freshnessScore": 0.8214871312830687,
         "lastSentAt": "2026-05-01T00:30:43.900Z"
       },
       {
@@ -7232,7 +7234,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8482240873015873,
+        "freshnessScore": 0.842269029431217,
         "lastSentAt": "2026-05-01T04:00:12.792Z"
       },
       {
@@ -7256,7 +7258,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8542565608465609,
+        "freshnessScore": 0.8483015029761904,
         "lastSentAt": "2026-05-01T05:01:01.232Z"
       },
       {
@@ -7279,7 +7281,7 @@
         "supplyGap": -13,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.8215046362433862,
+        "freshnessScore": 0.8155495783730159,
         "lastSentAt": "2026-04-30T23:30:52.868Z"
       },
       {
@@ -7301,7 +7303,7 @@
         "supplyGap": -2,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.8393660482804233,
+        "freshnessScore": 0.8334109904100528,
         "lastSentAt": "2026-05-01T02:30:55.450Z"
       },
       {
@@ -7324,7 +7326,7 @@
         "supplyGap": -1,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.9644212731481482,
+        "freshnessScore": 0.9584662152777778,
         "lastSentAt": "2026-05-01T23:31:28.850Z"
       },
       {
@@ -7347,7 +7349,7 @@
         "supplyGap": 4,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.30364570767195764,
+        "freshnessScore": 0.2976906498015872,
         "lastSentAt": "2026-04-27T08:30:51.788Z"
       },
       {
@@ -7370,7 +7372,7 @@
         "supplyGap": 4,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.14286445271164017,
+        "freshnessScore": 0.13690939484126985,
         "lastSentAt": "2026-04-26T05:30:11.285Z"
       },
       {
@@ -7394,7 +7396,7 @@
         "supplyGap": 2,
         "rotationGap": 0,
         "freshnessDays": 7,
-        "freshnessScore": 0.8780868915343916,
+        "freshnessScore": 0.8721318336640211,
         "lastSentAt": "2026-05-01T09:01:13.816Z"
       },
       {
@@ -7407,7 +7409,7 @@
         ],
         "rootKey": "entertainment/entertainment/movie-drama",
         "availableCount": 1,
-        "sentFreshCount": 11,
+        "sentFreshCount": 10,
         "sent30dCount": 16,
         "positive30dCount": 0,
         "negative30dCount": 0,
@@ -7415,9 +7417,9 @@
         "uniqueSources30d": 13,
         "targetCount": 6,
         "supplyGap": 5,
-        "rotationGap": -5,
+        "rotationGap": -4,
         "freshnessDays": 7,
-        "freshnessScore": 0.8512575066137567,
+        "freshnessScore": 0.8453024487433862,
         "lastSentAt": "2026-05-01T04:30:47.404Z"
       }
     ]

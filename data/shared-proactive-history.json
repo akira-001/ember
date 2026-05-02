@@ -728,6 +728,39 @@
       ],
       "evaluate_score": 0.78,
       "sentAt": "2026-05-02T06:01:03.663Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "local_tokorozawa",
+      "preview": "あのさ、Akiraさん。\n\nYouTubeに *所沢市100人カイギvol.7* の動画があってさ、「なぜポートランドは人を惹きつけるのか」ってテーマで登壇者が語ってるみたい 🏙️\n\n住んでる街のカイギイベント、どんな話が出てるか気になるかも。\nhttps://www.youtube.com/wa",
+      "topic": "なぜポートランドは人を惹きつけるのか？所沢市100人カイギ",
+      "url": "https://www.youtube.com/watch?v=DPNqIbMMhG4",
+      "candidateId": "url:https://www.youtube.com/watch?v=DPNqIbMMhG4",
+      "sourceType": "YouTube",
+      "skill": "general",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/event",
+        "local/saitama/tokorozawa/event/market"
+      ],
+      "themeKey": "local/saitama/tokorozawa/event/market",
+      "inner_thought": "所沢カイギのポートランド話、地元愛あるAkiraさんに届けたい",
+      "plan": [
+        "所沢カイギの動画を共有",
+        "沈黙",
+        "天気情報を共有"
+      ],
+      "generate_score": [
+        0.71,
+        0.52,
+        0.48
+      ],
+      "evaluate_score": 0.68,
+      "sentAt": "2026-05-02T06:31:01.918Z"
     }
   ]
 }
