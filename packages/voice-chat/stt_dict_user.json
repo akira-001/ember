@@ -891,5 +891,16 @@
     "added_at": "2026-05-03T07:57:44",
     "confidence": 0.9,
     "reason": "文脈的に「アドバイス (Advice)」という単語の誤認識と判断されるため。"
+  },
+  {
+    "id": "e0cd55ebad6f",
+    "replacement": "アナリシス",
+    "patterns": [
+      "アナリー"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-03T08:28:09",
+    "confidence": 0.9,
+    "reason": "文脈から「Analysis（分析）」の音を捉え間違えた可能性が極めて高い。"
   }
 ]
