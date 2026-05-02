@@ -16,6 +16,16 @@ export interface ContextSummary {
   time_context?: string;
 }
 
+export interface MediaContext {
+  inferred_type: string;
+  matched_title: string;
+  inferred_topic: string;
+  confidence: number;
+  enriched_info: string;
+  keywords: string[];
+  last_inferred_at: number;
+}
+
 export interface ChatMessage {
   id: string;
   type: 'user' | 'assistant' | 'status' | 'proactive' | 'debug';

@@ -1691,9 +1691,26 @@ def _context_summary_to_dict() -> dict:
     }
 
 
+def _media_ctx_to_dict() -> dict:
+    """co_view が推定したメディア情報を JSON 化。"""
+    return {
+        "inferred_type": str(_media_ctx.inferred_type or "unknown"),
+        "matched_title": str(_media_ctx.matched_title or ""),
+        "inferred_topic": str(_media_ctx.inferred_topic or ""),
+        "confidence": _media_ctx.confidence,
+        "enriched_info": str(_media_ctx.enriched_info or ""),
+        "keywords": list(_media_ctx.keywords) if _media_ctx.keywords else [],
+        "last_inferred_at": _media_ctx.last_inferred_at,
+    }
+
+
 async def _broadcast_context_summary():
     """現在の context summary を全クライアントに配信。"""
-    payload = json.dumps({"type": "context_summary", "summary": _context_summary_to_dict()})
+    payload = json.dumps({
+        "type": "context_summary",
+        "summary": _context_summary_to_dict(),
+        "media_ctx": _media_ctx_to_dict(),
+    })
     for client in list(_clients):
         try:
             await client.send_text(payload)

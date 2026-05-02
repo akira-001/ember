@@ -1,6 +1,6 @@
 // dashboard/src/components/ember-chat/useEmberChat.ts
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { ChatMessage, ContextSummary, EmberSettings, Speaker, OllamaModel } from './types';
+import type { ChatMessage, ContextSummary, EmberSettings, Speaker, OllamaModel, MediaContext } from './types';
 import { DEFAULT_SETTINGS } from './types';
 import { buildStatusDiagnostic, parseDiagnosticLine } from './diagnostics';
 
