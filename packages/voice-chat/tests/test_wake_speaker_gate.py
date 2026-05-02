@@ -52,3 +52,16 @@ class TestSpeakerIdentifiedNotAkira:
         result = {"speaker": None, "display_name": "",
                   "similarity": 0.28, "all_scores": {"akira": 0.28}}
         assert app._speaker_identified_not_akira(result) is True
+
+
+class TestAlwaysOnDuration:
+    def test_webm_uses_decoded_duration_not_compressed_size(self, monkeypatch):
+        """A 5s webm/Opus chunk can be tiny; duration must come from decoded PCM."""
+        monkeypatch.setattr(app, "audio_bytes_to_wav", lambda _audio: [0.0] * (16000 * 5))
+
+        assert app._audio_duration_sec(b"tiny webm") == 5.0
+
+    def test_duration_falls_back_when_decode_fails(self, monkeypatch):
+        monkeypatch.setattr(app, "audio_bytes_to_wav", lambda _audio: None)
+
+        assert app._audio_duration_sec(b"x" * 3200) == 0.1

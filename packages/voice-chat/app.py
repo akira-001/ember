@@ -625,6 +625,14 @@ def _looks_like_keyboard_pulse(audio_bytes: bytes) -> tuple[bool, str]:
     return True, reason
 
 
+def _audio_duration_sec(audio_bytes: bytes) -> float:
+    """Return real decoded duration for webm/opus or wav input."""
+    wav = audio_bytes_to_wav(audio_bytes)
+    if wav is None or len(wav) == 0:
+        return len(audio_bytes) / 32000.0
+    return len(wav) / 16000.0
+
+
 def _transcribe_sync_with_metrics(audio_bytes: bytes, fast: bool) -> dict:
     """Whisper推論（同期）+ 軽量メトリクス。"""
     with tempfile.NamedTemporaryFile(suffix=".wav", delete=True) as f:
@@ -845,6 +853,17 @@ async def _chat_ollama(messages: list[dict], model: str) -> str:
         )
         resp.raise_for_status()
         return resp.json()["message"]["content"]
+
+
+def _inference_model() -> str:
+    """周期推論タスク用モデル。UI の Ambient/推論セレクタの値を返す。
+    fallback: ambientModel → modelSelect → 'gemma4:e4b'。
+    """
+    return (
+        _settings.get("ambientModel")
+        or _settings.get("modelSelect")
+        or "gemma4:e4b"
+    )
 
 
 async def chat_with_llm(messages: list[dict], model: str = "gemma4:e4b") -> str:
@@ -1474,6 +1493,39 @@ _chunk_transcribe_lock = asyncio.Lock()
 CHUNK_TRANSCRIPTS_FILE = Path(__file__).parent / "chunk_transcripts.jsonl"
 
 
+async def _seed_chunk_buffer_from_file() -> int:
+    """Patch CE2: 起動直後に chunk_transcripts.jsonl の直近 N 件を chunk_buffer に
+    プリロードして context_summary が即座に動くようにする。"""
+    if not CHUNK_TRANSCRIPTS_FILE.exists():
+        return 0
+    seeded = 0
+    try:
+        cutoff = time.time() - CHUNK_AUDIO_RETENTION  # 30 min
+        lines = CHUNK_TRANSCRIPTS_FILE.read_text(encoding="utf-8").splitlines()
+        recent = []
+        for line in reversed(lines):
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                d = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            ts_start = float(d.get("ts_start") or 0)
+            text = d.get("text", "")
+            if not text or ts_start < cutoff:
+                continue
+            recent.append((ts_start, ts_start + 180.0, text))
+            if len(recent) >= CHUNK_MAX_ENTRIES:
+                break
+        for ts_start, ts_end, text in reversed(recent):
+            await _chunk_buffer.add(ts_start, ts_end, text)
+            seeded += 1
+    except Exception as e:
+        logger.debug(f"[startup] chunk_buffer seed failed: {e}")
+    return seeded
+
+
 async def _feed_audio_buffer(audio_data: bytes) -> None:
     """always-on 音声を PCM 化して audio_buffer へ append（非ブロッキング）。"""
     try:
@@ -1485,6 +1537,15 @@ async def _feed_audio_buffer(audio_data: bytes) -> None:
         if len(pcm) == 0:
             logger.warning(f"[audio_buffer] decode returned empty pcm for {len(audio_data)} bytes")
             return
+        try:
+            peak = float(np.abs(pcm).max()) if len(pcm) else 0.0
+            rms = float(np.sqrt(np.mean(np.square(pcm)))) if len(pcm) else 0.0
+            logger.info(
+                f"[audio_buffer] decoded {len(audio_data)} bytes → {len(pcm)/16000:.1f}s "
+                f"peak={peak:.4f} rms={rms:.4f}"
+            )
+        except Exception as stats_err:
+            logger.debug(f"[audio_buffer] stats failed: {stats_err}")
         await _audio_buffer.add(pcm)
         logger.debug(f"[audio_buffer] added {len(pcm)} samples ({len(pcm)/16000:.1f}s)")
     except Exception as e:
@@ -1785,7 +1846,7 @@ async def _build_context_summary(transcript: str) -> dict:
         )},
         {"role": "user", "content": f"直近30分の transcript:\n{transcript}"},
     ]
-    raw = await asyncio.wait_for(chat_with_llm(messages, "gemma4:e4b"), timeout=30.0)
+    raw = await asyncio.wait_for(chat_with_llm(messages, _inference_model()), timeout=30.0)
     raw = raw.strip()
     if raw.startswith("```"):
         raw = re.sub(r'^```\w*\n?', '', raw)
@@ -1930,10 +1991,16 @@ async def _build_context_summary(transcript: str) -> dict:
 
 async def _summarize_context_loop():
     """5 分ごとに transcript から context summary を更新する。
-    優先: large-v3 chunk_buffer。空なら small ベース transcript_buffer フォールバック。"""
+    優先: large-v3 chunk_buffer。空なら small ベース transcript_buffer フォールバック。
+
+    Patch CE1 (2026-05-02): 起動直後は transcript が貯まるまで 30s 周期で
+    チェックし、初回 build 成功後は CONTEXT_SUMMARY_INTERVAL (180s) に切り替える。
+    再起動直後の UI 空白期間（最大 180s）を解消する。"""
+    _CE1_BOOT_POLL = 30
+    initial_phase = True  # True until first successful build
     while True:
         try:
-            await asyncio.sleep(CONTEXT_SUMMARY_INTERVAL)
+            await asyncio.sleep(_CE1_BOOT_POLL if initial_phase else CONTEXT_SUMMARY_INTERVAL)
             transcript = await _chunk_buffer.text_with_timestamps()
             source = "large-v3"
             if len(transcript) < CONTEXT_SUMMARY_MIN_CHARS:
@@ -1947,6 +2014,9 @@ async def _summarize_context_loop():
             try:
                 logger.info(f"[context_summary] building from {source} ({len(transcript)} chars)")
                 await _build_context_summary(transcript)
+                if initial_phase:
+                    initial_phase = False
+                    logger.info(f"[context_summary] initial build done, switching to {CONTEXT_SUMMARY_INTERVAL}s interval")
             except asyncio.TimeoutError:
                 logger.warning("[context_summary] LLM timeout (>30s)")
             except json.JSONDecodeError as e:
@@ -2161,7 +2231,7 @@ async def _correct_media_transcript(text: str) -> str:
         {"role": "user", "content": text},
     ]
     try:
-        corrected = await asyncio.wait_for(chat_with_llm(messages, "gemma4:e4b"), timeout=15.0)
+        corrected = await asyncio.wait_for(chat_with_llm(messages, _inference_model()), timeout=15.0)
         corrected = corrected.strip().strip('"\'「」')
         if corrected and corrected != text:
             if not corrected or corrected in ("（沈黙）", "(沈黙)", "…", "...", ""):
@@ -2199,7 +2269,22 @@ async def _correct_media_transcript(text: str) -> str:
 
 async def _infer_media_content() -> dict:
     """バッファ済み音声テキストから視聴コンテンツを推測する。"""
-    buffer_text = _media_ctx.get_buffer_text(last_n=10)
+    # Patch CD1 (2026-05-02): ambient (small Whisper) buffer は STT 精度が低く、
+    #   キーワード抽出の質が悪化（誤変換語からの誤推論）。chunk_buffer (large-v3) を
+    #   優先入力として使い、空の場合のみ ambient buffer フォールバック。
+    ambient_text = _media_ctx.get_buffer_text(last_n=10)
+    chunk_text = ""
+    try:
+        chunk_snapshot = await _chunk_buffer.snapshot()
+        if chunk_snapshot:
+            recent_chunks = chunk_snapshot[-2:]
+            chunk_text = "\n\n".join(c.get("text", "") for c in recent_chunks if c.get("text"))
+    except Exception as e:
+        logger.debug(f"[co_view/infer] chunk_buffer snapshot failed: {e}")
+    if chunk_text:
+        buffer_text = f"{chunk_text[-3000:]}\n\n[直近 ambient]\n{ambient_text}" if ambient_text else chunk_text[-3000:]
+    else:
+        buffer_text = ambient_text
     if not buffer_text:
         return {"content_type": "unknown", "topic": "", "matched_title": "", "keywords": [], "confidence": 0.0}
 
@@ -2290,7 +2375,7 @@ async def _infer_media_content() -> dict:
         {"role": "user", "content": f"音声テキスト:\n{buffer_text}"},
     ]
     try:
-        raw = await asyncio.wait_for(chat_with_llm(messages, "gemma4:e4b"), timeout=15.0)
+        raw = await asyncio.wait_for(chat_with_llm(messages, _inference_model()), timeout=15.0)
         raw = raw.strip()
         if raw.startswith("```"):
             raw = re.sub(r'^```\w*\n?', '', raw)
@@ -2371,23 +2456,64 @@ async def _infer_media_content() -> dict:
         # Patch BI1: 葬送のフリーレン STT誤変換バリアントでbuffer_text/topic直接マッチ
         # 背景: 「フリーレン」→「フリーゼン」というSTT誤変換により matched_title=''のまま
         #       enrich 0件→AA1/BE1でSKIP連発→2日半コメント停止の根本原因を修正する
+        # Patch CC1 (2026-05-02): 短い曖昧キーワード（ザイン/ラント/ユーベル/ヴィルベル/デンケン）が
+        #   STT 誤変換で頻繁に誤マッチ（ "Design"/"Sign"/"Cursor"/"Logitech" 等を「ザイン」と認識）
+        #   → 強マッチは「フリーレン」自身か「葬送」、または STRONG_KEYS から 2 つ以上同時出現に限定。
+        #   弱マッチ（confidence 加点のみ・type/title 上書きなし）は 1 つでも該当すれば適用。
         if not result.get("matched_title"):
-            _BI1_FRIEREN = ["フリーレン", "フリーゼン", "フリーレーン",  # STT誤変換バリアント
-                            "フェルン", "シュタルク", "ハイター", "アイゼン",  # キャラ名
-                            "葬送", "ヒンメル",  # 作品名・キャラ名
-                            # Patch BK2: 第2クールキャラ・固有語追加（4/16セッション実録）
-                            "ゼーリエ", "デンケン", "ラント", "ユーベル", "ヴィルベル",
-                            "ザイン", "第二頂点", "一等魔法使い", "一級魔法使い"]
+            # 単独でも作品確定できる強キーワード（誤変換しにくい長い固有語）
+            _BI1_STRONG_SOLO = ["フリーレン", "フリーゼン", "フリーレーン", "葬送", "ヒンメル",
+                                "ゼーリエ", "第二頂点", "一等魔法使い", "一級魔法使い"]
+            # 単独だと弱いキーワード（短い・他語と衝突しやすい）
+            _BI1_AMBIGUOUS = ["フェルン", "シュタルク", "ハイター", "アイゼン",
+                              "デンケン", "ラント", "ユーベル", "ヴィルベル", "ザイン"]
             _bi1_search_text = buffer_text + " " + result.get("topic", "")
-            for _bi1_char in _BI1_FRIEREN:
-                if _bi1_char in _bi1_search_text:
-                    result["matched_title"] = "葬送のフリーレン"
-                    if result.get("content_type") in ("unknown", "youtube_talk"):
-                        result["content_type"] = "anime"
-                    if float(result.get("confidence") or 0.0) < 0.75:
-                        result["confidence"] = 0.75
-                    logger.info(f"[co_view/infer] Patch BI1: buffer_text/topic直接マッチ '{_bi1_char}' → matched_title=葬送のフリーレン")
-                    break
+            _solo_hit = next((c for c in _BI1_STRONG_SOLO if c in _bi1_search_text), None)
+            _amb_hits = [c for c in _BI1_AMBIGUOUS if c in _bi1_search_text]
+            _bi1_char = None
+            if _solo_hit:
+                _bi1_char = _solo_hit
+            elif len(_amb_hits) >= 2:
+                _bi1_char = "+".join(_amb_hits[:2])
+            else:
+                _bi1_char = ""
+            if _bi1_char:
+                result["matched_title"] = "葬送のフリーレン"
+                if result.get("content_type") in ("unknown", "youtube_talk"):
+                    result["content_type"] = "anime"
+                if float(result.get("confidence") or 0.0) < 0.75:
+                    result["confidence"] = 0.75
+                logger.info(f"[co_view/infer] Patch BI1/CC1: buffer_text/topic直接マッチ '{_bi1_char}' → matched_title=葬送のフリーレン")
+        # Patch CF1: matched_title='' かつ named_entities/keywords にキャラ名候補がある場合、
+        # AniList にフォールバック検索して anime title を補完する。
+        # Trigger 条件:
+        #   - result.get("matched_title") が空
+        #   - result.get("content_type") in ("anime", "unknown", "youtube_talk")
+        #   - result.get("keywords") にカタカナ 3 文字以上の語が含まれる
+        if not result.get("matched_title"):
+            _cf1_ct = result.get("content_type", "")
+            if _cf1_ct in ("anime", "unknown", "youtube_talk"):
+                _cf1_candidates = []
+                for _cf1_kw in (result.get("keywords") or [])[:5]:
+                    if len(_cf1_kw) >= 3 and any(0x30A0 <= ord(c) <= 0x30FF for c in _cf1_kw):
+                        _cf1_candidates.append(_cf1_kw)
+                for _cf1_kw in _cf1_candidates[:3]:  # 最大 3 キャラ名検索
+                    try:
+                        from anilist_lookup import lookup_anime_by_character
+                        _cf1_res = await asyncio.wait_for(lookup_anime_by_character(_cf1_kw), timeout=6.0)
+                        if _cf1_res and _cf1_res.get("candidates"):
+                            _cf1_top = _cf1_res["candidates"][0]
+                            _cf1_title = _cf1_top.get("title") or ""
+                            if _cf1_title:
+                                result["matched_title"] = _cf1_title
+                                result["content_type"] = "anime"
+                                if float(result.get("confidence") or 0.0) < 0.7:
+                                    result["confidence"] = 0.7
+                                logger.info(f"[co_view/infer] Patch CF1: AniList lookup '{_cf1_kw}' → '{_cf1_title}' (popularity={_cf1_top.get('popularity')})")
+                                break
+                    except (asyncio.TimeoutError, Exception) as _cf1_e:
+                        logger.debug(f"[co_view/infer] AniList lookup '{_cf1_kw}' failed: {_cf1_e}")
+                        continue
         gcal_title = await _fetch_current_gcal_meeting()
         hint_score, hint_details = _meeting_hint_details(
             buffer_text,
@@ -3421,7 +3547,12 @@ async def _handle_co_view(ws, trigger_text: str, method: str, keyword: str):
                 #          conf<0.7のmeeting→non-meeting遷移でV2にブロックされBG1が発動しなかった
                 _bg1_from_meeting_precheck = (new_content_type != "meeting" and
                                               _media_ctx.inferred_type == "meeting")
-                if new_conf >= 0.7 or _av1_meeting_ok or _bg1_from_meeting_precheck:
+                # Patch CB1: unknown→X 遷移は V2 ゲートを 0.7→0.6 に緩和
+                # 背景: V2 (conf>=0.7) が unknown 起点でも発動し、Patch AQ1 (unknown→X は hysteresis 不要)
+                #       まで到達できなかった。再起動直後やコールド開始時に type が永久に unknown のまま固定される問題。
+                #       AQ1 と協調して unknown 状態からの脱出を確実にする（誤判定リスクは元々高くない: unknown→X は新規確定であり既存値を破壊しない）。
+                _cb1_from_unknown_ok = (_media_ctx.inferred_type == "unknown" and new_conf >= 0.6)
+                if new_conf >= 0.7 or _av1_meeting_ok or _bg1_from_meeting_precheck or _cb1_from_unknown_ok:
                     # Patch AF1: 同一matched_titleでのcontent_type変化（例: anime↔youtube_talk）は
                     # enrich cacheをリセットしない（同じ作品の情報が引き継がれる）
                     # 背景: 同一作品視聴中にtypeが行き来するたびにenrich cacheがリセットされ無駄なAPI呼び出しが発生していた
@@ -4147,7 +4278,7 @@ async def _correct_stt_text(text: str, context_texts: list[str] | None = None) -
     ]
     try:
         corrected = await asyncio.wait_for(
-            chat_with_llm(messages, "gemma4:e4b"),
+            chat_with_llm(messages, _inference_model()),
             timeout=3.0,
         )
         corrected = corrected.strip().strip('"\'「」')
@@ -4954,8 +5085,10 @@ def _build_existing_term_index() -> set[str]:
     return index
 
 
-async def _extract_term_candidates(transcript: str, model: str = "gemma4:e4b") -> list[dict]:
+async def _extract_term_candidates(transcript: str, model: str | None = None) -> list[dict]:
     """LLM で transcript から固有名詞候補を抽出し、後処理フィルタを適用。"""
+    if model is None:
+        model = _inference_model()
     prompt = _TERM_EXTRACT_PROMPT.format(transcript=transcript[:8000])  # gemma4:e4b の context 余裕
     try:
         raw = await chat_with_llm([{"role": "user", "content": prompt}], model=model)
@@ -5097,7 +5230,11 @@ async def delete_user_dict(entry_id: str):
 @app.get("/api/context-summary")
 async def get_context_summary():
     """現在の context summary を返す（クライアント初期化用）。"""
-    return {"ok": True, "summary": _context_summary_to_dict()}
+    return {
+        "ok": True,
+        "summary": _context_summary_to_dict(),
+        "media_ctx": _media_ctx_to_dict(),
+    }
 
 
 def _count_feedback() -> dict:
@@ -6199,8 +6336,9 @@ async def _process_always_on(ws: WebSocket, audio_data: bytes, *, speech_ts: int
             logger.info(f"[always_on] BLOCKED echo_suppress: {echo_remaining:.1f}s remain, {len(audio_data)}bytes")
             return
 
-        # Filter out very short audio fragments
-        audio_duration = len(audio_data) / 32000  # rough estimate: 16kHz * 16bit = 32000 bytes/s
+        # Filter out very short audio fragments. Always-on audio is usually
+        # webm/Opus, so byte size is not a reliable duration estimate.
+        audio_duration = _audio_duration_sec(audio_data)
         if audio_duration < 0.3:
             logger.info(f"[always_on] BLOCKED short: {audio_duration:.1f}s ({len(audio_data)}bytes)")
             return
@@ -7163,6 +7301,16 @@ async def websocket_endpoint(ws: WebSocket):
                     result = _speaker_id.add_enrollment_sample(audio_msg["bytes"])
                     await ws.send_json({"type": "enroll_status", **result})
                     continue
+                elif data.get("type") == "client_diagnostic":
+                    kind = str(data.get("kind", "unknown"))
+                    msg = str(data.get("message", ""))
+                    logger.info(f"[client_diagnostic] {kind}: {msg.replace(chr(10), ' | ')}")
+                    # echo back as listening_debug so it shows up in the chat debug stream
+                    try:
+                        await _broadcast_debug(f"[mic/{kind}] {msg}")
+                    except Exception as _e:
+                        logger.debug(f"[client_diagnostic] broadcast failed: {_e}")
+                    continue
                 elif data.get("type") == "raw_audio_chunk":
                     # Phase 2: 連続録音チャンク（VAD 通さない、large-v3 chunk transcribe 用）
                     chunk_ts = data.get("ts")  # epoch ms (optional)
@@ -7527,6 +7675,11 @@ async def on_startup():
 
     # Phase 2: 5min large-v3 chunk transcribe loop
     global _chunk_transcribe_task
+    # Patch CE2: pre-fill chunk_buffer from on-disk transcripts so context_summary
+    # has data immediately after restart instead of waiting 3+ min for first new chunk.
+    seeded = await _seed_chunk_buffer_from_file()
+    if seeded > 0:
+        logger.info(f"[startup] chunk_buffer seeded with {seeded} recent transcripts (within {CHUNK_AUDIO_RETENTION}s)")
     _chunk_transcribe_task = asyncio.create_task(_chunk_transcribe_loop())
     logger.info(
         f"[startup] Chunk transcribe loop started "
@@ -7538,7 +7691,7 @@ async def on_startup():
     logger.info("[startup] Periodic media inference loop started (interval=180s)")
 
     # Hotwords auto-improvement loop（30分ごとに STT 誤認識を自動改善）
-    asyncio.create_task(_hotwords_auto_improve_loop(chat_with_llm, lambda: _settings))
+    asyncio.create_task(_hotwords_auto_improve_loop(chat_with_llm, lambda: _settings, model_provider=_inference_model))
     logger.info("[startup] Hotwords auto-improvement loop started (interval=1800s)")
 
     # Enrichment loop（60s ごとに co_view/meeting 補助情報をバックグラウンド更新）

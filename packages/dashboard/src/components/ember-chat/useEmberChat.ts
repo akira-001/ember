@@ -20,6 +20,7 @@ export function useEmberChat() {
   const [lastBotId, setLastBotId] = useState<string | null>(null);
   const [contextSummary, setContextSummary] = useState<ContextSummary | null>(null);
   const [mediaCtx, setMediaCtx] = useState<MediaContext | null>(null);
+  const [inputDevices, setInputDevices] = useState<MediaDeviceInfo[]>([]);
   const settingsExpanded = settings.settingsExpanded ?? false;
 
   const wsRef = useRef<WebSocket | null>(null);
@@ -37,6 +38,21 @@ export function useEmberChat() {
 
   // Keep settingsRef in sync
   useEffect(() => { settingsRef.current = settings; }, [settings]);
+
+  // --- Enumerate audio input devices ---
+  useEffect(() => {
+    const refresh = async () => {
+      try {
+        const devs = await navigator.mediaDevices.enumerateDevices();
+        setInputDevices(devs.filter(d => d.kind === 'audioinput'));
+      } catch (err) {
+        console.warn('[useEmberChat] enumerateDevices failed', err);
+      }
+    };
+    refresh();
+    navigator.mediaDevices?.addEventListener?.('devicechange', refresh);
+    return () => navigator.mediaDevices?.removeEventListener?.('devicechange', refresh);
+  }, []);
 
   // --- Audio playback via HTMLAudioElement (avoids Web Audio autoplay quirks) ---
   const cleanupCurrentAudio = useCallback(() => {
@@ -326,6 +342,9 @@ export function useEmberChat() {
         if (wsRef.current === ws) {
           wsRef.current = null;
         }
+        // Stale media_ctx survives WS disconnects and masks fresh REST data on reload.
+        // Clear so REST/next broadcast becomes the source of truth.
+        setMediaCtx(null);
         if (!shouldReconnectRef.current) return;
         reconnectTimerRef.current = setTimeout(connect, 2000);
       };
@@ -564,6 +583,7 @@ export function useEmberChat() {
     recording, processing, wsConnected,
     replyBot, lastBotId, settingsExpanded,
     contextSummary, mediaCtx,
+    inputDevices,
     // Actions
     sendText, startRecording, stopRecording,
     updateSetting, updateSettings, loadSpeakers, handleBotEngineChange,

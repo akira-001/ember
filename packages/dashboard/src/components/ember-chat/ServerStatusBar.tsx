@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 
-export type AlwaysOnState = 'muted' | 'listening' | 'listening-stale' | 'processing';
+export type AlwaysOnState = 'muted' | 'checking' | 'error' | 'listening' | 'listening-stale' | 'processing';
 
 interface ServerStatusBarProps {
   whisperOnline: boolean;
@@ -58,6 +58,7 @@ function alwaysOnDotStyle(state: AlwaysOnState): CSSProperties {
         background: 'rgba(34, 197, 94, 0.3)',
       };
     case 'processing':
+    case 'checking':
       return {
         width: 7,
         height: 7,
@@ -65,6 +66,7 @@ function alwaysOnDotStyle(state: AlwaysOnState): CSSProperties {
         background: 'var(--ember-warm)',
         animation: 'ember-pulse-warm 1s ease-in-out infinite',
       };
+    case 'error':
     case 'muted':
     default:
       return {
@@ -78,6 +80,8 @@ function alwaysOnDotStyle(state: AlwaysOnState): CSSProperties {
 
 function alwaysOnLabel(state: AlwaysOnState): string {
   if (state === 'listening' || state === 'listening-stale') return 'Listening';
+  if (state === 'checking') return 'Checking mic';
+  if (state === 'error') return 'Mic unavailable';
   if (state === 'processing') return 'Processing';
   return 'Muted';
 }

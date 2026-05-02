@@ -112,6 +112,7 @@ export interface EmberSettings {
   settingsExpanded: boolean;
   yomiganaPersonalEntries: YomiganaEntry[];
   lastSeen: Record<string, string>;
+  inputDeviceId?: string;
 }
 
 export interface Speaker {

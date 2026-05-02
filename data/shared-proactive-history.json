@@ -921,6 +921,86 @@
       ],
       "evaluate_score": 0.78,
       "sentAt": "2026-05-02T10:31:10.418Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "そういえばさ、Akiraさん。\n\nウォーカープラスに *東京23区内のコスパ最強ステーキ5選* って記事が出てたよ 🥩\n\n明日食事会もあるし、ネタとして眺めてみるのもいいかも。\nhttps://news.google.com/rss/articles/CBMiekFVX3lxTE5MOU03ZUV",
+      "topic": "東京23区コスパ最強ステーキ5選",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5MOU03ZUVNSlllckJtVlNGYnVWNTlhbzdCUVlHbW1YeXFfZk9ncUo4MlZPN0NxSDItdVN1Q01qcEM0VFhVOW9uNC1zaGZrLUNvS0w5ODRGMEhzWGgyVXAxNWtJbTdMeGllWC1KR1JhLTJUVzhXWkFBcTF3",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiekFVX3lxTE5MOU03ZUVNSlllckJtVlNGYnVWNTlhbzdCUVlHbW1YeXFfZk9ncUo4MlZPN0NxSDItdVN1Q01qcEM0VFhVOW9uNC1zaGZrLUNvS0w5ODRGMEhzWGgyVXAxNWtJbTdMeGllWC1KR1JhLTJUVzhXWkFBcTF3",
+      "sourceType": "ウォーカープラス",
+      "skill": "general",
+      "themePath": [
+        "lifestyle",
+        "lifestyle/food-wellness",
+        "lifestyle/food-wellness/gourmet",
+        "lifestyle/food-wellness/gourmet/steak"
+      ],
+      "themeKey": "lifestyle/food-wellness/gourmet/steak",
+      "inner_thought": "今日もう何本も送ってるし正直黙りたいけど、コスパステーキは明日の食事会前の軽い話題として自然かも",
+      "plan": [
+        "東京コスパステーキ情報を共有",
+        "スタートアップ資金調達まとめを共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.6,
+        0.55,
+        0.72
+      ],
+      "evaluate_score": 0.52,
+      "sentAt": "2026-05-02T11:31:18.286Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "あのね、Akiraさん。\n\nTBS公式に *『VIVANT』続編の映像が初公開* されてた 🎬 総勢 *26名* のキャスト発表もあったみたい。\n\nhttps://www.youtube.com/watch?v=9124Rl0IEJU",
+      "topic": "VIVANT続編映像初公開・26名キャスト発表",
+      "url": "https://www.youtube.com/watch?v=9124Rl0IEJU",
+      "candidateId": "url:https://www.youtube.com/watch?v=9124Rl0IEJU",
+      "sourceType": "TBS公式YouTube",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/vivant"
+      ],
+      "themeKey": "entertainment/movie-drama/vivant",
+      "inner_thought": "もう黙りたいけど、VIVANT続編の映像初公開はちょっと興奮する話題だし1本だけ",
+      "plan": [
+        "VIVANT続編映像初公開を共有",
+        "スタートアップ資金調達まとめを共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.62,
+        0.45,
+        0.72
+      ],
+      "evaluate_score": 0.55,
+      "sentAt": "2026-05-02T12:31:08.720Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "ね、Akiraさん。\n\n株式会社ビデオリサーチで *最新ドラマ視聴データ速報【ビデオリサーチ調べ】（視聴率・視聴人数） - 株式会社* の記事が出てたよ。",
+      "url": "",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/tv",
+        "entertainment/movie-drama/tv/drama"
+      ],
+      "themeKey": "entertainment/movie-drama/tv/drama",
+      "sentAt": "2026-05-02T14:00:13.816Z"
     }
   ]
 }

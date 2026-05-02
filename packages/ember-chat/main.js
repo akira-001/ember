@@ -1,4 +1,4 @@
-const { app, BrowserWindow, nativeImage, Tray, Menu, screen } = require('electron');
+const { app, BrowserWindow, nativeImage, Tray, Menu, screen, desktopCapturer } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
@@ -98,7 +98,8 @@ function createWindow() {
       if (
         permission === 'media' ||
         permission === 'microphone' ||
-        permission === 'audioCapture'
+        permission === 'audioCapture' ||
+        permission === 'display-capture'
       ) {
         callback(true);
         return;
@@ -110,8 +111,21 @@ function createWindow() {
     (_webContents, permission) =>
       permission === 'media' ||
       permission === 'microphone' ||
-      permission === 'audioCapture',
+      permission === 'audioCapture' ||
+      permission === 'display-capture',
   );
+
+  mainWindow.webContents.session.setDisplayMediaRequestHandler((request, callback) => {
+    desktopCapturer.getSources({ types: ['screen'] }).then((sources) => {
+      callback({
+        video: sources[0],
+        audio: 'loopback',
+      });
+    }).catch((err) => {
+      console.warn('[ember] display media request failed:', err.message);
+      callback({});
+    });
+  });
 
   if (saved?.isMaximized) mainWindow.maximize();
   if (saved?.isFullScreen) mainWindow.setFullScreen(true);

@@ -305,5 +305,492 @@
     "added_at": "2026-05-02T19:51:04",
     "confidence": 0.85,
     "reason": "繰り返し出現し、製品名やセット名の響きを持つ固有名詞の誤認識と判断されるため。"
+  },
+  {
+    "id": "b9bdbc8dcfe7",
+    "replacement": "（特定不能：固有名詞の可能性高）",
+    "patterns": [
+      "チロップソラリー",
+      "オスタマ"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T20:22:20",
+    "confidence": 0.85,
+    "reason": "文脈から、専門用語または特定の場所・商品名の誤認識と判断される。"
+  },
+  {
+    "id": "91c21d3016a1",
+    "replacement": "（特定不能：専門用語の可能性高）",
+    "patterns": [
+      "アコンの巻き"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T20:22:20",
+    "confidence": 0.72,
+    "reason": "「巻き」という言葉と組み合わされており、専門的な技術用語や物理現象の誤認識と推測される。"
+  },
+  {
+    "id": "81d10d7d551b",
+    "replacement": "マイクスタンド",
+    "patterns": [
+      "マンスペーカンド"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T20:27:47",
+    "confidence": 0.8,
+    "reason": "文脈から、音韻的に『マイクスタンド』などの撮影機材を指している誤認識と判断した。"
+  },
+  {
+    "id": "9416dfeadb77",
+    "replacement": "東京メトロにさえ",
+    "patterns": [
+      "東京メトロピサいて"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T20:27:47",
+    "confidence": 0.9,
+    "reason": "助詞や場所を示す表現が崩れた、自然な日本語の表現と判断した。"
+  },
+  {
+    "id": "6b2afa9bdce4",
+    "replacement": "ミリ単位",
+    "patterns": [
+      "ミリエイプ"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T20:27:47",
+    "confidence": 0.75,
+    "reason": "計測の単位を示す表現であり、音韻的に『ミリ単位』の誤認識と思われる。"
+  },
+  {
+    "id": "80c900a25158",
+    "replacement": "フランネル",
+    "patterns": [
+      "フラネー"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T20:27:47",
+    "confidence": 0.7,
+    "reason": "文脈から、布地や生地の名前（フランネル）を指している可能性が高い。"
+  },
+  {
+    "id": "dc1f33fa950a",
+    "replacement": "キャッシュマーケティング",
+    "patterns": [
+      "キャッシュマーワークスガイム"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T20:27:47",
+    "confidence": 0.7,
+    "reason": "長い塊の単語群であり、マーケティング関連の専門用語を指していると推測される。"
+  },
+  {
+    "id": "5f905dbee2c3",
+    "replacement": "GPT",
+    "patterns": [
+      "JAPGPT"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T20:40:11",
+    "confidence": 0.9,
+    "reason": "「ChatGPT」などAIモデル名と音韻的・構造的に誤認識された可能性が高い。"
+  },
+  {
+    "id": "555c7d50cc7e",
+    "replacement": "アメリカ",
+    "patterns": [
+      "アメリカル",
+      "アメリカーデス"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T20:40:11",
+    "confidence": 0.85,
+    "reason": "「アメリカ」という地名または形容詞を音韻的に誤認識したものと判断できる。"
+  },
+  {
+    "id": "03f3453d2d29",
+    "replacement": "学術研究施設名",
+    "patterns": [
+      "アクリーハイスアップラボ"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T21:10:40",
+    "confidence": 0.9,
+    "reason": "専門的な文脈で繰り返し登場する固有の施設・プロジェクト名を指している可能性が高い。"
+  },
+  {
+    "id": "c1b12e47d4cc",
+    "replacement": "特定のブランド名（推定）",
+    "patterns": [
+      "アルフェアクシー"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T21:10:40",
+    "confidence": 0.85,
+    "reason": "「オスタンパン」と共に繰り返し出現する構造から、固有名詞または製品カテゴリ名と推測される。"
+  },
+  {
+    "id": "d9e45b5ac244",
+    "replacement": "アキシャル・フィット・ガーキット",
+    "patterns": [
+      "アキシャルフィスガーキット"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T21:10:40",
+    "confidence": 0.8,
+    "reason": "製品名や部品キットのような構造化された語彙であり、誤認識の疑いが強い。"
+  },
+  {
+    "id": "87e04c5f813b",
+    "replacement": "低温焙煎法",
+    "patterns": [
+      "コールドロースト"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T21:10:40",
+    "confidence": 0.88,
+    "reason": "単なるコーヒー用語以上の、物語内での「工程名」や「モード名」のように機能的に使われているため。"
+  },
+  {
+    "id": "f9ca5c955578",
+    "replacement": "プレイ",
+    "patterns": [
+      "プロプレイ"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T21:28:17",
+    "confidence": 0.85,
+    "reason": "文脈から、接頭語の「プロ」が不要な、単なる行動や行為を示す名詞（プレイ）の繰り返し誤認識と考えられる。"
+  },
+  {
+    "id": "403714c7689f",
+    "replacement": "（特定製品名またはシステム名）",
+    "patterns": [
+      "アクリーハイスアップラボ ショー"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T21:42:31",
+    "confidence": 0.95,
+    "reason": "同一の製品名またはシステム名が連続して繰り返されており、誤認識された固有名詞の可能性が高いため。"
+  },
+  {
+    "id": "05a87e1ea1e1",
+    "replacement": "（特定機能名またはコード名）",
+    "patterns": [
+      "クリスタードコード"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T21:42:31",
+    "confidence": 0.9,
+    "reason": "技術的な用語として頻繁に登場し、構造的かつ繰り返し発音されているため。"
+  },
+  {
+    "id": "4279af90179a",
+    "replacement": "（特定の場所または概念名）",
+    "patterns": [
+      "パワイチゴブロ"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T21:42:31",
+    "confidence": 0.88,
+    "reason": "繰り返し出現する、固有名詞的な響きを持つ語句であり、特定の対象を指していると思われるため。"
+  },
+  {
+    "id": "349de29a304c",
+    "replacement": "（特定のエラーコードまたは修正名）",
+    "patterns": [
+      "ディフェクトブアクリッドコード"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T21:42:31",
+    "confidence": 0.8,
+    "reason": "多数の技術的専門用語が連結した形で出現しており、専門分野におけるコード名やエラーメッセージの誤認識が疑われるため。"
+  },
+  {
+    "id": "29b606ca641f",
+    "replacement": "QRDDT Feature X",
+    "patterns": [
+      "QRDTフェ\\.\\w+SEWIYEN"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T21:55:20",
+    "confidence": 0.9,
+    "reason": "構造的で反復的な記号列であり、技術的なコード名やデータ型名と推測されるため。"
+  },
+  {
+    "id": "b1650945e017",
+    "replacement": "Mixed Feature X",
+    "patterns": [
+      "MXL SEWIYEN"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T21:55:20",
+    "confidence": 0.9,
+    "reason": "前述の記号列と類似しており、特定のプラットフォームやモジュール名のような構造を持つため。"
+  },
+  {
+    "id": "f9852bc6d113",
+    "replacement": "プロトコルワークフロー",
+    "patterns": [
+      "プロトワーケルチクス"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T21:55:20",
+    "confidence": 0.85,
+    "reason": "文脈から見て、技術的なプロセスや工程を指す語句の誤認識である可能性が高い。"
+  },
+  {
+    "id": "c992482347dd",
+    "replacement": "アグリーゲートリスクスコープ",
+    "patterns": [
+      "アグペ ドリスクープ"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T21:55:20",
+    "confidence": 0.8,
+    "reason": "「アグリーゲート（累積）」や「リスクスコープ」など、専門用語の音韻的な誤認識と思われる。"
+  },
+  {
+    "id": "8285d5668f27",
+    "replacement": "バイアスアレイゲート",
+    "patterns": [
+      "ビスアルトアグペ"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T21:55:20",
+    "confidence": 0.8,
+    "reason": "「バイアス（偏り）」や「アレイ（配列）」などの英語由来の専門用語の連続的な誤認識と考えられる。"
+  },
+  {
+    "id": "5047403f32b2",
+    "replacement": "Healthcare",
+    "patterns": [
+      "Healthaide"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:01:32",
+    "confidence": 0.85,
+    "reason": "文脈から、健康に関する専門的な言葉（Healthcare）の誤認識と判断されるため。"
+  },
+  {
+    "id": "500450f94332",
+    "replacement": "（特定不能、専門用語）",
+    "patterns": [
+      "QRDDTフェ。NXL SEWIYEN"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:01:32",
+    "confidence": 0.8,
+    "reason": "繰り返し出現するが、既知の技術用語やブランド名とは異なる構造を持つ、発音に基づくノイズまたは専門コードの誤認識。"
+  },
+  {
+    "id": "0013053544bd",
+    "replacement": "QR-DTフェーズ",
+    "patterns": [
+      "QRDTフェ"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:05:33",
+    "confidence": 0.9,
+    "reason": "繰り返し出現する専門的な識別子であり、正確な読み取りの誤りと思われるため。"
+  },
+  {
+    "id": "5237bd9feda9",
+    "replacement": "イエロー",
+    "patterns": [
+      "Yellow"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:05:33",
+    "confidence": 0.8,
+    "reason": "英語の単語が混入しており、日本語の音韻体系に合わせる必要があるため。"
+  },
+  {
+    "id": "b2a46e2d863c",
+    "replacement": "ジェイコブ",
+    "patterns": [
+      "Jacob"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:05:33",
+    "confidence": 0.75,
+    "reason": "外来語の名前であり、より自然なカタカナ表記に修正される可能性が高いため。"
+  },
+  {
+    "id": "2398b92a2ee8",
+    "replacement": "アバジアダイア",
+    "patterns": [
+      "Abaジアダイヤス"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:05:33",
+    "confidence": 0.7,
+    "reason": "特定の専門用語や固有名詞が、音の近さから崩れて認識された可能性があるため。"
+  },
+  {
+    "id": "c46214b00616",
+    "replacement": "QRDTフェーズ",
+    "patterns": [
+      "QRDTフェ\\."
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:09:52",
+    "confidence": 0.85,
+    "reason": "文脈から見て、繰り返される専門的なフェーズ名の誤認識と考えられます。"
+  },
+  {
+    "id": "999a0e5c6ee2",
+    "replacement": "NXL SEWIEN",
+    "patterns": [
+      "NXL SEWIYEN"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:09:52",
+    "confidence": 0.8,
+    "reason": "固有のコード名や専門用語の音韻的な揺れ、または単語の脱落が疑われます。"
+  },
+  {
+    "id": "cd601962d477",
+    "replacement": "イシス ス",
+    "patterns": [
+      "イチーズ ス"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:09:52",
+    "confidence": 0.75,
+    "reason": "地名や固有名詞の音が類似しており、発音の揺れによる誤認識と判断されます。"
+  },
+  {
+    "id": "da07b825c0ff",
+    "replacement": "ITEM DEMUXEL",
+    "patterns": [
+      "IT DEMEUXL"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:09:52",
+    "confidence": 0.78,
+    "reason": "アクロニムやシステム名と思われる部分であり、'IT'や'DEMUXEL'といった音に起因する可能性があります。"
+  },
+  {
+    "id": "157c6303eb43",
+    "replacement": "（文脈不明の技術用語または固有名詞の再発音）",
+    "patterns": [
+      "QRDTフェ。NXL SEWIYEN"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:18:45",
+    "confidence": 0.9,
+    "reason": "繰り返し出現し、専門的で文脈から逸脱した英語/記号の連続パターンであるため、誤認識の可能性が高い。"
+  },
+  {
+    "id": "de674a90eafc",
+    "replacement": "（著名なブランド名や人名）",
+    "patterns": [
+      "Emma & Blake nordboy"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:18:45",
+    "confidence": 0.8,
+    "reason": "アンパサンド(&)と一般的な人名やブランド名に見える単語の組み合わせであり、誤認識のパターンとして浮き出る。"
+  },
+  {
+    "id": "bb8925c17f22",
+    "replacement": "（文脈に沿ったフランス語または専門用語）",
+    "patterns": [
+      "l pendant lesans"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:18:45",
+    "confidence": 0.75,
+    "reason": "「l pendant lesans」という構造は、文脈と照らして意味の通らない外国語の羅列であり、誤認識の可能性が高い。"
+  },
+  {
+    "id": "b061064df664",
+    "replacement": "（不明な固有名詞、あるいは別の単語）",
+    "patterns": [
+      "クエク"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:49:17",
+    "confidence": 0.9,
+    "reason": "文脈的に固有名詞または特定の技術用語として繰り返されているが、一般的な日本語や既知の製品名ではない。"
+  },
+  {
+    "id": "fa2f06d9137a",
+    "replacement": "（固有名詞）",
+    "patterns": [
+      "リムハラン"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:49:17",
+    "confidence": 0.85,
+    "reason": "物語的な文脈で使用されている特定の固有名詞の可能性が高い。"
+  },
+  {
+    "id": "52a68b892a88",
+    "replacement": "（固有名詞または専門用語）",
+    "patterns": [
+      "アバジアダイヤス",
+      "Huhchasких"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:49:17",
+    "confidence": 0.8,
+    "reason": "「ダイヤス」が繰り返され、何らかの専門的な概念や固有名詞として発話されている。"
+  },
+  {
+    "id": "9241a801a769",
+    "replacement": "（製品名またはコードネーム）",
+    "patterns": [
+      "リンメークライフォータ"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:49:17",
+    "confidence": 0.9,
+    "reason": "繰り返し出現する、特定の技術や製品に関連付けられたと思われる名称。"
+  },
+  {
+    "id": "bbe451a78739",
+    "replacement": "（技術コード名）",
+    "patterns": [
+      "ディズムイータルコード"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T22:49:17",
+    "confidence": 0.85,
+    "reason": "コードや技術的なプロセスを指していると思われる、音韻的な誤認識パターン。"
+  },
+  {
+    "id": "b41db4469e99",
+    "replacement": "Claude One Star Service",
+    "patterns": [
+      "クロードオウォンスタービス"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T23:08:05",
+    "confidence": 0.85,
+    "reason": "技術用語や製品名と思われるフレーズが繰り返し出現しており、音響的な誤認識の可能性が高い。"
+  },
+  {
+    "id": "41fff95f5508",
+    "replacement": "（固有名詞または技術用語）",
+    "patterns": [
+      "از kalian"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T23:08:05",
+    "confidence": 0.75,
+    "reason": "アブジャド（アラビア文字体系）と日本語が混在した構造であり、特定の固有名詞の誤認識と考えられる。"
+  },
+  {
+    "id": "78e3d1396bda",
+    "replacement": "プロトラクト",
+    "patterns": [
+      "プロトラクライム"
+    ],
+    "type": "auto",
+    "added_at": "2026-05-02T23:08:05",
+    "confidence": 0.8,
+    "reason": "「プロトラクト（protract）」という専門用語の音韻的な誤認識の可能性が高い。"
   }
 ]

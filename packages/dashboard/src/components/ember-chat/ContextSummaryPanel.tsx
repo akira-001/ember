@@ -120,8 +120,10 @@ function ageInfo(updatedAt?: number): { text: string; isStale: boolean } {
   return { text, isStale };
 }
 
-export default function ContextSummaryPanel({ open, externalSummary, mediaCtx }: ContextSummaryPanelProps) {
+export default function ContextSummaryPanel({ open, externalSummary, mediaCtx: externalMediaCtx }: ContextSummaryPanelProps) {
   const [summary, setSummary] = useState<ContextSummary | null>(null);
+  const [restMediaCtx, setRestMediaCtx] = useState<MediaContext | null>(null);
+  const mediaCtx = externalMediaCtx ?? restMediaCtx;
   const [collapsed, setCollapsed] = useState<boolean>(() => {
     try {
       return localStorage.getItem(COLLAPSED_KEY) === '1';
@@ -163,7 +165,10 @@ export default function ContextSummaryPanel({ open, externalSummary, mediaCtx }:
     try {
       const r = await fetch(`${API_BASE}/context-summary`);
       const d = await r.json();
-      if (d.ok) setSummary(d.summary);
+      if (d.ok) {
+        setSummary(d.summary);
+        if (d.media_ctx) setRestMediaCtx(d.media_ctx as MediaContext);
+      }
     } catch {
       // ignore
     }

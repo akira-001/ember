@@ -138,6 +138,7 @@ async def extract_hotword_candidates(
     transcripts: list[str],
     existing_patterns: list[str],
     chat_with_llm_fn: Callable[[list[dict], str], Awaitable[str]],
+    model: str = "gemma4:e4b",
 ) -> list[dict]:
     """LLM を呼び出して誤認識候補を抽出する。confidence >= MIN_CONFIDENCE のみ返す。"""
     if not transcripts:
@@ -161,7 +162,7 @@ async def extract_hotword_candidates(
 
     try:
         raw = await asyncio.wait_for(
-            chat_with_llm_fn(messages, "gemma4:e4b"),
+            chat_with_llm_fn(messages, model),
             timeout=60.0,
         )
     except asyncio.TimeoutError:
@@ -312,11 +313,13 @@ def merge_into_user_dict(candidates: list[dict], dict_file: Path = _USER_DICT_FI
 async def auto_improve_loop(
     chat_with_llm_fn: Callable[[list[dict], str], Awaitable[str]],
     settings_getter: Callable[[], dict] | None = None,
+    model_provider: Callable[[], str] | None = None,
 ) -> None:
     """30 分ごとに hotwords 自動改善を実行するバックグラウンドループ。
 
     settings_getter: 最新 _settings を返す callable。
                      hotwordsAutoImprovementDisabled=true で無効化。
+    model_provider: 推論モデルを返す callable。None の場合は 'gemma4:e4b' 使用。
     """
     logger.info("[hotwords] auto_improve_loop started (interval=1800s)")
     await asyncio.sleep(60)  # 起動直後の負荷を避けて 1 分後に初回実行
@@ -339,7 +342,7 @@ async def auto_improve_loop(
 
             existing_patterns, _ = _get_existing_patterns()
             candidates = await extract_hotword_candidates(
-                transcripts, existing_patterns, chat_with_llm_fn
+                transcripts, existing_patterns, chat_with_llm_fn, model=model_provider() if model_provider else "gemma4:e4b"
             )
 
             # 1 サイクル上限

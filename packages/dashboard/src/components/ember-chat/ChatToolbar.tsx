@@ -10,11 +10,14 @@ interface ChatToolbarProps {
   models: OllamaModel[];
   speakers: Speaker[];
   speedOptions?: string[];
+  inputDeviceValue: string;
+  inputDevices: MediaDeviceInfo[];
   onModelChange: (value: string) => void;
   onAmbientModelChange: (value: string) => void;
   onTtsEngineChange: (value: string) => void;
   onVoiceChange: (value: string) => void;
   onSpeedChange: (value: string) => void;
+  onInputDeviceChange: (value: string) => void;
 }
 
 const DEFAULT_SPEEDS = ['0.8', '1.0', '1.2', '1.5', '2.0'];
@@ -59,11 +62,14 @@ export default function ChatToolbar({
   models,
   speakers,
   speedOptions = DEFAULT_SPEEDS,
+  inputDeviceValue,
+  inputDevices,
   onModelChange,
   onAmbientModelChange,
   onTtsEngineChange,
   onVoiceChange,
   onSpeedChange,
+  onInputDeviceChange,
 }: ChatToolbarProps) {
   return (
     <div style={containerStyle}>
@@ -80,7 +86,7 @@ export default function ChatToolbar({
         ))}
       </select>
 
-      <span style={labelStyle}>Ambient</span>
+      <span style={labelStyle}>推論</span>
       <select
         value={ambientModelValue}
         onChange={(e) => onAmbientModelChange(e.target.value)}
@@ -99,6 +105,20 @@ export default function ChatToolbar({
             </option>
           ))}
         </optgroup>
+      </select>
+
+      <span style={labelStyle}>Input</span>
+      <select
+        value={inputDeviceValue}
+        onChange={(e) => onInputDeviceChange(e.target.value)}
+        style={selectStyle}
+      >
+        <option value="">(自動)</option>
+        {inputDevices.map((d) => (
+          <option key={d.deviceId} value={d.deviceId}>
+            {d.label || `デバイス (${d.deviceId.slice(0, 8)})`}
+          </option>
+        ))}
       </select>
 
       <span style={labelStyle}>TTS</span>

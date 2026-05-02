@@ -79,6 +79,16 @@ const fallbackPanelStyle: CSSProperties = {
   padding: 24,
 };
 
+const inlineAlertStyle: CSSProperties = {
+  padding: '8px 14px',
+  background: 'rgba(239, 68, 68, 0.10)',
+  borderTop: '1px solid rgba(239, 68, 68, 0.24)',
+  borderBottom: '1px solid rgba(239, 68, 68, 0.20)',
+  color: 'var(--ember-text)',
+  fontSize: 12,
+  lineHeight: 1.5,
+};
+
 const settingsToggleStyle: CSSProperties = {
   display: 'flex',
   alignItems: 'center',
@@ -124,7 +134,7 @@ export default function EmberChatPage() {
   }, []);
 
   const chat = useEmberChat();
-  const alwaysOn = useAlwaysOn({ wsRef: chat.wsRef });
+  const alwaysOn = useAlwaysOn({ wsRef: chat.wsRef, inputDeviceId: chat.settings.inputDeviceId });
   const meetingRec = useMeetingRecorder();
 
   const refresh = useCallback(async () => {
@@ -217,6 +227,12 @@ export default function EmberChatPage() {
 
       <PlaybackModeBar />
 
+      {alwaysOn.lastError && (
+        <div style={inlineAlertStyle}>
+          {alwaysOn.lastError}
+        </div>
+      )}
+
       {status.whisper ? (
         <>
           <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
@@ -252,6 +268,8 @@ export default function EmberChatPage() {
                 speedValue={chat.settings.speedSelect}
                 models={chat.models}
                 speakers={chat.speakers}
+                inputDeviceValue={chat.settings.inputDeviceId || ''}
+                inputDevices={chat.inputDevices}
                 onModelChange={(v) => chat.updateSetting('modelSelect', v)}
                 onAmbientModelChange={(v) => chat.updateSetting('ambientModel', v)}
                 onTtsEngineChange={(v) => {
@@ -260,6 +278,7 @@ export default function EmberChatPage() {
                 }}
                 onVoiceChange={(v) => chat.updateSetting('voiceSelect', v)}
                 onSpeedChange={(v) => chat.updateSetting('speedSelect', v)}
+                onInputDeviceChange={(v) => chat.updateSetting('inputDeviceId', v)}
               />
 
               <BotRow
