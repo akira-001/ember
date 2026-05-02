@@ -696,6 +696,38 @@
       ],
       "evaluate_score": 0.78,
       "sentAt": "2026-05-02T05:01:01.165Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "hobby_leisure",
+      "interestCategory": "business_strategy",
+      "preview": "Akiraさん、ちょっと面白い記事。\n\nビジネスジャーナルに *取締役会にAIが座る時代* って記事が出てたよ。キリンHDが先行してるAI経営と、日本企業のガバナンスについて書かれてるみたい 🏢\n\nクライアントへの提案ネタとしてもストックしておけるかもね。\nhttps://news.google.",
+      "topic": "取締役会にAIが座る時代…キリンHDらが先行するAI経営と日本企業のガバナンス - ビジネスジャーナル",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1RUVlaa2FfSEZmUGxQa1RzRDRVZEtJZjdwX3hQUW9aZE83SHhncHdGODd1ck9sQ2JINmptdWFiNHNERGJvb0FkeFNOdDA2ZFJqWGtIOExpMG9Lb1k?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiW0FVX3lxTE1RUVlaa2FfSEZmUGxQa1RzRDRVZEtJZjdwX3hQUW9aZE83SHhncHdGODd1ck9sQ2JINmptdWFiNHNERGJvb0FkeFNOdDA2ZFJqWGtIOExpMG9Lb1k?oc=5",
+      "sourceType": "interest-cache",
+      "skill": "general",
+      "themePath": [
+        "ai",
+        "ai/enterprise",
+        "ai/enterprise/governance",
+        "ai/enterprise/governance/compliance"
+      ],
+      "themeKey": "ai/enterprise/governance/compliance",
+      "inner_thought": "AI経営の記事、コンサルやってるAkiraさんには刺さるはず。今週ビジネス系が足りてないし",
+      "plan": [
+        "AI経営・キリンHD記事を共有",
+        "埼玉ツツジの見頃情報を共有",
+        "沈黙して様子見"
+      ],
+      "generate_score": [
+        0.82,
+        0.6,
+        0.3
+      ],
+      "evaluate_score": 0.78,
+      "sentAt": "2026-05-02T06:01:03.663Z"
     }
   ]
 }

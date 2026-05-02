@@ -16,60 +16,6 @@
   },
   "history": [
     {
-      "id": "26d77479-709c-4503-9d07-59cd220683b4",
-      "category": "meeting_prep",
-      "interestCategory": "general",
-      "sentAt": "2026-04-20T23:01:10.048Z",
-      "slackTs": "1776726070.203759",
-      "slackChannel": "U3SFGQXNH",
-      "reaction": null,
-      "reactionDelta": 0,
-      "preview": "Akiraさん、おはよう。昨日の12本、ほんとにおつかれさま。\n\nで、今日も品川で会議詰まってるでしょ。ちょうどいいのを見つけたよ。\n\n*ウルフギャング・ステーキハウス* が高輪に新店オープンしたみたい 🥩 品川からすぐだし、今日のご褒美",
-      "fullText": "Akiraさん、おはよう。昨日の12本、ほんとにおつかれさま。\n\nで、今日も品川で会議詰まってるでしょ。ちょうどいいのを見つけたよ。\n\n*ウルフギャング・ステーキハウス* が高輪に新店オープンしたみたい 🥩 品川からすぐだし、今日のご褒美ディナー候補にどうかなと思って。\nhttps://news.google.com/rss/articles/CBMiVkFVX3lxTFBlbVRMYk1LcmQxWVhFZ1lsUHhhd0E2S0UxaXJaa1hNcWJhV3JXU2ZJTlBlSUNoeG16eHVTNDRwSFRoSUg1NWZtaHRHWWNVRG1zN1ZKOGxR0gFbQVVfeXFMT2dWSVZBSm1XdFhiMklqMmZQMXRkeWpOV1ZfdjBOQjBYTnZVUmQ1WUVveGRGZjRRamtGVGdjZmNscVJUQVRiNERJbWpSY2Z6blRsNEx5NG5rOXdNRQ?oc=5\n\n8:30からPMP面談だね、そろそろ準備かな。今日もいい1日に。",
-      "sourceUrls": [
-        {
-          "title": "ウルフギャング・ステーキハウス高輪新店",
-          "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBlbVRMYk1LcmQxWVhFZ1lsUHhhd0E2S0UxaXJaa1hNcWJhV3JXU2ZJTlBlSUNoeG16eHVTNDRwSFRoSUg1NWZtaHRHWWNVRG1zN1ZKOGxR0gFbQVVfeXFMT2dWSVZBSm1XdFhiMklqMmZQMXRkeWpOV1ZfdjBOQjBYTnZVUmQ1WUVveGRGZjRRamtGVGdjZmNscVJUQVRiNERJbWpSY2Z6blRsNEx5NG5rOXdNRQ?oc=5",
-          "source": "topic-table"
-        }
-      ],
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiVkFVX3lxTFBlbVRMYk1LcmQxWVhFZ1lsUHhhd0E2S0UxaXJaa1hNcWJhV3JXU2ZJTlBlSUNoeG16eHVTNDRwSFRoSUg1NWZtaHRHWWNVRG1zN1ZKOGxR0gFbQVVfeXFMT2dWSVZBSm1XdFhiMklqMmZQMXRkeWpOV1ZfdjBOQjBYTnZVUmQ1WUVveGRGZjRRamtGVGdjZmNscVJUQVRiNERJbWpSY2Z6blRsNEx5NG5rOXdNRQ?oc=5",
-      "candidateTopic": "ウルフギャング・ステーキハウス高輪新店",
-      "candidateUrl": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBlbVRMYk1LcmQxWVhFZ1lsUHhhd0E2S0UxaXJaa1hNcWJhV3JXU2ZJTlBlSUNoeG16eHVTNDRwSFRoSUg1NWZtaHRHWWNVRG1zN1ZKOGxR0gFbQVVfeXFMT2dWSVZBSm1XdFhiMklqMmZQMXRkeWpOV1ZfdjBOQjBYTnZVUmQ1WUVveGRGZjRRamtGVGdjZmNscVJUQVRiNERJbWpSY2Z6blRsNEx5NG5rOXdNRQ?oc=5",
-      "candidateSource": "topic-table",
-      "skill": "energy-break",
-      "sources": [
-        "calendar",
-        "email",
-        "interest-cache"
-      ],
-      "intrinsicReward": {
-        "signals": [],
-        "immediateTotal": 0,
-        "deferredTotal": 0,
-        "compositeBoost": 0
-      },
-      "premise": {
-        "estimatedMode": "探索モード・通常エネルギー",
-        "modeReason": "火曜朝8時、昨日の12本完走から一晩回復。ただし今日も8:30から会議10本の密度。朝の余白は今だけ",
-        "targetLayer": 5,
-        "layerReason": "昨日のタフな1日の翌朝。状態層のケア（回復確認＋軽い楽しみ）が最優先",
-        "interventionType": "情報提供",
-        "interventionReason": "今日の会議場所（品川）と直結する実用的な食の情報で、密度の高い1日に小さな楽しみを仕込める",
-        "reason": "品川で会議の日に、高輪にウルフギャング新店オープンの記事がある。場所の一致が価値を生む",
-        "informationGap": null,
-        "collectionHint": null
-      },
-      "emotionTag": "neutral",
-      "themePath": [
-        "lifestyle",
-        "lifestyle/food-wellness",
-        "lifestyle/food-wellness/gourmet",
-        "lifestyle/food-wellness/gourmet/steak"
-      ],
-      "themeKey": "lifestyle/food-wellness/gourmet/steak"
-    },
-    {
       "id": "3477555e-3b5b-45c3-83ab-7a6d2f4a38d5",
       "category": "flashback",
       "interestCategory": "general",
@@ -5416,11 +5362,74 @@
         "entertainment/movie-drama/film/theater"
       ],
       "themeKey": "entertainment/movie-drama/film/theater"
+    },
+    {
+      "id": "4c408649-7ac0-45d7-8a1c-81b9cc4659c0",
+      "category": "hobby_leisure",
+      "interestCategory": "business_strategy",
+      "sentAt": "2026-05-02T06:01:03.663Z",
+      "slackTs": "1777701663.835219",
+      "slackChannel": "U3SFGQXNH",
+      "reaction": null,
+      "reactionDelta": 0,
+      "preview": "Akiraさん、ちょっと面白い記事。\n\nビジネスジャーナルに *取締役会にAIが座る時代* って記事が出てたよ。キリンHDが先行してるAI経営と、日本企業のガバナンスについて書かれてるみたい 🏢\n\nクライアントへの提案ネタとしてもストック",
+      "fullText": "Akiraさん、ちょっと面白い記事。\n\nビジネスジャーナルに *取締役会にAIが座る時代* って記事が出てたよ。キリンHDが先行してるAI経営と、日本企業のガバナンスについて書かれてるみたい 🏢\n\nクライアントへの提案ネタとしてもストックしておけるかもね。\nhttps://news.google.com/rss/articles/CBMiW0FVX3lxTE1RUVlaa2FfSEZmUGxQa1RzRDRVZEtJZjdwX3hQUW9aZE83SHhncHdGODd1ck9sQ2JINmptdWFiNHNERGJvb0FkeFNOdDA2ZFJqWGtIOExpMG9Lb1k?oc=5",
+      "sourceUrls": [
+        {
+          "title": "取締役会にAIが座る時代…キリンHDらが先行するAI経営と日本企業のガバナンス - ビジネスジャーナル",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1RUVlaa2FfSEZmUGxQa1RzRDRVZEtJZjdwX3hQUW9aZE83SHhncHdGODd1ck9sQ2JINmptdWFiNHNERGJvb0FkeFNOdDA2ZFJqWGtIOExpMG9Lb1k?oc=5",
+          "source": "ビジネスジャーナル",
+          "candidateId": "url:https://news.google.com/rss/articles/CBMiW0FVX3lxTE1RUVlaa2FfSEZmUGxQa1RzRDRVZEtJZjdwX3hQUW9aZE83SHhncHdGODd1ck9sQ2JINmptdWFiNHNERGJvb0FkeFNOdDA2ZFJqWGtIOExpMG9Lb1k?oc=5",
+          "category": "business_strategy"
+        }
+      ],
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiW0FVX3lxTE1RUVlaa2FfSEZmUGxQa1RzRDRVZEtJZjdwX3hQUW9aZE83SHhncHdGODd1ck9sQ2JINmptdWFiNHNERGJvb0FkeFNOdDA2ZFJqWGtIOExpMG9Lb1k?oc=5",
+      "candidateTopic": "取締役会にAIが座る時代…キリンHDらが先行するAI経営と日本企業のガバナンス - ビジネスジャーナル",
+      "candidateUrl": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1RUVlaa2FfSEZmUGxQa1RzRDRVZEtJZjdwX3hQUW9aZE83SHhncHdGODd1ck9sQ2JINmptdWFiNHNERGJvb0FkeFNOdDA2ZFJqWGtIOExpMG9Lb1k?oc=5",
+      "candidateSource": "interest-cache",
+      "skill": "general",
+      "sources": [
+        "calendar",
+        "email",
+        "interest-cache"
+      ],
+      "intrinsicReward": {
+        "signals": [
+          {
+            "id": "M4-a",
+            "mission": 4,
+            "value": 0.1,
+            "reason": "過去に送信していない新しいトピック"
+          }
+        ],
+        "immediateTotal": 0.1,
+        "deferredTotal": 0,
+        "compositeBoost": 0
+      },
+      "premise": {
+        "estimatedMode": "回復モード・回復中",
+        "modeReason": "GW土曜、カレンダー空。午後のんびり過ごしている可能性が高い",
+        "targetLayer": 4,
+        "layerReason": "コンサル業務に直結するAI経営トレンドで、実行層（クライアント提案のネタ）に触れる",
+        "interventionType": "情報提供",
+        "interventionReason": "ビジネス×AI領域の話題が今週不足しており、コンサル視点で刺さる記事がある",
+        "reason": "経営コンサルタントとしてクライアントに提案する際のネタになりうるAIガバナンス記事",
+        "informationGap": null,
+        "collectionHint": null
+      },
+      "emotionTag": "calm",
+      "themePath": [
+        "ai",
+        "ai/enterprise",
+        "ai/enterprise/governance",
+        "ai/enterprise/governance/compliance"
+      ],
+      "themeKey": "ai/enterprise/governance/compliance"
     }
   ],
-  "lastCheckAt": "2026-05-02T05:01:01.163Z",
+  "lastCheckAt": "2026-05-02T06:01:03.657Z",
   "stats": {
-    "totalSent": 613,
+    "totalSent": 614,
     "positiveReactions": 55,
     "negativeReactions": 2
   },
@@ -5456,100 +5465,94 @@
         "entertainment/movie-drama/film/theater"
       ],
       "themeKey": "entertainment/movie-drama/film/theater"
+    },
+    {
+      "time": "15:01",
+      "summary": "取締役会にAIが座る時代…キリンHDらが先行するAI経営と日本企業のガバナンス - ビジネスジャーナル",
+      "source": "interest-cache",
+      "interestCategory": "business_strategy",
+      "topic": "取締役会にAIが座る時代…キリンHDらが先行するAI経営と日本企業のガバナンス - ビジネスジャーナル",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1RUVlaa2FfSEZmUGxQa1RzRDRVZEtJZjdwX3hQUW9aZE83SHhncHdGODd1ck9sQ2JINmptdWFiNHNERGJvb0FkeFNOdDA2ZFJqWGtIOExpMG9Lb1k?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiW0FVX3lxTE1RUVlaa2FfSEZmUGxQa1RzRDRVZEtJZjdwX3hQUW9aZE83SHhncHdGODd1ck9sQ2JINmptdWFiNHNERGJvb0FkeFNOdDA2ZFJqWGtIOExpMG9Lb1k?oc=5",
+      "themePath": [
+        "ai",
+        "ai/enterprise",
+        "ai/enterprise/governance",
+        "ai/enterprise/governance/compliance"
+      ],
+      "themeKey": "ai/enterprise/governance/compliance"
     }
   ],
   "todayDate": "2026-05-02",
   "lastDecisionLog": {
     "premise": {
-      "estimatedMode": "探索モード・回復中",
-      "modeReason": "GW2日目の土曜午後。今日のカレンダーは空で、昼過ぎからのんびり過ごしている可能性が高い",
+      "estimatedMode": "回復モード・回復中",
+      "modeReason": "GW土曜、カレンダー空。午後のんびり過ごしている可能性が高い",
       "targetLayer": 4,
-      "layerReason": "趣味の実行層。映画在庫が足りておらず、週末に映画情報を調べる習慣がある",
+      "layerReason": "コンサル業務に直結するAI経営トレンドで、実行層（クライアント提案のネタ）に触れる",
       "interventionType": "情報提供",
-      "interventionReason": "GW中に行動に移せる映画情報で、在庫不足のカテゴリを埋められる",
-      "reason": "GW中の空いた午後、映画情報は行動につながりやすい",
+      "interventionReason": "ビジネス×AI領域の話題が今週不足しており、コンサル視点で刺さる記事がある",
+      "reason": "経営コンサルタントとしてクライアントに提案する際のネタになりうるAIガバナンス記事",
       "informationGap": null,
       "collectionHint": null
     },
     "decision": "send",
-    "need": "楽しみ・GWの選択肢",
-    "reason": "映画在庫が不足しており、GW中に見に行ける具体的な選択肢",
+    "need": "成長・インプット",
+    "reason": "コンサル×AIの交差点にある記事で、クライアントワークにも活かせる",
     "candidates": [
       {
-        "topic": "SAKAMOTO DAYS映画",
+        "topic": "取締役会にAIが座る時代…キリンHD",
         "source": "topic-table",
-        "score": 0.87
+        "score": 0.79
       },
       {
-        "topic": "ツツジ見頃 埼玉越生",
+        "topic": "埼玉・越生のツツジが見頃",
+        "source": "topic-table",
+        "score": 0.72
+      },
+      {
+        "topic": "ドラマ視聴データ速報",
         "source": "topic-table",
         "score": 0.8
       },
       {
-        "topic": "ステーキロッヂ GW限定",
+        "topic": "地方創生の要は大学 PIVOT",
         "source": "topic-table",
-        "score": 0.79
-      },
-      {
-        "topic": "ドラマ視聴データ",
-        "source": "topic-table",
-        "score": 0.89
-      },
-      {
-        "topic": "コスパ最強ステーキ",
-        "source": "topic-table",
-        "score": 0.79
+        "score": 0.67
       }
     ],
-    "message": "そういえばさ、Akiraさん。\n\nファッションプレスに映画 *SAKAMOTO DAYS* の記事が出てたよ 🎬 目黒蓮が家族を守るため戦う伝説の殺し屋・坂本太郎を演じるみたい。\n\nGW、映画見に行くならチェックしてもいいかもね。\nhttps://news.google.com/rss/articles/CBMiU0FVX3lxTE1LcUpBbjBudXJpQ3B3Snl3T2s1MDkyMnctRVJYLXJ6V2VMUFh6Vi1ybUVsd3pfem5yQk9Rby10amtFVmxmOFd0clRZdlpHRUptOW00?oc=5",
-    "topicWeight": "light",
-    "inner_thought": "映画在庫が足りない。SAKAMOTO DAYSの実写映画、GW中の選択肢として伝えたい",
+    "message": "Akiraさん、ちょっと面白い記事。\n\nビジネスジャーナルに *取締役会にAIが座る時代* って記事が出てたよ。キリンHDが先行してるAI経営と、日本企業のガバナンスについて書かれてるみたい 🏢\n\nクライアントへの提案ネタとしてもストックしておけるかもね。\nhttps://news.google.com/rss/articles/CBMiW0FVX3lxTE1RUVlaa2FfSEZmUGxQa1RzRDRVZEtJZjdwX3hQUW9aZE83SHhncHdGODd1ck9sQ2JINmptdWFiNHNERGJvb0FkeFNOdDA2ZFJqWGtIOExpMG9Lb1k?oc=5",
+    "topicWeight": "medium",
+    "inner_thought": "AI経営の記事、コンサルやってるAkiraさんには刺さるはず。今週ビジネス系が足りてないし",
     "plan": [
-      "SAKAMOTO DAYS映画情報を共有",
-      "ツツジ見頃の埼玉情報を共有",
+      "AI経営・キリンHD記事を共有",
+      "埼玉ツツジの見頃情報を共有",
       "沈黙して様子見"
     ],
     "generate_score": [
       0.82,
-      0.65,
+      0.6,
       0.3
     ],
     "evaluate_score": 0.78,
-    "timestamp": "2026-05-02T05:01:01.163Z",
+    "timestamp": "2026-05-02T06:01:03.662Z",
     "skill": "none",
     "scoredCandidates": [
-      {
-        "topic": "映画『SAKAMOTO DAYS』目黒蓮が家族を守るため戦う伝説の殺し屋・坂本太郎に - ファッションプレス",
-        "source": "interest-cache",
-        "category": "movie_theater",
-        "scores": {
-          "timeliness": 0.6761672608024691,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.9,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.8689686537578996,
-        "explorationBonus": 0.372956981971278,
-        "selectionScore": 1.2419256357291775,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
-      },
       {
         "topic": "最新ドラマ視聴データ速報【ビデオリサーチ調べ】（視聴率・視聴人数） - 株式会社ビデオリサーチ",
         "source": "interest-cache",
         "category": "tv_drama",
         "scores": {
-          "timeliness": 0.7438292168209877,
+          "timeliness": 0.7299455516975308,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.885394626217981,
+        "finalScore": 0.8040345851090316,
         "explorationBonus": 0.3,
-        "selectionScore": 1.185394626217981,
+        "selectionScore": 1.1040345851090316,
         "reasoning": "気分に合う・新鮮（interest-cache）"
       },
       {
@@ -5557,50 +5560,101 @@
         "source": "interest-cache",
         "category": "tv_drama",
         "scores": {
-          "timeliness": 0.7221895216049383,
+          "timeliness": 0.7083058796296297,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.8566929164271944,
+        "finalScore": 0.7757026525194847,
         "explorationBonus": 0.3,
-        "selectionScore": 1.1566929164271944,
+        "selectionScore": 1.0757026525194846,
         "reasoning": "気分に合う・新鮮（interest-cache）"
+      },
+      {
+        "topic": "＜画像5 / 5＞東京から200km圏内！関東近郊の日帰り絶景温泉5選 - ウォーカープラス",
+        "source": "interest-cache",
+        "category": "onsen",
+        "scores": {
+          "timeliness": 0.41682862268518517,
+          "novelty": 0.3,
+          "continuity": 0.9,
+          "emotional_fit": 0.9,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.6978498049174857,
+        "explorationBonus": 0.372956981971278,
+        "selectionScore": 1.0708067868887636,
+        "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
+      },
+      {
+        "topic": "「絶好のおでかけ日和」は土曜だけ？ 富山県の週末、日曜は雨に備えを【気象予報士 解説】 - FNNプライムオンライン",
+        "source": "interest-cache",
+        "category": "local_tokorozawa",
+        "scores": {
+          "timeliness": 0.5705746527777777,
+          "novelty": 0.2,
+          "continuity": 0.9,
+          "emotional_fit": 0.9,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.8427107117488999,
+        "explorationBonus": 0.2153268139372678,
+        "selectionScore": 1.0580375256861676,
+        "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
+      },
+      {
+        "topic": "取締役会にAIが座る時代…キリンHDらが先行するAI経営と日本企業のガバナンス - ビジネスジャーナル",
+        "source": "interest-cache",
+        "category": "business_strategy",
+        "scores": {
+          "timeliness": 0.7071526273148148,
+          "novelty": 0.3,
+          "continuity": 0.9,
+          "emotional_fit": 0.2,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.7941031307860995,
+        "explorationBonus": 0.2637204110427597,
+        "selectionScore": 1.057823541828859,
+        "reasoning": "会話の流れに沿う・タイムリー（interest-cache）"
+      },
+      {
+        "topic": "【地方創生の要は大学】カレッジタウンが日本にない／九大の問題点／立命館は上手／APUと温泉街の融合／自動車通学を許可せよ／柏の葉が面白い／豊田市にウーブン・シティを／介護Uターンの支援／現代の参勤交代",
+        "source": "interest-cache",
+        "category": "onsen",
+        "scores": {
+          "timeliness": 0.3,
+          "novelty": 0.3,
+          "continuity": 0.9,
+          "emotional_fit": 0.9,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.6727692335901124,
+        "explorationBonus": 0.372956981971278,
+        "selectionScore": 1.0457262155613904,
+        "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
       },
       {
         "topic": "Live-action Ghibli 'Princess Mononoke' stage play tickets are now on sale - Japan Today",
         "source": "interest-cache",
         "category": "movie_theater",
         "scores": {
-          "timeliness": 0.7152452546296296,
+          "timeliness": 0.7013614891975308,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.7309554331561258,
+        "finalScore": 0.6503982068664397,
         "explorationBonus": 0.372956981971278,
-        "selectionScore": 1.1039124151274038,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
-      },
-      {
-        "topic": "2026 FIFA World Cup schedule: Qualified teams, groups, match dates, fixtures, how to watch - Yahoo Sports",
-        "source": "interest-cache",
-        "category": "movie_theater",
-        "scores": {
-          "timeliness": 0.7040723842592592,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.9,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.7282430483567042,
-        "explorationBonus": 0.372956981971278,
-        "selectionScore": 1.1012000303279823,
+        "selectionScore": 1.0233551888377177,
         "reasoning": "気分に合う・新鮮（interest-cache）"
       },
       {
@@ -5608,107 +5662,73 @@
         "source": "interest-cache",
         "category": "weather_seasonal",
         "scores": {
-          "timeliness": 0.44266552662037034,
+          "timeliness": 0.4218397569444445,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.797524614654037,
+        "finalScore": 0.7228950033284993,
         "explorationBonus": 0.3,
-        "selectionScore": 1.097524614654037,
+        "selectionScore": 1.0228950033284994,
         "reasoning": "気分に合う・新鮮（interest-cache）"
       },
       {
-        "topic": "＜画像1 / 5＞東京23区内の“コスパ最強”ステーキ5選 - ウォーカープラス",
+        "topic": "2026 FIFA World Cup schedule: Qualified teams, groups, match dates, fixtures, how to watch - Yahoo Sports",
         "source": "interest-cache",
-        "category": "food_dining",
+        "category": "movie_theater",
         "scores": {
-          "timeliness": 0.6802340200617284,
+          "timeliness": 0.6901886381172839,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.7900549175332221,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.0900549175332221,
+        "finalScore": 0.6479996380738985,
+        "explorationBonus": 0.372956981971278,
+        "selectionScore": 1.0209566200451765,
         "reasoning": "気分に合う・新鮮（interest-cache）"
       },
       {
-        "topic": "『ステーキロッヂ』で5月2日(土)～6日（水）の期間中「大人のお子様ランチステーキ」が限定登場！ - フーズチャネル",
+        "topic": "「Llama」Metaが開発したオープンソースの大規模言語モデル - 窓の杜",
         "source": "interest-cache",
-        "category": "food_dining",
+        "category": "llm_local",
         "scores": {
-          "timeliness": 0.6802185532407408,
+          "timeliness": 0.7094637615740741,
           "novelty": 0.8,
           "continuity": 0.3,
-          "emotional_fit": 0.9,
+          "emotional_fit": 0.5,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.7900511627263773,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.0900511627263774,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
-      },
-      {
-        "topic": "【東京・大門】肉塊にナイフが吸い込まれる！『ビストロ カリテプリ』で味わう極厚ポークステーキの衝撃 - Yahoo!ニュース",
-        "source": "interest-cache",
-        "category": "food_dining",
-        "scores": {
-          "timeliness": 0.6372632716049382,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.9,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.7796231125385934,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.0796231125385933,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
-      },
-      {
-        "topic": "2026年 ＃春ドラマ 紹介します",
-        "source": "interest-cache",
-        "category": "tv_drama",
-        "scores": {
-          "timeliness": 0.3,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.9,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.7776483102455927,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.0776483102455927,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
+        "finalScore": 0.7484096434145312,
+        "explorationBonus": 0.2637204110427597,
+        "selectionScore": 1.0121300544572909,
+        "reasoning": "新鮮・タイムリー（interest-cache）"
       }
     ],
     "weightsUsed": {
-      "timeliness": 0.24276526170165677,
-      "novelty": 0.14114192977942283,
-      "continuity": 0.12021984416570405,
-      "emotional_fit": 0.20083504505499908,
-      "affinity": 0.0571942469820253,
-      "surprise": 0.23784367231619194
+      "timeliness": 0.21467831042532445,
+      "novelty": 0.08689442585263639,
+      "continuity": 0.22616950160449148,
+      "emotional_fit": 0.10367584861379238,
+      "affinity": 0.10675443500187011,
+      "surprise": 0.26182747850188515
     },
     "sampledRaw": {
-      "timeliness": 0.30345657712707097,
-      "novelty": 0.17642741222427855,
-      "continuity": 0.15027480520713007,
-      "emotional_fit": 0.15104380631874884,
-      "affinity": 0.07149280872753162,
-      "surprise": 0.14730459039523994
+      "timeliness": 0.289815719074188,
+      "novelty": 0.11730747490105913,
+      "continuity": 0.20532882716606352,
+      "emotional_fit": 0.03996239562861972,
+      "affinity": 0.14411848725252466,
+      "surprise": 0.20346709597754503
     },
     "contextBonus": {
       "timeliness": 0,
       "novelty": 0,
-      "continuity": 0,
+      "continuity": 0.1,
       "emotional_fit": 0.1,
       "affinity": 0,
       "surprise": 0.15
@@ -5785,30 +5805,6 @@
   },
   "lastScoredCandidates": [
     {
-      "topic": "映画『SAKAMOTO DAYS』目黒蓮が家族を守るため戦う伝説の殺し屋・坂本太郎に - ファッションプレス",
-      "source": "interest-cache",
-      "category": "movie_theater",
-      "pub_date": "2026-05-01T17:41:11+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1LcUpBbjBudXJpQ3B3Snl3T2s1MDkyMnctRVJYLXJ6V2VMUFh6Vi1ybUVsd3pfem5yQk9Rby10amtFVmxmOFd0clRZdlpHRUptOW00?oc=5",
-        "mediaSource": "ファッションプレス",
-        "emotion_type": "light",
-        "timeliness": 0.85
-      },
-      "scores": {
-        "timeliness": 0.6761672608024691,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.8689686537578996,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
-      "explorationBonus": 0.372956981971278,
-      "selectionScore": 1.2419256357291775
-    },
-    {
       "topic": "最新ドラマ視聴データ速報【ビデオリサーチ調べ】（視聴率・視聴人数） - 株式会社ビデオリサーチ",
       "source": "interest-cache",
       "category": "tv_drama",
@@ -5820,17 +5816,17 @@
         "timeliness": 0.952
       },
       "scores": {
-        "timeliness": 0.7438292168209877,
+        "timeliness": 0.7299455516975308,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.885394626217981,
+      "finalScore": 0.8040345851090316,
       "reasoning": "気分に合う・新鮮（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.185394626217981
+      "selectionScore": 1.1040345851090316
     },
     {
       "topic": "両親を殺した犯人を、法律では裁けない――“切りつけられた少女”の正体が話題『田鎖ブラザーズ』が注目度上昇 - マイナビニュース",
@@ -5844,17 +5840,114 @@
         "timeliness": 0.919
       },
       "scores": {
-        "timeliness": 0.7221895216049383,
+        "timeliness": 0.7083058796296297,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.8566929164271944,
+      "finalScore": 0.7757026525194847,
       "reasoning": "気分に合う・新鮮（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.1566929164271944
+      "selectionScore": 1.0757026525194846
+    },
+    {
+      "topic": "＜画像5 / 5＞東京から200km圏内！関東近郊の日帰り絶景温泉5選 - ウォーカープラス",
+      "source": "interest-cache",
+      "category": "onsen",
+      "pub_date": "2026-05-01T02:00:35+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5RTWJTSHRYeW5aS2IyTzJvS01HLThueG1uU25EM1dqTGJkNG1HUUhib2N3RGJrV1EzVjdwQWVoVkdLMFZobklMR0stR19OdVFtcDJKRTBKMXQ0S3FyWmxCRjcwQml5Tjd2?oc=5",
+        "mediaSource": "ウォーカープラス",
+        "emotion_type": "light",
+        "timeliness": 0.524
+      },
+      "scores": {
+        "timeliness": 0.41682862268518517,
+        "novelty": 0.3,
+        "continuity": 0.9,
+        "emotional_fit": 0.9,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.6978498049174857,
+      "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
+      "explorationBonus": 0.372956981971278,
+      "selectionScore": 1.0708067868887636
+    },
+    {
+      "topic": "「絶好のおでかけ日和」は土曜だけ？ 富山県の週末、日曜は雨に備えを【気象予報士 解説】 - FNNプライムオンライン",
+      "source": "interest-cache",
+      "category": "local_tokorozawa",
+      "pub_date": "2026-05-01T11:05:00+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1objE2b04wN0I5c3RuUmZ3NTM4ZzRMaU5IZWRzWEc3d2Q0UHlTelJweWZjVmZYZkhtT2lvMHdPMncwck9McDgxSXZkR2xHdw?oc=5",
+        "mediaSource": "FNNプライムオンライン",
+        "emotion_type": "light",
+        "timeliness": 0.713
+      },
+      "scores": {
+        "timeliness": 0.5705746527777777,
+        "novelty": 0.2,
+        "continuity": 0.9,
+        "emotional_fit": 0.9,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.8427107117488999,
+      "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
+      "explorationBonus": 0.2153268139372678,
+      "selectionScore": 1.0580375256861676
+    },
+    {
+      "topic": "取締役会にAIが座る時代…キリンHDらが先行するAI経営と日本企業のガバナンス - ビジネスジャーナル",
+      "source": "interest-cache",
+      "category": "business_strategy",
+      "pub_date": "2026-05-01T20:55:01+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1RUVlaa2FfSEZmUGxQa1RzRDRVZEtJZjdwX3hQUW9aZE83SHhncHdGODd1ck9sQ2JINmptdWFiNHNERGJvb0FkeFNOdDA2ZFJqWGtIOExpMG9Lb1k?oc=5",
+        "mediaSource": "ビジネスジャーナル",
+        "emotion_type": "heavy",
+        "timeliness": 0.835
+      },
+      "scores": {
+        "timeliness": 0.7071526273148148,
+        "novelty": 0.3,
+        "continuity": 0.9,
+        "emotional_fit": 0.2,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.7941031307860995,
+      "reasoning": "会話の流れに沿う・タイムリー（interest-cache）",
+      "explorationBonus": 0.2637204110427597,
+      "selectionScore": 1.057823541828859
+    },
+    {
+      "topic": "【地方創生の要は大学】カレッジタウンが日本にない／九大の問題点／立命館は上手／APUと温泉街の融合／自動車通学を許可せよ／柏の葉が面白い／豊田市にウーブン・シティを／介護Uターンの支援／現代の参勤交代",
+      "source": "interest-cache",
+      "category": "onsen",
+      "pub_date": null,
+      "metadata": {
+        "url": "https://www.youtube.com/watch?v=J_5W3OiuxCg",
+        "mediaSource": "PIVOT 公式チャンネル",
+        "content_type": "video",
+        "emotion_type": "light",
+        "timeliness": 0.1
+      },
+      "scores": {
+        "timeliness": 0.3,
+        "novelty": 0.3,
+        "continuity": 0.9,
+        "emotional_fit": 0.9,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.6727692335901124,
+      "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
+      "explorationBonus": 0.372956981971278,
+      "selectionScore": 1.0457262155613904
     },
     {
       "topic": "Live-action Ghibli 'Princess Mononoke' stage play tickets are now on sale - Japan Today",
@@ -5868,41 +5961,17 @@
         "timeliness": 0.909
       },
       "scores": {
-        "timeliness": 0.7152452546296296,
+        "timeliness": 0.7013614891975308,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.7309554331561258,
+      "finalScore": 0.6503982068664397,
       "reasoning": "気分に合う・新鮮（interest-cache）",
       "explorationBonus": 0.372956981971278,
-      "selectionScore": 1.1039124151274038
-    },
-    {
-      "topic": "2026 FIFA World Cup schedule: Qualified teams, groups, match dates, fixtures, how to watch - Yahoo Sports",
-      "source": "interest-cache",
-      "category": "movie_theater",
-      "pub_date": "2026-05-01T19:41:44+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOU1JNT09QS1FWT1dRZ0lRc3dLZnUtdHdoeEVmMUZnYndBc2FGdmlSRzhGejhUTVhnQjBPTjY5S2t2dEtLWGZ6LWh2T2JHSXRFNHUwVVlMaG5HYWRvSHF3VWY3Um5XWl9hV0VzeklySUNJYzNOSHQyeTBQbTlxMVphVlUxLTE5UWFKMVd3YWE0MWh1MDl6ZHRrNE05LVMyQW93eDdzNmpGSFBCMUhVSkVUa3B6dW5UZ2NVWlUwaVdjOFY1eENQalRndXNDZGRmNkRGcUYzalk0OA?oc=5",
-        "mediaSource": "Yahoo Sports",
-        "emotion_type": "light",
-        "timeliness": 0.892
-      },
-      "scores": {
-        "timeliness": 0.7040723842592592,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.7282430483567042,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
-      "explorationBonus": 0.372956981971278,
-      "selectionScore": 1.1012000303279823
+      "selectionScore": 1.0233551888377177
     },
     {
       "topic": "斜面彩るツツジが見頃 埼玉・越生の五大尊つつじ公園（朝日新聞） - Yahoo!ニュース",
@@ -5916,114 +5985,65 @@
         "timeliness": 0.529
       },
       "scores": {
-        "timeliness": 0.44266552662037034,
+        "timeliness": 0.4218397569444445,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.797524614654037,
+      "finalScore": 0.7228950033284993,
       "reasoning": "気分に合う・新鮮（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.097524614654037
+      "selectionScore": 1.0228950033284994
     },
     {
-      "topic": "＜画像1 / 5＞東京23区内の“コスパ最強”ステーキ5選 - ウォーカープラス",
+      "topic": "2026 FIFA World Cup schedule: Qualified teams, groups, match dates, fixtures, how to watch - Yahoo Sports",
       "source": "interest-cache",
-      "category": "food_dining",
-      "pub_date": "2026-05-01T17:58:45+00:00",
+      "category": "movie_theater",
+      "pub_date": "2026-05-01T19:41:44+00:00",
       "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5MOU03ZUVNSlllckJtVlNGYnVWNTlhbzdCUVlHbW1YeXFfZk9ncUo4MlZPN0NxSDItdVN1Q01qcEM0VFhVOW9uNC1zaGZrLUNvS0w5ODRGMEhzWGgyVXAxNWtJbTdMeGllWC1KR1JhLTJUVzhXWkFBcTF3?oc=5",
-        "mediaSource": "ウォーカープラス",
+        "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOU1JNT09QS1FWT1dRZ0lRc3dLZnUtdHdoeEVmMUZnYndBc2FGdmlSRzhGejhUTVhnQjBPTjY5S2t2dEtLWGZ6LWh2T2JHSXRFNHUwVVlMaG5HYWRvSHF3VWY3Um5XWl9hV0VzeklySUNJYzNOSHQyeTBQbTlxMVphVlUxLTE5UWFKMVd3YWE0MWh1MDl6ZHRrNE05LVMyQW93eDdzNmpGSFBCMUhVSkVUa3B6dW5UZ2NVWlUwaVdjOFY1eENQalRndXNDZGRmNkRGcUYzalk0OA?oc=5",
+        "mediaSource": "Yahoo Sports",
         "emotion_type": "light",
-        "timeliness": 0.856
+        "timeliness": 0.892
       },
       "scores": {
-        "timeliness": 0.6802340200617284,
+        "timeliness": 0.6901886381172839,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.7900549175332221,
+      "finalScore": 0.6479996380738985,
       "reasoning": "気分に合う・新鮮（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.0900549175332221
+      "explorationBonus": 0.372956981971278,
+      "selectionScore": 1.0209566200451765
     },
     {
-      "topic": "『ステーキロッヂ』で5月2日(土)～6日（水）の期間中「大人のお子様ランチステーキ」が限定登場！ - フーズチャネル",
+      "topic": "「Llama」Metaが開発したオープンソースの大規模言語モデル - 窓の杜",
       "source": "interest-cache",
-      "category": "food_dining",
-      "pub_date": "2026-05-01T17:58:41+00:00",
+      "category": "llm_local",
+      "pub_date": "2026-05-01T21:05:00+00:00",
       "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBnUnpsWDJWUFBRRDBfeE5VeU15emIxNmRQX1I0WlJWb09WbUZiYU90TzhnSURNSVFLLWlvaGJPanlUZ01BUmtjVS1PUm9GM3JPRUZJaXRB?oc=5",
-        "mediaSource": "フーズチャネル",
-        "emotion_type": "light",
-        "timeliness": 0.856
+        "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFAtc0lRNEdEakdmS3c0bVpMaDRLVGdoakhqY3d0NDFncDk5c0d4UmgzWk1Xcm9JM29WWExkZjdfUUhXRGVBQU5jQVd1MXByS1dRTFpmcG5zZ2JCTmdERGpmTG9obDRXX1BXWXc?oc=5",
+        "mediaSource": "窓の杜",
+        "emotion_type": "medium",
+        "timeliness": 0.922
       },
       "scores": {
-        "timeliness": 0.6802185532407408,
+        "timeliness": 0.7094637615740741,
         "novelty": 0.8,
         "continuity": 0.3,
-        "emotional_fit": 0.9,
+        "emotional_fit": 0.5,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.7900511627263773,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.0900511627263774
-    },
-    {
-      "topic": "【東京・大門】肉塊にナイフが吸い込まれる！『ビストロ カリテプリ』で味わう極厚ポークステーキの衝撃 - Yahoo!ニュース",
-      "source": "interest-cache",
-      "category": "food_dining",
-      "pub_date": "2026-05-01T14:53:07+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNcm5xX2hEVFZVZXRjQ0oyU1J1dTFCbWRsd3lHckN0YTVTeG9XWUd3TkNXUDVHcjNtSXNuSnBnZGJIdWxmcHZ4MmZUbnV4QUI3TkgweElDYVFscFZGdU5tUk9oZEJjUXppTEdCUjVadEpqd3dIZWlaUGd6UVRYZldkS05ENjVLNjFB?oc=5",
-        "mediaSource": "Yahoo!ニュース",
-        "emotion_type": "light",
-        "timeliness": 0.792
-      },
-      "scores": {
-        "timeliness": 0.6372632716049382,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.7796231125385934,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.0796231125385933
-    },
-    {
-      "topic": "2026年 ＃春ドラマ 紹介します",
-      "source": "interest-cache",
-      "category": "tv_drama",
-      "pub_date": null,
-      "metadata": {
-        "url": "https://www.youtube.com/watch?v=qooVNNWS620",
-        "mediaSource": "Mr tresbien",
-        "content_type": "video",
-        "emotion_type": "light",
-        "timeliness": 0.1
-      },
-      "scores": {
-        "timeliness": 0.3,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.7776483102455927,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.0776483102455927
+      "finalScore": 0.7484096434145312,
+      "reasoning": "新鮮・タイムリー（interest-cache）",
+      "explorationBonus": 0.2637204110427597,
+      "selectionScore": 1.0121300544572909
     }
   ],
   "allowNoReply": false,
@@ -6055,7 +6075,7 @@
   "emojiEnabled": true,
   "lastOAuthNotifyDate": "2026-04-29",
   "themeInventory": {
-    "updatedAt": "2026-05-02T05:00:08.077Z",
+    "updatedAt": "2026-05-02T06:00:06.952Z",
     "records": [
       {
         "themeKey": "business/consulting/finance/kpi",
@@ -6136,7 +6156,7 @@
         "rootKey": "ai/ai/enterprise",
         "availableCount": 1,
         "sentFreshCount": 0,
-        "sent30dCount": 3,
+        "sent30dCount": 2,
         "positive30dCount": 0,
         "negative30dCount": 0,
         "positiveRate30d": 0,
@@ -6157,29 +6177,6 @@
           "webgpu"
         ],
         "rootKey": "ai/local-llm",
-        "availableCount": 1,
-        "sentFreshCount": 0,
-        "sent30dCount": 0,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0.5,
-        "uniqueSources30d": 0,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 4,
-        "freshnessDays": 7,
-        "freshnessScore": 1,
-        "lastSentAt": null
-      },
-      {
-        "themeKey": "entertainment/movie-drama/film/theater",
-        "themePath": [
-          "entertainment",
-          "movie-drama",
-          "film",
-          "theater"
-        ],
-        "rootKey": "entertainment/movie-drama",
         "availableCount": 1,
         "sentFreshCount": 0,
         "sent30dCount": 0,
@@ -6326,7 +6323,7 @@
         "supplyGap": -14,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.6965391914682539,
+        "freshnessScore": 0.6905886706349207,
         "lastSentAt": "2026-04-30T02:01:14.980Z"
       },
       {
@@ -6396,7 +6393,7 @@
         "supplyGap": 2,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.1310517625661376,
+        "freshnessScore": 0.12510124173280424,
         "lastSentAt": "2026-04-26T03:01:08.183Z"
       },
       {
@@ -6441,7 +6438,7 @@
         "supplyGap": 3,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.4108040839947089,
+        "freshnessScore": 0.40485356316137566,
         "lastSentAt": "2026-04-28T02:01:02.387Z"
       },
       {
@@ -6624,7 +6621,7 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.11250477843915341,
+        "freshnessScore": 0.10655425760582016,
         "lastSentAt": "2026-04-25T23:54:10.967Z"
       },
       {
@@ -6647,7 +6644,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.4524748974867725,
+        "freshnessScore": 0.44652437665343914,
         "lastSentAt": "2026-04-28T09:01:04.895Z"
       },
       {
@@ -6670,7 +6667,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7084479034391534,
+        "freshnessScore": 0.7024973826058201,
         "lastSentAt": "2026-04-30T04:01:17.369Z"
       },
       {
@@ -6692,7 +6689,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7203627893518518,
+        "freshnessScore": 0.7144122685185186,
         "lastSentAt": "2026-04-30T06:01:23.492Z"
       },
       {
@@ -6715,7 +6712,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7262914120370371,
+        "freshnessScore": 0.7203408912037037,
         "lastSentAt": "2026-04-30T07:01:09.123Z"
       },
       {
@@ -6739,7 +6736,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8840182341269841,
+        "freshnessScore": 0.8780677132936507,
         "lastSentAt": "2026-05-01T09:31:02.305Z"
       },
       {
@@ -6763,7 +6760,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.41677068617724866,
+        "freshnessScore": 0.4108201653439154,
         "lastSentAt": "2026-04-28T03:01:10.988Z"
       },
       {
@@ -6786,7 +6783,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9970921643518519,
+        "freshnessScore": 0.9911416435185185,
         "lastSentAt": "2026-05-02T04:30:49.418Z"
       },
       {
@@ -6808,7 +6805,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.2976995205026455,
+        "freshnessScore": 0.2917489996693121,
         "lastSentAt": "2026-04-27T07:00:56.747Z"
       },
       {
@@ -6831,7 +6828,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.3215107291666667,
+        "freshnessScore": 0.3155602083333333,
         "lastSentAt": "2026-04-27T11:00:57.766Z"
       },
       {
@@ -6854,8 +6851,31 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.42867703373015875,
+        "freshnessScore": 0.4227265128968254,
         "lastSentAt": "2026-04-28T05:01:11.947Z"
+      },
+      {
+        "themeKey": "entertainment/movie-drama/film/theater",
+        "themePath": [
+          "entertainment",
+          "entertainment/movie-drama",
+          "entertainment/movie-drama/film",
+          "entertainment/movie-drama/film/theater"
+        ],
+        "rootKey": "entertainment/entertainment/movie-drama",
+        "availableCount": 1,
+        "sentFreshCount": 1,
+        "sent30dCount": 1,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 2,
+        "targetCount": 3,
+        "supplyGap": 2,
+        "rotationGap": 2,
+        "freshnessDays": 7,
+        "freshnessScore": 0.9941372552910053,
+        "lastSentAt": "2026-05-02T05:01:01.164Z"
       },
       {
         "themeKey": "local/saitama/tokorozawa/community/sports",
@@ -6878,7 +6898,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8482245568783069,
+        "freshnessScore": 0.8422740360449735,
         "lastSentAt": "2026-05-01T03:30:14.289Z"
       },
       {
@@ -6902,7 +6922,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.11322627810846553,
+        "freshnessScore": 0.10727575727513228,
         "lastSentAt": "2026-04-26T00:01:27.330Z"
       },
       {
@@ -6925,7 +6945,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.12509213789682538,
+        "freshnessScore": 0.11914161706349202,
         "lastSentAt": "2026-04-26T02:01:03.802Z"
       },
       {
@@ -6948,7 +6968,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8364109375,
+        "freshnessScore": 0.8304604166666667,
         "lastSentAt": "2026-05-01T01:31:09.412Z"
       },
       {
@@ -6970,7 +6990,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.18462347718253969,
+        "freshnessScore": 0.17867295634920644,
         "lastSentAt": "2026-04-26T12:01:08.356Z"
       },
       {
@@ -6993,7 +7013,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.25611138062169314,
+        "freshnessScore": 0.2501608597883598,
         "lastSentAt": "2026-04-27T00:01:44.240Z"
       },
       {
@@ -7015,7 +7035,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.26200739417989427,
+        "freshnessScore": 0.2560568733465608,
         "lastSentAt": "2026-04-27T01:01:10.149Z"
       },
       {
@@ -7039,7 +7059,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5893673263888889,
+        "freshnessScore": 0.5834168055555555,
         "lastSentAt": "2026-04-29T08:00:57.436Z"
       },
       {
@@ -7061,7 +7081,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.571520904431217,
+        "freshnessScore": 0.5655703835978836,
         "lastSentAt": "2026-04-29T05:01:03.920Z"
       },
       {
@@ -7083,7 +7103,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6072578587962962,
+        "freshnessScore": 0.601307337962963,
         "lastSentAt": "2026-04-29T11:01:17.630Z"
       },
       {
@@ -7105,7 +7125,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8959159854497355,
+        "freshnessScore": 0.8899654646164021,
         "lastSentAt": "2026-05-01T11:30:58.065Z"
       },
       {
@@ -7128,7 +7148,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.684630257936508,
+        "freshnessScore": 0.6786797371031746,
         "lastSentAt": "2026-04-30T00:01:12.457Z"
       },
       {
@@ -7151,7 +7171,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7560975892857142,
+        "freshnessScore": 0.750147068452381,
         "lastSentAt": "2026-04-30T12:01:35.899Z"
       },
       {
@@ -7173,7 +7193,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8511982705026455,
+        "freshnessScore": 0.8452477496693122,
         "lastSentAt": "2026-05-01T04:00:12.791Z"
       },
       {
@@ -7197,7 +7217,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.857230744047619,
+        "freshnessScore": 0.8512802232142858,
         "lastSentAt": "2026-05-01T05:01:01.231Z"
       },
       {
@@ -7220,7 +7240,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8304163756613756,
+        "freshnessScore": 0.8244658548280424,
         "lastSentAt": "2026-05-01T00:30:43.901Z"
       },
       {
@@ -7242,7 +7262,7 @@
         "supplyGap": -1,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.8423402347883597,
+        "freshnessScore": 0.8363897139550265,
         "lastSentAt": "2026-05-01T02:30:55.451Z"
       },
       {
@@ -7265,7 +7285,7 @@
         "supplyGap": -1,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.9673954580026455,
+        "freshnessScore": 0.9614449371693121,
         "lastSentAt": "2026-05-01T23:31:28.850Z"
       },
       {
@@ -7288,7 +7308,7 @@
         "supplyGap": 0,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.7025138343253968,
+        "freshnessScore": 0.6965633134920635,
         "lastSentAt": "2026-04-30T03:01:28.444Z"
       },
       {
@@ -7312,7 +7332,7 @@
         "supplyGap": 3,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.8810610763888889,
+        "freshnessScore": 0.8751105555555555,
         "lastSentAt": "2026-05-01T09:01:13.816Z"
       },
       {
@@ -7334,7 +7354,7 @@
         "supplyGap": 3,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.7322595072751323,
+        "freshnessScore": 0.7263089864417989,
         "lastSentAt": "2026-04-30T08:01:18.627Z"
       },
       {
@@ -7358,7 +7378,7 @@
         "supplyGap": 2,
         "rotationGap": 0,
         "freshnessDays": 7,
-        "freshnessScore": 0.9733025082671958,
+        "freshnessScore": 0.9673519874338624,
         "lastSentAt": "2026-05-02T00:31:01.434Z"
       },
       {
@@ -7381,7 +7401,7 @@
         "supplyGap": 3,
         "rotationGap": 0,
         "freshnessDays": 7,
-        "freshnessScore": 0.9822496378968254,
+        "freshnessScore": 0.976299117063492,
         "lastSentAt": "2026-05-02T02:01:12.658Z"
       },
       {
@@ -7405,7 +7425,7 @@
         "supplyGap": 5,
         "rotationGap": 0,
         "freshnessDays": 4,
-        "freshnessScore": 0.9636518055555555,
+        "freshnessScore": 0.9532383940972222,
         "lastSentAt": "2026-05-02T01:30:46.141Z"
       },
       {
@@ -7427,7 +7447,7 @@
         "supplyGap": 4,
         "rotationGap": -1,
         "freshnessDays": 7,
-        "freshnessScore": 0.8296390955687831,
+        "freshnessScore": 0.8236885747354498,
         "lastSentAt": "2026-05-01T00:22:53.802Z"
       },
       {
@@ -7450,7 +7470,7 @@
         "supplyGap": 4,
         "rotationGap": -2,
         "freshnessDays": 7,
-        "freshnessScore": 0.854231691468254,
+        "freshnessScore": 0.8482811706349207,
         "lastSentAt": "2026-05-01T04:30:47.404Z"
       },
       {
@@ -7473,7 +7493,7 @@
         "supplyGap": 4,
         "rotationGap": -2,
         "freshnessDays": 5,
-        "freshnessScore": 0.7614947268518518,
+        "freshnessScore": 0.7531639976851852,
         "lastSentAt": "2026-05-01T00:22:53.799Z"
       }
     ]
