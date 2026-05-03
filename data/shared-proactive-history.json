@@ -1097,6 +1097,38 @@
       ],
       "evaluate_score": 0.75,
       "sentAt": "2026-05-03T01:01:17.200Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "hobby_leisure",
+      "interestCategory": "llm_local",
+      "preview": "あのさ、Akiraさん。\n\nCodeZineに *『図解まるわかり AIエージェントのしくみ』* って本の発売記事が出てたよ  基礎知識から最新技術まで網羅的に解説してるらしい。\n\nEmber、マルチエージェント構成で作ってるし、整理のインプットとしてどうかな。\nhttps://news.googl",
+      "topic": "『図解まるわかり AIエージェントのしくみ』発売 基礎知識から最新技術まで網羅的に解説 - CodeZine",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5Xc0lOSEM4ZkRqNU1rNl9saFgyTWRaMlJvQmZ3TmxzSUx5blpGT1dSc1RhTkJyNjJNRUY2ak1JenpnVzBmNmI3dEJlRkJTUWUxOWc?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiUkFVX3lxTE5Xc0lOSEM4ZkRqNU1rNl9saFgyTWRaMlJvQmZ3TmxzSUx5blpGT1dSc1RhTkJyNjJNRUY2ak1JenpnVzBmNmI3dEJlRkJTUWUxOWc?oc=5",
+      "sourceType": "interest-cache",
+      "skill": "general",
+      "themePath": [
+        "ai",
+        "ai/enterprise",
+        "ai/enterprise/agent",
+        "ai/enterprise/agent/orchestration"
+      ],
+      "themeKey": "ai/enterprise/agent/orchestration",
+      "inner_thought": "ドジャース試合もそろそろ終わるし、Ember開発と絡むAIエージェント本の情報を届けたい",
+      "plan": [
+        "AIエージェント本を共有",
+        "道の駅3選（温泉・スイーツ）を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.79,
+        0.72,
+        0.48
+      ],
+      "evaluate_score": 0.76,
+      "sentAt": "2026-05-03T01:31:03.160Z"
     }
   ]
 }
