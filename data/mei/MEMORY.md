@@ -28,6 +28,7 @@ Runtime observations. Updated automatically as I learn about Akira-san's prefere
 <!-- New observations are prepended here -->
 
 ## Success Patterns
+- [2026-05-03] 夜間のエンタメ話題でも「ドラマ視聴率データ」のような客観的なファクト・統計情報をflashbackタグで提示することで反応を獲得。単なる娯楽紹介ではなく『数字ベースの客観情報』に変換することで、夜間投入の効果が生まれる可能性
 - [2026-05-02] 既知の反復行動（毎週キャンピングカー検索）に『GW期間という時間制約』と『具体的な場所・日程』を組み合わせた meeting_prep 情報が+1を獲得。実行性を前面に出した伝え方が有効
 - [2026-04-15] 会議帯にAI・開発ツール系の軽い話題（Anthropic『Introducing Claude Code』）を差し込むと、その直後に会議メモ共有とtext_engagedが発生した。会議中は『気分転換だけのネタ』より『今の業務思考に接続できる題材』のほうが反応を引き出しやすい
 - [2026-04-11] [2026-04-11] 昼間のゴルフテクニック記事（マスターズドリル）と経営インサイト記事（Hakuhodo DY ONE の MCP 導入支援）を同じ時間帯に送ると、どちらにも text_engaged で反応。時間帯より『コンテキストのバリエーション』が重要

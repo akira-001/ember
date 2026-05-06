@@ -1,7 +1,7 @@
 {
   "scores": {
     "eve": 2,
-    "mei": 1
+    "mei": 2
   },
   "weekStart": "2026-04-26T15:00:00.000Z",
   "stamps": [
@@ -25,6 +25,13 @@
       "messageTs": "1777602655.587839",
       "channel": "D0AHR0SATNE",
       "timestamp": "2026-05-01T03:06:07.745Z"
+    },
+    {
+      "botId": "mei",
+      "emoji": "+1",
+      "messageTs": "1777777259.531919",
+      "channel": "D0AMYJ8HLER",
+      "timestamp": "2026-05-03T03:09:42.828Z"
     }
   ]
 }
