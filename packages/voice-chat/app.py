@@ -234,6 +234,19 @@ REALTIME_VOICE_OPTIONS = {
     "coral", "echo", "sage", "shimmer", "verse",
 }
 REALTIME_DEFAULT_VOICE = "marin"
+REALTIME_SPEED_MIN = 0.25
+REALTIME_SPEED_MAX = 1.5
+REALTIME_TRANSCRIPTION_MODEL = "gpt-realtime-whisper"
+# 業界・固有名詞ヒント。Akiraさんの作業ドメインで頻出する語をホット用語として渡し、
+# source 文字起こしの誤認識を抑える。必要に応じて手で増減する。
+REALTIME_TRANSCRIPTION_PROMPT = (
+    "Domain hints for transcription: Akira（本上 陽）, アバントグループ, CSC, "
+    "M&A, 事業承継, デューデリジェンス, 経営戦略, 財務分析. "
+    "Tech: Ember, Mei, Eve, Haru, voice_chat, dashboard, cogmem, proactive, "
+    "Slack bot, OpenAI, Anthropic, Claude, gpt-realtime, MLX, Ollama, "
+    "TypeScript, Python, FastAPI, React, Vite, pnpm, launchd, WebRTC. "
+    "Personal: ドジャース, 大谷翔平, 所沢, 温泉, キャンピングカー, ストルバイト."
+)
 REALTIME_TONE_INSTRUCTIONS = {
     "natural": (
         "Mirror the speaker's casualness and formality precisely. "
@@ -5562,9 +5575,20 @@ async def create_realtime_translation_session(request: Request):
     tone = str(body.get("tone") or _settings.get("translationTone") or "natural").strip().lower()
     if tone not in REALTIME_TONE_INSTRUCTIONS:
         raise HTTPException(status_code=400, detail=f"Unsupported translation tone: {tone}")
+    speed_raw = body.get("speed") if body.get("speed") is not None else _settings.get("translationSpeed", "1.0")
+    try:
+        speed_value = float(str(speed_raw).strip())
+    except (TypeError, ValueError):
+        raise HTTPException(status_code=400, detail=f"Invalid translation speed: {speed_raw}")
+    if not (REALTIME_SPEED_MIN <= speed_value <= REALTIME_SPEED_MAX):
+        raise HTTPException(status_code=400, detail=f"Translation speed must be in [{REALTIME_SPEED_MIN}, {REALTIME_SPEED_MAX}]")
+    fast_turn = bool(body.get("fastTurn") if body.get("fastTurn") is not None else _settings.get("translationFastTurn", False))
 
     if model == "gpt-realtime-2":
-        logger.info(f"[realtime-translate] using realtime-unified model={model} target={target_language} voice={voice} tone={tone}")
+        logger.info(
+            f"[realtime-translate] using realtime-unified model={model} target={target_language} "
+            f"voice={voice} tone={tone} speed={speed_value} fast_turn={fast_turn}"
+        )
         return {
             "mode": "realtime-unified",
             "value": "server-side-unified",
@@ -5573,6 +5597,8 @@ async def create_realtime_translation_session(request: Request):
                 f"&targetLanguage={urllib.parse.quote(target_language)}"
                 f"&voice={urllib.parse.quote(voice)}"
                 f"&tone={urllib.parse.quote(tone)}"
+                f"&speed={urllib.parse.quote(str(speed_value))}"
+                f"&fastTurn={'1' if fast_turn else '0'}"
             ),
         }
 
@@ -5626,6 +5652,8 @@ async def create_realtime_call(
     targetLanguage: str = "en",
     voice: str = REALTIME_DEFAULT_VOICE,
     tone: str = "natural",
+    speed: str = "1.0",
+    fastTurn: str = "0",
 ):
     """Create a standard Realtime WebRTC call via the server-side unified interface."""
     api_key = os.getenv("OPENAI_API_KEY")
@@ -5644,13 +5672,21 @@ async def create_realtime_call(
     tone_instruction = REALTIME_TONE_INSTRUCTIONS.get(selected_tone)
     if tone_instruction is None:
         raise HTTPException(status_code=400, detail=f"Unsupported translation tone: {selected_tone}")
+    try:
+        selected_speed = float(str(speed).strip())
+    except (TypeError, ValueError):
+        raise HTTPException(status_code=400, detail=f"Invalid translation speed: {speed}")
+    if not (REALTIME_SPEED_MIN <= selected_speed <= REALTIME_SPEED_MAX):
+        raise HTTPException(status_code=400, detail=f"Translation speed must be in [{REALTIME_SPEED_MIN}, {REALTIME_SPEED_MAX}]")
+    fast_turn_enabled = str(fastTurn).strip().lower() in ("1", "true", "yes", "on")
 
     sdp = (await request.body()).decode("utf-8", errors="ignore")
     if not sdp.strip():
         raise HTTPException(status_code=400, detail="SDP offer is required")
     logger.info(
         f"[realtime-call] offer received model={model} "
-        f"target={target_language} target_name={target_language_name} voice={selected_voice} tone={selected_tone} sdp_len={len(sdp)}"
+        f"target={target_language} target_name={target_language_name} voice={selected_voice} "
+        f"tone={selected_tone} speed={selected_speed} fast_turn={fast_turn_enabled} sdp_len={len(sdp)}"
     )
 
     client_host = request.client.host if request.client else "local"
@@ -5673,13 +5709,26 @@ async def create_realtime_call(
         ),
         "audio": {
             "input": {
-                "turn_detection": {
-                    "type": "server_vad",
-                    "create_response": True,
+                "turn_detection": (
+                    {
+                        "type": "semantic_vad",
+                        "eagerness": "high",
+                        "create_response": True,
+                    }
+                    if fast_turn_enabled
+                    else {
+                        "type": "server_vad",
+                        "create_response": True,
+                    }
+                ),
+                "transcription": {
+                    "model": REALTIME_TRANSCRIPTION_MODEL,
+                    "prompt": REALTIME_TRANSCRIPTION_PROMPT,
                 },
             },
             "output": {
                 "voice": selected_voice,
+                "speed": selected_speed,
             },
         },
     }
@@ -5705,7 +5754,10 @@ async def create_realtime_call(
     if resp.status_code >= 400:
         logger.warning(f"[realtime-call] OpenAI error {resp.status_code}: {text[:1000]}")
         raise HTTPException(status_code=resp.status_code, detail=text)
-    logger.info(f"[realtime-call] answer ok model={model} target={target_language} voice={selected_voice} tone={selected_tone} sdp_len={len(text)}")
+    logger.info(
+        f"[realtime-call] answer ok model={model} target={target_language} "
+        f"voice={selected_voice} tone={selected_tone} speed={selected_speed} fast_turn={fast_turn_enabled} sdp_len={len(text)}"
+    )
     return Response(content=text, media_type="application/sdp")
 
 

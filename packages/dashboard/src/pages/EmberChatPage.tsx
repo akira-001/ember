@@ -318,6 +318,8 @@ export default function EmberChatPage() {
               translationTargetLanguage={chat.settings.translationTargetLanguage}
               translationVoice={chat.settings.translationVoice}
               translationTone={chat.settings.translationTone}
+              translationSpeed={chat.settings.translationSpeed}
+              translationFastTurn={chat.settings.translationFastTurn}
               processing={chat.processing}
               ttsEnabled={chat.settings.ttsEnabled}
               proactiveEnabled={chat.settings.proactiveEnabled}
@@ -335,6 +337,8 @@ export default function EmberChatPage() {
               onTranslationLanguageChange={(v) => chat.updateSetting('translationTargetLanguage', v)}
               onTranslationVoiceChange={(v) => chat.updateSetting('translationVoice', v)}
               onTranslationToneChange={(v) => chat.updateSetting('translationTone', v)}
+              onTranslationSpeedChange={(v) => chat.updateSetting('translationSpeed', v)}
+              onTranslationFastTurnToggle={() => chat.updateSetting('translationFastTurn', !chat.settings.translationFastTurn)}
               onToggleTts={handleToggleTts}
               onToggleDebug={() => chat.updateSetting('debugMode', !chat.settings.debugMode)}
               onOpenRecording={() => navigate('/voice-enroll')}

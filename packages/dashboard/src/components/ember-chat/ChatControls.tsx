@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import TalkButton from './TalkButton';
-import { TRANSLATION_LANGUAGE_OPTIONS, TRANSLATION_MODEL_OPTIONS, TRANSLATION_TONE_OPTIONS, TRANSLATION_VOICE_OPTIONS } from './types';
+import { TRANSLATION_LANGUAGE_OPTIONS, TRANSLATION_MODEL_OPTIONS, TRANSLATION_SPEED_OPTIONS, TRANSLATION_TONE_OPTIONS, TRANSLATION_VOICE_OPTIONS } from './types';
 
 interface ChatControlsProps {
   recording: boolean;
@@ -10,6 +10,8 @@ interface ChatControlsProps {
   translationTargetLanguage: string;
   translationVoice: string;
   translationTone: string;
+  translationSpeed: string;
+  translationFastTurn: boolean;
   processing: boolean;
   ttsEnabled: boolean;
   proactiveEnabled: boolean;
@@ -27,6 +29,8 @@ interface ChatControlsProps {
   onTranslationLanguageChange: (value: string) => void;
   onTranslationVoiceChange: (value: string) => void;
   onTranslationToneChange: (value: string) => void;
+  onTranslationSpeedChange: (value: string) => void;
+  onTranslationFastTurnToggle: () => void;
   onToggleTts: () => void;
   onToggleDebug: () => void;
   onOpenRecording: () => void;
@@ -91,6 +95,8 @@ export default function ChatControls({
   translationTargetLanguage,
   translationVoice,
   translationTone,
+  translationSpeed,
+  translationFastTurn,
   processing,
   ttsEnabled,
   proactiveEnabled,
@@ -108,6 +114,8 @@ export default function ChatControls({
   onTranslationLanguageChange,
   onTranslationVoiceChange,
   onTranslationToneChange,
+  onTranslationSpeedChange,
+  onTranslationFastTurnToggle,
   onToggleTts,
   onToggleDebug,
   onOpenRecording,
@@ -211,6 +219,29 @@ export default function ChatControls({
           <option key={option.value} value={option.value}>{option.label}</option>
         ))}
       </select>
+      <select
+        value={translationSpeed}
+        onChange={(e) => onTranslationSpeedChange(e.target.value)}
+        disabled={translationActive || translationConnecting || translationModel !== 'gpt-realtime-2'}
+        style={{
+          ...baseSideBtn,
+          padding: '8px 10px',
+          cursor: translationActive || translationConnecting || translationModel !== 'gpt-realtime-2' ? 'not-allowed' : 'pointer',
+          opacity: translationActive || translationConnecting || translationModel !== 'gpt-realtime-2' ? 0.55 : 1,
+        }}
+        title={translationModel === 'gpt-realtime-2' ? 'Translation playback speed' : 'Speed control is supported on Realtime 2 only'}
+      >
+        {TRANSLATION_SPEED_OPTIONS.map(value => (
+          <option key={value} value={value}>{`${value}x`}</option>
+        ))}
+      </select>
+      <SideBtn
+        onClick={onTranslationFastTurnToggle}
+        state={translationFastTurn && translationModel === 'gpt-realtime-2' ? 'on' : undefined}
+        title={translationModel === 'gpt-realtime-2' ? 'Fast turn detection (semantic_vad / eagerness=high) for closer-to-simultaneous interpretation' : 'Fast Turn is supported on Realtime 2 only'}
+      >
+        {translationFastTurn ? 'Fast Turn ON' : 'Fast Turn'}
+      </SideBtn>
       <SideBtn onClick={onToggleTts} state={ttsEnabled ? 'on' : undefined}>
         Sound
       </SideBtn>
