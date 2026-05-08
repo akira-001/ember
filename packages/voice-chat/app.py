@@ -234,6 +234,29 @@ REALTIME_VOICE_OPTIONS = {
     "coral", "echo", "sage", "shimmer", "verse",
 }
 REALTIME_DEFAULT_VOICE = "marin"
+REALTIME_TONE_INSTRUCTIONS = {
+    "natural": (
+        "Mirror the speaker's casualness and formality precisely. "
+        "If the source speaker talks casually, output a casual translation; "
+        "if they speak politely, output a polite translation. Do not add formality the speaker did not use."
+    ),
+    "casual": (
+        "Use casual, conversational style. "
+        "For Japanese targets, use だ・である調 or natural casual sentence-final particles like 〜だよ, 〜だね, 〜よね; "
+        "avoid です/ます unless the original is explicitly formal. "
+        "For English and other targets, use contractions and informal phrasing."
+    ),
+    "polite": (
+        "Use a polite, courteous style consistently. "
+        "For Japanese targets, use です/ます調 throughout. "
+        "For English and other targets, use full forms and respectful phrasing."
+    ),
+    "friendly": (
+        "Use a warm, friendly, approachable tone with light contractions. "
+        "For Japanese targets, prefer soft sentence-final particles like 〜だよ, 〜だね, 〜かな, 〜よ; avoid stiff です/ます-only output. "
+        "For English and other targets, use a conversational, welcoming voice."
+    ),
+}
 REALTIME_LANGUAGE_NAMES = {
     "en": "English",
     "ja": "Japanese",
@@ -5536,9 +5559,12 @@ async def create_realtime_translation_session(request: Request):
     voice = str(body.get("voice") or _settings.get("translationVoice") or REALTIME_DEFAULT_VOICE).strip().lower()
     if voice not in REALTIME_VOICE_OPTIONS:
         raise HTTPException(status_code=400, detail=f"Unsupported translation voice: {voice}")
+    tone = str(body.get("tone") or _settings.get("translationTone") or "natural").strip().lower()
+    if tone not in REALTIME_TONE_INSTRUCTIONS:
+        raise HTTPException(status_code=400, detail=f"Unsupported translation tone: {tone}")
 
     if model == "gpt-realtime-2":
-        logger.info(f"[realtime-translate] using realtime-unified model={model} target={target_language} voice={voice}")
+        logger.info(f"[realtime-translate] using realtime-unified model={model} target={target_language} voice={voice} tone={tone}")
         return {
             "mode": "realtime-unified",
             "value": "server-side-unified",
@@ -5546,6 +5572,7 @@ async def create_realtime_translation_session(request: Request):
                 f"/whisper/api/realtime/call?model={urllib.parse.quote(model)}"
                 f"&targetLanguage={urllib.parse.quote(target_language)}"
                 f"&voice={urllib.parse.quote(voice)}"
+                f"&tone={urllib.parse.quote(tone)}"
             ),
         }
 
@@ -5598,6 +5625,7 @@ async def create_realtime_call(
     model: str = "gpt-realtime-2",
     targetLanguage: str = "en",
     voice: str = REALTIME_DEFAULT_VOICE,
+    tone: str = "natural",
 ):
     """Create a standard Realtime WebRTC call via the server-side unified interface."""
     api_key = os.getenv("OPENAI_API_KEY")
@@ -5612,13 +5640,17 @@ async def create_realtime_call(
     selected_voice = str(voice or REALTIME_DEFAULT_VOICE).strip().lower()
     if selected_voice not in REALTIME_VOICE_OPTIONS:
         raise HTTPException(status_code=400, detail=f"Unsupported translation voice: {selected_voice}")
+    selected_tone = str(tone or "natural").strip().lower()
+    tone_instruction = REALTIME_TONE_INSTRUCTIONS.get(selected_tone)
+    if tone_instruction is None:
+        raise HTTPException(status_code=400, detail=f"Unsupported translation tone: {selected_tone}")
 
     sdp = (await request.body()).decode("utf-8", errors="ignore")
     if not sdp.strip():
         raise HTTPException(status_code=400, detail="SDP offer is required")
     logger.info(
         f"[realtime-call] offer received model={model} "
-        f"target={target_language} target_name={target_language_name} voice={selected_voice} sdp_len={len(sdp)}"
+        f"target={target_language} target_name={target_language_name} voice={selected_voice} tone={selected_tone} sdp_len={len(sdp)}"
     )
 
     client_host = request.client.host if request.client else "local"
@@ -5632,7 +5664,8 @@ async def create_realtime_call(
             f"The target language code is {target_language}, but you must write and speak natural {target_language_name}. "
             "Output only the translated utterance. Do not answer questions. Do not add commentary. "
             "Do not transcribe the original language unless it is already the requested target language. "
-            "Preserve names, tone, intent, and technical terms naturally. "
+            "Preserve names, intent, and technical terms naturally. "
+            f"Tone policy: {tone_instruction} "
             "Always use proper punctuation — periods, commas, question marks. "
             "For Japanese output, always use 「。」「、」「？」「！」 at natural sentence boundaries; never produce long passages without punctuation. "
             "End every utterance with a sentence-final mark. "
@@ -5672,7 +5705,7 @@ async def create_realtime_call(
     if resp.status_code >= 400:
         logger.warning(f"[realtime-call] OpenAI error {resp.status_code}: {text[:1000]}")
         raise HTTPException(status_code=resp.status_code, detail=text)
-    logger.info(f"[realtime-call] answer ok model={model} target={target_language} voice={selected_voice} sdp_len={len(text)}")
+    logger.info(f"[realtime-call] answer ok model={model} target={target_language} voice={selected_voice} tone={selected_tone} sdp_len={len(text)}")
     return Response(content=text, media_type="application/sdp")
 
 

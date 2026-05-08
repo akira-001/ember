@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import TalkButton from './TalkButton';
-import { TRANSLATION_LANGUAGE_OPTIONS, TRANSLATION_MODEL_OPTIONS, TRANSLATION_VOICE_OPTIONS } from './types';
+import { TRANSLATION_LANGUAGE_OPTIONS, TRANSLATION_MODEL_OPTIONS, TRANSLATION_TONE_OPTIONS, TRANSLATION_VOICE_OPTIONS } from './types';
 
 interface ChatControlsProps {
   recording: boolean;
@@ -9,6 +9,7 @@ interface ChatControlsProps {
   translationModel: string;
   translationTargetLanguage: string;
   translationVoice: string;
+  translationTone: string;
   processing: boolean;
   ttsEnabled: boolean;
   proactiveEnabled: boolean;
@@ -25,6 +26,7 @@ interface ChatControlsProps {
   onTranslationModelChange: (value: string) => void;
   onTranslationLanguageChange: (value: string) => void;
   onTranslationVoiceChange: (value: string) => void;
+  onTranslationToneChange: (value: string) => void;
   onToggleTts: () => void;
   onToggleDebug: () => void;
   onOpenRecording: () => void;
@@ -88,6 +90,7 @@ export default function ChatControls({
   translationModel,
   translationTargetLanguage,
   translationVoice,
+  translationTone,
   processing,
   ttsEnabled,
   proactiveEnabled,
@@ -104,6 +107,7 @@ export default function ChatControls({
   onTranslationModelChange,
   onTranslationLanguageChange,
   onTranslationVoiceChange,
+  onTranslationToneChange,
   onToggleTts,
   onToggleDebug,
   onOpenRecording,
@@ -189,6 +193,22 @@ export default function ChatControls({
         title={translationModel === 'gpt-realtime-2' ? 'Translation voice' : 'Voice selection is supported on Realtime 2 only (OpenAI translations API does not accept a voice)'}
       >
         {TRANSLATION_VOICE_OPTIONS.map(option => (
+          <option key={option.value} value={option.value}>{option.label}</option>
+        ))}
+      </select>
+      <select
+        value={translationTone}
+        onChange={(e) => onTranslationToneChange(e.target.value)}
+        disabled={translationActive || translationConnecting || translationModel !== 'gpt-realtime-2'}
+        style={{
+          ...baseSideBtn,
+          padding: '8px 10px',
+          cursor: translationActive || translationConnecting || translationModel !== 'gpt-realtime-2' ? 'not-allowed' : 'pointer',
+          opacity: translationActive || translationConnecting || translationModel !== 'gpt-realtime-2' ? 0.55 : 1,
+        }}
+        title={translationModel === 'gpt-realtime-2' ? 'Translation tone' : 'Tone control is supported on Realtime 2 only'}
+      >
+        {TRANSLATION_TONE_OPTIONS.map(option => (
           <option key={option.value} value={option.value}>{option.label}</option>
         ))}
       </select>

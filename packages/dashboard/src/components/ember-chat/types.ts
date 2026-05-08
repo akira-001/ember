@@ -113,6 +113,7 @@ export interface EmberSettings {
   translationModel: string;
   translationTargetLanguage: string;
   translationVoice: string;
+  translationTone: string;
   yomiganaPersonalEntries: YomiganaEntry[];
   lastSeen: Record<string, string>;
   inputDeviceId?: string;
@@ -158,6 +159,7 @@ export const DEFAULT_SETTINGS: EmberSettings = {
   translationModel: 'gpt-realtime-translate',
   translationTargetLanguage: 'en',
   translationVoice: 'marin',
+  translationTone: 'natural',
   yomiganaPersonalEntries: [],
   lastSeen: {},
 };
@@ -165,6 +167,13 @@ export const DEFAULT_SETTINGS: EmberSettings = {
 export const TRANSLATION_MODEL_OPTIONS = [
   { value: 'gpt-realtime-translate', label: 'Translate' },
   { value: 'gpt-realtime-2', label: 'Realtime 2' },
+];
+
+export const TRANSLATION_TONE_OPTIONS = [
+  { value: 'natural', label: 'Natural' },
+  { value: 'casual', label: 'Casual' },
+  { value: 'polite', label: 'Polite' },
+  { value: 'friendly', label: 'Friendly' },
 ];
 
 export const TRANSLATION_VOICE_OPTIONS = [

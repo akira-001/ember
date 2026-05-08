@@ -612,12 +612,13 @@ export function useEmberChat() {
       const targetLanguage = settingsRef.current.translationTargetLanguage || 'en';
       const model = settingsRef.current.translationModel || 'gpt-realtime-translate';
       const voice = settingsRef.current.translationVoice || 'marin';
+      const tone = settingsRef.current.translationTone || 'natural';
       translationEventDebugCountRef.current = 0;
-      addMessage(`Auto translation connecting (${model} → ${targetLanguage}, voice=${voice})`, 'status');
+      addMessage(`Auto translation connecting (${model} → ${targetLanguage}, voice=${voice}, tone=${tone})`, 'status');
       const sessionResp = await fetch(`${API_BASE}/realtime/translate/session`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model, targetLanguage, voice }),
+        body: JSON.stringify({ model, targetLanguage, voice, tone }),
       });
       const sessionData = await sessionResp.json().catch(() => ({}));
       if (!sessionResp.ok) {
