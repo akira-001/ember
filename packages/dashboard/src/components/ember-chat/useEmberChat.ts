@@ -6,6 +6,8 @@ import { buildStatusDiagnostic, parseDiagnosticLine } from './diagnostics';
 
 const API_BASE = '/whisper/api';
 const WS_URL = `ws://${typeof window !== 'undefined' ? window.location.host : 'localhost:3456'}/ws`;
+const TRANSLATION_IDLE_TIMEOUT_MS = 10_000;
+const TRANSLATION_IDLE_CHECK_INTERVAL_MS = 1_000;
 
 export function useEmberChat() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -41,6 +43,8 @@ export function useEmberChat() {
   const translationSourceMessageIdRef = useRef<string | null>(null);
   const translationOutputMessageIdRef = useRef<string | null>(null);
   const translationEventDebugCountRef = useRef(0);
+  const translationLastOutputAtRef = useRef<number>(0);
+  const translationIdleTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const playedIdsRef = useRef(new Set<string>());
   const reconnectTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const shouldReconnectRef = useRef(true);
@@ -147,6 +151,9 @@ export function useEmberChat() {
 
   const appendLiveTranslationMessage = useCallback((kind: 'source' | 'output', delta: string) => {
     if (!delta) return;
+    if (kind === 'output') {
+      translationLastOutputAtRef.current = Date.now();
+    }
     const ref = kind === 'source' ? translationSourceMessageIdRef : translationOutputMessageIdRef;
     const type: ChatMessage['type'] = kind === 'source' ? 'user' : 'assistant';
     const model = settingsRef.current.translationModel || 'gpt-realtime-translate';
@@ -580,6 +587,10 @@ export function useEmberChat() {
   }, []);
 
   const stopRealtimeTranslation = useCallback(() => {
+    if (translationIdleTimerRef.current) {
+      clearInterval(translationIdleTimerRef.current);
+      translationIdleTimerRef.current = null;
+    }
     const pc = translationPcRef.current;
     translationPcRef.current = null;
     if (pc) {
@@ -753,6 +764,17 @@ export function useEmberChat() {
       }
 
       setTranslationActive(true);
+      translationLastOutputAtRef.current = Date.now();
+      if (translationIdleTimerRef.current) {
+        clearInterval(translationIdleTimerRef.current);
+      }
+      translationIdleTimerRef.current = setInterval(() => {
+        const idleMs = Date.now() - translationLastOutputAtRef.current;
+        if (idleMs >= TRANSLATION_IDLE_TIMEOUT_MS) {
+          addMessage(`翻訳出力が ${Math.floor(TRANSLATION_IDLE_TIMEOUT_MS / 1000)} 秒間なかったので、自動でOFFにしたよ（課金防止）`, 'status');
+          stopRealtimeTranslation();
+        }
+      }, TRANSLATION_IDLE_CHECK_INTERVAL_MS);
       addMessage(`Auto translation ON (${model} → ${targetLanguage}, ${sessionMode})`, 'status');
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
