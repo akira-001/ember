@@ -72,6 +72,16 @@ export default function ChatMessages({ messages }: Props) {
           );
         }
         const isUser = msg.type === 'user';
+        const isTranslation = msg.id.startsWith('translation-');
+        const textStyle: React.CSSProperties = isTranslation
+          ? {
+              whiteSpace: 'pre-wrap',
+              fontSize: '15px',
+              lineHeight: 1.85,
+              fontFamily: "'Hiragino Sans', 'Yu Gothic UI', 'Noto Sans JP', system-ui, sans-serif",
+              letterSpacing: '0.02em',
+            }
+          : { whiteSpace: 'pre-wrap' };
         return (
           <div key={msg.id} className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
             <div
@@ -87,7 +97,7 @@ export default function ChatMessages({ messages }: Props) {
                   {msg.botId}
                 </span>
               )}
-              <span style={{ whiteSpace: 'pre-wrap' }}>{msg.text}</span>
+              <span style={textStyle}>{msg.text}</span>
             </div>
           </div>
         );

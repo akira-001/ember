@@ -5632,7 +5632,11 @@ async def create_realtime_call(
             f"The target language code is {target_language}, but you must write and speak natural {target_language_name}. "
             "Output only the translated utterance. Do not answer questions. Do not add commentary. "
             "Do not transcribe the original language unless it is already the requested target language. "
-            "Preserve names, tone, intent, and technical terms naturally."
+            "Preserve names, tone, intent, and technical terms naturally. "
+            "Always use proper punctuation — periods, commas, question marks. "
+            "For Japanese output, always use 「。」「、」「？」「！」 at natural sentence boundaries; never produce long passages without punctuation. "
+            "End every utterance with a sentence-final mark. "
+            "When the original speaker pauses or shifts topic, finish the current sentence cleanly before starting the next one."
         ),
         "audio": {
             "input": {

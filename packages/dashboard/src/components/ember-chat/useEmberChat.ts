@@ -135,6 +135,16 @@ export function useEmberChat() {
     }]);
   }, []);
 
+  const formatTranslationText = useCallback((text: string): string => {
+    return text
+      // 日本語: 文末記号の後ろが空白でも行末でもなければ改行
+      .replace(/([。！？])(?![\s\n。！？])/g, '$1\n')
+      // 英語: 文末記号 + 1+ 空白 + 大文字 → 改行
+      .replace(/([.!?])\s+(?=[A-ZÀ-ſ])/g, '$1\n')
+      // 連続改行を1つに
+      .replace(/\n{2,}/g, '\n');
+  }, []);
+
   const appendLiveTranslationMessage = useCallback((kind: 'source' | 'output', delta: string) => {
     if (!delta) return;
     const ref = kind === 'source' ? translationSourceMessageIdRef : translationOutputMessageIdRef;
@@ -149,15 +159,26 @@ export function useEmberChat() {
         const idx = prev.findIndex(m => m.id === existingId);
         if (idx >= 0) {
           const next = [...prev];
-          next[idx] = { ...next[idx], text: `${next[idx].text}${delta}`, timestamp: Date.now() };
+          const merged = `${next[idx].text}${delta}`;
+          next[idx] = {
+            ...next[idx],
+            text: kind === 'output' ? formatTranslationText(merged) : merged,
+            timestamp: Date.now(),
+          };
           return next;
         }
       }
       const id = `translation-${kind}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
       ref.current = id;
-      return [...prev, { id, type, text: delta, botId, timestamp: Date.now() }];
+      return [...prev, {
+        id,
+        type,
+        text: kind === 'output' ? formatTranslationText(delta) : delta,
+        botId,
+        timestamp: Date.now(),
+      }];
     });
-  }, []);
+  }, [formatTranslationText]);
 
   const rotateLiveTranslationMessages = useCallback(() => {
     translationSourceMessageIdRef.current = null;
