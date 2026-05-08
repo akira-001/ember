@@ -186,7 +186,7 @@ export default function ChatControls({
           cursor: translationActive || translationConnecting || translationModel !== 'gpt-realtime-2' ? 'not-allowed' : 'pointer',
           opacity: translationActive || translationConnecting || translationModel !== 'gpt-realtime-2' ? 0.55 : 1,
         }}
-        title={translationModel === 'gpt-realtime-2' ? 'Translation voice' : 'Voice selection is available for Realtime 2 only'}
+        title={translationModel === 'gpt-realtime-2' ? 'Translation voice' : 'Voice selection is supported on Realtime 2 only (OpenAI translations API does not accept a voice)'}
       >
         {TRANSLATION_VOICE_OPTIONS.map(option => (
           <option key={option.value} value={option.value}>{option.label}</option>

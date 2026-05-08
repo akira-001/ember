@@ -5561,6 +5561,7 @@ async def create_realtime_translation_session(request: Request):
             },
         },
     }
+    logger.info(f"[realtime-translate] using translations endpoint model={model} target={target_language} (voice fixed by OpenAI)")
 
     secret_url = "https://api.openai.com/v1/realtime/translations/client_secrets"
     calls_url = "https://api.openai.com/v1/realtime/translations/calls"

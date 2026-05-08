@@ -16,61 +16,6 @@
   },
   "history": [
     {
-      "id": "398c4934-04f8-4c87-ab7a-5409ad74dbf0",
-      "category": "flashback",
-      "interestCategory": "general",
-      "sentAt": "2026-04-24T14:30:54.143Z",
-      "slackTs": "1777041054.361359",
-      "slackChannel": "U3SFGQXNH",
-      "reaction": null,
-      "reactionDelta": 0,
-      "preview": "ねえ、知ってる？\n\n富士山のふもとで *芝桜50万株* が満開らしい 🌸 ピンクのじゅうたんと富士山のコントラスト、写真で見るだけでも癒される。\n\nGWのドライブ候補、どうかな。\nhttps://news.google.com/rss/a",
-      "fullText": "ねえ、知ってる？\n\n富士山のふもとで *芝桜50万株* が満開らしい 🌸 ピンクのじゅうたんと富士山のコントラスト、写真で見るだけでも癒される。\n\nGWのドライブ候補、どうかな。\nhttps://news.google.com/rss/articles/CBMie0FVX3lxTFBtd3BNYkJUSUNlZEVuRnVkLVFlVmVNMW1lbXgxZUxEeldDa2Voa2VGMXFDRDhoenNKazBubzZiRGFQM3gzWWpsMFVmZjlrcE9EZG9FeWVyaXh6bDluY2hYUUZKNlhxUGhtZC1SZmI0OHRKQ0Vod3J2bUljMA?oc=5",
-      "sourceUrls": [
-        {
-          "title": "富士山×芝桜まつり満開",
-          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBtd3BNYkJUSUNlZEVuRnVkLVFlVmVNMW1lbXgxZUxEeldDa2Voa2VGMXFDRDhoenNKazBubzZiRGFQM3gzWWpsMFVmZjlrcE9EZG9FeWVyaXh6bDluY2hYUUZKNlhxUGhtZC1SZmI0OHRKQ0Vod3J2bUljMA?oc=5",
-          "source": "au Webポータル"
-        }
-      ],
-      "candidateId": "url:https://news.google.com/rss/articles/CBMie0FVX3lxTFBtd3BNYkJUSUNlZEVuRnVkLVFlVmVNMW1lbXgxZUxEeldDa2Voa2VGMXFDRDhoenNKazBubzZiRGFQM3gzWWpsMFVmZjlrcE9EZG9FeWVyaXh6bDluY2hYUUZKNlhxUGhtZC1SZmI0OHRKQ0Vod3J2bUljMA?oc=5",
-      "candidateTopic": "富士山×芝桜まつり満開",
-      "candidateUrl": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBtd3BNYkJUSUNlZEVuRnVkLVFlVmVNMW1lbXgxZUxEeldDa2Voa2VGMXFDRDhoenNKazBubzZiRGFQM3gzWWpsMFVmZjlrcE9EZG9FeWVyaXh6bDluY2hYUUZKNlhxUGhtZC1SZmI0OHRKQ0Vod3J2bUljMA?oc=5",
-      "candidateSource": "au Webポータル",
-      "skill": "followup-nudge",
-      "sources": [
-        "calendar",
-        "email",
-        "interest-cache"
-      ],
-      "intrinsicReward": {
-        "signals": [],
-        "immediateTotal": 0,
-        "deferredTotal": 0,
-        "compositeBoost": 0
-      },
-      "premise": {
-        "estimatedMode": "達成モード・低エネルギー",
-        "modeReason": "23:30の深夜帯。休日で会議も終わり、今日は朝から夜まで多くのメッセージを受け取っている。一日の締めくくりのタイミング",
-        "targetLayer": 5,
-        "layerReason": "深夜・低エネルギー状態では現在の状態層を最優先。重い情報ではなく、目に優しい癒し系コンテンツが適切",
-        "interventionType": "情報提供",
-        "interventionReason": "GW直前の季節感あるビジュアル情報で、穏やかに一日を締めくくれる軽い話題",
-        "reason": "23:30深夜、低エネルギー。富士山×芝桜という季節感があり視覚的に美しい話題が一日の締めとして自然",
-        "informationGap": null,
-        "collectionHint": null
-      },
-      "emotionTag": "bright",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/tokorozawa",
-        "local/saitama/tokorozawa/event",
-        "local/saitama/tokorozawa/event/flower-sakura"
-      ],
-      "themeKey": "local/saitama/tokorozawa/event/flower-sakura"
-    },
-    {
       "id": "adabb37c-aa95-402e-960f-48144ca10b70",
       "category": "flashback",
       "interestCategory": "golf",
@@ -5334,11 +5279,61 @@
         "sports/mlb/dodgers/ohtani/home-run"
       ],
       "themeKey": "sports/mlb/dodgers/ohtani/home-run"
+    },
+    {
+      "id": "b8eafebd-d6f4-477b-839d-b50f7e96ebd8",
+      "category": "flashback",
+      "interestCategory": "general",
+      "sentAt": "2026-05-08T11:31:07.859Z",
+      "slackTs": "1778239868.034109",
+      "slackChannel": "U3SFGQXNH",
+      "reaction": null,
+      "reactionDelta": 0,
+      "preview": "そういえばさ、\n\nいこーよニュースに *5月9日・10日の関東無料イベント20選* まとめが出てたよ 🎪 グルメフェスやフリマも入ってるみたい。\n\n明日は免許更新があるけど、日曜の候補にさらっと眺めておくといいかも。\nhttps://ne",
+      "fullText": "そういえばさ、\n\nいこーよニュースに *5月9日・10日の関東無料イベント20選* まとめが出てたよ 🎪 グルメフェスやフリマも入ってるみたい。\n\n明日は免許更新があるけど、日曜の候補にさらっと眺めておくといいかも。\nhttps://news.google.com/rss/articles/CBMiUkFVX3lxTFBwVHVEZDlvcDY4cnFsZW1ycUdhajd0X1pSZS1HRkhMeFl5SjB6RmJuSUpfOVp0eGljMVRqV2IyQzE5OUxjWHg0Nms2Q0lRaUxlRGc",
+      "sourceUrls": [
+        {
+          "title": "関東週末無料イベント5/9-10",
+          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBwVHVEZDlvcDY4cnFsZW1ycUdhajd0X1pSZS1HRkhMeFl5SjB6RmJuSUpfOVp0eGljMVRqV2IyQzE5OUxjWHg0Nms2Q0lRaUxlRGc",
+          "source": "いこーよニュース"
+        }
+      ],
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiUkFVX3lxTFBwVHVEZDlvcDY4cnFsZW1ycUdhajd0X1pSZS1HRkhMeFl5SjB6RmJuSUpfOVp0eGljMVRqV2IyQzE5OUxjWHg0Nms2Q0lRaUxlRGc",
+      "candidateTopic": "関東週末無料イベント5/9-10",
+      "candidateUrl": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBwVHVEZDlvcDY4cnFsZW1ycUdhajd0X1pSZS1HRkhMeFl5SjB6RmJuSUpfOVp0eGljMVRqV2IyQzE5OUxjWHg0Nms2Q0lRaUxlRGc",
+      "candidateSource": "いこーよニュース",
+      "skill": "general",
+      "sources": [
+        "calendar",
+        "email",
+        "interest-cache"
+      ],
+      "intrinsicReward": {
+        "signals": [],
+        "immediateTotal": 0,
+        "deferredTotal": 0,
+        "compositeBoost": 0
+      },
+      "premise": {
+        "estimatedMode": "達成モード・低エネルギー",
+        "modeReason": "金曜夜20:30、経営会議と病院（咳）が終わり、かよぽんからの気遣いメールもあった。一日の疲れがピークに近いが、明日の免許更新に向けてふんわり週末を意識し始めているタイミング",
+        "targetLayer": 5,
+        "layerReason": "低エネルギー状態で重い話題は不要。軽い週末の楽しみを1本置くだけで十分",
+        "interventionType": "情報提供",
+        "interventionReason": "明日は免許更新だが日曜が空いている可能性が高く、週末イベント情報は負荷ゼロで受け取れる"
+      },
+      "emotionTag": "bright",
+      "themePath": [
+        "lifestyle",
+        "lifestyle/food-wellness",
+        "lifestyle/food-wellness/gourmet"
+      ],
+      "themeKey": "lifestyle/food-wellness/gourmet"
     }
   ],
-  "lastCheckAt": "2026-05-08T10:30:30.948Z",
+  "lastCheckAt": "2026-05-08T11:31:07.855Z",
   "stats": {
-    "totalSent": 590,
+    "totalSent": 591,
     "positiveReactions": 26,
     "negativeReactions": 0
   },
@@ -5447,134 +5442,48 @@
         "sports/mlb/dodgers/ohtani/home-run"
       ],
       "themeKey": "sports/mlb/dodgers/ohtani/home-run"
+    },
+    {
+      "time": "20:31",
+      "summary": "関東週末無料イベント5/9-10",
+      "source": "いこーよニュース",
+      "interestCategory": "general",
+      "topic": "関東週末無料イベント5/9-10",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBwVHVEZDlvcDY4cnFsZW1ycUdhajd0X1pSZS1HRkhMeFl5SjB6RmJuSUpfOVp0eGljMVRqV2IyQzE5OUxjWHg0Nms2Q0lRaUxlRGc",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiUkFVX3lxTFBwVHVEZDlvcDY4cnFsZW1ycUdhajd0X1pSZS1HRkhMeFl5SjB6RmJuSUpfOVp0eGljMVRqV2IyQzE5OUxjWHg0Nms2Q0lRaUxlRGc",
+      "themePath": [
+        "lifestyle",
+        "lifestyle/food-wellness",
+        "lifestyle/food-wellness/gourmet"
+      ],
+      "themeKey": "lifestyle/food-wellness/gourmet"
     }
   ],
   "todayDate": "2026-05-08",
   "lastScoredCandidates": [
     {
-      "topic": "DX・AI・新規事業──”今の制度のままで、本当に人は育ちますか？” 変革期に求められる人事制度・運用の視点 - PR TIMES",
-      "source": "interest-cache",
-      "category": "business_strategy",
-      "pub_date": "2026-05-08T05:00:30+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1oT2tLdGJCQXZKbzhiNkdJSzN6Ym1EaGJuWW1adWVCbjQ2WW1wWF9NV0tJX2xHNG5CTlBKZDhLeWZlTmt2dkl5ZVVTLTYwNTlNVWxDcml1VkxTN0NBMnJaMFUxZGFSM1NqeVE?oc=5",
-        "mediaSource": "PR TIMES",
-        "emotion_type": "heavy",
-        "timeliness": 0.962
-      },
-      "scores": {
-        "timeliness": 0.7710785300925926,
-        "novelty": 0.1,
-        "continuity": 0.9,
-        "emotional_fit": 0.5,
-        "affinity": 0.4,
-        "surprise": 0.7
-      },
-      "finalScore": 0.8380869845982497,
-      "reasoning": "会話の流れに沿う・タイムリー（interest-cache）",
-      "explorationBonus": 0.21370034292403778,
-      "selectionScore": 1.0517873275222875
-    },
-    {
-      "topic": "$26k Cheaper!? 2026 All-New Toyota Camroad RV Full Tour[SUB]",
+      "topic": "アウトドアで映える存在感！“バッタ”モチーフの個性派カスタムカーに注目 - ｄメニューニュース",
       "source": "interest-cache",
       "category": "campingcar",
-      "pub_date": null,
+      "pub_date": "2026-05-08T06:12:00+00:00",
       "metadata": {
-        "url": "https://www.youtube.com/watch?v=6sF917tgN2I",
-        "mediaSource": "クピ男の車中生活",
-        "content_type": "video",
+        "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5JbWNvd2dtY1F6ZTAwLVhjaE5UOE5GcGUzcXowdWYyV0YzUTFIZFJXNUtTQ0R1ZndqS0dnejQ3Mk5BdXZSV09Ock9CSXAyWjloaGs3RHV5RzJseTVWTVJDTEhIZzVGZTF6OFJ3bENFaWMybEpHSlVqaENR0gF6QVVfeXFMTkltY293Z21jUXplMDAtWGNoTlQ4TkZwZTNxejB1ZjJXRjNRMUhkUlc1S1NDRHVmd2pLR2d6NDcyTkF1dlJXT05yT0JJcDJaOWhoazdEdXlHMmx5NVZNUkNMSEhnNUZlMXo4UndsQ0VpYzJsSkdKVWpoQ1E?oc=5",
+        "mediaSource": "ｄメニューニュース",
         "emotion_type": "medium",
-        "timeliness": 0.1
+        "timeliness": 0.903
       },
       "scores": {
-        "timeliness": 0.3,
+        "timeliness": 0.7790599189814815,
         "novelty": 0.1,
         "continuity": 0.9,
         "emotional_fit": 0.5,
         "affinity": 0.4,
         "surprise": 0.7
       },
-      "finalScore": 0.7079658950175383,
-      "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.0079658950175383
-    },
-    {
-      "topic": "ペット専用キャンピングカー、CAMBYが出展へ…FIELDSTYLE TOKYO 2026 1枚目の写真・画像 - レスポンス（Response.jp）",
-      "source": "interest-cache",
-      "category": "campingcar",
-      "pub_date": "2026-05-08T06:00:04+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNcHBROUNjOGVJN1RDTW1CUUwwT01hTVU3Mld2ZW1RR3RUdWhDS1drMklRQkhxWFFDRFk3TkpEY1cyWkVWY2pMTnRTTjd4MTZQYjZEdkpybXBaSDVRUUFkcWR3WjRHMnQtaWNpRko2UDlZOTl2VzdGcW9wMlZwQTEwQ3ROWEhEbHV0WFI2LTdKd20?oc=5",
-        "mediaSource": "レスポンス（Response.jp）",
-        "emotion_type": "medium",
-        "timeliness": 0.982
-      },
-      "scores": {
-        "timeliness": 0.8124444212962963,
-        "novelty": 0.1,
-        "continuity": 0.9,
-        "emotional_fit": 0.5,
-        "affinity": 0.4,
-        "surprise": 0.7
-      },
-      "finalScore": 0.6980770034688368,
+      "finalScore": 0.7328035936784156,
       "reasoning": "会話の流れに沿う・タイムリー（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.9980770034688369
-    },
-    {
-      "topic": "ペット専用キャンピングカー、CAMBYが出展へ…FIELDSTYLE TOKYO 2026 - レスポンス（Response.jp）",
-      "source": "interest-cache",
-      "category": "campingcar",
-      "pub_date": "2026-05-08T06:00:04+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBYVDA0NFU1eEpMVTJrbmplWXV2N2d5SThmT2dVdmxLYWpDNXg1T052c2RpdVFHMjE4dGdhc2E3Wl94bnNMbGkwemoyaTVHNVlKVW56LVdfRTV3U3JDMmI0?oc=5",
-        "mediaSource": "レスポンス（Response.jp）",
-        "emotion_type": "medium",
-        "timeliness": 0.982
-      },
-      "scores": {
-        "timeliness": 0.8124444097222222,
-        "novelty": 0.1,
-        "continuity": 0.9,
-        "emotional_fit": 0.5,
-        "affinity": 0.4,
-        "surprise": 0.7
-      },
-      "finalScore": 0.6980770010410309,
-      "reasoning": "会話の流れに沿う・タイムリー（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 0.9980770010410309
-    },
-    {
-      "topic": "Taylor’s Tee Time: Florida State head women’s golf coach Amy Bond - WCTV",
-      "source": "interest-cache",
-      "category": "_cross",
-      "pub_date": "2026-05-07T22:43:00+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPaVhySXBQTXB1cXZvZ0YtTjVyLWd3VldOaUNjNkZoVkNPbmtXdXJ0Nm9XVUhKamNPTzluODNlMXJWcEpnbC05MmpZOUdmQ0NBRS1iVEpaSHVLZGV5dEFIdV9FMDhOeVR3SGVQeGNqNDhnYWNKQ01wQmJvMi1Ta3BOYXlZN0J1WXEwRmZrUHpHWC1kNXJsV3dIMC1R0gGuAUFVX3lxTFB5Smt1NWQwclU0bzJLVmR4bFgtUXkxZDc2bG1BbDdEVmNKaHRISU92ZWQ1d1ZZaUE3TmFndGFXWDdadGtLeDhYU1pfUDl2cncxMXFwcVVrWXBlTjI2MEl2aXhqSG4zaTUyTnNrZEgtTDktRTRKTEtfUFctRzQydjltUUU0MElDNG1fOU5Edkx6OWsyTVNMVGRHbHFESldkUjJwOUg0bXB4UlRJZkJZQQ?oc=5",
-        "mediaSource": "WCTV",
-        "emotion_type": "light",
-        "timeliness": 0.83,
-        "crossCategories": [
-          "golf",
-          "ai_agent"
-        ]
-      },
-      "scores": {
-        "timeliness": 0.6696418209876543,
-        "novelty": 0.1,
-        "continuity": 0.3,
-        "emotional_fit": 0.5,
-        "affinity": 0.5,
-        "surprise": 0.9
-      },
-      "finalScore": 0.5832288483242237,
-      "reasoning": "意外・サプライズ・タイムリー（interest-cache）",
-      "explorationBonus": 0.4,
-      "selectionScore": 0.9832288483242237
+      "selectionScore": 1.0328035936784157
     },
     {
       "topic": "アカデミー賞俳優、フジテレビ番組に出演 今回の来日で唯一のバラエティ収録… 出演者ド緊張、涙も「今までにない」 - オリコンニュース",
@@ -5588,17 +5497,17 @@
         "timeliness": 0.954
       },
       "scores": {
-        "timeliness": 0.756147650462963,
+        "timeliness": 0.7381586844135802,
         "novelty": 0.1,
         "continuity": 0.3,
-        "emotional_fit": 0.5,
+        "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.6761570780916109,
-      "reasoning": "タイムリー・意外・サプライズ（interest-cache）",
+      "finalScore": 0.6630224276640162,
+      "reasoning": "気分に合う・タイムリー（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.9761570780916109
+      "selectionScore": 0.9630224276640162
     },
     {
       "topic": "ホロライブ×「いきなり！ステーキ」コラボが開催決定！今年は常MOSグッズとコラボフードに装飾店舗も 4枚目の写真・画像 - インサイド",
@@ -5612,65 +5521,41 @@
         "timeliness": 0.892
       },
       "scores": {
-        "timeliness": 0.7106256481481481,
+        "timeliness": 0.6967351195987654,
         "novelty": 0.1,
         "continuity": 0.3,
-        "emotional_fit": 0.5,
+        "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.6666082723934853,
-      "reasoning": "タイムリー・意外・サプライズ（interest-cache）",
+      "finalScore": 0.6531552780926886,
+      "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.9666082723934852
+      "selectionScore": 0.9531552780926886
     },
     {
-      "topic": "トイファクトリー、最新キャンピングカー出展へ…FIELDSTYLE TOKYO 2026 - kakaku.com",
+      "topic": "イム・ジヨン、アイユー・シン・ヘソンと週末ドラマで激突...『素晴らしき新世界』で流れを変えられるか [突破口] - 매일경제",
       "source": "interest-cache",
-      "category": "campingcar",
-      "pub_date": "2026-05-07T21:00:00+00:00",
+      "category": "tv_drama",
+      "pub_date": "2026-05-08T03:20:13+00:00",
       "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1xVWQwOThkblpudWN6YW01QTlzekVScjY0WXRxTHRLVlVmY3VKcFBPbUN2YUlRVGQyN1hEckdNS21lLTZVM2lsUlptNDQ3Vk9Ba2M1SllrTFdCSGNBMHZrSEF1TS1iQks2NHdEVlIzYw?oc=5",
-        "mediaSource": "kakaku.com",
-        "emotion_type": "medium",
-        "timeliness": 0.795
+        "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9nRWZfZlJvSkprRlhuNHFFOGpXZVZMaUt6azNad09maDdWS3JHUjJ2a3hLVHFpa0FFNlB4UTdOby1BS3Q0VUdzRUthUzROc3c1ZXVvbU9teFc5MXRXNEJYN1Zjaw?oc=5",
+        "mediaSource": "매일경제",
+        "emotion_type": "light",
+        "timeliness": 0.926
       },
       "scores": {
-        "timeliness": 0.6457993672839506,
+        "timeliness": 0.7199217978395062,
         "novelty": 0.1,
-        "continuity": 0.9,
-        "emotional_fit": 0.5,
-        "affinity": 0.4,
+        "continuity": 0.3,
+        "emotional_fit": 0.9,
+        "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.6631211324525995,
-      "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）",
+      "finalScore": 0.6383215398633956,
+      "reasoning": "気分に合う・タイムリー（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.9631211324525994
-    },
-    {
-      "topic": "ロボット連携AI外観検査の最新ソリューションを実演 「関西ネプコン ジャパン」にPhoxterが出展 - ロボスタ",
-      "source": "interest-cache",
-      "category": "business_strategy",
-      "pub_date": "2026-05-08T06:30:03+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE10b3VtUUFHbjN6LXBYLWhUUWczcVVXUkpBcll0YVpCT2J5SGRFVTkzclZiWk5MdDZjOUp2cDFNRHBNeFRUMUg1YTNwVlMwUGltb0o0eTlBVFBqbUxTaTlrS0pldHM?oc=5",
-        "mediaSource": "ロボスタ",
-        "emotion_type": "heavy",
-        "timeliness": 0.993
-      },
-      "scores": {
-        "timeliness": 0.8332660416666666,
-        "novelty": 0.1,
-        "continuity": 0.9,
-        "emotional_fit": 0.5,
-        "affinity": 0.4,
-        "surprise": 0.7
-      },
-      "finalScore": 0.7411315879696947,
-      "reasoning": "会話の流れに沿う・タイムリー（interest-cache）",
-      "explorationBonus": 0.21370034292403778,
-      "selectionScore": 0.9548319308937325
+      "selectionScore": 0.9383215398633955
     },
     {
       "topic": "＜画像1 / 16＞1000本の桜と菜の花畑で幸せ色に染まる彩の国の春 - ウォーカープラス",
@@ -5684,254 +5569,371 @@
         "timeliness": 0.855
       },
       "scores": {
-        "timeliness": 0.6861580401234568,
+        "timeliness": 0.672267511574074,
         "novelty": 0.1,
         "continuity": 0.3,
-        "emotional_fit": 0.5,
+        "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.6526691493842306,
+      "finalScore": 0.638282199747902,
+      "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 0.9382821997479021
+    },
+    {
+      "topic": "DX・AI・新規事業──”今の制度のままで、本当に人は育ちますか？” 変革期に求められる人事制度・運用の視点 - PR TIMES",
+      "source": "interest-cache",
+      "category": "business_strategy",
+      "pub_date": "2026-05-08T05:00:30+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1oT2tLdGJCQXZKbzhiNkdJSzN6Ym1EaGJuWW1adWVCbjQ2WW1wWF9NV0tJX2xHNG5CTlBKZDhLeWZlTmt2dkl5ZVVTLTYwNTlNVWxDcml1VkxTN0NBMnJaMFUxZGFSM1NqeVE?oc=5",
+        "mediaSource": "PR TIMES",
+        "emotion_type": "heavy",
+        "timeliness": 0.962
+      },
+      "scores": {
+        "timeliness": 0.7431356558641975,
+        "novelty": 0.1,
+        "continuity": 0.9,
+        "emotional_fit": 0.5,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.7242463852632868,
+      "reasoning": "会話の流れに沿う・タイムリー（interest-cache）",
+      "explorationBonus": 0.21370034292403778,
+      "selectionScore": 0.9379467281873246
+    },
+    {
+      "topic": "【関東】2026年5月9日・10日週末開催の無料イベント20選 グルメフェス＆フリマも満喫 - いこーよニュース",
+      "source": "interest-cache",
+      "category": "local_tokorozawa",
+      "pub_date": "2026-05-07T22:04:50+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBwVHVEZDlvcDY4cnFsZW1ycUdhajd0X1pSZS1HRkhMeFl5SjB6RmJuSUpfOVp0eGljMVRqV2IyQzE5OUxjWHg4Nms2Q0lRaUxlRGc?oc=5",
+        "mediaSource": "いこーよニュース",
+        "emotion_type": "light",
+        "timeliness": 0.817
+      },
+      "scores": {
+        "timeliness": 0.6469165007716049,
+        "novelty": 0.1,
+        "continuity": 0.3,
+        "emotional_fit": 0.9,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.6392773508232388,
+      "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
+      "explorationBonus": 0.2617283990108391,
+      "selectionScore": 0.9010057498340779
+    },
+    {
+      "topic": "TACTICA AI、ミッションクリティカルなリアルタイム運用判断を支援する地域初のAIプラットフォームを発表 - Business Wire",
+      "source": "interest-cache",
+      "category": "llm_local",
+      "pub_date": "2026-05-08T01:31:00+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1PTENGMGpJM29JcURSVVI1aEFvb29CekVwQUhSa1Y5LV9hMXdMNUYyREhKSzJ2b1JITTZnUVhUb1NWTkV5cmZId05WRkVtWGxGeG1PS3NVRjc2eDVQdFdtVnJnT245aUE?oc=5",
+        "mediaSource": "Business Wire",
+        "emotion_type": "medium",
+        "timeliness": 0.889
+      },
+      "scores": {
+        "timeliness": 0.6946403742283951,
+        "novelty": 0.1,
+        "continuity": 0.3,
+        "emotional_fit": 0.5,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.5922903731396665,
       "reasoning": "意外・サプライズ・タイムリー（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.9526691493842305
+      "selectionScore": 0.8922903731396665
+    },
+    {
+      "topic": "ペット専用キャンピングカー、CAMBYが出展へ…FIELDSTYLE TOKYO 2026 - レスポンス（Response.jp）",
+      "source": "interest-cache",
+      "category": "campingcar",
+      "pub_date": "2026-05-08T06:00:04+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBYVDA0NFU1eEpMVTJrbmplWXV2N2d5SThmT2dVdmxLYWpDNXg1T052c2RpdVFHMjE4dGdhc2E3Wl94bnNMbGkwemoyaTVHNVlKVW56LVdfRTV3U3JDMmI0?oc=5",
+        "mediaSource": "レスポンス（Response.jp）",
+        "emotion_type": "medium",
+        "timeliness": 0.899
+      },
+      "scores": {
+        "timeliness": 0.7707728703703703,
+        "novelty": 0.1,
+        "continuity": 0.9,
+        "emotional_fit": 0.5,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.5919044939175159,
+      "reasoning": "会話の流れに沿う・タイムリー（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 0.8919044939175158
+    },
+    {
+      "topic": "森町で「1億円桜」見頃 ふるさと納税返礼品 命名権公募、10月末まで - 47NEWS",
+      "source": "interest-cache",
+      "category": "weather_seasonal",
+      "pub_date": "2026-05-07T10:00:00+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE11aEdlQWF0M0VBcTF0dHczSHY3WVg3TEkwcFFaWnBtZGp1QU1kZFVkUWFuUm5WRmlkdlEyZEJMMWkwbnBpdGltMUYwWQ?oc=5",
+        "mediaSource": "47NEWS",
+        "emotion_type": "light",
+        "timeliness": 0.565
+      },
+      "scores": {
+        "timeliness": 0.46869639467592594,
+        "novelty": 0.1,
+        "continuity": 0.3,
+        "emotional_fit": 0.9,
+        "affinity": 0.5,
+        "surprise": 0.7
+      },
+      "finalScore": 0.5897912823723441,
+      "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 0.8897912823723442
     }
   ],
   "lastDecisionLog": {
     "premise": {
-      "estimatedMode": "達成モード・回復中",
-      "modeReason": "今日は休日ベースで、明示された予定はすでに終了済み。19:30は金曜夜のゆるみ始める時間で、18:30にも軽い趣味情報を受け取っているため、重い介入より軽い関心接続が合う。",
+      "estimatedMode": "達成モード・低エネルギー",
+      "modeReason": "金曜夜20:30、経営会議と病院（咳）が終わり、かよぽんからの気遣いメールもあった。一日の疲れがピークに近いが、明日の免許更新に向けてふんわり週末を意識し始めているタイミング",
       "targetLayer": 5,
-      "layerReason": "今は意思決定や深掘りより、回復しながら楽しめる軽い刺激を置くのが自然。",
+      "layerReason": "低エネルギー状態で重い話題は不要。軽い週末の楽しみを1本置くだけで十分",
       "interventionType": "情報提供",
-      "interventionReason": "今すぐ行動を迫らず、Akiraさんの関心に近い週末系の話題を1本だけ渡すのが負荷が低い。",
-      "reason": "夜の回復タイムに、前に反応があったキャンピングカー関心と猫文脈をつなげられる候補がある。",
-      "informationGap": null,
-      "collectionHint": null
+      "interventionReason": "明日は免許更新だが日曜が空いている可能性が高く、週末イベント情報は負荷ゼロで受け取れる"
     },
     "decision": "send",
-    "need": "回復しながら楽しむ",
-    "reason": "夜の低負荷な趣味接続として、猫×キャンピングカーの組み合わせが自然だから",
+    "need": "楽しみ・計画",
+    "reason": "金曜夜、明日免許更新・日曜フリーの可能性。週末のゆるい計画候補として届けどき",
     "candidates": [
       {
-        "topic": "ペット専用キャンピングカー、CAMBYが出展へ…FIELDSTYLE TOKYO 2026 - レスポンス（Response.jp）",
-        "source": "レスポンス（Response.jp）",
-        "score": 0.7
+        "topic": "関東週末無料イベント5/9-10",
+        "source": "いこーよニュース",
+        "score": 0.64
       },
       {
-        "topic": "ペット専用キャンピングカー、CAMBYが出展へ…FIELDSTYLE TOKYO 2026 1枚目の写真・画像 - レスポンス（Response.jp）",
-        "source": "レスポンス（Response.jp）",
-        "score": 0.7
+        "topic": "彩の国の春・桜と菜の花",
+        "source": "ウォーカープラス",
+        "score": 0.64
       },
       {
-        "topic": " $26k Cheaper!? 2026 All-New Toyota Camroad RV Full Tour[SUB]",
-        "source": "クピ男の車中生活",
-        "score": 0.71
+        "topic": "DX・AI・人事制度",
+        "source": "PR TIMES",
+        "score": 0.72
       }
     ],
-    "message": "そういえばさ、\n\n*レスポンス* に *「ペット専用キャンピングカー、CAMBYがFIELDSTYLE TOKYO 2026に出展へ」* って記事が出てたよ 🐱🚐\n前にキャンピングカー系ちょいちょい見てたし、猫と暮らしてるAkiraさん的にも、この組み合わせはちょっと気になるやつかも。\nhttps://news.google.com/rss/articles/CBMiX0FVX3lxTFBYVDA0NFU1eEpMVTJrbmplWXV2N2d5SThmT2dVdmxLYWpDNXg1T052c2RpdVFHMjE4dGdhc2E3Wl94bnNMbGkwemoyaTVHNVlKVW56LVdfRTV3U3JDMmI0?oc=5",
+    "message": "そういえばさ、\n\nいこーよニュースに *5月9日・10日の関東無料イベント20選* まとめが出てたよ 🎪 グルメフェスやフリマも入ってるみたい。\n\n明日は免許更新があるけど、日曜の候補にさらっと眺めておくといいかも。\nhttps://news.google.com/rss/articles/CBMiUkFVX3lxTFBwVHVEZDlvcDY4cnFsZW1ycUdhajd0X1pSZS1HRkhMeFl5SjB6RmJuSUpfOVp0eGljMVRqV2IyQzE5OUxjWHg0Nms2Q0lRaUxlRGc",
     "topicWeight": "light",
-    "inner_thought": "今日はもう十分話しかけてるけど、この1本はAkiraさんらしさに近くて渡したい。",
+    "inner_thought": "今日何本も送ったし黙りたい。でも明日・明後日の候補になる週末イベント情報、今夜が一番タイミングいい",
     "plan": [
-      "ペット専用キャンピングカーの話題を共有",
-      "Camroad RV動画を共有",
-      "沈黙せず短く週末ネタを置く"
+      "週末無料イベント情報を共有",
+      "沈黙",
+      "彩の国の春スポット共有"
     ],
     "generate_score": [
-      0.82,
-      0.58,
-      0.61
+      0.67,
+      0.72,
+      0.58
     ],
-    "evaluate_score": 0.72,
-    "timestamp": "2026-05-08T10:30:30.957Z",
+    "evaluate_score": 0.65,
+    "timestamp": "2026-05-08T11:31:07.857Z",
     "skill": "none",
     "scoredCandidates": [
       {
-        "topic": "DX・AI・新規事業──”今の制度のままで、本当に人は育ちますか？” 変革期に求められる人事制度・運用の視点 - PR TIMES",
-        "source": "interest-cache",
-        "category": "business_strategy",
-        "scores": {
-          "timeliness": 0.7710785300925926,
-          "novelty": 0.1,
-          "continuity": 0.9,
-          "emotional_fit": 0.5,
-          "affinity": 0.4,
-          "surprise": 0.7
-        },
-        "finalScore": 0.8380869845982497,
-        "explorationBonus": 0.21370034292403778,
-        "selectionScore": 1.0517873275222875,
-        "reasoning": "会話の流れに沿う・タイムリー（interest-cache）"
-      },
-      {
-        "topic": "$26k Cheaper!? 2026 All-New Toyota Camroad RV Full Tour[SUB]",
+        "topic": "アウトドアで映える存在感！“バッタ”モチーフの個性派カスタムカーに注目 - ｄメニューニュース",
         "source": "interest-cache",
         "category": "campingcar",
         "scores": {
-          "timeliness": 0.3,
+          "timeliness": 0.7790599189814815,
           "novelty": 0.1,
           "continuity": 0.9,
           "emotional_fit": 0.5,
           "affinity": 0.4,
           "surprise": 0.7
         },
-        "finalScore": 0.7079658950175383,
+        "finalScore": 0.7328035936784156,
         "explorationBonus": 0.3,
-        "selectionScore": 1.0079658950175383,
-        "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）"
-      },
-      {
-        "topic": "ペット専用キャンピングカー、CAMBYが出展へ…FIELDSTYLE TOKYO 2026 1枚目の写真・画像 - レスポンス（Response.jp）",
-        "source": "interest-cache",
-        "category": "campingcar",
-        "scores": {
-          "timeliness": 0.8124444212962963,
-          "novelty": 0.1,
-          "continuity": 0.9,
-          "emotional_fit": 0.5,
-          "affinity": 0.4,
-          "surprise": 0.7
-        },
-        "finalScore": 0.6980770034688368,
-        "explorationBonus": 0.3,
-        "selectionScore": 0.9980770034688369,
+        "selectionScore": 1.0328035936784157,
         "reasoning": "会話の流れに沿う・タイムリー（interest-cache）"
-      },
-      {
-        "topic": "ペット専用キャンピングカー、CAMBYが出展へ…FIELDSTYLE TOKYO 2026 - レスポンス（Response.jp）",
-        "source": "interest-cache",
-        "category": "campingcar",
-        "scores": {
-          "timeliness": 0.8124444097222222,
-          "novelty": 0.1,
-          "continuity": 0.9,
-          "emotional_fit": 0.5,
-          "affinity": 0.4,
-          "surprise": 0.7
-        },
-        "finalScore": 0.6980770010410309,
-        "explorationBonus": 0.3,
-        "selectionScore": 0.9980770010410309,
-        "reasoning": "会話の流れに沿う・タイムリー（interest-cache）"
-      },
-      {
-        "topic": "Taylor’s Tee Time: Florida State head women’s golf coach Amy Bond - WCTV",
-        "source": "interest-cache",
-        "category": "_cross",
-        "scores": {
-          "timeliness": 0.6696418209876543,
-          "novelty": 0.1,
-          "continuity": 0.3,
-          "emotional_fit": 0.5,
-          "affinity": 0.5,
-          "surprise": 0.9
-        },
-        "finalScore": 0.5832288483242237,
-        "explorationBonus": 0.4,
-        "selectionScore": 0.9832288483242237,
-        "reasoning": "意外・サプライズ・タイムリー（interest-cache）"
       },
       {
         "topic": "アカデミー賞俳優、フジテレビ番組に出演 今回の来日で唯一のバラエティ収録… 出演者ド緊張、涙も「今までにない」 - オリコンニュース",
         "source": "interest-cache",
         "category": "tv_drama",
         "scores": {
-          "timeliness": 0.756147650462963,
+          "timeliness": 0.7381586844135802,
           "novelty": 0.1,
           "continuity": 0.3,
-          "emotional_fit": 0.5,
+          "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.6761570780916109,
+        "finalScore": 0.6630224276640162,
         "explorationBonus": 0.3,
-        "selectionScore": 0.9761570780916109,
-        "reasoning": "タイムリー・意外・サプライズ（interest-cache）"
+        "selectionScore": 0.9630224276640162,
+        "reasoning": "気分に合う・タイムリー（interest-cache）"
       },
       {
         "topic": "ホロライブ×「いきなり！ステーキ」コラボが開催決定！今年は常MOSグッズとコラボフードに装飾店舗も 4枚目の写真・画像 - インサイド",
         "source": "interest-cache",
         "category": "food_dining",
         "scores": {
-          "timeliness": 0.7106256481481481,
+          "timeliness": 0.6967351195987654,
           "novelty": 0.1,
           "continuity": 0.3,
-          "emotional_fit": 0.5,
+          "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.6666082723934853,
+        "finalScore": 0.6531552780926886,
         "explorationBonus": 0.3,
-        "selectionScore": 0.9666082723934852,
-        "reasoning": "タイムリー・意外・サプライズ（interest-cache）"
+        "selectionScore": 0.9531552780926886,
+        "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
       },
       {
-        "topic": "トイファクトリー、最新キャンピングカー出展へ…FIELDSTYLE TOKYO 2026 - kakaku.com",
+        "topic": "イム・ジヨン、アイユー・シン・ヘソンと週末ドラマで激突...『素晴らしき新世界』で流れを変えられるか [突破口] - 매일경제",
         "source": "interest-cache",
-        "category": "campingcar",
+        "category": "tv_drama",
         "scores": {
-          "timeliness": 0.6457993672839506,
+          "timeliness": 0.7199217978395062,
           "novelty": 0.1,
-          "continuity": 0.9,
-          "emotional_fit": 0.5,
-          "affinity": 0.4,
+          "continuity": 0.3,
+          "emotional_fit": 0.9,
+          "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.6631211324525995,
+        "finalScore": 0.6383215398633956,
         "explorationBonus": 0.3,
-        "selectionScore": 0.9631211324525994,
-        "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）"
-      },
-      {
-        "topic": "ロボット連携AI外観検査の最新ソリューションを実演 「関西ネプコン ジャパン」にPhoxterが出展 - ロボスタ",
-        "source": "interest-cache",
-        "category": "business_strategy",
-        "scores": {
-          "timeliness": 0.8332660416666666,
-          "novelty": 0.1,
-          "continuity": 0.9,
-          "emotional_fit": 0.5,
-          "affinity": 0.4,
-          "surprise": 0.7
-        },
-        "finalScore": 0.7411315879696947,
-        "explorationBonus": 0.21370034292403778,
-        "selectionScore": 0.9548319308937325,
-        "reasoning": "会話の流れに沿う・タイムリー（interest-cache）"
+        "selectionScore": 0.9383215398633955,
+        "reasoning": "気分に合う・タイムリー（interest-cache）"
       },
       {
         "topic": "＜画像1 / 16＞1000本の桜と菜の花畑で幸せ色に染まる彩の国の春 - ウォーカープラス",
         "source": "interest-cache",
         "category": "weather_seasonal",
         "scores": {
-          "timeliness": 0.6861580401234568,
+          "timeliness": 0.672267511574074,
           "novelty": 0.1,
           "continuity": 0.3,
-          "emotional_fit": 0.5,
+          "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.6526691493842306,
+        "finalScore": 0.638282199747902,
         "explorationBonus": 0.3,
-        "selectionScore": 0.9526691493842305,
+        "selectionScore": 0.9382821997479021,
+        "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
+      },
+      {
+        "topic": "DX・AI・新規事業──”今の制度のままで、本当に人は育ちますか？” 変革期に求められる人事制度・運用の視点 - PR TIMES",
+        "source": "interest-cache",
+        "category": "business_strategy",
+        "scores": {
+          "timeliness": 0.7431356558641975,
+          "novelty": 0.1,
+          "continuity": 0.9,
+          "emotional_fit": 0.5,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.7242463852632868,
+        "explorationBonus": 0.21370034292403778,
+        "selectionScore": 0.9379467281873246,
+        "reasoning": "会話の流れに沿う・タイムリー（interest-cache）"
+      },
+      {
+        "topic": "【関東】2026年5月9日・10日週末開催の無料イベント20選 グルメフェス＆フリマも満喫 - いこーよニュース",
+        "source": "interest-cache",
+        "category": "local_tokorozawa",
+        "scores": {
+          "timeliness": 0.6469165007716049,
+          "novelty": 0.1,
+          "continuity": 0.3,
+          "emotional_fit": 0.9,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.6392773508232388,
+        "explorationBonus": 0.2617283990108391,
+        "selectionScore": 0.9010057498340779,
+        "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
+      },
+      {
+        "topic": "TACTICA AI、ミッションクリティカルなリアルタイム運用判断を支援する地域初のAIプラットフォームを発表 - Business Wire",
+        "source": "interest-cache",
+        "category": "llm_local",
+        "scores": {
+          "timeliness": 0.6946403742283951,
+          "novelty": 0.1,
+          "continuity": 0.3,
+          "emotional_fit": 0.5,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.5922903731396665,
+        "explorationBonus": 0.3,
+        "selectionScore": 0.8922903731396665,
         "reasoning": "意外・サプライズ・タイムリー（interest-cache）"
+      },
+      {
+        "topic": "ペット専用キャンピングカー、CAMBYが出展へ…FIELDSTYLE TOKYO 2026 - レスポンス（Response.jp）",
+        "source": "interest-cache",
+        "category": "campingcar",
+        "scores": {
+          "timeliness": 0.7707728703703703,
+          "novelty": 0.1,
+          "continuity": 0.9,
+          "emotional_fit": 0.5,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.5919044939175159,
+        "explorationBonus": 0.3,
+        "selectionScore": 0.8919044939175158,
+        "reasoning": "会話の流れに沿う・タイムリー（interest-cache）"
+      },
+      {
+        "topic": "森町で「1億円桜」見頃 ふるさと納税返礼品 命名権公募、10月末まで - 47NEWS",
+        "source": "interest-cache",
+        "category": "weather_seasonal",
+        "scores": {
+          "timeliness": 0.46869639467592594,
+          "novelty": 0.1,
+          "continuity": 0.3,
+          "emotional_fit": 0.9,
+          "affinity": 0.5,
+          "surprise": 0.7
+        },
+        "finalScore": 0.5897912823723441,
+        "explorationBonus": 0.3,
+        "selectionScore": 0.8897912823723442,
+        "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
       }
     ],
     "weightsUsed": {
-      "timeliness": 0.2097624272343995,
-      "novelty": 0.08843037693906215,
-      "continuity": 0.2870918350877134,
-      "emotional_fit": 0.10405682479398146,
-      "affinity": 0.13457132097844973,
-      "surprise": 0.17608721496639376
+      "timeliness": 0.23820136232695094,
+      "novelty": 0.29384872365580555,
+      "continuity": 0.14710909655750984,
+      "emotional_fit": 0.06553989329865414,
+      "affinity": 0.02011064395573121,
+      "surprise": 0.23519028020534818
     },
     "sampledRaw": {
-      "timeliness": 0.2622030340429994,
-      "novelty": 0.11053797117382769,
-      "continuity": 0.25886479385964173,
-      "emotional_fit": 0.13007103099247683,
-      "affinity": 0.16821415122306216,
-      "surprise": 0.0701090187079922
+      "timeliness": 0.29775170290868874,
+      "novelty": 0.367310904569757,
+      "continuity": 0.08388637069688733,
+      "emotional_fit": 0.0819248666233177,
+      "affinity": 0.025138304944664017,
+      "surprise": 0.1439878502566853
     },
     "contextBonus": {
       "timeliness": 0,
@@ -5976,7 +5978,7 @@
   },
   "lastOAuthNotifyDate": "2026-04-26",
   "themeInventory": {
-    "updatedAt": "2026-05-08T10:30:08.771Z",
+    "updatedAt": "2026-05-08T11:30:09.185Z",
     "records": [
       {
         "themeKey": "sports/mlb/dodgers/schedule/preview",
@@ -6011,7 +6013,7 @@
           "personal/travel-tech/dev/ai-tools"
         ],
         "rootKey": "personal/personal/travel-tech",
-        "availableCount": 24,
+        "availableCount": 21,
         "sentFreshCount": 0,
         "sent30dCount": 5,
         "positive30dCount": 0,
@@ -6019,7 +6021,7 @@
         "positiveRate30d": 0,
         "uniqueSources30d": 7,
         "targetCount": 5,
-        "supplyGap": -19,
+        "supplyGap": -16,
         "rotationGap": 5,
         "freshnessDays": 7,
         "freshnessScore": 0,
@@ -6149,7 +6151,7 @@
           "kpi"
         ],
         "rootKey": "business/consulting",
-        "availableCount": 16,
+        "availableCount": 15,
         "sentFreshCount": 0,
         "sent30dCount": 0,
         "positive30dCount": 0,
@@ -6157,7 +6159,7 @@
         "positiveRate30d": 0.5,
         "uniqueSources30d": 0,
         "targetCount": 4,
-        "supplyGap": -12,
+        "supplyGap": -11,
         "rotationGap": 4,
         "freshnessDays": 10,
         "freshnessScore": 1,
@@ -6208,6 +6210,29 @@
         "freshnessDays": 7,
         "freshnessScore": 0,
         "lastSentAt": "2026-04-30T08:30:56.308Z"
+      },
+      {
+        "themeKey": "sports/golf/tournament/news",
+        "themePath": [
+          "sports",
+          "golf",
+          "tournament",
+          "news"
+        ],
+        "rootKey": "sports/golf",
+        "availableCount": 2,
+        "sentFreshCount": 0,
+        "sent30dCount": 0,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0.5,
+        "uniqueSources30d": 0,
+        "targetCount": 4,
+        "supplyGap": 2,
+        "rotationGap": 4,
+        "freshnessDays": 5,
+        "freshnessScore": 1,
+        "lastSentAt": null
       },
       {
         "themeKey": "ai/local-llm/deploy/server",
@@ -6279,6 +6304,29 @@
         "lastSentAt": "2026-04-27T05:30:51.811Z"
       },
       {
+        "themeKey": "ai/enterprise/anthropic/security",
+        "themePath": [
+          "ai",
+          "enterprise",
+          "anthropic",
+          "security"
+        ],
+        "rootKey": "ai/enterprise",
+        "availableCount": 1,
+        "sentFreshCount": 0,
+        "sent30dCount": 0,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0.5,
+        "uniqueSources30d": 0,
+        "targetCount": 4,
+        "supplyGap": 3,
+        "rotationGap": 4,
+        "freshnessDays": 7,
+        "freshnessScore": 1,
+        "lastSentAt": null
+      },
+      {
         "themeKey": "ai/local-llm/browser/webgpu",
         "themePath": [
           "ai",
@@ -6298,29 +6346,6 @@
         "supplyGap": 3,
         "rotationGap": 4,
         "freshnessDays": 7,
-        "freshnessScore": 1,
-        "lastSentAt": null
-      },
-      {
-        "themeKey": "sports/golf/tournament/news",
-        "themePath": [
-          "sports",
-          "golf",
-          "tournament",
-          "news"
-        ],
-        "rootKey": "sports/golf",
-        "availableCount": 1,
-        "sentFreshCount": 0,
-        "sent30dCount": 0,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0.5,
-        "uniqueSources30d": 0,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 4,
-        "freshnessDays": 5,
         "freshnessScore": 1,
         "lastSentAt": null
       },
@@ -6528,35 +6553,13 @@
         "lastSentAt": null
       },
       {
-        "themeKey": "sports/mlb/dodgers/cogmem/shohei-ohtani-on",
+        "themeKey": "misc/cogmem/inside-the-mechanics",
         "themePath": [
-          "sports/mlb/dodgers",
+          "misc",
           "cogmem",
-          "shohei-ohtani-on"
+          "inside-the-mechanics"
         ],
-        "rootKey": "sports/mlb/dodgers/cogmem",
-        "availableCount": 1,
-        "sentFreshCount": 0,
-        "sent30dCount": 0,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0.5,
-        "uniqueSources30d": 0,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 4,
-        "freshnessDays": 7,
-        "freshnessScore": 1,
-        "lastSentAt": null
-      },
-      {
-        "themeKey": "sports/mlb/dodgers/cogmem/atlanta-braves-vs",
-        "themePath": [
-          "sports/mlb/dodgers",
-          "cogmem",
-          "atlanta-braves-vs"
-        ],
-        "rootKey": "sports/mlb/dodgers/cogmem",
+        "rootKey": "misc",
         "availableCount": 1,
         "sentFreshCount": 0,
         "sent30dCount": 0,
@@ -6664,6 +6667,30 @@
         "lastSentAt": "2026-04-27T02:30:34.241Z"
       },
       {
+        "themeKey": "sports/mlb/dodgers/ohtani/home-run",
+        "themePath": [
+          "sports",
+          "sports/mlb",
+          "sports/mlb/dodgers",
+          "sports/mlb/dodgers/ohtani",
+          "sports/mlb/dodgers/ohtani/home-run"
+        ],
+        "rootKey": "sports/sports/mlb",
+        "availableCount": 7,
+        "sentFreshCount": 2,
+        "sent30dCount": 5,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 6,
+        "targetCount": 5,
+        "supplyGap": -2,
+        "rotationGap": 3,
+        "freshnessDays": 7,
+        "freshnessScore": 0.9881378720238095,
+        "lastSentAt": "2026-05-08T09:30:34.970Z"
+      },
+      {
         "themeKey": "lifestyle/food-wellness/onsen",
         "themePath": [
           "lifestyle",
@@ -6682,32 +6709,8 @@
         "supplyGap": -1,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.9881348230820106,
+        "freshnessScore": 0.98218175760582,
         "lastSentAt": "2026-05-08T08:30:32.712Z"
-      },
-      {
-        "themeKey": "sports/mlb/dodgers/ohtani/home-run",
-        "themePath": [
-          "sports",
-          "sports/mlb",
-          "sports/mlb/dodgers",
-          "sports/mlb/dodgers/ohtani",
-          "sports/mlb/dodgers/ohtani/home-run"
-        ],
-        "rootKey": "sports/sports/mlb",
-        "availableCount": 5,
-        "sentFreshCount": 2,
-        "sent30dCount": 5,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 6,
-        "targetCount": 5,
-        "supplyGap": 0,
-        "rotationGap": 3,
-        "freshnessDays": 7,
-        "freshnessScore": 0.9940909375,
-        "lastSentAt": "2026-05-08T09:30:34.970Z"
       },
       {
         "themeKey": "personal/travel-tech/pet/cat-health",
@@ -6753,7 +6756,7 @@
         "supplyGap": 2,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.27983154596560844,
+        "freshnessScore": 0.273878480489418,
         "lastSentAt": "2026-05-03T09:30:50.890Z"
       },
       {
@@ -6777,7 +6780,7 @@
         "supplyGap": 2,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.21734410218253963,
+        "freshnessScore": 0.21139103670634918,
         "lastSentAt": "2026-05-02T23:00:58.484Z"
       },
       {
@@ -6801,7 +6804,7 @@
         "supplyGap": 3,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.0834204067460318,
+        "freshnessScore": 0.07746734126984123,
         "lastSentAt": "2026-05-02T00:31:01.433Z"
       },
       {
@@ -6823,7 +6826,7 @@
         "supplyGap": 3,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.24711315806878298,
+        "freshnessScore": 0.24116009259259263,
         "lastSentAt": "2026-05-03T04:01:02.809Z"
       },
       {
@@ -6846,8 +6849,31 @@
         "supplyGap": 3,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.8007005555555555,
+        "freshnessScore": 0.7947474900793651,
         "lastSentAt": "2026-05-07T01:01:12.467Z"
+      },
+      {
+        "themeKey": "ai/enterprise/openai/models",
+        "themePath": [
+          "ai",
+          "ai/enterprise",
+          "ai/enterprise/openai",
+          "ai/enterprise/openai/models"
+        ],
+        "rootKey": "ai/ai/enterprise",
+        "availableCount": 1,
+        "sentFreshCount": 0,
+        "sent30dCount": 1,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 2,
+        "targetCount": 3,
+        "supplyGap": 2,
+        "rotationGap": 3,
+        "freshnessDays": 7,
+        "freshnessScore": 0,
+        "lastSentAt": "2026-04-29T10:30:50.219Z"
       },
       {
         "themeKey": "personal/travel-tech/travel",
@@ -6965,29 +6991,6 @@
         "lastSentAt": "2026-04-28T23:30:49.373Z"
       },
       {
-        "themeKey": "ai/enterprise/openai/models",
-        "themePath": [
-          "ai",
-          "ai/enterprise",
-          "ai/enterprise/openai",
-          "ai/enterprise/openai/models"
-        ],
-        "rootKey": "ai/ai/enterprise",
-        "availableCount": 0,
-        "sentFreshCount": 0,
-        "sent30dCount": 1,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 2,
-        "targetCount": 3,
-        "supplyGap": 3,
-        "rotationGap": 3,
-        "freshnessDays": 7,
-        "freshnessScore": 0,
-        "lastSentAt": "2026-04-29T10:30:50.219Z"
-      },
-      {
         "themeKey": "lifestyle/food-wellness/spa/king-queen",
         "themePath": [
           "lifestyle",
@@ -7007,7 +7010,7 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.10721006448412695,
+        "freshnessScore": 0.1012569990079365,
         "lastSentAt": "2026-05-02T04:30:49.418Z"
       },
       {
@@ -7044,18 +7047,18 @@
         ],
         "rootKey": "sports/sports/mlb",
         "availableCount": 0,
-        "sentFreshCount": 0,
-        "sent30dCount": 1,
+        "sentFreshCount": 1,
+        "sent30dCount": 2,
         "positive30dCount": 0,
         "negative30dCount": 0,
         "positiveRate30d": 0,
-        "uniqueSources30d": 2,
-        "targetCount": 3,
-        "supplyGap": 3,
+        "uniqueSources30d": 3,
+        "targetCount": 4,
+        "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0,
-        "lastSentAt": "2026-04-30T05:31:07.502Z"
+        "freshnessScore": 0.9971356977513227,
+        "lastSentAt": "2026-05-08T11:01:16.855Z"
       },
       {
         "themeKey": "lifestyle/food-wellness/motor-fan/ハイエースベースキャブコン-全長5m以下で大人6人",
@@ -7122,7 +7125,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.2768829761904762,
+        "freshnessScore": 0.27092991071428574,
         "lastSentAt": "2026-05-03T09:01:07.595Z"
       },
       {
@@ -7145,7 +7148,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9792677347883598,
+        "freshnessScore": 0.9733146693121693,
         "lastSentAt": "2026-05-08T07:01:09.897Z"
       },
       {
@@ -7167,7 +7170,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9822291319444445,
+        "freshnessScore": 0.9762760664682539,
         "lastSentAt": "2026-05-08T07:31:00.950Z"
       },
       {
@@ -7189,7 +7192,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7977037003968254,
+        "freshnessScore": 0.7917506349206349,
         "lastSentAt": "2026-05-07T00:30:59.969Z"
       },
       {
@@ -7213,8 +7216,31 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.11913549272486779,
+        "freshnessScore": 0.11318242724867722,
         "lastSentAt": "2026-05-02T06:31:01.917Z"
+      },
+      {
+        "themeKey": "ai/enterprise/agent/orchestration",
+        "themePath": [
+          "ai",
+          "ai/enterprise",
+          "ai/enterprise/agent",
+          "ai/enterprise/agent/orchestration"
+        ],
+        "rootKey": "ai/ai/enterprise",
+        "availableCount": 2,
+        "sentFreshCount": 2,
+        "sent30dCount": 2,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 4,
+        "targetCount": 4,
+        "supplyGap": 2,
+        "rotationGap": 2,
+        "freshnessDays": 7,
+        "freshnessScore": 0.821527199074074,
+        "lastSentAt": "2026-05-07T05:31:08.835Z"
       },
       {
         "themeKey": "entertainment/movie-drama/vivant",
@@ -7235,7 +7261,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.794784537037037,
+        "freshnessScore": 0.7888314715608465,
         "lastSentAt": "2026-05-07T00:01:34.459Z"
       },
       {
@@ -7257,31 +7283,8 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5298371577380951,
+        "freshnessScore": 0.5238840922619048,
         "lastSentAt": "2026-05-05T03:30:54.284Z"
-      },
-      {
-        "themeKey": "ai/enterprise/agent/orchestration",
-        "themePath": [
-          "ai",
-          "ai/enterprise",
-          "ai/enterprise/agent",
-          "ai/enterprise/agent/orchestration"
-        ],
-        "rootKey": "ai/ai/enterprise",
-        "availableCount": 1,
-        "sentFreshCount": 2,
-        "sent30dCount": 2,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 4,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 2,
-        "freshnessDays": 7,
-        "freshnessScore": 0.8274802645502646,
-        "lastSentAt": "2026-05-07T05:31:08.835Z"
       },
       {
         "themeKey": "entertainment/movie-drama/tv/drama",
@@ -7303,7 +7306,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.16369881779100537,
+        "freshnessScore": 0.1577457523148148,
         "lastSentAt": "2026-05-02T14:00:13.816Z"
       },
       {
@@ -7325,7 +7328,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.2411548115079365,
+        "freshnessScore": 0.23520174603174604,
         "lastSentAt": "2026-05-03T03:00:59.201Z"
       },
       {
@@ -7349,7 +7352,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.82452146494709,
+        "freshnessScore": 0.8185683994708994,
         "lastSentAt": "2026-05-07T05:01:19.353Z"
       },
       {
@@ -7372,7 +7375,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9970566550925926,
+        "freshnessScore": 0.9911035896164021,
         "lastSentAt": "2026-05-08T10:00:28.636Z"
       },
       {
@@ -7396,7 +7399,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.29471576884920636,
+        "freshnessScore": 0.2887627033730159,
         "lastSentAt": "2026-05-03T12:00:52.868Z"
       },
       {
@@ -7418,7 +7421,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.0060338855820105675,
+        "freshnessScore": 0.0000808201058201119,
         "lastSentAt": "2026-05-01T11:30:58.065Z"
       },
       {
@@ -7440,7 +7443,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.12506582837301583,
+        "freshnessScore": 0.11911276289682537,
         "lastSentAt": "2026-05-02T07:30:48.584Z"
       },
       {
@@ -7464,7 +7467,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.14295907076719583,
+        "freshnessScore": 0.13700600529100526,
         "lastSentAt": "2026-05-02T10:31:10.417Z"
       },
       {
@@ -7487,7 +7490,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.2382012814153439,
+        "freshnessScore": 0.23224821593915335,
         "lastSentAt": "2026-05-03T02:31:12.906Z"
       },
       {
@@ -7510,7 +7513,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.26199040013227515,
+        "freshnessScore": 0.2560373346560846,
         "lastSentAt": "2026-05-03T06:31:00.565Z"
       },
       {
@@ -7533,7 +7536,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9852424404761905,
+        "freshnessScore": 0.979289375,
         "lastSentAt": "2026-05-08T08:01:23.399Z"
       },
       {
@@ -7557,7 +7560,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.809600539021164,
+        "freshnessScore": 0.8036474735449736,
         "lastSentAt": "2026-05-07T02:30:55.177Z"
       },
       {
@@ -7580,7 +7583,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8215153158068783,
+        "freshnessScore": 0.8155622503306879,
         "lastSentAt": "2026-05-07T04:31:01.234Z"
       },
       {
@@ -7602,7 +7605,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.22927980985449736,
+        "freshnessScore": 0.2233267443783069,
         "lastSentAt": "2026-05-03T01:01:17.200Z"
       },
       {
@@ -7625,7 +7628,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5268846114417989,
+        "freshnessScore": 0.5209315459656084,
         "lastSentAt": "2026-05-05T03:01:08.584Z"
       },
       {
@@ -7649,7 +7652,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8066662599206349,
+        "freshnessScore": 0.8007131944444444,
         "lastSentAt": "2026-05-07T02:01:20.525Z"
       },
       {
@@ -7661,7 +7664,7 @@
           "personal/travel-tech/campingcar/route"
         ],
         "rootKey": "personal/personal/travel-tech",
-        "availableCount": 4,
+        "availableCount": 3,
         "sentFreshCount": 5,
         "sent30dCount": 6,
         "positive30dCount": 0,
@@ -7669,10 +7672,10 @@
         "positiveRate30d": 0,
         "uniqueSources30d": 7,
         "targetCount": 5,
-        "supplyGap": 1,
+        "supplyGap": 2,
         "rotationGap": 0,
         "freshnessDays": 7,
-        "freshnessScore": 0.5328252281746031,
+        "freshnessScore": 0.5268721626984127,
         "lastSentAt": "2026-05-05T04:01:01.469Z"
       },
       {
@@ -7695,7 +7698,7 @@
         "supplyGap": 5,
         "rotationGap": 0,
         "freshnessDays": 7,
-        "freshnessScore": 0.7917505638227513,
+        "freshnessScore": 0.7857974983465609,
         "lastSentAt": "2026-05-06T23:30:59.512Z"
       }
     ]
