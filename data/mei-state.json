@@ -16,47 +16,6 @@
   },
   "history": [
     {
-      "id": "3f0489fa-7ee3-450f-a7a5-0b349ab85618",
-      "category": "flashback",
-      "interestCategory": "general",
-      "sentAt": "2026-04-24T01:01:02.688Z",
-      "slackTs": "1776992463.267679",
-      "slackChannel": "U3SFGQXNH",
-      "reaction": null,
-      "reactionDelta": 0,
-      "preview": "あ、Akiraさん。\n\n*【ヤフコメで話題】「専門家による“詰問”はハラスメントか」「若者とハラスメントの* がYahoo!ニュースに出てた。",
-      "fullText": "あ、Akiraさん。\n\n*【ヤフコメで話題】「専門家による“詰問”はハラスメントか」「若者とハラスメントの* がYahoo!ニュースに出てた。",
-      "sourceUrls": [],
-      "candidateUrl": "",
-      "skill": "hobby-trigger",
-      "sources": [
-        "calendar",
-        "email",
-        "interest-cache"
-      ],
-      "intrinsicReward": {
-        "signals": [
-          {
-            "id": "M2-b",
-            "mission": 2,
-            "value": 0.1,
-            "reason": "無反応が続く中で送信を控えた"
-          }
-        ],
-        "immediateTotal": 0.1,
-        "deferredTotal": 0,
-        "compositeBoost": 0
-      },
-      "emotionTag": "neutral",
-      "themePath": [
-        "sports",
-        "sports/mlb",
-        "sports/mlb/dodgers",
-        "sports/mlb/dodgers/fan-reaction"
-      ],
-      "themeKey": "sports/mlb/dodgers/fan-reaction"
-    },
-    {
       "id": "15bf428c-5138-4b68-9e11-6523c3ae529d",
       "category": "flashback",
       "interestCategory": "general",
@@ -5370,11 +5329,65 @@
         "sports/mlb/dodgers/fan-reaction"
       ],
       "themeKey": "sports/mlb/dodgers/fan-reaction"
+    },
+    {
+      "id": "b87dd08b-6197-4721-b8d0-cbf48a85fd72",
+      "category": "flashback",
+      "interestCategory": "ai_agent",
+      "sentAt": "2026-05-08T12:01:19.573Z",
+      "slackTs": "1778241679.858989",
+      "slackChannel": "U3SFGQXNH",
+      "reaction": null,
+      "reactionDelta": 0,
+      "preview": "あ、そうだ。\n\nライブドアニュースに *PixVerse完全ガイド* って記事が出てたよ。Seedance 2.0とかGPT Image 2とか、動画・画像生成AIをまとめて使えるプラットフォームらしい 🎬\n\n寝る前にさらっと眺めるのにち",
+      "fullText": "あ、そうだ。\n\nライブドアニュースに *PixVerse完全ガイド* って記事が出てたよ。Seedance 2.0とかGPT Image 2とか、動画・画像生成AIをまとめて使えるプラットフォームらしい 🎬\n\n寝る前にさらっと眺めるのにちょうどいいかも。\nhttps://news.google.com/rss/articles/CBMiX0FVX3lxTE5TREp0cGFWc2xPemlxUHpFTFZfbWJzUFhidi1xb081OEtKcnNRclVHcmE5NnBFSklBNEFmM3Z2MUkyTzRPck1iQ01yX0hlM01UNkRBOTZ5a2VFTV9sYXhN",
+      "sourceUrls": [
+        {
+          "title": "PixVerse完全ガイド（動画生成AI統合）",
+          "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5TREp0cGFWc2xPemlxUHpFTFZfbWJzUFhidi1xb081OEtKcnNRclVHcmE5NnBFSklBNEFmM3Z2MUkyTzRPck1iQ01yX0hlM01UNkRBOTZ5a2VFTV9sYXhN",
+          "source": "topic-table"
+        }
+      ],
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiX0FVX3lxTE5TREp0cGFWc2xPemlxUHpFTFZfbWJzUFhidi1xb081OEtKcnNRclVHcmE5NnBFSklBNEFmM3Z2MUkyTzRPck1iQ01yX0hlM01UNkRBOTZ5a2VFTV9sYXhN",
+      "candidateTopic": "PixVerse完全ガイド（動画生成AI統合）",
+      "candidateUrl": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5TREp0cGFWc2xPemlxUHpFTFZfbWJzUFhidi1xb081OEtKcnNRclVHcmE5NnBFSklBNEFmM3Z2MUkyTzRPck1iQ01yX0hlM01UNkRBOTZ5a2VFTV9sYXhN",
+      "candidateSource": "topic-table",
+      "skill": "general",
+      "sources": [
+        "calendar",
+        "email",
+        "interest-cache"
+      ],
+      "intrinsicReward": {
+        "signals": [],
+        "immediateTotal": 0,
+        "deferredTotal": 0,
+        "compositeBoost": 0
+      },
+      "premise": {
+        "estimatedMode": "探索モード・回復中",
+        "modeReason": "金曜21時、休日で会議と病院を終え、夜のリラックスタイムに入っている。明日は免許更新のみで比較的余裕がある",
+        "targetLayer": 4,
+        "layerReason": "AI開発を継続しているAkiraさんに、実行層で使える技術情報を提供する好機",
+        "interventionType": "情報提供",
+        "interventionReason": "動画生成AIの統合プラットフォーム情報は、AI開発に関心のあるAkiraさんの知識を広げる",
+        "reason": "金曜夜のリラックスタイムに、仕事寄りだけど軽く眺められるAI技術ネタを1つ",
+        "informationGap": null,
+        "collectionHint": null
+      },
+      "emotionTag": "calm",
+      "themePath": [
+        "ai",
+        "ai/enterprise",
+        "ai/enterprise/openai",
+        "ai/enterprise/openai/models"
+      ],
+      "themeKey": "ai/enterprise/openai/models"
     }
   ],
-  "lastCheckAt": "2026-05-08T11:01:16.853Z",
+  "lastCheckAt": "2026-05-08T12:01:19.572Z",
   "stats": {
-    "totalSent": 639,
+    "totalSent": 640,
     "positiveReactions": 56,
     "negativeReactions": 2
   },
@@ -5438,51 +5451,89 @@
         "sports/mlb/dodgers/fan-reaction"
       ],
       "themeKey": "sports/mlb/dodgers/fan-reaction"
+    },
+    {
+      "time": "21:01",
+      "summary": "PixVerse完全ガイド（動画生成AI統合）",
+      "source": "topic-table",
+      "interestCategory": "ai_agent",
+      "topic": "PixVerse完全ガイド（動画生成AI統合）",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5TREp0cGFWc2xPemlxUHpFTFZfbWJzUFhidi1xb081OEtKcnNRclVHcmE5NnBFSklBNEFmM3Z2MUkyTzRPck1iQ01yX0hlM01UNkRBOTZ5a2VFTV9sYXhN",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiX0FVX3lxTE5TREp0cGFWc2xPemlxUHpFTFZfbWJzUFhidi1xb081OEtKcnNRclVHcmE5NnBFSklBNEFmM3Z2MUkyTzRPck1iQ01yX0hlM01UNkRBOTZ5a2VFTV9sYXhN",
+      "themePath": [
+        "ai",
+        "ai/enterprise",
+        "ai/enterprise/openai",
+        "ai/enterprise/openai/models"
+      ],
+      "themeKey": "ai/enterprise/openai/models"
     }
   ],
   "todayDate": "2026-05-08",
   "lastDecisionLog": {
+    "premise": {
+      "estimatedMode": "探索モード・回復中",
+      "modeReason": "金曜21時、休日で会議と病院を終え、夜のリラックスタイムに入っている。明日は免許更新のみで比較的余裕がある",
+      "targetLayer": 4,
+      "layerReason": "AI開発を継続しているAkiraさんに、実行層で使える技術情報を提供する好機",
+      "interventionType": "情報提供",
+      "interventionReason": "動画生成AIの統合プラットフォーム情報は、AI開発に関心のあるAkiraさんの知識を広げる",
+      "reason": "金曜夜のリラックスタイムに、仕事寄りだけど軽く眺められるAI技術ネタを1つ",
+      "informationGap": null,
+      "collectionHint": null
+    },
     "decision": "send",
-    "need": "",
-    "reason": "generated message",
-    "candidates": [],
-    "message": "ちょっと気になったんだけど。\n\nWCTVで *Taylor’s Tee Time: Florida State head wo* の話題があったよ。",
-    "topicWeight": "medium",
-    "timestamp": "2026-05-08T11:01:16.853Z",
+    "need": "知的好奇心・技術トレンドの把握",
+    "reason": "AI開発者として動画生成AI統合プラットフォームの動向は参考になる",
+    "candidates": [
+      {
+        "topic": "PixVerse完全ガイド（動画生成AI統合）",
+        "source": "topic-table",
+        "score": 0.8
+      },
+      {
+        "topic": "バッタモチーフのカスタムカー",
+        "source": "topic-table",
+        "score": 0.78
+      },
+      {
+        "topic": "アカデミー賞俳優フジテレビ出演",
+        "source": "topic-table",
+        "score": 0.72
+      }
+    ],
+    "message": "あ、そうだ。\n\nライブドアニュースに *PixVerse完全ガイド* って記事が出てたよ。Seedance 2.0とかGPT Image 2とか、動画・画像生成AIをまとめて使えるプラットフォームらしい 🎬\n\n寝る前にさらっと眺めるのにちょうどいいかも。\nhttps://news.google.com/rss/articles/CBMiX0FVX3lxTE5TREp0cGFWc2xPemlxUHpFTFZfbWJzUFhidi1xb081OEtKcnNRclVHcmE5NnBFSklBNEFmM3Z2MUkyTzRPck1iQ01yX0hlM01UNkRBOTZ5a2VFTV9sYXhN",
+    "topicWeight": "light",
+    "inner_thought": "今日は結構話しかけたけど、PixVerseの話はAI開発してるAkiraさんに刺さりそう。夜だし軽めに",
+    "plan": [
+      "PixVerse動画生成AIガイドを共有",
+      "カスタムカー記事を共有",
+      "沈黙して明日に回す"
+    ],
+    "generate_score": [
+      0.75,
+      0.65,
+      0.4
+    ],
+    "evaluate_score": 0.68,
+    "timestamp": "2026-05-08T12:01:19.572Z",
     "skill": "none",
     "scoredCandidates": [
-      {
-        "topic": "Taylor’s Tee Time: Florida State head women’s golf coach Amy Bond - WCTV",
-        "source": "interest-cache",
-        "category": "_cross",
-        "scores": {
-          "timeliness": 0.6627012345679012,
-          "novelty": 0.1,
-          "continuity": 0.3,
-          "emotional_fit": 0.9,
-          "affinity": 0.5,
-          "surprise": 0.9
-        },
-        "finalScore": 0.6566033436389075,
-        "explorationBonus": 0.47562912522435175,
-        "selectionScore": 1.1322324688632592,
-        "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
-      },
       {
         "topic": "アカデミー賞俳優、フジテレビ番組に出演 今回の来日で唯一のバラエティ収録… 出演者ド緊張、涙も「今までにない」 - オリコンニュース",
         "source": "interest-cache",
         "category": "tv_drama",
         "scores": {
-          "timeliness": 0.7451086304012345,
+          "timeliness": 0.7312134297839507,
           "novelty": 0.1,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.7182284766043563,
+        "finalScore": 0.7163287545148644,
         "explorationBonus": 0.3,
-        "selectionScore": 1.0182284766043563,
+        "selectionScore": 1.0163287545148645,
         "reasoning": "気分に合う・タイムリー（interest-cache）"
       },
       {
@@ -5490,33 +5541,50 @@
         "source": "interest-cache",
         "category": "food_dining",
         "scores": {
-          "timeliness": 0.7036850655864197,
+          "timeliness": 0.6897898649691359,
           "novelty": 0.1,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.4,
           "surprise": 0.7
         },
-        "finalScore": 0.7029773918349798,
+        "finalScore": 0.6989093514309119,
         "explorationBonus": 0.3,
-        "selectionScore": 1.0029773918349798,
-        "reasoning": "気分に合う・タイムリー（interest-cache）"
+        "selectionScore": 0.998909351430912,
+        "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
+      },
+      {
+        "topic": "アウトドアで映える存在感！“バッタ”モチーフの個性派カスタムカーに注目 - ｄメニューニュース",
+        "source": "interest-cache",
+        "category": "campingcar",
+        "scores": {
+          "timeliness": 0.7582241087962963,
+          "novelty": 0.1,
+          "continuity": 0.9,
+          "emotional_fit": 0.5,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.7807691395589844,
+        "explorationBonus": 0.21686957656374314,
+        "selectionScore": 0.9976387161227276,
+        "reasoning": "会話の流れに沿う・タイムリー（interest-cache）"
       },
       {
         "topic": "＜画像1 / 16＞1000本の桜と菜の花畑で幸せ色に染まる彩の国の春 - ウォーカープラス",
         "source": "interest-cache",
         "category": "weather_seasonal",
         "scores": {
-          "timeliness": 0.6792174575617284,
+          "timeliness": 0.6653222569444445,
           "novelty": 0.1,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.7005009479925495,
+        "finalScore": 0.6966209816690432,
         "explorationBonus": 0.3,
-        "selectionScore": 1.0005009479925495,
+        "selectionScore": 0.9966209816690432,
         "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
       },
       {
@@ -5524,33 +5592,33 @@
         "source": "interest-cache",
         "category": "tv_drama",
         "scores": {
-          "timeliness": 0.7268717438271605,
+          "timeliness": 0.7129765432098766,
           "novelty": 0.1,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.695554679546004,
+        "finalScore": 0.6929346045470921,
         "explorationBonus": 0.3,
-        "selectionScore": 0.995554679546004,
+        "selectionScore": 0.9929346045470921,
         "reasoning": "気分に合う・タイムリー（interest-cache）"
       },
       {
-        "topic": "アウトドアで映える存在感！“バッタ”モチーフの個性派カスタムカーに注目 - ｄメニューニュース",
+        "topic": "【動画生成AIが1つに集結】PixVerse完全ガイド｜Seedance 2.0、Happy Horse 1.0、GPT Image 2まで動画・画像生成AIをまとめて使う方法！ - ライブドアニュース",
         "source": "interest-cache",
-        "category": "campingcar",
+        "category": "ai_agent",
         "scores": {
-          "timeliness": 0.7999096875,
+          "timeliness": 0.8793701041666666,
           "novelty": 0.1,
           "continuity": 0.9,
           "emotional_fit": 0.5,
           "affinity": 0.4,
           "surprise": 0.7
         },
-        "finalScore": 0.7677190338496889,
-        "explorationBonus": 0.21686957656374314,
-        "selectionScore": 0.984588610413432,
+        "finalScore": 0.8001548196685293,
+        "explorationBonus": 0.16798645166608628,
+        "selectionScore": 0.9681412713346156,
         "reasoning": "会話の流れに沿う・タイムリー（interest-cache）"
       },
       {
@@ -5558,16 +5626,16 @@
         "source": "interest-cache",
         "category": "weather_seasonal",
         "scores": {
-          "timeliness": 0.47912131365740745,
+          "timeliness": 0.45827851273148146,
           "novelty": 0.1,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.6737719041554785,
+        "finalScore": 0.6634900161614818,
         "explorationBonus": 0.3,
-        "selectionScore": 0.9737719041554784,
+        "selectionScore": 0.9634900161614819,
         "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
       },
       {
@@ -5575,16 +5643,16 @@
         "source": "interest-cache",
         "category": "weather_seasonal",
         "scores": {
-          "timeliness": 0.6574659104938272,
+          "timeliness": 0.6435707098765432,
           "novelty": 0.1,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.6675728019131915,
+        "finalScore": 0.6631177648542907,
         "explorationBonus": 0.3,
-        "selectionScore": 0.9675728019131915,
+        "selectionScore": 0.9631177648542908,
         "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
       },
       {
@@ -5599,44 +5667,44 @@
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.6587704187822021,
+        "finalScore": 0.6473263447928188,
         "explorationBonus": 0.3,
-        "selectionScore": 0.9587704187822021,
+        "selectionScore": 0.9473263447928189,
         "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
       },
       {
-        "topic": "【動画生成AIが1つに集結】PixVerse完全ガイド｜Seedance 2.0、Happy Horse 1.0、GPT Image 2まで動画・画像生成AIをまとめて使う方法！ - ライブドアニュース",
+        "topic": "【2026年最新】ガチで美味しかった！池袋駅グルメ10軒",
         "source": "interest-cache",
-        "category": "ai_agent",
+        "category": "food_dining",
         "scores": {
-          "timeliness": 0.9210556712962963,
+          "timeliness": 0.3,
           "novelty": 0.1,
-          "continuity": 0.9,
-          "emotional_fit": 0.5,
+          "continuity": 0.3,
+          "emotional_fit": 0.9,
           "affinity": 0.4,
           "surprise": 0.7
         },
-        "finalScore": 0.7839018360186534,
-        "explorationBonus": 0.16798645166608628,
-        "selectionScore": 0.9518882876847397,
-        "reasoning": "タイムリー・会話の流れに沿う（interest-cache）"
+        "finalScore": 0.6365355056497706,
+        "explorationBonus": 0.3,
+        "selectionScore": 0.9365355056497706,
+        "reasoning": "気分に合う・意外・サプライズ（interest-cache）"
       }
     ],
     "weightsUsed": {
-      "timeliness": 0.13358100418892568,
-      "novelty": 0.1711357071505275,
-      "continuity": 0.19736458287357353,
-      "emotional_fit": 0.16632722333087674,
-      "affinity": 0.09717683384328597,
-      "surprise": 0.2344146486128106
+      "timeliness": 0.1600191574659857,
+      "novelty": 0.15484753693189673,
+      "continuity": 0.1872129273103851,
+      "emotional_fit": 0.1035468957430069,
+      "affinity": 0.10790839143048118,
+      "surprise": 0.28646509111824436
     },
     "sampledRaw": {
-      "timeliness": 0.1669762552361571,
-      "novelty": 0.21391963393815938,
-      "continuity": 0.1467057285919669,
-      "emotional_fit": 0.2079090291635959,
-      "affinity": 0.12147104230410746,
-      "surprise": 0.14301831076601326
+      "timeliness": 0.20002394683248212,
+      "novelty": 0.1935594211648709,
+      "continuity": 0.13401615913798137,
+      "emotional_fit": 0.12943361967875863,
+      "affinity": 0.13488548928810148,
+      "surprise": 0.2080813638978054
     },
     "contextBonus": {
       "timeliness": 0,
@@ -5718,34 +5786,6 @@
   },
   "lastScoredCandidates": [
     {
-      "topic": "Taylor’s Tee Time: Florida State head women’s golf coach Amy Bond - WCTV",
-      "source": "interest-cache",
-      "category": "_cross",
-      "pub_date": "2026-05-07T22:43:00+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPaVhySXBQTXB1cXZvZ0YtTjVyLWd3VldOaUNjNkZoVkNPbmtXdXJ0Nm9XVUhKamNPTzluODNlMXJWcEpnbC05MmpZOUdmQ0NBRS1iVEpaSHVLZGV5dEFIdV9FMDhOeVR3SGVQeGNqNDhnYWNKQ01wQmJvMi1Ta3BOYXlZN0J1WXEwRmZrUHpHWC1kNXJsV3dIMC1R0gGuAUFVX3lxTFB5Smt1NWQwclU0bzJLVmR4bFgtUXkxZDc2bG1BbDdEVmNKaHRISU92ZWQ1d1ZZaUE3TmFndGFXWDdadGtLeDhYU1pfUDl2cncxMXFwcVVrWXBlTjI2MEl2aXhqSG4zaTUyTnNrZEgtTDktRTRKTEtfUFctRzQydjltUUU0MElDNG1fOU5Edkx6OWsyTVNMVGRHbHFESldkUjJwOUg0bXB4UlRJZkJZQQ?oc=5",
-        "mediaSource": "WCTV",
-        "emotion_type": "light",
-        "timeliness": 0.83,
-        "crossCategories": [
-          "golf",
-          "ai_agent"
-        ]
-      },
-      "scores": {
-        "timeliness": 0.6627012345679012,
-        "novelty": 0.1,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.9
-      },
-      "finalScore": 0.6566033436389075,
-      "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
-      "explorationBonus": 0.47562912522435175,
-      "selectionScore": 1.1322324688632592
-    },
-    {
       "topic": "アカデミー賞俳優、フジテレビ番組に出演 今回の来日で唯一のバラエティ収録… 出演者ド緊張、涙も「今までにない」 - オリコンニュース",
       "source": "interest-cache",
       "category": "tv_drama",
@@ -5757,17 +5797,17 @@
         "timeliness": 0.954
       },
       "scores": {
-        "timeliness": 0.7451086304012345,
+        "timeliness": 0.7312134297839507,
         "novelty": 0.1,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.7182284766043563,
+      "finalScore": 0.7163287545148644,
       "reasoning": "気分に合う・タイムリー（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.0182284766043563
+      "selectionScore": 1.0163287545148645
     },
     {
       "topic": "ホロライブ×「いきなり！ステーキ」コラボが開催決定！今年は常MOSグッズとコラボフードに装飾店舗も 4枚目の写真・画像 - インサイド",
@@ -5781,65 +5821,17 @@
         "timeliness": 0.892
       },
       "scores": {
-        "timeliness": 0.7036850655864197,
+        "timeliness": 0.6897898649691359,
         "novelty": 0.1,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.4,
         "surprise": 0.7
       },
-      "finalScore": 0.7029773918349798,
-      "reasoning": "気分に合う・タイムリー（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.0029773918349798
-    },
-    {
-      "topic": "＜画像1 / 16＞1000本の桜と菜の花畑で幸せ色に染まる彩の国の春 - ウォーカープラス",
-      "source": "interest-cache",
-      "category": "weather_seasonal",
-      "pub_date": "2026-05-07T23:54:21+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1taVMwWWJhM0lrVC1KQUlpWTV4TTljbEJmdTFzLXlhQ2ttaDhmMDNRUDMtR2tLbmxaaXBadENXQ2p1bmYtNUFEZDVSRzU2UDlGRWhsVVFNT3p4aTBpUlVPYm02X3JZSnNaRC1kSmw2LWl5cnJscWU0Q1ktNA?oc=5",
-        "mediaSource": "ウォーカープラス",
-        "emotion_type": "light",
-        "timeliness": 0.855
-      },
-      "scores": {
-        "timeliness": 0.6792174575617284,
-        "novelty": 0.1,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.7005009479925495,
+      "finalScore": 0.6989093514309119,
       "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.0005009479925495
-    },
-    {
-      "topic": "イム・ジヨン、アイユー・シン・ヘソンと週末ドラマで激突...『素晴らしき新世界』で流れを変えられるか [突破口] - 매일경제",
-      "source": "interest-cache",
-      "category": "tv_drama",
-      "pub_date": "2026-05-08T03:20:13+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9nRWZfZlJvSkprRlhuNHFFOGpXZVZMaUt6azNad09maDdWS3JHUjJ2a3hLVHFpa0FFNlB4UTdOby1BS3Q0VUdzRUthUzROc3c1ZXVvbU9teFc5MXRXNEJYN1Zjaw?oc=5",
-        "mediaSource": "매일경제",
-        "emotion_type": "light",
-        "timeliness": 0.926
-      },
-      "scores": {
-        "timeliness": 0.7268717438271605,
-        "novelty": 0.1,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.695554679546004,
-      "reasoning": "気分に合う・タイムリー（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 0.995554679546004
+      "selectionScore": 0.998909351430912
     },
     {
       "topic": "アウトドアで映える存在感！“バッタ”モチーフの個性派カスタムカーに注目 - ｄメニューニュース",
@@ -5853,17 +5845,89 @@
         "timeliness": 0.903
       },
       "scores": {
-        "timeliness": 0.7999096875,
+        "timeliness": 0.7582241087962963,
         "novelty": 0.1,
         "continuity": 0.9,
         "emotional_fit": 0.5,
         "affinity": 0.4,
         "surprise": 0.7
       },
-      "finalScore": 0.7677190338496889,
+      "finalScore": 0.7807691395589844,
       "reasoning": "会話の流れに沿う・タイムリー（interest-cache）",
       "explorationBonus": 0.21686957656374314,
-      "selectionScore": 0.984588610413432
+      "selectionScore": 0.9976387161227276
+    },
+    {
+      "topic": "＜画像1 / 16＞1000本の桜と菜の花畑で幸せ色に染まる彩の国の春 - ウォーカープラス",
+      "source": "interest-cache",
+      "category": "weather_seasonal",
+      "pub_date": "2026-05-07T23:54:21+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1taVMwWWJhM0lrVC1KQUlpWTV4TTljbEJmdTFzLXlhQ2ttaDhmMDNRUDMtR2tLbmxaaXBadENXQ2p1bmYtNUFEZDVSRzU2UDlGRWhsVVFNT3p4aTBpUlVPYm02X3JZSnNaRC1kSmw2LWl5cnJscWU0Q1ktNA?oc=5",
+        "mediaSource": "ウォーカープラス",
+        "emotion_type": "light",
+        "timeliness": 0.855
+      },
+      "scores": {
+        "timeliness": 0.6653222569444445,
+        "novelty": 0.1,
+        "continuity": 0.3,
+        "emotional_fit": 0.9,
+        "affinity": 0.5,
+        "surprise": 0.7
+      },
+      "finalScore": 0.6966209816690432,
+      "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 0.9966209816690432
+    },
+    {
+      "topic": "イム・ジヨン、アイユー・シン・ヘソンと週末ドラマで激突...『素晴らしき新世界』で流れを変えられるか [突破口] - 매일경제",
+      "source": "interest-cache",
+      "category": "tv_drama",
+      "pub_date": "2026-05-08T03:20:13+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9nRWZfZlJvSkprRlhuNHFFOGpXZVZMaUt6azNad09maDdWS3JHUjJ2a3hLVHFpa0FFNlB4UTdOby1BS3Q0VUdzRUthUzROc3c1ZXVvbU9teFc5MXRXNEJYN1Zjaw?oc=5",
+        "mediaSource": "매일경제",
+        "emotion_type": "light",
+        "timeliness": 0.926
+      },
+      "scores": {
+        "timeliness": 0.7129765432098766,
+        "novelty": 0.1,
+        "continuity": 0.3,
+        "emotional_fit": 0.9,
+        "affinity": 0.5,
+        "surprise": 0.7
+      },
+      "finalScore": 0.6929346045470921,
+      "reasoning": "気分に合う・タイムリー（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 0.9929346045470921
+    },
+    {
+      "topic": "【動画生成AIが1つに集結】PixVerse完全ガイド｜Seedance 2.0、Happy Horse 1.0、GPT Image 2まで動画・画像生成AIをまとめて使う方法！ - ライブドアニュース",
+      "source": "interest-cache",
+      "category": "ai_agent",
+      "pub_date": "2026-05-08T09:06:27+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5TREp0cGFWc2xPemlxUHpFTFZfbWJzUFhidi1xb081OEtKcnNRclVHcmE5NnBFSklBNEFmM3Z2MUkyTzRPck1iQ01yX0hlM01UNkRBOTZ5a2VFTV9sYXhN?oc=5",
+        "mediaSource": "ライブドアニュース",
+        "emotion_type": "heavy",
+        "timeliness": 0.964
+      },
+      "scores": {
+        "timeliness": 0.8793701041666666,
+        "novelty": 0.1,
+        "continuity": 0.9,
+        "emotional_fit": 0.5,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.8001548196685293,
+      "reasoning": "会話の流れに沿う・タイムリー（interest-cache）",
+      "explorationBonus": 0.16798645166608628,
+      "selectionScore": 0.9681412713346156
     },
     {
       "topic": "森町で「1億円桜」見頃 ふるさと納税返礼品 命名権公募、10月末まで - 47NEWS",
@@ -5877,17 +5941,17 @@
         "timeliness": 0.565
       },
       "scores": {
-        "timeliness": 0.47912131365740745,
+        "timeliness": 0.45827851273148146,
         "novelty": 0.1,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.6737719041554785,
+      "finalScore": 0.6634900161614818,
       "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.9737719041554784
+      "selectionScore": 0.9634900161614819
     },
     {
       "topic": "バラの香り漂う絶景庭園…夫妻が育てた400種800株が見頃 個人観賞用から評判広がり人気スポットへ 埼玉・美里、あす9日開園（埼玉新聞） - Yahoo!ニュース",
@@ -5901,17 +5965,17 @@
         "timeliness": 0.822
       },
       "scores": {
-        "timeliness": 0.6574659104938272,
+        "timeliness": 0.6435707098765432,
         "novelty": 0.1,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.6675728019131915,
+      "finalScore": 0.6631177648542907,
       "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.9675728019131915
+      "selectionScore": 0.9631177648542908
     },
     {
       "topic": "【関東の天気】きょう　関東全域で五月晴れ　気温差大きい季節【スーパーJチャンネル】(2026年5月5日)",
@@ -5933,34 +5997,35 @@
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.6587704187822021,
+      "finalScore": 0.6473263447928188,
       "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.9587704187822021
+      "selectionScore": 0.9473263447928189
     },
     {
-      "topic": "【動画生成AIが1つに集結】PixVerse完全ガイド｜Seedance 2.0、Happy Horse 1.0、GPT Image 2まで動画・画像生成AIをまとめて使う方法！ - ライブドアニュース",
+      "topic": "【2026年最新】ガチで美味しかった！池袋駅グルメ10軒",
       "source": "interest-cache",
-      "category": "ai_agent",
-      "pub_date": "2026-05-08T09:06:27+00:00",
+      "category": "food_dining",
+      "pub_date": null,
       "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5TREp0cGFWc2xPemlxUHpFTFZfbWJzUFhidi1xb081OEtKcnNRclVHcmE5NnBFSklBNEFmM3Z2MUkyTzRPck1iQ01yX0hlM01UNkRBOTZ5a2VFTV9sYXhN?oc=5",
-        "mediaSource": "ライブドアニュース",
-        "emotion_type": "heavy",
-        "timeliness": 0.964
+        "url": "https://www.youtube.com/watch?v=cg0irmI2JWA",
+        "mediaSource": "とみーtommie【グルメ&旅vlog】",
+        "content_type": "video",
+        "emotion_type": "light",
+        "timeliness": 0.1
       },
       "scores": {
-        "timeliness": 0.9210556712962963,
+        "timeliness": 0.3,
         "novelty": 0.1,
-        "continuity": 0.9,
-        "emotional_fit": 0.5,
+        "continuity": 0.3,
+        "emotional_fit": 0.9,
         "affinity": 0.4,
         "surprise": 0.7
       },
-      "finalScore": 0.7839018360186534,
-      "reasoning": "タイムリー・会話の流れに沿う（interest-cache）",
-      "explorationBonus": 0.16798645166608628,
-      "selectionScore": 0.9518882876847397
+      "finalScore": 0.6365355056497706,
+      "reasoning": "気分に合う・意外・サプライズ（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 0.9365355056497706
     }
   ],
   "allowNoReply": false,
@@ -5992,7 +6057,7 @@
   "emojiEnabled": true,
   "lastOAuthNotifyDate": "2026-04-29",
   "themeInventory": {
-    "updatedAt": "2026-05-08T11:00:07.771Z",
+    "updatedAt": "2026-05-08T12:00:09.405Z",
     "records": [
       {
         "themeKey": "local/saitama/tokorozawa/event/market",
@@ -6086,28 +6151,6 @@
         "freshnessDays": 10,
         "freshnessScore": 1,
         "lastSentAt": null
-      },
-      {
-        "themeKey": "lifestyle/food-wellness/gourmet",
-        "themePath": [
-          "lifestyle",
-          "lifestyle/food-wellness",
-          "lifestyle/food-wellness/gourmet"
-        ],
-        "rootKey": "lifestyle/lifestyle/food-wellness",
-        "availableCount": 2,
-        "sentFreshCount": 0,
-        "sent30dCount": 1,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 2,
-        "targetCount": 4,
-        "supplyGap": 2,
-        "rotationGap": 4,
-        "freshnessDays": 7,
-        "freshnessScore": 0,
-        "lastSentAt": "2026-04-27T07:00:56.747Z"
       },
       {
         "themeKey": "sports/golf/youtube/tips",
@@ -6485,18 +6528,18 @@
         ],
         "rootKey": "sports/sports/mlb",
         "availableCount": 0,
-        "sentFreshCount": 0,
-        "sent30dCount": 4,
+        "sentFreshCount": 1,
+        "sent30dCount": 5,
         "positive30dCount": 0,
         "negative30dCount": 0,
         "positiveRate30d": 0,
         "uniqueSources30d": 6,
-        "targetCount": 4,
-        "supplyGap": 4,
+        "targetCount": 5,
+        "supplyGap": 5,
         "rotationGap": 4,
         "freshnessDays": 7,
-        "freshnessScore": 0,
-        "lastSentAt": "2026-04-30T07:01:09.123Z"
+        "freshnessScore": 0.9941591418650794,
+        "lastSentAt": "2026-05-08T11:01:16.854Z"
       },
       {
         "themeKey": "sports/mlb/dodgers/roki/support",
@@ -6635,7 +6678,7 @@
         "supplyGap": -2,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.991116400462963,
+        "freshnessScore": 0.9851613177910052,
         "lastSentAt": "2026-05-08T09:30:34.970Z"
       },
       {
@@ -6657,7 +6700,7 @@
         "supplyGap": -1,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.9851602876984127,
+        "freshnessScore": 0.979205205026455,
         "lastSentAt": "2026-05-08T08:30:32.713Z"
       },
       {
@@ -6704,8 +6747,30 @@
         "supplyGap": 2,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.2768570105820106,
+        "freshnessScore": 0.27090192791005296,
         "lastSentAt": "2026-05-03T09:30:50.891Z"
+      },
+      {
+        "themeKey": "lifestyle/food-wellness/gourmet",
+        "themePath": [
+          "lifestyle",
+          "lifestyle/food-wellness",
+          "lifestyle/food-wellness/gourmet"
+        ],
+        "rootKey": "lifestyle/lifestyle/food-wellness",
+        "availableCount": 2,
+        "sentFreshCount": 1,
+        "sent30dCount": 2,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 4,
+        "targetCount": 4,
+        "supplyGap": 2,
+        "rotationGap": 3,
+        "freshnessDays": 7,
+        "freshnessScore": 0.9971204613095238,
+        "lastSentAt": "2026-05-08T11:31:07.860Z"
       },
       {
         "themeKey": "entertainment/movie-drama/blue-giant",
@@ -6726,7 +6791,7 @@
         "supplyGap": 3,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.2441386210317461,
+        "freshnessScore": 0.23818353835978834,
         "lastSentAt": "2026-05-03T04:01:02.809Z"
       },
       {
@@ -6748,7 +6813,7 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.7918099983465609,
+        "freshnessScore": 0.7858549156746032,
         "lastSentAt": "2026-05-07T00:01:34.458Z"
       },
       {
@@ -6770,7 +6835,7 @@
         "supplyGap": 3,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.23818027281746024,
+        "freshnessScore": 0.2322251901455027,
         "lastSentAt": "2026-05-03T03:00:59.200Z"
       },
       {
@@ -6794,7 +6859,7 @@
         "supplyGap": 3,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.11915738095238093,
+        "freshnessScore": 0.11320229828042339,
         "lastSentAt": "2026-05-02T07:01:14.155Z"
       },
       {
@@ -6911,28 +6976,6 @@
         "lastSentAt": null
       },
       {
-        "themeKey": "lifestyle/food-wellness/lunch",
-        "themePath": [
-          "lifestyle",
-          "lifestyle/food-wellness",
-          "lifestyle/food-wellness/lunch"
-        ],
-        "rootKey": "lifestyle/lifestyle/food-wellness",
-        "availableCount": 0,
-        "sentFreshCount": 1,
-        "sent30dCount": 2,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 3,
-        "targetCount": 4,
-        "supplyGap": 4,
-        "rotationGap": 3,
-        "freshnessDays": 7,
-        "freshnessScore": 0.12209129133597885,
-        "lastSentAt": "2026-05-02T07:30:48.584Z"
-      },
-      {
         "themeKey": "local/saitama/other/chichibu/nature",
         "themePath": [
           "local",
@@ -6953,7 +6996,7 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.8066260019841269,
+        "freshnessScore": 0.8006709193121693,
         "lastSentAt": "2026-05-07T02:30:55.177Z"
       },
       {
@@ -6975,7 +7018,7 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.2263052711640211,
+        "freshnessScore": 0.22035018849206345,
         "lastSentAt": "2026-05-03T01:01:17.199Z"
       },
       {
@@ -6998,7 +7041,7 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.11318765211640203,
+        "freshnessScore": 0.10723256944444437,
         "lastSentAt": "2026-05-02T06:01:03.663Z"
       },
       {
@@ -7088,7 +7131,7 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.23522674437830682,
+        "freshnessScore": 0.22927166170634916,
         "lastSentAt": "2026-05-03T02:31:12.906Z"
       },
       {
@@ -7157,7 +7200,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.2739084391534392,
+        "freshnessScore": 0.26795335648148144,
         "lastSentAt": "2026-05-03T09:01:07.595Z"
       },
       {
@@ -7179,7 +7222,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9792545965608466,
+        "freshnessScore": 0.9732995138888889,
         "lastSentAt": "2026-05-08T07:31:00.951Z"
       },
       {
@@ -7202,7 +7245,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9762931960978836,
+        "freshnessScore": 0.9703381134259259,
         "lastSentAt": "2026-05-08T07:01:09.896Z"
       },
       {
@@ -7226,7 +7269,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.2143695634920635,
+        "freshnessScore": 0.20841448082010583,
         "lastSentAt": "2026-05-02T23:00:58.483Z"
       },
       {
@@ -7248,7 +7291,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7947291650132275,
+        "freshnessScore": 0.7887740823412699,
         "lastSentAt": "2026-05-07T00:30:59.970Z"
       },
       {
@@ -7271,7 +7314,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8245057275132275,
+        "freshnessScore": 0.8185506448412698,
         "lastSentAt": "2026-05-07T05:31:08.835Z"
       },
       {
@@ -7294,7 +7337,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7977260168650794,
+        "freshnessScore": 0.7917709341931217,
         "lastSentAt": "2026-05-07T01:01:12.466Z"
       },
       {
@@ -7317,7 +7360,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.16072428075396827,
+        "freshnessScore": 0.1547691980820105,
         "lastSentAt": "2026-05-02T14:00:13.816Z"
       },
       {
@@ -7339,7 +7382,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5268626207010582,
+        "freshnessScore": 0.5209075380291006,
         "lastSentAt": "2026-05-05T03:30:54.284Z"
       },
       {
@@ -7363,7 +7406,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8215469262566137,
+        "freshnessScore": 0.8155918435846561,
         "lastSentAt": "2026-05-07T05:01:19.352Z"
       },
       {
@@ -7386,7 +7429,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9940821164021164,
+        "freshnessScore": 0.9881270337301588,
         "lastSentAt": "2026-05-08T10:00:28.635Z"
       },
       {
@@ -7409,7 +7452,7 @@
         "supplyGap": 5,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9822679017857143,
+        "freshnessScore": 0.9763128191137567,
         "lastSentAt": "2026-05-08T08:01:23.398Z"
       },
       {
@@ -7432,7 +7475,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8185407787698413,
+        "freshnessScore": 0.8125856960978837,
         "lastSentAt": "2026-05-07T04:31:01.234Z"
       },
       {
@@ -7455,7 +7498,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.10723113921957672,
+        "freshnessScore": 0.10127605654761906,
         "lastSentAt": "2026-05-02T05:01:01.164Z"
       },
       {
@@ -7479,7 +7522,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.2917412318121694,
+        "freshnessScore": 0.2857861491402117,
         "lastSentAt": "2026-05-03T12:00:52.868Z"
       },
       {
@@ -7502,7 +7545,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5239100727513227,
+        "freshnessScore": 0.5179549900793651,
         "lastSentAt": "2026-05-05T03:01:08.583Z"
       },
       {
@@ -7526,7 +7569,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8036917212301588,
+        "freshnessScore": 0.797736638558201,
         "lastSentAt": "2026-05-07T02:01:20.524Z"
       },
       {
@@ -7550,7 +7593,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.1399845353835979,
+        "freshnessScore": 0.13402945271164024,
         "lastSentAt": "2026-05-02T10:31:10.418Z"
       },
       {
@@ -7573,7 +7616,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.2590158647486772,
+        "freshnessScore": 0.25306078207671956,
         "lastSentAt": "2026-05-03T06:31:00.566Z"
       },
       {
@@ -7596,7 +7639,7 @@
         "supplyGap": 2,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.529850689484127,
+        "freshnessScore": 0.5238956068121694,
         "lastSentAt": "2026-05-05T04:01:01.468Z"
       },
       {
@@ -7609,17 +7652,17 @@
         ],
         "rootKey": "entertainment/entertainment/movie-drama",
         "availableCount": 1,
-        "sentFreshCount": 6,
-        "sent30dCount": 13,
+        "sentFreshCount": 5,
+        "sent30dCount": 12,
         "positive30dCount": 0,
         "negative30dCount": 0,
         "positiveRate30d": 0,
         "uniqueSources30d": 13,
         "targetCount": 6,
         "supplyGap": 5,
-        "rotationGap": 0,
+        "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.7887760284391534,
+        "freshnessScore": 0.7828209457671957,
         "lastSentAt": "2026-05-06T23:30:59.513Z"
       }
     ]

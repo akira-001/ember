@@ -3,38 +3,6 @@
     {
       "botId": "eve",
       "botName": "Eve（イヴ）",
-      "category": "hobby_leisure",
-      "interestCategory": "onsen",
-      "preview": "ねえ、知ってる？\n\nYouTubeに *「衰退した日本一有名な温泉街が凄い事になっていた」* って熱海の動画が上がってたよ ♨️\n\n「バブル遺産」ってタイトルが気になって。新時代を模索する熱海の今らしい。\nhttps://www.youtube.com/watch?v=ZeW2jzbnibg",
-      "topic": "熱海温泉街バブル遺産YouTube",
-      "url": "https://www.youtube.com/watch?v=ZeW2jzbnibg",
-      "candidateId": "url:https://www.youtube.com/watch?v=ZeW2jzbnibg",
-      "sourceType": "話題候補テーブル",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/youtube",
-        "entertainment/movie-drama/youtube/trailer"
-      ],
-      "themeKey": "entertainment/movie-drama/youtube/trailer",
-      "inner_thought": "今日温泉を1回送ったけど熱海の再生話は別角度。バブル遺産ってフレーズが気になりすぎる",
-      "plan": [
-        "熱海温泉街バブル遺産動画を届ける",
-        "スタートアップ資金調達まとめを届ける",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.65,
-        0.5,
-        0.72
-      ],
-      "evaluate_score": 0.6,
-      "sentAt": "2026-05-02T09:31:16.818Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
       "category": "email_reply",
       "interestCategory": "dodgers",
       "preview": "あ、そうだ。\n\nJ SPORTSからメール来てたよ。明日 *5月3日（日）08:10〜 J SPORTS 3* で *カージナルスvsドジャース* の生中継があるって ⚾\n\n佐々木朗希の登板予定試合みたい。ドラムレッスンが11時だから、午前中ちょっと観られるかも。",
@@ -1472,6 +1440,38 @@
       ],
       "evaluate_score": 0.65,
       "sentAt": "2026-05-08T11:31:07.860Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "ai_agent",
+      "preview": "あ、そうだ。\n\nライブドアニュースに *PixVerse完全ガイド* って記事が出てたよ。Seedance 2.0とかGPT Image 2とか、動画・画像生成AIをまとめて使えるプラットフォームらしい 🎬\n\n寝る前にさらっと眺めるのにちょうどいいかも。\nhttps://news.google.c",
+      "topic": "PixVerse完全ガイド（動画生成AI統合）",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5TREp0cGFWc2xPemlxUHpFTFZfbWJzUFhidi1xb081OEtKcnNRclVHcmE5NnBFSklBNEFmM3Z2MUkyTzRPck1iQ01yX0hlM01UNkRBOTZ5a2VFTV9sYXhN",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiX0FVX3lxTE5TREp0cGFWc2xPemlxUHpFTFZfbWJzUFhidi1xb081OEtKcnNRclVHcmE5NnBFSklBNEFmM3Z2MUkyTzRPck1iQ01yX0hlM01UNkRBOTZ5a2VFTV9sYXhN",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "ai",
+        "ai/enterprise",
+        "ai/enterprise/openai",
+        "ai/enterprise/openai/models"
+      ],
+      "themeKey": "ai/enterprise/openai/models",
+      "inner_thought": "今日は結構話しかけたけど、PixVerseの話はAI開発してるAkiraさんに刺さりそう。夜だし軽めに",
+      "plan": [
+        "PixVerse動画生成AIガイドを共有",
+        "カスタムカー記事を共有",
+        "沈黙して明日に回す"
+      ],
+      "generate_score": [
+        0.75,
+        0.65,
+        0.4
+      ],
+      "evaluate_score": 0.68,
+      "sentAt": "2026-05-08T12:01:19.574Z"
     }
   ]
 }
