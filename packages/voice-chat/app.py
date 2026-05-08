@@ -76,7 +76,7 @@ import emoji as emoji_lib
 import httpx
 import uvicorn
 from dotenv import load_dotenv
-from fastapi import FastAPI, File, UploadFile, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, File, HTTPException, Request, UploadFile, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, Response
 
@@ -98,9 +98,12 @@ from enrichment import (
     enrichment_loop as _enrichment_loop,
 )
 
-load_dotenv(Path(__file__).parent / ".env")
+APP_DIR = Path(__file__).resolve().parent
+REPO_ROOT = APP_DIR.parent.parent
+
+load_dotenv(APP_DIR / ".env")
 # ルートの .env も読む（ANTHROPIC_API_KEY / OPENAI_API_KEY を参照するため）
-load_dotenv(Path(__file__).parent.parent.parent / ".env", override=False)
+load_dotenv(REPO_ROOT / ".env", override=False)
 
 app = FastAPI()
 app.add_middleware(
@@ -225,6 +228,27 @@ CO_VIEW_LOOP_DISABLED_FILE = Path("/tmp/co_view_loop_disabled")
 YOMIGANA_FILE = Path(__file__).parent / "yomigana_map.json"
 _settings: dict = {}
 _clients: set[WebSocket] = set()
+REALTIME_TRANSLATION_MODELS = {"gpt-realtime-translate", "gpt-realtime-2"}
+REALTIME_VOICE_OPTIONS = {
+    "marin", "cedar", "alloy", "ash", "ballad",
+    "coral", "echo", "sage", "shimmer", "verse",
+}
+REALTIME_DEFAULT_VOICE = "marin"
+REALTIME_LANGUAGE_NAMES = {
+    "en": "English",
+    "ja": "Japanese",
+    "ko": "Korean",
+    "zh": "Chinese",
+    "es": "Spanish",
+    "fr": "French",
+    "de": "German",
+}
+
+
+def _realtime_language_name(language_code: str) -> str:
+    normalized = language_code.strip().lower().replace("_", "-")
+    base = normalized.split("-", 1)[0]
+    return REALTIME_LANGUAGE_NAMES.get(normalized) or REALTIME_LANGUAGE_NAMES.get(base) or language_code
 
 
 def _load_settings() -> dict:
@@ -5493,6 +5517,158 @@ async def slack_reply(bot_id: str, speaker: int = 2, speed: float = 1.0):
 async def get_settings():
     _get_auto_approve_enabled()
     return _settings
+
+
+@app.post("/api/realtime/translate/session")
+async def create_realtime_translation_session(request: Request):
+    """Create a short-lived client secret for browser WebRTC translation."""
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise HTTPException(status_code=503, detail="OPENAI_API_KEY is not configured")
+
+    body = await request.json()
+    model = str(body.get("model") or _settings.get("translationModel") or "gpt-realtime-translate").strip()
+    if model not in REALTIME_TRANSLATION_MODELS:
+        raise HTTPException(status_code=400, detail="Unsupported realtime translation model")
+    target_language = str(body.get("targetLanguage") or _settings.get("translationTargetLanguage") or "en").strip()
+    if not re.fullmatch(r"[A-Za-z][A-Za-z0-9_-]{1,31}", target_language):
+        raise HTTPException(status_code=400, detail="targetLanguage must be a BCP-47-like language code")
+    voice = str(body.get("voice") or _settings.get("translationVoice") or REALTIME_DEFAULT_VOICE).strip().lower()
+    if voice not in REALTIME_VOICE_OPTIONS:
+        raise HTTPException(status_code=400, detail=f"Unsupported translation voice: {voice}")
+
+    if model == "gpt-realtime-2":
+        logger.info(f"[realtime-translate] using realtime-unified model={model} target={target_language} voice={voice}")
+        return {
+            "mode": "realtime-unified",
+            "value": "server-side-unified",
+            "calls_url": (
+                f"/whisper/api/realtime/call?model={urllib.parse.quote(model)}"
+                f"&targetLanguage={urllib.parse.quote(target_language)}"
+                f"&voice={urllib.parse.quote(voice)}"
+            ),
+        }
+
+    client_host = request.client.host if request.client else "local"
+    safety_seed = f"ember-chat:{client_host}:{os.getenv('OPENAI_SAFETY_SALT', '')}"
+    safety_id = hashlib.sha256(safety_seed.encode("utf-8")).hexdigest()
+
+    payload = {
+        "session": {
+            "model": model,
+            "audio": {
+                "output": {"language": target_language},
+            },
+        },
+    }
+
+    secret_url = "https://api.openai.com/v1/realtime/translations/client_secrets"
+    calls_url = "https://api.openai.com/v1/realtime/translations/calls"
+    mode = "translation"
+
+    try:
+        async with httpx.AsyncClient(timeout=15) as client:
+            resp = await client.post(
+                secret_url,
+                headers={
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json",
+                    "OpenAI-Safety-Identifier": safety_id,
+                },
+                json=payload,
+            )
+    except httpx.HTTPError as e:
+        logger.warning(f"[realtime-translate] client secret request failed: {e}")
+        raise HTTPException(status_code=502, detail="Failed to reach OpenAI Realtime translation API") from e
+
+    data = resp.json()
+    if resp.status_code >= 400:
+        logger.warning(f"[realtime-translate] OpenAI error {resp.status_code}: {data}")
+        raise HTTPException(status_code=resp.status_code, detail=data)
+    if isinstance(data, dict):
+        data["mode"] = mode
+        data["calls_url"] = calls_url
+    return data
+
+
+@app.post("/api/realtime/call")
+async def create_realtime_call(
+    request: Request,
+    model: str = "gpt-realtime-2",
+    targetLanguage: str = "en",
+    voice: str = REALTIME_DEFAULT_VOICE,
+):
+    """Create a standard Realtime WebRTC call via the server-side unified interface."""
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise HTTPException(status_code=503, detail="OPENAI_API_KEY is not configured")
+    if model != "gpt-realtime-2":
+        raise HTTPException(status_code=400, detail="Unsupported realtime call model")
+    target_language = str(targetLanguage or "en").strip()
+    if not re.fullmatch(r"[A-Za-z][A-Za-z0-9_-]{1,31}", target_language):
+        raise HTTPException(status_code=400, detail="targetLanguage must be a BCP-47-like language code")
+    target_language_name = _realtime_language_name(target_language)
+    selected_voice = str(voice or REALTIME_DEFAULT_VOICE).strip().lower()
+    if selected_voice not in REALTIME_VOICE_OPTIONS:
+        raise HTTPException(status_code=400, detail=f"Unsupported translation voice: {selected_voice}")
+
+    sdp = (await request.body()).decode("utf-8", errors="ignore")
+    if not sdp.strip():
+        raise HTTPException(status_code=400, detail="SDP offer is required")
+    logger.info(
+        f"[realtime-call] offer received model={model} "
+        f"target={target_language} target_name={target_language_name} voice={selected_voice} sdp_len={len(sdp)}"
+    )
+
+    client_host = request.client.host if request.client else "local"
+    safety_seed = f"ember-chat:{client_host}:{os.getenv('OPENAI_SAFETY_SALT', '')}"
+    safety_id = hashlib.sha256(safety_seed.encode("utf-8")).hexdigest()
+    session_config = {
+        "type": "realtime",
+        "model": model,
+        "instructions": (
+            f"You are a live interpreter for Ember Chat. Translate every user utterance into {target_language_name}. "
+            f"The target language code is {target_language}, but you must write and speak natural {target_language_name}. "
+            "Output only the translated utterance. Do not answer questions. Do not add commentary. "
+            "Do not transcribe the original language unless it is already the requested target language. "
+            "Preserve names, tone, intent, and technical terms naturally."
+        ),
+        "audio": {
+            "input": {
+                "turn_detection": {
+                    "type": "server_vad",
+                    "create_response": True,
+                },
+            },
+            "output": {
+                "voice": selected_voice,
+            },
+        },
+    }
+
+    try:
+        async with httpx.AsyncClient(timeout=20) as client:
+            resp = await client.post(
+                "https://api.openai.com/v1/realtime/calls",
+                headers={
+                    "Authorization": f"Bearer {api_key}",
+                    "OpenAI-Safety-Identifier": safety_id,
+                },
+                files={
+                    "sdp": (None, sdp, "application/sdp"),
+                    "session": (None, json.dumps(session_config, ensure_ascii=False), "application/json"),
+                },
+            )
+    except httpx.HTTPError as e:
+        logger.warning(f"[realtime-call] call request failed: {e}")
+        raise HTTPException(status_code=502, detail="Failed to reach OpenAI Realtime API") from e
+
+    text = resp.text
+    if resp.status_code >= 400:
+        logger.warning(f"[realtime-call] OpenAI error {resp.status_code}: {text[:1000]}")
+        raise HTTPException(status_code=resp.status_code, detail=text)
+    logger.info(f"[realtime-call] answer ok model={model} target={target_language} voice={selected_voice} sdp_len={len(text)}")
+    return Response(content=text, media_type="application/sdp")
 
 
 @app.get("/api/improve_loop/auto_approve")

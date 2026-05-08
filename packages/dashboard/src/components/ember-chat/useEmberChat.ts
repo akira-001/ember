@@ -14,6 +14,9 @@ export function useEmberChat() {
   const [botSpeakers, setBotSpeakers] = useState<Record<string, Speaker[]>>({});
   const [models, setModels] = useState<OllamaModel[]>([]);
   const [recording, setRecording] = useState(false);
+  const [translationActive, setTranslationActive] = useState(false);
+  const [translationConnecting, setTranslationConnecting] = useState(false);
+  const [translationError, setTranslationError] = useState<string | null>(null);
   const [processing, setProcessing] = useState(false);
   const [wsConnected, setWsConnected] = useState(false);
   const [replyBot, setReplyBot] = useState<string | null>(null);
@@ -32,6 +35,12 @@ export function useEmberChat() {
   const currentAudioUrlRef = useRef<string | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const micStreamRef = useRef<MediaStream | null>(null);
+  const translationPcRef = useRef<RTCPeerConnection | null>(null);
+  const translationStreamRef = useRef<MediaStream | null>(null);
+  const translationAudioRef = useRef<HTMLAudioElement | null>(null);
+  const translationSourceMessageIdRef = useRef<string | null>(null);
+  const translationOutputMessageIdRef = useRef<string | null>(null);
+  const translationEventDebugCountRef = useRef(0);
   const playedIdsRef = useRef(new Set<string>());
   const reconnectTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const shouldReconnectRef = useRef(true);
@@ -124,6 +133,35 @@ export function useEmberChat() {
       timestamp: Date.now(),
       diagnostic,
     }]);
+  }, []);
+
+  const appendLiveTranslationMessage = useCallback((kind: 'source' | 'output', delta: string) => {
+    if (!delta) return;
+    const ref = kind === 'source' ? translationSourceMessageIdRef : translationOutputMessageIdRef;
+    const type: ChatMessage['type'] = kind === 'source' ? 'user' : 'assistant';
+    const model = settingsRef.current.translationModel || 'gpt-realtime-translate';
+    const botId = kind === 'source'
+      ? 'source'
+      : `${model}:${settingsRef.current.translationTargetLanguage || 'en'}`;
+    setMessages(prev => {
+      const existingId = ref.current;
+      if (existingId) {
+        const idx = prev.findIndex(m => m.id === existingId);
+        if (idx >= 0) {
+          const next = [...prev];
+          next[idx] = { ...next[idx], text: `${next[idx].text}${delta}`, timestamp: Date.now() };
+          return next;
+        }
+      }
+      const id = `translation-${kind}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
+      ref.current = id;
+      return [...prev, { id, type, text: delta, botId, timestamp: Date.now() }];
+    });
+  }, []);
+
+  const rotateLiveTranslationMessages = useCallback(() => {
+    translationSourceMessageIdRef.current = null;
+    translationOutputMessageIdRef.current = null;
   }, []);
 
   const parseSpeedValue = useCallback((speed: string) => {
@@ -520,6 +558,209 @@ export function useEmberChat() {
     }
   }, []);
 
+  const stopRealtimeTranslation = useCallback(() => {
+    const pc = translationPcRef.current;
+    translationPcRef.current = null;
+    if (pc) {
+      try {
+        pc.getSenders().forEach(sender => sender.track?.stop());
+        pc.close();
+      } catch {}
+    }
+    const stream = translationStreamRef.current;
+    translationStreamRef.current = null;
+    stream?.getTracks().forEach(track => track.stop());
+    if (translationAudioRef.current) {
+      try {
+        translationAudioRef.current.pause();
+        translationAudioRef.current.srcObject = null;
+      } catch {}
+      translationAudioRef.current = null;
+    }
+    rotateLiveTranslationMessages();
+    setTranslationActive(false);
+    setTranslationConnecting(false);
+  }, [rotateLiveTranslationMessages]);
+
+  const startRealtimeTranslation = useCallback(async () => {
+    if (translationActive || translationConnecting) return;
+    setTranslationConnecting(true);
+    setTranslationError(null);
+    rotateLiveTranslationMessages();
+    try {
+      const targetLanguage = settingsRef.current.translationTargetLanguage || 'en';
+      const model = settingsRef.current.translationModel || 'gpt-realtime-translate';
+      const voice = settingsRef.current.translationVoice || 'marin';
+      translationEventDebugCountRef.current = 0;
+      addMessage(`Auto translation connecting (${model} → ${targetLanguage}, voice=${voice})`, 'status');
+      const sessionResp = await fetch(`${API_BASE}/realtime/translate/session`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model, targetLanguage, voice }),
+      });
+      const sessionData = await sessionResp.json().catch(() => ({}));
+      if (!sessionResp.ok) {
+        const detail = typeof sessionData.detail === 'string'
+          ? sessionData.detail
+          : sessionData.detail?.error?.message || sessionData.error?.message || '翻訳セッションを開始できなかったよ';
+        throw new Error(detail);
+      }
+      const sessionMode = sessionData?.mode || 'translation';
+      const clientSecret = sessionData?.value;
+      if (sessionMode !== 'realtime-unified' && !clientSecret) {
+        throw new Error('OpenAI client secret が返ってこなかったよ');
+      }
+      const callsUrl = sessionData?.calls_url || 'https://api.openai.com/v1/realtime/translations/calls';
+      addMessage(`Auto translation session ready (${sessionMode})`, 'status');
+
+      const audio: boolean | MediaTrackConstraints = settingsRef.current.inputDeviceId
+        ? { deviceId: { exact: settingsRef.current.inputDeviceId } }
+        : true;
+      const sourceStream = await navigator.mediaDevices.getUserMedia({ audio });
+      translationStreamRef.current = sourceStream;
+
+      const pc = new RTCPeerConnection();
+      translationPcRef.current = pc;
+      const track = sourceStream.getAudioTracks()[0];
+      if (!track) throw new Error('マイクの音声トラックを取得できなかったよ');
+      pc.addTrack(track, sourceStream);
+
+      const translatedAudio = new Audio();
+      translatedAudio.autoplay = true;
+      translationAudioRef.current = translatedAudio;
+      pc.ontrack = ({ streams }) => {
+        translatedAudio.srcObject = streams[0];
+        translatedAudio.play().catch(() => {});
+        addMessage('Auto translation audio track received', 'status');
+      };
+      pc.onconnectionstatechange = () => {
+        if (sessionMode === 'realtime-unified') {
+          addMessage(`Auto translation peer ${pc.connectionState}`, 'status');
+        }
+        if (pc.connectionState === 'connected') {
+          addMessage('Auto translation WebRTC connected', 'status');
+        }
+        if (pc.connectionState === 'failed' || pc.connectionState === 'disconnected') {
+          setTranslationError('翻訳接続が切れたよ');
+          stopRealtimeTranslation();
+        }
+      };
+
+      const events = pc.createDataChannel('oai-events');
+      if (sessionMode === 'realtime-unified') {
+        addMessage('Auto translation data channel created', 'status');
+      }
+      events.onopen = () => {
+        addMessage('Auto translation event channel open', 'status');
+      };
+      events.onerror = () => {
+        setTranslationError('翻訳イベントチャンネルでエラーが出たよ');
+        addMessage('Auto translation event channel error', 'status');
+      };
+      events.onclose = () => {
+        addMessage('Auto translation event channel closed', 'status');
+      };
+      events.onmessage = ({ data }) => {
+        try {
+          const event = JSON.parse(String(data));
+          if (sessionMode === 'realtime-unified' && translationEventDebugCountRef.current < 12) {
+            translationEventDebugCountRef.current += 1;
+            addMessage(`Realtime event: ${event.type || 'unknown'}`, 'status');
+          }
+          if (event.type === 'session.input_transcript.delta') {
+            appendLiveTranslationMessage('source', event.delta || '');
+          } else if (event.type === 'session.output_transcript.delta') {
+            appendLiveTranslationMessage('output', event.delta || '');
+          } else if (
+            event.type === 'response.audio_transcript.delta' ||
+            event.type === 'response.output_audio_transcript.delta' ||
+            event.type === 'response.output_text.delta' ||
+            event.type === 'response.text.delta'
+          ) {
+            appendLiveTranslationMessage('output', event.delta || '');
+          } else if (event.type === 'conversation.item.input_audio_transcription.delta') {
+            appendLiveTranslationMessage('source', event.delta || '');
+          } else if (sessionMode === 'realtime-unified' && event.type === 'input_audio_buffer.speech_stopped') {
+            rotateLiveTranslationMessages();
+          } else if (event.type === 'response.done') {
+            rotateLiveTranslationMessages();
+          } else if (
+            event.type === 'session.input_transcript.done' ||
+            event.type === 'session.output_transcript.done' ||
+            event.type === 'session.input_audio_buffer.speech_started'
+          ) {
+            rotateLiveTranslationMessages();
+          } else if (event.type === 'error') {
+            setTranslationError(event.error?.message || '翻訳エラーが発生したよ');
+          }
+        } catch {
+          // Ignore malformed SDK events.
+        }
+      };
+
+      const offer = await pc.createOffer();
+      if (sessionMode === 'realtime-unified') {
+        addMessage('Auto translation SDP offer created', 'status');
+      }
+      await pc.setLocalDescription(offer);
+      if (sessionMode === 'realtime-unified') {
+        addMessage('Auto translation local description set', 'status');
+      }
+      const sdpResponse = sessionMode === 'realtime-unified'
+        ? await fetch(callsUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/sdp' },
+          body: offer.sdp || '',
+        })
+        : await fetch(callsUrl, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${clientSecret}`,
+            'Content-Type': 'application/sdp',
+          },
+          body: offer.sdp || '',
+        });
+      if (!sdpResponse.ok) throw new Error(await sdpResponse.text());
+      const answerSdp = await sdpResponse.text();
+      if (sessionMode === 'realtime-unified') {
+        addMessage('Auto translation SDP answer received', 'status');
+      }
+      await pc.setRemoteDescription({ type: 'answer', sdp: answerSdp });
+      if (sessionMode === 'realtime-unified') {
+        addMessage('Auto translation remote description set', 'status');
+      }
+
+      setTranslationActive(true);
+      addMessage(`Auto translation ON (${model} → ${targetLanguage}, ${sessionMode})`, 'status');
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      setTranslationError(message);
+      addMessage(`翻訳モードを開始できなかったよ: ${message}`, 'status');
+      stopRealtimeTranslation();
+    } finally {
+      setTranslationConnecting(false);
+    }
+  }, [
+    addMessage,
+    appendLiveTranslationMessage,
+    rotateLiveTranslationMessages,
+    stopRealtimeTranslation,
+    translationActive,
+    translationConnecting,
+  ]);
+
+  const toggleRealtimeTranslation = useCallback(() => {
+    addMessage('Translate button clicked', 'status');
+    if (translationActive || translationConnecting) {
+      stopRealtimeTranslation();
+      addMessage('Auto translation OFF', 'status');
+    } else {
+      void startRealtimeTranslation();
+    }
+  }, [addMessage, startRealtimeTranslation, stopRealtimeTranslation, translationActive, translationConnecting]);
+
+  useEffect(() => stopRealtimeTranslation, [stopRealtimeTranslation]);
+
   // --- Play bot message ---
   const playBotMessage = useCallback(async (botId: string) => {
     try {
@@ -580,12 +821,12 @@ export function useEmberChat() {
   return {
     // State
     messages, settings, speakers, botSpeakers, models,
-    recording, processing, wsConnected,
+    recording, translationActive, translationConnecting, translationError, processing, wsConnected,
     replyBot, lastBotId, settingsExpanded,
     contextSummary, mediaCtx,
     inputDevices,
     // Actions
-    sendText, startRecording, stopRecording,
+    sendText, startRecording, stopRecording, startRealtimeTranslation, stopRealtimeTranslation, toggleRealtimeTranslation,
     updateSetting, updateSettings, loadSpeakers, handleBotEngineChange,
     stopAudio, playBotMessage, previewVoice,
     toggleReply, setSettingsExpanded,

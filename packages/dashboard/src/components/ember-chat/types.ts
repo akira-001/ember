@@ -110,6 +110,9 @@ export interface EmberSettings {
   emojiEnabled: boolean;
   debugMode: boolean;
   settingsExpanded: boolean;
+  translationModel: string;
+  translationTargetLanguage: string;
+  translationVoice: string;
   yomiganaPersonalEntries: YomiganaEntry[];
   lastSeen: Record<string, string>;
   inputDeviceId?: string;
@@ -152,9 +155,40 @@ export const DEFAULT_SETTINGS: EmberSettings = {
   emojiEnabled: true,
   debugMode: false,
   settingsExpanded: false,
+  translationModel: 'gpt-realtime-translate',
+  translationTargetLanguage: 'en',
+  translationVoice: 'marin',
   yomiganaPersonalEntries: [],
   lastSeen: {},
 };
+
+export const TRANSLATION_MODEL_OPTIONS = [
+  { value: 'gpt-realtime-translate', label: 'Translate' },
+  { value: 'gpt-realtime-2', label: 'Realtime 2' },
+];
+
+export const TRANSLATION_VOICE_OPTIONS = [
+  { value: 'marin', label: 'Marin' },
+  { value: 'cedar', label: 'Cedar' },
+  { value: 'alloy', label: 'Alloy' },
+  { value: 'ash', label: 'Ash' },
+  { value: 'ballad', label: 'Ballad' },
+  { value: 'coral', label: 'Coral' },
+  { value: 'echo', label: 'Echo' },
+  { value: 'sage', label: 'Sage' },
+  { value: 'shimmer', label: 'Shimmer' },
+  { value: 'verse', label: 'Verse' },
+];
+
+export const TRANSLATION_LANGUAGE_OPTIONS = [
+  { value: 'en', label: 'English' },
+  { value: 'ja', label: 'Japanese' },
+  { value: 'es', label: 'Spanish' },
+  { value: 'fr', label: 'French' },
+  { value: 'de', label: 'German' },
+  { value: 'ko', label: 'Korean' },
+  { value: 'zh', label: 'Chinese' },
+];
 
 export const SPEED_OPTIONS = ['0.8', '1.0', '1.2', '1.5', '2.0'];
 

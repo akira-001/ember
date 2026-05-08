@@ -2636,10 +2636,15 @@ app.use('/ws', wsProxy);
 
 const DIST_DIR = path.join(__dirname, '..', 'dist');
 if (existsSync(DIST_DIR)) {
-  app.use(express.static(DIST_DIR));
+  app.use(express.static(DIST_DIR, {
+    setHeaders: (res) => {
+      res.setHeader('Cache-Control', 'no-store, max-age=0');
+    },
+  }));
   // SPA fallback: serve index.html for all non-API routes
   app.get('*', (req, res) => {
     if (req.path.startsWith('/api/')) return res.status(404).json({ error: 'Not found' });
+    res.setHeader('Cache-Control', 'no-store, max-age=0');
     res.sendFile(path.join(DIST_DIR, 'index.html'));
   });
 }

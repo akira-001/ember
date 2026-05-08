@@ -1,8 +1,14 @@
 import type { CSSProperties } from 'react';
 import TalkButton from './TalkButton';
+import { TRANSLATION_LANGUAGE_OPTIONS, TRANSLATION_MODEL_OPTIONS, TRANSLATION_VOICE_OPTIONS } from './types';
 
 interface ChatControlsProps {
   recording: boolean;
+  translationActive: boolean;
+  translationConnecting: boolean;
+  translationModel: string;
+  translationTargetLanguage: string;
+  translationVoice: string;
   processing: boolean;
   ttsEnabled: boolean;
   proactiveEnabled: boolean;
@@ -15,6 +21,10 @@ interface ChatControlsProps {
   onToggleReply: () => void;
   onPreview: () => void;
   onToggleTalk: () => void;
+  onToggleTranslate: () => void;
+  onTranslationModelChange: (value: string) => void;
+  onTranslationLanguageChange: (value: string) => void;
+  onTranslationVoiceChange: (value: string) => void;
   onToggleTts: () => void;
   onToggleDebug: () => void;
   onOpenRecording: () => void;
@@ -54,17 +64,18 @@ const proactiveOnStyle: CSSProperties = {
 
 interface SideBtnProps {
   onClick: () => void;
+  onMouseDown?: () => void;
   state?: 'on' | 'proactive-on' | 'reply-on';
   children: React.ReactNode;
   title?: string;
 }
 
-function SideBtn({ onClick, state, children, title }: SideBtnProps) {
+function SideBtn({ onClick, onMouseDown, state, children, title }: SideBtnProps) {
   let style: CSSProperties = { ...baseSideBtn };
   if (state === 'on' || state === 'reply-on') style = { ...style, ...onStyle };
   if (state === 'proactive-on') style = { ...style, ...proactiveOnStyle };
   return (
-    <button type="button" onClick={onClick} style={style} title={title}>
+    <button type="button" onClick={onClick} onMouseDown={onMouseDown} style={style} title={title}>
       {children}
     </button>
   );
@@ -72,6 +83,11 @@ function SideBtn({ onClick, state, children, title }: SideBtnProps) {
 
 export default function ChatControls({
   recording,
+  translationActive,
+  translationConnecting,
+  translationModel,
+  translationTargetLanguage,
+  translationVoice,
   processing,
   ttsEnabled,
   proactiveEnabled,
@@ -84,6 +100,10 @@ export default function ChatControls({
   onToggleReply,
   onPreview,
   onToggleTalk,
+  onToggleTranslate,
+  onTranslationModelChange,
+  onTranslationLanguageChange,
+  onTranslationVoiceChange,
   onToggleTts,
   onToggleDebug,
   onOpenRecording,
@@ -116,6 +136,62 @@ export default function ChatControls({
         replyMode={replyMode}
         onClick={onToggleTalk}
       />
+      <SideBtn
+        onClick={onToggleTranslate}
+        onMouseDown={() => console.info('[EmberChat] Translate button pressed')}
+        state={translationActive ? 'on' : undefined}
+        title="OpenAI Realtime Translate"
+      >
+        {translationConnecting ? 'Translate...' : translationActive ? 'Translate ON' : 'Translate'}
+      </SideBtn>
+      <select
+        value={translationModel}
+        onChange={(e) => onTranslationModelChange(e.target.value)}
+        disabled={translationActive || translationConnecting}
+        style={{
+          ...baseSideBtn,
+          padding: '8px 10px',
+          cursor: translationActive || translationConnecting ? 'not-allowed' : 'pointer',
+          opacity: translationActive || translationConnecting ? 0.55 : 1,
+        }}
+        title="Translation model"
+      >
+        {TRANSLATION_MODEL_OPTIONS.map(option => (
+          <option key={option.value} value={option.value}>{option.label}</option>
+        ))}
+      </select>
+      <select
+        value={translationTargetLanguage}
+        onChange={(e) => onTranslationLanguageChange(e.target.value)}
+        disabled={translationActive || translationConnecting}
+        style={{
+          ...baseSideBtn,
+          padding: '8px 10px',
+          cursor: translationActive || translationConnecting ? 'not-allowed' : 'pointer',
+          opacity: translationActive || translationConnecting ? 0.55 : 1,
+        }}
+        title="Translation target language"
+      >
+        {TRANSLATION_LANGUAGE_OPTIONS.map(option => (
+          <option key={option.value} value={option.value}>{option.label}</option>
+        ))}
+      </select>
+      <select
+        value={translationVoice}
+        onChange={(e) => onTranslationVoiceChange(e.target.value)}
+        disabled={translationActive || translationConnecting || translationModel !== 'gpt-realtime-2'}
+        style={{
+          ...baseSideBtn,
+          padding: '8px 10px',
+          cursor: translationActive || translationConnecting || translationModel !== 'gpt-realtime-2' ? 'not-allowed' : 'pointer',
+          opacity: translationActive || translationConnecting || translationModel !== 'gpt-realtime-2' ? 0.55 : 1,
+        }}
+        title={translationModel === 'gpt-realtime-2' ? 'Translation voice' : 'Voice selection is available for Realtime 2 only'}
+      >
+        {TRANSLATION_VOICE_OPTIONS.map(option => (
+          <option key={option.value} value={option.value}>{option.label}</option>
+        ))}
+      </select>
       <SideBtn onClick={onToggleTts} state={ttsEnabled ? 'on' : undefined}>
         Sound
       </SideBtn>

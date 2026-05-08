@@ -152,14 +152,20 @@ function createWindow() {
     mainWindow = null;
   });
 
-  loadDashboardWithRetry();
+  mainWindow.webContents.session.clearCache()
+    .catch((err) => {
+      console.warn('[ember] failed to clear session cache:', err.message);
+    })
+    .finally(loadDashboardWithRetry);
 }
 
 function loadDashboardWithRetry() {
   if (!mainWindow) return;
 
-  mainWindow.loadURL(DASHBOARD_URL).catch((err) => {
-    console.warn(`[ember] Failed to load ${DASHBOARD_URL}: ${err.message}. Retrying in ${RETRY_INTERVAL_MS}ms...`);
+  const url = new URL(DASHBOARD_URL);
+  url.searchParams.set('v', String(Date.now()));
+  mainWindow.loadURL(url.toString()).catch((err) => {
+    console.warn(`[ember] Failed to load ${url.toString()}: ${err.message}. Retrying in ${RETRY_INTERVAL_MS}ms...`);
     setTimeout(loadDashboardWithRetry, RETRY_INTERVAL_MS);
   });
 }

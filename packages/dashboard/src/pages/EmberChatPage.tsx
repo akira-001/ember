@@ -179,6 +179,7 @@ export default function EmberChatPage() {
 
   const handleToggleTalk = useCallback(() => {
     if (chat.processing) return;
+    if (chat.translationActive || chat.translationConnecting) chat.stopRealtimeTranslation();
     if (chat.recording) chat.stopRecording();
     else chat.startRecording();
   }, [chat]);
@@ -230,6 +231,12 @@ export default function EmberChatPage() {
       {alwaysOn.lastError && (
         <div style={inlineAlertStyle}>
           {alwaysOn.lastError}
+        </div>
+      )}
+
+      {chat.translationError && (
+        <div style={inlineAlertStyle}>
+          {chat.translationError}
         </div>
       )}
 
@@ -305,6 +312,11 @@ export default function EmberChatPage() {
           {!settingsCollapsed && (
             <ChatControls
               recording={chat.recording}
+              translationActive={chat.translationActive}
+              translationConnecting={chat.translationConnecting}
+              translationModel={chat.settings.translationModel}
+              translationTargetLanguage={chat.settings.translationTargetLanguage}
+              translationVoice={chat.settings.translationVoice}
               processing={chat.processing}
               ttsEnabled={chat.settings.ttsEnabled}
               proactiveEnabled={chat.settings.proactiveEnabled}
@@ -317,6 +329,10 @@ export default function EmberChatPage() {
               onToggleReply={handleToggleReply}
               onPreview={chat.previewVoice}
               onToggleTalk={handleToggleTalk}
+              onToggleTranslate={chat.toggleRealtimeTranslation}
+              onTranslationModelChange={(v) => chat.updateSetting('translationModel', v)}
+              onTranslationLanguageChange={(v) => chat.updateSetting('translationTargetLanguage', v)}
+              onTranslationVoiceChange={(v) => chat.updateSetting('translationVoice', v)}
               onToggleTts={handleToggleTts}
               onToggleDebug={() => chat.updateSetting('debugMode', !chat.settings.debugMode)}
               onOpenRecording={() => navigate('/voice-enroll')}
