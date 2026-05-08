@@ -12,9 +12,10 @@ import {
 
 interface Props {
   messages: ChatMessage[];
+  debugMode?: boolean;
 }
 
-export default function ChatMessages({ messages }: Props) {
+export default function ChatMessages({ messages, debugMode = false }: Props) {
   const bottomRef = useRef<HTMLDivElement>(null);
   const summary = summarizeDiagnostics(messages);
 
@@ -54,6 +55,7 @@ export default function ChatMessages({ messages }: Props) {
           );
         }
         if (msg.type === 'debug') {
+          if (!debugMode) return null;
           return (
             <div
               key={msg.id}

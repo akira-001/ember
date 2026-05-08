@@ -142,7 +142,6 @@ export default function ChatControls({
       />
       <SideBtn
         onClick={onToggleTranslate}
-        onMouseDown={() => console.info('[EmberChat] Translate button pressed')}
         state={translationActive ? 'on' : undefined}
         title="OpenAI Realtime Translate"
       >

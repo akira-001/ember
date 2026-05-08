@@ -243,7 +243,7 @@ export default function EmberChatPage() {
       {status.whisper ? (
         <>
           <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
-            <ChatMessages messages={chat.messages} />
+            <ChatMessages messages={chat.messages} debugMode={chat.settings.debugMode} />
           </div>
 
           <div

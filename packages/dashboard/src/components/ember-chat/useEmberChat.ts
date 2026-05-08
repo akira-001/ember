@@ -653,14 +653,14 @@ export function useEmberChat() {
       pc.ontrack = ({ streams }) => {
         translatedAudio.srcObject = streams[0];
         translatedAudio.play().catch(() => {});
-        addMessage('Auto translation audio track received', 'status');
+        addMessage('Auto translation audio track received', 'debug');
       };
       pc.onconnectionstatechange = () => {
         if (sessionMode === 'realtime-unified') {
-          addMessage(`Auto translation peer ${pc.connectionState}`, 'status');
+          addMessage(`Auto translation peer ${pc.connectionState}`, 'debug');
         }
         if (pc.connectionState === 'connected') {
-          addMessage('Auto translation WebRTC connected', 'status');
+          addMessage('Auto translation WebRTC connected', 'debug');
         }
         if (pc.connectionState === 'failed' || pc.connectionState === 'disconnected') {
           setTranslationError('翻訳接続が切れたよ');
@@ -670,24 +670,24 @@ export function useEmberChat() {
 
       const events = pc.createDataChannel('oai-events');
       if (sessionMode === 'realtime-unified') {
-        addMessage('Auto translation data channel created', 'status');
+        addMessage('Auto translation data channel created', 'debug');
       }
       events.onopen = () => {
-        addMessage('Auto translation event channel open', 'status');
+        addMessage('Auto translation event channel open', 'debug');
       };
       events.onerror = () => {
         setTranslationError('翻訳イベントチャンネルでエラーが出たよ');
-        addMessage('Auto translation event channel error', 'status');
+        addMessage('Auto translation event channel error', 'debug');
       };
       events.onclose = () => {
-        addMessage('Auto translation event channel closed', 'status');
+        addMessage('Auto translation event channel closed', 'debug');
       };
       events.onmessage = ({ data }) => {
         try {
           const event = JSON.parse(String(data));
           if (sessionMode === 'realtime-unified' && translationEventDebugCountRef.current < 12) {
             translationEventDebugCountRef.current += 1;
-            addMessage(`Realtime event: ${event.type || 'unknown'}`, 'status');
+            addMessage(`Realtime event: ${event.type || 'unknown'}`, 'debug');
           }
           if (event.type === 'session.input_transcript.delta') {
             appendLiveTranslationMessage('source', event.delta || '');
@@ -722,11 +722,11 @@ export function useEmberChat() {
 
       const offer = await pc.createOffer();
       if (sessionMode === 'realtime-unified') {
-        addMessage('Auto translation SDP offer created', 'status');
+        addMessage('Auto translation SDP offer created', 'debug');
       }
       await pc.setLocalDescription(offer);
       if (sessionMode === 'realtime-unified') {
-        addMessage('Auto translation local description set', 'status');
+        addMessage('Auto translation local description set', 'debug');
       }
       const sdpResponse = sessionMode === 'realtime-unified'
         ? await fetch(callsUrl, {
@@ -745,11 +745,11 @@ export function useEmberChat() {
       if (!sdpResponse.ok) throw new Error(await sdpResponse.text());
       const answerSdp = await sdpResponse.text();
       if (sessionMode === 'realtime-unified') {
-        addMessage('Auto translation SDP answer received', 'status');
+        addMessage('Auto translation SDP answer received', 'debug');
       }
       await pc.setRemoteDescription({ type: 'answer', sdp: answerSdp });
       if (sessionMode === 'realtime-unified') {
-        addMessage('Auto translation remote description set', 'status');
+        addMessage('Auto translation remote description set', 'debug');
       }
 
       setTranslationActive(true);
@@ -772,7 +772,7 @@ export function useEmberChat() {
   ]);
 
   const toggleRealtimeTranslation = useCallback(() => {
-    addMessage('Translate button clicked', 'status');
+    addMessage('Translate button clicked', 'debug');
     if (translationActive || translationConnecting) {
       stopRealtimeTranslation();
       addMessage('Auto translation OFF', 'status');
