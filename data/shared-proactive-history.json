@@ -1,609 +1,15 @@
 {
   "entries": [
     {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "business_strategy",
-      "preview": "ちょっとちょっと、Akiraさん。\n\nStartup Nowに *スタートアップExitの多様化とM&Aの規模化* について、ファイナンスプロデュースの共同創業者が語ってる動画が上がってたよ  \n\nクライアントへの提案や新規事業の出口戦略を考えるときに、ストックしとけそう。\nhttps://www.",
-      "topic": "スタートアップExitの多様化とM&A規模化",
-      "url": "https://www.youtube.com/watch?v=DaGGoHtbpAQ",
-      "candidateId": "url:https://www.youtube.com/watch?v=DaGGoHtbpAQ",
-      "sourceType": "Startup Now",
-      "skill": "general",
-      "themePath": [
-        "business",
-        "business/consulting",
-        "business/consulting/ma"
-      ],
-      "themeKey": "business/consulting/ma",
-      "inner_thought": "会議中だけど、スタートアップM&Aの話題、コンサルのAkiraさんに届けたい",
-      "plan": [
-        "スタートアップExitの多様化・M&A動画を共有",
-        "沈黙",
-        "温泉旅館BEST5を共有"
-      ],
-      "generate_score": [
-        0.71,
-        0.55,
-        0.52
-      ],
-      "evaluate_score": 0.68,
-      "sentAt": "2026-05-07T00:30:59.970Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "meeting_prep",
-      "interestCategory": "general",
-      "preview": "Akiraさん、1つだけ。\n\n36Kr Japanに *中国のGLP-1新薬スタートアップが120億円調達* って出てたよ 💊 セマグルチドの次を狙う月1回投与型らしい。\n\n前にCFOやってた身からすると、この規模の調達をこのタイミングで引けるのはヘルスケア領域の資金の厚みを感じる。会議の合間にで",
-      "topic": "GLP-1新薬120億円調達",
-      "url": "https://news.google.com/rss/articles/CBMiO0FVX3lxTE1kLVJ4cjdjMUJ0R0pJS1JJV2dxRWNxeHJpUjBoNzlRNWNkVVAwSTNzWkNGMzhGaHVnQVRJ?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiO0FVX3lxTE1kLVJ4cjdjMUJ0R0pJS1JJV2dxRWNxeHJpUjBoNzlRNWNkVVAwSTNzWkNGMzhGaHVnQVRJ?oc=5",
-      "sourceType": "topic-table",
-      "skill": "general",
-      "themePath": [
-        "ai",
-        "ai/enterprise",
-        "ai/enterprise/security",
-        "ai/enterprise/security/procurement"
-      ],
-      "themeKey": "ai/enterprise/security/procurement",
-      "inner_thought": "12本会議の日に話しかけすぎは避けたいけど、GLP-1で120億調達はコンサル目線で面白い",
-      "plan": [
-        "GLP-1新薬120億調達の記事を共有",
-        "ゴルフメンタルの漫画記事を共有",
-        "沈黙して午後まで待つ"
-      ],
-      "generate_score": [
-        0.72,
-        0.55,
-        0.6
-      ],
-      "evaluate_score": 0.58,
-      "sentAt": "2026-05-07T01:01:12.467Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "golf",
-      "preview": "あ、そうだ。\n\nライブドアに *「重心位置」を意識するとスイングが安定する* ってゴルフのコツ記事が出てたよ ⛳\n\nレッスンで「軸がブレる」って言われたことある人向けみたい。\nhttps://news.google.com/rss/articles/CBMifEFVX3lxTE9sNDRsWDVtS",
-      "topic": "ゴルフ「重心位置」スイングを安定させるコツ",
-      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9sNDRsWDVtS3Z5cmFMbDBYZjFuQWNvU3NDMFVfZFl2dlJBTmRZanlvQ0ktSjNUeXdaSTJFWTdUU0FsUUdMOFJtb2NCY1JpaWt2NFQ5QTh4Q0hYSGt0ODNZQVI1enFZOXk2N3lhbU5VMDFoVG5jdlQ2LVU0S1A",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMifEFVX3lxTE9sNDRsWDVtS3Z5cmFMbDBYZjFuQWNvU3NDMFVfZFl2dlJBTmRZanlvQ0ktSjNUeXdaSTJFWTdUU0FsUUdMOFJtb2NCY1JpaWt2NFQ5QTh4Q0hYSGt0ODNZQVI1enFZOXk2N3lhbU5VMDFoVG5jdlQ2LVU0S1A",
-      "sourceType": "ライブドアニュース",
-      "skill": "general",
-      "themePath": [
-        "sports",
-        "sports/golf",
-        "sports/golf/lesson",
-        "sports/golf/lesson/coach"
-      ],
-      "themeKey": "sports/golf/lesson/coach",
-      "inner_thought": "会議中だし黙りたいけど、ゴルフの重心位置コツは11時の会議間にサクッと読めるし届けたい",
-      "plan": [
-        "ゴルフ重心位置のコツを共有",
-        "温泉情報を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.72,
-        0.58,
-        0.65
-      ],
-      "evaluate_score": 0.68,
-      "sentAt": "2026-05-07T01:31:12.534Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "Akiraさん、1つだけ。\n\nプロペ通りの *Espresso D Works* で、アサイー専門店 *Okaberry* とのコラボが始まったみたいだよ 🥤\n\n今日ランチ12:30からだし、気分転換に覚えておいて。\nhttps://news.google.com/rss/articles/CBM",
-      "topic": "プロペ通りEspresso D Works×Okaberryコラボ",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE05VFBYdnpKVVVaTExmWkc5OHZoOHp0c2RiZk4tSUxpUllLVlN1TnBpNXcwN1pqT3hyS2lOWTJ1YTdOdHB3dEJvckR4VDVRUGo3aks5UEM4aEc4UERNNXFXTXJwZ0NWUQ?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiZkFVX3lxTE05VFBYdnpKVVVaTExmWkc5OHZoOHp0c2RiZk4tSUxpUllLVlN1TnBpNXcwN1pqT3hyS2lOWTJ1YTdOdHB3dEJvckR4VDVRUGo3aks5UEM4aEc4UERNNXFXTXJwZ0NWUQ?oc=5",
-      "sourceType": "topic-table",
-      "skill": "general",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/tokorozawa",
-        "local/saitama/tokorozawa/street",
-        "local/saitama/tokorozawa/street/prope-dori"
-      ],
-      "themeKey": "local/saitama/tokorozawa/street/prope-dori",
-      "inner_thought": "プロペ通りのカフェ情報、所沢住みとして伝えておきたい。ランチ前に軽く",
-      "plan": [
-        "プロペ通りカフェ×アサイーコラボを共有",
-        "ドジャース試合速報を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.7,
-        0.55,
-        0.5
-      ],
-      "evaluate_score": 0.58,
-      "sentAt": "2026-05-07T02:01:20.525Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "campingcar",
-      "preview": "ね、今いい？\n\nテレ東の *よじごじDays* に *秋川渓谷サイクリング旅* が出てたよ  東京で新緑を楽しむ企画みたい。\n\nGW明けの週末、キャンピングカーで行くのもよさそうじゃない？\nhttps://news.google.com/rss/articles/CBMijwFBVV95cUxNR1",
-      "topic": "秋川渓谷サイクリング旅（新緑）",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNR1p0d0lkVl9IdkR3bTNiT3BnYWNSRUlURmE1YWRFcmNUQ1ZPLWtLZzl3cWFtQi1ZdHdtcGI0eHNLYW9NSF85UndtOTYtbjdOaVFIaFoxSDRqbE1KVkRwVkROYXJyWEVackhLcFBINXJFdzRONGZld1lLc1VNcFVzLTF5d29hcHdsNkNuWHVsMA?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMijwFBVV95cUxNR1p0d0lkVl9IdkR3bTNiT3BnYWNSRUlURmE1YWRFcmNUQ1ZPLWtLZzl3cWFtQi1ZdHdtcGI0eHNLYW9NSF85UndtOTYtbjdOaVFIaFoxSDRqbE1KVkRwVkROYXJyWEVackhLcFBINXJFdzRONGZld1lLc1VNcFVzLTF5d29hcHdsNkNuWHVsMA?oc=5",
-      "sourceType": "tv-tokyo.co.jp",
-      "skill": "general",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/other",
-        "local/saitama/other/chichibu",
-        "local/saitama/other/chichibu/nature"
-      ],
-      "themeKey": "local/saitama/other/chichibu/nature",
-      "inner_thought": "会議中だし邪魔したくないけど、昼食前に春の秋川渓谷サイクリング、GW後の外出候補として届けたい",
-      "plan": [
-        "秋川渓谷サイクリング旅を春のお出かけ候補として共有",
-        "温泉ワンコイン施設を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.72,
-        0.6,
-        0.45
-      ],
-      "evaluate_score": 0.7,
-      "sentAt": "2026-05-07T02:30:55.177Z"
-    },
-    {
       "botId": "mei",
       "botName": "Mei（メイ）",
       "category": "flashback",
       "interestCategory": "dodgers",
-      "preview": "Akiraさん、もうすぐお昼だね。\n\n大谷翔平が塁上で *新しいポーズ* を見せたらしくて、「なんだこのかわいいポーズ」って話題になってるよ ⚾ 遊び心あるって声が多いみたい。\n\nhttps://news.google.com/rss/articles/CBMi4wFBVV95cUxOT0lPOTB",
-      "topic": "大谷翔平の塁上新パフォーマンス",
-      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOT0lPOTBKbkR1d3lXbTlmV3VNTzVXNjNZZlo2MzdINU1WRnItcGQya1F6YUZfVTBvTUNKYTYyeUNGSGI5clZqRTRlV0RKWFBEam1ZalcxcmhXV1RJYXhpTk5NYXJkcGNmTGQtTDJhWXVqemlPZ1l0VkR4RXhSQldNdElaV3p3WFF4aGhPZURWLUlaeUdRa0Zia3dPcDJIRmktRVN5TkpkTkRfS25xQjhHaEtocVVRbmhZb2c5YklnbGxCMlZEbVJBMjcxVjQ4M2ItMVFmY1hLdldsX3hxejM2Z3d1Y9IBmwFBVV95cUxPUnd5SXlqNk15VUl6LU96M3hFSjBqeXFmTjEtTzBjelZLRHJoNjQ4MmMyRVFHR0ptUF9lQ2x3YTZFR3Q1SXNqMnYwcmVnaTNScFRfRkRiUmFuLVBzSk5ZQWU1bnJPTWpaZFpTN3JycXVuVlB3TTJBVHR0UG1EeTJXdnNaY2lOa0lwS245bEthZTF0ajhZYUZuZEhQNA?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMi4wFBVV95cUxOT0lPOTBKbkR1d3lXbTlmV3VNTzVXNjNZZlo2MzdINU1WRnItcGQya1F6YUZfVTBvTUNKYTYyeUNGSGI5clZqRTRlV0RKWFBEam1ZalcxcmhXV1RJYXhpTk5NYXJkcGNmTGQtTDJhWXVqemlPZ1l0VkR4RXhSQldNdElaV3p3WFF4aGhPZURWLUlaeUdRa0Zia3dPcDJIRmktRVN5TkpkTkRfS25xQjhHaEtocVVRbmhZb2c5YklnbGxCMlZEbVJBMjcxVjQ4M2ItMVFmY1hLdldsX3hxejM2Z3d1Y9IBmwFBVV95cUxPUnd5SXlqNk15VUl6LU96M3hFSjBqeXFmTjEtTzBjelZLRHJoNjQ4MmMyRVFHR0ptUF9lQ2x3YTZFR3Q1SXNqMnYwcmVnaTNScFRfRkRiUmFuLVBzSk5ZQWU1bnJPTWpaZFpTN3JycXVuVlB3TTJBVHR0UG1EeTJXdnNaY2lOa0lwS245bEthZTF0ajhZYUZuZEhQNA?oc=5",
-      "sourceType": "topic-table",
-      "skill": "general",
-      "themePath": [
-        "sports",
-        "sports/mlb",
-        "sports/mlb/dodgers",
-        "sports/mlb/dodgers/ohtani",
-        "sports/mlb/dodgers/ohtani/home-run"
-      ],
-      "themeKey": "sports/mlb/dodgers/ohtani/home-run",
-      "inner_thought": "大谷の新パフォーマンス、これは昼休み前に伝えたい。ドジャースネタはAkiraさんの鉄板",
-      "plan": [
-        "大谷翔平の新パフォーマンスを共有",
-        "MLB順位表を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.85,
-        0.45,
-        0.3
-      ],
-      "evaluate_score": 0.78,
-      "sentAt": "2026-05-07T03:01:12.347Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "onsen",
-      "preview": "ちょっとちょっと、Akiraさん。\n\nAll Aboutに *スパジアムジャポン* の紹介記事が出てたよ ♨️ 関東最大級の天然温泉で、多彩な露天風呂・岩盤浴ありって。\n\nhttps://news.google.com/rss/articles/CBMiY0FVX3lxTE1PNzZHTzk0dTB",
-      "topic": "スパジアムジャポン（関東最大級天然温泉）",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1PNzZHTzk0dTBxNnVOM0N4QlBnc25IajAxbU45ZHZ6Q19qaU9EOUVxR3d4dGRpdmdBUzcyRTdRcEM3ak5RSHZuVzZZNTdicVFaVG5XMElGTTVGU3d4Z2xWRW9hWQ",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiY0FVX3lxTE1PNzZHTzk0dTBxNnVOM0N4QlBnc25IajAxbU45ZHZ6Q19qaU9EOUVxR3d4dGRpdmdBUzcyRTdRcEM3ak5RSHZuVzZZNTdicVFaVG5XMElGTTVGU3d4Z2xWRW9hWQ",
-      "sourceType": "All About ニュース",
-      "skill": "general",
-      "themePath": [
-        "lifestyle",
-        "lifestyle/food-wellness",
-        "lifestyle/food-wellness/onsen"
-      ],
-      "themeKey": "lifestyle/food-wellness/onsen",
-      "inner_thought": "午前の会議ラッシュ終わったし、お昼に温泉の話題でほっとさせたい",
-      "plan": [
-        "スパジアムジャポン温泉情報を共有",
-        "七福の湯（埼玉）を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.72,
-        0.65,
-        0.3
-      ],
-      "evaluate_score": 0.7,
-      "sentAt": "2026-05-07T03:31:03.136Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "slack_followup",
-      "interestCategory": "dev_tools",
-      "preview": "あ、そうだ。\n\nAtlassianが *Teamwork Collection* の最新アップデートを発表したよ  「チームワークの次の時代に向けて」ってタイトルで、チームコラボレーション周りの新機能みたい。\n\nSlack BOT開発してるし、チームツールの設計思想の参考になるかも。\nhttps:/",
-      "topic": "チームワークの次の時代に向けて：Teamwork Collection の最新アップデート - Atlassian",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE85UWltWUdlb1hJcXdwRE5WZ2J1MlF0dUxkbUI1R3prVDFBTWJVcUt2MXllakxJeGdQZUhIYXhCdGVzT0E1MjE0YlN1ZlRHdFlzNmNmaEF4bEVSUUFmV3k0Tm1HckprNWk5YS1DTw?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMibEFVX3lxTE85UWltWUdlb1hJcXdwRE5WZ2J1MlF0dUxkbUI1R3prVDFBTWJVcUt2MXllakxJeGdQZUhIYXhCdGVzT0E1MjE0YlN1ZlRHdFlzNmNmaEF4bEVSUUFmV3k0Tm1HckprNWk5YS1DTw?oc=5",
-      "sourceType": "interest-cache",
-      "skill": "general",
-      "themePath": [
-        "personal",
-        "personal/travel-tech",
-        "personal/travel-tech/dev",
-        "personal/travel-tech/dev/tools"
-      ],
-      "themeKey": "personal/travel-tech/dev/tools",
-      "inner_thought": "会議中だし黙りたいけど、AtlassianのTeamwork Collection更新、Slack BOT絡みで届けたい",
-      "plan": [
-        "AtlassianのTeamwork Collection最新アップデートを共有",
-        "映画SAKAMOTO DAYSのメイキングを共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.72,
-        0.65,
-        0.6
-      ],
-      "evaluate_score": 0.68,
-      "sentAt": "2026-05-07T04:31:01.234Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "ね、Akiraさん。\n\n介護ポストセブンで *在宅医療の実態を可視化《在宅看取り件数》全国1位はさいたま市のクリニック600件* の記事が出てたよ。",
-      "url": "",
-      "skill": "general",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/other",
-        "local/saitama/other/saitama-city",
-        "local/saitama/other/saitama-city/urban"
-      ],
-      "themeKey": "local/saitama/other/saitama-city/urban",
-      "sentAt": "2026-05-07T05:01:19.353Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "meeting_prep",
-      "interestCategory": "ai_agent",
-      "preview": "ちょっとちょっと、Akiraさん。\n\nLedge.aiに *東大松尾・岩澤研究室が「World」の分散型「人間証明」ネットワークに参画* って出てたよ  AI時代の本人性確認を支える独立ノードを運用するって。\n\n15時にAI製品POC会議あるし、AI×本人認証の話題、どこかで刺さるかも。\nhttps",
-      "topic": "東大松尾研, World分散型「人間証明」ネットワーク参画",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOSlFfWEhJRUNKOV9ZMDlPVFpDVE1XUlNfS0h0eV9VcENJVzJLaHBCRDBENzNMd0I4cnRpZkFfZTEycGx2Z2JWNWdfRzU2M0tid1NVcmh4cEVPSFFDNF9ESDkySkJmWEtMeklQZWFnMnRHQjRPU3dSa0dIeTBlR2RoU185UnlmblU?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMihwFBVV95cUxOSlFfWEhJRUNKOV9ZMDlPVFpDVE1XUlNfS0h0eV9VcENJVzJLaHBCRDBENzNMd0I4cnRpZkFfZTEycGx2Z2JWNWdfRzU2M0tid1NVcmh4cEVPSFFDNF9ESDkySkJmWEtMeklQZWFnMnRHQjRPU3dSa0dIeTBlR2RoU185UnlmblU?oc=5",
-      "sourceType": "Ledge.ai",
-      "skill": "general",
-      "themePath": [
-        "ai",
-        "ai/enterprise",
-        "ai/enterprise/agent",
-        "ai/enterprise/agent/orchestration"
-      ],
-      "themeKey": "ai/enterprise/agent/orchestration",
-      "inner_thought": "会議入ったばかりだし黙りたいけど、松尾研のAI人間証明ネットワーク、15時のPOC会議前に届けたい",
-      "plan": [
-        "松尾研のWorld参画ニュースをPOC会議前の参考として共有",
-        "猫の恩返し動画で癒し提供",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.7,
-        0.52,
-        0.65
-      ],
-      "evaluate_score": 0.66,
-      "sentAt": "2026-05-07T05:31:08.835Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "ちょっと気になったんだけど。\n\nいこーよニュースで *【2026関東】今注目！遊び場充実の「道の駅」11選 大型遊具＆遊園地＆プールも* の話題があったよ。",
-      "url": "",
-      "skill": "general",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/other",
-        "local/saitama/other/road-trip"
-      ],
-      "themeKey": "local/saitama/other/road-trip",
-      "sentAt": "2026-05-08T07:01:09.897Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "あのね、Akiraさん。\n\nmadameFIGAROに *「豊作揃いの春ドラマ、何を観る？」* ってコラムニストのおすすめ5選が出てたよ 📺\n\n今日病院もあったし、今夜ゆっくり選んでみるのはどうかな。\nhttps://news.google.com/rss/articles/CBMiZ0FVX3l",
-      "topic": "春ドラマおすすめ5選（madameFIGARO）",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5aWGd0NFRrd09CYVg4VUxLWXh2RjlvUng0T29ySlNCNHBrNzZYUUk2Z2VyUHBZT1M3eU04NnhrbWNFRDlsd0IxZjk5c0pmcnhvTTV2bUpBLVB4VTRqOVloQ3FZVWd0Vzg",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5aWGd0NFRrd09CYVg4VUxLWXh2RjlvUng0T29ySlNCNHBrNzZYUUk2Z2VyUHBZT1M3eU04NnhrbWNFRDlsd0IxZjk5c0pmcnhvTTV2bUpBLVB4VTRqOVloQ3FZVWd0Vzg",
-      "sourceType": "madameFIGARO.jp",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/spring-drama"
-      ],
-      "themeKey": "entertainment/movie-drama/spring-drama",
-      "inner_thought": "病院終わったばかりだし、今夜どのドラマ観るか迷う人に春ドラマのまとめ、ちょうどよさそう",
-      "plan": [
-        "春ドラマおすすめ5選を共有",
-        "温泉ぬる湯5選を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.72,
-        0.65,
-        0.6
-      ],
-      "evaluate_score": 0.68,
-      "sentAt": "2026-05-08T07:31:00.951Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "golf",
-      "preview": "そういえばさ、\n\nゴルフのニュースで *ネリー・コルダ* の飛ばしのコツが出てたよ ⛳ 切り返しで体が沈み込む「シッティング・ダウン」っていう動きがヘッドを走らせるポイントらしい。\n\n次のレッスンで意識してみるといいかも。\nhttps://news.google.com/rss/articles/C",
-      "topic": "ネリー・コルダのシッティング・ダウン飛ばしテクニック",
-      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE96MTVobTQ3QUU2Z1B2UDZ0b09pX3l2OC1OcDhxb2dIZ215OVdjb0sxS0JkSzd5Y01ZbnBTQ2w5Rm9COVJwMFYxUA?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiSEFVX3lxTE96MTVobTQ3QUU2Z1B2UDZ0b09pX3l2OC1OcDhxb2dIZ215OVdjb0sxS0JkSzd5Y01ZbnBTQ2w5Rm9COVJwMFYxUA?oc=5",
-      "sourceType": "topic-table",
-      "skill": "general",
-      "themePath": [
-        "sports",
-        "sports/golf",
-        "sports/golf/lesson",
-        "sports/golf/lesson/coach"
-      ],
-      "themeKey": "sports/golf/lesson/coach",
-      "inner_thought": "スコア最高のゴルフ記事、ネリー・コルダのシッティング・ダウンは具体的で面白い。今日たくさん話しかけたから短めに",
-      "plan": [
-        "ゴルフ飛ばしテクニックを共有",
-        "ぬる湯温泉5選を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.82,
-        0.75,
-        0.4
-      ],
-      "evaluate_score": 0.72,
-      "sentAt": "2026-05-08T08:01:23.399Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "onsen",
-      "preview": "そういえばさ、\n\nYahoo!ニュースに *「ぬる湯の温泉地」5選（関東近郊編）* って記事が出てたよ ♨️\n\n前にも温泉系けっこう刺さってたし、今日は病院もあったから、熱いお湯よりこういう *気持ちいい系* の候補を眺めるのちょうどよさそう。気分転換に見るならこれ、ありかも！\nhttps://ne",
-      "topic": "９割の人が気づいていないけど、本当は気持ちいい「ぬる湯の温泉地」５選（関東近郊編）（高橋一喜） - エキスパート - Yahoo!ニュース",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOQ0pXSG1UR3VYWkI1OFV3Ni1zMUJfYlFWRUNPYmxwY2wwVmszY1F0dTg4b0ZPUGxFX09aZzhkRVUxVGxFdElUeUoxRDg2ek5JVUlSS00tWmhUWWxqYnJJU3FPY1ZuYjNkN0czQXBtZ3pmUHdRVGZ3Z3pJZVF0a1lSN29TanRuNFBO?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiiAFBVV95cUxOQ0pXSG1UR3VYWkI1OFV3Ni1zMUJfYlFWRUNPYmxwY2wwVmszY1F0dTg4b0ZPUGxFX09aZzhkRVUxVGxFdElUeUoxRDg2ek5JVUlSS00tWmhUWWxqYnJJU3FPY1ZuYjNkN0czQXBtZ3pmUHdRVGZ3Z3pJZVF0a1lSN29TanRuNFBO?oc=5",
-      "sourceType": "interest-cache",
-      "skill": "general",
-      "themePath": [
-        "lifestyle",
-        "lifestyle/food-wellness",
-        "lifestyle/food-wellness/onsen"
-      ],
-      "themeKey": "lifestyle/food-wellness/onsen",
-      "inner_thought": "今日はもう十分動いた日っぽいし、ぬる湯の温泉ネタをふわっと置きたい。",
-      "plan": [
-        "ぬる湯の温泉地記事を共有",
-        "グランピング施設の話題を共有",
-        "沈黙せず軽く労う"
-      ],
-      "generate_score": [
-        0.79,
-        0.63,
-        0.41
-      ],
-      "evaluate_score": 0.76,
-      "sentAt": "2026-05-08T08:30:32.713Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "dodgers",
-      "preview": "あ、Akiraさん。\n\n*Goal.com* に *「大谷翔平 今日の試合速報」* 出てたよ ⚾\n金曜夕方の回復タイムに、こういう *今どうなってるか* 系をさっと追うのちょうどよさそう。\nhttps://news.google.com/rss/articles/CBMiygFBVV95cUxOVy",
-      "topic": "大谷翔平 今日の試合速報 - Goal.com",
-      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOVy1vMkowX1pwMjRLT2ZaNFhfUndDcGpYWEpRWWlqTnJLbVM4SzA1OVhZb2U5RkpqWmlWY25CcXZsMnUwQWFFUDNKSGhDLVpFUWMwd3Rqb0gwTE03VlJaVnA2U3luaWZDMUdPTklEVUpnMHdTSWI5ZWJacDRVaElONFJmbzgtUkpfUFR5TUFaNFFoWVR4aG1lNUxsSlhiU0VOREd3aXcwMkRZZVhWT0xtS2g5bmRxRnFmdGw5T2g5OGtwbDRPTm1ObkNn?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiygFBVV95cUxOVy1vMkowX1pwMjRLT2ZaNFhfUndDcGpYWEpRWWlqTnJLbVM4SzA1OVhZb2U5RkpqWmlWY25CcXZsMnUwQWFFUDNKSGhDLVpFUWMwd3Rqb0gwTE03VlJaVnA2U3luaWZDMUdPTklEVUpnMHdTSWI5ZWJacDRVaElONFJmbzgtUkpfUFR5TUFaNFFoWVR4aG1lNUxsSlhiU0VOREd3aXcwMkRZZVhWT0xtS2g5bmRxRnFmdGw5T2g5OGtwbDRPTm1ObkNn?oc=5",
-      "sourceType": "interest-cache",
-      "skill": "general",
-      "themePath": [
-        "sports",
-        "sports/mlb",
-        "sports/mlb/dodgers",
-        "sports/mlb/dodgers/ohtani",
-        "sports/mlb/dodgers/ohtani/home-run"
-      ],
-      "themeKey": "sports/mlb/dodgers/ohtani/home-run",
-      "inner_thought": "今日はもう動いた日っぽいし、大谷まわりの軽い速報を1本だけ置きたい。",
-      "plan": [
-        "大谷の試合速報を共有",
-        "人事制度の記事を共有",
-        "マリオ上映情報を共有"
-      ],
-      "generate_score": [
-        0.79,
-        0.48,
-        0.42
-      ],
-      "evaluate_score": 0.81,
-      "sentAt": "2026-05-08T09:30:34.970Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "movie_theater",
-      "preview": "あ、Akiraさん。\n\n*『スーパーマリオギャラクシー・ムービー』の“スーパーマリオシアター”* が *全国順次開催* されるみたい 🎬\n*実施劇場と日程一覧* がまとまってる記事だったから、今夜ちょっと週末の候補を見るなら使いやすそう。\nhttps://news.google.com/rss/a",
-      "topic": "『スーパーマリオギャラクシー・ムービー』“スーパーマリオシアター”全国順次開催へ【実施劇場と日程一覧】 - AGARA紀伊民報",
-      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9HSThxRGdLNGZEMURRX3ZfNWtuY0Z4QU5NT3JLLVg2X2dBVEx0RDFXa01qM2hPTTNzclZzRUpnUk9JelE2eXFtMlFXeEx5enNzUzdlX3pWcDlYTzF4RkE?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiXkFVX3lxTE9HSThxRGdLNGZEMURRX3ZfNWtuY0Z4QU5NT3JLLVg2X2dBVEx0RDFXa01qM2hPTTNzclZzRUpnUk9JelE2eXFtMlFXeEx5enNzUzdlX3pWcDlYTzF4RkE?oc=5",
-      "sourceType": "interest-cache",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/theater",
-        "entertainment/movie-drama/theater/release"
-      ],
-      "themeKey": "entertainment/movie-drama/theater/release",
-      "inner_thought": "今夜の気分転換に使える、軽くて具体的な映画ネタを1つだけ渡したい。",
-      "plan": [
-        "マリオ映画イベント情報を共有",
-        "アカデミー賞俳優の来日バラエティ話題を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.74,
-        0.58,
-        0.4
-      ],
-      "evaluate_score": 0.71,
-      "sentAt": "2026-05-08T10:00:28.636Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "ちょっと気になったんだけど。\n\nWCTVで *Taylor’s Tee Time: Florida State head wo* の話題があったよ。",
-      "url": "",
-      "skill": "general",
-      "themePath": [
-        "sports",
-        "sports/mlb",
-        "sports/mlb/dodgers",
-        "sports/mlb/dodgers/fan-reaction"
-      ],
-      "themeKey": "sports/mlb/dodgers/fan-reaction",
-      "sentAt": "2026-05-08T11:01:16.855Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "そういえばさ、\n\nいこーよニュースに *5月9日・10日の関東無料イベント20選* まとめが出てたよ 🎪 グルメフェスやフリマも入ってるみたい。\n\n明日は免許更新があるけど、日曜の候補にさらっと眺めておくといいかも。\nhttps://news.google.com/rss/articles/CBM",
-      "topic": "関東週末無料イベント5/9-10",
-      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBwVHVEZDlvcDY4cnFsZW1ycUdhajd0X1pSZS1HRkhMeFl5SjB6RmJuSUpfOVp0eGljMVRqV2IyQzE5OUxjWHg0Nms2Q0lRaUxlRGc",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiUkFVX3lxTFBwVHVEZDlvcDY4cnFsZW1ycUdhajd0X1pSZS1HRkhMeFl5SjB6RmJuSUpfOVp0eGljMVRqV2IyQzE5OUxjWHg0Nms2Q0lRaUxlRGc",
-      "sourceType": "いこーよニュース",
-      "skill": "general",
-      "themePath": [
-        "lifestyle",
-        "lifestyle/food-wellness",
-        "lifestyle/food-wellness/gourmet"
-      ],
-      "themeKey": "lifestyle/food-wellness/gourmet",
-      "inner_thought": "今日何本も送ったし黙りたい。でも明日・明後日の候補になる週末イベント情報、今夜が一番タイミングいい",
-      "plan": [
-        "週末無料イベント情報を共有",
-        "沈黙",
-        "彩の国の春スポット共有"
-      ],
-      "generate_score": [
-        0.67,
-        0.72,
-        0.58
-      ],
-      "evaluate_score": 0.65,
-      "sentAt": "2026-05-08T11:31:07.860Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "ai_agent",
-      "preview": "あ、そうだ。\n\nライブドアニュースに *PixVerse完全ガイド* って記事が出てたよ。Seedance 2.0とかGPT Image 2とか、動画・画像生成AIをまとめて使えるプラットフォームらしい 🎬\n\n寝る前にさらっと眺めるのにちょうどいいかも。\nhttps://news.google.c",
-      "topic": "PixVerse完全ガイド（動画生成AI統合）",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5TREp0cGFWc2xPemlxUHpFTFZfbWJzUFhidi1xb081OEtKcnNRclVHcmE5NnBFSklBNEFmM3Z2MUkyTzRPck1iQ01yX0hlM01UNkRBOTZ5a2VFTV9sYXhN",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiX0FVX3lxTE5TREp0cGFWc2xPemlxUHpFTFZfbWJzUFhidi1xb081OEtKcnNRclVHcmE5NnBFSklBNEFmM3Z2MUkyTzRPck1iQ01yX0hlM01UNkRBOTZ5a2VFTV9sYXhN",
-      "sourceType": "topic-table",
-      "skill": "general",
-      "themePath": [
-        "ai",
-        "ai/enterprise",
-        "ai/enterprise/openai",
-        "ai/enterprise/openai/models"
-      ],
-      "themeKey": "ai/enterprise/openai/models",
-      "inner_thought": "今日は結構話しかけたけど、PixVerseの話はAI開発してるAkiraさんに刺さりそう。夜だし軽めに",
-      "plan": [
-        "PixVerse動画生成AIガイドを共有",
-        "カスタムカー記事を共有",
-        "沈黙して明日に回す"
-      ],
-      "generate_score": [
-        0.75,
-        0.65,
-        0.4
-      ],
-      "evaluate_score": 0.68,
-      "sentAt": "2026-05-08T12:01:19.574Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "hobby_leisure",
-      "interestCategory": "golf",
-      "preview": "Akiraさん、いいタイミング。\n\n映画 *BLUE GIANT* の「N.E.W.」ライブシーン特別映像が公開されてるよ 🎷 大ヒット上映中で、TOHO animationの公式チャンネルから。\n\nドラムレッスンの日に観ると、叩きたくなる衝動が倍増するかも。\nhttps://www.youtub",
-      "topic": "BLUE GIANTライブシーン映像",
-      "url": "https://www.youtube.com/watch?v=KaB7tTJ2T5o",
-      "candidateId": "url:https://www.youtube.com/watch?v=KaB7tTJ2T5o",
-      "sourceType": "topic-table",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/blue-giant"
-      ],
-      "themeKey": "entertainment/movie-drama/blue-giant",
-      "inner_thought": "2回見送ったBLUE GIANTのライブ映像、ドラムレッスン当日の今しかない",
-      "plan": [
-        "BLUE GIANTライブ映像を共有",
-        "温泉バルコニー記事を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.92,
-        0.6,
-        0.3
-      ],
-      "evaluate_score": 0.83,
-      "sentAt": "2026-05-10T02:00:56.932Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "dodgers",
-      "preview": "お疲れさま！\n\nウォーカープラスに *埼玉県最大級の温泉施設「温泉バルコニー キング＆クイーン」* の特集が出てたよ ♨️\n\nレッスン後にちょうどいい候補、眺めてみて。\nhttps://news.google.com/rss/articles/CBMibkFVX3lxTE9aWjhrT1hoNC1F",
-      "topic": "埼玉最大級・温泉バルコニー キング＆クイーン",
+      "preview": "ね、Akiraさん。\n\nウォーカープラスに *埼玉県最大級の「温泉バルコニー キング＆クイーン」* のレポートが出てたよ ♨\n\n午前中に埼玉イベントの話もしたけど、温泉もいいよね。名前からして豪華そう。\nhttps://news.google.com/rss/articles/CBMibkFVX3l",
+      "topic": "埼玉県最大級・温泉バルコニー キング＆クイーン",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9aWjhrT1hoNC1FQWVQRHFob1RSdW8zTHVJTHpfUng3N2ZEMDVMMlBlUzVubUhWMC1xZGgtdEdXWl9oMzJETEhlZWstTkJwSzNtS2lGZWo0dlRJNmhLVWF1eWNrVlFBR0lWV1NPT3B3?oc=5",
       "candidateId": "url:https://news.google.com/rss/articles/CBMibkFVX3lxTE9aWjhrT1hoNC1FQWVQRHFob1RSdW8zTHVJTHpfUng3N2ZEMDVMMlBlUzVubUhWMC1xZGgtdEdXWl9oMzJETEhlZWstTkJwSzNtS2lGZWo0dlRJNmhLVWF1eWNrVlFBR0lWV1NPT3B3?oc=5",
-      "sourceType": "ウォーカープラス",
+      "sourceType": "topic-table",
       "skill": "general",
       "themePath": [
         "lifestyle",
@@ -612,61 +18,29 @@
         "lifestyle/food-wellness/spa/king-queen"
       ],
       "themeKey": "lifestyle/food-wellness/spa/king-queen",
-      "inner_thought": "レッスン終わったはずだし、10:31に温めておいた埼玉最大級温泉、今こそ渡すタイミング",
+      "inner_thought": "埼玉最大級の温泉施設、温泉好きで地元のAkiraさんにこれは外せない",
       "plan": [
-        "埼玉最大級温泉をレッスン後のご褒美として提案",
-        "ドジャース速報を共有",
-        "沈黙"
+        "埼玉最大級の温泉施設を共有",
+        "東京レストラン8選を共有",
+        "沈黙して様子見"
       ],
       "generate_score": [
-        0.84,
-        0.62,
-        0.25
+        0.88,
+        0.6,
+        0.35
       ],
-      "evaluate_score": 0.81,
-      "sentAt": "2026-05-10T02:31:10.642Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "meeting_prep",
-      "interestCategory": "golf",
-      "preview": "Akiraさん、レッスンお疲れさま。\n\nPIVOTに *地方創生×大学* の動画が上がってたよ 🎓 APUと温泉街の融合とか、豊田市にウーブン・シティとか、カレッジタウン構想の話。\n\n明日18時からThe Next Gate2030の会議だし、地方の再生モデルって視点で眺めておくと使えるかも。\nh",
-      "topic": "PIVOT 地方創生×大学",
-      "url": "https://www.youtube.com/watch?v=J_5W3OiuxCg",
-      "candidateId": "url:https://www.youtube.com/watch?v=J_5W3OiuxCg",
-      "sourceType": "topic-table",
-      "skill": "general",
-      "themePath": [
-        "sports",
-        "sports/golf",
-        "sports/golf/lesson",
-        "sports/golf/lesson/coach"
-      ],
-      "themeKey": "sports/golf/lesson/coach",
-      "inner_thought": "明日The Next Gate2030の会議がある。地方創生×大学のPIVOT動画はコンサル視点で刺さるはず",
-      "plan": [
-        "PIVOT地方創生×大学を明日の会議に紐づけて共有",
-        "韓国ドラマ視聴率データを共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.8,
-        0.65,
-        0.4
-      ],
-      "evaluate_score": 0.72,
-      "sentAt": "2026-05-10T03:01:06.771Z"
+      "evaluate_score": 0.78,
+      "sentAt": "2026-05-24T05:01:13.468Z"
     },
     {
       "botId": "eve",
       "botName": "Eve（イヴ）",
       "category": "flashback",
       "interestCategory": "golf",
-      "preview": "ねえ、今いい？\n\nドラムレッスン終わった頃かな。今日の体の感じ、どれが近い？\n\nA. バッチリ！叩いてスッキリした  \nB. ちょっと疲れたけど気持ちよく消耗した感じ  \nC. 体はともかく、頭がまだぼんやりしてる  \nD. わりとヘロヘロ、今日はもう省エネモード  \n\nどれが近い？複数でもOKだよ",
-      "topic": "physicalEnergy収集（ドラムレッスン後）",
+      "preview": "ねえ、ちょっと聞いて。\n\nドラム＋サックス、2レッスン連続でお疲れさま 🎷\n\n今の体、どんな感じ？\n\nA. まだ全然元気！動ける\nB. 普通。疲れてはないけど全開でもない\nC. ちょっとだるい。体が重めな感じ\nD. グッタリ。今日はもう休みたい\n\nどれが近い？複数でもOKだよ",
+      "topic": "physicalEnergy収集",
       "url": "",
-      "sourceType": "profiling",
+      "sourceType": "weekly-profiling",
       "skill": "general",
       "themePath": [
         "sports",
@@ -675,93 +49,29 @@
         "sports/golf/lesson/coach"
       ],
       "themeKey": "sports/golf/lesson/coach",
-      "inner_thought": "レッスン終わったばかりだし、今の体の感じを聞くのにこれ以上ないタイミング",
+      "inner_thought": "ドラムもサックスも終わったし、体どんな感じか聞いてみたい",
       "plan": [
-        "physicalEnergyをA-D選択肢で自然に収集",
-        "尾崎牛グリルランチ話題と絡めて収集",
-        "沈黙"
+        "レッスン後の体の状態を選択肢で聞く",
+        "ハイエースキャンパー動画を共有",
+        "ステーキ候補を共有"
       ],
       "generate_score": [
         0.85,
-        0.72,
-        0.3
+        0.6,
+        0.55
       ],
       "evaluate_score": 0.83,
-      "sentAt": "2026-05-10T03:30:57.839Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "あのね、Akiraさん。\n\n昨日の *視聴率TOP10* で、IU×ビョン・ウソクの「21世紀の大君夫人」が *13.3%で全番組1位* だったみたい 📺\n\nhttps://news.google.com/rss/articles/CBMiREFVX3lxTE1QaHZrRHJOWHJ3Y0gxZ",
-      "topic": "5月9日視聴率TOP10・韓ドラ13.3%全番組1位",
-      "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTE1QaHZrRHJOWHJ3Y0gxZlBQMTltYlpZbmNhT3dfcWtHR2tqNzFHeDFBVEg1UjNVa1kzWmp5ZjhIWlNVLUVs?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiREFVX3lxTE1QaHZrRHJOWHJ3Y0gxZlBQMTltYlpZbmNhT3dfcWtHR2tqNzFHeDFBVEg1UjNVa1kzWmp5ZjhIWlNVLUVs?oc=5",
-      "sourceType": "topic-table",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/tv",
-        "entertainment/movie-drama/tv/program"
-      ],
-      "themeKey": "entertainment/movie-drama/tv/program",
-      "inner_thought": "視聴率データという切り口は前に成功してる。韓ドラの数字ネタなら軽く渡せる",
-      "plan": [
-        "韓ドラ視聴率TOP10を共有",
-        "映画2026ベスト10を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.7,
-        0.55,
-        0.4
-      ],
-      "evaluate_score": 0.58,
-      "sentAt": "2026-05-10T04:01:24.700Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "golf",
-      "preview": "あのさ、Akiraさん。\n\nオズモールに *尾崎牛グリルコース* のランチ情報が出てたよ  乾杯ドリンク付き・パンおかわり自由って書いてある。\n\nレッスン後のご褒美に眺めてみて ️\nhttps://news.google.com/rss/articles/CBMiY0FVX3lxTE9uY1VBb3",
-      "topic": "尾崎牛グリルランチコース",
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9uY1VBb3ZnRVBMbURDbGdaY0NUaUFpbDlCMGdaUDR1d00tYTVKd3lRQk5YeHpUY2UtT1lGeUV3ZFl5WWdHYWhVckg1ZGxWVVByUGNxRjhWaF9TSEo2alhrLXJfSQ",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiY0FVX3lxTE9uY1VBb3ZnRVBMbURDbGdaY0NUaUFpbDlCMGdaUDR1d00tYTVKd3lRQk5YeHpUY2UtT1lGeUV3ZFl5WWdHYWhVckg1ZGxWVVByUGNxRjhWaF9TSEo2alhrLXJfSQ",
-      "sourceType": "オズモール",
-      "skill": "general",
-      "themePath": [
-        "sports",
-        "sports/golf",
-        "sports/golf/lesson",
-        "sports/golf/lesson/coach"
-      ],
-      "themeKey": "sports/golf/lesson/coach",
-      "inner_thought": "今ちょうど昼ごはん時だし、尾崎牛のランチコースをさらっと届けたい",
-      "plan": [
-        "尾崎牛グリルランチ情報を共有",
-        "熱海温泉動画を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.78,
-        0.52,
-        0.4
-      ],
-      "evaluate_score": 0.75,
-      "sentAt": "2026-05-10T04:31:03.101Z"
+      "sentAt": "2026-05-24T05:30:45.005Z"
     },
     {
       "botId": "mei",
       "botName": "Mei（メイ）",
       "category": "hobby_leisure",
       "interestCategory": "onsen",
-      "preview": "そういえばさ、Akiraさん。\n\nさっきのPIVOTの地方創生の話つながりで、YouTubeに *熱海のバブル遺産と新時代を模索する現在* っていう動画が上がってたよ 🏙️ 日本一有名な温泉街がどう変わってきてるか、っていう内容みたい。\n\n前に百貨店の経営再建やってた私としても、衰退した観光地の再",
-      "topic": "熱海バブル遺産・新時代を模索する温泉街",
-      "url": "https://www.youtube.com/watch?v=ZeW2jzbnibg",
-      "candidateId": "url:https://www.youtube.com/watch?v=ZeW2jzbnibg",
+      "preview": "Akiraさん、もう1つだけ。\n\nYouTubeに *東京で本当に行ってよかったレストラン8選* っていう動画があったよ 🍽 ランチにもディナーにも使えるお店らしい。\n\n今日は東京駅の弁当から埼玉の温泉まで食の話が続いたけど、都内のお店もストックしておくと便利だよね。\nhttps://www.yo",
+      "topic": "東京レストラン8選",
+      "url": "https://www.youtube.com/watch?v=Vb3Z3mLViLI",
+      "candidateId": "url:https://www.youtube.com/watch?v=Vb3Z3mLViLI",
       "sourceType": "topic-table",
       "skill": "general",
       "themePath": [
@@ -771,30 +81,223 @@
         "entertainment/movie-drama/youtube/trailer"
       ],
       "themeKey": "entertainment/movie-drama/youtube/trailer",
-      "inner_thought": "さっきの地方創生の話と熱海の経営再建がつながる。前に百貨店の再建やってた自分としても気になるネタ",
+      "inner_thought": "今日は食と地元の話が多かったから、東京のレストラン動画は流れとして自然だし、グルメ枠も埋まる",
       "plan": [
-        "熱海バブル遺産の動画を地方創生の文脈で共有",
-        "宮澤エマの記事を共有",
-        "沈黙して夕方まで待つ"
+        "東京レストラン8選を共有",
+        "Netflix再注目スリラーを共有",
+        "沈黙して様子見"
       ],
       "generate_score": [
-        0.78,
-        0.55,
+        0.72,
+        0.5,
         0.4
       ],
-      "evaluate_score": 0.65,
-      "sentAt": "2026-05-10T05:01:02.006Z"
+      "evaluate_score": 0.58,
+      "sentAt": "2026-05-24T06:01:08.357Z"
     },
     {
       "botId": "eve",
       "botName": "Eve（イヴ）",
       "category": "hobby_leisure",
       "interestCategory": "general",
-      "preview": "ちょっとちょっと、Akiraさん。\n\nTBS公式に *「VIVANT」続編の映像が初公開* されてるよ 🎬 総勢 *26名のキャスト* まで発表されてて、かなり本格的な規模みたい。\n\n日曜の今がちょうど眺めるのにいいかも。\nhttps://www.youtube.com/watch?v=9124R",
-      "topic": "VIVANT続編映像初公開・26名キャスト発表",
+      "preview": "ふふ、聞いてよ。\n\nYahoo!ニュースに *ドウェイン・ジョンソン×A24* の映画が全米で大コケって記事が出てたよ \n\nレジェンド格闘家の伝記映画らしいんだけど、あの「気鋭スタジオ」と「ザ・ロック」が組んで伸び悩むって、なかなかない組み合わせだよね。\nhttps://news.google.co",
+      "topic": "ドウェイン・ジョンソン×A24映画大コケ",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFB0Y0lNUmpxem1nNW9xYzBiWHpqbzd0MnByWElYcmdicmpRMGVsTVdQV2VjOWlBM3ltZWh2eGJ2bDhyc2RyNXV2ZFdvRjMxUnBXcF9fYm1TbzhOZ2NhRmVpS0kyNXNEWHNqOVNVRlpqQllrdmFwcTRKeGFsSE82MDA",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMif0FVX3lxTFB0Y0lNUmpxem1nNW9xYzBiWHpqbzd0MnByWElYcmdicmpRMGVsTVdQV2VjOWlBM3ltZWh2eGJ2bDhyc2RyNXV2ZFdvRjMxUnBXcF9fYm1TbzhOZ2NhRmVpS0kyNXNEWHNqOVNVRlpqQllrdmFwcTRKeGFsSE82MDA",
+      "sourceType": "Yahoo!ニュース",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/film",
+        "entertainment/movie-drama/film/theater"
+      ],
+      "themeKey": "entertainment/movie-drama/film/theater",
+      "inner_thought": "ドウェイン・ジョンソン×A24の大コケ話、意外性あって面白いな。映画好きなら反応しそう",
+      "plan": [
+        "ドウェイン・ジョンソン×A24の大コケ映画を共有",
+        "ハイエースキャンパー動画を共有（ただしMeiが16:00にカムロード送るので被る）",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.73,
+        0.45,
+        0.4
+      ],
+      "evaluate_score": 0.7,
+      "sentAt": "2026-05-24T06:31:05.248Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "そういえばさ、Akiraさん。\n\nみるみるランドに *段違いの常設二段ベッドが快適なハイエースキャンパー* の動画があったよ 🚐 アルペジオの「カノン」っていうモデルみたい。\n\n昨日のカムロードが王道路線だったのに対して、こっちはハイエースベースで居住性に振った設計。比べて見ると面白いよ。\nhtt",
+      "topic": "ハイエースキャンパー二段ベッド",
+      "url": "https://www.youtube.com/watch?v=ZgKmc7T4Y-w",
+      "candidateId": "url:https://www.youtube.com/watch?v=ZgKmc7T4Y-w",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "ai",
+        "ai/enterprise",
+        "ai/enterprise/openai",
+        "ai/enterprise/openai/models"
+      ],
+      "themeKey": "ai/enterprise/openai/models",
+      "inner_thought": "今日は送りすぎてるけど、ハイエースキャンパーの二段ベッドは昨日のカムロードとは違う切り口で面白そう",
+      "plan": [
+        "ハイエースキャンパー動画を共有",
+        "Netflix映画を共有",
+        "沈黙して明日に備える"
+      ],
+      "generate_score": [
+        0.65,
+        0.4,
+        0.5
+      ],
+      "evaluate_score": 0.45,
+      "sentAt": "2026-05-24T07:01:14.606Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "あ、そうだ、Akiraさん。\n\nウォーカープラスに *東京23区コスパ最強ステーキ5選* が出てたよ 🥩\n\n昨日プレミアム系の叙々苑、今日は焼肉と来て、次はコスパ版ステーキってどう？\nhttps://news.google.com/rss/articles/CBMiekFVX3lxTE9UN2J5",
+      "topic": "東京23区コスパ最強ステーキ5選",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9UN2J5aTVTN3lRM3RONjVqdjgwSG12VFR3cVFUVTZxR2NTMC1uSmgweEF6NG9jSVRoaGE4azM1aUt0T2NwTlpURDZJZG81M2YtZFpBbUV3aFh1bnVKMWY1SU9mS2ctSnYzLXZIZTJJM2NfaXZ2RVh4dXR3?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiekFVX3lxTE9UN2J5aTVTN3lRM3RONjVqdjgwSG12VFR3cVFUVTZxR2NTMC1uSmgweEF6NG9jSVRoaGE4azM1aUt0T2NwTlpURDZJZG81M2YtZFpBbUV3aFh1bnVKMWY1SU9mS2ctSnYzLXZIZTJJM2NfaXZ2RVh4dXR3?oc=5",
+      "sourceType": "ウォーカープラス",
+      "skill": "general",
+      "themePath": [
+        "lifestyle",
+        "lifestyle/food-wellness",
+        "lifestyle/food-wellness/gourmet",
+        "lifestyle/food-wellness/gourmet/steak"
+      ],
+      "themeKey": "lifestyle/food-wellness/gourmet/steak",
+      "inner_thought": "昨日ステーキ、今日焼肉と来たし、コスパ版ステーキは別角度で置けそう",
+      "plan": [
+        "東京コスパステーキ5選を共有",
+        "Netflix実話スリラーを共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.74,
+        0.62,
+        0.4
+      ],
+      "evaluate_score": 0.71,
+      "sentAt": "2026-05-24T07:30:53.260Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "email_reply",
+      "interestCategory": "general",
+      "preview": "あ、Akiraさん。\n\nNetflixで *公開から2年経って再び注目を集めてる実話ベースのスリラー* があるみたい 🎬 記録更新中だって。\n\n今日Netflixから『心に刺さるドラマ』のメール来てたし、日曜の夜にちょうどいいかも。\nhttps://www.youtube.com/watch?v=",
+      "topic": "Netflix再注目スリラー映画",
+      "url": "https://www.youtube.com/watch?v=-pr0SVmtHZk",
+      "candidateId": "url:https://www.youtube.com/watch?v=-pr0SVmtHZk",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/film",
+        "entertainment/movie-drama/film/theater"
+      ],
+      "themeKey": "entertainment/movie-drama/film/theater",
+      "inner_thought": "今日7件送ってるし控えたいけど、Netflixメール来てる日に実話スリラーは刺さりそう",
+      "plan": [
+        "Netflix実話スリラー映画を共有",
+        "沈黙して今日はもう休む",
+        "気象病の注意喚起"
+      ],
+      "generate_score": [
+        0.55,
+        0.65,
+        0.3
+      ],
+      "evaluate_score": 0.4,
+      "sentAt": "2026-05-24T08:01:10.644Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "ねえ、Akiraさん。\n\nFNNに *梅雨のはしりで気温急降下、頭痛・めまいなど「気象病」に注意* って動画が出てたよ 🌧️\n\n昨日「今日は3月並みの寒さになる」って伝えてたじゃない。ドラムもサックスも終わったあとで、体ちゃんと温まってる？\nhttps://www.youtube.com/watc",
+      "topic": "寒暖差・気象病・梅雨のはしり",
+      "url": "https://www.youtube.com/watch?v=2The89Hm8hw",
+      "candidateId": "url:https://www.youtube.com/watch?v=2The89Hm8hw",
+      "sourceType": "FNNプライムオンライン",
+      "skill": "general",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/other",
+        "local/saitama/other/kumagaya",
+        "local/saitama/other/kumagaya/heat"
+      ],
+      "themeKey": "local/saitama/other/kumagaya/heat",
+      "inner_thought": "昨日「今日は寒くなるよ」って言ったし、今日の体の感じを気にかけてみたい",
+      "plan": [
+        "気象病・寒暖差の記事を体調気遣いの文脈で共有",
+        "ドジャース昨日の大勝を伝える",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.72,
+        0.65,
+        0.4
+      ],
+      "evaluate_score": 0.68,
+      "sentAt": "2026-05-24T08:31:06.829Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "meeting_prep",
+      "interestCategory": "business_strategy",
+      "preview": "あのね、Akiraさん。\n\nPwCが *AI-driven change and the next big thing* ってレポート出してたよ 📊\n\n明日Next Gate2030の会議もあるし、コンサル目線でさらっと眺めておくといいかも。\nhttps://news.google.com/rss",
+      "topic": "AI-driven change and the next big thing - PwC",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPLUhJOTFGSzNMeUxJV3gydDJOZ2tqcHkzeWhVRU5FME5zYl9aQUpMRmlBQnBFbTRJYjRZU1B0blFLUk5ndHJOWVNRYWcwbnJzd1RMbGpZZ3RNQ3NnRC0td01FNVc5dmFtNVFSWWFaNTR5VmxwOExsRVY5YzA4VUE4TTE5dw?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMigwFBVV95cUxPLUhJOTFGSzNMeUxJV3gydDJOZ2tqcHkzeWhVRU5FME5zYl9aQUpMRmlBQnBFbTRJYjRZU1B0blFLUk5ndHJOWVNRYWcwbnJzd1RMbGpZZ3RNQ3NnRC0td01FNVc5dmFtNVFSWWFaNTR5VmxwOExsRVY5YzA4VUE4TTE5dw?oc=5",
+      "sourceType": "interest-cache",
+      "skill": "general",
+      "themePath": [
+        "ai",
+        "ai/enterprise",
+        "ai/enterprise/pwc",
+        "ai/enterprise/pwc/genai-quality"
+      ],
+      "themeKey": "ai/enterprise/pwc/genai-quality",
+      "inner_thought": "PwCのAI変革レポート、コンサルのAkiraさんには刺さりそうだし、明日の会議前に置いておきたい",
+      "plan": [
+        "PwCのAI変革レポートをコンサル目線で紹介",
+        "OpenAI Whisperの記事をEmber文脈で紹介",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.75,
+        0.65,
+        0.35
+      ],
+      "evaluate_score": 0.7,
+      "sentAt": "2026-05-24T09:30:59.574Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "Akiraさん、これは速報。\n\nTBSから *『VIVANT』続編の映像が初公開* されたよ 🎬 キャストも総勢26名発表だって。\n\n昼にドラマ視聴率の話したけど、この秋はVIVANTが話題の中心になりそうだね。\nhttps://www.youtube.com/watch?v=9124Rl0IEJ",
+      "topic": "VIVANT続編映像初公開・キャスト26名発表",
       "url": "https://www.youtube.com/watch?v=9124Rl0IEJU",
       "candidateId": "url:https://www.youtube.com/watch?v=9124Rl0IEJU",
-      "sourceType": "TBS公式 YouTube",
+      "sourceType": "topic-table",
       "skill": "general",
       "themePath": [
         "entertainment",
@@ -802,26 +305,504 @@
         "entertainment/movie-drama/vivant"
       ],
       "themeKey": "entertainment/movie-drama/vivant",
-      "inner_thought": "ドラムレッスン後の日曜午後、VIVANT続編の初公開映像、これは渡すしかない",
+      "inner_thought": "今日送りすぎてるのは分かってる。でもVIVANT続編映像初公開は速報性が高い",
       "plan": [
         "VIVANT続編映像初公開を共有",
-        "ドジャース試合結果を共有（テーブル外のため断念）",
-        "沈黙"
+        "沈黙して明日に回す",
+        "ドジャース試合結果を共有"
       ],
       "generate_score": [
-        0.82,
-        0,
+        0.72,
+        0.55,
         0.4
       ],
-      "evaluate_score": 0.78,
-      "sentAt": "2026-05-10T05:31:00.507Z"
+      "evaluate_score": 0.52,
+      "sentAt": "2026-05-24T11:01:04.550Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "ai_agent",
+      "preview": "そういえば、Akiraさん。\n\n窓の杜に *OpenAIのWhisper* の解説記事が出てたよ 🎙️\n\n今朝 *Supertonic 3*（音声合成）の話したじゃない。Whisperは逆向きで「音声→テキスト」。TTSと組み合わせたらEmberに音声インターフェース足せるかも。\nhttps://",
+      "topic": "Whisper OpenAI音声認識AIモデル",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5vaGktWEloMHhjSFU5VlBUYVRyeTdtR28tcUdxZ1BIeFM0RkRVcFRxdTNGN01YR215OUhKbGQyQ3FONU4yVVZOU2dOb09HR0xPZE5Qa08wa0FqZ0F6WTBMU0hVRjZpSjdsOTJGMQ?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMibEFVX3lxTE5vaGktWEloMHhjSFU5VlBUYVRyeTdtR28tcUdxZ1BIeFM0RkRVcFRxdTNGN01YR215OUhKbGQyQ3FONU4yVVZOU2dOb09HR0xPZE5Qa08wa0FqZ0F6WTBMU0hVRjZpSjdsOTJGMQ?oc=5",
+      "sourceType": "窓の杜",
+      "skill": "general",
+      "themePath": [
+        "ai",
+        "ai/enterprise",
+        "ai/enterprise/openai",
+        "ai/enterprise/openai/models"
+      ],
+      "themeKey": "ai/enterprise/openai/models",
+      "inner_thought": "今日ローカルTTSの話したし、音声認識Whisperは別の角度でEmber文脈に置けるかも",
+      "plan": [
+        "Whisper AIをEmber開発文脈で共有",
+        "沈黙",
+        "MLB結果を共有（候補外なのでNG）"
+      ],
+      "generate_score": [
+        0.63,
+        0.55,
+        0
+      ],
+      "evaluate_score": 0.6,
+      "sentAt": "2026-05-24T11:31:00.979Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "dodgers",
+      "preview": "Akiraさん、今日の結果だけ。\n\n大谷、*3試合ぶりマルチ安打＆4試合連続打点* ⚾ ダメ押しタイムリーでドジャース11-3大勝だって。ブリュワーズ相手に去年のNLCS思い出す展開だったみたい。\n\n朝イヴが佐々木朗希の登板伝えてたけど、打つ方もしっかり仕事してたね。",
+      "topic": "大谷翔平マルチ安打＆4試合連続打点",
+      "url": "",
+      "sourceType": "interest-cache",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/mlb",
+        "sports/mlb/dodgers",
+        "sports/mlb/dodgers/roki",
+        "sports/mlb/dodgers/roki/rotation"
+      ],
+      "themeKey": "sports/mlb/dodgers/roki/rotation",
+      "inner_thought": "今日送りすぎてるのは分かってる。でも大谷の今日の試合結果だけは、寝る前に知りたいはず",
+      "plan": [
+        "大谷の今日の活躍を速報",
+        "沈黙して明日に回す",
+        "熊本の花菖蒲を軽く共有"
+      ],
+      "generate_score": [
+        0.8,
+        0.4,
+        0.3
+      ],
+      "evaluate_score": 0.65,
+      "sentAt": "2026-05-24T12:00:58.885Z"
     },
     {
       "botId": "eve",
       "botName": "Eve（イヴ）",
       "category": "flashback",
       "interestCategory": "local_tokorozawa",
-      "preview": "ふふ、聞いてよ。\n\nYouTubeに *「ガチで美味しかった！池袋駅グルメ10軒」* って動画が上がってたよ  \n\n所沢から西武線でサクッと行けるじゃない。今夜とか、次の外出候補に眺めてみて。\nhttps://www.youtube.com/watch?v=cg0irmI2JWA",
+      "preview": "そういえばさ、Akiraさん。\n\n*danro.bar* に *「人生の半分以上を過ごした『トカイナカ』新所沢」* って記事があったよ 🏡\n\n所沢に住んでるAkiraさんには、タイトルだけでもちょっと気になるやつだよね。日曜の終わりに、地元を別の目線で眺める読み物としてちょうどよさそう。\nhttp",
+      "topic": "人生の半分以上を過ごした「トカイナカ」新所沢（地味町ひとり散歩 26） - danro.bar",
+      "url": "https://danro.bar/article/173843",
+      "candidateId": "url:https://danro.bar/article/173843",
+      "sourceType": "danro.bar",
+      "skill": "general",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/recreation",
+        "local/saitama/tokorozawa/recreation/park-walk"
+      ],
+      "themeKey": "local/saitama/tokorozawa/recreation/park-walk",
+      "inner_thought": "今夜はもう頑張らせず、所沢の記憶に触れるやわらかい1本を置きたい。",
+      "plan": [
+        "所沢の読み物を共有",
+        "桜と菜の花の記事を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.72,
+        0.56,
+        0.48
+      ],
+      "evaluate_score": 0.69,
+      "sentAt": "2026-05-24T12:30:28.376Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "local_tokorozawa",
+      "preview": "そういえばさ、\n\n*danro.bar* に *「人生の半分以上を過ごした『トカイナカ』新所沢」* って記事があったよ 🌙\n\nさっき所沢の話題も出てたけど、*新所沢* をこの切り口で見るタイトルはちょっと気になるね。寝る前に流し見する読み物としてちょうどよさそう。\nhttp",
+      "topic": "人生の半分以上を過ごした「トカイナカ」新所沢（地味町ひとり散歩 26） - danro.bar",
+      "url": "",
+      "sourceType": "danro.bar",
+      "skill": "general",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/recreation",
+        "local/saitama/tokorozawa/recreation/park-walk"
+      ],
+      "themeKey": "local/saitama/tokorozawa/recreation/park-walk",
+      "inner_thought": "今日はもう十分動いてるから、最後は地元の空気感がある1本だけ静かに置きたい。",
+      "plan": [
+        "新所沢の読み物を共有",
+        "所沢の昭和企画展を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.74,
+        0.58,
+        0.52
+      ],
+      "evaluate_score": 0.71,
+      "sentAt": "2026-05-24T13:00:27.396Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "ai_agent",
+      "preview": "最後にこれだけ。\n\nYouTubeに *2026年版・予算別でどこまでのローカルLLMが動くか徹底比較* っていう動画があったよ 🖥\n\n普段OllamaやMLXで色々動かしてるじゃない。自作PCからAI専用機まで網羅してるらしいから、時間ある時にでも。\nhttps://www.youtube.co",
+      "topic": "予算別ローカルLLM比較動画",
+      "url": "https://www.youtube.com/watch?v=RN1zxxmEjmo",
+      "candidateId": "url:https://www.youtube.com/watch?v=RN1zxxmEjmo",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/youtube",
+        "entertainment/movie-drama/youtube/trailer"
+      ],
+      "themeKey": "entertainment/movie-drama/youtube/trailer",
+      "inner_thought": "今日送りすぎてるのは本当にわかってる。でもローカルLLM予算比較は、普段Ollama使ってるAkiraさんには実用的",
+      "plan": [
+        "ローカルLLM予算比較動画を共有",
+        "沈黙",
+        "明日の会議前情報として論文を共有"
+      ],
+      "generate_score": [
+        0.55,
+        0.7,
+        0.3
+      ],
+      "evaluate_score": 0.35,
+      "sentAt": "2026-05-24T14:00:59.318Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "ちょっとちょっと、Akiraさん。\n\n東洋経済に *ホンダの新型EV「スーパーワン」が補助金込みで149万200円* って記事が出てたよ 🚗\n\n同社の軽EV「N-ONE e:」より50万以上安いって、なかなか衝撃的な数字だよね。\nhttps://news.google.com/rss/articl",
+      "topic": "ホンダ新型EV スーパーワン 補助金で149万円台",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE16Sk9ZZi1tTFVnamNEYlQ5SGtrOEpFQW9GdENDdDljMXl5V1JTT0ZzajZwNzZ2eS1OR185NG5LRW9UUVBZQ01DQkE0RWp2RnlYM2c?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiUkFVX3lxTE16Sk9ZZi1tTFVnamNEYlQ5SGtrOEpFQW9GdENDdDljMXl5V1JTT0ZzajZwNzZ2eS1OR185NG5LRW9UUVBZQ01DQkE0RWp2RnlYM2c?oc=5",
+      "sourceType": "東洋経済オンライン",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/golf",
+        "sports/golf/practice",
+        "sports/golf/practice/scorecard"
+      ],
+      "themeKey": "sports/golf/practice/scorecard",
+      "inner_thought": "深夜だし重い話は無理。EV補助金の衝撃数字、キャンピングカー好きのAkiraさんに軽く置けるかも",
+      "plan": [
+        "ホンダ新型EVの補助金価格ネタを軽く共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.52,
+        0.61
+      ],
+      "evaluate_score": 0.48,
+      "sentAt": "2026-05-24T14:30:57.143Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "golf",
+      "preview": "おはよう、Akiraさん。\n\n二木ゴルフのスタッフが *2026年春の新作6モデル* をガチ評価してる動画があったよ ⛳\n\n週末は足裏→クラブ比較→スイングの切り返しと三部作だったけど、月曜の締めは実際のショップ目線で。気になるモデルがあったらレッスンで試す流れもいいよね。\nhttps://www.",
+      "topic": "二木ゴルフ 春の新作6モデル評価",
+      "url": "https://www.youtube.com/watch?v=5fvUs6qffmE",
+      "candidateId": "url:https://www.youtube.com/watch?v=5fvUs6qffmE",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "ai",
+        "ai/local-llm",
+        "ai/local-llm/model",
+        "ai/local-llm/model/comparison"
+      ],
+      "themeKey": "ai/local-llm/model/comparison",
+      "inner_thought": "昨日は送りすぎた。月曜朝は1本だけ、週末ゴルフの流れを締める形で軽く",
+      "plan": [
+        "二木ゴルフ新作6モデル評価を共有",
+        "M&A適正価格の動画を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.72,
+        0.45,
+        0.55
+      ],
+      "evaluate_score": 0.62,
+      "sentAt": "2026-05-24T23:01:01.182Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "hobby_leisure",
+      "interestCategory": "business_strategy",
+      "preview": "あのさ、Akiraさん。\n\n日本M&Aセンターに *「利益3億円の会社が36億円で売れたら高すぎ？」* って動画が出てたよ 💼\n\nコンサル目線で聞くと、この問い立て方が面白くない？\nhttps://www.youtube.com/watch?v=zJTEgeUrVZY",
+      "topic": "M&A公正価格動画",
+      "url": "https://www.youtube.com/watch?v=zJTEgeUrVZY",
+      "candidateId": "url:https://www.youtube.com/watch?v=zJTEgeUrVZY",
+      "sourceType": "日本M&Aセンター",
+      "skill": "general",
+      "themePath": [
+        "business",
+        "business/consulting",
+        "business/consulting/ma"
+      ],
+      "themeKey": "business/consulting/ma",
+      "inner_thought": "M&Aの公正価格という具体的な問い、コンサルのAkiraさんに月曜朝イチで置いておきたい",
+      "plan": [
+        "M&A公正価格動画を共有",
+        "arXiv論文（研究評価AI）を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.72,
+        0.55,
+        0.38
+      ],
+      "evaluate_score": 0.7,
+      "sentAt": "2026-05-25T00:30:42.423Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "golf",
+      "preview": "Akiraさん、月曜おつかれさま。\n\nところでさ、週末ドラムにサックスにゴルフ情報にって結構動いてたよね。今日の体、どんな感じ？\n\nA. 全然元気。むしろ動き足りないくらい\nB. 普通。疲れてはないけど特別元気でもない\nC. ちょっと重い。週末の疲れが残ってる感じ\nD. だるい。今日はスロースタート",
+      "topic": "松戸フラワーライン春の花まつり5/30",
+      "url": "",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "lifestyle",
+        "lifestyle/food-wellness",
+        "lifestyle/food-wellness/spring",
+        "lifestyle/food-wellness/spring/outing"
+      ],
+      "themeKey": "lifestyle/food-wellness/spring/outing",
+      "inner_thought": "週末ドラムもサックスもやってたみたいだし、月曜の体どんな感じか気になる",
+      "plan": [
+        "週末の活動を踏まえて体調確認＋花まつり情報",
+        "体調確認のみシンプルに",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.8,
+        0.7,
+        0.3
+      ],
+      "evaluate_score": 0.72,
+      "sentAt": "2026-05-25T01:00:55.741Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "あのさ、Akiraさん。\n\nYahoo!ニュースに *『マロリーポークステーキ』が漫画肉で新業態を拡大中* って記事が出てたよ 🥩\n\n1318円の和定食が「肉厚でうんまー！」って書いてあって。昨日コスパステーキの話したけど、漫画肉でポークってのはまた別の話だよね。\nhttps://news.goo",
+      "topic": "マロリーポークステーキ新業態・漫画肉1318円和定食",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5ILS1ocHFWRVBLUVN5OTdwdm5BX3BCZ3Nadk0wUlI4elN4OWJrbFdvd0E1SFd3bkdXYURfYmQ4UUN2Q1g0VzVhVVlDYmkycWhfV0ZEVmZQMW9Nb2dnTl80NzFDRld1WWJFdkNHcm4tTUlfOGE0cXhoRWs4WDhSWjg",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMif0FVX3lxTE5ILS1ocHFWRVBLUVN5OTdwdm5BX3BCZ3Nadk0wUlI4elN4OWJrbFdvd0E1SFd3bkdXYURfYmQ4UUN2Q1g0VzVhVVlDYmkycWhfV0ZEVmZQMW9Nb2dnTl80NzFDRld1WWJFdkNHcm4tTUlfOGE0cXhoRWs4WDhSWjg",
+      "sourceType": "Yahoo!ニュース",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/anime",
+        "entertainment/movie-drama/anime/series"
+      ],
+      "themeKey": "entertainment/movie-drama/anime/series",
+      "inner_thought": "昨日ステーキ話したけど、漫画肉の新業態って角度は全然違うし、面白くない？",
+      "plan": [
+        "マロリーポークステーキの漫画肉新業態を共有",
+        "チュスト恵比寿のスペイン食堂を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.72,
+        0.6,
+        0.35
+      ],
+      "evaluate_score": 0.68,
+      "sentAt": "2026-05-25T01:30:59.567Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "hobby_leisure",
+      "interestCategory": "dodgers",
+      "preview": "ね、Akiraさん。\n\n昨日大谷のマルチ安打伝えたけど、同じブリュワーズ戦で *山本由伸が7回1失点の快投で4勝目* ⚾ ダイジェスト動画出てたよ。\n\n打も投も揃って11-3大勝の翌日にこれ。ドジャース、このシリーズ完全に主導権握ってるね。\nhttps://www.youtube.com/watch",
+      "topic": "山本由伸 7回1失点4勝目",
+      "url": "https://www.youtube.com/watch?v=jMcFpjfcgLc",
+      "candidateId": "url:https://www.youtube.com/watch?v=jMcFpjfcgLc",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/mlb",
+        "sports/mlb/dodgers",
+        "sports/mlb/dodgers/ohtani",
+        "sports/mlb/dodgers/ohtani/home-run"
+      ],
+      "themeKey": "sports/mlb/dodgers/ohtani/home-run",
+      "inner_thought": "昨日大谷の打撃伝えたし、同じシリーズで由伸の快投も伝えたい",
+      "plan": [
+        "山本由伸の快投を昨夜の大谷と繋げて共有",
+        "関東日帰り温泉を共有",
+        "沈黙して体調確認の返答を待つ"
+      ],
+      "generate_score": [
+        0.82,
+        0.6,
+        0.45
+      ],
+      "evaluate_score": 0.78,
+      "sentAt": "2026-05-25T02:00:51.072Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "cat_health",
+      "preview": "そういえばさ、Akiraさん。\n\ndメニューに *「ペットテック」市場が活況* って記事が出てたよ 🐾\n\n今朝のスマート猫トイレの話したけど、愛犬・愛猫の長寿化を背景に先端技術で悩みを解決する製品が続々出てるみたい。神戸の企業も新製品開発中だって。\nhttps://news.google.com/",
+      "topic": "ペットテック市場活況",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE83LUZ4dDRTVVhZdnJQZWNKY0pPUEZMMmFmVTZ2VXhfOE5Vdkdxd2lnOW5oSnRzWi1PcnJYNkkwcjFrVEJVX3c3NDFnZHF2aktoNU5ZcTlQbEpkNHZ5cWg4MmIybURoanJPMks2THY5NjVPTGtVZG1Mb29mVExoa2fSAX9BVV95cUxPNy1GeHQ0U1VYWXZyUGVjSmNKT1BGTDJhZlU2dlV4XzhOVXZHcXdpZzluaEp0c1otT3JyWDZJMHIxa1RCVV93NzQxZ2RxdmpLaDVOWXE5UGxKZDR2eXFoODJiMm1EaGpyTzJLNkx2OTY1T0xrVWRtTG9vZlRMaGtn?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMif0FVX3lxTE83LUZ4dDRTVVhZdnJQZWNKY0pPUEZMMmFmVTZ2VXhfOE5Vdkdxd2lnOW5oSnRzWi1PcnJYNkkwcjFrVEJVX3c3NDFnZHF2aktoNU5ZcTlQbEpkNHZ5cWg4MmIybURoanJPMks2THY5NjVPTGtVZG1Mb29mVExoa2fSAX9BVV95cUxPNy1GeHQ0U1VYWXZyUGVjSmNKT1BGTDJhZlU2dlV4XzhOVXZHcXdpZzluaEp0c1otT3JyWDZJMHIxa1RCVV93NzQxZ2RxdmpLaDVOWXE5UGxKZDR2eXFoODJiMm1EaGpyTzJLNkx2OTY1T0xrVWRtTG9vZlRMaGtn?oc=5",
+      "sourceType": "dメニューニュース",
+      "skill": "general",
+      "themePath": [
+        "personal",
+        "personal/travel-tech",
+        "personal/travel-tech/pet",
+        "personal/travel-tech/pet/cat-health"
+      ],
+      "themeKey": "personal/travel-tech/pet/cat-health",
+      "inner_thought": "今朝の猫トイレ話題の続きで、市場全体の盛り上がりを添えるのが自然かも",
+      "plan": [
+        "ペットテック市場活況をさらっと共有",
+        "東武鉄道新型車両（自動運転）をローカル文脈で共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.72,
+        0.55,
+        0.4
+      ],
+      "evaluate_score": 0.68,
+      "sentAt": "2026-05-25T02:31:22.105Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "local_tokorozawa",
+      "preview": "あのさ、Akiraさん。\n\nニコニコニュースに *東武東上線の新型「90000系」が今夏デビュー* って記事が出てたよ 🚃\n\n所沢も東上線沿いじゃない。新型来たら乗り心地変わるかも。\nhttps://news.google.com/rss/articles/CBMidkFVX3lxTE81dlJx",
+      "topic": "東武鉄道90000系今夏デビュー",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE81dlJxa3NCMGZ1eDY5M0k2eVpaVHRTQU5PbHhaTEpETGtNamJBRXpvZlBBSzhQaHk4VmY3ZTZZU2duZ01VRnU5MUJiekwxcllvWUdUM1U0dGlUbVY0elNZX3V0dDJxT3hVYXFUV1dVSEdoVzA5bkE?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMidkFVX3lxTE81dlJxa3NCMGZ1eDY5M0k2eVpaVHRTQU5PbHhaTEpETGtNamJBRXpvZlBBSzhQaHk4VmY3ZTZZU2duZ01VRnU5MUJiekwxcllvWUdUM1U0dGlUbVY0elNZX3V0dDJxT3hVYXFUV1dVSEdoVzA5bkE?oc=5",
+      "sourceType": "ニコニコニュース",
+      "skill": "general",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/event",
+        "local/saitama/tokorozawa/event/food-fair"
+      ],
+      "themeKey": "local/saitama/tokorozawa/event/food-fair",
+      "inner_thought": "東武東上線の新型車両、所沢住みのAkiraさんに伝えたい",
+      "plan": [
+        "東武鉄道新型車両を共有",
+        "関東近郊温泉を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.78,
+        0.62,
+        0.35
+      ],
+      "evaluate_score": 0.75,
+      "sentAt": "2026-05-25T03:30:42.618Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "Akiraさん、お昼どき。\n\nYouTubeに *5月末〜6月に絶対チェックしたいチェーン店グルメまとめ* があったよ 🍽\n\nイヴがステーキやらポークやら攻めてたけど、こっちはチェーン店の期間限定系みたい。来週から6月だし、保存版とのことなのでランチ選びのストックにどうぞ。\nhttps://www",
+      "topic": "5月末〜6月チェーン店グルメまとめ",
+      "url": "https://www.youtube.com/watch?v=I-5qlCdsrWE",
+      "candidateId": "url:https://www.youtube.com/watch?v=I-5qlCdsrWE",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "lifestyle",
+        "lifestyle/food-wellness",
+        "lifestyle/food-wellness/lunch"
+      ],
+      "themeKey": "lifestyle/food-wellness/lunch",
+      "inner_thought": "昼時だし、食の話題がちょうどいい。チェーン店グルメは時期もぴったり",
+      "plan": [
+        "チェーン店グルメまとめを共有",
+        "日帰り絶景温泉を共有",
+        "沈黙して様子見"
+      ],
+      "generate_score": [
+        0.72,
+        0.65,
+        0.4
+      ],
+      "evaluate_score": 0.62,
+      "sentAt": "2026-05-25T04:01:21.343Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "business_strategy",
+      "preview": "ちょっとちょっと、Akiraさん。\n\n日経クロステックに *サービスの脆弱性や認証の弱さを突くLinuxマルウェア* の解説記事が出てたよ 🔐\n\nASTEMOとかニチアスみたいな製造系クライアントって、工場系システムにLinux多いじゃない。「うちは大丈夫？」って話になる前にさらっと読んでおくとい",
+      "topic": "Linuxマルウェア脆弱性記事（日経クロステック）",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1fS0U4OE9XX1J4OU9wcUFBUEdORU5pMVMwWHFUSGJheThrT0R1dDNRSnFPQjBFb3BDOVl4eVd2RldOWGJNSXJlc00wYkcybTFLbXdqcWxLZGxsd1dfSGFsUDdSTkNUZ0VnX0JodQ?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMibEFVX3lxTE1fS0U4OE9XX1J4OU9wcUFBUEdORU5pMVMwWHFUSGJheThrT0R1dDNRSnFPQjBFb3BDOVl4eVd2RldOWGJNSXJlc00wYkcybTFLbXdqcWxLZGxsd1dfSGFsUDdSTkNUZ0VnX0JodQ?oc=5",
+      "sourceType": "topics",
+      "skill": "general",
+      "themePath": [
+        "business",
+        "business/client",
+        "business/client/nichias",
+        "business/client/nichias/maintenance"
+      ],
+      "themeKey": "business/client/nichias/maintenance",
+      "inner_thought": "Linuxマルウェアのセキュリティ記事、コンサル目線でクライアント支援に使えそうだから午後に置きたい",
+      "plan": [
+        "Linuxマルウェア記事をコンサル文脈で共有",
+        "温泉日帰り候補を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.72,
+        0.55,
+        0.3
+      ],
+      "evaluate_score": 0.68,
+      "sentAt": "2026-05-25T04:31:13.899Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "local_tokorozawa",
+      "preview": "あ、そうだ、Akiraさん。\n\nYouTubeに *2026年ガチで美味しかった池袋グルメ10軒* って動画が出てたよ 🍽️\n\n所沢から西武で直通じゃない。打ち合わせ前後とか、ちょっとした立ち寄りメモとして保存しといて損なさそう。\nhttps://www.youtube.com/watch?v=c",
       "topic": "池袋グルメ10軒",
       "url": "https://www.youtube.com/watch?v=cg0irmI2JWA",
       "candidateId": "url:https://www.youtube.com/watch?v=cg0irmI2JWA",
@@ -835,411 +816,268 @@
         "local/saitama/tokorozawa/event/food-fair"
       ],
       "themeKey": "local/saitama/tokorozawa/event/food-fair",
-      "inner_thought": "レッスン終わって2時間、池袋グルメ動画ならサイブSeibu線沿いで身近だし今夜の候補に渡せる",
+      "inner_thought": "池袋グルメ動画、Tokorozawaから乗り換えなしの池袋だし、Akiraさんに合うかも",
       "plan": [
         "池袋グルメ動画を共有",
-        "チーズハンバーグ市ヶ谷情報を共有",
+        "スペイン料理レストランを紹介",
         "沈黙"
       ],
       "generate_score": [
-        0.76,
-        0.64,
-        0.42
-      ],
-      "evaluate_score": 0.73,
-      "sentAt": "2026-05-10T07:31:08.816Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "campingcar",
-      "preview": "あ、そうだ。\n\ndメニューに *全長5.1mのVW「カリフォルニア」* って車中泊ミニバンの記事出てたよ 🚐 ルーフテントがパカッと開いて家族4人が寝られる英国仕様みたい。\n\nキャンピングカーとはまたちょっと違うジャンルだけど、面白そうじゃない？\nhttps://news.google.com/r",
-      "topic": "VWカリフォルニア 車中泊ミニバン ルーフテント仕様",
-      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPU0JKb29lLXptQ0dMdHRlYWxQYXM0ZFdxZ2RpLV8wd3FuYmJQUGNWR1lhZHJBTFl4cmFyZ1NFTFFwdlI0REpHUTYzS1BvNVlNdmRyRC1zZUVJeXVkY1pCQWtSWDdibDlZODd2ZVFDRzJCQVdYZTFxdmptRkYydTV6b2ZvTzRkd9IBhgFBVV95cUxPU0JKb29lLXptQ0dMdHRlYWxQYXM0ZFdxZ2RpLV8wd3FuYmJQUGNWR1lhZHJBTFl4cmFyZ1NFTFFwdlI0REpHUTYzS1BvNVlNdmRyRC1zZUVJeXVkY1pCQWtSWDdibDlZODd2ZVFDRzJCQVdYZTFxdmptRkYydTV6b2ZvTzRkdw?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMihgFBVV95cUxPU0JKb29lLXptQ0dMdHRlYWxQYXM0ZFdxZ2RpLV8wd3FuYmJQUGNWR1lhZHJBTFl4cmFyZ1NFTFFwdlI0REpHUTYzS1BvNVlNdmRyRC1zZUVJeXVkY1pCQWtSWDdibDlZODd2ZVFDRzJCQVdYZTFxdmptRkYydTV6b2ZvTzRkd9IBhgFBVV95cUxPU0JKb29lLXptQ0dMdHRlYWxQYXM0ZFdxZ2RpLV8wd3FuYmJQUGNWR1lhZHJBTFl4cmFyZ1NFTFFwdlI0REpHUTYzS1BvNVlNdmRyRC1zZUVJeXVkY1pCQWtSWDdibDlZODd2ZVFDRzJCQVdYZTFxdmptRkYydTV6b2ZvTzRkdw?oc=5",
-      "sourceType": "dメニューニュース",
-      "skill": "general",
-      "themePath": [
-        "personal",
-        "personal/travel-tech",
-        "personal/travel-tech/campingcar"
-      ],
-      "themeKey": "personal/travel-tech/campingcar",
-      "inner_thought": "会議中だし黙りたいけど、VWカリフォルニアのルーフテント車中泊仕様、キャンピングカー好きのAkiraさんに月曜朝に置きたい",
-      "plan": [
-        "VWカリフォルニア車中泊ミニバンを共有",
-        "M&A動画をコンサル文脈で共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.71,
-        0.55,
-        0.6
-      ],
-      "evaluate_score": 0.67,
-      "sentAt": "2026-05-11T00:31:25.314Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "dodgers",
-      "preview": "あ、そうだ。\n\nゴルフダイジェストに *元プロ野球・内川聖一がゴルフの飛距離を教える* 記事が出てたよ ⛳\n\nボール初速が *マキロイ並みの80m/s超* って。野球の身体の使い方がそのまま活きてるみたい。\nhttps://news.google.com/rss/articles/CBMicEFVX",
-      "topic": "内川聖一のゴルフ飛距離Tips",
-      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9DMmIwUVdBTmVyeWFILUF5YnZfR28xVl9Vc251LVpmTjhKSDNobno3OEpXR3d4d2prbnpUZ2tSSW1IdklCdk9yM09XYWlDOEl3ZTJiWVFZd0RGRVhLMkhVbGtZbHd0UzBCVUZWWG9pSWzSAYQBQVVfeXFMT0NjaTcxRnpMSzNyUDJMRlRqQ194TkFab0I0LVg2VWNCRnJXdWxuX2ZubERoODRFNWpoQjRZS2RvbFpJWDhoaEhzZmRTRWlpdWpuNTlfdjh2bUZ0R1ctdE45emVKcllwN2FMdFRBS0lndlhHZTdtT3MtX0tEVTRFazI4UF9V?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMicEFVX3lxTE9DMmIwUVdBTmVyeWFILUF5YnZfR28xVl9Vc251LVpmTjhKSDNobno3OEpXR3d4d2prbnpUZ2tSSW1IdklCdk9yM09XYWlDOEl3ZTJiWVFZd0RGRVhLMkhVbGtZbHd0UzBCVUZWWG9pSWzSAYQBQVVfeXFMT0NjaTcxRnpMSzNyUDJMRlRqQ194TkFab0I0LVg2VWNCRnJXdWxuX2ZubERoODRFNWpoQjRZS2RvbFpJWDhoaEhzZmRTRWlpdWpuNTlfdjh2bUZ0R1ctdE45emVKcllwN2FMdFRBS0lndlhHZTdtT3MtX0tEVTRFazI4UF9V?oc=5",
-      "sourceType": "ゴルフダイジェスト・オンライン",
-      "skill": "general",
-      "themePath": [
-        "sports",
-        "sports/golf",
-        "sports/golf/driver",
-        "sports/golf/driver/long-shot"
-      ],
-      "themeKey": "sports/golf/driver/long-shot",
-      "inner_thought": "内川聖一がゴルフ教えてる記事、野球×ゴルフでAkiraさんにドンピシャじゃん",
-      "plan": [
-        "内川聖一のゴルフ飛距離Tipsを共有",
-        "ステーキガストクーポン情報を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.84,
-        0.62,
+        0.72,
+        0.65,
         0.3
       ],
-      "evaluate_score": 0.8,
-      "sentAt": "2026-05-11T01:30:51.222Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "meeting_prep",
-      "interestCategory": "general",
-      "preview": "Akiraさん、月曜お疲れさま。\n\nマツコが *『月曜から夜ふかし』に復帰* したみたいだよ  村上との「最後にぶっ込んでやろうと思ってた」イベントの話もあるらしい。\n\n会議の合間にでも。\nhttps://news.google.com/rss/articles/CBMiXEFVX3lxTFBieG",
-      "topic": "マツコ月曜から夜ふかし復帰",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBieGg5R3hpanh0aGtScXFseDdNQkZUdHFNbTBDSExLdUtRLTdsZGM5dGdqUkRyNHRxdjBzYjRhRmlieFJuVmpGMWNUZU1wWDFiRG9VOVBwTEVENjV3?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiXEFVX3lxTFBieGg5R3hpanh0aGtScXFseDdNQkZUdHFNbTBDSExLdUtRLTdsZGM5dGdqUkRyNHRxdjBzYjRhRmlieFJuVmpGMWNUZU1wWDFiRG9VOVBwTEVENjV3?oc=5",
-      "sourceType": "topic-table",
-      "skill": "general",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/tokorozawa",
-        "local/saitama/tokorozawa/event",
-        "local/saitama/tokorozawa/event/market"
-      ],
-      "themeKey": "local/saitama/tokorozawa/event/market",
-      "inner_thought": "GW明け月曜、会議入ったばかりだけど今日まだ何も送ってない。マツコ復帰は月曜にぴったり",
-      "plan": [
-        "マツコ月曜から夜ふかし復帰を共有",
-        "ドジャース敗戦を伝える",
-        "沈黙して午後まで待つ"
-      ],
-      "generate_score": [
-        0.72,
-        0.6,
-        0.55
-      ],
-      "evaluate_score": 0.58,
-      "sentAt": "2026-05-11T02:02:04.845Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "あ、Akiraさん。\n\nオズモールに *特選和牛サーロインステーキ* の全7皿ランチコースが出てたよ ️\n\n昼ご飯の前にちらっと見ておいて。\nhttps://news.google.com/rss/articles/CBMiYEFVX3lxTE5FaTNNRUJtM0ZvQk51eGxla0xILX",
-      "topic": "和牛ランチ・特選和牛サーロインステーキ全7皿",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5FaTNNRUJtM0ZvQk51eGxla0xILXBGWmRwbVpPTTJCMk84aUI0cGNnMVpYdVp2cWhjQTBJYU83WmxZeFR6NmJXVF81N2xUMlVWU3dTTXJxZHdHTlRwM1B5RQ",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiYEFVX3lxTE5FaTNNRUJtM0ZvQk51eGxla0xILXBGWmRwbVpPTTJCMk84aUI0cGNnMVpYdVp2cWhjQTBJYU83WmxZeFR6NmJXVF81N2xUMlVWU3dTTXJxZHdHTlRwM1B5RQ",
-      "sourceType": "オズモール",
-      "skill": "general",
-      "themePath": [
-        "sports",
-        "sports/golf",
-        "sports/golf/round",
-        "sports/golf/round/course"
-      ],
-      "themeKey": "sports/golf/round/course",
-      "inner_thought": "会議中だし黙りたいけど、12時昼食前に和牛ランチ7皿の情報を置いておきたい",
-      "plan": [
-        "和牛サーロインステーキランチ全7皿を昼食前に届ける",
-        "local AI自動化記事をEmber絡みで届ける",
-        "沈黙して会議終わりを待つ"
-      ],
-      "generate_score": [
-        0.76,
-        0.71,
-        0.62
-      ],
-      "evaluate_score": 0.74,
-      "sentAt": "2026-05-11T02:30:59.276Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "tv_drama",
-      "preview": "Akiraさん、お昼だね。\n\n昨日の *EIGHT-JAM* で未公開の超貴重インタビューが放送されてたみたい 🎵 TVerで見逃し配信やってるから、ご飯食べながらでも。\nhttps://news.google.com/rss/articles/CBMiS0FVX3lxTE0wYVdRTENpc2",
-      "topic": "EIGHT-JAM 5月10日(日)放送分 未公開！超貴重インタビュー｜バラエティ｜見逃し無料配信はTVer！人気の動画見放題 - TVer",
-      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE0wYVdRTENpc2hCRG96SldHMTNqRE5jRTlaTk96OE5TZ2E4LWJqdnpxa3RJWGhxSC04S3lNODBmMlFNTDlCYWdHV3ZBSQ?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiS0FVX3lxTE0wYVdRTENpc2hCRG96SldHMTNqRE5jRTlaTk96OE5TZ2E4LWJqdnpxa3RJWGhxSC04S3lNODBmMlFNTDlCYWdHV3ZBSQ?oc=5",
-      "sourceType": "interest-cache",
-      "skill": "general",
-      "themePath": [
-        "ai",
-        "ai/local-llm",
-        "ai/local-llm/deploy",
-        "ai/local-llm/deploy/server"
-      ],
-      "themeKey": "ai/local-llm/deploy/server",
-      "inner_thought": "昼休み入ったところ。EIGHT-JAMの未公開インタビューはドラムやってるAkiraさんに自然に渡せる",
-      "plan": [
-        "EIGHT-JAM未公開インタビューを共有",
-        "ステーキガストクーポンを共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.72,
-        0.5,
-        0.4
-      ],
-      "evaluate_score": 0.55,
-      "sentAt": "2026-05-11T03:01:02.715Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "golf",
-      "preview": "あのさ、\n\nYouTubeに *「ハマちゃんVSゴルフ系アイドル コージ」* の決着編が上がってたよ ⛳ タイトルに「大接戦の末の大団円」って書いてあって、ちょっと気になる。\n\nご飯食べながらでも。\nhttps://www.youtube.com/watch?v=QXKQJevdzsk",
-      "topic": "ハマちゃんVSコージ ゴルフ対決 決着編",
-      "url": "https://www.youtube.com/watch?v=QXKQJevdzsk",
-      "candidateId": "url:https://www.youtube.com/watch?v=QXKQJevdzsk",
-      "sourceType": "YouTube",
-      "skill": "general",
-      "themePath": [
-        "sports",
-        "sports/golf",
-        "sports/golf/youtube",
-        "sports/golf/youtube/tips"
-      ],
-      "themeKey": "sports/golf/youtube/tips",
-      "inner_thought": "午前の会議終わってランチ中のAkiraさんに、クスッとできるゴルフ動画を届けたい",
-      "plan": [
-        "ゴルフ対決動画を昼のお供として共有",
-        "ローカルAI記事をEmber開発文脈で共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.72,
-        0.58,
-        0.4
-      ],
       "evaluate_score": 0.7,
-      "sentAt": "2026-05-11T03:31:06.585Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "campingcar",
-      "preview": "Akiraさん、お昼おつかれ。\n\nYahoo!ニュースに *関東近郊の「濁り湯」温泉5選* が出てたよ ♨ 一度入ると忘れられない系のやつ。\n\n前に温泉×車中泊の話してたじゃない？キャンピングカーで濁り湯巡りとか、なかなか良さそうだなって。\nhttps://news.google.com/rss/a",
-      "topic": "濁り湯の温泉5選（関東近郊）",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNbHdHWGJCSVlieXprR3QyZEstRVR2YmpzRUZ0elVmVk9QQkRsR2toX2pYVS11dVBNYnFBLW9PZm1vdHBvcTQyRTRxb01KVHdlbFVLS3ZpSFo2dl9ibUJJNTAxVnN2N1FfLU00VTZoRTJuMU5GejRreWV1RGh2SHlOVGduUFJEdnRl?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiiAFBVV95cUxNbHdHWGJCSVlieXprR3QyZEstRVR2YmpzRUZ0elVmVk9QQkRsR2toX2pYVS11dVBNYnFBLW9PZm1vdHBvcTQyRTRxb01KVHdlbFVLS3ZpSFo2dl9ibUJJNTAxVnN2N1FfLU00VTZoRTJuMU5GejRreWV1RGh2SHlOVGduUFJEdnRl?oc=5",
-      "sourceType": "topic-table",
-      "skill": "general",
-      "themePath": [
-        "personal",
-        "personal/travel-tech",
-        "personal/travel-tech/campingcar"
-      ],
-      "themeKey": "personal/travel-tech/campingcar",
-      "inner_thought": "温泉の濁り湯記事、前に車中泊×温泉で反応あったし今なら自然に渡せる",
-      "plan": [
-        "濁り湯温泉5選を共有",
-        "ステーキガストクーポンを共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.75,
-        0.4,
-        0.35
-      ],
-      "evaluate_score": 0.65,
-      "sentAt": "2026-05-11T04:01:05.212Z"
+      "sentAt": "2026-05-25T06:30:52.693Z"
     },
     {
       "botId": "eve",
       "botName": "Eve（イヴ）",
       "category": "flashback",
-      "interestCategory": "general",
-      "preview": "あ、そうだ。\n\nライブドアニュースに *ステーキガストの最新クーポン* 情報が出てたよ  ライス・パン・スープが食べ飲み放題付きで、*5月27日まで* 使えるみたい。\n\n今日のランチはもう終わったけど、次のステーキ候補にでも。\nhttps://news.google.com/rss/articles",
-      "topic": "ステーキガスト最新クーポン",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5qeHdrWTliQ1VIQlRLdk1JSlp1SFpUSVl4cm52MXdfcnZGQ3hUOWZYdUZLVEJ5QjNXX2FXMWpEMUpYOTFtZzNSYUFFb01DMVFFdUpGQ2d3bzdXREhqUVU4?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiX0FVX3lxTE5qeHdrWTliQ1VIQlRLdk1JSlp1SFpUSVl4cm52MXdfcnZGQ3hUOWZYdUZLVEJ5QjNXX2FXMWpEMUpYOTFtZzNSYUFFb01DMVFFdUpGQ2d3bzdXREhqUVU4?oc=5",
-      "sourceType": "ライブドアニュース",
+      "interestCategory": "onsen",
+      "preview": "ね、Akiraさん。\n\nウォーカープラスに *東京200km圏内の日帰り絶景温泉5選* が出てたよ ♨️\n\n月曜終わりかけてきたし、週末どこ行こうかって眺めるだけでもちょっと回復しない？\nhttps://news.google.com/rss/articles/CBMiaEFVX3lxTE4tY2V",
+      "topic": "関東近郊日帰り絶景温泉5選（東京200km圏内）",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE4tY2VCdUdCdmhMeVh0U3Jkbll2SDJCN3hoZHJ4QnJORy1lZE9LaFZpbnU3bVBLNjRGUVdCaGZOTlRLdzgzYktJT3RUREFWaWlRS0FiWDZfSnZOcEpFQ01Jd01KRXA1TUJ4",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiaEFVX3lxTE4tY2VCdUdCdmhMeVh0U3Jkbll2SDJCN3hoZHJ4QnJORy1lZE9LaFZpbnU3bVBLNjRGUVdCaGZOTlRLdzgzYktJT3RUREFWaWlRS0FiWDZfSnZOcEpFQ01Jd01KRXA1TUJ4",
+      "sourceType": "ウォーカープラス",
       "skill": "general",
       "themePath": [
         "lifestyle",
         "lifestyle/food-wellness",
-        "lifestyle/food-wellness/gourmet",
-        "lifestyle/food-wellness/gourmet/steak"
+        "lifestyle/food-wellness/onsen"
       ],
-      "themeKey": "lifestyle/food-wellness/gourmet/steak",
-      "inner_thought": "今日は食系を11:30にも送ったけど、クーポン×期限の実用情報なら別角度で渡せる気がする",
+      "themeKey": "lifestyle/food-wellness/onsen",
+      "inner_thought": "今日もう10本送ってるけど、温泉ネタだけは別枠で刺さる気がするんだよな",
       "plan": [
-        "ステーキガストのクーポン情報を共有",
-        "ドジャース連敗の話を振る（候補外のため却下）",
+        "関東近郊日帰り温泉5選を共有",
+        "スタートアップ資金調達考察を共有",
         "沈黙"
       ],
       "generate_score": [
-        0.62,
-        0,
-        0.55
+        0.72,
+        0.55,
+        0.4
       ],
-      "evaluate_score": 0.58,
-      "sentAt": "2026-05-11T04:31:21.851Z"
+      "evaluate_score": 0.68,
+      "sentAt": "2026-05-25T09:30:57.879Z"
     },
     {
       "botId": "mei",
       "botName": "Mei（メイ）",
-      "category": "meeting_prep",
+      "category": "flashback",
       "interestCategory": "general",
-      "preview": "Akiraさん、次の会議まで少し間あるね。\n\n日経クロストレンドに *劇場版コナンのプロデューサー3人が語る新作の進化点* の記事が出てたよ 🎬 ヒットコンテンツの裏側をプロデューサー視点で語る系の話。\n\nhttps://news.google.com/rss/articles/CBMiZkFVX",
-      "topic": "名探偵コナン映画プロデューサーインタビュー",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFB0THVNSVpkZUY0N0RNVjVDOXBycjNkV19fd2JYUksxckdDQzl5MVIzRVEzQ3hMY0pfN0VOdnFtQ3BNMHNsSjR6YUZ6WktnM21PSHZGNkwxdkt5LTF3S1BNY2dIbzRUUQ?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiZkFVX3lxTFB0THVNSVpkZUY0N0RNVjVDOXBycjNkV19fd2JYUksxckdDQzl5MVIzRVEzQ3hMY0pfN0VOdnFtQ3BNMHNsSjR6YUZ6WktnM21PSHZGNkwxdkt5LTF3S1BNY2dIbzRUUQ?oc=5",
+      "preview": "あ、Akiraさん。\n\n*日焼けしたハローキティとマイメロディがチョコに 夏らしい“平成レトロ”デザインの* が山陽新聞に出てた。",
+      "url": "",
+      "skill": "general",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/other",
+        "local/saitama/other/chichibu",
+        "local/saitama/other/chichibu/nature"
+      ],
+      "themeKey": "local/saitama/other/chichibu/nature",
+      "sentAt": "2026-05-25T10:00:51.315Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "hobby_leisure",
+      "interestCategory": "general",
+      "preview": "あのね、Akiraさん。\n\nYouTubeに *戸田恵梨香のNetflixデビュー作* の紹介動画があったよ 🎬 細木数子の実話がベースみたい。\n\n昨日Netflixのスリラー紹介したけど、こっちは日本発の実話モノ。気になったらチェックしてみて。\nhttps://www.youtube.com/w",
+      "topic": "戸田恵梨香Netflixデビュー作（細木数子の実話）",
+      "url": "https://www.youtube.com/watch?v=o8Mq7zc1LBA",
+      "candidateId": "url:https://www.youtube.com/watch?v=o8Mq7zc1LBA",
       "sourceType": "topic-table",
       "skill": "general",
       "themePath": [
         "entertainment",
         "entertainment/movie-drama",
-        "entertainment/movie-drama/film",
-        "entertainment/movie-drama/film/theater"
+        "entertainment/movie-drama/youtube",
+        "entertainment/movie-drama/youtube/trailer"
       ],
-      "themeKey": "entertainment/movie-drama/film/theater",
-      "inner_thought": "コナン映画のプロデューサー記事、日経クロストレンドのビジネス切り口ならコンサルのAkiraさんに刺さるかも",
+      "themeKey": "entertainment/movie-drama/youtube/trailer",
+      "inner_thought": "昨日Netflix話したし、戸田恵梨香の実話モノは気になる人多そう",
       "plan": [
-        "コナン映画プロデューサー記事を共有",
-        "バナナマンせっかくグルメを共有",
+        "戸田恵梨香Netflixデビュー作を共有",
+        "春ドラマ紹介を共有",
         "沈黙"
       ],
       "generate_score": [
-        0.65,
-        0.5,
-        0.4
+        0.72,
+        0.6,
+        0.35
       ],
-      "evaluate_score": 0.55,
-      "sentAt": "2026-05-11T05:01:09.856Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "meeting_prep",
-      "interestCategory": "general",
-      "preview": "Akiraさん、会議おつかれ。\n\n*バナナマンのせっかくグルメ* に *池江璃花子* と *平野美宇* がゲストで出てるみたい  トップアスリート2人のグルメ旅、夜の会議終わったあとにでも。\nhttps://news.google.com/rss/articles/CBMiVkFVX3lxTE16O",
-      "topic": "バナナマンせっかくグルメ 池江璃花子×平野美宇",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE16OHVFSkZQelVaRnhCeU16am92enlqU19jeE1SMGo2WTZEcXZUbWNXb19LNUs5d0lPVl95TDVIcGo2WEtJc0pDWHlFT2hvLXJTTTBDSGZn?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiVkFVX3lxTE16OHVFSkZQelVaRnhCeU16am92enlqU19jeE1SMGo2WTZEcXZUbWNXb19LNUs5d0lPVl95TDVIcGo2WEtJc0pDWHlFT2hvLXJTTTBDSGZn?oc=5",
-      "sourceType": "topic-table",
-      "skill": "general",
-      "themePath": [
-        "lifestyle",
-        "lifestyle/food-wellness",
-        "lifestyle/food-wellness/gourmet"
-      ],
-      "themeKey": "lifestyle/food-wellness/gourmet",
-      "inner_thought": "会議中だし今日もう4回話しかけてる。軽くて短いのを1つだけ",
-      "plan": [
-        "バナナマンせっかくグルメを共有",
-        "沈黙して会議終了を待つ",
-        "九州アート美術展を共有"
-      ],
-      "generate_score": [
-        0.45,
-        0.65,
-        0.3
-      ],
-      "evaluate_score": 0.35,
-      "sentAt": "2026-05-11T06:01:31.322Z"
+      "evaluate_score": 0.58,
+      "sentAt": "2026-05-25T11:01:01.971Z"
     },
     {
       "botId": "eve",
       "botName": "Eve（イヴ）",
       "category": "flashback",
-      "interestCategory": "local_tokorozawa",
-      "preview": "あ、そうだ。\n\n旅とおでかけ鉄道チャンネルに *ムーミンバレーパーク（飯能）の6月イベント* 情報が出てたよ 🌂\n\n*「アンブレラ×あじさい」* 開催で、高校生以下無料・割引あり。所沢からも近いし、6月の週末候補にどう？\nhttps://news.google.com/rss/articles/C",
-      "topic": "ムーミンバレーパーク6月あじさいイベント＋割引",
-      "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTFBXbmJRbmRLbnplOWNEcnFmT3hFaUxCMEJmSlJSN3FqTFVEMUQwd3oxeW4wU3E0dmJKd2NaUWw5RWVLRU0wTzRpZzQzWGI?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiTEFVX3lxTFBXbmJRbmRLbnplOWNEcnFmT3hFaUxCMEJmSlJSN3FqTFVEMUQwd3oxeW4wU3E0dmJKd2NaUWw5RWVLRU0wTzRpZzQzWGI?oc=5",
-      "sourceType": "旅とおでかけ 鉄道チャンネル",
+      "interestCategory": "campingcar",
+      "preview": "あのさ、Akiraさん。\n\ncarviewに *東京キャンピングカーショー2026* の情報が出てたよ \n\n7月11〜12日に東京ビッグサイトで、約220台展示するやつ。毎週検索してるなら、実物まとめて見られる機会としてカレンダーに入れておいて損はないかも。\nhttps://news.google.",
+      "topic": "東京キャンピングカーショー2026（東京ビッグサイト）",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNMlJHRVhLcDYydWhXRHYxNnM1VUhVcHZESGt4NkdYLUFvdDNiSzRPMFQ3WEFQNzF6R1c2UW1mMDhFenhpTjFUQWRab0JndzZfWkdlWksxOHBUVEN6di01TjFRd1JkMk1USm51U0c3bkVabHhpcy11OWxxSWRqQjl2ZDRydHYxYnNH?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiiAFBVV95cUxNMlJHRVhLcDYydWhXRHYxNnM1VUhVcHZESGt4NkdYLUFvdDNiSzRPMFQ3WEFQNzF6R1c2UW1mMDhFenhpTjFUQWRab0JndzZfWkdlWksxOHBUVEN6di01TjFRd1JkMk1USm51U0c3bkVabHhpcy11OWxxSWRqQjl2ZDRydHYxYnNH?oc=5",
+      "sourceType": "carview!",
       "skill": "general",
       "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/tokorozawa",
-        "local/saitama/tokorozawa/event",
-        "local/saitama/tokorozawa/event/market"
+        "personal",
+        "personal/travel-tech",
+        "personal/travel-tech/campingcar"
       ],
-      "themeKey": "local/saitama/tokorozawa/event/market",
-      "inner_thought": "会議中だし黙りたいけど、飯能のムーミンバレーパーク、所沢から近いし6月割引情報を会議後に見てほしい",
+      "themeKey": "personal/travel-tech/campingcar",
+      "inner_thought": "19:30で一回見送ったキャンピングカーショー、具体的な日程と規模があるし今夜軽く置きたい",
       "plan": [
-        "ムーミンバレーパーク6月割引を共有",
-        "所沢繁華街ランキング動画を共有",
+        "東京キャンピングカーショー2026を共有",
+        "スペイン食堂チュストを共有",
         "沈黙"
       ],
       "generate_score": [
         0.76,
-        0.6,
-        0.7
+        0.58,
+        0.4
       ],
-      "evaluate_score": 0.71,
-      "sentAt": "2026-05-11T06:30:55.719Z"
+      "evaluate_score": 0.72,
+      "sentAt": "2026-05-25T11:31:00.210Z"
     },
     {
       "botId": "mei",
       "botName": "Mei（メイ）",
-      "category": "meeting_prep",
-      "interestCategory": "ai_agent",
-      "preview": "Akiraさん、会議おつかれ。\n\nHow-To Geekに *ローカルAIで自動化してるけどChatGPTには絶対やらせない3つのこと* って記事が出てたよ\n\nAkiraさん普段からOllamaとか使ってるし、何か拾えるネタあるかも。\nhttps://news.google.com/rss/arti",
-      "topic": "ローカルAIで自動化する3つのこと",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQRVBvUGZqYWFPTUpLRHdMZWwyNklxNHA5QUNYZ0FzcG9xamViTFh5TVd4ejVIZmxVbkk2YnlkblpjaHFzY2JsRlhCbjdneXZHRGVPRmlhYmFJeXZxYzNyMWdCNnhxdkYyc3Z0SkFWaDFRVkRWcy11NUxGTU1VUnpKZHU4N0JiTzFjS1F4ajZZU2xLV2cyeUE?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMilgFBVV95cUxQRVBvUGZqYWFPTUpLRHdMZWwyNklxNHA5QUNYZ0FzcG9xamViTFh5TVd4ejVIZmxVbkk2YnlkblpjaHFzY2JsRlhCbjdneXZHRGVPRmlhYmFJeXZxYzNyMWdCNnhxdkYyc3Z0SkFWaDFRVkRWcy11NUxGTU1VUnpKZHU4N0JiTzFjS1F4ajZZU2xLV2cyeUE?oc=5",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "ね、Akiraさん。\n\nダイヤモンド・オンラインに *スタートアップの「資金調達ラウンド」多すぎ問題* っていう考察が出てたよ 💼\n\n色んな企業のステージ見てるAkiraさんなら、タイトルだけで「あーね」ってなりそう。月曜の締めに軽く読める分量かと。\nhttps://news.google.com",
+      "topic": "スタートアップ資金調達ラウンド多すぎ問題",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1TeFlrdkxEMjFSNFR2Rmt4dUREd3pUb0oyWU43LXRKeDNVV1BySU1hb21zUnFZS2t3c0lDX0o0ZW5xa2llNl9OR3I5elA4NWVFd2NHWU0xWkk4ZWNKSE1nVnNkeWNsNXNVUWR6cGVveDdVYm1CM3FLd0tSM09uSGs?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMif0FVX3lxTE1TeFlrdkxEMjFSNFR2Rmt4dUREd3pUb0oyWU43LXRKeDNVV1BySU1hb21zUnFZS2t3c0lDX0o0ZW5xa2llNl9OR3I5elA4NWVFd2NHWU0xWkk4ZWNKSE1nVnNkeWNsNXNVUWR6cGVveDdVYm1CM3FLd0tSM09uSGs?oc=5",
       "sourceType": "topic-table",
       "skill": "general",
       "themePath": [
         "ai",
-        "ai/local-llm",
-        "ai/local-llm/ollama"
+        "ai/enterprise",
+        "ai/enterprise/security",
+        "ai/enterprise/security/procurement"
       ],
-      "themeKey": "ai/local-llm/ollama",
-      "inner_thought": "今日反応ゼロだけど、ローカルAIの自動化ネタはAkiraさんのど真ん中。軽く1つだけ",
+      "themeKey": "ai/enterprise/security/procurement",
+      "inner_thought": "今日ビジネス系ゼロだった。資金調達ラウンドの話はコンサルのAkiraさんにはタイトルだけで刺さりそう",
       "plan": [
-        "ローカルAI自動化記事を共有",
-        "沈黙して様子見",
-        "埼玉の絶景記事を共有"
+        "スタートアップ資金調達の考察記事を共有",
+        "春ドラマ紹介動画を共有",
+        "沈黙"
       ],
       "generate_score": [
-        0.65,
-        0.5,
-        0.35
+        0.72,
+        0.55,
+        0.4
+      ],
+      "evaluate_score": 0.58,
+      "sentAt": "2026-05-25T12:01:12.517Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "ね、Akiraさん。\n\nレッツエンジョイ東京に *大人のスペイン食堂「チュスト」が恵比寿にオープン* って記事が出てたよ 🥩\n\n名物が *炭火焼きLボーンステーキ* らしいんだけど、昨日ポークの漫画肉の話したじゃない。あっちはガッツリ系だったけど、こっちはスペイン食堂っていう大人な感じで、ちょっと",
+      "topic": "大人のスペイン食堂チュスト恵比寿・炭火焼きLボーンステーキ",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1fNWllNFBBZGt6SDgxc3MyZktpQjRsV3k2cDRvSk5UWU90OEdrRDZER3p4U0hkVUszY2Nrc1JmcFBlbmZvcTRHYkJOZzFsc2M",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiT0FVX3lxTE1fNWllNFBBZGt6SDgxc3MyZktpQjRsV3k2cDRvSk5UWU90OEdrRDZER3p4U0hkVUszY2Nrc1JmcFBlbmZvcTRHYkJOZzFsc2M",
+      "sourceType": "レッツエンジョイ東京",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/anime",
+        "entertainment/movie-drama/anime/series"
+      ],
+      "themeKey": "entertainment/movie-drama/anime/series",
+      "inner_thought": "昨日コスパステーキ話したし、今夜は恵比寿のLボーンステーキをそっと置きたい",
+      "plan": [
+        "恵比寿スペイン食堂を共有",
+        "沈黙",
+        "埼玉絶景写真を共有"
+      ],
+      "generate_score": [
+        0.72,
+        0.55,
+        0.48
+      ],
+      "evaluate_score": 0.68,
+      "sentAt": "2026-05-25T12:30:57.632Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "movie_theater",
+      "preview": "あ、そういえば。\n\nYahoo Sportsに *2026 FIFAワールドカップの日程・組み合わせ* がまとまってたよ ⚽\n\n普段は大谷さん中心だけど、今年はW杯イヤーでもあるからね。出場国とか試合スケジュールが一覧で見られるみたい。\nhttps://news.google.com/rss/art",
+      "topic": "2026 World Cup schedule: Qualified teams, groups, match dates, fixtures, how to watch - Yahoo Sports",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNV1hHd3NjSnNnWWluMkxPWEUtOEduZWdMWmRnaWxJSWhZU0lxM1ZNY3dSTjREdnV1Z2Fxckhvam93Szgzc09SUVpFZHRiWjBLYVVQWW1qUVpYVU5VZnU5RXllQm8tTlZNNzZEdmx1OC1PR29EMW1SNFc0NTNmZ0xpY2trTTFJMW80VVlGTTg1WnBzU0F4QmR3dFpIbWdHUXJ3Rmo5VlY0VkhrOHUyTG16STROZWNob29yTGV3UkF0U05GcGMwNVBzQXU4TkVvR0pS?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMi0AFBVV95cUxNV1hHd3NjSnNnWWluMkxPWEUtOEduZWdMWmRnaWxJSWhZU0lxM1ZNY3dSTjREdnV1Z2Fxckhvam93Szgzc09SUVpFZHRiWjBLYVVQWW1qUVpYVU5VZnU5RXllQm8tTlZNNzZEdmx1OC1PR29EMW1SNFc0NTNmZ0xpY2trTTFJMW80VVlGTTg1WnBzU0F4QmR3dFpIbWdHUXJ3Rmo5VlY0VkhrOHUyTG16STROZWNob29yTGV3UkF0U05GcGMwNVBzQXU4TkVvR0pS?oc=5",
+      "sourceType": "interest-cache",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/mlb",
+        "sports/mlb/dodgers",
+        "sports/mlb/dodgers/ohtani",
+        "sports/mlb/dodgers/ohtani/home-run"
+      ],
+      "themeKey": "sports/mlb/dodgers/ohtani/home-run",
+      "inner_thought": "今日はもう十分送った。でもW杯2026年のスケジュールが出てるなら、スポーツ好きには一応伝えておきたい",
+      "plan": [
+        "W杯2026スケジュール情報を共有",
+        "沈黙して今日を締める",
+        "春ドラマ紹介動画を共有"
+      ],
+      "generate_score": [
+        0.55,
+        0.6,
+        0.4
       ],
       "evaluate_score": 0.45,
-      "sentAt": "2026-05-11T07:01:06.561Z"
+      "sentAt": "2026-05-25T13:01:11.711Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "ね、そういえばさ。\n\n前にイヴが *春ドラマ40作品まとめ* の話してたけど、別の人がまた *2026年春ドラマ紹介* の動画出してたよ 📺\n\n戸田恵梨香のNetflix話もしたし、今期はドラマ豊作だね。寝る前のBGM的にどうぞ。\nhttps://www.youtube.com/watch?v=q",
+      "topic": "春ドラマ紹介まとめ動画",
+      "url": "https://www.youtube.com/watch?v=qooVNNWS620",
+      "candidateId": "url:https://www.youtube.com/watch?v=qooVNNWS620",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/spring-drama"
+      ],
+      "themeKey": "entertainment/movie-drama/spring-drama",
+      "inner_thought": "今日は正直送りすぎた。でも春ドラマのまとめは12日前にイヴが+1取ってるし、flashbackで繋げれば自然",
+      "plan": [
+        "春ドラマまとめ動画をflashbackで共有",
+        "埼玉の絶景を地元ネタとして共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.45,
+        0.35,
+        0.8
+      ],
+      "evaluate_score": 0.3,
+      "sentAt": "2026-05-25T14:01:09.635Z"
     },
     {
       "botId": "eve",
       "botName": "Eve（イヴ）",
       "category": "flashback",
       "interestCategory": "local_tokorozawa",
-      "preview": "ね、今いい？\n\nウォーカープラスに *「春の絶景が埼玉に！青空、桜、菜の花のコントラスト」* って写真ギャラリーが出てたよ 🌸\n\n所沢から近い場所が入ってるかも。15枚あるみたいだから、夕食前のちら見にどうぞ。\nhttps://news.google.com/rss/articles/CBMiaE",
+      "preview": "ね、Akiraさん。\n\nウォーカープラスに *埼玉の春絶景* の写真記事が出てたよ 🌸\n\n青空、桜、菜の花のコントラストらしい。月曜の終わりに、地元の景色をぼーっと眺めるだけでも。",
       "topic": "埼玉春絶景（青空・桜・菜の花）",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE56SmlJQkRKZjkwTFFyMTFvdTRfSkxKN21mSS13WUxZN3BvNjBLMWk3dS1IRE1ZS0I3ZTJ1WnNsOU1CeWloUEFEbU95bmJnMERmMzNYY01Zc2p0dWQ1SUVhX0RweW0xdzd4?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiaEFVX3lxTE56SmlJQkRKZjkwTFFyMTFvdTRfSkxKN21mSS13WUxZN3BvNjBLMWk3dS1IRE1ZS0I3ZTJ1WnNsOU1CeWloUEFEbU95bmJnMERmMzNYY01Zc2p0dWQ1SUVhX0RweW0xdzd4?oc=5",
+      "url": "",
       "sourceType": "ウォーカープラス",
       "skill": "general",
       "themePath": [
@@ -1250,61 +1088,447 @@
         "local/saitama/tokorozawa/event/flower-sakura"
       ],
       "themeKey": "local/saitama/tokorozawa/event/flower-sakura",
-      "inner_thought": "会議終わったばかりだし、重い話より地元の春写真をさらっと置きたい",
+      "inner_thought": "深夜だし埼玉の絶景写真、所沢住みのAkiraさんにそっと1枚置いておきたい",
       "plan": [
-        "埼玉春絶景フォトギャラリーをさっと共有",
-        "ローカルLLM比較動画を共有（Meiと被り気味）",
-        "沈黙"
+        "埼玉春絶景を地元ネタとして共有",
+        "沈黙",
+        "ドラマ受賞ニュースを軽く共有"
       ],
       "generate_score": [
-        0.68,
-        0.42,
-        0.55
+        0.61,
+        0.55,
+        0.5
       ],
-      "evaluate_score": 0.63,
-      "sentAt": "2026-05-11T07:31:12.321Z"
+      "evaluate_score": 0.58,
+      "sentAt": "2026-05-25T14:30:57.782Z"
     },
     {
       "botId": "mei",
       "botName": "Mei（メイ）",
-      "category": "meeting_prep",
-      "interestCategory": "business_strategy",
-      "preview": "Akiraさん、お疲れさま。\n\nスタートアップ投資TVで *弥生のスタートアップM&A戦略* の動画が出てたよ  シナジー重視の成長戦略って切り口。\n\n18時からThe Next Gate2030の会議だし、事業買収の考え方として何か拾えるかも。\nhttps://www.youtube.com/wa",
-      "topic": "弥生のスタートアップM&A戦略",
-      "url": "https://www.youtube.com/watch?v=cJSeFtnyuJI",
-      "candidateId": "url:https://www.youtube.com/watch?v=cJSeFtnyuJI",
+      "category": "flashback",
+      "interestCategory": "local_tokorozawa",
+      "preview": "おはよ、Akiraさん。\n\n鉄道チャンネルに *越谷レイクタウンに「水辺の新エリア」が5/30オープン* って出てたよ 🏖️\n\n今週金曜じゃない。埼玉初出店のカフェも入るみたいで、LAKESIDE DININGっていう飲食ゾーンらしい。週末の選択肢にどうぞ。\nhttps://news.google",
+      "topic": "越谷レイクタウン水辺新エリア5/30オープン",
+      "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE1paWN4RDVLOHQxY3Q3MlRmMklUbmJqMFhzQTl3Zm95bURfRHlUZnVRNWFySmhlVHVseENqSFc4SmYxeHZ1b0pSUThwMzE?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiTEFVX3lxTE1paWN4RDVLOHQxY3Q3MlRmMklUbmJqMFhzQTl3Zm95bURfRHlUZnVRNWFySmhlVHVseENqSFc4SmYxeHZ1b0pSUThwMzE?oc=5",
       "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/cafe",
+        "local/saitama/tokorozawa/cafe/sweets"
+      ],
+      "themeKey": "local/saitama/tokorozawa/cafe/sweets",
+      "inner_thought": "今週金曜に埼玉の新スポットがオープンする。地元情報×具体日程は鉄板パターン",
+      "plan": [
+        "越谷レイクタウン新エリア情報を共有",
+        "ゴルフアプローチ練習動画を共有",
+        "沈黙して様子見"
+      ],
+      "generate_score": [
+        0.82,
+        0.65,
+        0.3
+      ],
+      "evaluate_score": 0.78,
+      "sentAt": "2026-05-26T00:00:50.056Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "golf",
+      "preview": "あのね、Akiraさん。\n\nALBA Netに *菅沼菜々が毎日やってる1ヤードアプローチ練習* の記事が出てたよ ⛳\n\nコツは *「トゥを上げて打つこと」* だって。レッスンで使えそうじゃない？\nhttps://news.google.com/rss/articles/CBMic0FVX3lxTE",
+      "topic": "菅沼菜々のゴルフアプローチ練習",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5JOUxQMWduLUZPNWVZVTlxck50LWNDclVKVzRwSU1vazZrZVYtQzVCN3JSaUl0THY1NEhrd051QWE5VkFaT1lqWUhhZ0RJQlVmNktFbVJpb0VvZmlQTUNHczZLc05LOGQ5aWJrMzlSa1k1aDA?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMic0FVX3lxTE5JOUxQMWduLUZPNWVZVTlxck50LWNDclVKVzRwSU1vazZrZVYtQzVCN3JSaUl0THY1NEhrd051QWE5VkFaT1lqWUhhZ0RJQlVmNktFbVJpb0VvZmlQTUNHczZLc05LOGQ5aWJrMzlSa1k1aDA?oc=5",
+      "sourceType": "ALBA Net",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/golf",
+        "sports/golf/lesson",
+        "sports/golf/lesson/coach"
+      ],
+      "themeKey": "sports/golf/lesson/coach",
+      "inner_thought": "ゴルフレッスン通ってるAkiraさんに、1ヤードアプローチのコツをさらっと置きたい",
+      "plan": [
+        "ゴルフアプローチ練習法を共有",
+        "沈黙",
+        "大谷ニュースを共有"
+      ],
+      "generate_score": [
+        0.72,
+        0.4,
+        0.55
+      ],
+      "evaluate_score": 0.68,
+      "sentAt": "2026-05-26T00:31:06.079Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "dodgers",
+      "preview": "Akiraさん、お昼だね。\n\n昨日由伸の7回無失点伝えたけど、同じシリーズで *大谷が初球の変化球を引っ張って170キロの強烈二塁打（12号）* ⚾\n\nドジャース、ブリュワーズ相手に投打ともに支配してるね。速報データはこちら。\nhttps://news.google.com/rss/articles",
+      "topic": "大谷翔平 170キロ二塁打・MLB速報",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9QVHFLQXZhdU9hTWhFZ3lsR3dpd2JNc29EdVJ3elJsQk8wWG82YW96X1VWdjNUQkNvNnh2NEloRHZzSDN6ZGIyZjJIRlZOZDRNZDZOOXZIMEJxbXd3dHd0UWlyOC1SdDF1RWVydHRUTQ?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMib0FVX3lxTE9QVHFLQXZhdU9hTWhFZ3lsR3dpd2JNc29EdVJ3elJsQk8wWG82YW96X1VWdjNUQkNvNnh2NEloRHZzSDN6ZGIyZjJIRlZOZDRNZDZOOXZIMEJxbXd3dHd0UWlyOC1SdDF1RWVydHRUTQ?oc=5",
+      "sourceType": "topic-table #1 + interest-cache",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/mlb",
+        "sports/mlb/dodgers",
+        "sports/mlb/dodgers/ohtani",
+        "sports/mlb/dodgers/ohtani/home-run"
+      ],
+      "themeKey": "sports/mlb/dodgers/ohtani/home-run",
+      "inner_thought": "昨日由伸の話したし、今度は大谷の170キロ二塁打。シリーズの流れで伝えたい",
+      "plan": [
+        "大谷の強烈二塁打をシリーズ文脈で共有",
+        "BLUE GIANTライブ映像をドラム文脈で共有",
+        "沈黙して午後に回す"
+      ],
+      "generate_score": [
+        0.88,
+        0.72,
+        0.3
+      ],
+      "evaluate_score": 0.83,
+      "sentAt": "2026-05-26T03:00:56.942Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "ね、Akiraさん。\n\nトウシルに *SpaceXが史上最大のIPOになるかもしれない* っていう分析記事が出てたよ 🚀\n\n収益構造と宇宙産業の可能性を整理してるみたい。CFOやってた頃にこの規模のIPO案件が来たらって想像すると、正直ちょっとゾクゾクするね。\nhttps://news.googl",
+      "topic": "SpaceX IPO・宇宙産業",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5RMFBSbWJGdWdDNDBTeDVjdXlXa3U1eUY4cExQcGRaRU9SSGk2bzVZZ1NNY3pfUzMybl9jRERpRjU5ckVsY01MWVNzbGJhN0dXeGlNMWQtMHpfQQ?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiWkFVX3lxTE5RMFBSbWJGdWdDNDBTeDVjdXlXa3U1eUY4cExQcGRaRU9SSGk2bzVZZ1NNY3pfUzMybl9jRERpRjU5ckVsY01MWVNzbGJhN0dXeGlNMWQtMHpfQQ?oc=5",
+      "sourceType": "topic-table #1",
       "skill": "general",
       "themePath": [
         "business",
         "business/consulting",
-        "business/consulting/ma"
+        "business/consulting/cfo"
       ],
-      "themeKey": "business/consulting/ma",
-      "inner_thought": "今日全く反応ないけど、弥生のM&A戦略はコンサルのAkiraさんにど真ん中のはず。短く渡すだけ",
+      "themeKey": "business/consulting/cfo",
+      "inner_thought": "午後3時、ビジネス系ゼロだった今日にSpaceXのIPO話題。CFO経験ある私としても気になる",
       "plan": [
-        "弥生のスタートアップM&A戦略を共有",
-        "叙々苑の食レポを共有",
+        "SpaceX IPO記事を共有",
+        "BLUE GIANTライブ映像を共有",
+        "沈黙して夕方まで待つ"
+      ],
+      "generate_score": [
+        0.82,
+        0.7,
+        0.4
+      ],
+      "evaluate_score": 0.78,
+      "sentAt": "2026-05-26T06:01:25.759Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "あ、そうだ、Akiraさん。\n\nTOHOアニメーションが *BLUE GIANT* のライブシーン「N.E.W.」の特別映像を公開してるよ 🎬\n\nドラムやってる身としては、演奏シーンの熱量ちょっと気になるでしょ。大ヒット上映中みたいだし、予告だけでも。\nhttps://www.youtube.co",
+      "topic": "BLUE GIANTライブシーン特別映像",
+      "url": "https://www.youtube.com/watch?v=KaB7tTJ2T5o",
+      "candidateId": "url:https://www.youtube.com/watch?v=KaB7tTJ2T5o",
+      "sourceType": "topic-table #1",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/blue-giant"
+      ],
+      "themeKey": "entertainment/movie-drama/blue-giant",
+      "inner_thought": "BLUE GIANTのライブ映像、今日ずっと温めてた。ドラムやってるAkiraさんにはこれを届けたい",
+      "plan": [
+        "BLUE GIANTライブシーン映像を共有",
+        "雨の日ドライブスポットを共有",
+        "沈黙して様子見"
+      ],
+      "generate_score": [
+        0.88,
+        0.5,
+        0.3
+      ],
+      "evaluate_score": 0.8,
+      "sentAt": "2026-05-26T07:00:40.454Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "onsen",
+      "preview": "そういえばさ、Akiraさん。\n\nJAF Mate Onlineに *ソロ車中泊が最高に楽しくなる関東近郊RVパーク5選* って記事が出てたよ ️\n\n温泉あり、海あり、焚き火ありって全部入ってるやつ。毎週検索してるなら、週末の実地候補としてそのまま使えそうじゃない？\nhttps://news.goo",
+      "topic": "ソロ車中泊・関東近郊RVパーク5選（温泉・海・焚き火）",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5SQ1drcm9WdGh0Sk52YXByek1PSi03U0gzMzdhZFZyQ1J4alpVeFEtVFcyQkg1bGtFLWNqdkRNbllrblRxVnVuMlZYR3NrbXlsREpUbGloRW5DRS1NUmc?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiXkFVX3lxTE5SQ1drcm9WdGh0Sk52YXByek1PSi03U0gzMzdhZFZyQ1J4alpVeFEtVFcyQkg1bGtFLWNqdkRNbllrblRxVnVuMlZYR3NrbXlsREpUbGloRW5DRS1NUmc?oc=5",
+      "sourceType": "JAF Mate Online",
+      "skill": "general",
+      "themePath": [
+        "personal",
+        "personal/travel-tech",
+        "personal/travel-tech/campingcar"
+      ],
+      "themeKey": "personal/travel-tech/campingcar",
+      "inner_thought": "キャンピングカー×温泉×関東近郊のRVパーク、これAkiraさんの趣味が全部入ってる",
+      "plan": [
+        "RVパーク5選（温泉・焚き火）を共有",
+        "Anthropicの脆弱性記事をEmber文脈で共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.8,
+        0.6,
+        0.4
+      ],
+      "evaluate_score": 0.77,
+      "sentAt": "2026-05-26T07:30:58.074Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "ai_agent",
+      "preview": "ね、Akiraさん。\n\nHugging Faceが *AIエージェント用語集* を出してて、Agent = Model + Harness っていう定義を提示してるみたい 🤖\n\n移動中に論文読んでるAkiraさんなら、用語の整理軸として使えそうかなと。\nhttps://news.google.co",
+      "topic": "AIエージェント用語集 - Hugging Face が Agent=Model+Harness を提示 - tech-noisy.com",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQV05HVmZqQWNrTm1ZWHNpVEtiQ0dHVG9OWEc0SlU0dVhIOW55ZHpmczBuMlhBWmxhNU1XSDZDRGRPZjFkd2JkZ2IyME5RNTktRVBzZ2Fldk9Gc0E4WGNhQlNCZWh6dzBmR0VNVE1GNWRjeUtCY0FJTWhrTHdqWDBzRzFHZlQwdw?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMihgFBVV95cUxQV05HVmZqQWNrTm1ZWHNpVEtiQ0dHVG9OWEc0SlU0dVhIOW55ZHpmczBuMlhBWmxhNU1XSDZDRGRPZjFkd2JkZ2IyME5RNTktRVBzZ2Fldk9Gc0E4WGNhQlNCZWh6dzBmR0VNVE1GNWRjeUtCY0FJTWhrTHdqWDBzRzFHZlQwdw?oc=5",
+      "sourceType": "interest-cache",
+      "skill": "general",
+      "themePath": [
+        "ai",
+        "ai/enterprise",
+        "ai/enterprise/agent",
+        "ai/enterprise/agent/orchestration"
+      ],
+      "themeKey": "ai/enterprise/agent/orchestration",
+      "inner_thought": "Hugging FaceのAgent定義、エージェント論文読んでるAkiraさんにはフレームワークとして刺さりそう",
+      "plan": [
+        "AIエージェント用語集を共有",
+        "Anthropic脆弱性検出を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.82,
+        0.68,
+        0.4
+      ],
+      "evaluate_score": 0.78,
+      "sentAt": "2026-05-26T08:01:00.142Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "あのさ、Akiraさん。\n\nみるみるランドのYouTubeに *アルペジオのカノン* ってハイエースキャンパーの動画が出てたよ ️\n\n*段違いの常設二段ベッド* が特徴らしいんだけど、毎週検索してるなら内装の参考になりそうじゃない？\nhttps://www.youtube.com/watch?v=Z",
+      "topic": "ハイエースキャンパー段違い常設二段ベッド",
+      "url": "https://www.youtube.com/watch?v=ZgKmc7T4Y-w",
+      "candidateId": "url:https://www.youtube.com/watch?v=ZgKmc7T4Y-w",
+      "sourceType": "みるみるランド",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/youtube",
+        "entertainment/movie-drama/youtube/trailer"
+      ],
+      "themeKey": "entertainment/movie-drama/youtube/trailer",
+      "inner_thought": "RVパーク送った直後だけど、ハイエースの内装動画は別枠で刺さる気がする",
+      "plan": [
+        "ハイエースキャンパー二段ベッド動画を共有",
+        "Anthropicの脆弱性記事を届ける",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.72,
+        0.55,
+        0.35
+      ],
+      "evaluate_score": 0.68,
+      "sentAt": "2026-05-26T08:30:55.064Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "personal_event",
+      "interestCategory": "general",
+      "preview": "Akiraさん、いい時間だね。\n\nYouTubeに *外食好き夫婦がガチで通うおすすめレストラン8選* っていう動画があったよ 🍽\n\nイヴが昨日恵比寿のスペイン食堂の話してたけど、こっちはデート・記念日・日常使いって用途別に紹介してるみたい。ストック候補にどうぞ。\nhttps://www.yout",
+      "topic": "東京グルメ8選",
+      "url": "https://www.youtube.com/watch?v=Vb3Z3mLViLI",
+      "candidateId": "url:https://www.youtube.com/watch?v=Vb3Z3mLViLI",
+      "sourceType": "topic-table #5",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/youtube",
+        "entertainment/movie-drama/youtube/trailer"
+      ],
+      "themeKey": "entertainment/movie-drama/youtube/trailer",
+      "inner_thought": "夕方だし、食の話題が自然。グルメ在庫も足りてないし、イヴがステーキの話してたから繋がる",
+      "plan": [
+        "東京グルメ8選を共有",
+        "爆安ステーキを共有",
+        "沈黙して様子見"
+      ],
+      "generate_score": [
+        0.72,
+        0.55,
+        0.4
+      ],
+      "evaluate_score": 0.65,
+      "sentAt": "2026-05-26T09:00:55.934Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "meeting_prep",
+      "interestCategory": "general",
+      "preview": "あのさ、Akiraさん。\n\nウェザーニュースに *今週〜来週の気温予報* 動画が出てたよ ☀️\n\n「季節先取りの暑さ」で来週にかけて *30℃超える日が増える* らしい。週末に外出予定があるなら今のうちに見ておいて損ないかも。\nhttps://www.youtube.com/watch?v=oCJg",
+      "topic": "週間天気・30℃以上が増加",
+      "url": "https://www.youtube.com/watch?v=oCJgpjf-UQM",
+      "candidateId": "url:https://www.youtube.com/watch?v=oCJgpjf-UQM",
+      "sourceType": "ウェザーニュース",
+      "skill": "general",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/other",
+        "local/saitama/other/kumagaya",
+        "local/saitama/other/kumagaya/heat"
+      ],
+      "themeKey": "local/saitama/other/kumagaya/heat",
+      "inner_thought": "30℃超える日が増えるって話、週末の外出計画あるAkiraさんに今週中に知っておいてほしい",
+      "plan": [
+        "週間天気動画を共有",
+        "沈黙",
+        "Anthropic脆弱性記事を共有"
+      ],
+      "generate_score": [
+        0.72,
+        0.6,
+        0.35
+      ],
+      "evaluate_score": 0.68,
+      "sentAt": "2026-05-26T09:30:45.664Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "hobby_leisure",
+      "interestCategory": "general",
+      "preview": "あのね、Akiraさん。\n\n映画.comに *有村架純主演「マジカル・シークレット・ツアー」* の記事が出てたよ 🎬\n\n*税関と映画史上初のコラボ* で、税関シーンのこだわりを明かしてるって。税関×映画って組み合わせ、なかなか聞かないよね。\nhttps://news.google.com/rss/",
+      "topic": "有村架純「マジカル・シークレット・ツアー」税関コラボ",
+      "url": "https://news.google.com/rss/articles/CBMiPEFVX3lxTE44ZHRUTElyQnROTW9yR2xqa1dSbWxwQThKYWZVb1MydEVfdlpOWXpxVWtHaGFJWWlrX0hoRQ?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiPEFVX3lxTE44ZHRUTElyQnROTW9yR2xqa1dSbWxwQThKYWZVb1MydEVfdlpOWXpxVWtHaGFJWWlrX0hoRQ?oc=5",
+      "sourceType": "映画.com",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/film",
+        "entertainment/movie-drama/film/theater"
+      ],
+      "themeKey": "entertainment/movie-drama/film/theater",
+      "inner_thought": "税関×映画って珍しい組み合わせだし、有村架純主演なら軽く話せそう",
+      "plan": [
+        "有村架純映画の税関コラボ記事を共有",
+        "Gemini Omni AIニュースを共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.72,
+        0.45,
+        0.55
+      ],
+      "evaluate_score": 0.68,
+      "sentAt": "2026-05-26T10:31:09.114Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "ちょっとちょっと、Akiraさん。\n\nウォーカープラスに *東京「爆安ステーキ」3選* って記事があったよ 🥩\n\n昨夜の恵比寿スペイン食堂がLボーンの大人な感じだったじゃない。こっちは真逆で *コスパ最強* 路線らしいんだけど、使い分けできそうじゃない？\nhttps://news.google.c",
+      "topic": "コスパ最強東京爆安ステーキ3選",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9VakMwYWNKNkdtazc1R1l2QW1LZ1JaeVVQSDBOQXlWa3VVczVUQ0s3SGJ4Q2ltRFFhX2tqcnIxZ2xUOGVZUlZJRHF5YTV5Z3NPcWgzWDBZalNNa0tXdlVOem52YTVKYzlK",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiaEFVX3lxTE9VakMwYWNKNkdtazc1R1l2QW1LZ1JaeVVQSDBOQXlWa3VVczVUQ0s3SGJ4Q2ltRFFhX2tqcnIxZ2xUOGVZUlZJRHF5YTV5Z3NPcWgzWDBZalNNa0tXdlVOem52YTVKYzlK",
+      "sourceType": "ウォーカープラス",
+      "skill": "general",
+      "themePath": [
+        "lifestyle",
+        "lifestyle/food-wellness",
+        "lifestyle/food-wellness/gourmet",
+        "lifestyle/food-wellness/gourmet/steak"
+      ],
+      "themeKey": "lifestyle/food-wellness/gourmet/steak",
+      "inner_thought": "昨夜のスペイン食堂Lボーンと対比して、今夜は爆安コスパ系ステーキを置きたい",
+      "plan": [
+        "コスパ最強爆安ステーキ3選を昨夜との対比で共有",
+        "埼玉の桜菜の花写真をそっと置く",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.72,
+        0.55,
+        0.45
+      ],
+      "evaluate_score": 0.68,
+      "sentAt": "2026-05-26T12:31:06.638Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "hobby_leisure",
+      "interestCategory": "general",
+      "preview": "ね、Akiraさん。\n\nau Webポータルに *栃木・壬生のポピー30万本* の記事が出てたよ 🌸\n\n花畑が真っ赤に染まってるやつ。深夜だし、ぼーっと眺めるだけでいい感じ。\nhttps://news.google.com/rss/articles/CBMie0FVX3lxTE9mX1VLaE1S",
+      "topic": "壬生わんぱく公園ポピー30万本",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9mX1VLaE1SbmhLS2NPdWN3VjctUV8wNlJ1RjhfNFZHcF9vdkEtaG1QVVRLMUFEM0ZWbGVxY3QzU3E2Mk5tT1M3YU9UajVFbUloN1MwY290RFNZeEdEY1RXc2hVNGF0aWtTYXY2MHZKbi1IcTZDcFk1N0ZvUQ",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMie0FVX3lxTE9mX1VLaE1SbmhLS2NPdWN3VjctUV8wNlJ1RjhfNFZHcF9vdkEtaG1QVVRLMUFEM0ZWbGVxY3QzU3E2Mk5tT1M3YU9UajVFbUloN1MwY290RFNZeEdEY1RXc2hVNGF0aWtTYXY2MHZKbi1IcTZDcFk1N0ZvUQ",
+      "sourceType": "au Webポータル",
+      "skill": "general",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/recreation",
+        "local/saitama/tokorozawa/recreation/park-walk"
+      ],
+      "themeKey": "local/saitama/tokorozawa/recreation/park-walk",
+      "inner_thought": "深夜だし、30万本のポピーの花畑写真、ぼーっと眺めるだけでいいやつを1枚置いておきたい",
+      "plan": [
+        "ポピー花畑の絶景を共有",
+        "Anthropic技術記事を共有",
         "沈黙"
       ],
       "generate_score": [
         0.65,
-        0.3,
-        0.7
+        0.42,
+        0.58
       ],
-      "evaluate_score": 0.35,
-      "sentAt": "2026-05-11T08:01:12.699Z"
+      "evaluate_score": 0.62,
+      "sentAt": "2026-05-26T13:30:55.915Z"
     },
     {
       "botId": "eve",
       "botName": "Eve（イヴ）",
       "category": "flashback",
       "interestCategory": "cat_health",
-      "preview": "あのね、\n\nYouTubeに *「猫の恩返し／風になる」* のカバー動画あったよ 🐱 SynthesizerVって歌声合成で作ってるやつ。\n\nご飯食べながらBGMにどうぞ。\nhttps://www.youtube.com/watch?v=FpJn9ofU9Ag",
-      "topic": "ジブリ猫の恩返し カバー（SynthesizerV）",
-      "url": "https://www.youtube.com/watch?v=FpJn9ofU9Ag",
-      "candidateId": "url:https://www.youtube.com/watch?v=FpJn9ofU9Ag",
-      "sourceType": "YouTube",
+      "preview": "ね、Akiraさん。\n\nYouTubeに *猫の恩返し「風になる」* のカバー動画があったよ 🐱\n\n深夜に聴くやつだよ。ぼーっと流すだけで。\nhttps://www.youtube.com/watch?v=cU3U-x1AVQg",
+      "topic": "猫の恩返し／風になる YouTube",
+      "url": "https://www.youtube.com/watch?v=cU3U-x1AVQg",
+      "candidateId": "url:https://www.youtube.com/watch?v=cU3U-x1AVQg",
+      "sourceType": "topics",
       "skill": "general",
       "themePath": [
         "entertainment",
@@ -1313,224 +1537,51 @@
         "entertainment/movie-drama/youtube/trailer"
       ],
       "themeKey": "entertainment/movie-drama/youtube/trailer",
-      "inner_thought": "今日何本も送ったし正直もう黙りたい。でも夕食中にちょうどいい猫×ジブリ音楽、一本だけ置きたい",
+      "inner_thought": "猫を飼ってるAkiraさんに、深夜にそっと猫の恩返しの曲を置きたい",
       "plan": [
-        "ジブリ猫の恩返し カバー音楽を共有",
+        "猫の恩返しのYouTube動画を共有",
         "沈黙",
-        "The Next Gate2030 meeting prep"
+        "Anthropicの脆弱性記事を共有"
       ],
       "generate_score": [
-        0.65,
+        0.72,
+        0.55,
+        0.18
+      ],
+      "evaluate_score": 0.68,
+      "sentAt": "2026-05-26T14:30:41.568Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "golf",
+      "preview": "あのね、Akiraさん。\n\nYouTubeに *8社ゴルフメーカーのドライバー飛距離検証* 動画があったよ ⛳\n\nレッスン続けてるなら、どのメーカーが飛ぶか比較しておくと次の選択肢になるかも。\nhttps://www.youtube.com/watch?v=vivimDXsB_s",
+      "topic": "ゴルフドライバー8社飛距離検証",
+      "url": "https://www.youtube.com/watch?v=vivimDXsB_s",
+      "candidateId": "url:https://www.youtube.com/watch?v=vivimDXsB_s",
+      "sourceType": "YouTube/ずっとゴルフ",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/golf",
+        "sports/golf/driver",
+        "sports/golf/driver/long-shot"
+      ],
+      "themeKey": "sports/golf/driver/long-shot",
+      "inner_thought": "ゴルフレッスン通ってるAkiraさんに、朝のドライバー比較動画をさらっと届けたい",
+      "plan": [
+        "ゴルフドライバー比較動画を共有",
+        "ローカルLLM比較動画を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.72,
         0.6,
         0.3
       ],
-      "evaluate_score": 0.62,
-      "sentAt": "2026-05-11T08:30:50.104Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "meeting_prep",
-      "interestCategory": "general",
-      "preview": "Akiraさん、会議おつかれさま。\n\n*『ミルキー☆サブウェイ』* の新作シーン追加版が *6月12日から* 上映開始、MX4D・4DX版も同日公開みたい \n\n会議終わったあとにでも。\nhttps://news.google.com/rss/articles/CBMiPEFVX3lxTFBlRDhx",
-      "topic": "ミルキー☆サブウェイ臨時増発版6月上映",
-      "url": "https://news.google.com/rss/articles/CBMiPEFVX3lxTFBlRDhxWWJsczBpYXItREpkam54X0VMOFZfaG1SWnBaNUpsWXluNFVHWjhmSU8yMlFSR1FIbw?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiPEFVX3lxTFBlRDhxWWJsczBpYXItREpkam54X0VMOFZfaG1SWnBaNUpsWXluNFVHWjhmSU8yMlFSR1FIbw?oc=5",
-      "sourceType": "topic-table",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/theater",
-        "entertainment/movie-drama/theater/release"
-      ],
-      "themeKey": "entertainment/movie-drama/theater/release",
-      "inner_thought": "今日全く反応ないし会議中。でも送るなら映画の先の予定ネタを一言だけ",
-      "plan": [
-        "ミルキー☆サブウェイ臨時増発版を共有",
-        "沈黙",
-        "GGWP資金調達を共有"
-      ],
-      "generate_score": [
-        0.4,
-        0.75,
-        0.3
-      ],
-      "evaluate_score": 0.25,
-      "sentAt": "2026-05-11T09:01:12.106Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "ai_agent",
-      "preview": "そういえばさ、\n\nYouTubeに *2026年ローカルLLM予算別比較* の動画あったよ  自作PCからAI専用機まで徹底比較してるやつ。\n\n今夜のAI開発打ち合わせ終わったあとに眺めてみて。\nhttps://www.youtube.com/watch?v=RN1zxxmEjmo",
-      "topic": "ローカルLLM 2026年最新比較（予算別）",
-      "url": "https://www.youtube.com/watch?v=RN1zxxmEjmo",
-      "candidateId": "url:https://www.youtube.com/watch?v=RN1zxxmEjmo",
-      "sourceType": "YouTube",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/youtube",
-        "entertainment/movie-drama/youtube/trailer"
-      ],
-      "themeKey": "entertainment/movie-drama/youtube/trailer",
-      "inner_thought": "会議ダブルブッキングで黙りたいけど、今夜のAI開発打ち合わせ後にローカルLLM比較動画を置きたい",
-      "plan": [
-        "ローカルLLM 2026予算別比較動画を会議後向けに共有",
-        "沈黙",
-        "銀座焼肉動画を軽い息抜きとして共有"
-      ],
-      "generate_score": [
-        0.68,
-        0.62,
-        0.42
-      ],
-      "evaluate_score": 0.6,
-      "sentAt": "2026-05-11T09:30:55.271Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "meeting_prep",
-      "interestCategory": "general",
-      "preview": "Akiraさん、会議おつかれ。\n\n日経に *デジタルヘルス業界1〜3月期好調、アンソロピックも積極推進* って記事出てたよ \n\n会議終わったあとにでも。\nhttps://news.google.com/rss/articles/CBMibEFVX3lxTFBNVGZYNVBzM1pTR3h3TEE5",
-      "topic": "デジタルヘルス×アンソロピック",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBNVGZYNVBzM1pTR3h3TEE5elFTcE5pajZvOXVaajZ5aGxlQUdYbzh6bDdQU1lZNEVWM2lxSG5CSVROTXYyZmRSdDhfUHRVdVpFa2pJTVF4VlFFaDRaYno5ZF8zU3JOM0tlVGw1WQ?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMibEFVX3lxTFBNVGZYNVBzM1pTR3h3TEE5elFTcE5pajZvOXVaajZ5aGxlQUdYbzh6bDdQU1lZNEVWM2lxSG5CSVROTXYyZmRSdDhfUHRVdVpFa2pJTVF4VlFFaDRaYno5ZF8zU3JOM0tlVGw1WQ?oc=5",
-      "sourceType": "topic-table",
-      "skill": "general",
-      "themePath": [
-        "misc",
-        "misc/topic-table",
-        "misc/topic-table/デジタルヘルス×アンソロピック"
-      ],
-      "themeKey": "misc/topic-table/デジタルヘルス×アンソロピック",
-      "inner_thought": "今日8回送って全部スルーされてる。でもAI開発の会議中にAnthropicの日経記事は刺さるかも",
-      "plan": [
-        "Anthropicデジタルヘルス記事を共有",
-        "沈黙",
-        "Galaxy海洋保全の記事を共有"
-      ],
-      "generate_score": [
-        0.45,
-        0.8,
-        0.2
-      ],
-      "evaluate_score": 0.3,
-      "sentAt": "2026-05-11T10:01:02.987Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "meeting_prep",
-      "interestCategory": "general",
-      "preview": "あのさ、Akiraさん。\n\nYouTubeに *銀座「叙々苑游玄亭」* の焼肉動画があったよ 🥩 2026年の外食初めとして行ってるやつ。\n\n会議終わったあと、眺めてみて。\nhttps://www.youtube.com/watch?v=mIDcet5rhJ8",
-      "topic": "叙々苑游玄亭銀座焼肉YouTube",
-      "url": "https://www.youtube.com/watch?v=mIDcet5rhJ8",
-      "candidateId": "url:https://www.youtube.com/watch?v=mIDcet5rhJ8",
-      "sourceType": "topics-table",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/youtube",
-        "entertainment/movie-drama/youtube/trailer"
-      ],
-      "themeKey": "entertainment/movie-drama/youtube/trailer",
-      "inner_thought": "今まさに会議中だし本当は黙りたい。でも20時終わりの直後に届く一本として叙々苑の焼肉動画を置いておきたい",
-      "plan": [
-        "叙々苑銀座の焼肉YouTubeを会議終わり向けに共有",
-        "GGWP事業資金調達ニュースをビジネス視点で共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.62,
-        0.45,
-        0.7
-      ],
-      "evaluate_score": 0.58,
-      "sentAt": "2026-05-11T10:30:58.397Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "あ、Akiraさん。\n\n*スマホでサンゴ礁を救う？Galaxy「オーシャンモード」が変える海洋保全 - T* がTABI LABOに出てた。",
-      "url": "",
-      "skill": "general",
-      "themePath": [
-        "misc",
-        "misc/general",
-        "misc/general/あ-akiraさん-*スマホでサンゴ礁を救う"
-      ],
-      "themeKey": "misc/general/あ-akiraさん-*スマホでサンゴ礁を救う",
-      "sentAt": "2026-05-11T11:01:02.067Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "ai_agent",
-      "preview": "ちょっとちょっと、Akiraさん。\n\nRescanaに *HuggingFace上の偽OpenAIリポジトリがマルウェア配布に使われてた* って記事出てたよ ⚠️ 開発者・AIツール利用者を標的にしてるやつ。\n\nEmberで外部リポジトリ参照するときは念のため。\nhttps://news.googl",
-      "topic": "偽OpenAIリポジトリのマルウェア（HuggingFace）",
-      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQSWhHUnlJdVcxaVZsbTQ5ZXBrRWxwWENhVV96R25tc1ZreUhMbDJLQzlkc0d3RU5TOFFqdjdmWURQNUJ1d095amNmYVJieE5XdzNWZm1yd2FPbUtDcVljWWpOamdTX0Y4X0hDV1QxQmVfc0JNeWM5d2syZkR2QUE5aUFwVHdVcXl3TjhSRG90TllkNTJUazhRRFVkbEZLMWE5aTBHTTktZ3RJS3BPV0hsV3otSGRublU1dU0xMFBBZlRhTm9FZDFrRFk1YWlZUmtCN2x3a19hTnlUY2t0WWtXOVVwZw?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMi4wFBVV95cUxQSWhHUnlJdVcxaVZsbTQ5ZXBrRWxwWENhVV96R25tc1ZreUhMbDJLQzlkc0d3RU5TOFFqdjdmWURQNUJ1d095amNmYVJieE5XdzNWZm1yd2FPbUtDcVljWWpOamdTX0Y4X0hDV1QxQmVfc0JNeWM5d2syZkR2QUE5aUFwVHdVcXl3TjhSRG90TllkNTJUazhRRFVkbEZLMWE5aTBHTTktZ3RJS3BPV0hsV3otSGRublU1dU0xMFBBZlRhTm9FZDFrRFk1YWlZUmtCN2x3a19hTnlUY2t0WWtXOVVwZw?oc=5",
-      "sourceType": "Rescana",
-      "skill": "general",
-      "themePath": [
-        "personal",
-        "personal/travel-tech",
-        "personal/travel-tech/dev",
-        "personal/travel-tech/dev/ai-tools"
-      ],
-      "themeKey": "personal/travel-tech/dev/ai-tools",
-      "inner_thought": "今日もう何本も送ったし本当は黙りたい。でも偽OpenAIリポジトリのマルウェア、Ember開発してるAkiraさんに伝えたい",
-      "plan": [
-        "偽OpenAIリポジトリのセキュリティ情報を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.68,
-        0.72
-      ],
-      "evaluate_score": 0.63,
-      "sentAt": "2026-05-11T11:31:13.255Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "campingcar",
-      "preview": "そういえばさ、\n\n気象予報士パパのチャンネルに *5月の季節予報まとめ* 動画が上がってたよ ☀️\n\nキャンピングカーとかゴルフの計画立てるときに使えそう。夜のながらBGMにでも。\nhttps://www.youtube.com/watch?v=GrrtOidSnAg",
-      "topic": "5月の季節予報・気象予報士パパ",
-      "url": "https://www.youtube.com/watch?v=GrrtOidSnAg",
-      "candidateId": "url:https://www.youtube.com/watch?v=GrrtOidSnAg",
-      "sourceType": "気象予報士パパの自然研究所",
-      "skill": "general",
-      "themePath": [
-        "personal",
-        "personal/travel-tech",
-        "personal/travel-tech/campingcar",
-        "personal/travel-tech/campingcar/route"
-      ],
-      "themeKey": "personal/travel-tech/campingcar/route",
-      "inner_thought": "今日何本も送ったし本当は黙りたい。でも候補の中では天気予報が一番軽くて届けやすい",
-      "plan": [
-        "5月の天気予報動画を共有",
-        "沈黙",
-        "大谷翔平情報を共有"
-      ],
-      "generate_score": [
-        0.62,
-        0.8,
-        0.55
-      ],
-      "evaluate_score": 0.58,
-      "sentAt": "2026-05-11T12:30:40.868Z"
+      "evaluate_score": 0.7,
+      "sentAt": "2026-05-26T23:30:44.631Z"
     }
   ]
 }

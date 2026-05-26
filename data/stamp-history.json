@@ -590,6 +590,80 @@
           "timestamp": "2026-05-03T03:09:42.828Z"
         }
       ]
+    },
+    {
+      "scores": {
+        "mei": -1,
+        "eve": 2
+      },
+      "weekStart": "2026-05-10T15:00:00.000Z",
+      "stamps": [
+        {
+          "botId": "mei",
+          "emoji": "-1",
+          "messageTs": "1778587247.110259",
+          "channel": "D0AMYJ8HLER",
+          "timestamp": "2026-05-12T12:01:06.224Z"
+        },
+        {
+          "botId": "eve",
+          "emoji": "+1",
+          "messageTs": "1778596253.944369",
+          "channel": "D0AHR0SATNE",
+          "timestamp": "2026-05-12T21:16:31.638Z"
+        },
+        {
+          "botId": "eve",
+          "emoji": "+1",
+          "messageTs": "1778736644.796689",
+          "channel": "D0AHR0SATNE",
+          "timestamp": "2026-05-14T06:25:05.433Z"
+        }
+      ]
+    },
+    {
+      "scores": {
+        "mei": 4,
+        "eve": 1
+      },
+      "weekStart": "2026-05-17T15:00:00.000Z",
+      "stamps": [
+        {
+          "botId": "mei",
+          "emoji": "+1",
+          "messageTs": "1779145271.976729",
+          "channel": "D0AMYJ8HLER",
+          "timestamp": "2026-05-18T23:31:33.650Z"
+        },
+        {
+          "botId": "mei",
+          "emoji": "+1",
+          "messageTs": "1779246385.575199",
+          "channel": "C0AHPJMS5QE",
+          "timestamp": "2026-05-20T21:46:57.778Z"
+        },
+        {
+          "botId": "eve",
+          "emoji": "+1",
+          "messageTs": "1779246385.575199",
+          "channel": "C0AHPJMS5QE",
+          "timestamp": "2026-05-20T21:46:58.478Z"
+        },
+        {
+          "botId": "mei",
+          "emoji": "+1",
+          "messageTs": "1779336067.158939",
+          "channel": "D0AMYJ8HLER",
+          "timestamp": "2026-05-21T04:44:56.686Z"
+        },
+        {
+          "botId": "mei",
+          "emoji": "+1",
+          "messageTs": "1779451273.779959",
+          "channel": "D0AMYJ8HLER",
+          "timestamp": "2026-05-22T12:59:02.660Z"
+        }
+      ]
     }
   ]
 }
