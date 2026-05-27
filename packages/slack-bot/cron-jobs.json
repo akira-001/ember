@@ -16,7 +16,7 @@
     {
       "name": "gmail-to-drive",
       "summary": "Gmail領収書→Drive保存",
-      "description": "Gmailから領収書・請求書PDFを検索し、Google Driveのinvoice/receipt/フォルダに自動保存。保存済みメールはdrive-savedラベルでアーカイブ。【2026-05-27 移行】claude.ai routine trig_01Uts1BKT5Q8atD6j86Ttb3s (weekly-invoice-check) に移行済み。ローカル実行は無効化。失敗時は Slack DM (U3SFGQXNH) に必ず通知される設計。",
+      "description": "Gmailから領収書・請求書PDFを検索し、Google Driveのinvoice/receipt/フォルダに自動保存。保存済みメールはdrive-savedラベルでアーカイブ。【2026-05-27 復旧】OAuth リフレッシュトークン再認証 + 60日 backfill 実施済み。失敗時は scheduler 経由で Slack DM に通知される設計。",
       "outputExample": "{\"text\":\"*Gmail → Drive 同期完了*（2026-03-27）\\n\\n2件保存:\\n- `invoice/2026/` Anthropic請求書\\n- `receipt/2026/` Anthropic領収書\"}",
       "command": "python3 /Users/akira/workspace/ember/packages/slack-bot/scripts/gmail_to_drive.py",
       "cron": "0 9 * * 1",
@@ -24,7 +24,7 @@
       "message": "以下のコマンドを実行してください。結果をイヴとして自然な口調で報告してください。\n\npython3 /Users/akira/workspace/ember/packages/slack-bot/scripts/gmail_to_drive.py",
       "slackTarget": "U3SFGQXNH",
       "timeoutSeconds": 600,
-      "enabled": false,
+      "enabled": true,
       "botId": "eve"
     },
     {
