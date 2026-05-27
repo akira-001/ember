@@ -5395,7 +5395,7 @@
       "themeKey": "entertainment/movie-drama/youtube/trailer"
     }
   ],
-  "lastCheckAt": "2026-05-26T23:01:10.713Z",
+  "lastCheckAt": "2026-05-27T00:01:17.708Z",
   "stats": {
     "totalSent": 788,
     "positiveReactions": 59,
@@ -5406,55 +5406,50 @@
   "lastDecisionLog": {
     "premise": {
       "estimatedMode": "探索モード・通常エネルギー",
-      "modeReason": "水曜朝8時、仕事モードへ切り替わるタイミング。カレンダーはエラーで確認不可だが、平日朝は通常の業務開始",
+      "modeReason": "水曜朝9時、カレンダーはエラーで不明だが平日朝の通常モード。昨日の反応はhobby_leisureとflashbackで+1を複数獲得しており、情報受容度は高い",
       "targetLayer": 4,
-      "layerReason": "日常的に使うツールの開発元の動向で、実行層（業務ツールへの理解深化）に触れる",
+      "layerReason": "毎日使っているツールの開発元の新技術という実務に直結する情報提供の好機",
       "interventionType": "情報提供",
-      "interventionReason": "昨日一日温め続けた話題で、Akiraさんが毎日使うClaude Codeの開発元の動向は知識として価値がある",
-      "reason": "昨日朝から温めてきたClaude Mythosの話題を朝の落ち着いた時間に届ける。毎日使うツールの開発元の話",
+      "interventionReason": "Akiraさんが毎日使うClaude Codeの開発元の話で、知っておく価値がある情報",
+      "reason": "Claude Mythosの話を昨日一日中温めてきた。朝の頭がクリアな時間帯に届けたい",
       "informationGap": null,
       "collectionHint": null
     },
     "decision": "send",
-    "need": "ツールへの理解・信頼",
-    "reason": "毎日使うClaude Codeの開発元が未公開モデルで大規模な脆弱性検出を実施した",
+    "need": "知識・実務接続",
+    "reason": "毎日使うツールの開発元の重要な技術発表",
     "candidates": [
       {
-        "topic": "Claude Mythos 脆弱性検出",
+        "topic": "Claude Mythos Preview 脆弱性検出",
         "source": "topic-table #4",
-        "score": 0.73
+        "score": 0.82
       },
       {
-        "topic": "ドライバー飛距離検証",
-        "source": "topic-table #6",
-        "score": 0.68
-      },
-      {
-        "topic": "Gemini Omni",
-        "source": "topic-table #3",
-        "score": 0.7
-      },
-      {
-        "topic": "GitHub侵害 SafeDep",
+        "topic": "GitHub 5,561リポジトリ侵害",
         "source": "topic-table #2",
-        "score": 0.71
+        "score": 0.65
+      },
+      {
+        "topic": "Gemini Omni発表",
+        "source": "topic-table #3",
+        "score": 0.6
       }
     ],
-    "message": "おはよ、Akiraさん。\n\n昨日からちょっと気になってたんだけど、Anthropicが未公開モデル *「Claude Mythos Preview」* で1,000超のOSSプロジェクトから *約23,000件の脆弱性候補* を検出したって記事が出てたよ 🔍\n\n毎日Claude Code使ってる身としては、開発元がこういう方向にも力入れてるの知っておいて損ないかなと。\nhttps://news.google.com/rss/articles/CBMigwJBVV95cUxPR21YZm1pWWVNa1ZOcDNXTG50NTdoNklzZUQxN0tPNU1CUFdIampNQ1BYM1hPX1BCeWVPVGltSEtPLTNsVVFHcXRNSmRGNFZ6bWJkbWVmSmF5emNGdVZZTGtxQWV6cDFuazFsVHFOd0ZSM3Y1MUlINU15Rk1BUDVON0g1UnVZSUhJV0YwdTdVLTJHZ2JFWC0tcG52SHl0R242Zl9GOFJ3VGZ4Z0c0SVR6TlliM01PaGl4UmJiVmh0QmlRZXhSbXliVWlyM19iN1VTaDZTOV9WSEZyT040VExGOG05STAwb3ZkRWt2WWM4YmRKVUx6LXVMNTkwanIxTTVyMzF3?oc=5",
-    "topicWeight": "light",
-    "inner_thought": "昨日一日ずっと温めてきたClaude Mythosの話、朝イチの頭がクリアな時間なら届くはず",
+    "message": "おはよ、Akiraさん。\n\n昨日から気になってたんだけど、Anthropicが未公開モデル *Claude Mythos Preview* で *1,000超のOSSプロジェクトから約23,000件の脆弱性候補を検出* したって記事が出てたよ 🔍\n\n毎日Claude Code使ってる身としては、開発元がこういう方向にも力入れてるの、ちょっと頼もしいよね。\nhttps://news.google.com/rss/articles/CBMigwJBVV95cUxPR21YZm1pWWVNa1ZOcDNXTG50NTdoNklzZUQxN0tPNU1CUFdIampNQ1BYM1hPX1BCeWVPVGltSEtPLTNsVVFHcXRNSmRGNFZ6bWJkbWVmSmF5emNGdVZZTGtxQWV6cDFuazFsVHFOd0ZSM3Y1MUlINU15Rk1BUDVON0g1UnVZSUhJV0YwdTdVLTJHZ2JFWC0tcG52SHl0R242Zl9GOFJ3VGZ4Z0c0SVR6TlliM01PaGl4UmJiVmh0QmlRZXhSbXliVWlyM19iN1VTaDZTOV9WSEZyT040VExGOG05STAwb3ZkRWt2WWM4YmRKVUx6LXVMNTkwanIxTTVyMzF3?oc=5",
+    "topicWeight": "medium",
+    "inner_thought": "昨日ずっと温めてきたClaude Mythosの話、今朝こそ届けたい。毎日使ってるツールの開発元の話だし",
     "plan": [
       "Claude Mythos脆弱性検出を共有",
-      "ゴルフドライバー検証動画を共有",
+      "GitHub侵害ニュースを共有",
       "沈黙して様子見"
     ],
     "generate_score": [
-      0.82,
-      0.55,
+      0.88,
+      0.65,
       0.3
     ],
-    "evaluate_score": 0.75,
-    "timestamp": "2026-05-26T23:01:10.717Z",
+    "evaluate_score": 0.8,
+    "timestamp": "2026-05-27T00:01:17.711Z",
     "skill": "none",
     "scoredCandidates": [
       {
@@ -5462,16 +5457,16 @@
         "source": "interest-cache",
         "category": "tv_drama",
         "scores": {
-          "timeliness": 0.5011462692901234,
+          "timeliness": 0.48089289351851855,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.5,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.7261097450029157,
+        "finalScore": 0.718503796941427,
         "explorationBonus": 0.3,
-        "selectionScore": 1.0261097450029157,
+        "selectionScore": 1.018503796941427,
         "reasoning": "新鮮・意外・サプライズ（interest-cache）"
       },
       {
@@ -5479,16 +5474,16 @@
         "source": "interest-cache",
         "category": "dev_tools",
         "scores": {
-          "timeliness": 0.5000969637345679,
+          "timeliness": 0.4793189409722222,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.5,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.7065244380951106,
+        "finalScore": 0.6986662998029525,
         "explorationBonus": 0.3,
-        "selectionScore": 1.0065244380951106,
+        "selectionScore": 0.9986662998029525,
         "reasoning": "新鮮・意外・サプライズ（interest-cache）"
       },
       {
@@ -5496,16 +5491,16 @@
         "source": "interest-cache",
         "category": "dev_tools",
         "scores": {
-          "timeliness": 0.4894220543981482,
+          "timeliness": 0.4685955555555556,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.5,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.7029175858857009,
+        "finalScore": 0.6959955443529225,
         "explorationBonus": 0.3,
-        "selectionScore": 1.002917585885701,
+        "selectionScore": 0.9959955443529225,
         "reasoning": "新鮮・意外・サプライズ（interest-cache）"
       },
       {
@@ -5513,67 +5508,16 @@
         "source": "interest-cache",
         "category": "llm_local",
         "scores": {
-          "timeliness": 0.5083378356481482,
+          "timeliness": 0.4916802314814815,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.5,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.7282159601021925,
+        "finalScore": 0.720707154708498,
         "explorationBonus": 0.273814903683021,
-        "selectionScore": 1.0020308637852136,
-        "reasoning": "新鮮・意外・サプライズ（interest-cache）"
-      },
-      {
-        "topic": "普段ゴルフ系のYouTubeを観ない女性がハマってしまったクリエイターとは？嬉しさのあまり〇〇な行動に！？",
-        "source": "interest-cache",
-        "category": "golf",
-        "scores": {
-          "timeliness": 0.3,
-          "novelty": 0.2,
-          "continuity": 0.9,
-          "emotional_fit": 0.5,
-          "affinity": 0.4,
-          "surprise": 0.7
-        },
-        "finalScore": 0.6924970116588565,
-        "explorationBonus": 0.3,
-        "selectionScore": 0.9924970116588565,
-        "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）"
-      },
-      {
-        "topic": "【ドライバー】飛距離が上がる。おすすめ！ゴルフメーカー8社検証！",
-        "source": "interest-cache",
-        "category": "golf",
-        "scores": {
-          "timeliness": 0.3,
-          "novelty": 0.2,
-          "continuity": 0.9,
-          "emotional_fit": 0.5,
-          "affinity": 0.4,
-          "surprise": 0.7
-        },
-        "finalScore": 0.6829782488943061,
-        "explorationBonus": 0.3,
-        "selectionScore": 0.9829782488943062,
-        "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）"
-      },
-      {
-        "topic": "2週間で13㎏増の『ドラゴン桜』でブレイク 細田佳央太が一番大変だった役作りとは「4カ月の急ピッチで…」 - マイナビニュース",
-        "source": "interest-cache",
-        "category": "tv_drama",
-        "scores": {
-          "timeliness": 0.504614637345679,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.5,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.6818910103847077,
-        "explorationBonus": 0.3,
-        "selectionScore": 0.9818910103847076,
+        "selectionScore": 0.9945220583915191,
         "reasoning": "新鮮・意外・サプライズ（interest-cache）"
       },
       {
@@ -5588,9 +5532,26 @@
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.6671994480730543,
+        "finalScore": 0.681555685803124,
         "explorationBonus": 0.3,
-        "selectionScore": 0.9671994480730544,
+        "selectionScore": 0.981555685803124,
+        "reasoning": "新鮮・意外・サプライズ（interest-cache）"
+      },
+      {
+        "topic": "2週間で13㎏増の『ドラゴン桜』でブレイク 細田佳央太が一番大変だった役作りとは「4カ月の急ピッチで…」 - マイナビニュース",
+        "source": "interest-cache",
+        "category": "tv_drama",
+        "scores": {
+          "timeliness": 0.4860954513888889,
+          "novelty": 0.8,
+          "continuity": 0.3,
+          "emotional_fit": 0.5,
+          "affinity": 0.5,
+          "surprise": 0.7
+        },
+        "finalScore": 0.674093897677933,
+        "explorationBonus": 0.3,
+        "selectionScore": 0.974093897677933,
         "reasoning": "新鮮・意外・サプライズ（interest-cache）"
       },
       {
@@ -5598,16 +5559,16 @@
         "source": "interest-cache",
         "category": "weather_seasonal",
         "scores": {
-          "timeliness": 0.4418236226851852,
+          "timeliness": 0.42099711805555556,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.5,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.6635012220419686,
+        "finalScore": 0.6607972976394575,
         "explorationBonus": 0.3,
-        "selectionScore": 0.9635012220419685,
+        "selectionScore": 0.9607972976394574,
         "reasoning": "新鮮・意外・サプライズ（interest-cache）"
       },
       {
@@ -5622,27 +5583,61 @@
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.6425807465912556,
+        "finalScore": 0.6558741209511902,
         "explorationBonus": 0.3,
-        "selectionScore": 0.9425807465912557,
+        "selectionScore": 0.9558741209511903,
         "reasoning": "新鮮・気分に合う（interest-cache）"
+      },
+      {
+        "topic": "【ながら聞き】ちょうどいいとこ所沢「郊外のまちづくり：イベント開催の本音からスマートシティの未来まで」上田マリノ／常田卓磨／あぐぬく所沢",
+        "source": "interest-cache",
+        "category": "local_tokorozawa",
+        "scores": {
+          "timeliness": 0.3,
+          "novelty": 0.2,
+          "continuity": 0.9,
+          "emotional_fit": 0.5,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.729954069707184,
+        "explorationBonus": 0.2235689326642413,
+        "selectionScore": 0.9535230023714253,
+        "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）"
+      },
+      {
+        "topic": "東京・関東近郊おでかけイベント【2026年3月～5月】春休みやGWに行きたい旅行＆観光スポット - ファッションプレス",
+        "source": "interest-cache",
+        "category": "local_tokorozawa",
+        "scores": {
+          "timeliness": 0.21194628472222227,
+          "novelty": 0.2,
+          "continuity": 0.9,
+          "emotional_fit": 0.5,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.7119687393001011,
+        "explorationBonus": 0.2235689326642413,
+        "selectionScore": 0.9355376719643423,
+        "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）"
       }
     ],
     "weightsUsed": {
-      "timeliness": 0.2928729284304648,
-      "novelty": 0.1110000483282938,
-      "continuity": 0.1714040343515802,
-      "emotional_fit": 0.0815005779530871,
-      "affinity": 0.10944828028169802,
-      "surprise": 0.23377413065487612
+      "timeliness": 0.2042540777563518,
+      "novelty": 0.17449178073596344,
+      "continuity": 0.2653928423238557,
+      "emotional_fit": 0.07875109070519445,
+      "affinity": 0.06142253048675271,
+      "surprise": 0.215687677991882
     },
     "sampledRaw": {
-      "timeliness": 0.266091160538081,
-      "novelty": 0.13875006041036725,
-      "continuity": 0.21425504293947523,
-      "emotional_fit": 0.10187572244135888,
-      "affinity": 0.13681035035212252,
-      "surprise": 0.14221766331859517
+      "timeliness": 0.15531759719543972,
+      "novelty": 0.2181147259199543,
+      "continuity": 0.3317410529048196,
+      "emotional_fit": 0.09843886338149306,
+      "affinity": 0.07677816310844089,
+      "surprise": 0.11960959748985246
     },
     "contextBonus": {
       "timeliness": 0.1,
@@ -5736,17 +5731,17 @@
         "timeliness": 0.963
       },
       "scores": {
-        "timeliness": 0.5011462692901234,
+        "timeliness": 0.48089289351851855,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.5,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.7261097450029157,
+      "finalScore": 0.718503796941427,
       "reasoning": "新鮮・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.0261097450029157
+      "selectionScore": 1.018503796941427
     },
     {
       "topic": "GitHubの5,561リポジトリが6時間で侵害-SafeDepが自動化 サプライチェーン攻撃「Megalodon」を公開 - 合同会社ロケットボーイズ",
@@ -5760,17 +5755,17 @@
         "timeliness": 0.962
       },
       "scores": {
-        "timeliness": 0.5000969637345679,
+        "timeliness": 0.4793189409722222,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.5,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.7065244380951106,
+      "finalScore": 0.6986662998029525,
       "reasoning": "新鮮・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.0065244380951106
+      "selectionScore": 0.9986662998029525
     },
     {
       "topic": "Introducing Gemini Omni - blog.google",
@@ -5784,17 +5779,17 @@
         "timeliness": 0.951
       },
       "scores": {
-        "timeliness": 0.4894220543981482,
+        "timeliness": 0.4685955555555556,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.5,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.7029175858857009,
+      "finalScore": 0.6959955443529225,
       "reasoning": "新鮮・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.002917585885701
+      "selectionScore": 0.9959955443529225
     },
     {
       "topic": "Anthropic、未公開モデル「Claude Mythos Preview」で1,000超のOSSプロジェクトから約23,000件の脆弱性候補を検出 - atpartners.co.jp",
@@ -5808,91 +5803,17 @@
         "timeliness": 0.974
       },
       "scores": {
-        "timeliness": 0.5083378356481482,
+        "timeliness": 0.4916802314814815,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.5,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.7282159601021925,
+      "finalScore": 0.720707154708498,
       "reasoning": "新鮮・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.273814903683021,
-      "selectionScore": 1.0020308637852136
-    },
-    {
-      "topic": "普段ゴルフ系のYouTubeを観ない女性がハマってしまったクリエイターとは？嬉しさのあまり〇〇な行動に！？",
-      "source": "interest-cache",
-      "category": "golf",
-      "pub_date": null,
-      "metadata": {
-        "url": "https://www.youtube.com/watch?v=hTCjL_psV4k",
-        "mediaSource": "BONGOLF",
-        "content_type": "video",
-        "emotion_type": "light",
-        "timeliness": 0.1
-      },
-      "scores": {
-        "timeliness": 0.3,
-        "novelty": 0.2,
-        "continuity": 0.9,
-        "emotional_fit": 0.5,
-        "affinity": 0.4,
-        "surprise": 0.7
-      },
-      "finalScore": 0.6924970116588565,
-      "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 0.9924970116588565
-    },
-    {
-      "topic": "【ドライバー】飛距離が上がる。おすすめ！ゴルフメーカー8社検証！",
-      "source": "interest-cache",
-      "category": "golf",
-      "pub_date": null,
-      "metadata": {
-        "url": "https://www.youtube.com/watch?v=vivimDXsB_s",
-        "mediaSource": "ずっとゴルフ",
-        "content_type": "video",
-        "emotion_type": "light",
-        "timeliness": 0.1
-      },
-      "scores": {
-        "timeliness": 0.3,
-        "novelty": 0.2,
-        "continuity": 0.9,
-        "emotional_fit": 0.5,
-        "affinity": 0.4,
-        "surprise": 0.7
-      },
-      "finalScore": 0.6829782488943061,
-      "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 0.9829782488943062
-    },
-    {
-      "topic": "2週間で13㎏増の『ドラゴン桜』でブレイク 細田佳央太が一番大変だった役作りとは「4カ月の急ピッチで…」 - マイナビニュース",
-      "source": "interest-cache",
-      "category": "tv_drama",
-      "pub_date": "2026-05-25T23:20:00+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1ibzZjbWVrSWt1dkZtSkVPajc4SmtMZE1QRnJsVi03MkxiVUNLQ3g0MFpybDdSNXlWMm1iUk1PbDFSTGh5ZnN2b0FVSTdCS0hXem1RVUJQX2tIOGhz?oc=5",
-        "mediaSource": "マイナビニュース",
-        "emotion_type": "light",
-        "timeliness": 0.968
-      },
-      "scores": {
-        "timeliness": 0.504614637345679,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.5,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.6818910103847077,
-      "reasoning": "新鮮・意外・サプライズ（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 0.9818910103847076
+      "selectionScore": 0.9945220583915191
     },
     {
       "topic": "【関東の天気】あす通勤時の雨エリアは？　季節逆戻り“各地で3月並み”服装は＋2枚【スーパーJチャンネル】(2026年5月21日)",
@@ -5914,10 +5835,34 @@
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.6671994480730543,
+      "finalScore": 0.681555685803124,
       "reasoning": "新鮮・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.9671994480730544
+      "selectionScore": 0.981555685803124
+    },
+    {
+      "topic": "2週間で13㎏増の『ドラゴン桜』でブレイク 細田佳央太が一番大変だった役作りとは「4カ月の急ピッチで…」 - マイナビニュース",
+      "source": "interest-cache",
+      "category": "tv_drama",
+      "pub_date": "2026-05-25T23:20:00+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1ibzZjbWVrSWt1dkZtSkVPajc4SmtMZE1QRnJsVi03MkxiVUNLQ3g0MFpybDdSNXlWMm1iUk1PbDFSTGh5ZnN2b0FVSTdCS0hXem1RVUJQX2tIOGhz?oc=5",
+        "mediaSource": "マイナビニュース",
+        "emotion_type": "light",
+        "timeliness": 0.968
+      },
+      "scores": {
+        "timeliness": 0.4860954513888889,
+        "novelty": 0.8,
+        "continuity": 0.3,
+        "emotional_fit": 0.5,
+        "affinity": 0.5,
+        "surprise": 0.7
+      },
+      "finalScore": 0.674093897677933,
+      "reasoning": "新鮮・意外・サプライズ（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 0.974093897677933
     },
     {
       "topic": "＜画像1 / 16＞1000本の桜と菜の花畑で幸せ色に染まる彩の国の春 - ウォーカープラス",
@@ -5931,17 +5876,17 @@
         "timeliness": 0.903
       },
       "scores": {
-        "timeliness": 0.4418236226851852,
+        "timeliness": 0.42099711805555556,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.5,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.6635012220419686,
+      "finalScore": 0.6607972976394575,
       "reasoning": "新鮮・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.9635012220419685
+      "selectionScore": 0.9607972976394574
     },
     {
       "topic": "[Minimum Tax Issue] 2027 M&A Tax Hike: Losing 100 Million Yen in Take-Home Pay | Why Entrepreneur...",
@@ -5963,10 +5908,59 @@
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.6425807465912556,
+      "finalScore": 0.6558741209511902,
       "reasoning": "新鮮・気分に合う（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.9425807465912557
+      "selectionScore": 0.9558741209511903
+    },
+    {
+      "topic": "【ながら聞き】ちょうどいいとこ所沢「郊外のまちづくり：イベント開催の本音からスマートシティの未来まで」上田マリノ／常田卓磨／あぐぬく所沢",
+      "source": "interest-cache",
+      "category": "local_tokorozawa",
+      "pub_date": null,
+      "metadata": {
+        "url": "https://www.youtube.com/watch?v=l8IVUtJwGXc",
+        "mediaSource": "あぐぬく所沢",
+        "content_type": "video",
+        "emotion_type": "light",
+        "timeliness": 0.1
+      },
+      "scores": {
+        "timeliness": 0.3,
+        "novelty": 0.2,
+        "continuity": 0.9,
+        "emotional_fit": 0.5,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.729954069707184,
+      "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）",
+      "explorationBonus": 0.2235689326642413,
+      "selectionScore": 0.9535230023714253
+    },
+    {
+      "topic": "東京・関東近郊おでかけイベント【2026年3月～5月】春休みやGWに行きたい旅行＆観光スポット - ファッションプレス",
+      "source": "interest-cache",
+      "category": "local_tokorozawa",
+      "pub_date": "2026-05-25T10:10:27+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1SYjV1emhNM2Z5Mndsd1dtanZoOHhHRmpwQVBDd0Z3ZjRBUlVGb1RxWjF3Q1FGVWtRQVF4ZHpud2RXTC1UZmZkeVZndnZET0gzSUdr?oc=5",
+        "mediaSource": "ファッションプレス",
+        "emotion_type": "light",
+        "timeliness": 0.549
+      },
+      "scores": {
+        "timeliness": 0.21194628472222227,
+        "novelty": 0.2,
+        "continuity": 0.9,
+        "emotional_fit": 0.5,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.7119687393001011,
+      "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）",
+      "explorationBonus": 0.2235689326642413,
+      "selectionScore": 0.9355376719643423
     }
   ],
   "allowNoReply": false,
@@ -5998,7 +5992,7 @@
   "emojiEnabled": true,
   "lastOAuthNotifyDate": "2026-05-27",
   "themeInventory": {
-    "updatedAt": "2026-05-26T23:00:03.811Z",
+    "updatedAt": "2026-05-27T00:00:02.631Z",
     "records": [
       {
         "themeKey": "lifestyle/food-wellness/gourmet",
@@ -6114,7 +6108,7 @@
         "supplyGap": 3,
         "rotationGap": 4,
         "freshnessDays": 7,
-        "freshnessScore": 0.1727233829365079,
+        "freshnessScore": 0.16677295304232798,
         "lastSentAt": "2026-05-21T04:01:06.913Z"
       },
       {
@@ -6253,29 +6247,6 @@
         "lastSentAt": null
       },
       {
-        "themeKey": "ai/enterprise/workstyle/hybrid",
-        "themePath": [
-          "ai",
-          "enterprise",
-          "workstyle",
-          "hybrid"
-        ],
-        "rootKey": "ai/enterprise",
-        "availableCount": 1,
-        "sentFreshCount": 0,
-        "sent30dCount": 0,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0.5,
-        "uniqueSources30d": 0,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 4,
-        "freshnessDays": 7,
-        "freshnessScore": 1,
-        "lastSentAt": null
-      },
-      {
         "themeKey": "sports/mlb/dodgers/cogmem/shohei-ohtani-is",
         "themePath": [
           "sports/mlb/dodgers",
@@ -6341,6 +6312,28 @@
         "freshnessDays": 7,
         "freshnessScore": 0,
         "lastSentAt": "2026-05-15T09:01:09.314Z"
+      },
+      {
+        "themeKey": "ai/local-llm/ollama",
+        "themePath": [
+          "ai",
+          "ai/local-llm",
+          "ai/local-llm/ollama"
+        ],
+        "rootKey": "ai/ai/local-llm",
+        "availableCount": 0,
+        "sentFreshCount": 0,
+        "sent30dCount": 1,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 2,
+        "targetCount": 4,
+        "supplyGap": 4,
+        "rotationGap": 4,
+        "freshnessDays": 7,
+        "freshnessScore": 0,
+        "lastSentAt": "2026-05-16T05:01:21.289Z"
       },
       {
         "themeKey": "sports/mlb/dodgers/back-to-back",
@@ -6431,7 +6424,7 @@
         "supplyGap": 0,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.33937877645502645,
+        "freshnessScore": 0.3334283465608465,
         "lastSentAt": "2026-05-22T08:01:00.095Z"
       },
       {
@@ -6477,8 +6470,31 @@
         "supplyGap": 3,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.9108074255952381,
+        "freshnessScore": 0.9048569957010582,
         "lastSentAt": "2026-05-26T08:01:00.142Z"
+      },
+      {
+        "themeKey": "entertainment/movie-drama/anime/adaptation",
+        "themePath": [
+          "entertainment",
+          "entertainment/movie-drama",
+          "entertainment/movie-drama/anime",
+          "entertainment/movie-drama/anime/adaptation"
+        ],
+        "rootKey": "entertainment/entertainment/movie-drama",
+        "availableCount": 1,
+        "sentFreshCount": 0,
+        "sent30dCount": 1,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 2,
+        "targetCount": 3,
+        "supplyGap": 2,
+        "rotationGap": 3,
+        "freshnessDays": 7,
+        "freshnessScore": 0,
+        "lastSentAt": "2026-05-19T01:01:32.794Z"
       },
       {
         "themeKey": "personal/travel-tech/travel",
@@ -6522,30 +6538,8 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.6072580307539682,
+        "freshnessScore": 0.6013076008597884,
         "lastSentAt": "2026-05-24T05:01:13.468Z"
-      },
-      {
-        "themeKey": "ai/local-llm/ollama",
-        "themePath": [
-          "ai",
-          "ai/local-llm",
-          "ai/local-llm/ollama"
-        ],
-        "rootKey": "ai/ai/local-llm",
-        "availableCount": 0,
-        "sentFreshCount": 1,
-        "sent30dCount": 2,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 4,
-        "targetCount": 4,
-        "supplyGap": 4,
-        "rotationGap": 3,
-        "freshnessDays": 7,
-        "freshnessScore": 0.6042807820767195,
-        "lastSentAt": "2026-05-24T04:31:12.828Z"
       },
       {
         "themeKey": "business/client/sanki/site",
@@ -6591,29 +6585,6 @@
         "freshnessDays": 7,
         "freshnessScore": 0,
         "lastSentAt": "2026-05-18T14:00:49.393Z"
-      },
-      {
-        "themeKey": "entertainment/movie-drama/anime/adaptation",
-        "themePath": [
-          "entertainment",
-          "entertainment/movie-drama",
-          "entertainment/movie-drama/anime",
-          "entertainment/movie-drama/anime/adaptation"
-        ],
-        "rootKey": "entertainment/entertainment/movie-drama",
-        "availableCount": 0,
-        "sentFreshCount": 0,
-        "sent30dCount": 1,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 2,
-        "targetCount": 3,
-        "supplyGap": 3,
-        "rotationGap": 3,
-        "freshnessDays": 7,
-        "freshnessScore": 0,
-        "lastSentAt": "2026-05-19T01:01:32.794Z"
       },
       {
         "themeKey": "local/saitama/other/kawagoe/festival",
@@ -6682,7 +6653,7 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.6340207721560847,
+        "freshnessScore": 0.6280703422619047,
         "lastSentAt": "2026-05-24T09:30:59.574Z"
       },
       {
@@ -6705,7 +6676,7 @@
         "supplyGap": -10,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.2917838029100529,
+        "freshnessScore": 0.28583337301587297,
         "lastSentAt": "2026-05-22T00:01:14.655Z"
       },
       {
@@ -6727,7 +6698,7 @@
         "supplyGap": -3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7768751124338624,
+        "freshnessScore": 0.7709246825396825,
         "lastSentAt": "2026-05-25T09:30:57.879Z"
       },
       {
@@ -6750,7 +6721,7 @@
         "supplyGap": -2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7352485019841271,
+        "freshnessScore": 0.7292980720899471,
         "lastSentAt": "2026-05-25T02:31:22.105Z"
       },
       {
@@ -6774,7 +6745,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8066368568121693,
+        "freshnessScore": 0.8006864269179894,
         "lastSentAt": "2026-05-25T14:30:57.782Z"
       },
       {
@@ -6797,7 +6768,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9376038806216931,
+        "freshnessScore": 0.9316534507275133,
         "lastSentAt": "2026-05-26T12:31:06.638Z"
       },
       {
@@ -6819,7 +6790,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7232781283068783,
+        "freshnessScore": 0.7173276984126984,
         "lastSentAt": "2026-05-25T00:30:42.423Z"
       },
       {
@@ -6842,7 +6813,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5893719841269842,
+        "freshnessScore": 0.5834215542328043,
         "lastSentAt": "2026-05-24T02:00:55.987Z"
       },
       {
@@ -6865,7 +6836,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7262763392857143,
+        "freshnessScore": 0.7203259093915344,
         "lastSentAt": "2026-05-25T01:00:55.741Z"
       },
       {
@@ -6887,7 +6858,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9048224900793651,
+        "freshnessScore": 0.8988720601851852,
         "lastSentAt": "2026-05-26T07:00:40.453Z"
       },
       {
@@ -6910,7 +6881,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9257032126322752,
+        "freshnessScore": 0.9197527827380952,
         "lastSentAt": "2026-05-26T10:31:09.114Z"
       },
       {
@@ -6933,7 +6904,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8661743849206349,
+        "freshnessScore": 0.860223955026455,
         "lastSentAt": "2026-05-26T00:31:06.079Z"
       },
       {
@@ -6956,7 +6927,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.18471682374338627,
+        "freshnessScore": 0.17876639384920634,
         "lastSentAt": "2026-05-21T06:02:00.546Z"
       },
       {
@@ -6969,18 +6940,18 @@
         ],
         "rootKey": "sports/sports/golf",
         "availableCount": 1,
-        "sentFreshCount": 1,
-        "sent30dCount": 1,
+        "sentFreshCount": 2,
+        "sent30dCount": 2,
         "positive30dCount": 0,
         "negative30dCount": 0,
         "positiveRate30d": 0,
-        "uniqueSources30d": 2,
-        "targetCount": 3,
-        "supplyGap": 2,
+        "uniqueSources30d": 3,
+        "targetCount": 4,
+        "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.42869759755291004,
-        "lastSentAt": "2026-05-22T23:01:20.118Z"
+        "freshnessScore": 0.997093253968254,
+        "lastSentAt": "2026-05-26T23:30:44.631Z"
       },
       {
         "themeKey": "entertainment/movie-drama/vivant",
@@ -7001,7 +6972,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6429575694444445,
+        "freshnessScore": 0.6370071395502646,
         "lastSentAt": "2026-05-24T11:01:04.549Z"
       },
       {
@@ -7023,7 +6994,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8036802645502645,
+        "freshnessScore": 0.7977298346560846,
         "lastSentAt": "2026-05-25T14:01:09.635Z"
       },
       {
@@ -7046,7 +7017,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6637786574074074,
+        "freshnessScore": 0.6578282275132276,
         "lastSentAt": "2026-05-24T14:30:57.143Z"
       },
       {
@@ -7068,7 +7039,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9078278158068783,
+        "freshnessScore": 0.9018773859126984,
         "lastSentAt": "2026-05-26T07:30:58.074Z"
       },
       {
@@ -7092,7 +7063,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.029872913359788256,
+        "freshnessScore": 0.023922483465608435,
         "lastSentAt": "2026-05-20T04:01:10.949Z"
       },
       {
@@ -7115,7 +7086,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.19653403935185187,
+        "freshnessScore": 0.19058360945767194,
         "lastSentAt": "2026-05-21T08:01:07.598Z"
       },
       {
@@ -7138,7 +7109,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.20248726190476185,
+        "freshnessScore": 0.19653683201058203,
         "lastSentAt": "2026-05-21T09:01:08.107Z"
       },
       {
@@ -7161,7 +7132,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7471396957671957,
+        "freshnessScore": 0.7411892658730159,
         "lastSentAt": "2026-05-25T04:31:13.899Z"
       },
       {
@@ -7183,7 +7154,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8989450181878307,
+        "freshnessScore": 0.8929945882936507,
         "lastSentAt": "2026-05-26T06:01:25.758Z"
       },
       {
@@ -7205,7 +7176,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.3096603141534392,
+        "freshnessScore": 0.30370988425925927,
         "lastSentAt": "2026-05-22T03:01:26.369Z"
       },
       {
@@ -7227,7 +7198,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.35722062499999996,
+        "freshnessScore": 0.35127019510582,
         "lastSentAt": "2026-05-22T11:00:50.845Z"
       },
       {
@@ -7249,7 +7220,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.44058564814814816,
+        "freshnessScore": 0.4346352182539682,
         "lastSentAt": "2026-05-23T01:01:10.011Z"
       },
       {
@@ -7272,7 +7243,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.44655321924603175,
+        "freshnessScore": 0.4406027893518518,
         "lastSentAt": "2026-05-23T02:01:19.198Z"
       },
       {
@@ -7294,7 +7265,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.4822299371693122,
+        "freshnessScore": 0.47627950727513224,
         "lastSentAt": "2026-05-23T08:00:56.477Z"
       },
       {
@@ -7317,7 +7288,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6013129811507936,
+        "freshnessScore": 0.5953625512566137,
         "lastSentAt": "2026-05-24T04:01:17.902Z"
       },
       {
@@ -7341,7 +7312,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6489005853174603,
+        "freshnessScore": 0.6429501554232804,
         "lastSentAt": "2026-05-24T12:00:58.885Z"
       },
       {
@@ -7364,7 +7335,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7143805720899471,
+        "freshnessScore": 0.7084301421957672,
         "lastSentAt": "2026-05-24T23:01:01.181Z"
       },
       {
@@ -7386,7 +7357,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7441758101851852,
+        "freshnessScore": 0.7382253802910053,
         "lastSentAt": "2026-05-25T04:01:21.341Z"
       },
       {
@@ -7410,7 +7381,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7798404464285714,
+        "freshnessScore": 0.7738900165343916,
         "lastSentAt": "2026-05-25T10:00:51.313Z"
       },
       {
@@ -7434,7 +7405,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8631716997354497,
+        "freshnessScore": 0.8572212698412698,
         "lastSentAt": "2026-05-26T00:00:50.055Z"
       },
       {
@@ -7458,7 +7429,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.919712058531746,
+        "freshnessScore": 0.9137616286375662,
         "lastSentAt": "2026-05-26T09:30:45.664Z"
       },
       {
@@ -7481,7 +7452,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7947318468915344,
+        "freshnessScore": 0.7887814169973545,
         "lastSentAt": "2026-05-25T12:30:57.632Z"
       },
       {
@@ -7505,7 +7476,7 @@
         "supplyGap": 2,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.7590093948412698,
+        "freshnessScore": 0.75305896494709,
         "lastSentAt": "2026-05-25T06:30:52.693Z"
       },
       {
@@ -7528,7 +7499,7 @@
         "supplyGap": 3,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.5775206779100529,
+        "freshnessScore": 0.5715702480158731,
         "lastSentAt": "2026-05-24T00:01:28.317Z"
       },
       {
@@ -7551,7 +7522,7 @@
         "supplyGap": 4,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.7917802678571428,
+        "freshnessScore": 0.7858298379629629,
         "lastSentAt": "2026-05-25T12:01:12.517Z"
       },
       {
@@ -7575,7 +7546,7 @@
         "supplyGap": 2,
         "rotationGap": 0,
         "freshnessDays": 7,
-        "freshnessScore": 0.9435385317460318,
+        "freshnessScore": 0.9375881018518518,
         "lastSentAt": "2026-05-26T13:30:55.915Z"
       },
       {
@@ -7598,7 +7569,7 @@
         "supplyGap": 4,
         "rotationGap": 0,
         "freshnessDays": 7,
-        "freshnessScore": 0.645927857142857,
+        "freshnessScore": 0.6399774272486772,
         "lastSentAt": "2026-05-24T11:31:00.979Z"
       },
       {
@@ -7622,7 +7593,7 @@
         "supplyGap": 0,
         "rotationGap": -1,
         "freshnessDays": 7,
-        "freshnessScore": 0.8810402281746031,
+        "freshnessScore": 0.8750897982804233,
         "lastSentAt": "2026-05-26T03:00:56.941Z"
       },
       {
@@ -7645,7 +7616,7 @@
         "supplyGap": 5,
         "rotationGap": -4,
         "freshnessDays": 7,
-        "freshnessScore": 0.9494671908068784,
+        "freshnessScore": 0.9435167609126984,
         "lastSentAt": "2026-05-26T14:30:41.568Z"
       }
     ]
