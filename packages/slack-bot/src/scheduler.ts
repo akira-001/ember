@@ -430,7 +430,7 @@ export class Scheduler {
               outputPreview: output.substring(0, 5000),
             });
             try {
-              await this.sendToSlack(job, `[Cron Error] ${job.name}: ${error.message || 'Unknown error'}`, botId);
+              await this.sendToSlack(job, this.formatCronErrorMessage(job, error.message || 'Unknown error'), botId);
             } catch { /* ignore */ }
             resolve();
             return;
@@ -602,11 +602,21 @@ export class Scheduler {
 
       // Notify about failure
       try {
-        await this.sendToSlack(job, `[Cron Error] ${job.name}: ${error.message || 'Unknown error'}`, botId);
+        await this.sendToSlack(job, this.formatCronErrorMessage(job, error.message || 'Unknown error'), botId);
       } catch {
         // Ignore notification errors
       }
     }
+  }
+
+  private formatCronErrorMessage(job: CronJob, errorMessage: string): string {
+    const target = job.slackTarget;
+    const mention = target.startsWith('U') ? `<@${target}>\n` : '';
+    const maxErrLen = 2000;
+    const truncated = errorMessage.length > maxErrLen
+      ? errorMessage.substring(0, maxErrLen) + '\n...(truncated)'
+      : errorMessage;
+    return `:rotating_light: *Cron Error* — \`${job.name}\`\n${mention}\`\`\`${truncated}\`\`\``;
   }
 
   private async sendToSlack(job: CronJob, text: string, botId?: string): Promise<string | undefined> {

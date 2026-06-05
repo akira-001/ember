@@ -270,8 +270,8 @@ def upload_to_drive(access_token, file_path, file_name, folder_id):
 
 PROCESSED_LABEL_NAME = "drive-saved"
 
-RECEIPT_QUERY = 'in:anywhere newer_than:3d -label:drive-saved (subject:(領収書 OR receipt OR "your receipt") OR from:(stripe.com OR invoice))'
-INVOICE_QUERY = "in:anywhere newer_than:3d -label:drive-saved subject:(請求書 OR invoice OR INV)"
+RECEIPT_QUERY = 'in:anywhere newer_than:8d -label:drive-saved (subject:(領収書 OR receipt OR "your receipt") OR from:(stripe.com OR invoice))'
+INVOICE_QUERY = "in:anywhere newer_than:8d -label:drive-saved subject:(請求書 OR invoice OR INV)"
 
 EXCLUDE_PATTERNS = [
     r"datumix",
