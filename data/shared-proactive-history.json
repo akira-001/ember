@@ -1,39 +1,6 @@
 {
   "entries": [
     {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "dodgers",
-      "preview": "ちょっとちょっと、Akiraさん。\n\nｄメニューニュースに *フリーマンの大谷コメント* が出てたよ  「*大谷翔平は史上最高の選手、一緒にプレーできて楽しいよ*」って言ったらしい ⚾\n\nしかもドジャース、今季*全球団トップの「+127」*で首位独走中。\nhttps://news.google.co",
-      "topic": "フリーマン「大谷翔平は史上最高の選手」ドジャース+127",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFByNG1hcmllU1VwTmxZbGRIUXNaWjFmS0Y4NWZXbGQzeEdjVVpwU3l5NmFfLUNScTdsQ2hMWU9SRXFWQXRTYmgzU0ZpM0ZmVHZYSUUwX1RtazZJRUFFQmppYnMycnFObkpBX1NEdTc4em1FVEpZWkE",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMidkFVX3lxTFByNG1hcmllU1VwTmxZbGRIUXNaWjFmS0Y4NWZXbGQzeEdjVVpwU3l5NmFfLUNScTdsQ2hMWU9SRXFWQXRTYmgzU0ZpM0ZmVHZYSUUwX1RtazZJRUFFQmppYnMycnFObkpBX1NEdTc4em1FVEpZWkE",
-      "sourceType": "dメニューニュース",
-      "skill": "general",
-      "themePath": [
-        "sports",
-        "sports/mlb",
-        "sports/mlb/dodgers",
-        "sports/mlb/dodgers/ohtani",
-        "sports/mlb/dodgers/ohtani/home-run"
-      ],
-      "themeKey": "sports/mlb/dodgers/ohtani/home-run",
-      "inner_thought": "フリーマンが大谷を史上最高と言ってるの、Akiraさん絶対喜ぶやつ",
-      "plan": [
-        "フリーマンの大谷称賛コメントを共有",
-        "ドジャース+127独走を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.88,
-        0.72,
-        0.3
-      ],
-      "evaluate_score": 0.9,
-      "sentAt": "2026-06-03T09:30:49.573Z"
-    },
-    {
       "botId": "mei",
       "botName": "Mei（メイ）",
       "category": "flashback",
@@ -1497,6 +1464,38 @@
       ],
       "evaluate_score": 0.55,
       "sentAt": "2026-06-06T03:01:16.833Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "あ、そうだ、Akiraさん。\n\nau Webポータルに *岡山・美咲町の約5,000株のラベンダー* の映像が出てたよ 💜 雨に濡れた紫色の花が清涼感のある香りを漂わせてるらしい。\n\n朗希ちゃん終わった余韻に、ひと息どうぞ 🌿",
+      "topic": "岡山・美咲町ラベンダー5000株",
+      "url": "",
+      "sourceType": "au Webポータル",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/mlb",
+        "sports/mlb/dodgers",
+        "sports/mlb/dodgers/roki",
+        "sports/mlb/dodgers/roki/support"
+      ],
+      "themeKey": "sports/mlb/dodgers/roki/support",
+      "inner_thought": "朗希ちゃん終わったばかり、ローリーズ前の余白に初夏の景色をさらっと渡したい",
+      "plan": [
+        "ラベンダー初夏コンテンツを季節感で共有",
+        "グルメ動画を今日の流れに乗せて共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.76,
+        0.65,
+        0.3
+      ],
+      "evaluate_score": 0.72,
+      "sentAt": "2026-06-06T03:31:09.057Z"
     }
   ]
 }
