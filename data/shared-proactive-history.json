@@ -1,25 +1,6 @@
 {
   "entries": [
     {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "meeting_prep",
-      "interestCategory": "business_strategy",
-      "preview": "```json\n{\"premise\":{\"estimatedMode\":\"達成モード・低エネルギー\",\"modeReason\":\"17:30水曜、開発会議含む複数会議をこなした後の時間帯。前回16:30に山本由伸を送り1時間経過。仕事締めくくりの時間帯\",\"targetLayer\":3,\"layer",
-      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQalRpdlBScGJ2dkdQeDNaNlhDelNZOU9UX1VGclRFSmRUYzhEZjRhenp1aWF3Q1dITHVmQW1Xbm5qZTFWcWttSzdrbFN0NlI3MUlDOXkwaUJrZVBHOHdyR3dlaERVcUpHeW05TjF3WmNPUFFQdUdTYVRyZDFCdzhkeWJYQUc5OS02SWlMLTI1a3k?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMikAFBVV95cUxQalRpdlBScGJ2dkdQeDNaNlhDelNZOU9UX1VGclRFSmRUYzhEZjRhenp1aWF3Q1dITHVmQW1Xbm5qZTFWcWttSzdrbFN0NlI3MUlDOXkwaUJrZVBHOHdyR3dlaERVcUpHeW05TjF3WmNPUFFQdUdTYVRyZDFCdzhkeWJYQUc5OS02SWlMLTI1a3k?oc=5",
-      "skill": "general",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/other",
-        "local/saitama/other/chichibu",
-        "local/saitama/other/chichibu/nature"
-      ],
-      "themeKey": "local/saitama/other/chichibu/nature",
-      "sentAt": "2026-06-03T08:30:53.559Z"
-    },
-    {
       "botId": "mei",
       "botName": "Mei（メイ）",
       "category": "flashback",
@@ -1481,6 +1462,39 @@
       ],
       "evaluate_score": 0.8,
       "sentAt": "2026-06-06T01:31:07.810Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "hobby_leisure",
+      "interestCategory": "general",
+      "preview": "ちょっとちょっと、Akiraさん。\n\nYouTubeに *デンゼル・ワシントンがCIA工作員を怒らせたメキシコ誘拐組織の惨めな最期* ってNetflix映画紹介が上がってて、タイトルだけで強そう 😂\n\n朗希ちゃん終わった後の今夜、プライムリブの余韻に浸りながらどうぞ ✨\nhttps://www.y",
+      "topic": "デンゼル・ワシントンNetflix映画",
+      "url": "https://www.youtube.com/watch?v=NXyEIV1QgEc",
+      "candidateId": "url:https://www.youtube.com/watch?v=NXyEIV1QgEc",
+      "sourceType": "映画弁当",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/mlb",
+        "sports/mlb/dodgers",
+        "sports/mlb/dodgers/roki",
+        "sports/mlb/dodgers/roki/support"
+      ],
+      "themeKey": "sports/mlb/dodgers/roki/support",
+      "inner_thought": "朗希ちゃん観てるAkiraさんに、試合後の今夜の映画候補をそっと置きたい",
+      "plan": [
+        "デンゼル・ワシントンNetflix映画を今夜の候補として共有",
+        "Netflix韓国ドラマ66選を週末のお供として共有",
+        "沈黙（観戦中を邪魔しない）"
+      ],
+      "generate_score": [
+        0.72,
+        0.58,
+        0.55
+      ],
+      "evaluate_score": 0.68,
+      "sentAt": "2026-06-06T02:31:02.414Z"
     }
   ]
 }

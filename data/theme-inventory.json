@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-06T01:30:08.287Z",
+  "updatedAt": "2026-06-06T02:30:08.310Z",
   "records": [
     {
       "themeKey": "local/saitama/tokorozawa/recreation/park-walk",
@@ -267,7 +267,7 @@
       "supplyGap": 2,
       "rotationGap": 3,
       "freshnessDays": 7,
-      "freshnessScore": 0.9108560879629629,
+      "freshnessScore": 0.9049036689814814,
       "lastSentAt": "2026-06-05T10:31:34.049Z"
     },
     {
@@ -294,6 +294,28 @@
       "lastSentAt": "2026-05-28T13:31:01.664Z"
     },
     {
+      "themeKey": "personal/travel-tech/campingcar",
+      "themePath": [
+        "personal",
+        "personal/travel-tech",
+        "personal/travel-tech/campingcar"
+      ],
+      "rootKey": "personal/personal/travel-tech",
+      "availableCount": 2,
+      "sentFreshCount": 1,
+      "sent30dCount": 3,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0,
+      "uniqueSources30d": 5,
+      "targetCount": 4,
+      "supplyGap": 2,
+      "rotationGap": 3,
+      "freshnessDays": 7,
+      "freshnessScore": 0.7471243419312169,
+      "lastSentAt": "2026-06-04T08:01:09.112Z"
+    },
+    {
       "themeKey": "lifestyle/food-wellness/spa/king-queen",
       "themePath": [
         "lifestyle",
@@ -313,7 +335,7 @@
       "supplyGap": 3,
       "rotationGap": 3,
       "freshnessDays": 7,
-      "freshnessScore": 0.8602187880291006,
+      "freshnessScore": 0.8542663690476191,
       "lastSentAt": "2026-06-05T02:01:08.610Z"
     },
     {
@@ -472,7 +494,7 @@
       "supplyGap": 4,
       "rotationGap": 3,
       "freshnessDays": 7,
-      "freshnessScore": 0.017992488425925934,
+      "freshnessScore": 0.012040069444444468,
       "lastSentAt": "2026-05-30T04:31:30.144Z"
     },
     {
@@ -495,7 +517,7 @@
       "supplyGap": 4,
       "rotationGap": 3,
       "freshnessDays": 7,
-      "freshnessScore": 0.8840518634259259,
+      "freshnessScore": 0.8780994444444444,
       "lastSentAt": "2026-06-05T06:01:22.854Z"
     },
     {
@@ -518,7 +540,7 @@
       "supplyGap": -22,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.6072257374338624,
+      "freshnessScore": 0.601273318452381,
       "lastSentAt": "2026-06-03T07:30:58.413Z"
     },
     {
@@ -541,7 +563,7 @@
       "supplyGap": -18,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.29770312169312163,
+      "freshnessScore": 0.2917507027116403,
       "lastSentAt": "2026-06-01T03:30:59.135Z"
     },
     {
@@ -563,7 +585,7 @@
       "supplyGap": -4,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.9941561954365079,
+      "freshnessScore": 0.9882037764550264,
       "lastSentAt": "2026-06-06T00:31:13.954Z"
     },
     {
@@ -586,7 +608,7 @@
       "supplyGap": 0,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.7322734986772487,
+      "freshnessScore": 0.7263210796957672,
       "lastSentAt": "2026-06-04T04:31:27.299Z"
     },
     {
@@ -609,7 +631,7 @@
       "supplyGap": 1,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.1965441418650793,
+      "freshnessScore": 0.19059172288359782,
       "lastSentAt": "2026-05-31T10:31:18.184Z"
     },
     {
@@ -632,7 +654,7 @@
       "supplyGap": 0,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.20247625000000002,
+      "freshnessScore": 0.19652383101851856,
       "lastSentAt": "2026-05-31T11:31:05.923Z"
     },
     {
@@ -656,7 +678,7 @@
       "supplyGap": 0,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.6131700909391534,
+      "freshnessScore": 0.607217671957672,
       "lastSentAt": "2026-06-03T08:30:53.558Z"
     },
     {
@@ -680,30 +702,8 @@
       "supplyGap": 2,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.8423756431878306,
+      "freshnessScore": 0.8364232242063492,
       "lastSentAt": "2026-06-04T23:01:17.076Z"
-    },
-    {
-      "themeKey": "personal/travel-tech/campingcar",
-      "themePath": [
-        "personal",
-        "personal/travel-tech",
-        "personal/travel-tech/campingcar"
-      ],
-      "rootKey": "personal/personal/travel-tech",
-      "availableCount": 2,
-      "sentFreshCount": 2,
-      "sent30dCount": 3,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0,
-      "uniqueSources30d": 5,
-      "targetCount": 4,
-      "supplyGap": 2,
-      "rotationGap": 2,
-      "freshnessDays": 7,
-      "freshnessScore": 0.7530767609126985,
-      "lastSentAt": "2026-06-04T08:01:09.112Z"
     },
     {
       "themeKey": "entertainment/movie-drama/tv/drama",
@@ -725,7 +725,7 @@
       "supplyGap": 1,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.21440488756613763,
+      "freshnessScore": 0.20845246858465605,
       "lastSentAt": "2026-05-31T13:31:20.363Z"
     },
     {
@@ -748,7 +748,7 @@
       "supplyGap": 2,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.8512863607804233,
+      "freshnessScore": 0.8453339417989418,
       "lastSentAt": "2026-06-05T00:31:06.278Z"
     },
     {
@@ -771,7 +771,7 @@
       "supplyGap": 1,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.44653913359788355,
+      "freshnessScore": 0.4405867146164021,
       "lastSentAt": "2026-06-02T04:31:15.155Z"
     },
     {
@@ -795,7 +795,7 @@
       "supplyGap": 1,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.4762696378968254,
+      "freshnessScore": 0.47031721891534395,
       "lastSentAt": "2026-06-02T09:30:56.164Z"
     },
     {
@@ -817,7 +817,7 @@
       "supplyGap": 2,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.761995052910053,
+      "freshnessScore": 0.7560426339285714,
       "lastSentAt": "2026-06-04T09:31:02.895Z"
     },
     {
@@ -840,7 +840,7 @@
       "supplyGap": 1,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.91676082010582,
+      "freshnessScore": 0.9108084011243386,
       "lastSentAt": "2026-06-05T11:31:05.231Z"
     },
     {
@@ -862,7 +862,7 @@
       "supplyGap": 4,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.8780679431216931,
+      "freshnessScore": 0.8721155241402117,
       "lastSentAt": "2026-06-05T05:01:03.779Z"
     },
     {
@@ -885,7 +885,7 @@
       "supplyGap": 2,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.3215137417328042,
+      "freshnessScore": 0.31556132275132265,
       "lastSentAt": "2026-06-01T07:30:59.798Z"
     },
     {
@@ -909,7 +909,7 @@
       "supplyGap": 2,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.7500768419312169,
+      "freshnessScore": 0.7441244229497355,
       "lastSentAt": "2026-06-04T07:30:54.761Z"
     },
     {
@@ -932,7 +932,7 @@
       "supplyGap": 4,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.764986832010582,
+      "freshnessScore": 0.7590344130291005,
       "lastSentAt": "2026-06-04T10:01:12.323Z"
     },
     {
@@ -955,7 +955,7 @@
       "supplyGap": 4,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.3096265343915344,
+      "freshnessScore": 0.30367411541005296,
       "lastSentAt": "2026-06-01T05:31:10.415Z"
     },
     {
@@ -978,7 +978,7 @@
       "supplyGap": 4,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.854260818452381,
+      "freshnessScore": 0.8483083994708995,
       "lastSentAt": "2026-06-05T01:01:05.230Z"
     },
     {
@@ -1001,7 +1001,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.03581250661375657,
+      "freshnessScore": 0.0298600876322751,
       "lastSentAt": "2026-05-30T07:31:07.691Z"
     },
     {
@@ -1023,7 +1023,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.14891044973544976,
+      "freshnessScore": 0.1429580307539683,
       "lastSentAt": "2026-05-31T02:31:09.327Z"
     },
     {
@@ -1047,7 +1047,7 @@
       "supplyGap": 4,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.7798378389550265,
+      "freshnessScore": 0.773885419973545,
       "lastSentAt": "2026-06-04T12:30:54.212Z"
     },
     {
@@ -1070,7 +1070,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.4406324718915344,
+      "freshnessScore": 0.43468005291005285,
       "lastSentAt": "2026-06-02T03:31:42.806Z"
     },
     {
@@ -1093,7 +1093,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.5000620849867725,
+      "freshnessScore": 0.49410966600529105,
       "lastSentAt": "2026-06-02T13:30:45.836Z"
     },
     {
@@ -1116,7 +1116,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.5774658713624339,
+      "freshnessScore": 0.5715134523809524,
       "lastSentAt": "2026-06-03T02:30:59.646Z"
     },
     {
@@ -1140,7 +1140,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.7143765906084656,
+      "freshnessScore": 0.7084241716269841,
       "lastSentAt": "2026-06-04T01:31:03.249Z"
     },
     {
@@ -1163,7 +1163,7 @@
       "supplyGap": 4,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.8691299421296297,
+      "freshnessScore": 0.8631775231481482,
       "lastSentAt": "2026-06-05T03:30:58.076Z"
     },
     {
@@ -1187,7 +1187,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.8929739814814814,
+      "freshnessScore": 0.8870215625,
       "lastSentAt": "2026-06-05T07:31:18.951Z"
     },
     {
@@ -1211,7 +1211,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.9048643072089947,
+      "freshnessScore": 0.8989118882275132,
       "lastSentAt": "2026-06-05T09:31:10.220Z"
     },
     {
@@ -1234,7 +1234,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.6280687466931217,
+      "freshnessScore": 0.6221163277116402,
       "lastSentAt": "2026-06-03T11:01:04.265Z"
     },
     {
@@ -1257,7 +1257,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.7114319460978836,
+      "freshnessScore": 0.705479527116402,
       "lastSentAt": "2026-06-04T01:01:22.328Z"
     },
     {
@@ -1280,7 +1280,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.7233041385582011,
+      "freshnessScore": 0.7173517195767196,
       "lastSentAt": "2026-06-04T03:01:02.630Z"
     },
     {
@@ -1302,7 +1302,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.7411872800925926,
+      "freshnessScore": 0.7352348611111111,
       "lastSentAt": "2026-06-04T06:01:18.354Z"
     },
     {
@@ -1324,7 +1324,7 @@
       "supplyGap": 4,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.8721266402116402,
+      "freshnessScore": 0.8661742212301587,
       "lastSentAt": "2026-06-05T04:01:10.479Z"
     },
     {
@@ -1346,7 +1346,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.7887924619708995,
+      "freshnessScore": 0.782840042989418,
       "lastSentAt": "2026-06-04T14:01:09.968Z"
     },
     {
@@ -1368,7 +1368,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.8959477463624339,
+      "freshnessScore": 0.8899953273809523,
       "lastSentAt": "2026-06-05T08:01:17.484Z"
     },
     {
@@ -1390,7 +1390,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.9078988657407407,
+      "freshnessScore": 0.9019464467592593,
       "lastSentAt": "2026-06-05T10:01:45.521Z"
     },
     {
@@ -1414,32 +1414,8 @@
       "supplyGap": 1,
       "rotationGap": 1,
       "freshnessDays": 7,
-      "freshnessScore": 0.8631835796957672,
+      "freshnessScore": 0.8572311607142857,
       "lastSentAt": "2026-06-05T02:31:01.716Z"
-    },
-    {
-      "themeKey": "sports/mlb/dodgers/roki/support",
-      "themePath": [
-        "sports",
-        "sports/mlb",
-        "sports/mlb/dodgers",
-        "sports/mlb/dodgers/roki",
-        "sports/mlb/dodgers/roki/support"
-      ],
-      "rootKey": "sports/sports/mlb",
-      "availableCount": 1,
-      "sentFreshCount": 3,
-      "sent30dCount": 3,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0,
-      "uniqueSources30d": 3,
-      "targetCount": 4,
-      "supplyGap": 3,
-      "rotationGap": 1,
-      "freshnessDays": 7,
-      "freshnessScore": 0.9971130291005291,
-      "lastSentAt": "2026-06-06T01:01:02.247Z"
     },
     {
       "themeKey": "ai/enterprise/security/procurement",
@@ -1461,7 +1437,7 @@
       "supplyGap": 5,
       "rotationGap": 1,
       "freshnessDays": 7,
-      "freshnessScore": 0.7768968088624338,
+      "freshnessScore": 0.7709443898809524,
       "lastSentAt": "2026-06-04T12:01:15.477Z"
     },
     {
@@ -1485,7 +1461,7 @@
       "supplyGap": 3,
       "rotationGap": 1,
       "freshnessDays": 7,
-      "freshnessScore": 0.6012912367724867,
+      "freshnessScore": 0.5953388177910053,
       "lastSentAt": "2026-06-03T06:31:09.227Z"
     },
     {
@@ -1508,7 +1484,7 @@
       "supplyGap": 2,
       "rotationGap": 0,
       "freshnessDays": 7,
-      "freshnessScore": 0.4882171395502646,
+      "freshnessScore": 0.482264720568783,
       "lastSentAt": "2026-06-02T11:31:22.013Z"
     },
     {
@@ -1530,8 +1506,32 @@
       "supplyGap": 3,
       "rotationGap": 0,
       "freshnessDays": 7,
-      "freshnessScore": 0.8661711755952382,
+      "freshnessScore": 0.8602187566137566,
       "lastSentAt": "2026-06-05T03:01:08.614Z"
+    },
+    {
+      "themeKey": "sports/mlb/dodgers/roki/support",
+      "themePath": [
+        "sports",
+        "sports/mlb",
+        "sports/mlb/dodgers",
+        "sports/mlb/dodgers/roki",
+        "sports/mlb/dodgers/roki/support"
+      ],
+      "rootKey": "sports/sports/mlb",
+      "availableCount": 1,
+      "sentFreshCount": 4,
+      "sent30dCount": 4,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0,
+      "uniqueSources30d": 5,
+      "targetCount": 4,
+      "supplyGap": 3,
+      "rotationGap": 0,
+      "freshnessDays": 7,
+      "freshnessScore": 0.9941459970238096,
+      "lastSentAt": "2026-06-06T01:31:07.809Z"
     },
     {
       "themeKey": "sports/golf/youtube/tips",
@@ -1553,7 +1553,7 @@
       "supplyGap": 4,
       "rotationGap": -1,
       "freshnessDays": 7,
-      "freshnessScore": 0.7471104414682539,
+      "freshnessScore": 0.7411580224867724,
       "lastSentAt": "2026-06-04T07:01:00.682Z"
     },
     {
@@ -1567,16 +1567,16 @@
       "rootKey": "entertainment/entertainment/movie-drama",
       "availableCount": 0,
       "sentFreshCount": 13,
-      "sent30dCount": 20,
+      "sent30dCount": 19,
       "positive30dCount": 1,
       "negative30dCount": 0,
-      "positiveRate30d": 0.05,
+      "positiveRate30d": 0.05263157894736842,
       "uniqueSources30d": 19,
       "targetCount": 6,
       "supplyGap": 6,
       "rotationGap": -7,
       "freshnessDays": 7,
-      "freshnessScore": 0.9881927248677249,
+      "freshnessScore": 0.9822403058862433,
       "lastSentAt": "2026-06-05T23:31:07.247Z"
     }
   ]
