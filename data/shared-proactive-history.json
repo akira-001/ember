@@ -3,38 +3,6 @@
     {
       "botId": "mei",
       "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "ai_agent",
-      "preview": "ちょっと気になったんだけど。\n\nMOVIE WALKER PRESSで *SAMURAI BLUE Project for FIFA World Cup * の話題があったよ。",
-      "topic": "MLB日程・結果（明日の大谷さんカレンダーと接続）",
-      "url": "",
-      "sourceType": "topic-table #6",
-      "skill": "general",
-      "themePath": [
-        "sports",
-        "sports/mlb",
-        "sports/mlb/dodgers",
-        "sports/mlb/dodgers/ohtani",
-        "sports/mlb/dodgers/ohtani/home-run"
-      ],
-      "themeKey": "sports/mlb/dodgers/ohtani/home-run",
-      "inner_thought": "会議始まったばかりだし、午前に3件送ってる。ここは黙る",
-      "plan": [
-        "明日の大谷さんに繋げてMLB結果を共有",
-        "事業ポートフォリオ会議に関連してM&A記事を共有",
-        "沈黙して16時以降に回す"
-      ],
-      "generate_score": [
-        0.5,
-        0.35,
-        0.7
-      ],
-      "evaluate_score": 0.25,
-      "sentAt": "2026-06-03T04:01:04.994Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
       "category": "meeting_prep",
       "interestCategory": "movie_theater",
       "preview": "Akiraさん、1個だけ置いとくね。\n\nYouTubeに *デンゼル・ワシントンがCIA工作員を演じるNetflix映画* の紹介動画があったよ 🎬 メキシコの誘拐組織を相手にする話みたい。\n\n今日の会議終わったあと、寝る前にでも。\nhttps://www.youtube.com/watch?v=",
@@ -1480,6 +1448,39 @@
       ],
       "evaluate_score": 0.77,
       "sentAt": "2026-06-05T23:31:07.248Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "あ、そうだ。\n\nau Webポータルに *金子駆大の「クイックな切り返し」* の記事が出てたよ ⛳ ボールがつかまらない人向けのテクニックらしい。\n\n朗希ちゃんまで時間あるし、ちらっとどうぞ。\nhttps://news.google.com/rss/articles/CBMifkFVX3lxTE1v",
+      "topic": "金子駆大のクイックな切り返し",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1vZ2dVRHdHcXZLcTVPYldwNTQ1LWZYZ2pSUDRqWXhJLTVUdnpPOHJaX0R5SFBfYnVXOG1IN1loZ2I5aGJPLWJuNVdMLUNJaFNURzFIeGo1MER0WnEyS05BOVlDUjQ5YTktOGUzbnNrQkJaMzZNMnN4SVNRRVFqZw?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMifkFVX3lxTE1vZ2dVRHdHcXZLcTVPYldwNTQ1LWZYZ2pSUDRqWXhJLTVUdnpPOHJaX0R5SFBfYnVXOG1IN1loZ2I5aGJPLWJuNVdMLUNJaFNURzFIeGo1MER0WnEyS05BOVlDUjQ5YTktOGUzbnNrQkJaMzZNMnN4SVNRRVFqZw?oc=5",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/mlb",
+        "sports/mlb/dodgers",
+        "sports/mlb/dodgers/roki",
+        "sports/mlb/dodgers/roki/support"
+      ],
+      "themeKey": "sports/mlb/dodgers/roki/support",
+      "inner_thought": "昨日は誕生日でたくさん送った。今朝は軽めに。ゴルフテクニック記事、レッスン通いのAkiraさんに実用的でいい",
+      "plan": [
+        "ゴルフテクニック記事を共有",
+        "デンゼル・ワシントン映画を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.75,
+        0.55,
+        0.4
+      ],
+      "evaluate_score": 0.62,
+      "sentAt": "2026-06-06T00:01:16.817Z"
     }
   ]
 }
