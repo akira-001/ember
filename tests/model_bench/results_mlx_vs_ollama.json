@@ -1,0 +1,48 @@
+{
+  "ollama": {
+    "gen": {
+      "label": "gen",
+      "gen_tok_s": 28.547828820527496,
+      "pp_tok_s": 186.23887383279603,
+      "out_tokens": 512,
+      "prompt_tokens": 58,
+      "wall": 18.463531970977783,
+      "peak_mem_gb": 0.0,
+      "response": "Apple Silicon（M1/M2/M3 シリーズなど）に採用されている**ユニファイドメモリアーキテクチャ（Unified Memory Architecture: UMA）**は、大規模言語モデル（LLM）の推論において、従来の CPU と GPU が別々のメモリを持つシステムと比較して圧倒的な利点を持ちます。\n\nご要望通り、「メモリ帯域」「ゼロコピー」「量子化」の 3 つの観点から、なぜこれが有利なのかを具体的に解説します。\n\n---\n\n### 1. メモリ帯域（Memory Bandwidth）：ボトルネックの解消\nLLM の推論において最も重要な性能指標の一つは「モデルパラメータをメモリから計算ユニットへ読み出す速度」です。これは**メモリーバウンド（Memory-bound）**な処理であり、計算能力そのものよりもメモリへのアクセス速度が全体のスピードを決めます。\n\n*   **従来の課題**:\n    一般的な PC やサーバーでは、CPU と GPU がそれぞれ独立した VRAM（ビデオメモリ）やシステムメモリを持っています。GPU の演算コアは高速ですが、VRAM の容量が限られており、大規模なモデルをロードできない場合が多いです。また、PCIe バスを経由してデータを転送する際、帯域幅に物理的な限界があります。\n*   **Apple Silicon の優位性**:\n    UMA では CPU と GPU（および NPU）が**同じメモリプールを共有**しています。これにより、GPU が直接システムメモリの高速なバスを通じてアクセスできます。\n    *   **高帯域の実現**: Apple M2 Max や M3 Ultra などのチップは、最大で数百 GB/s〜1TB/s に達する極めて高いメモリ帯域を提供します（例：M3 Ultra は約 800GB/s）。これは多くの PCIe Gen4/5 を経由した独立 GPU の VRAM バンドwidth よりも高く、大規模なモデルでもパラメータの読み出しが高速に行えます。\n    *   **大容量への対応**: UMA ではシステムメモリ全体を VRAM として利用可能です（例：128GB や 192GB）。これにより、消費電力を抑えつつ、数百億〜数千億パラメータを持つ巨大な LLM を単一のデバイス上で完全にロードして推論することが可能になります。\n\n### 2. ゼロコピー（Zero-Copy）：データ転送の排除\n従来のアーキテクチャでは、CPU"
+    },
+    "pp": {
+      "label": "pp",
+      "gen_tok_s": 28.729220979666437,
+      "pp_tok_s": 703.5708369635178,
+      "out_tokens": 47,
+      "prompt_tokens": 2782,
+      "wall": 5.8142969608306885,
+      "peak_mem_gb": 0.0,
+      "response": "ローカル LLM 推論ではモデルの重み・KV キャッシュ・アクティベーションがメモリを消費しますが、量子化により重みのビット幅を削減することでそのフットプリントを縮小させることができます。"
+    }
+  },
+  "mlx": {
+    "gen": {
+      "label": "gen",
+      "gen_tok_s": 33.232,
+      "pp_tok_s": 39.138,
+      "out_tokens": 512,
+      "prompt_tokens": 56,
+      "wall": 20.82395887374878,
+      "peak_mem_gb": 15.49,
+      "response": "Here's a thinking process that leads to the suggested answer:\n\n1.  **Analyze the Request:**\n    *   **Topic:** Apple Silicon's Unified Memory Architecture (UMA) and its advantages for Large Language Model (LLM) inference.\n    *   **Required Perspectives:** Memory Bandwidth, Zero-Copy, Quantization.\n    *   **Language:** Japanese.\n    *   **Requirement:** Detailed explanation.\n\n2.  **Deconstruct the Core Concept (Apple Silicon UMA):**\n    *   What is UMA? CPU, GPU, and Neural Engine share the same physical memory pool.\n    *   Why is this different from traditional PC/server architecture? Tradi",
+      "raw_metrics": null
+    },
+    "pp": {
+      "label": "pp",
+      "gen_tok_s": 32.777,
+      "pp_tok_s": 554.748,
+      "out_tokens": 512,
+      "prompt_tokens": 2780,
+      "wall": 24.782521724700928,
+      "peak_mem_gb": 18.206,
+      "response": "Thinking Process:\n\n1.  **Analyze the Request:**\n    *   Input: A very long text consisting of the same sentence repeated many times (\"ローカル LLM 推論では、モデルの重み・KV キャッシュ・アクティベーションがメモリを占有する。量子化は重みのビット幅を削減し、フットプリントを縮小する。\" - \"In local LLM inference, model weights, KV cache, and activations occupy memory. Quantization reduces the bit width of weights and shrinks the footprint.\").\n    *   Task: Summarize the above text into *one sentence* (1 文で要約して).\n    *   Language: Japanese.\n\n2.  **Analyze the Input Content:**\n    *   The core message is repeated dozens/hundreds of times.\n    *   Core Message 1: Local",
+      "raw_metrics": null
+    }
+  }
+}

@@ -24,6 +24,9 @@ OLLAMA_API = "http://127.0.0.1:11434/api/generate"
 OLLAMA_MODEL = "qwen3.5:27b-q4_K_M"
 MLX_MODEL = "mlx-community/Qwen3.5-27B-4bit"
 MAX_TOKENS = 512
+# コンテキストを揃えて公平にメモリ比較する（Ollama 既定の 256K KV 事前確保を排除）。
+# MLX は実トークン分を遅延確保するため、Ollama 側もこの窓で事前確保させる。
+NUM_CTX = 8192
 
 # 短プロンプト→長生成（生成速度・ピークメモリ用）
 PROMPT_GEN = (
@@ -39,7 +42,7 @@ _FILLER = (
 PROMPT_PP = _FILLER + "\n\n以上を1文で要約して。"
 
 
-def _sample_rss_peak(stop_evt, out, pattern="ollama runner"):
+def _sample_rss_peak(stop_evt, out, pattern="llama-server"):
     """pattern にマッチするプロセスの RSS(KB) 峰値を out['peak_kb'] に記録。"""
     peak = 0
     while not stop_evt.is_set():
@@ -75,7 +78,8 @@ def run_ollama(prompt, label):
         "prompt": prompt,
         "stream": False,
         "think": False,
-        "options": {"temperature": 0, "num_predict": MAX_TOKENS, "seed": 42},
+        "options": {"temperature": 0, "num_predict": MAX_TOKENS,
+                    "seed": 42, "num_ctx": NUM_CTX},
     }).encode()
     req = urllib.request.Request(OLLAMA_API, data=body,
                                 headers={"Content-Type": "application/json"})
@@ -140,10 +144,14 @@ def main():
     results = {"ollama": {}, "mlx": {}}
     tasks = [("gen", PROMPT_GEN), ("pp", PROMPT_PP)]
 
-    print(f"{'='*64}\nOLLAMA: {OLLAMA_MODEL}\n{'='*64}", flush=True)
-    # warmup（ロード時間を計測から除外）
-    run_ollama("こんにちは", "warmup")
-    print("ollama ps ->", ollama_ps_size(), flush=True)
+    print(f"{'='*64}\nOLLAMA: {OLLAMA_MODEL} (num_ctx={NUM_CTX})\n{'='*64}", flush=True)
+    # 既定 256K でロード済みの可能性があるため一旦アンロードしてから揃えた窓で再ロード
+    subprocess.run(["ollama", "stop", OLLAMA_MODEL], capture_output=True)
+    time.sleep(2)
+    run_ollama("こんにちは", "warmup")  # ロード時間を計測から除外
+    ps = ollama_ps_size()
+    results["ollama"]["ps"] = ps
+    print("ollama ps ->", ps, flush=True)
     for tid, prompt in tasks:
         r = run_ollama(prompt, tid)
         results["ollama"][tid] = r
