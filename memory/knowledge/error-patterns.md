@@ -140,3 +140,13 @@
 **対策**: electron-builder の `afterPack` フックで `patch-mac-bundle.js` を実行し、メイン+全ヘルパーに `icon.icns` をコピー + `CFBundleIconFile`/`CFBundleName`/`CFBundleDisplayName` を設定。`afterPack` はコード署名前に走るので、その後 electron-builder が自動再署名する（手動 codesign 不要）。
 **比較診断**: 動作している他の Electron アプリ（Aqua Voice 等の最もシンプル構造）の `Frameworks/` 配下を `plutil -p ".../<App> Helper.app/Contents/Info.plist" | grep CFBundleIcon` で確認。これだけで切り分けられる。誤推論 7 連発（ad-hoc 署名が原因 / Apple Developer ID が必要 / Asset Catalog が必要 等）を回避できた。
 **スキル**: `electron-mac-icon-debug` 参照。誤推論一覧と patch-mac-bundle.js の完全コードを記録済み。
+
+## EP-023: Claude Code CLI v2.1.165 — settings.json model 設定が反映されず Opus 4.7 にフォールバック
+**発生**: 2026-06-06 | **Arousal**: 0.6 | **ドメイン**: claude-code / cli-config
+**症状**: `~/.claude/settings.json` の `"model": "claude-opus-4-8"` も `"opus"` alias も `"claude-opus-4-8[1m]"` も無視され、`/model` picker で Opus 4.7 ✔ のまま。picker で「Default」を選んでも「saved as your default for new sessions」と出るのに次回起動時に消失。
+**原因**: `~/.claude.json` の `additionalModelOptionsCache: []` が空のため、CLI が「Opus 4.8 は利用可能なモデルとして登録されていない」と判定し、settings.json 指定を無視して既知の Opus 4.7 にフォールバック。`opus48LaunchSeenCount: 4` でローンチ通知は出ているのにキャッシュ側が更新されない CLI 内部の同期バグ。
+**フィルタ撃沈履歴**: settings.json の model 書き換え（複数フォーマット試行）/ `opus` alias / `[1m]` suffix / model 行削除 / picker から手動選択 → どれも次回起動で Opus 4.7 に戻る。
+**対策**: **`--model claude-opus-4-8` CLI フラグだけがキャッシュチェックをバイパスして確実に効く**。`~/.zshrc` に `alias claude="command claude --model claude-opus-4-8"` で永続化（Akira環境では設定済）。
+**確認**: `cat ~/.claude.json | jq .additionalModelOptionsCache` が空配列 → バグ未修正のサイン。配列が埋まったらバグ修正済みで alias 削除可。
+**関連 Issue**: [#63456](https://github.com/anthropics/claude-code/issues/63456) / [#63654](https://github.com/anthropics/claude-code/issues/63654)（両方 OPEN）。Desktop / Windows アプリでは同問題は発生せず、CLI（特にネイティブインストーラ版）固有。
+**スキル**: `project_claude_opus48_alias_workaround.md`（auto-memory）参照。
