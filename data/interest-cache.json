@@ -1,11 +1,11 @@
 {
-  "lastUpdated": "2026-06-06T01:50:13.677868+00:00",
+  "lastUpdated": "2026-06-06T02:51:00.598968+00:00",
   "priorities": {
-    "ai_agent": 0.9,
-    "llm_local": 0.664,
+    "ai_agent": 0.8,
+    "llm_local": 0.564,
     "dev_tools": 0.326,
-    "business_strategy": 0.558,
-    "ma_startup": 0.38,
+    "business_strategy": 0.458,
+    "ma_startup": 0.28,
     "dodgers": 1.0,
     "golf": 0.657,
     "campingcar": 0.715,
@@ -22,28 +22,28 @@
       "label": "AIエージェント",
       "items": [
         {
+          "title": "ネットなしでAIがサクサク動く時代へ！ノートPCから最新ゲーム機まで、インテルが仕掛ける一歩先の未来が見えた (1/3) - ASCII.jp",
+          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5yU2gwS2N5OXNhZFZGYm5WbzBPSGRoMTBuWDE4T1pScG9GVGpONkhLTTE1MmNmNGZDekhDX2tncG50bFdNd3FIR0VqdEw0cEpqYThLZg?oc=5",
+          "source": "ASCII.jp",
+          "pub_date": "2026-06-06T00:00:00+00:00",
+          "timeliness": 0.941,
+          "score": 0.696
+        },
+        {
           "title": "Snowflake、AIコーディングエージェント「CoCo」新機能とストリーミングサービス「Datastream」を発表 - CodeZine",
           "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5vMWRFMTZ6OHdIdzFKYldQaVFmeDdEdS1wRHBEZVNFZ25wdnZ4eGhieFVCaEwtalMxa1NkY2czT3IwdnBnUHN5NDMta2lBdw?oc=5",
           "source": "CodeZine",
           "pub_date": "2026-06-05T09:35:45+00:00",
-          "timeliness": 0.682,
-          "score": 0.733
+          "timeliness": 0.641,
+          "score": 0.676
         },
         {
           "title": "Why your AI agents don’t scale - Fast Company",
           "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9TOERTaVIxZVR5ajVWX05rUnZ3TWtWZ3NleXd1eUV2clpDVXpuQjdadzRRM29NTzBoRmxxb0Q2bG5XWG1JYWhDWHZjM3cyRzFvZnVyQm5lZ2g5TWthUmtLX1o1M0Jpb2t3ekRNa2FMT3Q0NzFV?oc=5",
           "source": "Fast Company",
           "pub_date": "2026-06-05T19:28:11+00:00",
-          "timeliness": 0.888,
-          "score": 0.715
-        },
-        {
-          "title": "WE ARE COOKED: Claude Opus 4.7 JUST DROPPED AND IT'S INSANE Berardi (wZ4zRLgDbW) - Mshale",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE13QTMwc1JOQXdPY2FRTTJ6S29zTHNmZjVKNTEyLXYtT05VeTlUb0dNMFFsTURoSURtaE5XcGxzcVlET0pwV2dEVmdIWTQyU2lUeUd0Sk5XTXJudjQ?oc=5",
-          "source": "Mshale",
-          "pub_date": "2026-06-05T19:02:17+00:00",
-          "timeliness": 0.879,
-          "score": 0.712
+          "timeliness": 0.846,
+          "score": 0.659
         },
         {
           "title": "What is Claude Code?",
@@ -52,21 +52,20 @@
           "pub_date": null,
           "content_type": "video",
           "duration": "2:56",
-          "view_count": 2546027,
+          "view_count": 2563905,
           "timeliness": 0.1,
-          "score": 0.71
+          "score": 0.67
         },
         {
-          "title": "【公開間近】Claude Mythosで人間の仕事はどう変わる？24時間AIに仕事させる時代",
-          "url": "https://www.youtube.com/watch?v=bogsZSiAwmY",
-          "source": "AI仙人 【AI歴10年・ガチADHD男】",
+          "title": "知識ゼロでClaude Codeを1週間使ったら、会社が変わりました。",
+          "url": "https://www.youtube.com/watch?v=SlVZJWxzdmQ",
+          "source": "AKIYA MOVIE",
           "pub_date": null,
           "content_type": "video",
-          "duration": "47:58",
-          "view_count": 14382,
-          "_discovery": true,
+          "duration": "29:30",
+          "view_count": 23987,
           "timeliness": 0.1,
-          "score": 0.66
+          "score": 0.57
         },
         {
           "title": "How Far Did They Go? The Persuasive Tactics of Covert LLM Agents in a Discontinued Field Experiment",
@@ -78,7 +77,7 @@
             "Kokil Jaidka, Saifuddin Ahmed"
           ],
           "timeliness": 0.1,
-          "score": 0.46
+          "score": 0.42
         },
         {
           "title": "What Should Agents Say? Action-state Communication for Efficient Multi-Agent Systems",
@@ -90,14 +89,14 @@
             "Chen Huang, Yuhao Wu, Wenxuan Zhang"
           ],
           "timeliness": 0.1,
-          "score": 0.46
+          "score": 0.42
         }
       ],
       "count": 7,
-      "priority": 0.9,
+      "priority": 0.8,
       "tier": "S",
       "emotion_type": "heavy",
-      "lastChecked": "2026-06-06T00:50:32.946063+00:00"
+      "lastChecked": "2026-06-06T02:50:31.281182+00:00"
     },
     "llm_local": {
       "label": "ローカルLLM・オープンソースAI",
@@ -184,40 +183,28 @@
       "label": "ドジャース・大谷翔平",
       "items": [
         {
-          "title": "Shohei Ohtani’s Cy Young Push Comes With Dodgers Dilemma - Yahoo Sports",
-          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOSkFCNmFXeVR4NmVTUWZsOURMbnhDQUVJS2RCMUtib1JqSnJUZ2xvUmM5eEJYa2dpNWZudDFMSzMxRVZaVklMSVFDWE96Ykpodmk5XzhRSU1MYkxvRXFQWGEzYjRIM2hpSGtuT3VCS1ZrOFNRRHBYdGZpVC1LaGpHaS1n?oc=5",
-          "source": "Yahoo Sports",
-          "pub_date": "2026-06-05T22:37:30+00:00",
-          "timeliness": 0.953,
-          "score": 0.781
+          "title": "MLB 日程・結果 | 速報 & データ - スポーツブル",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9vd3FEaV9WRWRjcmpab0VFMW8yalZ5R05XR01ET3J6aWdBekphNWpkRU5ZbDQ4LWZXbjNVb1BJSHhYVU1sZGVUajlaanpUVUprLURXRm5mSkRLeEg0T3BtUUxmMUhYcU55RzNaTE1BS00?oc=5",
+          "source": "スポーツブル",
+          "pub_date": "2026-06-06T02:10:00+00:00",
+          "timeliness": 0.986,
+          "score": 0.794
         },
         {
-          "title": "【ドジャース対ダイヤモンドバックス】今日の試合結果・大谷翔平の成績一覧｜MLB2026 - ベースボールチャンネル",
-          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1aNjN6UzV6aFRmTmRjVnhQaVl6aXZBaE5kdWt6bXRPSUlsSFp5emRIbGlnT0QtYnAtSlpfTndZM3Y0bVpuTzlOUHJlWUtVRDdLQ1M0TA?oc=5",
+          "title": "Giants' Chapman hits grand slam, totals eight RBIs in rout of Cubs - ESPN",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQcjQ1TzNXSVp2MDdXVVZNNWw4WWl2U3FlME4ycDJ3blJKN2dLRGUzQmpxZjBmbVY2UWF2TVJWTjF4NnFYUEFXR0RleDVmSG5vVE5Pc0pZYnZHbHhPazZPaWFXYWJSUERSdFJydjR6UzBMaWpSUTBVRXVySEkwWE12dHRGc1RUTkVLRnNPMU1acF9iUHVQWk1sREdHOWlNckdFTldjN2JB?oc=5",
+          "source": "ESPN",
+          "pub_date": "2026-06-06T00:40:00+00:00",
+          "timeliness": 0.955,
+          "score": 0.782
+        },
+        {
+          "title": "【打者部門】大谷翔平は何位？ 2026年MLBナリーグ打撃成績ランキング - ベースボールチャンネル",
+          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBtbkhXR01FTEU1d2sxR3cyYzQyZEF0OXJjVl90R1dycWc0bjJvSTgtZ2MyT2M3QWY2QnRLSUw4bDduaVpVVkdIYWxFeWZYdm9PcFIwbw?oc=5",
           "source": "ベースボールチャンネル",
-          "pub_date": "2026-06-05T22:15:05+00:00",
-          "timeliness": 0.946,
+          "pub_date": "2026-06-06T00:10:18+00:00",
+          "timeliness": 0.944,
           "score": 0.778
-        },
-        {
-          "title": "Dodgers News: Former catcher lands with Braves, Shohei Ohtani history, Tommy Edman - Dodgers Way",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOTmZuazlycVA5RV9XdnZDLTZuVE5KRURkRkNDQm02cTNiT3lWS2Rwa3BQS29KYU1Lem85UGJtcEJqdlViOEF2SkFWVnVmc2lMczRIWWRTSDg2ZVFYTzF1b0xROEhTaVhsanhDZ0t5dE1CSWlLeTFzY2NPUXdaSGgwaHVOZWtZWEtWQkxVMmNLNnNtcE01eGFmTldKN0oyUQ?oc=5",
-          "source": "Dodgers Way",
-          "pub_date": "2026-06-05T19:13:00+00:00",
-          "timeliness": 0.882,
-          "score": 0.753
-        },
-        {
-          "title": "【大谷翔平 3安打目は全力疾走での内野安打】ドジャースvsダイヤモンドバックス MLB2026シーズン 6.2",
-          "url": "https://www.youtube.com/watch?v=KA1QkjIfCsc",
-          "source": "SPOTVNOW",
-          "pub_date": null,
-          "content_type": "video",
-          "duration": "2:53",
-          "view_count": 167881,
-          "_discovery": true,
-          "timeliness": 0.1,
-          "score": 0.75
         },
         {
           "title": "【5回1失点7奪三振の好投！山本由伸 投球ダイジェスト】ダイヤモンドバックスvsドジャース MLB2025スプリングトレーニング 3.11",
@@ -229,13 +216,24 @@
           "view_count": 255048,
           "timeliness": 0.1,
           "score": 0.7
+        },
+        {
+          "title": "【大谷翔平 今季初打席からライト前ヒット！】ダイヤモンドバックスvsドジャース MLB2026シーズン 3.27",
+          "url": "https://www.youtube.com/watch?v=FFpYthmNcDA",
+          "source": "SPOTVNOW",
+          "pub_date": null,
+          "content_type": "video",
+          "duration": "4:14",
+          "view_count": 251559,
+          "timeliness": 0.1,
+          "score": 0.7
         }
       ],
       "count": 5,
       "priority": 1.0,
       "tier": "S",
       "emotion_type": "light",
-      "lastChecked": "2026-06-06T00:51:25.204180+00:00"
+      "lastChecked": "2026-06-06T02:50:45.431016+00:00"
     },
     "campingcar": {
       "label": "キャンピングカー",
@@ -808,23 +806,23 @@
           "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBuc3JmSHdZWWh5ZnBfU1NxWUlaZGFxLW9Pa2cxMjd5M3lRM3Rja1hZVEkyVFNENnA5RVhXbWdWaFFTOUNaZXdHZEczM2hSUUZ6OFdQSW42bzhFUzZWZHRqT2N6RVVERUxlRWI2N05UczVXY3BjNzh5Zg?oc=5",
           "source": "ハフポスト",
           "pub_date": "2026-06-05T05:05:08+00:00",
-          "timeliness": 0.568,
-          "score": 0.347
+          "timeliness": 0.547,
+          "score": 0.339
         },
         {
           "title": "世界が注目する「ロンジェビティ」とは？ 老化研究の現在地 - RICHESSE（リシェス）",
           "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOODZkakdFWHVERkMxSmhQTEd5MkxoWnpKWnVzZHRualN1TVliZW5FZHpmc0tWUHR3S09LeTVMVkwzWlRQMFRPa2dnZ1lPalJBT2Q3cHk3RzJGblprUTJWRmE5aGtuLVZYN0NXenROT0k3N2d4dDlST0V5cTlUY1ZWZFB3?oc=5",
           "source": "RICHESSE（リシェス）",
           "pub_date": "2026-06-05T01:00:58+00:00",
-          "timeliness": 0.483,
-          "score": 0.313
+          "timeliness": 0.462,
+          "score": 0.305
         }
       ],
       "count": 2,
       "priority": 0.3,
       "tier": "C",
       "emotion_type": "light",
-      "lastChecked": "2026-06-06T01:50:01.219443+00:00"
+      "lastChecked": "2026-06-06T02:50:48.015888+00:00"
     },
     "_cross": {
       "label": "カテゴリ交差",
@@ -977,106 +975,39 @@
   },
   "topItems": [
     {
-      "title": "Shohei Ohtani’s Cy Young Push Comes With Dodgers Dilemma - Yahoo Sports",
-      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOSkFCNmFXeVR4NmVTUWZsOURMbnhDQUVJS2RCMUtib1JqSnJUZ2xvUmM5eEJYa2dpNWZudDFMSzMxRVZaVklMSVFDWE96Ykpodmk5XzhRSU1MYkxvRXFQWGEzYjRIM2hpSGtuT3VCS1ZrOFNRRHBYdGZpVC1LaGpHaS1n?oc=5",
-      "source": "Yahoo Sports",
-      "pub_date": "2026-06-05T22:37:30+00:00",
-      "timeliness": 0.953,
-      "score": 0.781,
+      "title": "MLB 日程・結果 | 速報 & データ - スポーツブル",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9vd3FEaV9WRWRjcmpab0VFMW8yalZ5R05XR01ET3J6aWdBekphNWpkRU5ZbDQ4LWZXbjNVb1BJSHhYVU1sZGVUajlaanpUVUprLURXRm5mSkRLeEg0T3BtUUxmMUhYcU55RzNaTE1BS00?oc=5",
+      "source": "スポーツブル",
+      "pub_date": "2026-06-06T02:10:00+00:00",
+      "timeliness": 0.986,
+      "score": 0.794,
       "category": "dodgers",
       "categoryLabel": "ドジャース・大谷翔平",
       "priority": 1.0,
       "tier": "S"
     },
     {
-      "title": "【ドジャース対ダイヤモンドバックス】今日の試合結果・大谷翔平の成績一覧｜MLB2026 - ベースボールチャンネル",
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1aNjN6UzV6aFRmTmRjVnhQaVl6aXZBaE5kdWt6bXRPSUlsSFp5emRIbGlnT0QtYnAtSlpfTndZM3Y0bVpuTzlOUHJlWUtVRDdLQ1M0TA?oc=5",
+      "title": "Giants' Chapman hits grand slam, totals eight RBIs in rout of Cubs - ESPN",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQcjQ1TzNXSVp2MDdXVVZNNWw4WWl2U3FlME4ycDJ3blJKN2dLRGUzQmpxZjBmbVY2UWF2TVJWTjF4NnFYUEFXR0RleDVmSG5vVE5Pc0pZYnZHbHhPazZPaWFXYWJSUERSdFJydjR6UzBMaWpSUTBVRXVySEkwWE12dHRGc1RUTkVLRnNPMU1acF9iUHVQWk1sREdHOWlNckdFTldjN2JB?oc=5",
+      "source": "ESPN",
+      "pub_date": "2026-06-06T00:40:00+00:00",
+      "timeliness": 0.955,
+      "score": 0.782,
+      "category": "dodgers",
+      "categoryLabel": "ドジャース・大谷翔平",
+      "priority": 1.0,
+      "tier": "S"
+    },
+    {
+      "title": "【打者部門】大谷翔平は何位？ 2026年MLBナリーグ打撃成績ランキング - ベースボールチャンネル",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBtbkhXR01FTEU1d2sxR3cyYzQyZEF0OXJjVl90R1dycWc0bjJvSTgtZ2MyT2M3QWY2QnRLSUw4bDduaVpVVkdIYWxFeWZYdm9PcFIwbw?oc=5",
       "source": "ベースボールチャンネル",
-      "pub_date": "2026-06-05T22:15:05+00:00",
-      "timeliness": 0.946,
+      "pub_date": "2026-06-06T00:10:18+00:00",
+      "timeliness": 0.944,
       "score": 0.778,
       "category": "dodgers",
       "categoryLabel": "ドジャース・大谷翔平",
       "priority": 1.0,
-      "tier": "S"
-    },
-    {
-      "title": "Dodgers News: Former catcher lands with Braves, Shohei Ohtani history, Tommy Edman - Dodgers Way",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOTmZuazlycVA5RV9XdnZDLTZuVE5KRURkRkNDQm02cTNiT3lWS2Rwa3BQS29KYU1Lem85UGJtcEJqdlViOEF2SkFWVnVmc2lMczRIWWRTSDg2ZVFYTzF1b0xROEhTaVhsanhDZ0t5dE1CSWlLeTFzY2NPUXdaSGgwaHVOZWtZWEtWQkxVMmNLNnNtcE01eGFmTldKN0oyUQ?oc=5",
-      "source": "Dodgers Way",
-      "pub_date": "2026-06-05T19:13:00+00:00",
-      "timeliness": 0.882,
-      "score": 0.753,
-      "category": "dodgers",
-      "categoryLabel": "ドジャース・大谷翔平",
-      "priority": 1.0,
-      "tier": "S"
-    },
-    {
-      "title": "【大谷翔平 3安打目は全力疾走での内野安打】ドジャースvsダイヤモンドバックス MLB2026シーズン 6.2",
-      "url": "https://www.youtube.com/watch?v=KA1QkjIfCsc",
-      "source": "SPOTVNOW",
-      "pub_date": null,
-      "content_type": "video",
-      "duration": "2:53",
-      "view_count": 167881,
-      "_discovery": true,
-      "timeliness": 0.1,
-      "score": 0.75,
-      "category": "dodgers",
-      "categoryLabel": "ドジャース・大谷翔平",
-      "priority": 1.0,
-      "tier": "S"
-    },
-    {
-      "title": "Snowflake、AIコーディングエージェント「CoCo」新機能とストリーミングサービス「Datastream」を発表 - CodeZine",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5vMWRFMTZ6OHdIdzFKYldQaVFmeDdEdS1wRHBEZVNFZ25wdnZ4eGhieFVCaEwtalMxa1NkY2czT3IwdnBnUHN5NDMta2lBdw?oc=5",
-      "source": "CodeZine",
-      "pub_date": "2026-06-05T09:35:45+00:00",
-      "timeliness": 0.682,
-      "score": 0.733,
-      "category": "ai_agent",
-      "categoryLabel": "AIエージェント",
-      "priority": 0.9,
-      "tier": "S"
-    },
-    {
-      "title": "Why your AI agents don’t scale - Fast Company",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9TOERTaVIxZVR5ajVWX05rUnZ3TWtWZ3NleXd1eUV2clpDVXpuQjdadzRRM29NTzBoRmxxb0Q2bG5XWG1JYWhDWHZjM3cyRzFvZnVyQm5lZ2g5TWthUmtLX1o1M0Jpb2t3ekRNa2FMT3Q0NzFV?oc=5",
-      "source": "Fast Company",
-      "pub_date": "2026-06-05T19:28:11+00:00",
-      "timeliness": 0.888,
-      "score": 0.715,
-      "category": "ai_agent",
-      "categoryLabel": "AIエージェント",
-      "priority": 0.9,
-      "tier": "S"
-    },
-    {
-      "title": "WE ARE COOKED: Claude Opus 4.7 JUST DROPPED AND IT'S INSANE Berardi (wZ4zRLgDbW) - Mshale",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE13QTMwc1JOQXdPY2FRTTJ6S29zTHNmZjVKNTEyLXYtT05VeTlUb0dNMFFsTURoSURtaE5XcGxzcVlET0pwV2dEVmdIWTQyU2lUeUd0Sk5XTXJudjQ?oc=5",
-      "source": "Mshale",
-      "pub_date": "2026-06-05T19:02:17+00:00",
-      "timeliness": 0.879,
-      "score": 0.712,
-      "category": "ai_agent",
-      "categoryLabel": "AIエージェント",
-      "priority": 0.9,
-      "tier": "S"
-    },
-    {
-      "title": "What is Claude Code?",
-      "url": "https://www.youtube.com/watch?v=fl1DSmwQKKY",
-      "source": "Claude",
-      "pub_date": null,
-      "content_type": "video",
-      "duration": "2:56",
-      "view_count": 2546027,
-      "timeliness": 0.1,
-      "score": 0.71,
-      "category": "ai_agent",
-      "categoryLabel": "AIエージェント",
-      "priority": 0.9,
       "tier": "S"
     },
     {
@@ -1095,19 +1026,69 @@
       "tier": "S"
     },
     {
-      "title": "【公開間近】Claude Mythosで人間の仕事はどう変わる？24時間AIに仕事させる時代",
-      "url": "https://www.youtube.com/watch?v=bogsZSiAwmY",
-      "source": "AI仙人 【AI歴10年・ガチADHD男】",
+      "title": "【大谷翔平 今季初打席からライト前ヒット！】ダイヤモンドバックスvsドジャース MLB2026シーズン 3.27",
+      "url": "https://www.youtube.com/watch?v=FFpYthmNcDA",
+      "source": "SPOTVNOW",
       "pub_date": null,
       "content_type": "video",
-      "duration": "47:58",
-      "view_count": 14382,
-      "_discovery": true,
+      "duration": "4:14",
+      "view_count": 251559,
       "timeliness": 0.1,
-      "score": 0.66,
+      "score": 0.7,
+      "category": "dodgers",
+      "categoryLabel": "ドジャース・大谷翔平",
+      "priority": 1.0,
+      "tier": "S"
+    },
+    {
+      "title": "ネットなしでAIがサクサク動く時代へ！ノートPCから最新ゲーム機まで、インテルが仕掛ける一歩先の未来が見えた (1/3) - ASCII.jp",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5yU2gwS2N5OXNhZFZGYm5WbzBPSGRoMTBuWDE4T1pScG9GVGpONkhLTTE1MmNmNGZDekhDX2tncG50bFdNd3FIR0VqdEw0cEpqYThLZg?oc=5",
+      "source": "ASCII.jp",
+      "pub_date": "2026-06-06T00:00:00+00:00",
+      "timeliness": 0.941,
+      "score": 0.696,
       "category": "ai_agent",
       "categoryLabel": "AIエージェント",
-      "priority": 0.9,
+      "priority": 0.8,
+      "tier": "S"
+    },
+    {
+      "title": "Snowflake、AIコーディングエージェント「CoCo」新機能とストリーミングサービス「Datastream」を発表 - CodeZine",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5vMWRFMTZ6OHdIdzFKYldQaVFmeDdEdS1wRHBEZVNFZ25wdnZ4eGhieFVCaEwtalMxa1NkY2czT3IwdnBnUHN5NDMta2lBdw?oc=5",
+      "source": "CodeZine",
+      "pub_date": "2026-06-05T09:35:45+00:00",
+      "timeliness": 0.641,
+      "score": 0.676,
+      "category": "ai_agent",
+      "categoryLabel": "AIエージェント",
+      "priority": 0.8,
+      "tier": "S"
+    },
+    {
+      "title": "What is Claude Code?",
+      "url": "https://www.youtube.com/watch?v=fl1DSmwQKKY",
+      "source": "Claude",
+      "pub_date": null,
+      "content_type": "video",
+      "duration": "2:56",
+      "view_count": 2563905,
+      "timeliness": 0.1,
+      "score": 0.67,
+      "category": "ai_agent",
+      "categoryLabel": "AIエージェント",
+      "priority": 0.8,
+      "tier": "S"
+    },
+    {
+      "title": "Why your AI agents don’t scale - Fast Company",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9TOERTaVIxZVR5ajVWX05rUnZ3TWtWZ3NleXd1eUV2clpDVXpuQjdadzRRM29NTzBoRmxxb0Q2bG5XWG1JYWhDWHZjM3cyRzFvZnVyQm5lZ2g5TWthUmtLX1o1M0Jpb2t3ekRNa2FMT3Q0NzFV?oc=5",
+      "source": "Fast Company",
+      "pub_date": "2026-06-05T19:28:11+00:00",
+      "timeliness": 0.846,
+      "score": 0.659,
+      "category": "ai_agent",
+      "categoryLabel": "AIエージェント",
+      "priority": 0.8,
       "tier": "S"
     },
     {
@@ -1172,6 +1153,18 @@
       "category": "llm_local",
       "categoryLabel": "ローカルLLM・オープンソースAI",
       "priority": 0.664,
+      "tier": "A"
+    },
+    {
+      "title": "Tommy Fleetwood's Odd Range Drill Gives Instant Ball-Striking Feedback - Yardbarker",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNcFRBNWpPRzltU3JoaVYtWHh2LWRWMUVOb1UycWpUZlF3YndGZ2dKRnpSLXYwcVdWYUVnaExnUXM1X0pEMzJUY0swcDl6a3BKWFZzeGVjSUdwQzg1dkRJeG5TRGVEdmYwWjdSdzdWZDd2UDdxQng3bHVYUFNiRjNpVk5zakZUS0V2Q3NtZ1ZyWW1DSlBmTHM0N1dvWGhEU1NhdnZ1TmRwOHVvMGNNamhkb29WMVZkbnNmOC1yYTVnR0NSQTRadkVV?oc=5",
+      "source": "Yardbarker",
+      "pub_date": "2026-06-05T18:56:38+00:00",
+      "timeliness": 0.877,
+      "score": 0.613,
+      "category": "golf",
+      "categoryLabel": "ゴルフ",
+      "priority": 0.657,
       "tier": "A"
     }
   ]
