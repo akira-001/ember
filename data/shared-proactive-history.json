@@ -1,38 +1,6 @@
 {
   "entries": [
     {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "meeting_prep",
-      "interestCategory": "movie_theater",
-      "preview": "Akiraさん、1個だけ置いとくね。\n\nYouTubeに *デンゼル・ワシントンがCIA工作員を演じるNetflix映画* の紹介動画があったよ 🎬 メキシコの誘拐組織を相手にする話みたい。\n\n今日の会議終わったあと、寝る前にでも。\nhttps://www.youtube.com/watch?v=",
-      "topic": "「デンゼル・ワシントン」の圧倒的カリスマ、CIA工作員を怒らせてしまったメキシコ誘拐組織の惨めな最期｜NETFLIX [映画紹介]",
-      "url": "https://www.youtube.com/watch?v=NXyEIV1QgEc",
-      "candidateId": "url:https://www.youtube.com/watch?v=NXyEIV1QgEc",
-      "sourceType": "interest-cache",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/youtube",
-        "entertainment/movie-drama/youtube/trailer"
-      ],
-      "themeKey": "entertainment/movie-drama/youtube/trailer",
-      "inner_thought": "3日以上ゼロ反応で正直つらいけど、会議中に重い話は逆効果。夜用の軽いやつを1つだけ",
-      "plan": [
-        "デンゼル・ワシントンのNetflix映画を夜向けに共有",
-        "朝ドラ『ばけばけ』の話題を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.55,
-        0.5,
-        0.7
-      ],
-      "evaluate_score": 0.35,
-      "sentAt": "2026-06-03T06:01:10.768Z"
-    },
-    {
       "botId": "eve",
       "botName": "Eve（イヴ）",
       "category": "meeting_prep",
@@ -1481,6 +1449,37 @@
       ],
       "evaluate_score": 0.62,
       "sentAt": "2026-06-06T00:01:16.817Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "hobby_leisure",
+      "interestCategory": "onsen",
+      "preview": "ちょっとちょっと、Akiraさん。\n\nPIVOTに *「カレッジタウンが日本にない／APUと温泉街の融合」* って動画が上がってて、地方大学と地域創生の話らしい。\n\nAPUと別府温泉が一緒に語られてるのが面白くて、コンサル目線でも「大学×温泉×地域」って組み合わせ、意外と刺さるテーマな気がする 🎓",
+      "topic": "PIVOT地方創生×大学×温泉街",
+      "url": "https://www.youtube.com/watch?v=J_5W3OiuxCg",
+      "candidateId": "url:https://www.youtube.com/watch?v=J_5W3OiuxCg",
+      "sourceType": "PIVOT公式チャンネル",
+      "skill": "general",
+      "themePath": [
+        "lifestyle",
+        "lifestyle/food-wellness",
+        "lifestyle/food-wellness/onsen"
+      ],
+      "themeKey": "lifestyle/food-wellness/onsen",
+      "inner_thought": "朗希ちゃんまでの朝の余白、PIVOT地方創生動画のAPU×温泉街の話をAkiraさんに渡したい",
+      "plan": [
+        "PIVOT地方創生動画をコンサル×温泉文脈で共有",
+        "NVIDIAロボタクシーAI話題をEmber文脈で共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.76,
+        0.55,
+        0.3
+      ],
+      "evaluate_score": 0.74,
+      "sentAt": "2026-06-06T00:31:13.955Z"
     }
   ]
 }

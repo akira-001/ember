@@ -16,60 +16,6 @@
   },
   "history": [
     {
-      "id": "68abcd85-7961-4ebe-bbb3-f8c88b4e5727",
-      "category": "hobby_leisure",
-      "interestCategory": "general",
-      "sentAt": "2026-05-27T04:30:53.256Z",
-      "slackTs": "1779856253.458749",
-      "slackChannel": "U3SFGQXNH",
-      "reaction": null,
-      "reactionDelta": 0,
-      "preview": "ね、Akiraさん。\n\nぴあに *舞浜でステーキと本ズワイ蟹の食べ放題* イベントの記事が出てたよ 🦀\n\n昨夜の爆安コスパ路線とは真逆の、*北海道の味覚満載ビュッフェ* らしい。夕食候補としてどうかな。\nhttps://news.goog",
-      "fullText": "ね、Akiraさん。\n\nぴあに *舞浜でステーキと本ズワイ蟹の食べ放題* イベントの記事が出てたよ 🦀\n\n昨夜の爆安コスパ路線とは真逆の、*北海道の味覚満載ビュッフェ* らしい。夕食候補としてどうかな。\nhttps://news.google.com/rss/articles/CBMiX0FVX3lxTFBTb0FITEUwSUg5ZV9GMEFWbmoySUVXY0VBNnRHdHpHQjRsbFVfNVdTUEUzaG11RXRNZ0NGWkZxX19SeFFlVFVPMFBNaXZwMmlMQjlPX2x1a1ZiTFZOam5F",
-      "sourceUrls": [
-        {
-          "title": "ステーキ＆本ズワイ蟹食べ放題（舞浜）",
-          "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBTb0FITEUwSUg5ZV9GMEFWbmoySUVXY0VBNnRHdHpHQjRsbFVfNVdTUEUzaG11RXRNZ0NGWkZxX19SeFFlVFVPMFBNaXZwMmlMQjlPX2x1a1ZiTFZOam5F",
-          "source": "ぴあエンタメ情報"
-        }
-      ],
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiX0FVX3lxTFBTb0FITEUwSUg5ZV9GMEFWbmoySUVXY0VBNnRHdHpHQjRsbFVfNVdTUEUzaG11RXRNZ0NGWkZxX19SeFFlVFVPMFBNaXZwMmlMQjlPX2x1a1ZiTFZOam5F",
-      "candidateTopic": "ステーキ＆本ズワイ蟹食べ放題（舞浜）",
-      "candidateUrl": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBTb0FITEUwSUg5ZV9GMEFWbmoySUVXY0VBNnRHdHpHQjRsbFVfNVdTUEUzaG11RXRNZ0NGWkZxX19SeFFlVFVPMFBNaXZwMmlMQjlPX2x1a1ZiTFZOam5F",
-      "candidateSource": "ぴあエンタメ情報",
-      "skill": "general",
-      "sources": [
-        "calendar",
-        "email",
-        "interest-cache"
-      ],
-      "intrinsicReward": {
-        "signals": [],
-        "immediateTotal": 0,
-        "deferredTotal": 0,
-        "compositeBoost": 0
-      },
-      "premise": {
-        "estimatedMode": "探索モード・通常エネルギー",
-        "modeReason": "13:30の水曜昼過ぎ。カレンダーはエラーで不明だが、前回の大谷MVPを12:31に送ってから約1時間経過。ランチ後の小休止帯",
-        "targetLayer": 4,
-        "layerReason": "lifestyle/food-wellness/grourmetのテーマ在庫が最も不足しており、昼後の食欲・夕食計画層に触れる好機",
-        "interventionType": "情報提供",
-        "interventionReason": "グルメ情報の在庫補充と、食体験への関心（昨夜の恵比寿ステーキの流れ）を自然につなぐ",
-        "reason": "gourmet在庫不足が最大（gap=5）。ランチ直後で夕食候補を眺めるタイミングとして自然",
-        "informationGap": null,
-        "collectionHint": null
-      },
-      "emotionTag": "neutral",
-      "themePath": [
-        "lifestyle",
-        "lifestyle/food-wellness",
-        "lifestyle/food-wellness/gourmet",
-        "lifestyle/food-wellness/gourmet/steak"
-      ],
-      "themeKey": "lifestyle/food-wellness/gourmet/steak"
-    },
-    {
       "id": "1d3aba2f-3180-4f45-88c9-f49d586f9356",
       "category": "flashback",
       "interestCategory": "ai_agent",
@@ -5355,11 +5301,64 @@
         "entertainment/movie-drama/youtube/trailer"
       ],
       "themeKey": "entertainment/movie-drama/youtube/trailer"
+    },
+    {
+      "id": "4dcbabd9-340f-403f-b8fa-86b011bff9de",
+      "category": "hobby_leisure",
+      "interestCategory": "onsen",
+      "sentAt": "2026-06-06T00:31:13.954Z",
+      "slackTs": "1780705874.347389",
+      "slackChannel": "U3SFGQXNH",
+      "reaction": null,
+      "reactionDelta": 0,
+      "preview": "ちょっとちょっと、Akiraさん。\n\nPIVOTに *「カレッジタウンが日本にない／APUと温泉街の融合」* って動画が上がってて、地方大学と地域創生の話らしい。\n\nAPUと別府温泉が一緒に語られてるのが面白くて、コンサル目線でも「大学×温",
+      "fullText": "ちょっとちょっと、Akiraさん。\n\nPIVOTに *「カレッジタウンが日本にない／APUと温泉街の融合」* って動画が上がってて、地方大学と地域創生の話らしい。\n\nAPUと別府温泉が一緒に語られてるのが面白くて、コンサル目線でも「大学×温泉×地域」って組み合わせ、意外と刺さるテーマな気がする 🎓\n\nhttps://www.youtube.com/watch?v=J_5W3OiuxCg",
+      "sourceUrls": [
+        {
+          "title": "PIVOT地方創生×大学×温泉街",
+          "url": "https://www.youtube.com/watch?v=J_5W3OiuxCg",
+          "source": "PIVOT公式チャンネル"
+        }
+      ],
+      "candidateId": "url:https://www.youtube.com/watch?v=J_5W3OiuxCg",
+      "candidateTopic": "PIVOT地方創生×大学×温泉街",
+      "candidateUrl": "https://www.youtube.com/watch?v=J_5W3OiuxCg",
+      "candidateSource": "PIVOT公式チャンネル",
+      "skill": "general",
+      "sources": [
+        "calendar",
+        "email",
+        "interest-cache"
+      ],
+      "intrinsicReward": {
+        "signals": [],
+        "immediateTotal": 0,
+        "deferredTotal": 0,
+        "compositeBoost": 0
+      },
+      "premise": {
+        "estimatedMode": "達成モード・高エネルギー",
+        "modeReason": "休日土曜の朝、昨日の誕生日ディナー（ローリーズ）も終わり、11時に朗希ちゃんの試合を控えて軽いワクワク感がある時間帯",
+        "targetLayer": 4,
+        "layerReason": "余白のある土曜朝に、コンサル視点で楽しめる軽い動画コンテンツを届けられる実行層の好機",
+        "interventionType": "情報提供",
+        "interventionReason": "朗希ちゃんまで1.5時間の余白、眺めるだけでいい動画コンテンツが最適",
+        "reason": "PIVOT地方創生動画、APU×温泉街の融合という切り口がコンサルかつ温泉好きのAkiraさんに刺さりそう",
+        "informationGap": null,
+        "collectionHint": null
+      },
+      "emotionTag": "bright",
+      "themePath": [
+        "lifestyle",
+        "lifestyle/food-wellness",
+        "lifestyle/food-wellness/onsen"
+      ],
+      "themeKey": "lifestyle/food-wellness/onsen"
     }
   ],
-  "lastCheckAt": "2026-06-05T23:31:07.246Z",
+  "lastCheckAt": "2026-06-06T00:31:13.953Z",
   "stats": {
-    "totalSent": 849,
+    "totalSent": 850,
     "positiveReactions": 31,
     "negativeReactions": 0
   },
@@ -5439,6 +5438,21 @@
         "entertainment/movie-drama/youtube/trailer"
       ],
       "themeKey": "entertainment/movie-drama/youtube/trailer"
+    },
+    {
+      "time": "09:31",
+      "summary": "PIVOT地方創生×大学×温泉街",
+      "source": "PIVOT公式チャンネル",
+      "interestCategory": "onsen",
+      "topic": "PIVOT地方創生×大学×温泉街",
+      "url": "https://www.youtube.com/watch?v=J_5W3OiuxCg",
+      "candidateId": "url:https://www.youtube.com/watch?v=J_5W3OiuxCg",
+      "themePath": [
+        "lifestyle",
+        "lifestyle/food-wellness",
+        "lifestyle/food-wellness/onsen"
+      ],
+      "themeKey": "lifestyle/food-wellness/onsen"
     }
   ],
   "todayDate": "2026-06-06",
@@ -5463,35 +5477,10 @@
         "affinity": 0.4,
         "surprise": 0.7
       },
-      "finalScore": 0.7248467090701503,
+      "finalScore": 0.7552212317674409,
       "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
       "explorationBonus": 0.38723275036841104,
-      "selectionScore": 1.1120794594385612
-    },
-    {
-      "topic": "【バブル遺産】衰退した日本一有名な温泉街が凄い事になっていました。新時代を模索する熱海の現在の姿とは。",
-      "source": "interest-cache",
-      "category": "onsen",
-      "pub_date": null,
-      "metadata": {
-        "url": "https://www.youtube.com/watch?v=ZeW2jzbnibg",
-        "mediaSource": "あかでみっくなカレッジ　-Academic な College-",
-        "content_type": "video",
-        "emotion_type": "light",
-        "timeliness": 0.1
-      },
-      "scores": {
-        "timeliness": 0.3,
-        "novelty": 0.2,
-        "continuity": 0.9,
-        "emotional_fit": 0.9,
-        "affinity": 0.4,
-        "surprise": 0.7
-      },
-      "finalScore": 0.7248467090701503,
-      "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
-      "explorationBonus": 0.38723275036841104,
-      "selectionScore": 1.1120794594385612
+      "selectionScore": 1.142453982135852
     },
     {
       "topic": "小学生以下の宿泊が無料！ 群馬・片品村の絶景グランピングで夏の特別体験を満喫 - いこーよニュース",
@@ -5505,17 +5494,17 @@
         "timeliness": 0.753
       },
       "scores": {
-        "timeliness": 0.28180926504629633,
+        "timeliness": 0.26097432291666667,
         "novelty": 0.2,
         "continuity": 0.9,
         "emotional_fit": 0.9,
         "affinity": 0.4,
         "surprise": 0.7
       },
-      "finalScore": 0.7195570063077019,
+      "finalScore": 0.7461273427126769,
       "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
       "explorationBonus": 0.38723275036841104,
-      "selectionScore": 1.106789756676113
+      "selectionScore": 1.1333600930810879
     },
     {
       "topic": "【楽天トラベルセール】栃木県「湯西川温泉 彩り湯かしき 花と華」が特別価格で登場中 - All About ニュース",
@@ -5529,17 +5518,17 @@
         "timeliness": 0.617
       },
       "scores": {
-        "timeliness": 0.14578495370370376,
+        "timeliness": 0.1249500115740741,
         "novelty": 0.2,
         "continuity": 0.9,
         "emotional_fit": 0.9,
         "affinity": 0.4,
         "surprise": 0.7
       },
-      "finalScore": 0.6800023551459826,
+      "finalScore": 0.7144305192736153,
       "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
       "explorationBonus": 0.38723275036841104,
-      "selectionScore": 1.0672351055143936
+      "selectionScore": 1.1016632696420263
     },
     {
       "topic": "下半身主導のスイングの作り方｜左膝から動かすテークバックと左足踏み込みのコツ | チバテレ＋プラス - 千葉テレビ放送株式会社",
@@ -5553,65 +5542,17 @@
         "timeliness": 0.785
       },
       "scores": {
-        "timeliness": 0.4795754340277778,
+        "timeliness": 0.4587404976851852,
         "novelty": 0.2,
         "continuity": 0.9,
         "emotional_fit": 0.9,
         "affinity": 0.4,
         "surprise": 0.7
       },
-      "finalScore": 0.7770656365550559,
+      "finalScore": 0.7922114541629324,
       "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
       "explorationBonus": 0.273814903683021,
-      "selectionScore": 1.050880540238077
-    },
-    {
-      "topic": "東京駅周辺の美味しいおすすめ人気グルメ3選 - シティリビングWeb",
-      "source": "interest-cache",
-      "category": "food_dining",
-      "pub_date": "2026-06-04T20:00:00+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5LVlJBZVNJVlBxbTcwal80Y1pFdi1KU0RLZWJqc0NPdUhoWVMwWWZWU2lDbFEwNV8wMmZ2ZTZhUkNudGpHV1hjdXBoQmhwQUotWEFtZ1RIOWk?oc=5",
-        "mediaSource": "シティリビングWeb",
-        "emotion_type": "light",
-        "timeliness": 0.899
-      },
-      "scores": {
-        "timeliness": 0.4270347800925926,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.7273740050035227,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.0273740050035227
-    },
-    {
-      "topic": "夏色スイレン／青森・合浦公園 - au Webポータル",
-      "source": "interest-cache",
-      "category": "weather_seasonal",
-      "pub_date": "2026-06-04T10:22:00+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBCUmhyaVJNSzhzd0pGd3U2RTZlMXozS1N5X1ZqQ0V4Y3Z3Y004Vnh0Wl9YbldGRVhURGwtbVJSWWYxbUcxd2JZeUJ3b0FxZHhJVU5SOGwtcEFxZUZoNFlSLTVFbUpHN2hqRkpGOC1KeDFZLW5fN1JQd21haw?oc=5",
-        "mediaSource": "au Webポータル",
-        "emotion_type": "light",
-        "timeliness": 0.698
-      },
-      "scores": {
-        "timeliness": 0.226340318287037,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.7155578630260488,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.015557863026049
+      "selectionScore": 1.0660263578459535
     },
     {
       "topic": "NVIDIA、ロボタクシー向けのオープンなリーズニング モデル、Alpamayo 2 Superを発表 - NVIDIA | Japan Blog",
@@ -5625,41 +5566,65 @@
         "timeliness": 0.885
       },
       "scores": {
-        "timeliness": 0.5393234992283951,
+        "timeliness": 0.525433537808642,
         "novelty": 0.2,
         "continuity": 0.9,
         "emotional_fit": 0.5,
         "affinity": 0.4,
         "surprise": 0.7
       },
-      "finalScore": 0.7152554456987665,
+      "finalScore": 0.719813290176925,
       "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.0152554456987666
+      "selectionScore": 1.019813290176925
     },
     {
-      "topic": "パタゴニアが環境活動家「パティ・ゴニア」さんを提訴。両者の主張に注目集まる - ハフポスト",
+      "topic": "夏色スイレン／青森・合浦公園 - au Webポータル",
       "source": "interest-cache",
-      "category": "_wildcard",
-      "pub_date": "2026-06-05T05:05:08+00:00",
+      "category": "weather_seasonal",
+      "pub_date": "2026-06-04T10:22:00+00:00",
       "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBuc3JmSHdZWWh5ZnBfU1NxWUlaZGFxLW9Pa2cxMjd5M3lRM3Rja1hZVEkyVFNENnA5RVhXbWdWaFFTOUNaZXdHZEczM2hSUUZ6OFdQSW42bzhFUzZWZHRqT2N6RVVERUxlRWI2N05UczVXY3BjNzh5Zg?oc=5",
-        "mediaSource": "ハフポスト",
+        "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBCUmhyaVJNSzhzd0pGd3U2RTZlMXozS1N5X1ZqQ0V4Y3Z3Y004Vnh0Wl9YbldGRVhURGwtbVJSWWYxbUcxd2JZeUJ3b0FxZHhJVU5SOGwtcEFxZUZoNFlSLTVFbUpHN2hqRkpGOC1KeDFZLW5fN1JQd21haw?oc=5",
+        "mediaSource": "au Webポータル",
         "emotion_type": "light",
-        "timeliness": 0.859
+        "timeliness": 0.698
       },
       "scores": {
-        "timeliness": 0.5775447646604939,
+        "timeliness": 0.20550537037037042,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
-        "surprise": 0.8
+        "surprise": 0.7
       },
-      "finalScore": 0.5639212504331642,
+      "finalScore": 0.7071551903833675,
       "reasoning": "気分に合う・新鮮（interest-cache）",
-      "explorationBonus": 0.44999999999999996,
-      "selectionScore": 1.0139212504331643
+      "explorationBonus": 0.3,
+      "selectionScore": 1.0071551903833675
+    },
+    {
+      "topic": "東京駅周辺の美味しいおすすめ人気グルメ3選 - シティリビングWeb",
+      "source": "interest-cache",
+      "category": "food_dining",
+      "pub_date": "2026-06-04T20:00:00+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5LVlJBZVNJVlBxbTcwal80Y1pFdi1KU0RLZWJqc0NPdUhoWVMwWWZWU2lDbFEwNV8wMmZ2ZTZhUkNudGpHV1hjdXBoQmhwQUotWEFtZ1RIOWk?oc=5",
+        "mediaSource": "シティリビングWeb",
+        "emotion_type": "light",
+        "timeliness": 0.899
+      },
+      "scores": {
+        "timeliness": 0.4061998321759259,
+        "novelty": 0.8,
+        "continuity": 0.3,
+        "emotional_fit": 0.9,
+        "affinity": 0.5,
+        "surprise": 0.7
+      },
+      "finalScore": 0.7071395372381053,
+      "reasoning": "気分に合う・新鮮（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 1.0071395372381053
     },
     {
       "topic": "最新ドラマ視聴データ速報【ビデオリサーチ調べ】（視聴率・視聴人数） - 株式会社ビデオリサーチ",
@@ -5673,76 +5638,125 @@
         "timeliness": 0.748
       },
       "scores": {
-        "timeliness": 0.27712728587962954,
+        "timeliness": 0.256292337962963,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.7127119753554674,
+      "finalScore": 0.7011373365002955,
       "reasoning": "気分に合う・新鮮（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.0127119753554674
+      "selectionScore": 1.0011373365002956
+    },
+    {
+      "topic": "パタゴニアが環境活動家「パティ・ゴニア」さんを提訴。両者の主張に注目集まる - ハフポスト",
+      "source": "interest-cache",
+      "category": "_wildcard",
+      "pub_date": "2026-06-05T05:05:08+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBuc3JmSHdZWWh5ZnBfU1NxWUlaZGFxLW9Pa2cxMjd5M3lRM3Rja1hZVEkyVFNENnA5RVhXbWdWaFFTOUNaZXdHZEczM2hSUUZ6OFdQSW42bzhFUzZWZHRqT2N6RVVERUxlRWI2N05UczVXY3BjNzh5Zg?oc=5",
+        "mediaSource": "ハフポスト",
+        "emotion_type": "light",
+        "timeliness": 0.859
+      },
+      "scores": {
+        "timeliness": 0.5636548032407407,
+        "novelty": 0.8,
+        "continuity": 0.3,
+        "emotional_fit": 0.9,
+        "affinity": 0.5,
+        "surprise": 0.8
+      },
+      "finalScore": 0.5471720690936942,
+      "reasoning": "気分に合う・新鮮（interest-cache）",
+      "explorationBonus": 0.44999999999999996,
+      "selectionScore": 0.9971720690936942
+    },
+    {
+      "topic": "「デンゼル・ワシントン」の圧倒的カリスマ、CIA工作員を怒らせてしまったメキシコ誘拐組織の惨めな最期｜NETFLIX [映画紹介]",
+      "source": "interest-cache",
+      "category": "movie_theater",
+      "pub_date": null,
+      "metadata": {
+        "url": "https://www.youtube.com/watch?v=NXyEIV1QgEc",
+        "mediaSource": "映画弁当 : The movie",
+        "content_type": "video",
+        "emotion_type": "light",
+        "timeliness": 0.1
+      },
+      "scores": {
+        "timeliness": 0.3,
+        "novelty": 0.8,
+        "continuity": 0.3,
+        "emotional_fit": 0.9,
+        "affinity": 0.5,
+        "surprise": 0.7
+      },
+      "finalScore": 0.6941784246098229,
+      "reasoning": "気分に合う・新鮮（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 0.9941784246098229
     }
   ],
   "lastDecisionLog": {
     "premise": {
       "estimatedMode": "達成モード・高エネルギー",
-      "modeReason": "昨日の誕生日イベント（ヘッドスパ→ローリーズ）が一段落した土曜朝。週末リラックスモードで今日は11:10の朗希ちゃんまで余白がある",
+      "modeReason": "休日土曜の朝、昨日の誕生日ディナー（ローリーズ）も終わり、11時に朗希ちゃんの試合を控えて軽いワクワク感がある時間帯",
       "targetLayer": 4,
-      "layerReason": "趣味（温泉）と昨日の引き算デザイン話題を連想でつなぐ実行層へのアプローチが自然",
+      "layerReason": "余白のある土曜朝に、コンサル視点で楽しめる軽い動画コンテンツを届けられる実行層の好機",
       "interventionType": "情報提供",
-      "interventionReason": "眺めるだけで楽しい動画コンテンツ。土曜朝の低負荷枠にフィット",
-      "reason": "温泉好き×昨日の引き算テーマとの連想で文脈がある。メイが野球角度を08:01で出済みなので別角度へ",
+      "interventionReason": "朗希ちゃんまで1.5時間の余白、眺めるだけでいい動画コンテンツが最適",
+      "reason": "PIVOT地方創生動画、APU×温泉街の融合という切り口がコンサルかつ温泉好きのAkiraさんに刺さりそう",
       "informationGap": null,
       "collectionHint": null
     },
     "decision": "send",
-    "need": "楽しみ・知的好奇心",
-    "reason": "温泉好き×引き算価値観の連想、土曜朝の余白枠",
+    "need": "充実・楽しみ",
+    "reason": "土曜朝の余白に眺められる動画、コンサル視点で楽しめる地方創生×大学×温泉街のテーマ",
     "candidates": [
       {
-        "topic": "熱海温泉YouTube（バブル遺産→再生ストーリー）",
-        "source": "あかでみっくなカレッジ",
-        "score": 0.79
-      },
-      {
-        "topic": "地方創生×大学YouTube",
-        "source": "PIVOT",
-        "score": 0.61
+        "topic": "PIVOT地方創生×大学×温泉街",
+        "source": "PIVOT公式チャンネル",
+        "score": 0.76
       },
       {
         "topic": "群馬グランピング",
         "source": "いこーよニュース",
-        "score": 0.55
+        "score": 0.75
       },
       {
-        "topic": "NVIDIA Alpamayo",
-        "source": "NVIDIA Japan",
-        "score": 0.52
+        "topic": "NVIDIA Alpamayo 2 Super",
+        "source": "NVIDIA Japan Blog",
+        "score": 0.72
       },
       {
-        "topic": "東京駅グルメ",
-        "source": "シティリビングWeb",
-        "score": 0.48
+        "topic": "湯西川温泉楽天セール",
+        "source": "All About",
+        "score": 0.71
+      },
+      {
+        "topic": "夏色スイレン青森",
+        "source": "au Webポータル",
+        "score": 0.71
       }
     ],
-    "message": "そういえばさ、Akiraさん。\n\nYouTubeに *バブル遺産の熱海がすごいことになってた* って動画があってさ ♨ 衰退から新時代へ模索する再生ストーリーらしい。\n\n昨日の「機能を足すより削る側から変える」って話、どこかつながりそうで気になった。朗希ちゃんまでの朝のぼーっと時間にどうぞ。\nhttps://www.youtube.com/watch?v=ZeW2jzbnibg",
+    "message": "ちょっとちょっと、Akiraさん。\n\nPIVOTに *「カレッジタウンが日本にない／APUと温泉街の融合」* って動画が上がってて、地方大学と地域創生の話らしい。\n\nAPUと別府温泉が一緒に語られてるのが面白くて、コンサル目線でも「大学×温泉×地域」って組み合わせ、意外と刺さるテーマな気がする 🎓\n\nhttps://www.youtube.com/watch?v=J_5W3OiuxCg",
     "topicWeight": "light",
-    "inner_thought": "熱海の再生ストーリー、昨日のMIXIデザイン記事（引き算）と連想できてAkiraさんに刺さりそう",
+    "inner_thought": "朗希ちゃんまでの朝の余白、PIVOT地方創生動画のAPU×温泉街の話をAkiraさんに渡したい",
     "plan": [
-      "熱海温泉YouTube（引き算再生ストーリー）を共有",
-      "NVIDIA Alpamayo記事（AIエージェント文脈）を共有",
+      "PIVOT地方創生動画をコンサル×温泉文脈で共有",
+      "NVIDIAロボタクシーAI話題をEmber文脈で共有",
       "沈黙"
     ],
     "generate_score": [
-      0.79,
-      0.58,
-      0.22
+      0.76,
+      0.55,
+      0.3
     ],
-    "evaluate_score": 0.77,
-    "timestamp": "2026-06-05T23:31:07.246Z",
+    "evaluate_score": 0.74,
+    "timestamp": "2026-06-06T00:31:13.954Z",
     "skill": "none",
     "scoredCandidates": [
       {
@@ -5757,26 +5771,9 @@
           "affinity": 0.4,
           "surprise": 0.7
         },
-        "finalScore": 0.7248467090701503,
+        "finalScore": 0.7552212317674409,
         "explorationBonus": 0.38723275036841104,
-        "selectionScore": 1.1120794594385612,
-        "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
-      },
-      {
-        "topic": "【バブル遺産】衰退した日本一有名な温泉街が凄い事になっていました。新時代を模索する熱海の現在の姿とは。",
-        "source": "interest-cache",
-        "category": "onsen",
-        "scores": {
-          "timeliness": 0.3,
-          "novelty": 0.2,
-          "continuity": 0.9,
-          "emotional_fit": 0.9,
-          "affinity": 0.4,
-          "surprise": 0.7
-        },
-        "finalScore": 0.7248467090701503,
-        "explorationBonus": 0.38723275036841104,
-        "selectionScore": 1.1120794594385612,
+        "selectionScore": 1.142453982135852,
         "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
       },
       {
@@ -5784,16 +5781,16 @@
         "source": "interest-cache",
         "category": "onsen",
         "scores": {
-          "timeliness": 0.28180926504629633,
+          "timeliness": 0.26097432291666667,
           "novelty": 0.2,
           "continuity": 0.9,
           "emotional_fit": 0.9,
           "affinity": 0.4,
           "surprise": 0.7
         },
-        "finalScore": 0.7195570063077019,
+        "finalScore": 0.7461273427126769,
         "explorationBonus": 0.38723275036841104,
-        "selectionScore": 1.106789756676113,
+        "selectionScore": 1.1333600930810879,
         "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
       },
       {
@@ -5801,16 +5798,16 @@
         "source": "interest-cache",
         "category": "onsen",
         "scores": {
-          "timeliness": 0.14578495370370376,
+          "timeliness": 0.1249500115740741,
           "novelty": 0.2,
           "continuity": 0.9,
           "emotional_fit": 0.9,
           "affinity": 0.4,
           "surprise": 0.7
         },
-        "finalScore": 0.6800023551459826,
+        "finalScore": 0.7144305192736153,
         "explorationBonus": 0.38723275036841104,
-        "selectionScore": 1.0672351055143936,
+        "selectionScore": 1.1016632696420263,
         "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
       },
       {
@@ -5818,84 +5815,67 @@
         "source": "interest-cache",
         "category": "golf",
         "scores": {
-          "timeliness": 0.4795754340277778,
+          "timeliness": 0.4587404976851852,
           "novelty": 0.2,
           "continuity": 0.9,
           "emotional_fit": 0.9,
           "affinity": 0.4,
           "surprise": 0.7
         },
-        "finalScore": 0.7770656365550559,
+        "finalScore": 0.7922114541629324,
         "explorationBonus": 0.273814903683021,
-        "selectionScore": 1.050880540238077,
+        "selectionScore": 1.0660263578459535,
         "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
-      },
-      {
-        "topic": "東京駅周辺の美味しいおすすめ人気グルメ3選 - シティリビングWeb",
-        "source": "interest-cache",
-        "category": "food_dining",
-        "scores": {
-          "timeliness": 0.4270347800925926,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.9,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.7273740050035227,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.0273740050035227,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
-      },
-      {
-        "topic": "夏色スイレン／青森・合浦公園 - au Webポータル",
-        "source": "interest-cache",
-        "category": "weather_seasonal",
-        "scores": {
-          "timeliness": 0.226340318287037,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.9,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.7155578630260488,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.015557863026049,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
       },
       {
         "topic": "NVIDIA、ロボタクシー向けのオープンなリーズニング モデル、Alpamayo 2 Superを発表 - NVIDIA | Japan Blog",
         "source": "interest-cache",
         "category": "llm_local",
         "scores": {
-          "timeliness": 0.5393234992283951,
+          "timeliness": 0.525433537808642,
           "novelty": 0.2,
           "continuity": 0.9,
           "emotional_fit": 0.5,
           "affinity": 0.4,
           "surprise": 0.7
         },
-        "finalScore": 0.7152554456987665,
+        "finalScore": 0.719813290176925,
         "explorationBonus": 0.3,
-        "selectionScore": 1.0152554456987666,
+        "selectionScore": 1.019813290176925,
         "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）"
       },
       {
-        "topic": "パタゴニアが環境活動家「パティ・ゴニア」さんを提訴。両者の主張に注目集まる - ハフポスト",
+        "topic": "夏色スイレン／青森・合浦公園 - au Webポータル",
         "source": "interest-cache",
-        "category": "_wildcard",
+        "category": "weather_seasonal",
         "scores": {
-          "timeliness": 0.5775447646604939,
+          "timeliness": 0.20550537037037042,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
-          "surprise": 0.8
+          "surprise": 0.7
         },
-        "finalScore": 0.5639212504331642,
-        "explorationBonus": 0.44999999999999996,
-        "selectionScore": 1.0139212504331643,
+        "finalScore": 0.7071551903833675,
+        "explorationBonus": 0.3,
+        "selectionScore": 1.0071551903833675,
+        "reasoning": "気分に合う・新鮮（interest-cache）"
+      },
+      {
+        "topic": "東京駅周辺の美味しいおすすめ人気グルメ3選 - シティリビングWeb",
+        "source": "interest-cache",
+        "category": "food_dining",
+        "scores": {
+          "timeliness": 0.4061998321759259,
+          "novelty": 0.8,
+          "continuity": 0.3,
+          "emotional_fit": 0.9,
+          "affinity": 0.5,
+          "surprise": 0.7
+        },
+        "finalScore": 0.7071395372381053,
+        "explorationBonus": 0.3,
+        "selectionScore": 1.0071395372381053,
         "reasoning": "気分に合う・新鮮（interest-cache）"
       },
       {
@@ -5903,39 +5883,73 @@
         "source": "interest-cache",
         "category": "tv_drama",
         "scores": {
-          "timeliness": 0.27712728587962954,
+          "timeliness": 0.256292337962963,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.7127119753554674,
+        "finalScore": 0.7011373365002955,
         "explorationBonus": 0.3,
-        "selectionScore": 1.0127119753554674,
+        "selectionScore": 1.0011373365002956,
+        "reasoning": "気分に合う・新鮮（interest-cache）"
+      },
+      {
+        "topic": "パタゴニアが環境活動家「パティ・ゴニア」さんを提訴。両者の主張に注目集まる - ハフポスト",
+        "source": "interest-cache",
+        "category": "_wildcard",
+        "scores": {
+          "timeliness": 0.5636548032407407,
+          "novelty": 0.8,
+          "continuity": 0.3,
+          "emotional_fit": 0.9,
+          "affinity": 0.5,
+          "surprise": 0.8
+        },
+        "finalScore": 0.5471720690936942,
+        "explorationBonus": 0.44999999999999996,
+        "selectionScore": 0.9971720690936942,
+        "reasoning": "気分に合う・新鮮（interest-cache）"
+      },
+      {
+        "topic": "「デンゼル・ワシントン」の圧倒的カリスマ、CIA工作員を怒らせてしまったメキシコ誘拐組織の惨めな最期｜NETFLIX [映画紹介]",
+        "source": "interest-cache",
+        "category": "movie_theater",
+        "scores": {
+          "timeliness": 0.3,
+          "novelty": 0.8,
+          "continuity": 0.3,
+          "emotional_fit": 0.9,
+          "affinity": 0.5,
+          "surprise": 0.7
+        },
+        "finalScore": 0.6941784246098229,
+        "explorationBonus": 0.3,
+        "selectionScore": 0.9941784246098229,
         "reasoning": "気分に合う・新鮮（interest-cache）"
       }
     ],
     "weightsUsed": {
-      "timeliness": 0.29079104147858087,
-      "novelty": 0.14668069705094638,
-      "continuity": 0.14545111777326566,
-      "emotional_fit": 0.19796098240576773,
-      "affinity": 0.11392981949583608,
-      "surprise": 0.10518634179560313
+      "timeliness": 0.23302322302687023,
+      "novelty": 0.1325298699991662,
+      "continuity": 0.2037298126764906,
+      "emotional_fit": 0.21984797787258906,
+      "affinity": 0.1667336737734796,
+      "surprise": 0.04413544265140445
     },
     "sampledRaw": {
-      "timeliness": 0.24894924977429708,
-      "novelty": 0.1760168364611357,
-      "continuity": 0.17454134132791882,
-      "emotional_fit": 0.1375531788869213,
-      "affinity": 0.13671578339500332,
-      "surprise": 0.12622361015472378
+      "timeliness": 0.20293018993493125,
+      "novelty": 0.172288830998916,
+      "continuity": 0.16484875647943775,
+      "emotional_fit": 0.18580237123436574,
+      "affinity": 0.21675377590552347,
+      "surprise": 0.057376075446825776
     },
     "contextBonus": {
       "timeliness": 0.1,
       "novelty": 0,
-      "continuity": 0,
+      "continuity": 0.1,
       "emotional_fit": 0.1,
       "affinity": 0,
       "surprise": 0
@@ -5975,7 +5989,7 @@
   },
   "lastOAuthNotifyDate": "2026-06-03",
   "themeInventory": {
-    "updatedAt": "2026-06-05T23:30:08.320Z",
+    "updatedAt": "2026-06-06T00:30:08.602Z",
     "records": [
       {
         "themeKey": "lifestyle/food-wellness/onsen",
@@ -6136,30 +6150,6 @@
         "lastSentAt": null
       },
       {
-        "themeKey": "local/saitama/other/saitama-city/urban",
-        "themePath": [
-          "local",
-          "saitama",
-          "other",
-          "saitama-city",
-          "urban"
-        ],
-        "rootKey": "local/saitama/other",
-        "availableCount": 1,
-        "sentFreshCount": 0,
-        "sent30dCount": 0,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0.5,
-        "uniqueSources30d": 0,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 4,
-        "freshnessDays": 5,
-        "freshnessScore": 1,
-        "lastSentAt": null
-      },
-      {
         "themeKey": "misc/calendar/11-00ドラム-2026",
         "themePath": [
           "misc",
@@ -6187,6 +6177,28 @@
           "misc",
           "topic",
           "slackbot-再構築の舞台裏-slack"
+        ],
+        "rootKey": "misc",
+        "availableCount": 1,
+        "sentFreshCount": 0,
+        "sent30dCount": 0,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0.5,
+        "uniqueSources30d": 0,
+        "targetCount": 4,
+        "supplyGap": 3,
+        "rotationGap": 4,
+        "freshnessDays": 7,
+        "freshnessScore": 1,
+        "lastSentAt": null
+      },
+      {
+        "themeKey": "misc/topic/slack上のやりとりからチーム内のリレーションを自動解析するボット-a;-エー",
+        "themePath": [
+          "misc",
+          "topic",
+          "slack上のやりとりからチーム内のリレーションを自動解析するボット-a;-エー"
         ],
         "rootKey": "misc",
         "availableCount": 1,
@@ -6234,7 +6246,7 @@
           "personal/travel-tech/pet/cat-health"
         ],
         "rootKey": "personal/personal/travel-tech",
-        "availableCount": 3,
+        "availableCount": 4,
         "sentFreshCount": 2,
         "sent30dCount": 3,
         "positive30dCount": 1,
@@ -6242,10 +6254,10 @@
         "positiveRate30d": 0.3333333333333333,
         "uniqueSources30d": 4,
         "targetCount": 5,
-        "supplyGap": 2,
+        "supplyGap": 1,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.9227607953042328,
+        "freshnessScore": 0.9168079480820106,
         "lastSentAt": "2026-06-05T10:31:34.049Z"
       },
       {
@@ -6268,7 +6280,7 @@
         "supplyGap": 1,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.8959565707671958,
+        "freshnessScore": 0.8900037235449736,
         "lastSentAt": "2026-06-05T06:01:22.854Z"
       },
       {
@@ -6291,7 +6303,7 @@
         "supplyGap": 2,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.02989719576719574,
+        "freshnessScore": 0.023944348544973515,
         "lastSentAt": "2026-05-30T04:31:30.144Z"
       },
       {
@@ -6337,7 +6349,7 @@
         "supplyGap": 3,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.8721234953703704,
+        "freshnessScore": 0.8661706481481481,
         "lastSentAt": "2026-06-05T02:01:08.610Z"
       },
       {
@@ -6370,29 +6382,6 @@
           "travel-tech",
           "travel",
           "hotel"
-        ],
-        "rootKey": "personal/travel-tech",
-        "availableCount": 1,
-        "sentFreshCount": 0,
-        "sent30dCount": 0,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0.5,
-        "uniqueSources30d": 0,
-        "targetCount": 3,
-        "supplyGap": 2,
-        "rotationGap": 3,
-        "freshnessDays": 7,
-        "freshnessScore": 1,
-        "lastSentAt": null
-      },
-      {
-        "themeKey": "personal/travel-tech/pet/vet",
-        "themePath": [
-          "personal",
-          "travel-tech",
-          "pet",
-          "vet"
         ],
         "rootKey": "personal/travel-tech",
         "availableCount": 1,
@@ -6509,7 +6498,7 @@
           "personal/travel-tech/dev/ai-tools"
         ],
         "rootKey": "personal/personal/travel-tech",
-        "availableCount": 22,
+        "availableCount": 23,
         "sentFreshCount": 1,
         "sent30dCount": 1,
         "positive30dCount": 0,
@@ -6517,10 +6506,10 @@
         "positiveRate30d": 0,
         "uniqueSources30d": 2,
         "targetCount": 3,
-        "supplyGap": -19,
+        "supplyGap": -20,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6191304447751322,
+        "freshnessScore": 0.6131775975529101,
         "lastSentAt": "2026-06-03T07:30:58.413Z"
       },
       {
@@ -6532,7 +6521,7 @@
           "business/consulting/finance/kpi"
         ],
         "rootKey": "business/business/consulting",
-        "availableCount": 16,
+        "availableCount": 15,
         "sentFreshCount": 1,
         "sent30dCount": 1,
         "positive30dCount": 0,
@@ -6540,10 +6529,10 @@
         "positiveRate30d": 0,
         "uniqueSources30d": 2,
         "targetCount": 3,
-        "supplyGap": -13,
+        "supplyGap": -12,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.30960782903439144,
+        "freshnessScore": 0.3036549818121693,
         "lastSentAt": "2026-06-01T03:30:59.135Z"
       },
       {
@@ -6566,7 +6555,7 @@
         "supplyGap": 0,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.2084488492063492,
+        "freshnessScore": 0.20249600198412698,
         "lastSentAt": "2026-05-31T10:31:18.184Z"
       },
       {
@@ -6590,7 +6579,7 @@
         "supplyGap": -1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.4881743452380952,
+        "freshnessScore": 0.482221498015873,
         "lastSentAt": "2026-06-02T09:30:56.164Z"
       },
       {
@@ -6613,7 +6602,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7441782060185185,
+        "freshnessScore": 0.7382253587962964,
         "lastSentAt": "2026-06-04T04:31:27.299Z"
       },
       {
@@ -6635,7 +6624,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7738997602513227,
+        "freshnessScore": 0.7679469130291006,
         "lastSentAt": "2026-06-04T09:31:02.895Z"
       },
       {
@@ -6658,8 +6647,31 @@
         "supplyGap": 0,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.92866552744709,
+        "freshnessScore": 0.9227126802248677,
         "lastSentAt": "2026-06-05T11:31:05.231Z"
+      },
+      {
+        "themeKey": "sports/golf/lesson/coach",
+        "themePath": [
+          "sports",
+          "sports/golf",
+          "sports/golf/lesson",
+          "sports/golf/lesson/coach"
+        ],
+        "rootKey": "sports/sports/golf",
+        "availableCount": 2,
+        "sentFreshCount": 2,
+        "sent30dCount": 3,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 4,
+        "targetCount": 4,
+        "supplyGap": 2,
+        "rotationGap": 2,
+        "freshnessDays": 7,
+        "freshnessScore": 0.8602126785714286,
+        "lastSentAt": "2026-06-05T01:01:05.230Z"
       },
       {
         "themeKey": "entertainment/movie-drama/film/theater",
@@ -6681,7 +6693,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.21438095734126983,
+        "freshnessScore": 0.2084281101190476,
         "lastSentAt": "2026-05-31T11:31:05.923Z"
       },
       {
@@ -6704,7 +6716,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.33341844907407403,
+        "freshnessScore": 0.3274656018518519,
         "lastSentAt": "2026-06-01T07:30:59.798Z"
       },
       {
@@ -6728,7 +6740,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6250747982804232,
+        "freshnessScore": 0.6191219510582011,
         "lastSentAt": "2026-06-03T08:30:53.558Z"
       },
       {
@@ -6750,7 +6762,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7649814682539682,
+        "freshnessScore": 0.7590286210317461,
         "lastSentAt": "2026-06-04T08:01:09.112Z"
       },
       {
@@ -6772,7 +6784,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8899726504629629,
+        "freshnessScore": 0.8840198032407407,
         "lastSentAt": "2026-06-05T05:01:03.779Z"
       },
       {
@@ -6795,7 +6807,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.22630959490740743,
+        "freshnessScore": 0.2203567476851852,
         "lastSentAt": "2026-05-31T13:31:20.363Z"
       },
       {
@@ -6818,7 +6830,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.45844384093915347,
+        "freshnessScore": 0.45249099371693124,
         "lastSentAt": "2026-06-02T04:31:15.155Z"
       },
       {
@@ -6841,7 +6853,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5119667923280423,
+        "freshnessScore": 0.5060139451058201,
         "lastSentAt": "2026-06-02T13:30:45.836Z"
       },
       {
@@ -6865,7 +6877,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7262812979497355,
+        "freshnessScore": 0.7203284507275132,
         "lastSentAt": "2026-06-04T01:31:03.249Z"
       },
       {
@@ -6889,7 +6901,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9167690145502646,
+        "freshnessScore": 0.9108161673280424,
         "lastSentAt": "2026-06-05T09:31:10.220Z"
       },
       {
@@ -6903,18 +6915,18 @@
         ],
         "rootKey": "sports/sports/mlb",
         "availableCount": 1,
-        "sentFreshCount": 1,
-        "sent30dCount": 1,
+        "sentFreshCount": 2,
+        "sent30dCount": 2,
         "positive30dCount": 0,
         "negative30dCount": 0,
         "positiveRate30d": 0,
-        "uniqueSources30d": 2,
-        "targetCount": 3,
-        "supplyGap": 2,
+        "uniqueSources30d": 3,
+        "targetCount": 4,
+        "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9971278439153439,
-        "lastSentAt": "2026-06-05T23:01:11.240Z"
+        "freshnessScore": 0.9971365988756614,
+        "lastSentAt": "2026-06-06T00:01:16.817Z"
       },
       {
         "themeKey": "sports/mlb/dodgers/ohtani/home-run",
@@ -6927,17 +6939,17 @@
         ],
         "rootKey": "sports/sports/mlb",
         "availableCount": 0,
-        "sentFreshCount": 3,
-        "sent30dCount": 6,
+        "sentFreshCount": 2,
+        "sent30dCount": 4,
         "positive30dCount": 0,
         "negative30dCount": 0,
         "positiveRate30d": 0,
-        "uniqueSources30d": 6,
-        "targetCount": 5,
-        "supplyGap": 5,
+        "uniqueSources30d": 4,
+        "targetCount": 4,
+        "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8542803505291006,
+        "freshnessScore": 0.8483275033068782,
         "lastSentAt": "2026-06-04T23:01:17.076Z"
       },
       {
@@ -6960,7 +6972,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7768915393518518,
+        "freshnessScore": 0.7709386921296296,
         "lastSentAt": "2026-06-04T10:01:12.323Z"
       },
       {
@@ -6983,7 +6995,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.32153124173280434,
+        "freshnessScore": 0.315578394510582,
         "lastSentAt": "2026-06-01T05:31:10.415Z"
       },
       {
@@ -7006,7 +7018,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.04771721395502648,
+        "freshnessScore": 0.04176436673280415,
         "lastSentAt": "2026-05-30T07:31:07.691Z"
       },
       {
@@ -7028,7 +7040,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.16081515707671967,
+        "freshnessScore": 0.15486230985449734,
         "lastSentAt": "2026-05-31T02:31:09.327Z"
       },
       {
@@ -7052,7 +7064,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7917425462962964,
+        "freshnessScore": 0.785789699074074,
         "lastSentAt": "2026-06-04T12:30:54.212Z"
       },
       {
@@ -7075,7 +7087,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8631910681216931,
+        "freshnessScore": 0.8572382208994709,
         "lastSentAt": "2026-06-05T00:31:06.278Z"
       },
       {
@@ -7098,7 +7110,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.45253717923280423,
+        "freshnessScore": 0.446584332010582,
         "lastSentAt": "2026-06-02T03:31:42.806Z"
       },
       {
@@ -7121,7 +7133,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5893705787037038,
+        "freshnessScore": 0.5834177314814815,
         "lastSentAt": "2026-06-03T02:30:59.646Z"
       },
       {
@@ -7145,7 +7157,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7619815492724868,
+        "freshnessScore": 0.7560287020502645,
         "lastSentAt": "2026-06-04T07:30:54.761Z"
       },
       {
@@ -7168,7 +7180,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8810346494708995,
+        "freshnessScore": 0.8750818022486773,
         "lastSentAt": "2026-06-05T03:30:58.076Z"
       },
       {
@@ -7192,7 +7204,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9048786888227514,
+        "freshnessScore": 0.8989258416005291,
         "lastSentAt": "2026-06-05T07:31:18.951Z"
       },
       {
@@ -7215,7 +7227,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6399734540343915,
+        "freshnessScore": 0.6340206068121693,
         "lastSentAt": "2026-06-03T11:01:04.265Z"
       },
       {
@@ -7238,7 +7250,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7233366534391534,
+        "freshnessScore": 0.7173838062169312,
         "lastSentAt": "2026-06-04T01:01:22.328Z"
       },
       {
@@ -7261,7 +7273,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7352088458994709,
+        "freshnessScore": 0.7292559986772487,
         "lastSentAt": "2026-06-04T03:01:02.630Z"
       },
       {
@@ -7283,7 +7295,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7530919874338624,
+        "freshnessScore": 0.7471391402116402,
         "lastSentAt": "2026-06-04T06:01:18.354Z"
       },
       {
@@ -7305,7 +7317,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.88403134755291,
+        "freshnessScore": 0.8780785003306878,
         "lastSentAt": "2026-06-05T04:01:10.479Z"
       },
       {
@@ -7327,7 +7339,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8006971693121694,
+        "freshnessScore": 0.794744322089947,
         "lastSentAt": "2026-06-04T14:01:09.968Z"
       },
       {
@@ -7349,7 +7361,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9078524537037037,
+        "freshnessScore": 0.9018996064814815,
         "lastSentAt": "2026-06-05T08:01:17.484Z"
       },
       {
@@ -7371,7 +7383,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9198035730820106,
+        "freshnessScore": 0.9138507258597883,
         "lastSentAt": "2026-06-05T10:01:45.521Z"
       },
       {
@@ -7395,31 +7407,8 @@
         "supplyGap": 1,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.875088287037037,
+        "freshnessScore": 0.8691354398148148,
         "lastSentAt": "2026-06-05T02:31:01.716Z"
-      },
-      {
-        "themeKey": "sports/golf/lesson/coach",
-        "themePath": [
-          "sports",
-          "sports/golf",
-          "sports/golf/lesson",
-          "sports/golf/lesson/coach"
-        ],
-        "rootKey": "sports/sports/golf",
-        "availableCount": 2,
-        "sentFreshCount": 3,
-        "sent30dCount": 3,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 4,
-        "targetCount": 4,
-        "supplyGap": 2,
-        "rotationGap": 1,
-        "freshnessDays": 7,
-        "freshnessScore": 0.8661655257936508,
-        "lastSentAt": "2026-06-05T01:01:05.230Z"
       },
       {
         "themeKey": "ai/enterprise/security/procurement",
@@ -7441,7 +7430,7 @@
         "supplyGap": 4,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.7888015162037036,
+        "freshnessScore": 0.7828486689814815,
         "lastSentAt": "2026-06-04T12:01:15.477Z"
       },
       {
@@ -7464,7 +7453,7 @@
         "supplyGap": 5,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.5001218468915344,
+        "freshnessScore": 0.49416899966931216,
         "lastSentAt": "2026-06-02T11:31:22.013Z"
       },
       {
@@ -7488,7 +7477,7 @@
         "supplyGap": 3,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.6131959441137567,
+        "freshnessScore": 0.6072430968915343,
         "lastSentAt": "2026-06-03T06:31:09.227Z"
       },
       {
@@ -7510,7 +7499,7 @@
         "supplyGap": 3,
         "rotationGap": 0,
         "freshnessDays": 7,
-        "freshnessScore": 0.878075882936508,
+        "freshnessScore": 0.8721230357142857,
         "lastSentAt": "2026-06-05T03:01:08.614Z"
       },
       {
@@ -7533,7 +7522,7 @@
         "supplyGap": 2,
         "rotationGap": -2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7590151488095238,
+        "freshnessScore": 0.7530623015873016,
         "lastSentAt": "2026-06-04T07:01:00.682Z"
       },
       {
@@ -7546,18 +7535,18 @@
         ],
         "rootKey": "entertainment/entertainment/movie-drama",
         "availableCount": 0,
-        "sentFreshCount": 13,
-        "sent30dCount": 20,
+        "sentFreshCount": 14,
+        "sent30dCount": 21,
         "positive30dCount": 1,
         "negative30dCount": 0,
-        "positiveRate30d": 0.05,
-        "uniqueSources30d": 20,
+        "positiveRate30d": 0.047619047619047616,
+        "uniqueSources30d": 21,
         "targetCount": 6,
         "supplyGap": 6,
-        "rotationGap": -7,
+        "rotationGap": -8,
         "freshnessDays": 7,
-        "freshnessScore": 0.8602192757936508,
-        "lastSentAt": "2026-06-05T00:01:08.938Z"
+        "freshnessScore": 0.9941445849867725,
+        "lastSentAt": "2026-06-05T23:31:07.247Z"
       }
     ]
   }
