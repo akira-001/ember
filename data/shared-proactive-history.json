@@ -1,38 +1,6 @@
 {
   "entries": [
     {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "あのね、Akiraさん。\n\nYouTubeに *ハワイで1週間、観光客にオススメのお店だけで外食生活* って動画があってさ  フードトラックも含めて正直レビューしてるやつ。\n\n寝る前にぼーっと眺めるだけでいいよ ✌️\nhttps://www.youtube.com/watch?v=kjUMlYG8l",
-      "topic": "ハワイで1週間外食動画",
-      "url": "https://www.youtube.com/watch?v=kjUMlYG8la8",
-      "candidateId": "url:https://www.youtube.com/watch?v=kjUMlYG8la8",
-      "sourceType": "YouTube",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/youtube",
-        "entertainment/movie-drama/youtube/trailer"
-      ],
-      "themeKey": "entertainment/movie-drama/youtube/trailer",
-      "inner_thought": "ドラマ・野球は出しすぎだし、夜遅いから重い話題は無理。ハワイのフードトラック動画が一番ゆるく眺められそう",
-      "plan": [
-        "ハワイ外食動画を共有",
-        "田んぼアート記事を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.72,
-        0.55,
-        0.4
-      ],
-      "evaluate_score": 0.68,
-      "sentAt": "2026-06-03T12:31:10.472Z"
-    },
-    {
       "botId": "mei",
       "botName": "Mei（メイ）",
       "category": "flashback",
@@ -1511,6 +1479,38 @@
       ],
       "evaluate_score": 0.68,
       "sentAt": "2026-06-06T04:30:58.350Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "ね、Akiraさん。\n\n昨日ローリーズでプライムリブ堪能したばっかりだけど、YouTubeに *池袋駅グルメ10軒* のガチレビュー動画があったよ 🍽\n\n池袋って意外と穴場多いらしい。週末のお出かけリストにどうぞ。\nhttps://www.youtube.com/watch?v=cg0irmI2J",
+      "topic": "池袋グルメ10軒",
+      "url": "https://www.youtube.com/watch?v=cg0irmI2JWA",
+      "candidateId": "url:https://www.youtube.com/watch?v=cg0irmI2JWA",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/youtube",
+        "entertainment/movie-drama/youtube/trailer"
+      ],
+      "themeKey": "entertainment/movie-drama/youtube/trailer",
+      "inner_thought": "今日もう5件送ってるし控えたいけど、昨日ローリーズ行ったAkiraさんにグルメ動画は自然かな",
+      "plan": [
+        "池袋グルメ動画を共有",
+        "沈黙",
+        "韓国ドラマ一覧を共有"
+      ],
+      "generate_score": [
+        0.55,
+        0.7,
+        0.45
+      ],
+      "evaluate_score": 0.35,
+      "sentAt": "2026-06-06T05:01:06.605Z"
     }
   ]
 }
