@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-06T02:51:00.598968+00:00",
+  "lastUpdated": "2026-06-06T03:50:13.345096+00:00",
   "priorities": {
     "ai_agent": 0.8,
     "llm_local": 0.564,
@@ -7,12 +7,12 @@
     "business_strategy": 0.458,
     "ma_startup": 0.28,
     "dodgers": 1.0,
-    "golf": 0.657,
+    "golf": 0.607,
     "campingcar": 0.715,
-    "onsen": 0.407,
+    "onsen": 0.457,
     "cat_health": 0.368,
-    "food_dining": 0.26,
-    "local_tokorozawa": 0.304,
+    "food_dining": 0.31,
+    "local_tokorozawa": 0.354,
     "weather_seasonal": 0.12,
     "movie_theater": 0.299,
     "tv_drama": 0.2
@@ -806,23 +806,15 @@
           "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBuc3JmSHdZWWh5ZnBfU1NxWUlaZGFxLW9Pa2cxMjd5M3lRM3Rja1hZVEkyVFNENnA5RVhXbWdWaFFTOUNaZXdHZEczM2hSUUZ6OFdQSW42bzhFUzZWZHRqT2N6RVVERUxlRWI2N05UczVXY3BjNzh5Zg?oc=5",
           "source": "ハフポスト",
           "pub_date": "2026-06-05T05:05:08+00:00",
-          "timeliness": 0.547,
-          "score": 0.339
-        },
-        {
-          "title": "世界が注目する「ロンジェビティ」とは？ 老化研究の現在地 - RICHESSE（リシェス）",
-          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOODZkakdFWHVERkMxSmhQTEd5MkxoWnpKWnVzZHRualN1TVliZW5FZHpmc0tWUHR3S09LeTVMVkwzWlRQMFRPa2dnZ1lPalJBT2Q3cHk3RzJGblprUTJWRmE5aGtuLVZYN0NXenROT0k3N2d4dDlST0V5cTlUY1ZWZFB3?oc=5",
-          "source": "RICHESSE（リシェス）",
-          "pub_date": "2026-06-05T01:00:58+00:00",
-          "timeliness": 0.462,
-          "score": 0.305
+          "timeliness": 0.526,
+          "score": 0.33
         }
       ],
-      "count": 2,
+      "count": 1,
       "priority": 0.3,
       "tier": "C",
       "emotion_type": "light",
-      "lastChecked": "2026-06-06T02:50:48.015888+00:00"
+      "lastChecked": "2026-06-06T03:50:00.967074+00:00"
     },
     "_cross": {
       "label": "カテゴリ交差",
