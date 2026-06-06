@@ -1,23 +1,6 @@
 {
   "entries": [
     {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "あ、Akiraさん。\n\n*《結果発表》わたしのイチオシ！おすすめしたい2026春の新番組はどれ？〜ゴールデ* がTVガイドWebに出てた。",
-      "url": "",
-      "skill": "general",
-      "themePath": [
-        "sports",
-        "sports/golf",
-        "sports/golf/round",
-        "sports/golf/round/report"
-      ],
-      "themeKey": "sports/golf/round/report",
-      "sentAt": "2026-06-03T11:01:04.265Z"
-    },
-    {
       "botId": "eve",
       "botName": "Eve（イヴ）",
       "category": "flashback",
@@ -1496,6 +1479,38 @@
       ],
       "evaluate_score": 0.4,
       "sentAt": "2026-06-06T04:01:20.838Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "meeting_prep",
+      "interestCategory": "golf",
+      "preview": "あのさ、Akiraさん。\n\nウェザーニュースに *九州北部・中国・近畿が今日梅雨入り* って速報が出てたよ ☔ 平年とほぼ同時期らしい。\n\n関東はもう少し先だけど、ゴルフの予定とか組むなら今のうちかも。\nhttps://www.youtube.com/watch?v=RVzfDKmEMT8",
+      "topic": "九州北部・中国・近畿梅雨入り速報",
+      "url": "https://www.youtube.com/watch?v=RVzfDKmEMT8",
+      "candidateId": "url:https://www.youtube.com/watch?v=RVzfDKmEMT8",
+      "sourceType": "ウェザーニュース",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/golf",
+        "sports/golf/youtube",
+        "sports/golf/youtube/tips"
+      ],
+      "themeKey": "sports/golf/youtube/tips",
+      "inner_thought": "Meiがドラマ系を13:01に送ったし、グルメも食後すぐは重い。梅雨入りニュース、タイムリーで軽い",
+      "plan": [
+        "梅雨入り速報を季節感として届ける",
+        "池袋グルメ動画を次回外食候補として届ける",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.72,
+        0.58,
+        0.4
+      ],
+      "evaluate_score": 0.68,
+      "sentAt": "2026-06-06T04:30:58.350Z"
     }
   ]
 }
