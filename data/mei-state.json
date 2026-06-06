@@ -16,61 +16,6 @@
   },
   "history": [
     {
-      "id": "9474387c-3aa3-4e4b-b006-56187184c4d9",
-      "category": "flashback",
-      "interestCategory": "general",
-      "sentAt": "2026-05-27T11:01:22.124Z",
-      "slackTs": "1779879684.405019",
-      "slackChannel": "U3SFGQXNH",
-      "reaction": null,
-      "reactionDelta": 0,
-      "preview": "Akiraさん、山籠りおつかれさま。\n\nFNNが *梅雨のはしりで都心の気温が3月下旬並みに急降下* って伝えてるよ 🌧\n\n寒暖差で頭痛やめまいが出る「気象病」に注意って話。2日間ガッツリ集中した後って身体の疲れに気づきにくいから、今夜は",
-      "fullText": "Akiraさん、山籠りおつかれさま。\n\nFNNが *梅雨のはしりで都心の気温が3月下旬並みに急降下* って伝えてるよ 🌧\n\n寒暖差で頭痛やめまいが出る「気象病」に注意って話。2日間ガッツリ集中した後って身体の疲れに気づきにくいから、今夜はゆっくり休んでね。\nhttps://www.youtube.com/watch?v=2The89Hm8hw",
-      "sourceUrls": [
-        {
-          "title": "気象病・梅雨のはしり注意喚起",
-          "url": "https://www.youtube.com/watch?v=2The89Hm8hw",
-          "source": "topic-table"
-        }
-      ],
-      "candidateId": "url:https://www.youtube.com/watch?v=2The89Hm8hw",
-      "candidateTopic": "気象病・梅雨のはしり注意喚起",
-      "candidateUrl": "https://www.youtube.com/watch?v=2The89Hm8hw",
-      "candidateSource": "topic-table",
-      "skill": "general",
-      "sources": [
-        "calendar",
-        "email",
-        "interest-cache"
-      ],
-      "intrinsicReward": {
-        "signals": [],
-        "immediateTotal": 0,
-        "deferredTotal": 0,
-        "compositeBoost": 0
-      },
-      "premise": {
-        "estimatedMode": "回復モード・低エネルギー",
-        "modeReason": "山籠り2日目が18:30に終了、夕食後でクールダウン中。2日間の集中ワークの疲労が蓄積している",
-        "targetLayer": 5,
-        "layerReason": "状態層。疲労が溜まっているタイミングで体調管理の実用情報が刺さる",
-        "interventionType": "情報提供",
-        "interventionReason": "梅雨入り前の気象変化という実用的な知識で、体調面の気づきを提供できる",
-        "reason": "2日間の山籠り直後で身体が疲れている可能性が高く、気象病の注意喚起は実用的",
-        "informationGap": null,
-        "collectionHint": null
-      },
-      "emotionTag": "calm",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/other",
-        "local/saitama/other/kumagaya",
-        "local/saitama/other/kumagaya/heat"
-      ],
-      "themeKey": "local/saitama/other/kumagaya/heat"
-    },
-    {
       "id": "7744135c-df1d-4661-a0c8-0ea9fa31d5a3",
       "category": "hobby_leisure",
       "interestCategory": "general",
@@ -5410,11 +5355,66 @@
         "sports/mlb/dodgers/roki/support"
       ],
       "themeKey": "sports/mlb/dodgers/roki/support"
+    },
+    {
+      "id": "4fb0b222-9b24-4c6d-9b42-e5b61f96ee66",
+      "category": "flashback",
+      "interestCategory": "general",
+      "sentAt": "2026-06-06T03:01:16.832Z",
+      "slackTs": "1780714877.182869",
+      "slackChannel": "U3SFGQXNH",
+      "reaction": null,
+      "reactionDelta": 0,
+      "preview": "Akiraさん、朗希ちゃんどうだった？\n\nそうそう、前にイヴと春ドラマの話してたでしょ。dメニューに *この夏の「オトナ女子恋愛ドラマ」* の記事が出てて、内田有紀×寺西拓人の年の差ラブとか続々始まるらしい 📺\n\nお昼のゆるっとタイムにど",
+      "fullText": "Akiraさん、朗希ちゃんどうだった？\n\nそうそう、前にイヴと春ドラマの話してたでしょ。dメニューに *この夏の「オトナ女子恋愛ドラマ」* の記事が出てて、内田有紀×寺西拓人の年の差ラブとか続々始まるらしい 📺\n\nお昼のゆるっとタイムにどうぞ。\nhttps://news.google.com/rss/articles/CBMilgFBVV95cUxNeXNCLVZpUWJpZXltNWxJb3JxUW9pUFQzdVlUdFF4WnpDSktlb0hXcUhxOTQxblJpUlZMbDNFVUFBUFBUTVNRV3pqY2kzOWNGd2Rpc3pQanR4eGthUDQ1RDNKOVJoNXBDdkhTUjJoMjRnVGJ3aGRILTM3a1dwTnVUTG5Gc25YOF8wMFF3OGQweFFKcXp6NmfSAZYBQVVfeXFMTXlzQi1WaVFiaWV5bTVsSW9ycVFvaVBUM3VZVHRReFp6Q0pLZW9IV3FIcTk0MW5SaVJWTGwzRVVBQVBQVE1TUVd6amNpMzljRndkaXN6UGp0eHhrYVA0NUQzSjlSaDVwQ3ZIU1IyaDI0Z1Rid2hkSC0zN2tXcE51VExuRnNuWDhfMDBRdzhkMHhRSnF6ejZn?oc=5",
+      "sourceUrls": [
+        {
+          "title": "夏のオトナ女子恋愛ドラマ",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNeXNCLVZpUWJpZXltNWxJb3JxUW9pUFQzdVlUdFF4WnpDSktlb0hXcUhxOTQxblJpUlZMbDNFVUFBUFBUTVNRV3pqY2kzOWNGd2Rpc3pQanR4eGthUDQ1RDNKOVJoNXBDdkhTUjJoMjRnVGJ3aGRILTM3a1dwTnVUTG5Gc25YOF8wMFF3OGQweFFKcXp6NmfSAZYBQVVfeXFMTXlzQi1WaVFiaWV5bTVsSW9ycVFvaVBUM3VZVHRReFp6Q0pLZW9IV3FIcTk0MW5SaVJWTGwzRVVBQVBQVE1TUVd6amNpMzljRndkaXN6UGp0eHhrYVA0NUQzSjlSaDVwQ3ZIU1IyaDI0Z1Rid2hkSC0zN2tXcE51VExuRnNuWDhfMDBRdzhkMHhRSnF6ejZn?oc=5",
+          "source": "topic-table"
+        }
+      ],
+      "candidateId": "url:https://news.google.com/rss/articles/CBMilgFBVV95cUxNeXNCLVZpUWJpZXltNWxJb3JxUW9pUFQzdVlUdFF4WnpDSktlb0hXcUhxOTQxblJpUlZMbDNFVUFBUFBUTVNRV3pqY2kzOWNGd2Rpc3pQanR4eGthUDQ1RDNKOVJoNXBDdkhTUjJoMjRnVGJ3aGRILTM3a1dwTnVUTG5Gc25YOF8wMFF3OGQweFFKcXp6NmfSAZYBQVVfeXFMTXlzQi1WaVFiaWV5bTVsSW9ycVFvaVBUM3VZVHRReFp6Q0pLZW9IV3FIcTk0MW5SaVJWTGwzRVVBQVBQVE1TUVd6amNpMzljRndkaXN6UGp0eHhrYVA0NUQzSjlSaDVwQ3ZIU1IyaDI0Z1Rid2hkSC0zN2tXcE51VExuRnNuWDhfMDBRdzhkMHhRSnF6ejZn?oc=5",
+      "candidateTopic": "夏のオトナ女子恋愛ドラマ",
+      "candidateUrl": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNeXNCLVZpUWJpZXltNWxJb3JxUW9pUFQzdVlUdFF4WnpDSktlb0hXcUhxOTQxblJpUlZMbDNFVUFBUFBUTVNRV3pqY2kzOWNGd2Rpc3pQanR4eGthUDQ1RDNKOVJoNXBDdkhTUjJoMjRnVGJ3aGRILTM3a1dwTnVUTG5Gc25YOF8wMFF3OGQweFFKcXp6NmfSAZYBQVVfeXFMTXlzQi1WaVFiaWV5bTVsSW9ycVFvaVBUM3VZVHRReFp6Q0pLZW9IV3FIcTk0MW5SaVJWTGwzRVVBQVBQVE1TUVd6amNpMzljRndkaXN6UGp0eHhrYVA0NUQzSjlSaDVwQ3ZIU1IyaDI0Z1Rid2hkSC0zN2tXcE51VExuRnNuWDhfMDBRdzhkMHhRSnF6ejZn?oc=5",
+      "candidateSource": "topic-table",
+      "skill": "general",
+      "sources": [
+        "calendar",
+        "email",
+        "interest-cache"
+      ],
+      "intrinsicReward": {
+        "signals": [],
+        "immediateTotal": 0,
+        "deferredTotal": 0,
+        "compositeBoost": 0
+      },
+      "premise": {
+        "estimatedMode": "探索モード・回復中",
+        "modeReason": "土曜昼、朗希ちゃんの試合がちょうど終わったタイミング。誕生日翌日でリラックスモード",
+        "targetLayer": 4,
+        "layerReason": "趣味の娯楽情報で週末の楽しみを広げる実行層へのアプローチ",
+        "interventionType": "情報提供",
+        "interventionReason": "朗希ちゃん後の切り替えタイミングで軽い話題を1つ置く",
+        "reason": "試合終了直後の自然な切り替えポイント。前にイヴと春ドラマの話で盛り上がった記憶があり、夏ドラマの流れに繋げられる",
+        "informationGap": null,
+        "collectionHint": null
+      },
+      "emotionTag": "calm",
+      "themePath": [
+        "sports",
+        "sports/mlb",
+        "sports/mlb/dodgers",
+        "sports/mlb/dodgers/roki",
+        "sports/mlb/dodgers/roki/support"
+      ],
+      "themeKey": "sports/mlb/dodgers/roki/support"
     }
   ],
-  "lastCheckAt": "2026-06-06T01:01:02.245Z",
+  "lastCheckAt": "2026-06-06T03:01:16.831Z",
   "stats": {
-    "totalSent": 896,
+    "totalSent": 897,
     "positiveReactions": 60,
     "negativeReactions": 3
   },
@@ -5469,61 +5469,73 @@
         "sports/mlb/dodgers/roki/support"
       ],
       "themeKey": "sports/mlb/dodgers/roki/support"
+    },
+    {
+      "time": "12:01",
+      "summary": "夏のオトナ女子恋愛ドラマ",
+      "source": "topic-table",
+      "interestCategory": "general",
+      "topic": "夏のオトナ女子恋愛ドラマ",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNeXNCLVZpUWJpZXltNWxJb3JxUW9pUFQzdVlUdFF4WnpDSktlb0hXcUhxOTQxblJpUlZMbDNFVUFBUFBUTVNRV3pqY2kzOWNGd2Rpc3pQanR4eGthUDQ1RDNKOVJoNXBDdkhTUjJoMjRnVGJ3aGRILTM3a1dwTnVUTG5Gc25YOF8wMFF3OGQweFFKcXp6NmfSAZYBQVVfeXFMTXlzQi1WaVFiaWV5bTVsSW9ycVFvaVBUM3VZVHRReFp6Q0pLZW9IV3FIcTk0MW5SaVJWTGwzRVVBQVBQVE1TUVd6amNpMzljRndkaXN6UGp0eHhrYVA0NUQzSjlSaDVwQ3ZIU1IyaDI0Z1Rid2hkSC0zN2tXcE51VExuRnNuWDhfMDBRdzhkMHhRSnF6ejZn?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMilgFBVV95cUxNeXNCLVZpUWJpZXltNWxJb3JxUW9pUFQzdVlUdFF4WnpDSktlb0hXcUhxOTQxblJpUlZMbDNFVUFBUFBUTVNRV3pqY2kzOWNGd2Rpc3pQanR4eGthUDQ1RDNKOVJoNXBDdkhTUjJoMjRnVGJ3aGRILTM3a1dwTnVUTG5Gc25YOF8wMFF3OGQweFFKcXp6NmfSAZYBQVVfeXFMTXlzQi1WaVFiaWV5bTVsSW9ycVFvaVBUM3VZVHRReFp6Q0pLZW9IV3FIcTk0MW5SaVJWTGwzRVVBQVBQVE1TUVd6amNpMzljRndkaXN6UGp0eHhrYVA0NUQzSjlSaDVwQ3ZIU1IyaDI0Z1Rid2hkSC0zN2tXcE51VExuRnNuWDhfMDBRdzhkMHhRSnF6ejZn?oc=5",
+      "themePath": [
+        "sports",
+        "sports/mlb",
+        "sports/mlb/dodgers",
+        "sports/mlb/dodgers/roki",
+        "sports/mlb/dodgers/roki/support"
+      ],
+      "themeKey": "sports/mlb/dodgers/roki/support"
     }
   ],
   "todayDate": "2026-06-06",
   "lastDecisionLog": {
     "premise": {
       "estimatedMode": "探索モード・回復中",
-      "modeReason": "誕生日翌日の土曜朝。予定は11:10の朗希ちゃんのみで、まだ1時間余裕がある。昨日のイベント疲れからの回復期",
+      "modeReason": "土曜昼、朗希ちゃんの試合がちょうど終わったタイミング。誕生日翌日でリラックスモード",
       "targetLayer": 4,
-      "layerReason": "趣味（野球×グルメ）に関する軽い話題で、実行層の日常を彩る好機",
+      "layerReason": "趣味の娯楽情報で週末の楽しみを広げる実行層へのアプローチ",
       "interventionType": "情報提供",
-      "interventionReason": "昨日の誕生日ディナーと今日の野球観戦を自然に橋渡しできる記事がある",
-      "reason": "昨日のローリーズのステーキと今日の朗希ちゃん、両方に繋がるネタがちょうどある",
+      "interventionReason": "朗希ちゃん後の切り替えタイミングで軽い話題を1つ置く",
+      "reason": "試合終了直後の自然な切り替えポイント。前にイヴと春ドラマの話で盛り上がった記憶があり、夏ドラマの流れに繋げられる",
       "informationGap": null,
       "collectionHint": null
     },
     "decision": "send",
-    "need": "つながり・楽しみ",
-    "reason": "昨日のステーキディナーと今日の野球がちょうど1つの記事で繋がる",
+    "need": "楽しみ・発見",
+    "reason": "朗希ちゃん直後の切り替えタイミングで、過去の春ドラマ反応と繋がる夏ドラマ情報",
     "candidates": [
       {
-        "topic": "長嶋茂雄×ステーキ「誠」",
+        "topic": "夏のオトナ女子恋愛ドラマ",
         "source": "topic-table",
-        "score": 0.86
+        "score": 0.77
       },
       {
-        "topic": "春アニメまとめ",
-        "source": "topic-table",
-        "score": 0.88
-      },
-      {
-        "topic": "うちの弟どもがすみません 映画PV",
-        "source": "topic-table",
-        "score": 0.88
-      },
-      {
-        "topic": "Netflix韓国ドラマ66選",
+        "topic": "ゴルフYouTubeクリエイター",
         "source": "topic-table",
         "score": 0.82
+      },
+      {
+        "topic": "アニメ映画PV",
+        "source": "topic-table",
+        "score": 0.81
       }
     ],
-    "message": "ふふ、聞いてよ。\n\n昨日ローリーズでプライムリブ食べたばっかりなのに、日刊スポーツに *長嶋茂雄さんが開幕前に必ず通ってたステーキ屋「誠」* の記事が出てた 🥩\n\n野球とステーキって、Akiraさんの昨日と今日そのまんまだなって。朗希ちゃんまでの暇つぶしにどうぞ。\nhttps://news.google.com/rss/articles/CBMif0FVX3lxTE9NcExfbTdyZnBTZnZlQ1RtMDVHbkVtWTFkQkhnU2piLXJiRjAyTnhnU0lqQWg3WW9tbnI4ODJMcHktMmt2QmRHdlJlWU5OalBnWkdNR1lrMDFHY0UzbnZXWVY4OU55YTRsemQyTEZ0bFM0X1kyWGFvalBMaXB6eHc?oc=5",
+    "message": "Akiraさん、朗希ちゃんどうだった？\n\nそうそう、前にイヴと春ドラマの話してたでしょ。dメニューに *この夏の「オトナ女子恋愛ドラマ」* の記事が出てて、内田有紀×寺西拓人の年の差ラブとか続々始まるらしい 📺\n\nお昼のゆるっとタイムにどうぞ。\nhttps://news.google.com/rss/articles/CBMilgFBVV95cUxNeXNCLVZpUWJpZXltNWxJb3JxUW9pUFQzdVlUdFF4WnpDSktlb0hXcUhxOTQxblJpUlZMbDNFVUFBUFBUTVNRV3pqY2kzOWNGd2Rpc3pQanR4eGthUDQ1RDNKOVJoNXBDdkhTUjJoMjRnVGJ3aGRILTM3a1dwTnVUTG5Gc25YOF8wMFF3OGQweFFKcXp6NmfSAZYBQVVfeXFMTXlzQi1WaVFiaWV5bTVsSW9ycVFvaVBUM3VZVHRReFp6Q0pLZW9IV3FIcTk0MW5SaVJWTGwzRVVBQVBQVE1TUVd6amNpMzljRndkaXN6UGp0eHhrYVA0NUQzSjlSaDVwQ3ZIU1IyaDI0Z1Rid2hkSC0zN2tXcE51VExuRnNuWDhfMDBRdzhkMHhRSnF6ejZn?oc=5",
     "topicWeight": "light",
-    "inner_thought": "昨日ローリーズでプライムリブ食べて、今日は朗希ちゃん。長嶋さんのステーキの記事、これ両方繋がる",
+    "inner_thought": "朗希ちゃん終わったところだし、前の春ドラマの反応を活かして夏ドラマの話題を繋げたい",
     "plan": [
-      "長嶋ステーキ記事を昨日のディナーと繋げて共有",
-      "春アニメまとめを共有",
-      "沈黙して朗希ちゃんまで待つ"
+      "夏ドラマ記事を春ドラマの記憶と繋げて共有",
+      "ゴルフYouTube動画を共有",
+      "沈黙して様子見"
     ],
     "generate_score": [
-      0.82,
-      0.4,
-      0.55
+      0.65,
+      0.55,
+      0.4
     ],
-    "evaluate_score": 0.7,
-    "timestamp": "2026-06-06T01:01:02.245Z",
+    "evaluate_score": 0.55,
+    "timestamp": "2026-06-06T03:01:16.831Z",
     "skill": "none",
     "scoredCandidates": [
       {
@@ -5531,85 +5543,34 @@
         "source": "interest-cache",
         "category": "movie_theater",
         "scores": {
-          "timeliness": 0.895743125,
+          "timeliness": 0.8123957060185185,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.8767589880889757,
+        "finalScore": 0.8136763138239247,
         "explorationBonus": 0.38723275036841104,
-        "selectionScore": 1.2639917384573867,
+        "selectionScore": 1.2009090641923357,
         "reasoning": "気分に合う・タイムリー（interest-cache）"
       },
       {
-        "topic": "【春アニメまとめ】2026年4月期の新アニメ一覧 - WEBザテレビジョン",
+        "topic": "普段ゴルフ系のYouTubeを観ない女性がハマってしまったクリエイターとは？嬉しさのあまり〇〇な行動に！？",
         "source": "interest-cache",
-        "category": "tv_drama",
-        "scores": {
-          "timeliness": 0.892814849537037,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.9,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.8761680833292196,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.1761680833292196,
-        "reasoning": "気分に合う・タイムリー（interest-cache）"
-      },
-      {
-        "topic": "【特別企画】長嶋茂雄さんが愛した東京・日本橋「誠」のステーキ 開幕前の儀式行った特別な場所（日刊スポーツ） - Yahoo!ニュース",
-        "source": "interest-cache",
-        "category": "food_dining",
-        "scores": {
-          "timeliness": 0.7890534606481482,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.9,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.8552297872744814,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.1552297872744814,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
-      },
-      {
-        "topic": "【特別企画】長嶋茂雄さんが愛した東京・日本橋「誠」のステーキ 開幕前の儀式行った特別な場所 - 野球の国から - 野球コラム - 日刊スポーツ",
-        "source": "interest-cache",
-        "category": "food_dining",
-        "scores": {
-          "timeliness": 0.788104375,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.9,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.855038268671126,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.155038268671126,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
-      },
-      {
-        "topic": "「デンゼル・ワシントン」の圧倒的カリスマ、CIA工作員を怒らせてしまったメキシコ誘拐組織の惨めな最期｜NETFLIX [映画紹介]",
-        "source": "interest-cache",
-        "category": "movie_theater",
+        "category": "golf",
         "scores": {
           "timeliness": 0.3,
-          "novelty": 0.8,
-          "continuity": 0.3,
+          "novelty": 0.3,
+          "continuity": 0.9,
           "emotional_fit": 0.9,
-          "affinity": 0.5,
+          "affinity": 0.4,
           "surprise": 0.7
         },
-        "finalScore": 0.7565423443316119,
-        "explorationBonus": 0.38723275036841104,
-        "selectionScore": 1.143775094700023,
-        "reasoning": "気分に合う・新鮮（interest-cache）"
+        "finalScore": 0.8155309426456137,
+        "explorationBonus": 0.3,
+        "selectionScore": 1.1155309426456137,
+        "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
       },
       {
         "topic": "よりによって静かに暮らしていた美人職員を怒らせてしまったテロ組織の悲惨な最期｜NETFLIX [映画紹介]",
@@ -5623,9 +5584,9 @@
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.7565423443316119,
+        "finalScore": 0.726603786280996,
         "explorationBonus": 0.38723275036841104,
-        "selectionScore": 1.143775094700023,
+        "selectionScore": 1.113836536649407,
         "reasoning": "気分に合う・新鮮（interest-cache）"
       },
       {
@@ -5633,50 +5594,50 @@
         "source": "interest-cache",
         "category": "tv_drama",
         "scores": {
-          "timeliness": 0.8714375231481482,
+          "timeliness": 0.7880901157407407,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.8304299877552128,
+        "finalScore": 0.7676454346411777,
         "explorationBonus": 0.3,
-        "selectionScore": 1.1304299877552129,
-        "reasoning": "気分に合う・タイムリー（interest-cache）"
-      },
-      {
-        "topic": "【2026年最新】絶対にハマる！Netflixでおすすめの人気韓国ドラマ66選 - BAILA",
-        "source": "interest-cache",
-        "category": "tv_drama",
-        "scores": {
-          "timeliness": 0.8222592708333333,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.9,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.8205061729581224,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.1205061729581225,
-        "reasoning": "気分に合う・タイムリー（interest-cache）"
+        "selectionScore": 1.0676454346411777,
+        "reasoning": "気分に合う・新鮮（interest-cache）"
       },
       {
         "topic": "パタゴニアが環境活動家「パティ・ゴニア」さんを提訴。両者の主張に注目集まる - ハフポスト",
         "source": "interest-cache",
         "category": "_wildcard",
         "scores": {
-          "timeliness": 0.5567137770061729,
+          "timeliness": 0.528931311728395,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.8
         },
-        "finalScore": 0.6660712370656097,
+        "finalScore": 0.6119143177559196,
         "explorationBonus": 0.44999999999999996,
-        "selectionScore": 1.1160712370656096,
+        "selectionScore": 1.0619143177559196,
+        "reasoning": "気分に合う・新鮮（interest-cache）"
+      },
+      {
+        "topic": "【2026年最新】絶対にハマる！Netflixでおすすめの人気韓国ドラマ66選 - BAILA",
+        "source": "interest-cache",
+        "category": "tv_drama",
+        "scores": {
+          "timeliness": 0.7463039544753086,
+          "novelty": 0.8,
+          "continuity": 0.3,
+          "emotional_fit": 0.9,
+          "affinity": 0.5,
+          "surprise": 0.7
+        },
+        "finalScore": 0.7605446204950769,
+        "explorationBonus": 0.3,
+        "selectionScore": 1.0605446204950768,
         "reasoning": "気分に合う・新鮮（interest-cache）"
       },
       {
@@ -5684,37 +5645,88 @@
         "source": "interest-cache",
         "category": "_wildcard",
         "scores": {
-          "timeliness": 0.5001937114197531,
+          "timeliness": 0.4586168692129629,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.8
         },
-        "finalScore": 0.6546658975751279,
+        "finalScore": 0.5999656301289993,
         "explorationBonus": 0.44999999999999996,
-        "selectionScore": 1.1046658975751278,
+        "selectionScore": 1.0499656301289992,
+        "reasoning": "気分に合う・新鮮（interest-cache）"
+      },
+      {
+        "topic": "Mother of Auburn student missing in Japan talks to CNN: ‘I know he’s still alive’ - CNN",
+        "source": "interest-cache",
+        "category": "movie_theater",
+        "scores": {
+          "timeliness": 0.8844559259259259,
+          "novelty": 0.8,
+          "continuity": 0.3,
+          "emotional_fit": 0.9,
+          "affinity": 0.5,
+          "surprise": 0.7
+        },
+        "finalScore": 0.6534216652367846,
+        "explorationBonus": 0.38723275036841104,
+        "selectionScore": 1.0406544156051956,
+        "reasoning": "気分に合う・タイムリー（interest-cache）"
+      },
+      {
+        "topic": "【JAF埼玉】夏休みにおすすめ！お子さまとの体験にピッタリな《ブルーベリー狩り&フロート作り》JAF会員向けイベントを - ニコニコニュース",
+        "source": "interest-cache",
+        "category": "local_tokorozawa",
+        "scores": {
+          "timeliness": 0.6007408101851852,
+          "novelty": 0.3,
+          "continuity": 0.9,
+          "emotional_fit": 0.9,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.8055702433773801,
+        "explorationBonus": 0.2235689326642413,
+        "selectionScore": 1.0291391760416215,
+        "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
+      },
+      {
+        "topic": "【初夏のプレゼント】約5,000株のラベンダー 鮮やかな紫色の花が雨に濡れて清涼感のある香りが広がる“まきばの館”【岡山・美咲町】 - au Webポータル",
+        "source": "interest-cache",
+        "category": "weather_seasonal",
+        "scores": {
+          "timeliness": 0.5953356481481481,
+          "novelty": 0.8,
+          "continuity": 0.3,
+          "emotional_fit": 0.9,
+          "affinity": 0.5,
+          "surprise": 0.7
+        },
+        "finalScore": 0.7188186891194673,
+        "explorationBonus": 0.3,
+        "selectionScore": 1.0188186891194673,
         "reasoning": "気分に合う・新鮮（interest-cache）"
       }
     ],
     "weightsUsed": {
-      "timeliness": 0.20179275045324915,
-      "novelty": 0.06971487808812701,
-      "continuity": 0.15708958720006144,
-      "emotional_fit": 0.16738130312618887,
-      "affinity": 0.1017623452055721,
-      "surprise": 0.3022591359268014
+      "timeliness": 0.16993219599654844,
+      "novelty": 0.08599852081811935,
+      "continuity": 0.24424241641762598,
+      "emotional_fit": 0.16455922659325214,
+      "affinity": 0.14619033076898263,
+      "surprise": 0.18907730940547132
     },
     "sampledRaw": {
-      "timeliness": 0.19259948815721126,
-      "novelty": 0.10108657322778417,
-      "continuity": 0.12777990144008908,
-      "emotional_fit": 0.14270288953297386,
-      "affinity": 0.14755540054807956,
-      "surprise": 0.2882757470938621
+      "timeliness": 0.2294084645953404,
+      "novelty": 0.11609800310446113,
+      "continuity": 0.22972726216379513,
+      "emotional_fit": 0.12215495590089041,
+      "affinity": 0.19735694653812658,
+      "surprise": 0.10525436769738628
     },
     "contextBonus": {
-      "timeliness": 0.1,
+      "timeliness": 0,
       "novelty": 0,
       "continuity": 0.1,
       "emotional_fit": 0.1,
@@ -5805,114 +5817,42 @@
         "timeliness": 0.951
       },
       "scores": {
-        "timeliness": 0.895743125,
+        "timeliness": 0.8123957060185185,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.8767589880889757,
+      "finalScore": 0.8136763138239247,
       "reasoning": "気分に合う・タイムリー（interest-cache）",
       "explorationBonus": 0.38723275036841104,
-      "selectionScore": 1.2639917384573867
+      "selectionScore": 1.2009090641923357
     },
     {
-      "topic": "【春アニメまとめ】2026年4月期の新アニメ一覧 - WEBザテレビジョン",
+      "topic": "普段ゴルフ系のYouTubeを観ない女性がハマってしまったクリエイターとは？嬉しさのあまり〇〇な行動に！？",
       "source": "interest-cache",
-      "category": "tv_drama",
-      "pub_date": "2026-06-05T22:25:47+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE42Q0xkMk1sS3pyam9SZUJlai1pRExFMDRwbjdqSThqUE5WVGRpU0VqN1dtZXNvR2wyMWJqcm9sUHB2WWhQZFU5U1ZEeFBKb2ZNNFgyRTlKdnE2dTZi?oc=5",
-        "mediaSource": "WEBザテレビジョン",
-        "emotion_type": "light",
-        "timeliness": 0.949
-      },
-      "scores": {
-        "timeliness": 0.892814849537037,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.8761680833292196,
-      "reasoning": "気分に合う・タイムリー（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.1761680833292196
-    },
-    {
-      "topic": "【特別企画】長嶋茂雄さんが愛した東京・日本橋「誠」のステーキ 開幕前の儀式行った特別な場所（日刊スポーツ） - Yahoo!ニュース",
-      "source": "interest-cache",
-      "category": "food_dining",
-      "pub_date": "2026-06-05T19:56:22+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9NcExfbTdyZnBTZnZlQ1RtMDVHbkVtWTFkQkhnU2piLXJiRjAyTnhnU0lqQWg3WW9tbnI4ODJMcHktMmt2QmRHdlJlWU5OalBnWkdNR1lrMDFHY0UzbnZXWVY4OU55YTRsemQyTEZ0bFM0X1kyWGFvalBMaXB6eHc?oc=5",
-        "mediaSource": "Yahoo!ニュース",
-        "emotion_type": "light",
-        "timeliness": 0.897
-      },
-      "scores": {
-        "timeliness": 0.7890534606481482,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.8552297872744814,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.1552297872744814
-    },
-    {
-      "topic": "【特別企画】長嶋茂雄さんが愛した東京・日本橋「誠」のステーキ 開幕前の儀式行った特別な場所 - 野球の国から - 野球コラム - 日刊スポーツ",
-      "source": "interest-cache",
-      "category": "food_dining",
-      "pub_date": "2026-06-05T19:55:00+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQenplRzJQaDhYSExQNXJXVTVFcnZfaUxyWC05cnU0MDV1bTdEd2R6OWVVR18zZGo5c1p1TzdHeGJtbllDNkxoZ3VoMURhTE5ycHVXX0t4UnJsUXpVR2tkeS1reVp5bkhqRUI5eVFTTW04Q0gxSlBuZ0JRMVhFTHBrQ0FTbXJyUm1ZZk1UbWM1cw?oc=5",
-        "mediaSource": "日刊スポーツ",
-        "emotion_type": "light",
-        "timeliness": 0.897
-      },
-      "scores": {
-        "timeliness": 0.788104375,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.855038268671126,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.155038268671126
-    },
-    {
-      "topic": "「デンゼル・ワシントン」の圧倒的カリスマ、CIA工作員を怒らせてしまったメキシコ誘拐組織の惨めな最期｜NETFLIX [映画紹介]",
-      "source": "interest-cache",
-      "category": "movie_theater",
+      "category": "golf",
       "pub_date": null,
       "metadata": {
-        "url": "https://www.youtube.com/watch?v=NXyEIV1QgEc",
-        "mediaSource": "映画弁当 : The movie",
+        "url": "https://www.youtube.com/watch?v=hTCjL_psV4k",
+        "mediaSource": "BONGOLF",
         "content_type": "video",
         "emotion_type": "light",
         "timeliness": 0.1
       },
       "scores": {
         "timeliness": 0.3,
-        "novelty": 0.8,
-        "continuity": 0.3,
+        "novelty": 0.3,
+        "continuity": 0.9,
         "emotional_fit": 0.9,
-        "affinity": 0.5,
+        "affinity": 0.4,
         "surprise": 0.7
       },
-      "finalScore": 0.7565423443316119,
-      "reasoning": "気分に合う・新鮮（interest-cache）",
-      "explorationBonus": 0.38723275036841104,
-      "selectionScore": 1.143775094700023
+      "finalScore": 0.8155309426456137,
+      "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 1.1155309426456137
     },
     {
       "topic": "よりによって静かに暮らしていた美人職員を怒らせてしまったテロ組織の悲惨な最期｜NETFLIX [映画紹介]",
@@ -5934,10 +5874,10 @@
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.7565423443316119,
+      "finalScore": 0.726603786280996,
       "reasoning": "気分に合う・新鮮（interest-cache）",
       "explorationBonus": 0.38723275036841104,
-      "selectionScore": 1.143775094700023
+      "selectionScore": 1.113836536649407
     },
     {
       "topic": "内田有紀×寺西拓人“年の差ラブ”はサッカーを超えられるか…この夏続々“オトナ女子恋愛ドラマ”の狙い - ｄメニューニュース",
@@ -5951,17 +5891,41 @@
         "timeliness": 0.938
       },
       "scores": {
-        "timeliness": 0.8714375231481482,
+        "timeliness": 0.7880901157407407,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.8304299877552128,
-      "reasoning": "気分に合う・タイムリー（interest-cache）",
+      "finalScore": 0.7676454346411777,
+      "reasoning": "気分に合う・新鮮（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.1304299877552129
+      "selectionScore": 1.0676454346411777
+    },
+    {
+      "topic": "パタゴニアが環境活動家「パティ・ゴニア」さんを提訴。両者の主張に注目集まる - ハフポスト",
+      "source": "interest-cache",
+      "category": "_wildcard",
+      "pub_date": "2026-06-05T05:05:08+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBuc3JmSHdZWWh5ZnBfU1NxWUlaZGFxLW9Pa2cxMjd5M3lRM3Rja1hZVEkyVFNENnA5RVhXbWdWaFFTOUNaZXdHZEczM2hSUUZ6OFdQSW42bzhFUzZWZHRqT2N6RVVERUxlRWI2N05UczVXY3BjNzh5Zg?oc=5",
+        "mediaSource": "ハフポスト",
+        "emotion_type": "light",
+        "timeliness": 0.547
+      },
+      "scores": {
+        "timeliness": 0.528931311728395,
+        "novelty": 0.8,
+        "continuity": 0.3,
+        "emotional_fit": 0.9,
+        "affinity": 0.5,
+        "surprise": 0.8
+      },
+      "finalScore": 0.6119143177559196,
+      "reasoning": "気分に合う・新鮮（interest-cache）",
+      "explorationBonus": 0.44999999999999996,
+      "selectionScore": 1.0619143177559196
     },
     {
       "topic": "【2026年最新】絶対にハマる！Netflixでおすすめの人気韓国ドラマ66選 - BAILA",
@@ -5975,41 +5939,17 @@
         "timeliness": 0.914
       },
       "scores": {
-        "timeliness": 0.8222592708333333,
+        "timeliness": 0.7463039544753086,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.8205061729581224,
-      "reasoning": "気分に合う・タイムリー（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.1205061729581225
-    },
-    {
-      "topic": "パタゴニアが環境活動家「パティ・ゴニア」さんを提訴。両者の主張に注目集まる - ハフポスト",
-      "source": "interest-cache",
-      "category": "_wildcard",
-      "pub_date": "2026-06-05T05:05:08+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBuc3JmSHdZWWh5ZnBfU1NxWUlaZGFxLW9Pa2cxMjd5M3lRM3Rja1hZVEkyVFNENnA5RVhXbWdWaFFTOUNaZXdHZEczM2hSUUZ6OFdQSW42bzhFUzZWZHRqT2N6RVVERUxlRWI2N05UczVXY3BjNzh5Zg?oc=5",
-        "mediaSource": "ハフポスト",
-        "emotion_type": "light",
-        "timeliness": 0.588
-      },
-      "scores": {
-        "timeliness": 0.5567137770061729,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.8
-      },
-      "finalScore": 0.6660712370656097,
+      "finalScore": 0.7605446204950769,
       "reasoning": "気分に合う・新鮮（interest-cache）",
-      "explorationBonus": 0.44999999999999996,
-      "selectionScore": 1.1160712370656096
+      "explorationBonus": 0.3,
+      "selectionScore": 1.0605446204950768
     },
     {
       "topic": "世界が注目する「ロンジェビティ」とは？ 老化研究の現在地 - RICHESSE（リシェス）",
@@ -6020,20 +5960,92 @@
         "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOODZkakdFWHVERkMxSmhQTEd5MkxoWnpKWnVzZHRualN1TVliZW5FZHpmc0tWUHR3S09LeTVMVkwzWlRQMFRPa2dnZ1lPalJBT2Q3cHk3RzJGblprUTJWRmE5aGtuLVZYN0NXenROT0k3N2d4dDlST0V5cTlUY1ZWZFB3?oc=5",
         "mediaSource": "RICHESSE（リシェス）",
         "emotion_type": "light",
-        "timeliness": 0.503
+        "timeliness": 0.462
       },
       "scores": {
-        "timeliness": 0.5001937114197531,
+        "timeliness": 0.4586168692129629,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.8
       },
-      "finalScore": 0.6546658975751279,
+      "finalScore": 0.5999656301289993,
       "reasoning": "気分に合う・新鮮（interest-cache）",
       "explorationBonus": 0.44999999999999996,
-      "selectionScore": 1.1046658975751278
+      "selectionScore": 1.0499656301289992
+    },
+    {
+      "topic": "Mother of Auburn student missing in Japan talks to CNN: ‘I know he’s still alive’ - CNN",
+      "source": "interest-cache",
+      "category": "movie_theater",
+      "pub_date": "2026-06-06T00:13:46+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQRlpZdDExd1d0SW14azZpaTA5UmZIbDgxbWxYYkVDZ0hLS0VrUUNpUVRQT0VoMGlkdjJNQ181T2l2a2MwaVgyNnpZcGxxMkpEOXUxdkxqUnNVdEthVEpONElqTUxHRGZ2UFRMck9EUkR4LXMxRmRZMkpBc0FjX3lvOFUzei1ENVJpLTNOeUhKRlM5ZmtCU0NEdEpodW9wanZOM0pWSWVkM2RMUQ?oc=5",
+        "mediaSource": "CNN",
+        "emotion_type": "light",
+        "timeliness": 0.987
+      },
+      "scores": {
+        "timeliness": 0.8844559259259259,
+        "novelty": 0.8,
+        "continuity": 0.3,
+        "emotional_fit": 0.9,
+        "affinity": 0.5,
+        "surprise": 0.7
+      },
+      "finalScore": 0.6534216652367846,
+      "reasoning": "気分に合う・タイムリー（interest-cache）",
+      "explorationBonus": 0.38723275036841104,
+      "selectionScore": 1.0406544156051956
+    },
+    {
+      "topic": "【JAF埼玉】夏休みにおすすめ！お子さまとの体験にピッタリな《ブルーベリー狩り&フロート作り》JAF会員向けイベントを - ニコニコニュース",
+      "source": "interest-cache",
+      "category": "local_tokorozawa",
+      "pub_date": "2026-06-05T10:15:21+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE0zZGRhTUZSSlp1NzJjbFVOMGhvV2tzanBiOUZUUHBCRmxzSWZTN0lPclFIZl90WkpzRHByb3RTMGhZcGlzN1NOV3p3c0RXWVRoa0IxVVJXeUM3TG82akpkMG9nTlo0MDZJ?oc=5",
+        "mediaSource": "ニコニコニュース",
+        "emotion_type": "light",
+        "timeliness": 0.696
+      },
+      "scores": {
+        "timeliness": 0.6007408101851852,
+        "novelty": 0.3,
+        "continuity": 0.9,
+        "emotional_fit": 0.9,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.8055702433773801,
+      "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
+      "explorationBonus": 0.2235689326642413,
+      "selectionScore": 1.0291391760416215
+    },
+    {
+      "topic": "【初夏のプレゼント】約5,000株のラベンダー 鮮やかな紫色の花が雨に濡れて清涼感のある香りが広がる“まきばの館”【岡山・美咲町】 - au Webポータル",
+      "source": "interest-cache",
+      "category": "weather_seasonal",
+      "pub_date": "2026-06-05T09:52:00+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9lSzhTUmZWeWZQVWw0YUVQZlk4MTNWQ25QOHRjdkhVY0FFMDE5VlFpdXA5YkU4NGtub3BlWW43SFdBY0hVSkR4MmtuRUVoNC12RGFKS250c09wSllRN0NJV1ZzLTF3NDViZEh1TG9aekVwV0JVMkxsN3JYVQ?oc=5",
+        "mediaSource": "au Webポータル",
+        "emotion_type": "light",
+        "timeliness": 0.687
+      },
+      "scores": {
+        "timeliness": 0.5953356481481481,
+        "novelty": 0.8,
+        "continuity": 0.3,
+        "emotional_fit": 0.9,
+        "affinity": 0.5,
+        "surprise": 0.7
+      },
+      "finalScore": 0.7188186891194673,
+      "reasoning": "気分に合う・新鮮（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 1.0188186891194673
     }
   ],
   "allowNoReply": false,
@@ -6065,7 +6077,7 @@
   "emojiEnabled": true,
   "lastOAuthNotifyDate": "2026-06-03",
   "themeInventory": {
-    "updatedAt": "2026-06-06T01:00:07.718Z",
+    "updatedAt": "2026-06-06T03:00:08.932Z",
     "records": [
       {
         "themeKey": "local/saitama/tokorozawa/recreation/park-walk",
@@ -6090,6 +6102,29 @@
         "freshnessDays": 4,
         "freshnessScore": 1,
         "lastSentAt": null
+      },
+      {
+        "themeKey": "personal/travel-tech/dev/ai-tools",
+        "themePath": [
+          "personal",
+          "personal/travel-tech",
+          "personal/travel-tech/dev",
+          "personal/travel-tech/dev/ai-tools"
+        ],
+        "rootKey": "personal/personal/travel-tech",
+        "availableCount": 24,
+        "sentFreshCount": 0,
+        "sent30dCount": 2,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 3,
+        "targetCount": 4,
+        "supplyGap": -20,
+        "rotationGap": 4,
+        "freshnessDays": 7,
+        "freshnessScore": 0,
+        "lastSentAt": "2026-05-28T14:01:09.962Z"
       },
       {
         "themeKey": "business/consulting/finance/kpi",
@@ -6159,6 +6194,29 @@
         "freshnessDays": 7,
         "freshnessScore": 0,
         "lastSentAt": "2026-05-29T09:01:21.473Z"
+      },
+      {
+        "themeKey": "sports/mlb/dodgers/opening-day",
+        "themePath": [
+          "sports",
+          "mlb",
+          "dodgers",
+          "opening-day"
+        ],
+        "rootKey": "sports/mlb",
+        "availableCount": 2,
+        "sentFreshCount": 0,
+        "sent30dCount": 0,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0.5,
+        "uniqueSources30d": 0,
+        "targetCount": 4,
+        "supplyGap": 2,
+        "rotationGap": 4,
+        "freshnessDays": 7,
+        "freshnessScore": 1,
+        "lastSentAt": null
       },
       {
         "themeKey": "business/consulting/ma",
@@ -6236,29 +6294,6 @@
           "mlx"
         ],
         "rootKey": "ai/local-llm",
-        "availableCount": 1,
-        "sentFreshCount": 0,
-        "sent30dCount": 0,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0.5,
-        "uniqueSources30d": 0,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 4,
-        "freshnessDays": 7,
-        "freshnessScore": 1,
-        "lastSentAt": null
-      },
-      {
-        "themeKey": "sports/mlb/dodgers/opening-day",
-        "themePath": [
-          "sports",
-          "mlb",
-          "dodgers",
-          "opening-day"
-        ],
-        "rootKey": "sports/mlb",
         "availableCount": 1,
         "sentFreshCount": 0,
         "sent30dCount": 0,
@@ -6363,11 +6398,11 @@
         "lastSentAt": null
       },
       {
-        "themeKey": "misc/topic/slack上のやりとりからチーム内のリレーションを自動解析するボット-a;-エー",
+        "themeKey": "misc/cogmem/giants-chapman-hits",
         "themePath": [
           "misc",
-          "topic",
-          "slack上のやりとりからチーム内のリレーションを自動解析するボット-a;-エー"
+          "cogmem",
+          "giants-chapman-hits"
         ],
         "rootKey": "misc",
         "availableCount": 1,
@@ -6383,73 +6418,6 @@
         "freshnessDays": 7,
         "freshnessScore": 1,
         "lastSentAt": null
-      },
-      {
-        "themeKey": "sports/mlb/dodgers/cogmem/shohei-ohtani’s-cy",
-        "themePath": [
-          "sports/mlb/dodgers",
-          "cogmem",
-          "shohei-ohtani’s-cy"
-        ],
-        "rootKey": "sports/mlb/dodgers/cogmem",
-        "availableCount": 1,
-        "sentFreshCount": 0,
-        "sent30dCount": 0,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0.5,
-        "uniqueSources30d": 0,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 4,
-        "freshnessDays": 7,
-        "freshnessScore": 1,
-        "lastSentAt": null
-      },
-      {
-        "themeKey": "sports/mlb/dodgers/cogmem/dodgers-news-former",
-        "themePath": [
-          "sports/mlb/dodgers",
-          "cogmem",
-          "dodgers-news-former"
-        ],
-        "rootKey": "sports/mlb/dodgers/cogmem",
-        "availableCount": 1,
-        "sentFreshCount": 0,
-        "sent30dCount": 0,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0.5,
-        "uniqueSources30d": 0,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 4,
-        "freshnessDays": 7,
-        "freshnessScore": 1,
-        "lastSentAt": null
-      },
-      {
-        "themeKey": "personal/travel-tech/dev/ai-tools",
-        "themePath": [
-          "personal",
-          "personal/travel-tech",
-          "personal/travel-tech/dev",
-          "personal/travel-tech/dev/ai-tools"
-        ],
-        "rootKey": "personal/personal/travel-tech",
-        "availableCount": 24,
-        "sentFreshCount": 1,
-        "sent30dCount": 3,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 4,
-        "targetCount": 4,
-        "supplyGap": -20,
-        "rotationGap": 3,
-        "freshnessDays": 7,
-        "freshnessScore": 0.6102028703703704,
-        "lastSentAt": "2026-06-03T07:30:58.414Z"
       },
       {
         "themeKey": "lifestyle/food-wellness/onsen",
@@ -6470,7 +6438,7 @@
         "supplyGap": -3,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.9971333283730158,
+        "freshnessScore": 0.9852265591931217,
         "lastSentAt": "2026-06-06T00:31:13.955Z"
       },
       {
@@ -6517,7 +6485,7 @@
         "supplyGap": 2,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.13105581183862436,
+        "freshnessScore": 0.11914904265873016,
         "lastSentAt": "2026-05-30T23:01:10.273Z"
       },
       {
@@ -6586,7 +6554,7 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.8870289947089947,
+        "freshnessScore": 0.8751222255291006,
         "lastSentAt": "2026-06-05T06:01:22.854Z"
       },
       {
@@ -6699,7 +6667,7 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.7173537251984127,
+        "freshnessScore": 0.7054469560185185,
         "lastSentAt": "2026-06-04T01:31:03.251Z"
       },
       {
@@ -6722,8 +6690,30 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.053684702380952354,
+        "freshnessScore": 0.04177793320105827,
         "lastSentAt": "2026-05-30T10:01:16.226Z"
+      },
+      {
+        "themeKey": "entertainment/movie-drama/hamnet",
+        "themePath": [
+          "entertainment",
+          "entertainment/movie-drama",
+          "entertainment/movie-drama/hamnet"
+        ],
+        "rootKey": "entertainment/entertainment/movie-drama",
+        "availableCount": 0,
+        "sentFreshCount": 0,
+        "sent30dCount": 1,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 2,
+        "targetCount": 3,
+        "supplyGap": 3,
+        "rotationGap": 3,
+        "freshnessDays": 7,
+        "freshnessScore": 0,
+        "lastSentAt": "2026-05-30T02:01:14.519Z"
       },
       {
         "themeKey": "local/saitama/other/road-trip",
@@ -6745,8 +6735,32 @@
         "supplyGap": 0,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7352506299603174,
+        "freshnessScore": 0.7233438607804232,
         "lastSentAt": "2026-06-04T04:31:27.299Z"
+      },
+      {
+        "themeKey": "local/saitama/tokorozawa/community/sports",
+        "themePath": [
+          "local",
+          "local/saitama",
+          "local/saitama/tokorozawa",
+          "local/saitama/tokorozawa/community",
+          "local/saitama/tokorozawa/community/sports"
+        ],
+        "rootKey": "local/local/saitama/local/saitama/tokorozawa",
+        "availableCount": 3,
+        "sentFreshCount": 2,
+        "sent30dCount": 3,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 4,
+        "targetCount": 4,
+        "supplyGap": 1,
+        "rotationGap": 2,
+        "freshnessDays": 7,
+        "freshnessScore": 0.7411472040343916,
+        "lastSentAt": "2026-06-04T07:30:54.761Z"
       },
       {
         "themeKey": "local/saitama/tokorozawa/event/food-fair",
@@ -6769,8 +6783,32 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8661607126322751,
+        "freshnessScore": 0.8542539434523809,
         "lastSentAt": "2026-06-05T02:31:01.717Z"
+      },
+      {
+        "themeKey": "local/saitama/other/chichibu/nature",
+        "themePath": [
+          "local",
+          "local/saitama",
+          "local/saitama/other",
+          "local/saitama/other/chichibu",
+          "local/saitama/other/chichibu/nature"
+        ],
+        "rootKey": "local/local/saitama/local/saitama/other",
+        "availableCount": 3,
+        "sentFreshCount": 2,
+        "sent30dCount": 2,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 3,
+        "targetCount": 4,
+        "supplyGap": 1,
+        "rotationGap": 2,
+        "freshnessDays": 7,
+        "freshnessScore": 0.4881966898148148,
+        "lastSentAt": "2026-06-02T13:01:10.290Z"
       },
       {
         "themeKey": "personal/travel-tech/pet/cat-health",
@@ -6792,7 +6830,7 @@
         "supplyGap": 0,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9138332192460318,
+        "freshnessScore": 0.9019264500661376,
         "lastSentAt": "2026-06-05T10:31:34.049Z"
       },
       {
@@ -6814,7 +6852,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7649721841931216,
+        "freshnessScore": 0.7530654150132274,
         "lastSentAt": "2026-06-04T09:31:02.895Z"
       },
       {
@@ -6837,7 +6875,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.047725681216931215,
+        "freshnessScore": 0.03581891203703702,
         "lastSentAt": "2026-05-30T09:01:12.210Z"
       },
       {
@@ -6860,7 +6898,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9197379530423281,
+        "freshnessScore": 0.9078311838624339,
         "lastSentAt": "2026-06-05T11:31:05.232Z"
       },
       {
@@ -6883,7 +6921,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.1905983647486772,
+        "freshnessScore": 0.1786915955687831,
         "lastSentAt": "2026-05-31T09:01:21.609Z"
       },
       {
@@ -6905,78 +6943,8 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.756053890542328,
+        "freshnessScore": 0.7441471213624339,
         "lastSentAt": "2026-06-04T08:01:09.111Z"
-      },
-      {
-        "themeKey": "ai/enterprise/agent/orchestration",
-        "themePath": [
-          "ai",
-          "ai/enterprise",
-          "ai/enterprise/agent",
-          "ai/enterprise/agent/orchestration"
-        ],
-        "rootKey": "ai/ai/enterprise",
-        "availableCount": 2,
-        "sentFreshCount": 1,
-        "sent30dCount": 1,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 2,
-        "targetCount": 3,
-        "supplyGap": 1,
-        "rotationGap": 2,
-        "freshnessDays": 7,
-        "freshnessScore": 0.8542634937169312,
-        "lastSentAt": "2026-06-05T00:31:06.279Z"
-      },
-      {
-        "themeKey": "sports/golf/lesson/coach",
-        "themePath": [
-          "sports",
-          "sports/golf",
-          "sports/golf/lesson",
-          "sports/golf/lesson/coach"
-        ],
-        "rootKey": "sports/sports/golf",
-        "availableCount": 1,
-        "sentFreshCount": 2,
-        "sent30dCount": 3,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 4,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 2,
-        "freshnessDays": 7,
-        "freshnessScore": 0.8572379480820106,
-        "lastSentAt": "2026-06-05T01:01:05.229Z"
-      },
-      {
-        "themeKey": "local/saitama/tokorozawa/community/sports",
-        "themePath": [
-          "local",
-          "local/saitama",
-          "local/saitama/tokorozawa",
-          "local/saitama/tokorozawa/community",
-          "local/saitama/tokorozawa/community/sports"
-        ],
-        "rootKey": "local/local/saitama/local/saitama/tokorozawa",
-        "availableCount": 1,
-        "sentFreshCount": 2,
-        "sent30dCount": 3,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 4,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 2,
-        "freshnessDays": 7,
-        "freshnessScore": 0.7530539732142857,
-        "lastSentAt": "2026-06-04T07:30:54.761Z"
       },
       {
         "themeKey": "sports/golf/youtube/tips",
@@ -6998,7 +6966,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7500875727513228,
+        "freshnessScore": 0.7381808035714286,
         "lastSentAt": "2026-06-04T07:01:00.682Z"
       },
       {
@@ -7021,32 +6989,54 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8631959193121693,
+        "freshnessScore": 0.8512891501322751,
         "lastSentAt": "2026-06-05T02:01:08.610Z"
       },
       {
-        "themeKey": "sports/mlb/dodgers/roki/support",
+        "themeKey": "ai/enterprise/agent/orchestration",
         "themePath": [
-          "sports",
-          "sports/mlb",
-          "sports/mlb/dodgers",
-          "sports/mlb/dodgers/roki",
-          "sports/mlb/dodgers/roki/support"
+          "ai",
+          "ai/enterprise",
+          "ai/enterprise/agent",
+          "ai/enterprise/agent/orchestration"
         ],
-        "rootKey": "sports/sports/mlb",
+        "rootKey": "ai/ai/enterprise",
         "availableCount": 1,
-        "sentFreshCount": 2,
-        "sent30dCount": 2,
+        "sentFreshCount": 1,
+        "sent30dCount": 1,
         "positive30dCount": 0,
         "negative30dCount": 0,
         "positiveRate30d": 0,
-        "uniqueSources30d": 3,
-        "targetCount": 4,
-        "supplyGap": 3,
+        "uniqueSources30d": 2,
+        "targetCount": 3,
+        "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9941618700396826,
-        "lastSentAt": "2026-06-06T00:01:16.817Z"
+        "freshnessScore": 0.842356724537037,
+        "lastSentAt": "2026-06-05T00:31:06.279Z"
+      },
+      {
+        "themeKey": "sports/golf/lesson/coach",
+        "themePath": [
+          "sports",
+          "sports/golf",
+          "sports/golf/lesson",
+          "sports/golf/lesson/coach"
+        ],
+        "rootKey": "sports/sports/golf",
+        "availableCount": 0,
+        "sentFreshCount": 2,
+        "sent30dCount": 3,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 4,
+        "targetCount": 4,
+        "supplyGap": 4,
+        "rotationGap": 2,
+        "freshnessDays": 7,
+        "freshnessScore": 0.8453311789021164,
+        "lastSentAt": "2026-06-05T01:01:05.229Z"
       },
       {
         "themeKey": "entertainment/movie-drama/blue-giant",
@@ -7067,7 +7057,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7917695932539682,
+        "freshnessScore": 0.7798628240740741,
         "lastSentAt": "2026-06-04T14:01:09.968Z"
       },
       {
@@ -7090,7 +7080,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7262812681878307,
+        "freshnessScore": 0.7143744990079365,
         "lastSentAt": "2026-06-04T03:01:02.629Z"
       },
       {
@@ -7113,30 +7103,31 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7144090773809524,
+        "freshnessScore": 0.7025023082010582,
         "lastSentAt": "2026-06-04T01:01:22.328Z"
       },
       {
-        "themeKey": "entertainment/movie-drama/hamnet",
+        "themeKey": "business/client/nichias/maintenance",
         "themePath": [
-          "entertainment",
-          "entertainment/movie-drama",
-          "entertainment/movie-drama/hamnet"
+          "business",
+          "business/client",
+          "business/client/nichias",
+          "business/client/nichias/maintenance"
         ],
-        "rootKey": "entertainment/entertainment/movie-drama",
+        "rootKey": "business/business/client",
         "availableCount": 0,
-        "sentFreshCount": 1,
-        "sent30dCount": 1,
+        "sentFreshCount": 2,
+        "sent30dCount": 3,
         "positive30dCount": 0,
         "negative30dCount": 0,
         "positiveRate30d": 0,
-        "uniqueSources30d": 2,
-        "targetCount": 3,
-        "supplyGap": 3,
+        "uniqueSources30d": 3,
+        "targetCount": 4,
+        "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.006062832341269808,
-        "lastSentAt": "2026-05-30T02:01:14.519Z"
+        "freshnessScore": 0.18463443121693124,
+        "lastSentAt": "2026-05-31T10:01:15.836Z"
       },
       {
         "themeKey": "local/saitama/tokorozawa/event/flower-sakura",
@@ -7149,18 +7140,18 @@
         ],
         "rootKey": "local/local/saitama/local/saitama/tokorozawa",
         "availableCount": 0,
-        "sentFreshCount": 2,
-        "sent30dCount": 2,
+        "sentFreshCount": 1,
+        "sent30dCount": 1,
         "positive30dCount": 0,
         "negative30dCount": 0,
         "positiveRate30d": 0,
-        "uniqueSources30d": 4,
-        "targetCount": 4,
-        "supplyGap": 4,
+        "uniqueSources30d": 2,
+        "targetCount": 3,
+        "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6042683680555556,
-        "lastSentAt": "2026-06-03T06:31:09.227Z"
+        "freshnessScore": 0.04770508597883605,
+        "lastSentAt": "2026-05-30T11:01:00.968Z"
       },
       {
         "themeKey": "sports/golf/general/ね-akiraさん-dallas",
@@ -7181,7 +7172,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.07152013723544981,
+        "freshnessScore": 0.059613368055555505,
         "lastSentAt": "2026-05-30T13:01:03.097Z"
       },
       {
@@ -7205,7 +7196,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.1429569394841269,
+        "freshnessScore": 0.13105017030423283,
         "lastSentAt": "2026-05-31T01:01:08.075Z"
       },
       {
@@ -7228,7 +7219,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.1489333316798941,
+        "freshnessScore": 0.1370265625,
         "lastSentAt": "2026-05-31T02:01:22.597Z"
       },
       {
@@ -7250,7 +7241,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.4405831018518519,
+        "freshnessScore": 0.4286763326719577,
         "lastSentAt": "2026-06-02T03:01:12.378Z"
       },
       {
@@ -7273,7 +7264,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.47627050595238096,
+        "freshnessScore": 0.46436373677248677,
         "lastSentAt": "2026-06-02T09:00:56.120Z"
       },
       {
@@ -7296,7 +7287,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5774905588624338,
+        "freshnessScore": 0.5655837896825396,
         "lastSentAt": "2026-06-03T02:01:14.008Z"
       },
       {
@@ -7319,7 +7310,7 @@
         "supplyGap": 5,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7798739384920634,
+        "freshnessScore": 0.7679671693121692,
         "lastSentAt": "2026-06-04T12:01:15.476Z"
       },
       {
@@ -7342,7 +7333,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6310458763227513,
+        "freshnessScore": 0.6191391071428571,
         "lastSentAt": "2026-06-03T11:01:04.264Z"
       },
       {
@@ -7364,7 +7355,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7441644097222222,
+        "freshnessScore": 0.732257640542328,
         "lastSentAt": "2026-06-04T06:01:18.353Z"
       },
       {
@@ -7386,7 +7377,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8989248759920635,
+        "freshnessScore": 0.8870181068121693,
         "lastSentAt": "2026-06-05T08:01:17.483Z"
       },
       {
@@ -7410,7 +7401,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8959511144179895,
+        "freshnessScore": 0.8840443452380953,
         "lastSentAt": "2026-06-05T07:31:18.952Z"
       },
       {
@@ -7434,32 +7425,8 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9078414384920634,
+        "freshnessScore": 0.8959346693121694,
         "lastSentAt": "2026-06-05T09:31:10.220Z"
-      },
-      {
-        "themeKey": "local/saitama/other/chichibu/nature",
-        "themePath": [
-          "local",
-          "local/saitama",
-          "local/saitama/other",
-          "local/saitama/other/chichibu",
-          "local/saitama/other/chichibu/nature"
-        ],
-        "rootKey": "local/local/saitama/local/saitama/other",
-        "availableCount": 3,
-        "sentFreshCount": 3,
-        "sent30dCount": 3,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 5,
-        "targetCount": 4,
-        "supplyGap": 1,
-        "rotationGap": 1,
-        "freshnessDays": 7,
-        "freshnessScore": 0.6161472238756613,
-        "lastSentAt": "2026-06-03T08:30:53.559Z"
       },
       {
         "themeKey": "sports/mlb/dodgers/ohtani/home-run",
@@ -7482,30 +7449,8 @@
         "supplyGap": 3,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.8453527728174604,
+        "freshnessScore": 0.8334460036375662,
         "lastSentAt": "2026-06-04T23:01:17.075Z"
-      },
-      {
-        "themeKey": "entertainment/movie-drama/vivant",
-        "themePath": [
-          "entertainment",
-          "entertainment/movie-drama",
-          "entertainment/movie-drama/vivant"
-        ],
-        "rootKey": "entertainment/entertainment/movie-drama",
-        "availableCount": 1,
-        "sentFreshCount": 3,
-        "sent30dCount": 4,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 4,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 1,
-        "freshnessDays": 7,
-        "freshnessScore": 0.8810450744047619,
-        "lastSentAt": "2026-06-05T05:01:03.779Z"
       },
       {
         "themeKey": "entertainment/movie-drama/spring-drama",
@@ -7526,8 +7471,30 @@
         "supplyGap": 4,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.8691483068783069,
+        "freshnessScore": 0.8572415376984127,
         "lastSentAt": "2026-06-05T03:01:08.614Z"
+      },
+      {
+        "themeKey": "entertainment/movie-drama/vivant",
+        "themePath": [
+          "entertainment",
+          "entertainment/movie-drama",
+          "entertainment/movie-drama/vivant"
+        ],
+        "rootKey": "entertainment/entertainment/movie-drama",
+        "availableCount": 1,
+        "sentFreshCount": 3,
+        "sent30dCount": 3,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 4,
+        "targetCount": 4,
+        "supplyGap": 3,
+        "rotationGap": 1,
+        "freshnessDays": 7,
+        "freshnessScore": 0.8691383052248678,
+        "lastSentAt": "2026-06-05T05:01:03.779Z"
       },
       {
         "themeKey": "business/consulting/cfo",
@@ -7548,31 +7515,8 @@
         "supplyGap": 4,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.9108759970238095,
+        "freshnessScore": 0.8989692278439153,
         "lastSentAt": "2026-06-05T10:01:45.521Z"
-      },
-      {
-        "themeKey": "business/client/nichias/maintenance",
-        "themePath": [
-          "business",
-          "business/client",
-          "business/client/nichias",
-          "business/client/nichias/maintenance"
-        ],
-        "rootKey": "business/business/client",
-        "availableCount": 0,
-        "sentFreshCount": 3,
-        "sent30dCount": 3,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 3,
-        "targetCount": 4,
-        "supplyGap": 4,
-        "rotationGap": 1,
-        "freshnessDays": 7,
-        "freshnessScore": 0.19654120039682532,
-        "lastSentAt": "2026-05-31T10:01:15.836Z"
       },
       {
         "themeKey": "local/saitama/tokorozawa/culture/art",
@@ -7595,7 +7539,7 @@
         "supplyGap": 3,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.7828149718915344,
+        "freshnessScore": 0.7709082027116403,
         "lastSentAt": "2026-06-04T12:30:54.213Z"
       },
       {
@@ -7618,7 +7562,7 @@
         "supplyGap": 4,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.8721070750661376,
+        "freshnessScore": 0.8602003058862434,
         "lastSentAt": "2026-06-05T03:30:58.077Z"
       },
       {
@@ -7641,7 +7585,7 @@
         "supplyGap": 3,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.5596679580026455,
+        "freshnessScore": 0.5477611888227514,
         "lastSentAt": "2026-06-02T23:01:34.899Z"
       },
       {
@@ -7663,7 +7607,7 @@
         "supplyGap": 4,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.8751037698412698,
+        "freshnessScore": 0.8631970006613756,
         "lastSentAt": "2026-06-05T04:01:10.478Z"
       },
       {
@@ -7686,8 +7630,32 @@
         "supplyGap": 3,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.7679639599867725,
+        "freshnessScore": 0.7560571908068783,
         "lastSentAt": "2026-06-04T10:01:12.321Z"
+      },
+      {
+        "themeKey": "sports/mlb/dodgers/roki/support",
+        "themePath": [
+          "sports",
+          "sports/mlb",
+          "sports/mlb/dodgers",
+          "sports/mlb/dodgers/roki",
+          "sports/mlb/dodgers/roki/support"
+        ],
+        "rootKey": "sports/sports/mlb",
+        "availableCount": 1,
+        "sentFreshCount": 5,
+        "sent30dCount": 5,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 6,
+        "targetCount": 5,
+        "supplyGap": 4,
+        "rotationGap": 0,
+        "freshnessDays": 7,
+        "freshnessScore": 0.9971122387566138,
+        "lastSentAt": "2026-06-06T02:31:02.414Z"
       },
       {
         "themeKey": "entertainment/movie-drama/youtube/trailer",
@@ -7709,7 +7677,7 @@
         "supplyGap": 6,
         "rotationGap": -5,
         "freshnessDays": 7,
-        "freshnessScore": 0.9911698578042328,
+        "freshnessScore": 0.9792630886243386,
         "lastSentAt": "2026-06-05T23:31:07.248Z"
       }
     ]

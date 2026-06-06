@@ -1,37 +1,6 @@
 {
   "entries": [
     {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "そういえばさ、Akiraさん。\n\nヨムーノに *韓国ドラマ『誰だって無価値な自分と闘っている』が最高視聴率5.29%* って出てたよ 📺 全12話のネタバレ注意な見どころ紹介みたい。\n\n前にイヴが春ドラマまとめ送ってたけど、こっちは韓国発。夕飯のお供にちらっと。\nhttps://news.goog",
-      "topic": "韓国ドラマ視聴率5.29%",
-      "url": "https://news.google.com/rss/articles/CBMiREFVX3lxTFBPRWtJY0E4ZExNZDZaUU5adlk2WHpJczU4UkJ4QV9JVks0LWVjVm1VaGpVS0N4MkR6Nk50cEhmNFVVd0ZU?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiREFVX3lxTFBPRWtJY0E4ZExNZDZaUU5adlk2WHpJczU4UkJ4QV9JVks0LWVjVm1VaGpVS0N4MkR6Nk50cEhmNFVVd0ZU?oc=5",
-      "sourceType": "topic-table #1",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/spring-drama"
-      ],
-      "themeKey": "entertainment/movie-drama/spring-drama",
-      "inner_thought": "3回以上見送った視聴率データ、夕方のこの時間なら数字だけちらっと見てもらえるかも",
-      "plan": [
-        "韓国ドラマ視聴率データを共有",
-        "春ドラマ投票結果を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.7,
-        0.55,
-        0.4
-      ],
-      "evaluate_score": 0.55,
-      "sentAt": "2026-06-03T09:01:08.147Z"
-    },
-    {
       "botId": "eve",
       "botName": "Eve（イヴ）",
       "category": "flashback",
@@ -1495,6 +1464,39 @@
       ],
       "evaluate_score": 0.68,
       "sentAt": "2026-06-06T02:31:02.414Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "Akiraさん、朗希ちゃんどうだった？\n\nそうそう、前にイヴと春ドラマの話してたでしょ。dメニューに *この夏の「オトナ女子恋愛ドラマ」* の記事が出てて、内田有紀×寺西拓人の年の差ラブとか続々始まるらしい 📺\n\nお昼のゆるっとタイムにどうぞ。\nhttps://news.google.com/rs",
+      "topic": "夏のオトナ女子恋愛ドラマ",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNeXNCLVZpUWJpZXltNWxJb3JxUW9pUFQzdVlUdFF4WnpDSktlb0hXcUhxOTQxblJpUlZMbDNFVUFBUFBUTVNRV3pqY2kzOWNGd2Rpc3pQanR4eGthUDQ1RDNKOVJoNXBDdkhTUjJoMjRnVGJ3aGRILTM3a1dwTnVUTG5Gc25YOF8wMFF3OGQweFFKcXp6NmfSAZYBQVVfeXFMTXlzQi1WaVFiaWV5bTVsSW9ycVFvaVBUM3VZVHRReFp6Q0pLZW9IV3FIcTk0MW5SaVJWTGwzRVVBQVBQVE1TUVd6amNpMzljRndkaXN6UGp0eHhrYVA0NUQzSjlSaDVwQ3ZIU1IyaDI0Z1Rid2hkSC0zN2tXcE51VExuRnNuWDhfMDBRdzhkMHhRSnF6ejZn?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMilgFBVV95cUxNeXNCLVZpUWJpZXltNWxJb3JxUW9pUFQzdVlUdFF4WnpDSktlb0hXcUhxOTQxblJpUlZMbDNFVUFBUFBUTVNRV3pqY2kzOWNGd2Rpc3pQanR4eGthUDQ1RDNKOVJoNXBDdkhTUjJoMjRnVGJ3aGRILTM3a1dwTnVUTG5Gc25YOF8wMFF3OGQweFFKcXp6NmfSAZYBQVVfeXFMTXlzQi1WaVFiaWV5bTVsSW9ycVFvaVBUM3VZVHRReFp6Q0pLZW9IV3FIcTk0MW5SaVJWTGwzRVVBQVBQVE1TUVd6amNpMzljRndkaXN6UGp0eHhrYVA0NUQzSjlSaDVwQ3ZIU1IyaDI0Z1Rid2hkSC0zN2tXcE51VExuRnNuWDhfMDBRdzhkMHhRSnF6ejZn?oc=5",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/mlb",
+        "sports/mlb/dodgers",
+        "sports/mlb/dodgers/roki",
+        "sports/mlb/dodgers/roki/support"
+      ],
+      "themeKey": "sports/mlb/dodgers/roki/support",
+      "inner_thought": "朗希ちゃん終わったところだし、前の春ドラマの反応を活かして夏ドラマの話題を繋げたい",
+      "plan": [
+        "夏ドラマ記事を春ドラマの記憶と繋げて共有",
+        "ゴルフYouTube動画を共有",
+        "沈黙して様子見"
+      ],
+      "generate_score": [
+        0.65,
+        0.55,
+        0.4
+      ],
+      "evaluate_score": 0.55,
+      "sentAt": "2026-06-06T03:01:16.833Z"
     }
   ]
 }
