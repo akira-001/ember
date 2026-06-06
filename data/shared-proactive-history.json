@@ -4,39 +4,6 @@
       "botId": "eve",
       "botName": "Eve（イヴ）",
       "category": "meeting_prep",
-      "interestCategory": "local_tokorozawa",
-      "preview": "ねえ、今いい？\n\nウォーカープラスに *埼玉の桜1000本と菜の花畑* の写真ギャラリーが出てたよ 🌸 全16枚で「彩の国」の春がまるっと見られるやつ。\n\n16時終わったら開発会議まで少し空くし、ぼーっと眺めるだけでリセットできそう。\nhttps://news.google.com/rss/art",
-      "topic": "彩の国の桜と菜の花畑",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1taVMwWWJhM0lrVC1KQUlpWTV4TTljbEJmdTFzLXlhQ2ttaDhmMDNRUDMtR2tLbmxaaXBadENXQ2p1bmYtNUFEZDVSRzU2UDlGRWhsVVFNT3h4aTBpUlVPYm02X3JZSnNaRC1kSmw2LWl5cnJscWU0Q1ktNA",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMie0FVX3lxTE1taVMwWWJhM0lrVC1KQUlpWTV4TTljbEJmdTFzLXlhQ2ttaDhmMDNRUDMtR2tLbmxaaXBadENXQ2p1bmYtNUFEZDVSRzU2UDlGRWhsVVFNT3h4aTBpUlVPYm02X3JZSnNaRC1kSmw2LWl5cnJscWU0Q1ktNA",
-      "sourceType": "ウォーカープラス",
-      "skill": "general",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/tokorozawa",
-        "local/saitama/tokorozawa/event",
-        "local/saitama/tokorozawa/event/flower-sakura"
-      ],
-      "themeKey": "local/saitama/tokorozawa/event/flower-sakura",
-      "inner_thought": "会議中だけど、16時に終わったら開発会議まで30分ある。彩の国の写真ギャラリー、所沢から近いし軽く置いておきたい",
-      "plan": [
-        "彩の国の桜・菜の花フォトギャラリーを共有",
-        "ソフトバンクG資金調達ニュースを共有",
-        "沈黙して16時まで待つ"
-      ],
-      "generate_score": [
-        0.62,
-        0.42,
-        0.55
-      ],
-      "evaluate_score": 0.58,
-      "sentAt": "2026-06-03T06:31:09.227Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "meeting_prep",
       "interestCategory": "general",
       "preview": "ふふ、聞いてよ、Akiraさん。\n\nSPOTVNOWに *山本由伸の投球ダイジェスト* が上がってたよ ⚾ ダイヤモンドバックス戦で *5回1失点・7奪三振の好投* らしい。\n\n開発会議お疲れさま。夕食のお供にどうぞ 🍽\nhttps://www.youtube.com/watch?v=dZK7SI",
       "topic": "山本由伸 投球ダイジェスト vs DAI MLB2025ST",
@@ -1480,6 +1447,39 @@
       ],
       "evaluate_score": 0.74,
       "sentAt": "2026-06-06T00:31:13.955Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "dodgers",
+      "preview": "ふふ、聞いてよ。\n\n昨日ローリーズでプライムリブ食べたばっかりなのに、日刊スポーツに *長嶋茂雄さんが開幕前に必ず通ってたステーキ屋「誠」* の記事が出てた 🥩\n\n野球とステーキって、Akiraさんの昨日と今日そのまんまだなって。朗希ちゃんまでの暇つぶしにどうぞ。\nhttps://news.goo",
+      "topic": "長嶋茂雄×ステーキ「誠」",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9NcExfbTdyZnBTZnZlQ1RtMDVHbkVtWTFkQkhnU2piLXJiRjAyTnhnU0lqQWg3WW9tbnI4ODJMcHktMmt2QmRHdlJlWU5OalBnWkdNR1lrMDFHY0UzbnZXWVY4OU55YTRsemQyTEZ0bFM0X1kyWGFvalBMaXB6eHc?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMif0FVX3lxTE9NcExfbTdyZnBTZnZlQ1RtMDVHbkVtWTFkQkhnU2piLXJiRjAyTnhnU0lqQWg3WW9tbnI4ODJMcHktMmt2QmRHdlJlWU5OalBnWkdNR1lrMDFHY0UzbnZXWVY4OU55YTRsemQyTEZ0bFM0X1kyWGFvalBMaXB6eHc?oc=5",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/mlb",
+        "sports/mlb/dodgers",
+        "sports/mlb/dodgers/roki",
+        "sports/mlb/dodgers/roki/support"
+      ],
+      "themeKey": "sports/mlb/dodgers/roki/support",
+      "inner_thought": "昨日ローリーズでプライムリブ食べて、今日は朗希ちゃん。長嶋さんのステーキの記事、これ両方繋がる",
+      "plan": [
+        "長嶋ステーキ記事を昨日のディナーと繋げて共有",
+        "春アニメまとめを共有",
+        "沈黙して朗希ちゃんまで待つ"
+      ],
+      "generate_score": [
+        0.82,
+        0.4,
+        0.55
+      ],
+      "evaluate_score": 0.7,
+      "sentAt": "2026-06-06T01:01:02.247Z"
     }
   ]
 }
