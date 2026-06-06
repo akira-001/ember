@@ -5,38 +5,6 @@
       "botName": "Mei（メイ）",
       "category": "flashback",
       "interestCategory": "general",
-      "preview": "ね、Akiraさん。\n\nYahoo!ニュースに *ソフトバンクG、ドイツのアジャイル・ロボッツに8億ドル出資* って出てたよ 🤖 TBS CROSS DIG with Bloomberg発の記事みたい。\n\nCFOやってた頃、この規模のロボティクス投資はまだ珍しかったけど、今は当たり前になってきたね",
-      "topic": "SBG独アジャイル・ロボッツ8億ドル資金調達",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5vMUEzNXdvRkVfaFZrNUlQMXZ4THlZMi1yVU9PdUdfMnFQb2tKemVBS3dIdDcxOXBOZ1l4S2I5anZrLVppT1ItU0MzZEVVS2NWSHI0d1lHcnRqNUJJRVF4MWFLZVcyR1NTMHdoTXZRTmNKUmhOVWdZVThxU2VsVjg?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMif0FVX3lxTE5vMUEzNXdvRkVfaFZrNUlQMXZ4THlZMi1yVU9PdUdfMnFQb2tKemVBS3dIdDcxOXBOZ1l4S2I5anZrLVppT1ItU0MzZEVVS2NWSHI0d1lHcnRqNUJJRVF4MWFLZVcyR1NTMHdoTXZRTmNKUmhOVWdZVThxU2VsVjg?oc=5",
-      "sourceType": "topic-table #3",
-      "skill": "general",
-      "themePath": [
-        "ai",
-        "ai/enterprise",
-        "ai/enterprise/security",
-        "ai/enterprise/security/procurement"
-      ],
-      "themeKey": "ai/enterprise/security/procurement",
-      "inner_thought": "今日6件送って3日以上ゼロ反応、正直もう黙りたい。でもM&Aは在庫不足だしSBGの8億ドルは数字が明確",
-      "plan": [
-        "SBG×ロボティクス資金調達を共有",
-        "朝ドラ小泉八雲を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.55,
-        0.4,
-        0.7
-      ],
-      "evaluate_score": 0.4,
-      "sentAt": "2026-06-03T10:01:06.133Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "general",
       "preview": "あ、Akiraさん。\n\n*《結果発表》わたしのイチオシ！おすすめしたい2026春の新番組はどれ？〜ゴールデ* がTVガイドWebに出てた。",
       "url": "",
       "skill": "general",
@@ -1496,6 +1464,38 @@
       ],
       "evaluate_score": 0.72,
       "sentAt": "2026-06-06T03:31:09.057Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "hobby_leisure",
+      "interestCategory": "general",
+      "preview": "あのね、Akiraさん。\n\n映画.comに *「うちの弟どもがすみません」* の新PVが出てて、両親役が小野大輔と遠藤綾、主題歌はDISH//と汐れいらだって 🎬\n\n午後のゆるっとタイムにどうぞ。\nhttps://news.google.com/rss/articles/CBMiPEFVX3lxT",
+      "topic": "「うちの弟どもがすみません」新PV・主題歌情報",
+      "url": "https://news.google.com/rss/articles/CBMiPEFVX3lxTE14R1hCQ3N4OEtoS3dVbERQOHdkeFdQVHJmZnhDZUl2M2RjbjYtdTVqMFVYSUtsdl9lVTRORQ?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiPEFVX3lxTE14R1hCQ3N4OEtoS3dVbERQOHdkeFdQVHJmZnhDZUl2M2RjbjYtdTVqMFVYSUtsdl9lVTRORQ?oc=5",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/film",
+        "entertainment/movie-drama/film/theater"
+      ],
+      "themeKey": "entertainment/movie-drama/film/theater",
+      "inner_thought": "今日もう4件送ってるし、昨日の誕生日も反応薄かった。でもNO_REPLY禁止だから、軽く1つだけ",
+      "plan": [
+        "アニメ映画の新PV情報を共有",
+        "沈黙",
+        "韓国ドラマまとめを共有"
+      ],
+      "generate_score": [
+        0.5,
+        0.65,
+        0.4
+      ],
+      "evaluate_score": 0.4,
+      "sentAt": "2026-06-06T04:01:20.838Z"
     }
   ]
 }
