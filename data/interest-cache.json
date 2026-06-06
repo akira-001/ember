@@ -1,8 +1,8 @@
 {
-  "lastUpdated": "2026-06-06T04:51:08.809052+00:00",
+  "lastUpdated": "2026-06-06T05:50:13.529568+00:00",
   "priorities": {
     "ai_agent": 0.8,
-    "llm_local": 0.564,
+    "llm_local": 0.464,
     "dev_tools": 0.326,
     "business_strategy": 0.458,
     "ma_startup": 0.28,
@@ -808,15 +808,23 @@
           "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBuc3JmSHdZWWh5ZnBfU1NxWUlaZGFxLW9Pa2cxMjd5M3lRM3Rja1hZVEkyVFNENnA5RVhXbWdWaFFTOUNaZXdHZEczM2hSUUZ6OFdQSW42bzhFUzZWZHRqT2N6RVVERUxlRWI2N05UczVXY3BjNzh5Zg?oc=5",
           "source": "ハフポスト",
           "pub_date": "2026-06-05T05:05:08+00:00",
-          "timeliness": 0.505,
-          "score": 0.322
+          "timeliness": 0.484,
+          "score": 0.314
+        },
+        {
+          "title": "世界が注目する「ロンジェビティ」とは？ 老化研究の現在地 - RICHESSE（リシェス）",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOODZkakdFWHVERkMxSmhQTEd5MkxoWnpKWnVzZHRualN1TVliZW5FZHpmc0tWUHR3S09LeTVMVkwzWlRQMFRPa2dnZ1lPalJBT2Q3cHk3RzJGblprUTJWRmE5aGtuLVZYN0NXenROT0k3N2d4dDlST0V5cTlUY1ZWZFB3?oc=5",
+          "source": "RICHESSE（リシェス）",
+          "pub_date": "2026-06-05T01:00:58+00:00",
+          "timeliness": 0.4,
+          "score": 0.28
         }
       ],
-      "count": 1,
+      "count": 2,
       "priority": 0.3,
       "tier": "C",
       "emotion_type": "light",
-      "lastChecked": "2026-06-06T04:50:56.235372+00:00"
+      "lastChecked": "2026-06-06T05:50:00.888506+00:00"
     },
     "_cross": {
       "label": "カテゴリ交差",
