@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-06T05:50:13.529568+00:00",
+  "lastUpdated": "2026-06-06T06:51:02.666556+00:00",
   "priorities": {
     "ai_agent": 0.8,
     "llm_local": 0.464,
@@ -22,28 +22,28 @@
       "label": "AIエージェント",
       "items": [
         {
-          "title": "ネットなしでAIがサクサク動く時代へ！ノートPCから最新ゲーム機まで、インテルが仕掛ける一歩先の未来が見えた (1/3) - ASCII.jp",
-          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5yU2gwS2N5OXNhZFZGYm5WbzBPSGRoMTBuWDE4T1pScG9GVGpONkhLTTE1MmNmNGZDekhDX2tncG50bFdNd3FIR0VqdEw0cEpqYThLZg?oc=5",
-          "source": "ASCII.jp",
-          "pub_date": "2026-06-06T00:00:00+00:00",
-          "timeliness": 0.899,
-          "score": 0.68
-        },
-        {
-          "title": "Snowflake、AIコーディングエージェント「CoCo」新機能とストリーミングサービス「Datastream」を発表 - CodeZine",
-          "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5vMWRFMTZ6OHdIdzFKYldQaVFmeDdEdS1wRHBEZVNFZ25wdnZ4eGhieFVCaEwtalMxa1NkY2czT3IwdnBnUHN5NDMta2lBdw?oc=5",
-          "source": "CodeZine",
-          "pub_date": "2026-06-05T09:35:45+00:00",
-          "timeliness": 0.599,
-          "score": 0.66
+          "title": "Why your AI agents don’t scale - Fast Company",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9TOERTaVIxZVR5ajVWX05rUnZ3TWtWZ3NleXd1eUV2clpDVXpuQjdadzRRM29NTzBoRmxxb0Q2bG5XWG1JYWhDWHZjM3cyRzFvZnVyQm5lZ2g5TWthUmtLX1o1M0Jpb2t3ekRNa2FMT3Q0NzFV?oc=5",
+          "source": "Fast Company",
+          "pub_date": "2026-06-05T19:28:11+00:00",
+          "timeliness": 0.763,
+          "score": 0.625
         },
         {
           "title": "WE ARE COOKED: Claude Opus 4.7 JUST DROPPED AND IT'S INSANE Berardi (wZ4zRLgDbW) - Mshale",
           "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE13QTMwc1JOQXdPY2FRTTJ6S29zTHNmZjVKNTEyLXYtT05VeTlUb0dNMFFsTURoSURtaE5XcGxzcVlET0pwV2dEVmdIWTQyU2lUeUd0Sk5XTXJudjQ?oc=5",
           "source": "Mshale",
           "pub_date": "2026-06-05T19:02:17+00:00",
-          "timeliness": 0.796,
-          "score": 0.638
+          "timeliness": 0.754,
+          "score": 0.622
+        },
+        {
+          "title": "AI agents are learning on the job — just not for your whole team - Venturebeat",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQMU5kLWZvYk9yWkkyZ3g2T2RFb3dUWl9laU1SVEVtREtzQVl0OWxEWlF2MlBqMFlQZ1FXbFlCLTh0dE5sRXNSbkREWHQ4YS03ZU03NjdRNzRhWmhlRVpHZzdNcHFMeEg1dENfZjE4Q25DM2R3YUNKOVljSzhBOGF3cG9kNnpTNll2LWFNY01QTkFwUTRGN2N5SVgtRC01Sk93X1E?oc=5",
+          "source": "Venturebeat",
+          "pub_date": "2026-06-05T17:51:03+00:00",
+          "timeliness": 0.729,
+          "score": 0.612
         },
         {
           "title": "What is Claude Code?",
@@ -52,21 +52,20 @@
           "pub_date": null,
           "content_type": "video",
           "duration": "2:56",
-          "view_count": 2574894,
+          "view_count": 2590140,
           "timeliness": 0.1,
           "score": 0.67
         },
         {
-          "title": "【公開間近】Claude Mythosで人間の仕事はどう変わる？24時間AIに仕事させる時代",
-          "url": "https://www.youtube.com/watch?v=bogsZSiAwmY",
-          "source": "AI仙人 【AI歴10年・ガチADHD男】",
+          "title": "知識ゼロでClaude Codeを1週間使ったら、世界が変わりました。",
+          "url": "https://www.youtube.com/watch?v=SlVZJWxzdmQ",
+          "source": "AKIYA MOVIE",
           "pub_date": null,
           "content_type": "video",
-          "duration": "47:58",
-          "view_count": 18185,
-          "_discovery": true,
+          "duration": "29:30",
+          "view_count": 25701,
           "timeliness": 0.1,
-          "score": 0.62
+          "score": 0.57
         },
         {
           "title": "How Far Did They Go? The Persuasive Tactics of Covert LLM Agents in a Discontinued Field Experiment",
@@ -97,7 +96,7 @@
       "priority": 0.8,
       "tier": "S",
       "emotion_type": "heavy",
-      "lastChecked": "2026-06-06T04:50:18.121811+00:00"
+      "lastChecked": "2026-06-06T06:50:33.281561+00:00"
     },
     "llm_local": {
       "label": "ローカルLLM・オープンソースAI",
@@ -184,49 +183,49 @@
       "label": "ドジャース・大谷翔平",
       "items": [
         {
-          "title": "Shohei Ohtani greets Jen Pawol in her first MLB game of the season behind the plate at Dodgers - WSLS",
-          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNVmdWWEU3bXZhYkFnUVp3LXRvRldPaEs2aWJRcTFnMFVvNUpXUFRwRlVIYmtGY0FFZ1FaY2xqNXhOajFnWVpUOXFXTHVGSkhXVmNRZk5IZ3gzZGlfWXhBU3VFeEpDTHA0eTFQVGIwN1IwWWVQU1hVXzFWMnNickdzOElneXdvWFcwaXRNdVc1VWhDamticWVNNVVtN0ZMcWIxVWhyMDY1aDhveXRscTZwclZObmZRRmtlMTg0MFhHWHBWa045SXp0Q2k2UkJycTQ?oc=5",
-          "source": "WSLS",
-          "pub_date": "2026-06-06T03:50:25+00:00",
-          "timeliness": 0.979,
-          "score": 0.792
-        },
-        {
-          "title": "【打者部門】大谷翔平は何位？ 2026年MLBナリーグ打撃成績ランキング - ベースボールチャンネル",
-          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBtbkhXR01FTEU1d2sxR3cyYzQyZEF0OXJjVl90R1dycWc0bjJvSTgtZ2MyT2M3QWY2QnRLSUw4bDduaVpVVkdIYWxFeWZYdm9PcFIwbw?oc=5",
+          "title": "【ドジャース対エンゼルス】今日の試合結果 大谷翔平・山本由伸・佐々木朗希の成績一覧｜MLB2026 - ベースボールチャンネル",
+          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBqc3d6XzJReGpsTFdhOHR3Wk81aTlKdEk2UTJROVI2VkVldWVpRU13SFBJeGl3VjNmcGt2bGxLWmVHRFN2S1JVWEVVdUpQX1VQeXQ2dQ?oc=5",
           "source": "ベースボールチャンネル",
-          "pub_date": "2026-06-06T03:13:30+00:00",
-          "timeliness": 0.966,
-          "score": 0.787
+          "pub_date": "2026-06-06T06:02:10+00:00",
+          "timeliness": 0.983,
+          "score": 0.793
         },
         {
-          "title": "大谷翔平が「１番DH」で2試合ぶりに出場　１打席目は空振り三振　先発佐々木朗希の援護目指す - ｄメニューニュース",
-          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOZjRVYjB2OWRUSy1UV1ZXTXpCaFVvZlV1WldZamhRMVN4U2hSV0FIT0h2c2s0US1YMnVtdkFRWkJ1ZF91d3JGTWprQl85X09kVnVrWlNPaHgzQUpJV3ZCQl9rSldKX1I4T3VXM25qd2g5bm85V0t6UmRlRFBSSm5uRnRZSjloYmRhcEcyTlV3WHZhbTRLc2fSAZsBQVVfeXFMT3NFbVpRR1JMa3Rjb1JBc3A1TXoyXzd1czcwRnU3d00xUUF1Yy1GZDhCaWlsTkRhYk1taHFYakFBVWN0TGo4ejItYkpYTHBDOG1IOUJNTS1raDYtZllYLWRuV1k5V1J0MmtPbG9WSGdmM2RGcmpBM25JYXI1YW8zMUY1VU5wM05ES2xVeHlIbzJlTjJmNGVWNEhMQk0?oc=5",
+          "title": "フリーマンがサヨナラ本塁打　大谷翔平は両手を広げて喜び、ピョンピョン跳びながら祝福 - ｄメニューニュース",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNZUFuXzFTN2ZkS3FiaHU4a1hKc1ZCcmFXYWR6em1oaGNPcUZvXzNGZS1GbllRSF9FNHJWUXN3VDhQVWxrR0ZBVFhQbjRlMzFWSk0xbHVndjBnVnJENkUyRWtyVF9tZ1RRejJael82cFRZTVlmalgyZTd0Y05aMnlod0NiVEtPZTV0R2VGM3Utb1pnV2s4a1HSAZsBQVVfeXFMUFJ0ZVNQdUFiVHo5bWlyNWNTVUUtTXR4emNCblNFR08ydHptTTRXSkVFbG5XN083NHhRcnRLRXdhVDZWNzJ4aExNWXR1cjdEb1NyT1VEVDFMTk9EWW1MZFlWdGxfV2poOW9CaVlYUXR0Y0JheUM1NGxPRXRqU1hQNzFGLW1mNUhBaG05SXA5WnZVbmpXOG1uUTNyek0?oc=5",
           "source": "ｄメニューニュース",
-          "pub_date": "2026-06-06T02:41:00+00:00",
-          "timeliness": 0.955,
-          "score": 0.782
+          "pub_date": "2026-06-06T05:10:00+00:00",
+          "timeliness": 0.965,
+          "score": 0.786
         },
         {
-          "title": "【5回1失点7奪三振の好投！山本由伸 投球ダイジェスト】ダイヤモンドバックスvsドジャース MLB2025スプリングトレーニング 3.11",
-          "url": "https://www.youtube.com/watch?v=dZK7SIJjCSQ",
+          "title": "Freddie Freeman crushes a walkoff homer, lifting the Dodgers over the Angels 1-0 - AP News",
+          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNbTFRajRISF8xR2Nsbk9WVlpDbWlBRGlxdGhhSWJtNEJndld3N1hBMXg4bGJSWWt3MVc1TkZnblpmR2RLekVRSDVodEVHR3VKbHRZN25oNFBGYWg1dktlVHpuam5HbHR3X1hnQm8wNTJEX0tJRUJCaXR5bkdzV3gtbGxsVDhPUzg?oc=5",
+          "source": "AP News",
+          "pub_date": "2026-06-06T04:53:00+00:00",
+          "timeliness": 0.959,
+          "score": 0.784
+        },
+        {
+          "title": "【大谷翔平 3安打目は全力疾走での内野安打】ドジャースvsダイヤモンドバックス MLB2026シーズン 6.2",
+          "url": "https://www.youtube.com/watch?v=KA1QkjIfCsc",
           "source": "SPOTVNOW",
           "pub_date": null,
           "content_type": "video",
-          "duration": "5:45",
-          "view_count": 255048,
-          "timeliness": 0.1,
-          "score": 0.7
-        },
-        {
-          "title": "【“ユニコーン”大谷翔平 2試合ぶりの3安打！ミスター・ジューンが二刀流でも本領発揮】ドジャースvsダイヤモンドバックス MLB2026シーズン 6.4",
-          "url": "https://www.youtube.com/watch?v=z1ma_x1-mAs",
-          "source": "SPOTVNOW",
-          "pub_date": null,
-          "content_type": "video",
-          "duration": "1:41",
-          "view_count": 85754,
+          "duration": "2:53",
+          "view_count": 167916,
           "_discovery": true,
+          "timeliness": 0.1,
+          "score": 0.75
+        },
+        {
+          "title": "【ミゲル・ロハス 本当に今季で引退!?衰え知らずの37歳が超絶プレーで佐々木を援護！】エンゼルスvsドジャース MLB2026シーズン 6.6",
+          "url": "https://www.youtube.com/watch?v=sKg5wKiofzA",
+          "source": "SPOTVNOW",
+          "pub_date": null,
+          "content_type": "video",
+          "duration": "7:20",
+          "view_count": 108627,
           "timeliness": 0.1,
           "score": 0.7
         }
@@ -235,7 +234,7 @@
       "priority": 1.0,
       "tier": "S",
       "emotion_type": "light",
-      "lastChecked": "2026-06-06T04:50:32.092946+00:00"
+      "lastChecked": "2026-06-06T06:50:47.232115+00:00"
     },
     "campingcar": {
       "label": "キャンピングカー",
@@ -808,23 +807,23 @@
           "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBuc3JmSHdZWWh5ZnBfU1NxWUlaZGFxLW9Pa2cxMjd5M3lRM3Rja1hZVEkyVFNENnA5RVhXbWdWaFFTOUNaZXdHZEczM2hSUUZ6OFdQSW42bzhFUzZWZHRqT2N6RVVERUxlRWI2N05UczVXY3BjNzh5Zg?oc=5",
           "source": "ハフポスト",
           "pub_date": "2026-06-05T05:05:08+00:00",
-          "timeliness": 0.484,
-          "score": 0.314
+          "timeliness": 0.463,
+          "score": 0.305
         },
         {
           "title": "世界が注目する「ロンジェビティ」とは？ 老化研究の現在地 - RICHESSE（リシェス）",
           "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOODZkakdFWHVERkMxSmhQTEd5MkxoWnpKWnVzZHRualN1TVliZW5FZHpmc0tWUHR3S09LeTVMVkwzWlRQMFRPa2dnZ1lPalJBT2Q3cHk3RzJGblprUTJWRmE5aGtuLVZYN0NXenROT0k3N2d4dDlST0V5cTlUY1ZWZFB3?oc=5",
           "source": "RICHESSE（リシェス）",
           "pub_date": "2026-06-05T01:00:58+00:00",
-          "timeliness": 0.4,
-          "score": 0.28
+          "timeliness": 0.379,
+          "score": 0.271
         }
       ],
       "count": 2,
       "priority": 0.3,
       "tier": "C",
       "emotion_type": "light",
-      "lastChecked": "2026-06-06T05:50:00.888506+00:00"
+      "lastChecked": "2026-06-06T06:50:49.833917+00:00"
     },
     "_cross": {
       "label": "カテゴリ交差",
@@ -977,82 +976,70 @@
   },
   "topItems": [
     {
-      "title": "Shohei Ohtani greets Jen Pawol in her first MLB game of the season behind the plate at Dodgers - WSLS",
-      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNVmdWWEU3bXZhYkFnUVp3LXRvRldPaEs2aWJRcTFnMFVvNUpXUFRwRlVIYmtGY0FFZ1FaY2xqNXhOajFnWVpUOXFXTHVGSkhXVmNRZk5IZ3gzZGlfWXhBU3VFeEpDTHA0eTFQVGIwN1IwWWVQU1hVXzFWMnNickdzOElneXdvWFcwaXRNdVc1VWhDamticWVNNVVtN0ZMcWIxVWhyMDY1aDhveXRscTZwclZObmZRRmtlMTg0MFhHWHBWa045SXp0Q2k2UkJycTQ?oc=5",
-      "source": "WSLS",
-      "pub_date": "2026-06-06T03:50:25+00:00",
-      "timeliness": 0.979,
-      "score": 0.792,
-      "category": "dodgers",
-      "categoryLabel": "ドジャース・大谷翔平",
-      "priority": 1.0,
-      "tier": "S"
-    },
-    {
-      "title": "【打者部門】大谷翔平は何位？ 2026年MLBナリーグ打撃成績ランキング - ベースボールチャンネル",
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBtbkhXR01FTEU1d2sxR3cyYzQyZEF0OXJjVl90R1dycWc0bjJvSTgtZ2MyT2M3QWY2QnRLSUw4bDduaVpVVkdIYWxFeWZYdm9PcFIwbw?oc=5",
+      "title": "【ドジャース対エンゼルス】今日の試合結果 大谷翔平・山本由伸・佐々木朗希の成績一覧｜MLB2026 - ベースボールチャンネル",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBqc3d6XzJReGpsTFdhOHR3Wk81aTlKdEk2UTJROVI2VkVldWVpRU13SFBJeGl3VjNmcGt2bGxLWmVHRFN2S1JVWEVVdUpQX1VQeXQ2dQ?oc=5",
       "source": "ベースボールチャンネル",
-      "pub_date": "2026-06-06T03:13:30+00:00",
-      "timeliness": 0.966,
-      "score": 0.787,
+      "pub_date": "2026-06-06T06:02:10+00:00",
+      "timeliness": 0.983,
+      "score": 0.793,
       "category": "dodgers",
       "categoryLabel": "ドジャース・大谷翔平",
       "priority": 1.0,
       "tier": "S"
     },
     {
-      "title": "大谷翔平が「１番DH」で2試合ぶりに出場　１打席目は空振り三振　先発佐々木朗希の援護目指す - ｄメニューニュース",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOZjRVYjB2OWRUSy1UV1ZXTXpCaFVvZlV1WldZamhRMVN4U2hSV0FIT0h2c2s0US1YMnVtdkFRWkJ1ZF91d3JGTWprQl85X09kVnVrWlNPaHgzQUpJV3ZCQl9rSldKX1I4T3VXM25qd2g5bm85V0t6UmRlRFBSSm5uRnRZSjloYmRhcEcyTlV3WHZhbTRLc2fSAZsBQVVfeXFMT3NFbVpRR1JMa3Rjb1JBc3A1TXoyXzd1czcwRnU3d00xUUF1Yy1GZDhCaWlsTkRhYk1taHFYakFBVWN0TGo4ejItYkpYTHBDOG1IOUJNTS1raDYtZllYLWRuV1k5V1J0MmtPbG9WSGdmM2RGcmpBM25JYXI1YW8zMUY1VU5wM05ES2xVeHlIbzJlTjJmNGVWNEhMQk0?oc=5",
+      "title": "フリーマンがサヨナラ本塁打　大谷翔平は両手を広げて喜び、ピョンピョン跳びながら祝福 - ｄメニューニュース",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNZUFuXzFTN2ZkS3FiaHU4a1hKc1ZCcmFXYWR6em1oaGNPcUZvXzNGZS1GbllRSF9FNHJWUXN3VDhQVWxrR0ZBVFhQbjRlMzFWSk0xbHVndjBnVnJENkUyRWtyVF9tZ1RRejJael82cFRZTVlmalgyZTd0Y05aMnlod0NiVEtPZTV0R2VGM3Utb1pnV2s4a1HSAZsBQVVfeXFMUFJ0ZVNQdUFiVHo5bWlyNWNTVUUtTXR4emNCblNFR08ydHptTTRXSkVFbG5XN083NHhRcnRLRXdhVDZWNzJ4aExNWXR1cjdEb1NyT1VEVDFMTk9EWW1MZFlWdGxfV2poOW9CaVlYUXR0Y0JheUM1NGxPRXRqU1hQNzFGLW1mNUhBaG05SXA5WnZVbmpXOG1uUTNyek0?oc=5",
       "source": "ｄメニューニュース",
-      "pub_date": "2026-06-06T02:41:00+00:00",
-      "timeliness": 0.955,
-      "score": 0.782,
+      "pub_date": "2026-06-06T05:10:00+00:00",
+      "timeliness": 0.965,
+      "score": 0.786,
       "category": "dodgers",
       "categoryLabel": "ドジャース・大谷翔平",
       "priority": 1.0,
       "tier": "S"
     },
     {
-      "title": "【5回1失点7奪三振の好投！山本由伸 投球ダイジェスト】ダイヤモンドバックスvsドジャース MLB2025スプリングトレーニング 3.11",
-      "url": "https://www.youtube.com/watch?v=dZK7SIJjCSQ",
-      "source": "SPOTVNOW",
-      "pub_date": null,
-      "content_type": "video",
-      "duration": "5:45",
-      "view_count": 255048,
-      "timeliness": 0.1,
-      "score": 0.7,
+      "title": "Freddie Freeman crushes a walkoff homer, lifting the Dodgers over the Angels 1-0 - AP News",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNbTFRajRISF8xR2Nsbk9WVlpDbWlBRGlxdGhhSWJtNEJndld3N1hBMXg4bGJSWWt3MVc1TkZnblpmR2RLekVRSDVodEVHR3VKbHRZN25oNFBGYWg1dktlVHpuam5HbHR3X1hnQm8wNTJEX0tJRUJCaXR5bkdzV3gtbGxsVDhPUzg?oc=5",
+      "source": "AP News",
+      "pub_date": "2026-06-06T04:53:00+00:00",
+      "timeliness": 0.959,
+      "score": 0.784,
       "category": "dodgers",
       "categoryLabel": "ドジャース・大谷翔平",
       "priority": 1.0,
       "tier": "S"
     },
     {
-      "title": "【“ユニコーン”大谷翔平 2試合ぶりの3安打！ミスター・ジューンが二刀流でも本領発揮】ドジャースvsダイヤモンドバックス MLB2026シーズン 6.4",
-      "url": "https://www.youtube.com/watch?v=z1ma_x1-mAs",
+      "title": "【大谷翔平 3安打目は全力疾走での内野安打】ドジャースvsダイヤモンドバックス MLB2026シーズン 6.2",
+      "url": "https://www.youtube.com/watch?v=KA1QkjIfCsc",
       "source": "SPOTVNOW",
       "pub_date": null,
       "content_type": "video",
-      "duration": "1:41",
-      "view_count": 85754,
+      "duration": "2:53",
+      "view_count": 167916,
       "_discovery": true,
       "timeliness": 0.1,
-      "score": 0.7,
+      "score": 0.75,
       "category": "dodgers",
       "categoryLabel": "ドジャース・大谷翔平",
       "priority": 1.0,
       "tier": "S"
     },
     {
-      "title": "ネットなしでAIがサクサク動く時代へ！ノートPCから最新ゲーム機まで、インテルが仕掛ける一歩先の未来が見えた (1/3) - ASCII.jp",
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5yU2gwS2N5OXNhZFZGYm5WbzBPSGRoMTBuWDE4T1pScG9GVGpONkhLTTE1MmNmNGZDekhDX2tncG50bFdNd3FIR0VqdEw0cEpqYThLZg?oc=5",
-      "source": "ASCII.jp",
-      "pub_date": "2026-06-06T00:00:00+00:00",
-      "timeliness": 0.899,
-      "score": 0.68,
-      "category": "ai_agent",
-      "categoryLabel": "AIエージェント",
-      "priority": 0.8,
+      "title": "【ミゲル・ロハス 本当に今季で引退!?衰え知らずの37歳が超絶プレーで佐々木を援護！】エンゼルスvsドジャース MLB2026シーズン 6.6",
+      "url": "https://www.youtube.com/watch?v=sKg5wKiofzA",
+      "source": "SPOTVNOW",
+      "pub_date": null,
+      "content_type": "video",
+      "duration": "7:20",
+      "view_count": 108627,
+      "timeliness": 0.1,
+      "score": 0.7,
+      "category": "dodgers",
+      "categoryLabel": "ドジャース・大谷翔平",
+      "priority": 1.0,
       "tier": "S"
     },
     {
@@ -1062,21 +1049,9 @@
       "pub_date": null,
       "content_type": "video",
       "duration": "2:56",
-      "view_count": 2574894,
+      "view_count": 2590140,
       "timeliness": 0.1,
       "score": 0.67,
-      "category": "ai_agent",
-      "categoryLabel": "AIエージェント",
-      "priority": 0.8,
-      "tier": "S"
-    },
-    {
-      "title": "Snowflake、AIコーディングエージェント「CoCo」新機能とストリーミングサービス「Datastream」を発表 - CodeZine",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5vMWRFMTZ6OHdIdzFKYldQaVFmeDdEdS1wRHBEZVNFZ25wdnZ4eGhieFVCaEwtalMxa1NkY2czT3IwdnBnUHN5NDMta2lBdw?oc=5",
-      "source": "CodeZine",
-      "pub_date": "2026-06-05T09:35:45+00:00",
-      "timeliness": 0.599,
-      "score": 0.66,
       "category": "ai_agent",
       "categoryLabel": "AIエージェント",
       "priority": 0.8,
@@ -1095,18 +1070,6 @@
       "tier": "A"
     },
     {
-      "title": "WE ARE COOKED: Claude Opus 4.7 JUST DROPPED AND IT'S INSANE Berardi (wZ4zRLgDbW) - Mshale",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE13QTMwc1JOQXdPY2FRTTJ6S29zTHNmZjVKNTEyLXYtT05VeTlUb0dNMFFsTURoSURtaE5XcGxzcVlET0pwV2dEVmdIWTQyU2lUeUd0Sk5XTXJudjQ?oc=5",
-      "source": "Mshale",
-      "pub_date": "2026-06-05T19:02:17+00:00",
-      "timeliness": 0.796,
-      "score": 0.638,
-      "category": "ai_agent",
-      "categoryLabel": "AIエージェント",
-      "priority": 0.8,
-      "tier": "S"
-    },
-    {
       "title": "Advisor360° Appoints Milind Mehere As CEO To Lead AI-Native Growth Strategy - Pulse 2.0",
       "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPMFNhMDJiMVZtcjVPVndJUS0tMkFfZ3EtTEZieUR2c29lSzQzeTRFdC1NaG5mOG5KY1R3RzNyUUJTRlJBeVhBUXBKMkt4T2xlR0xoTlpHLVloc1NId1ItY1JUek9tbmZrUmYyMGlOS01IeVYydFp3dWpLcnhxRWUzT0FSVFNnSGJzNWZwMHhjOVItUWVoS1ZidUN30gGfAUFVX3lxTFBJSi0yOFNqOWZJSTRURW1tS25CWjBGcGpDVXA1eExqTU1yakZmUkprVGtST3NkMl9YUG91MmMwQ2Y1OXc1dEhXYWM1SVhMVzFlcUcwTFlLbnBJbFBSWENqbEZFYkh0c2dwSXU0V0M2Z2FXeG9iRU83dHBIVDZlb3RXNHpkRjVnX0o1Q29xQ2dFNUJHMm9mY1drMHItelh5bw?oc=5",
       "source": "Pulse 2.0",
@@ -1123,6 +1086,30 @@
       "tier": "B"
     },
     {
+      "title": "Why your AI agents don’t scale - Fast Company",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9TOERTaVIxZVR5ajVWX05rUnZ3TWtWZ3NleXd1eUV2clpDVXpuQjdadzRRM29NTzBoRmxxb0Q2bG5XWG1JYWhDWHZjM3cyRzFvZnVyQm5lZ2g5TWthUmtLX1o1M0Jpb2t3ekRNa2FMT3Q0NzFV?oc=5",
+      "source": "Fast Company",
+      "pub_date": "2026-06-05T19:28:11+00:00",
+      "timeliness": 0.763,
+      "score": 0.625,
+      "category": "ai_agent",
+      "categoryLabel": "AIエージェント",
+      "priority": 0.8,
+      "tier": "S"
+    },
+    {
+      "title": "WE ARE COOKED: Claude Opus 4.7 JUST DROPPED AND IT'S INSANE Berardi (wZ4zRLgDbW) - Mshale",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE13QTMwc1JOQXdPY2FRTTJ6S29zTHNmZjVKNTEyLXYtT05VeTlUb0dNMFFsTURoSURtaE5XcGxzcVlET0pwV2dEVmdIWTQyU2lUeUd0Sk5XTXJudjQ?oc=5",
+      "source": "Mshale",
+      "pub_date": "2026-06-05T19:02:17+00:00",
+      "timeliness": 0.754,
+      "score": 0.622,
+      "category": "ai_agent",
+      "categoryLabel": "AIエージェント",
+      "priority": 0.8,
+      "tier": "S"
+    },
+    {
       "title": "Dnotitia Releases DNA 3.0, an Enterprise-Ready AI Language Model Family - HPCwire",
       "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOb05SZWxXNWE1Q0VxenhSSFF1OVpFeTdNa2owcVBURG96SkFfSUd1LVYzZC16WWpua1lTR1BKaWttdC1ha2p1dlQyaU5WUkcydUM2SHFlZ21OVG5rUF9jUnV3b01yQmREOFJDTWZxMUNQdGE2bXVENTExbWg0V0otclNXZUxweUoyel9hakQweFFiM2UxUWZqSUNGZENWdHJlSkl6WVN6aE5URmF4QmtHVlQ3TQ?oc=5",
       "source": "HPCwire",
@@ -1133,22 +1120,6 @@
       "categoryLabel": "ローカルLLM・オープンソースAI",
       "priority": 0.664,
       "tier": "A"
-    },
-    {
-      "title": "【公開間近】Claude Mythosで人間の仕事はどう変わる？24時間AIに仕事させる時代",
-      "url": "https://www.youtube.com/watch?v=bogsZSiAwmY",
-      "source": "AI仙人 【AI歴10年・ガチADHD男】",
-      "pub_date": null,
-      "content_type": "video",
-      "duration": "47:58",
-      "view_count": 18185,
-      "_discovery": true,
-      "timeliness": 0.1,
-      "score": 0.62,
-      "category": "ai_agent",
-      "categoryLabel": "AIエージェント",
-      "priority": 0.8,
-      "tier": "S"
     },
     {
       "title": "Alexandr Wang Defends Meta’s Muse Spark as an ‘Appetizer’ in Bigger A.I. Push - observer.com",
@@ -1163,6 +1134,18 @@
       "tier": "A"
     },
     {
+      "title": "AI agents are learning on the job — just not for your whole team - Venturebeat",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQMU5kLWZvYk9yWkkyZ3g2T2RFb3dUWl9laU1SVEVtREtzQVl0OWxEWlF2MlBqMFlQZ1FXbFlCLTh0dE5sRXNSbkREWHQ4YS03ZU03NjdRNzRhWmhlRVpHZzdNcHFMeEg1dENfZjE4Q25DM2R3YUNKOVljSzhBOGF3cG9kNnpTNll2LWFNY01QTkFwUTRGN2N5SVgtRC01Sk93X1E?oc=5",
+      "source": "Venturebeat",
+      "pub_date": "2026-06-05T17:51:03+00:00",
+      "timeliness": 0.729,
+      "score": 0.612,
+      "category": "ai_agent",
+      "categoryLabel": "AIエージェント",
+      "priority": 0.8,
+      "tier": "S"
+    },
+    {
       "title": "AI Not Hindering Hiring: Yale Budget Lab - StartupHub.ai",
       "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxObzROMkNZTTJRYXhVUktVV2tCd1JfeEZHV1g5SHphUzgxWDNPOWl5bHZSajdnODZqZXQyLVpRY04xVXBKcjM5ZTlTMUIwMkFkQzUwQmFqVGdvdWFxYUt4V05LRTFwaFc2eTlCTW05STljTkFJc1NlRk1Ha1ZVRkJ0U2NLd0JjdDZUX0JEaUI2MC1pLWh5NlhCMEt4cmVtaWUzRzhVcw?oc=5",
       "source": "StartupHub.ai",
@@ -1173,6 +1156,21 @@
       "categoryLabel": "経営戦略・コンサル",
       "priority": 0.558,
       "tier": "B"
+    },
+    {
+      "title": "知識ゼロでClaude Codeを1週間使ったら、世界が変わりました。",
+      "url": "https://www.youtube.com/watch?v=SlVZJWxzdmQ",
+      "source": "AKIYA MOVIE",
+      "pub_date": null,
+      "content_type": "video",
+      "duration": "29:30",
+      "view_count": 25701,
+      "timeliness": 0.1,
+      "score": 0.57,
+      "category": "ai_agent",
+      "categoryLabel": "AIエージェント",
+      "priority": 0.8,
+      "tier": "S"
     }
   ]
 }
