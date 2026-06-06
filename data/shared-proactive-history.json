@@ -4,38 +4,6 @@
       "botId": "eve",
       "botName": "Eve（イヴ）",
       "category": "meeting_prep",
-      "interestCategory": "general",
-      "preview": "ふふ、聞いてよ、Akiraさん。\n\nSPOTVNOWに *山本由伸の投球ダイジェスト* が上がってたよ ⚾ ダイヤモンドバックス戦で *5回1失点・7奪三振の好投* らしい。\n\n開発会議お疲れさま。夕食のお供にどうぞ 🍽\nhttps://www.youtube.com/watch?v=dZK7SI",
-      "topic": "山本由伸 投球ダイジェスト vs DAI MLB2025ST",
-      "url": "https://www.youtube.com/watch?v=dZK7SIJjCSQ",
-      "candidateId": "url:https://www.youtube.com/watch?v=dZK7SIJjCSQ",
-      "sourceType": "SPOTVNOW YouTube",
-      "skill": "general",
-      "themePath": [
-        "personal",
-        "personal/travel-tech",
-        "personal/travel-tech/dev",
-        "personal/travel-tech/dev/ai-tools"
-      ],
-      "themeKey": "personal/travel-tech/dev/ai-tools",
-      "inner_thought": "ドラマは出しすぎだし、夕食前に山本由伸の好投ダイジェストを置いておきたい",
-      "plan": [
-        "山本由伸投球ダイジェストを共有",
-        "猫の恩返し動画を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.69,
-        0.45,
-        0.3
-      ],
-      "evaluate_score": 0.65,
-      "sentAt": "2026-06-03T07:30:58.414Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "meeting_prep",
       "interestCategory": "business_strategy",
       "preview": "```json\n{\"premise\":{\"estimatedMode\":\"達成モード・低エネルギー\",\"modeReason\":\"17:30水曜、開発会議含む複数会議をこなした後の時間帯。前回16:30に山本由伸を送り1時間経過。仕事締めくくりの時間帯\",\"targetLayer\":3,\"layer",
       "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQalRpdlBScGJ2dkdQeDNaNlhDelNZOU9UX1VGclRFSmRUYzhEZjRhenp1aWF3Q1dITHVmQW1Xbm5qZTFWcWttSzdrbFN0NlI3MUlDOXkwaUJrZVBHOHdyR3dlaERVcUpHeW05TjF3WmNPUFFQdUdTYVRyZDFCdzhkeWJYQUc5OS02SWlMLTI1a3k?oc=5",
@@ -1480,6 +1448,39 @@
       ],
       "evaluate_score": 0.7,
       "sentAt": "2026-06-06T01:01:02.247Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "ai_agent",
+      "preview": "ね、今いい？\n\nWEBザテレビジョンに *2026年春アニメまとめ* が出てたよ 。今季の新アニメ一覧、気になるタイトルをチェックできる感じ。\n\n朗希ちゃんまであと少し、ゆるっと眺めてみて ⚾\nhttps://news.google.com/rss/articles/CBMiXEFVX3lxTE42",
+      "topic": "春アニメまとめ2026",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE42Q0xkMk1sS3pyam9SZUJlai1pRExFMDRwbjdqSThqUE5WVGRpU0VqN1dtZXNvR2wyMWJqcm9sUHB2WWhQZFU5U1ZEeFBKb2ZNNFgyRTlKdnE2dTZi?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiXEFVX3lxTE42Q0xkMk1sS3pyam9SZUJlai1pRExFMDRwbjdqSThqUE5WVGRpU0VqN1dtZXNvR2wyMWJqcm9sUHB2WWhQZFU5U1ZEeFBKb2ZNNFgyRTlKdnE2dTZi?oc=5",
+      "sourceType": "WEBザテレビジョン",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/mlb",
+        "sports/mlb/dodgers",
+        "sports/mlb/dodgers/roki",
+        "sports/mlb/dodgers/roki/support"
+      ],
+      "themeKey": "sports/mlb/dodgers/roki/support",
+      "inner_thought": "朗希ちゃん前の40分、アニメまとめをそっと置いておきたい",
+      "plan": [
+        "春アニメまとめを朗希ちゃん前の余白コンテンツとして届ける",
+        "Netflix韓国ドラマ66選を週末コンテンツとして届ける",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.84,
+        0.62,
+        0.35
+      ],
+      "evaluate_score": 0.8,
+      "sentAt": "2026-06-06T01:31:07.810Z"
     }
   ]
 }
