@@ -1,0 +1,86 @@
+{
+  "gemma-4-e4b-4bit": {
+    "conv_empathy": {
+      "wall": 0.2027876377105713,
+      "prompt_tps": 646.4816124571017,
+      "gen_tps": 138.3017631427037,
+      "out_tokens": 19,
+      "peak_mem_gb": 5.311201291,
+      "response": "お疲れ様です。明日は早いですが、乗り切れるようにサポートしますね。"
+    },
+    "reasoning": {
+      "wall": 0.3842780590057373,
+      "prompt_tps": 1114.4937277696984,
+      "gen_tps": 135.1352343655623,
+      "out_tokens": 46,
+      "peak_mem_gb": 5.321412579,
+      "response": "一番背が高いのは**太郎**です。\n\n**理由：**太郎は花子より背が高く、花子は次郎より背が高いという情報から、太郎が最も背が高いと推測できるからです。"
+    },
+    "summarize": {
+      "wall": 0.24980902671813965,
+      "prompt_tps": 1301.1535242062403,
+      "gen_tps": 136.28828415322107,
+      "out_tokens": 26,
+      "peak_mem_gb": 5.393324448,
+      "response": "売上は伸びたが、円安で利益率低下。来期は値上げで回復目指す。"
+    },
+    "instruction": {
+      "wall": 0.26416492462158203,
+      "prompt_tps": 1397.2118459811375,
+      "gen_tps": 136.87093066285743,
+      "out_tokens": 28,
+      "peak_mem_gb": 5.407710464,
+      "response": "09:30 朝会\n13:00 ランチ面談\n15:00 顧客MTG"
+    },
+    "knowledge": {
+      "wall": 1.2344729900360107,
+      "prompt_tps": 897.244590000339,
+      "gen_tps": 132.6104571557909,
+      "out_tokens": 158,
+      "peak_mem_gb": 5.296273184,
+      "response": "ストルバイト結石の猫の食事で気をつける点は以下の3点です。\n\n* **水分摂取量の確保（最も重要）：** 水を多く飲むようにし、新鮮で美味しい水を常に提供し、飲水量を増やす工夫をすること。\n* **低ミネラルリン・高尿酸の食事管理：** 現在の結石の種類や獣医師の指示に基づき、ミネラル（特にマグネシウムやカルシウム）やリンの含有量が過剰でないフードを選ぶこと。\n* **食事のタイミングと種類の一貫性：** 結石の形成を助長しないように、獣医師が推奨するフードや食事のタイミングを厳守し、急なフードチェンジを避けること。"
+    }
+  },
+  "gemma-4-26b-a4b-4bit(OptiQ)": {
+    "conv_empathy": {
+      "wall": 6.1248509883880615,
+      "prompt_tps": 248.60805435426587,
+      "gen_tps": 100.42449484944314,
+      "out_tokens": 586,
+      "peak_mem_gb": 17.850001392,
+      "response": "<|channel>thought\n\n*   User's state: Tired (\"今日は疲れたよ\").\n*   User's upcoming schedule: Three meetings starting tomorrow morning (\"明日も朝から会議が3つある\").\n*   Persona: Close secretary (親しい秘書).\n*   Constraint: Maximum 2 sentences, short response (2文以内で短く).\n\n    *   Empathetic/Supportive: Acknowledge the tiredness.\n    *   Encouraging/Professional yet warm: Acknowledge the busy schedule but offer comfort.\n    *   \"Close secretary\" implies a bit more intimacy than a formal business relationship, but still maintains a level of respect and care.\n\n    *   *Option 1 (Formal/Standard):* お疲れ様です。明日の会議も応援しています。 (Too stiff)\n    *   *Option 2 (Warm/Empathetic):* 今日もお疲れ様でした。明日は大変ですが、今夜はゆっくり休んでくださいね。 (Good, fits the persona)\n    *   *Option 3 (Supportive/Proactive):* 本当にお疲れ様です。明日の準備は私が整えておきますので、今夜は早めに休んでください。 (Very \"secretary-like\")\n    *   *Option 4 (Short/Sweet):* 今日も一日お疲れ様でした。明日はハードですが、今夜は自分を甘やかしてゆっくり休んでくださいね。 (Warm)\n\n    *   *Draft A:* 今日もお疲れ様でした。明日は大変ですが、今夜はゆっくり休んで英気を養ってくださいね。 (A bit formal)\n    *   *Draft B:* 今日も一日、本当にお疲れ様でした。明日の会議の準備は万全にしておきますので、今夜はゆっくり休んでくださいね。 (Strong \"secretary\" vibe)\n    *   *Draft C:* 今日もお疲れ様でした。明日はハードな一日になりそうですが、今夜は早めに休んでくださいね。 (Simple and kind)\n\n    Draft B is the most \"close secretary\" because it offers practical support (preparing things) while being empathetic.\n\n    *Selection:*\n    「今日もお疲れ様でした。明日の準備は私が整えておきますので、今夜はゆっくり休んでくださいね。」\n\n    *   2 sentences? Yes.\n    *   Short? Yes.\n    *   Close secretary persona? Yes.\n    *   Addresses tiredness and tomorrow's meetings? Yes.\n\n    「今日もお疲れ様でした。明日の準備は私が整えておきますので、今夜はゆっくり休んでくださいね。」<channel|>今日もお疲れ様でした。明日の準備は私が整えておきますので、今夜はゆっくり休んでくださいね。"
+    },
+    "reasoning": {
+      "wall": 3.852530002593994,
+      "prompt_tps": 486.7480840236902,
+      "gen_tps": 100.95152643565827,
+      "out_tokens": 368,
+      "peak_mem_gb": 17.782795248,
+      "response": "<|channel>thought\n*   Premise 1: Taro is taller than Hanako (Taro > Hanako).\n    *   Premise 2: Hanako is taller than Jiro (Hanako > Jiro).\n    *   Question: Who is the tallest?\n    *   Constraint: Answer the question and provide the reason in one line.\n\n    *   Taro > Hanako > Jiro.\n    *   Tallest is Taro.\n\n    *   Answer: 太郎 (Taro).\n    *   Reason: 太郎は花子より高く、花子は次郎より高いため。 (Because Taro is taller than Hanako, and Hanako is taller than Jiro.)\n\n    *   \"太郎。太郎は花子より高く、花子は次郎より高いため。\" (A bit clunky)\n    *   \"太郎です。太郎 ＞ 花子 ＞ 次郎という関係になるからです。\" (Clearer)\n    *   \"太郎。太郎は花子より高く、花子は次郎より高いからです。\" (Standard)\n\n    *   \"太郎。太郎は花子より高く、花子は次郎より高いからです。\"\n\n    *   Answer the question? Yes (太郎).\n    *   Reason included? Yes.\n    *   One line? Yes.\n\n    *Self-Correction during drafting:* The prompt asks to \"answer the question and provide the reason in one line\" (次の問いに答えて、理由も一行で). This usually means the entire response should be one line.\n\n    Draft: 太郎。太郎は花子より高く、花子は次郎より高いからです。<channel|>太郎。太郎は花子より高く、花子は次郎より高いからです。"
+    },
+    "summarize": {
+      "wall": 10.958387851715088,
+      "prompt_tps": 207.21400777183226,
+      "gen_tps": 97.72833281867548,
+      "out_tokens": 1024,
+      "peak_mem_gb": 17.891368534,
+      "response": "<|channel>thought\n\n*   Source text: 『四半期の売上は前年同期比12%増となったが、円安による原材料高で営業利益率は2ポイント低下した。来期は価格改定で利益率の回復を見込む。』\n    *   Key information points:\n        1.  Quarterly sales: +12% YoY.\n        2.  Operating profit margin: -2 points (due to high raw material costs from yen depreciation).\n        3.  Future outlook: Recovery expected via price revisions next term.\n    *   Constraint: Summarize in Japanese within 30 characters.\n\n    *   Sales up 12% YoY, but profit margin down 2 pts due to costs. Plan to recover via price hikes.\n\n    *   *Draft 1:* 売上は12%増だが、円安で利益率は低下。来期は値上げで回復へ。(30 characters) - *Good, fits exactly.*\n    *   *Draft 2:* 売上は前年比12%増も、円安で利益率は低下。来期は価格改定で回復。(31 characters) - *Slightly too long.*\n    *   *Draft 3:* 売上は12%増だが、円安で利益率は低下。来期は価格改定で回復。(29 characters) - *Good.*\n    *   *Draft 4:* 売上は12%増も円安で利益率低下。来期は価格改定で回復見込み。(30 characters) - *Stronger, more professional.*\n    *   *Draft 5:* 売上12%増も円安で利益率低下。来期は価格改定で回復を図る。(29 characters) - *Also good.*\n\n    *   \"売上12%増も円安で利益率低下。来期は価格改定で回復見込み。\" (30 characters)\n    *   \"売上は12%増だが円安で利益率低下。来期は価格改定で回復へ。\" (29 characters)\n\n    Let's try to make it even more concise to ensure it's well under the limit while keeping the essence.\n\n    *   *Option A:* 売上は12%増も円安で利益率低下。来期は価格改定で回復へ。(29 characters)\n    *   *Option B:* 売上12%増も円安で利益率低下。来期は価格改定で回復見込む。(30 characters)\n\n    Option A is very natural.\n\n    \"売上は12%増も円安で利益率低下。来期は価格改定で回復へ。\"\n    Count:\n    売(1)上(2)は(3)1(4)2(5)%(6)増(7)も(8)円(9)安(10)で(11)利(12)益(13)率(14)低(15)下(16)。(17)来(18)期(19)は(20)価(21)格(22)改(23)定(24)で(25)回(26)復(27)へ(28)。(29)\n    Total: 29 characters.\n\n    Let's try one more that is even more \"business-like\".\n    \"売上12%増も円安で利益率低下。来期は価格改定により回復へ。\"\n    売(1)上(2)1(3)2(4)%(5)増(6)も(7)円(8)安(9)で(10)利(11)益(12)率(13)低(14)下(15)。(16)来(17)期(18)は(19)価(20)格(21)改(22)定(23)に(24)よ(25)り(26)回(27)復(28)へ(29)。(30)\n    Total: 30 characters.\n\n    Actually, \"売上は12%増も円安で利益率低下。来期は価格改定で回復へ。\" is very clear.\n\n    売上は12%増も円安で利益率低下。来期は価格改定で回復へ。 (29 characters)\n\n    Let's check if I missed anything.\n    - Sales +12%? Yes."
+    },
+    "instruction": {
+      "wall": 3.0163347721099854,
+      "prompt_tps": 670.5370651977886,
+      "gen_tps": 100.6973456217557,
+      "out_tokens": 280,
+      "peak_mem_gb": 17.796092642,
+      "response": "<|channel>thought\n*   Input: Three scheduled items:\n        1.  15:00 顧客MTG\n        2.  09:30 朝会\n        3.  13:00 ランチ面談\n    *   Task: Sort them by start time (earliest first).\n    *   Format: Bullet points in the format `HH:MM タイトル`.\n    *   Constraint: Output *only* the list. No other text.\n\n    *   09:30 朝会\n    *   13:00 ランチ面談\n    *   15:00 顧客MTG\n\n    *   09:30 朝会\n    *   13:00 ランチ面談\n    *   15:00 顧客MTG\n\n    *   Format: `HH:MM タイトル`\n    *   Bullet points: Yes.\n    *   No extra text: Yes.\n\n    - 09:30 朝会\n    - 13:00 ランチ面談\n    - 15:00 顧客MTG<channel|>- 09:30 朝会\n- 13:00 ランチ面談\n- 15:00 顧客MTG"
+    },
+    "knowledge": {
+      "wall": 5.3237481117248535,
+      "prompt_tps": 435.3102060934074,
+      "gen_tps": 100.06103656642722,
+      "out_tokens": 512,
+      "peak_mem_gb": 17.84803224,
+      "response": "<|channel>thought\n\n*   Topic: Diet for cats with struvite stones (ストルバイト結石の猫の食事).\n*   Constraint 1: Three points (3つ).\n*   Constraint 2: Concise (簡潔に).\n*   Constraint 3: Bullet points (箇条書き).\n\n    *   *What are struvite stones?* Magnesium ammonium phosphate crystals.\n    *   *How to prevent/manage them?*\n        1.  Control mineral levels (Magnesium, Phosphorus, Calcium).\n        2.  Control pH (make urine more acidic to dissolve crystals).\n        3.  Increase water intake (dilute urine, flush out crystals).\n\n    *   *Point 1: Mineral control.*\n        *   Draft: マグネシウムやリンなどのミネラル分を制限する。 (Limit minerals like magnesium and phosphorus.)\n    *   *Point 2: Urine pH.*\n        *   Draft: 尿のpHを調整し、結石が溶けやすい酸性の状態を保つ。 (Adjust urine pH to maintain an acidic state where stones dissolve easily.)\n    *   *Point 3: Hydration.*\n        *   Draft: 水分摂取量を増やして尿を薄める。 (Increase water intake to dilute urine.)\n\n    *   *Point 1:* ミネラル（マグネシウム・リン）の摂取量を管理する。\n    *   *Point 2:* 尿のpHを調整し、結石が溶けやすい環境を作る。\n    *   *Point 3:* 水分摂取量を増やし、尿を薄めて排出を促す。\n\n    *   3 points? Yes.\n    *   Concise? Yes.\n    *   Bullet points? Yes.\n\n    *   ミネラル（マグネシウム・リン）の摂取量を制限する\n    *   尿のpHを調整し、結石が溶けやすい環境を作る\n    *   水分摂取量を増やして、尿を薄めて排出を促す<channel|>ストルバイト結石の猫の食事で気をつける点は以下の3点です。\n\n* **ミネラル（マグネシウム・リン）の摂取量を制限する**\n* **尿のpHを調整し、結石が溶けやすい環境を作る**\n* **水分摂取量を増やして、尿を薄めて排出を促す**"
+    }
+  }
+}
