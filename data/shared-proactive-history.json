@@ -1,38 +1,6 @@
 {
   "entries": [
     {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "business_strategy",
-      "preview": "Akiraさん、1個だけ。\n\nPR TIMESに *不動産業界M&A動向レポート* が出てたよ  \"開発\"の転換が加速してるって話みたい。\n\nお昼にでもちらっと。\nhttps://news.google.com/rss/articles/CBMiakFVX3lxTE1jS1NUOVozTm1jMG8",
-      "topic": "【最新トレンド】不動産業界M&A動向レポートを公開、“開発”の転換が加速 - PR TIMES",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1jS1NUOVozTm1jMG83S0Z2ZHB3aGNjS0RSMzhtYWZWVzc0ZWYzaWlSWWJhVzdNQWtHeTdlQnBDdWNuejlkbnhkb2d3UTNjSmw4eWdFc29vZ09vMk9xelpUQ0FCd3p0WGc3Y1E?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiakFVX3lxTE1jS1NUOVozTm1jMG83S0Z2ZHB3aGNjS0RSMzhtYWZWVzc0ZWYzaWlSWWJhVzdNQWtHeTdlQnBDdWNuejlkbnhkb2d3UTNjSmw4eWdFc29vZ09vMk9xelpUQ0FCd3p0WGc3Y1E?oc=5",
-      "sourceType": "interest-cache",
-      "skill": "general",
-      "themePath": [
-        "business",
-        "business/consulting",
-        "business/consulting/market",
-        "business/consulting/market/report"
-      ],
-      "themeKey": "business/consulting/market/report",
-      "inner_thought": "3日以上ゼロ反応、正直怖い。でもM&Aは在庫不足だし不動産業界の転換レポートならコンサルの引き出しに直結する",
-      "plan": [
-        "不動産M&Aレポートを昼読み用に置く",
-        "Claude Agent SDKを共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.65,
-        0.4,
-        0.5
-      ],
-      "evaluate_score": 0.45,
-      "sentAt": "2026-06-04T01:01:22.328Z"
-    },
-    {
       "botId": "eve",
       "botName": "Eve（イヴ）",
       "category": "meeting_prep",
@@ -1511,6 +1479,37 @@
       ],
       "evaluate_score": 0.35,
       "sentAt": "2026-06-06T05:01:06.605Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "hobby_leisure",
+      "interestCategory": "ai_agent",
+      "preview": "Akiraさん、ちょっといい？\n\nBAILAに *2026年最新・Netflixおすすめ韓国ドラマ66選* が出てたよ 🎬\n\n前にイヴと春ドラマの話で盛り上がってたでしょ。66本もあるから、今夜どれ観るか選ぶだけでも楽しそう。\nhttps://news.google.com/rss/article",
+      "topic": "Netflix韓国ドラマ66選",
+      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9ndTVJNHdTa1EyVVFMY1BhcWVOdlJsVjR5c19tYWJLMEZNdVlTUU05MExqbWdqazhVcmpJWTNoXzE3UU9JeU10Nk1wcU1xV3ozLVZ4ckRLSXEwQS1TeEx5WUl3UQ?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiY0FVX3lxTE9ndTVJNHdTa1EyVVFMY1BhcWVOdlJsVjR5c19tYWJLMEZNdVlTUU05MExqbWdqazhVcmpJWTNoXzE3UU9JeU10Nk1wcU1xV3ozLVZ4ckRLSXEwQS1TeEx5WUl3UQ?oc=5",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/spring-drama"
+      ],
+      "themeKey": "entertainment/movie-drama/spring-drama",
+      "inner_thought": "今日もう6件送ってるし控えたいけど、前にイヴとの春ドラマで盛り上がってたし韓国ドラマの網羅リストは週末向き",
+      "plan": [
+        "韓国ドラマ66選を共有",
+        "ロンジェビティ記事を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.7,
+        0.45,
+        0.55
+      ],
+      "evaluate_score": 0.45,
+      "sentAt": "2026-06-06T06:01:20.428Z"
     }
   ]
 }
