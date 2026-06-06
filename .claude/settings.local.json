@@ -18,7 +18,8 @@
       "Bash(/bin/ls ~/.claude/skills/team-dev)",
       "Bash(mkdir -p ~/.claude/skills/team-dev)",
       "mcp__claude_ai_Google_Calendar__list_calendars",
-      "mcp__claude_ai_Google_Calendar__create_event"
+      "mcp__claude_ai_Google_Calendar__create_event",
+      "Bash(grep -ivE \"^\\\\s*$\")"
     ]
   }
 }
