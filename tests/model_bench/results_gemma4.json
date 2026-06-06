@@ -1,0 +1,170 @@
+{
+  "gemma4:e4b": {
+    "conv_empathy": {
+      "wall": 2.766127109527588,
+      "tok_s": 107.74088821419899,
+      "ttft": 0.17782,
+      "total": 2.764619125,
+      "out_tokens": 256,
+      "response": ""
+    },
+    "reasoning": {
+      "wall": 2.635596752166748,
+      "tok_s": 108.90150709476303,
+      "ttft": 0.06851,
+      "total": 2.634162791,
+      "out_tokens": 256,
+      "response": ""
+    },
+    "summarize": {
+      "wall": 2.654284954071045,
+      "tok_s": 108.49314882717212,
+      "ttft": 0.072235,
+      "total": 2.652529792,
+      "out_tokens": 256,
+      "response": ""
+    },
+    "instruction": {
+      "wall": 0.5945930480957031,
+      "tok_s": 112.41862049126937,
+      "ttft": 0.073093,
+      "total": 0.593265083,
+      "out_tokens": 34,
+      "response": "* 09:30 朝会\n* 13:00 ランチ面談\n* 15:00 顧客MTG"
+    },
+    "knowledge": {
+      "wall": 2.637937068939209,
+      "tok_s": 108.85293245973186,
+      "ttft": 0.067986,
+      "total": 2.636176209,
+      "out_tokens": 256,
+      "response": ""
+    }
+  },
+  "gemma4:12b": {
+    "conv_empathy": {
+      "wall": 5.012265920639038,
+      "tok_s": 55.85966829394318,
+      "ttft": 0.208704,
+      "total": 5.010388333,
+      "out_tokens": 256,
+      "response": ""
+    },
+    "reasoning": {
+      "wall": 4.910145044326782,
+      "tok_s": 56.10084653109401,
+      "ttft": 0.118368,
+      "total": 4.9087035,
+      "out_tokens": 256,
+      "response": ""
+    },
+    "summarize": {
+      "wall": 4.929826974868774,
+      "tok_s": 55.93080660088388,
+      "ttft": 0.123589,
+      "total": 4.928154458,
+      "out_tokens": 256,
+      "response": ""
+    },
+    "instruction": {
+      "wall": 4.918897867202759,
+      "tok_s": 56.18830809102857,
+      "ttft": 0.12485,
+      "total": 4.91720225,
+      "out_tokens": 256,
+      "response": "- 09:30 朝会\n- 13:0"
+    },
+    "knowledge": {
+      "wall": 4.927592992782593,
+      "tok_s": 56.10018265430563,
+      "ttft": 0.116606,
+      "total": 4.925451333,
+      "out_tokens": 256,
+      "response": ""
+    }
+  },
+  "gemma4:26b-a4b-it-q4_K_M": {
+    "conv_empathy": {
+      "wall": 2.4995479583740234,
+      "tok_s": 117.5831878088281,
+      "ttft": 0.089196,
+      "total": 2.495763833,
+      "out_tokens": 256,
+      "response": ""
+    },
+    "reasoning": {
+      "wall": 2.5823867321014404,
+      "tok_s": 117.99997418750564,
+      "ttft": 0.180093,
+      "total": 2.580310125,
+      "out_tokens": 256,
+      "response": ""
+    },
+    "summarize": {
+      "wall": 2.487809896469116,
+      "tok_s": 117.56601607347875,
+      "ttft": 0.075111,
+      "total": 2.4855465,
+      "out_tokens": 256,
+      "response": ""
+    },
+    "instruction": {
+      "wall": 2.450242042541504,
+      "tok_s": 118.45155613381642,
+      "ttft": 0.077616,
+      "total": 2.448478542,
+      "out_tokens": 252,
+      "response": "- 09:30 朝会\n- 13:00 ランチ面談\n- 15:00 顧客MTG"
+    },
+    "knowledge": {
+      "wall": 2.519972085952759,
+      "tok_s": 116.99300555488274,
+      "ttft": 0.085127,
+      "total": 2.517634792,
+      "out_tokens": 256,
+      "response": ""
+    }
+  },
+  "gemma4-26b-nothink:latest": {
+    "conv_empathy": {
+      "wall": 2.606788158416748,
+      "tok_s": 116.09577175571273,
+      "ttft": 0.1649,
+      "total": 2.604951417,
+      "out_tokens": 256,
+      "response": ""
+    },
+    "reasoning": {
+      "wall": 2.4940030574798584,
+      "tok_s": 117.76655724190722,
+      "ttft": 0.05994,
+      "total": 2.492327584,
+      "out_tokens": 256,
+      "response": ""
+    },
+    "summarize": {
+      "wall": 2.5520808696746826,
+      "tok_s": 114.9397935483755,
+      "ttft": 0.074384,
+      "total": 2.550216958,
+      "out_tokens": 256,
+      "response": ""
+    },
+    "instruction": {
+      "wall": 2.4609122276306152,
+      "tok_s": 117.91768602353379,
+      "ttft": 0.076648,
+      "total": 2.459228667,
+      "out_tokens": 252,
+      "response": "- 09:30 朝会\n- 13:00 ランチ面談\n- 15:00 顧客MTG"
+    },
+    "knowledge": {
+      "wall": 2.5213229656219482,
+      "tok_s": 116.91136611387988,
+      "ttft": 0.082434,
+      "total": 2.519449,
+      "out_tokens": 256,
+      "response": ""
+    }
+  }
+}

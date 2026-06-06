@@ -52,7 +52,7 @@ PROMPTS = [
     },
 ]
 
-OPTS = {"temperature": 0.3, "num_predict": 256, "seed": 42}
+OPTS = {"temperature": 0.3, "num_predict": 1024, "seed": 42}
 
 
 def run(model, prompt):
@@ -60,6 +60,7 @@ def run(model, prompt):
         "model": model,
         "prompt": prompt,
         "stream": False,
+        "think": True,          # thinking を別フィールドで受け取る
         "options": OPTS,
     }).encode()
     req = urllib.request.Request(OLLAMA, data=body, headers={"Content-Type": "application/json"})
@@ -77,7 +78,8 @@ def run(model, prompt):
         "ttft": ped,
         "total": td,
         "out_tokens": ec,
-        "response": data.get("response", "").strip(),
+        "thinking": (data.get("thinking") or "").strip(),
+        "response": (data.get("response") or "").strip(),
     }
 
 
@@ -100,9 +102,11 @@ def main():
                 print(f"  [{p['id']}] ERROR: {e}", flush=True)
                 continue
             results[m][p["id"]] = r
+            think_n = len(r["thinking"])
+            ans = r["response"] or "(空: 思考で予算切れ)"
             print(f"  [{p['label']:6}] {r['tok_s']:6.1f} tok/s  ttft {r['ttft']*1000:6.0f}ms  "
-                  f"total {r['total']:5.2f}s  out {r['out_tokens']}tok", flush=True)
-            print(f"           -> {r['response'][:80].replace(chr(10),' / ')}", flush=True)
+                  f"total {r['total']:5.2f}s  out {r['out_tokens']}tok  think {think_n}字", flush=True)
+            print(f"           ans-> {ans[:100].replace(chr(10),' / ')}", flush=True)
 
     # サマリ表
     print(f"\n\n{'#'*60}\n# SUMMARY  (平均 tok/s / 平均 total)\n{'#'*60}")
