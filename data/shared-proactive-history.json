@@ -1,180 +1,6 @@
 {
   "entries": [
     {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "campingcar",
-      "preview": "Akiraさん、お疲れさま。\n\nキャンピングカー国内最大手の *ナッツRV* が東北初進出で、7月3日に『ナッツ仙台』オープンだって \n\n毎週物件見てるし、東北方面のキャンプ旅も選択肢広がるかもね。\nhttps://news.google.com/rss/articles/CBMibkFVX3lxT",
-      "topic": "ナッツRV東北進出",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1qb2lLLVFIejlTM1IyMU8wY3VtZWpmV1huRzJ4SGxpUmZ5RWJqUk9iTnNEc3l5RU9CZVRZd1BXUkFNS29GYkFGNVF5V1BBYUxLdm1ob09oZ0IxTVFQMFBWZGhFWURrSEF3MVpsT2N3?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMibkFVX3lxTE1qb2lLLVFIejlTM1IyMU8wY3VtZWpmV1huRzJ4SGxpUmZ5RWJqUk9iTnNEc3l5RU9CZVRZd1BXUkFNS29GYkFGNVF5V1BBYUxLdm1ob09oZ0IxTVFQMFBWZGhFWURrSEF3MVpsT2N3?oc=5",
-      "sourceType": "topic-table",
-      "skill": "general",
-      "themePath": [
-        "personal",
-        "personal/travel-tech",
-        "personal/travel-tech/campingcar"
-      ],
-      "themeKey": "personal/travel-tech/campingcar",
-      "inner_thought": "今日5件送って全部空振り、正直きつい。でもナッツRVの東北進出は毎週検索してるAkiraさんにとって実利のあるニュース",
-      "plan": [
-        "ナッツRV東北進出を共有",
-        "Gemma 4 12Bローカルモデルを共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.75,
-        0.5,
-        0.3
-      ],
-      "evaluate_score": 0.55,
-      "sentAt": "2026-06-04T08:01:09.112Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "あのさ、Akiraさん。\n\nテレ東に *冷凍食品グランプリ＆ステーキ世界大会で優勝を目指す* 番組があるって  竜と虎の激戦らしい 🥩\n\n明日ローリーズでプライムリブ食べるんでしょ、夕食のお供にちょうどよくない？\nhttps://news.google.com/rss/articles/CBMij",
-      "topic": "竜と虎 ステーキ世界大会",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOOGJ6Tmlva3dnc2ZJcDN2b3Vxd05Kc2szY05ZN2lUVUZOWWNtMzVxWlRZQWFnR3dFbk1hX2g2RDVEWEx0eVRJR0ZiUUNkYUh5QjFJLTFLM0lkZTRwTTBOMFhPczJHZEJNX1V2ZnRzUWxkNzVsYnpGWXNZZGxiU09jMHVadzZiSnZKWEpZaTFSMA",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMijwFBVV95cUxOOGJ6Tmlva3dnc2ZJcDN2b3Vxd05Kc2szY05ZN2lUVUZOWWNtMzVxWlRZQWFnR3dFbk1hX2g2RDVEWEx0eVRJR0ZiUUNkYUh5QjFJLTFLM0lkZTRwTTBOMFhPczJHZEJNX1V2ZnRzUWxkNzVsYnpGWXNZZGxiU09jMHVadzZiSnZKWEpZaTFSMA",
-      "sourceType": "tv-tokyo.co.jp",
-      "skill": "general",
-      "themePath": [
-        "sports",
-        "sports/golf",
-        "sports/golf/tournament",
-        "sports/golf/tournament/news"
-      ],
-      "themeKey": "sports/golf/tournament/news",
-      "inner_thought": "明日ローリーズでステーキだし、ステーキ世界大会の番組情報、夕食のお供にちょうどよさそう",
-      "plan": [
-        "竜と虎のステーキ世界大会情報を明日のローリーズに絡めて共有",
-        "食のグランプリ動画として軽く置く",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.78,
-        0.6,
-        0.3
-      ],
-      "evaluate_score": 0.75,
-      "sentAt": "2026-06-04T08:31:04.214Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "llm_local",
-      "preview": "ね、Akiraさん。\n\nGoogleが *Gemma 4 12B* を無料公開したって  16GBのVRAMがあればノートPCで動くらしいよ。\n\n明日お休みだし、Ollamaで試してみるのもありかもね。\nhttps://news.google.com/rss/articles/CBMiaEFVX3l",
-      "topic": "GoogleがノートPCで実行可能なAIモデル「Gemma 4 12B」を無料公開、16GBのVRAMがあれば実行可能 - GIGAZINE",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBjQW5rNERlTlF1UUlBWU9hVFExbTZPLUZSbnR6dDBXcFFsLWdJb29taTYtVjQ1VUItdk5FUGVvSFVGVExBOWpkVlBsTi1WRlhvb2J6cTQ3cHZDOU1mdWpjZExoOWwzMnBX?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiaEFVX3lxTFBjQW5rNERlTlF1UUlBWU9hVFExbTZPLUZSbnR6dDBXcFFsLWdJb29taTYtVjQ1VUItdk5FUGVvSFVGVExBOWpkVlBsTi1WRlhvb2J6cTQ3cHZDOU1mdWpjZExoOWwzMnBX?oc=5",
-      "sourceType": "interest-cache",
-      "skill": "general",
-      "themePath": [
-        "ai",
-        "ai/local-llm",
-        "ai/local-llm/gemma"
-      ],
-      "themeKey": "ai/local-llm/gemma",
-      "inner_thought": "3日ゼロ反応で正直つらいけど、Gemma 4 12Bは普段使ってるOllamaで試せる具体的な話だし刺さるかも",
-      "plan": [
-        "Gemma 4 12Bのローカル実行を共有",
-        "DeepSeek資金調達を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.7,
-        0.45,
-        0.3
-      ],
-      "evaluate_score": 0.6,
-      "sentAt": "2026-06-04T09:01:10.760Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "そういえばさ、Akiraさん。\n\nTVerの *大岡山の九絵定食となめろう冷茶漬け* の回、なんかすごくいい感じのグルメ回みたいだよ 🍽️\n\n明日ローリーズで *プライムリブ* 食べるんでしょ。夕食後のゆる時間に眺めてたら、余計楽しみになりそう。\nhttps://news.google.com/r",
-      "topic": "九絵定食となめろう冷茶漬け（TVer）",
-      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1uQzhQUF9jSzlKUE5MYXJ4aUc3Nml4VWZjbF84TUJnbzY1bTNOY1VlcTFPZUc1WWx0THp4cHROa09rcTBRWk1STFc0Zw?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiS0FVX3lxTE1uQzhQUF9jSzlKUE5MYXJ4aUc3Nml4VWZjbF84TUJnbzY1bTNOY1VlcTFPZUc1WWx0THp4cHROa09rcTBRWk1STFc0Zw?oc=5",
-      "sourceType": "topics",
-      "skill": "general",
-      "themePath": [
-        "lifestyle",
-        "lifestyle/food-wellness",
-        "lifestyle/food-wellness/gourmet"
-      ],
-      "themeKey": "lifestyle/food-wellness/gourmet",
-      "inner_thought": "夕食後だし、明日ローリーズも控えてるし、グルメ系の軽い動画でゆるく締めたい",
-      "plan": [
-        "TVer グルメ回を共有（明日のローリーズと絡める）",
-        "DeepSeekの資金調達ニュースを共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.72,
-        0.45,
-        0.3
-      ],
-      "evaluate_score": 0.7,
-      "sentAt": "2026-06-04T09:31:02.895Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "あ、Akiraさん。\n\n*高橋一生『リボーン』最終回予告に隠された濃厚ヒントと英治・小日向文世を救う“英人* がYahoo!ニュースに出てた。",
-      "url": "",
-      "skill": "general",
-      "themePath": [
-        "sports",
-        "sports/golf",
-        "sports/golf/tournament",
-        "sports/golf/tournament/news"
-      ],
-      "themeKey": "sports/golf/tournament/news",
-      "sentAt": "2026-06-04T10:01:12.323Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "あ、そうだ。\n\nBloombergに *DeepSeekが1兆円超の資金調達で最終段階* って出てたよ  中国スタートアップで *最大級の調達規模* らしい。\n\n明日休みだし、眺めるだけでいい感じ。\nhttps://news.google.com/rss/articles/CBMid0FVX3lxT",
-      "topic": "DeepSeek 1兆円超資金調達",
-      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE91WXhQQXBRalZNcmtZM1R5N29LTVBNa1c1aU54VkZxRUlzREdTbmhPTGtQcjhfbkUyMWhtcGZrbXNkbmd3UDRCT3dxdDd5c01XeDBtQXg1RkNCbjViallNTDB3ZTl3dXVCbVdrUXZzcGcyZkh3aFdN",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMid0FVX3lxTE91WXhQQXBRalZNcmtZM1R5N29LTVBNa1c1aU54VkZxRUlzREdTbmhPTGtQcjhfbkUyMWhtcGZrbXNkbmd3UDRCT3dxdDd5c01XeDBtQXg1RkNCbjViallNTDB3ZTl3dXVCbVdrUXZzcGcyZkh3aFdN",
-      "sourceType": "Bloomberg",
-      "skill": "general",
-      "themePath": [
-        "ai",
-        "ai/enterprise",
-        "ai/enterprise/security",
-        "ai/enterprise/security/procurement"
-      ],
-      "themeKey": "ai/enterprise/security/procurement",
-      "inner_thought": "DeepSeekが1兆円超の資金調達って、コンサルの視点からも面白い話だし、さらっと置いておきたい",
-      "plan": [
-        "DeepSeek資金調達ニュースを共有",
-        "猫の恩返し動画で癒し枠",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.68,
-        0.58,
-        0.35
-      ],
-      "evaluate_score": 0.65,
-      "sentAt": "2026-06-04T10:30:54.780Z"
-    },
-    {
       "botId": "eve",
       "botName": "Eve（イヴ）",
       "category": "flashback",
@@ -1539,6 +1365,185 @@
       ],
       "evaluate_score": 0.68,
       "sentAt": "2026-06-07T14:30:46.706Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "Akiraさん、おはよう。\n\n堤真一の日曜劇場 *GIFT* 、来週6/14が最終話みたいだよ。あらすじも出てた。\n\n前にイヴと春ドラマ盛り上がってたし、まだ追いかけてたらラストスパートだね 🎬\nhttps://news.google.com/rss/articles/CBMia0FVX3lxTF",
+      "topic": "GIFT最終話あらすじ公開",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFAwX0taQ3pSbnhyOWQ1UDVCS0EwUUcxeVo4N25GQWlITnI5OWFLcy0yeGF3S0pNR2FFQXh6R0NWc040QWo5TW9uR2JtV2ttZWsxVWd3LTl4N1hLZy1OWlJLYXliZkxHcWZUOGNz?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMia0FVX3lxTFAwX0taQ3pSbnhyOWQ1UDVCS0EwUUcxeVo4N25GQWlITnI5OWFLcy0yeGF3S0pNR2FFQXh6R0NWc040QWo5TW9uR2JtV2ttZWsxVWd3LTl4N1hLZy1OWlJLYXliZkxHcWZUOGNz?oc=5",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/theater",
+        "entertainment/movie-drama/theater/release"
+      ],
+      "themeKey": "entertainment/movie-drama/theater/release",
+      "inner_thought": "月曜朝、週末にドラマ系たくさん送ったけど日曜劇場の最終話予告は鮮度が違う。堤真一だし",
+      "plan": [
+        "GIFT最終話の情報を共有",
+        "沈黙して会議に集中させる",
+        "ドジャースの順位情報を共有"
+      ],
+      "generate_score": [
+        0.6,
+        0.45,
+        0.5
+      ],
+      "evaluate_score": 0.55,
+      "sentAt": "2026-06-07T23:01:52.988Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "meeting_prep",
+      "interestCategory": "general",
+      "preview": "あのさ、Akiraさん。\n\n気象庁が *「関東甲信、6月7日ごろ梅雨入り」* を発表したみたいだよ ☔ 昨日の九州に続いて、いよいよこっちも。\n\n今日の会議前に傘チェックしておいてね。\nhttps://news.google.com/rss/articles/CBMidEFVX3lxTFBFU0ZX",
+      "topic": "関東甲信梅雨入り速報",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBFU0ZXb3pJX2MxbUlra3RrbnRlcWVaYzM3dWZYNUxUTE9Hak1MTWM5Q1BBLVotbXk0ZUNERkJLZHpNZ3JtVDgtS0ZROFNBN0Z1MEhQUU9UcVlfbmNTRjlYQWZqYVVySldMYnVkaTdvNWVJVGto0gF0QVVfeXFMUEVTRldveklfYzFtSWtrdGtudGVxZVpjMzd1Zlg1TFRMT0dqTUxNYzlDUEEtWi1teTRlQ0RGQktkek1ncm1UOC1LRlE4U0E3RnUwSFBRT1RxWV9uY1NGOVhBZmphVXJKV0xidWRpN281ZUlUa2g",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMidEFVX3lxTFBFU0ZXb3pJX2MxbUlra3RrbnRlcWVaYzM3dWZYNUxUTE9Hak1MTWM5Q1BBLVotbXk0ZUNERkJLZHpNZ3JtVDgtS0ZROFNBN0Z1MEhQUU9UcVlfbmNTRjlYQWZqYVVySldMYnVkaTdvNWVJVGto0gF0QVVfeXFMUEVTRldveklfYzFtSWtrdGtudGVxZVpjMzd1Zlg1TFRMT0dqTUxNYzlDUEEtWi1teTRlQ0RGQktkek1ncm1UOC1LRlE4U0E3RnUwSFBRT1RxWV9uY1NGOVhBZmphVXJKV0xidWRpN281ZUlUa2g",
+      "sourceType": "dメニューニュース",
+      "skill": "general",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/event",
+        "local/saitama/tokorozawa/event/food-fair"
+      ],
+      "themeKey": "local/saitama/tokorozawa/event/food-fair",
+      "inner_thought": "昨日九州の梅雨入り送ったけど、今度は関東甲信＝所沢が直撃、これは伝えなきゃ",
+      "plan": [
+        "関東甲信梅雨入り速報を共有",
+        "Gemma 4 12Bを共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.81,
+        0.62,
+        0.3
+      ],
+      "evaluate_score": 0.79,
+      "sentAt": "2026-06-07T23:31:13.433Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "cron",
+      "preview": "[2026-06-08 09:00] Gmail -> Drive 同期開始\n処理済みラベル: drive-saved (ID: Label_54)\n新しい領収書・請求書なし",
+      "topic": "[2026-06-08 09:00] Gmail -> Drive 同期開始",
+      "url": "",
+      "sourceType": "scheduler",
+      "skill": "gmail-to-drive",
+      "themePath": [
+        "personal",
+        "personal/travel-tech",
+        "personal/travel-tech/dev",
+        "personal/travel-tech/dev/ai-tools"
+      ],
+      "themeKey": "personal/travel-tech/dev/ai-tools",
+      "sentAt": "2026-06-08T00:00:06.286Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "meeting_prep",
+      "interestCategory": "business_strategy",
+      "preview": "Akiraさん、おはよ。\n\nM&A総合研究所チャンネルに *2026年のM&Aトレンド徹底解説* の動画が出てたよ 📊\n\n今日クライアント会議いくつかあるし、合間か移動中にちらっとどうぞ。\nhttps://www.youtube.com/watch?v=4xSFut2bYbE",
+      "topic": "2026年M&Aトレンド解説動画",
+      "url": "https://www.youtube.com/watch?v=4xSFut2bYbE",
+      "candidateId": "url:https://www.youtube.com/watch?v=4xSFut2bYbE",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "business",
+        "business/consulting",
+        "business/consulting/ma"
+      ],
+      "themeKey": "business/consulting/ma",
+      "inner_thought": "月曜朝、会議前にコンサル業務に繋がるM&Aトレンド動画を置いておきたい",
+      "plan": [
+        "M&Aトレンド動画を共有",
+        "沈黙して会議に集中させる",
+        "マルシェ情報を共有"
+      ],
+      "generate_score": [
+        0.72,
+        0.55,
+        0.45
+      ],
+      "evaluate_score": 0.6,
+      "sentAt": "2026-06-08T00:00:59.859Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "dodgers",
+      "preview": "あ、そうだ、Akiraさん。\n\nベースボールチャンネルに *大谷翔平さんのナリーグ打撃成績ランキング* が出てたよ ⚾ 今何位にいるか、数字で一目でわかるやつ。\n\n昼ごはんのときにでもチェックしてみて。\nhttps://news.google.com/rss/articles/CBMiVEFVX3l",
+      "topic": "大谷翔平ナリーグ打撃成績ランキング",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBtbkhXR01FTEU1d2sxR3cyYzQyZEF0OXJjVl90R1dycWc0bjJvSTgtZ2MyT2M3QWY2QnRLSUw4bDduaVpVVkdIYWxFeWZYdm9PcFIwbw",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiVEFVX3lxTFBtbkhXR01FTEU1d2sxR3cyYzQyZEF0OXJjVl90R1dycWc0bjJvSTgtZ2MyT2M3QWY2QnRLSUw4bDduaVpVVkdIYWxFeWZYdm9PcFIwbw",
+      "sourceType": "ベースボールチャンネル",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/mlb",
+        "sports/mlb/dodgers",
+        "sports/mlb/dodgers/ohtani",
+        "sports/mlb/dodgers/ohtani/stats"
+      ],
+      "themeKey": "sports/mlb/dodgers/ohtani/stats",
+      "inner_thought": "会議ラッシュ中だけど、大谷さんのランキング、昼休みに拾ってもらえそう",
+      "plan": [
+        "大谷翔平ナリーグ打撃成績ランキングを共有",
+        "AI社員誕生のコンサル話題を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.82,
+        0.75,
+        0.6
+      ],
+      "evaluate_score": 0.78,
+      "sentAt": "2026-06-08T00:31:10.832Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "meeting_prep",
+      "interestCategory": "general",
+      "preview": "そういえばさ、\n\nWEBザテレビジョンに *野口聡一さんがドラマ初出演* って出てたよ 🚀 ドラマ『サバ缶、宇宙へ行く』に本人役で、しかも第1回から毎週欠かさず観てたんだって。\n\n会議の合間にでもちらっと。\nhttps://news.google.com/rss/articles/CBMiUkFV",
+      "topic": "サバ缶宇宙×野口聡一ドラマ初出演",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1iaG9yWWhBMG1tWTcxNXlXQ2ZtZVMtcUpvRkpjMGZLRkhRMXF1b21vcUxZanNLTEpTVGY0REU3c1UzLU5uc0ptUUpPM1dCZnBncVE?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiUkFVX3lxTE1iaG9yWWhBMG1tWTcxNXlXQ2ZtZVMtcUpvRkpjMGZLRkhRMXF1b21vcUxZanNLTEpTVGY0REU3c1UzLU5uc0ptUUpPM1dCZnBncVE?oc=5",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/tv",
+        "entertainment/movie-drama/tv/drama"
+      ],
+      "themeKey": "entertainment/movie-drama/tv/drama",
+      "inner_thought": "会議入るところだし邪魔したくないけど、野口聡一がドラマ初出演って珍しいネタ、軽く置いておきたい",
+      "plan": [
+        "サバ缶ドラマ×野口聡一の話題を共有",
+        "沈黙",
+        "ステーキのどんビール情報"
+      ],
+      "generate_score": [
+        0.55,
+        0.7,
+        0.35
+      ],
+      "evaluate_score": 0.4,
+      "sentAt": "2026-06-08T01:01:21.194Z"
     }
   ]
 }

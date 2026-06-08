@@ -1,14 +1,14 @@
 {
-  "lastUpdated": "2026-06-07T22:24:37.847405+00:00",
+  "lastUpdated": "2026-06-08T00:50:48.737163+00:00",
   "priorities": {
     "ai_agent": 0.9,
     "llm_local": 0.564,
     "dev_tools": 0.326,
-    "business_strategy": 0.558,
+    "business_strategy": 0.658,
     "ma_startup": 0.38,
     "dodgers": 0.958,
     "golf": 0.557,
-    "campingcar": 0.515,
+    "campingcar": 0.415,
     "onsen": 0.307,
     "cat_health": 0.368,
     "food_dining": 0.16,
@@ -25,25 +25,25 @@
           "title": "【AIエージェント開発の現在地】「スキル」の登場とコーディングエージェントの進化から紐解く作業の設計 - CodeZine",
           "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE85NnhzSFpWSnFkeVpxZ19kT0pHWExPZVNFek85ZTY4SXdERnZHOXZlLWRmY3RGMHoxQnp0Z0hMdjk5RHhkLTJTdUVsc0UwenJnS2c?oc=5",
           "source": "CodeZine",
-          "pub_date": "2026-06-07T21:28:18+00:00",
-          "timeliness": 0.985,
-          "score": 0.854
+          "pub_date": "2026-06-07T23:27:00+00:00",
+          "timeliness": 0.971,
+          "score": 0.848
         },
         {
-          "title": "「情シスが人事に」「AI費用は人件費に」、AI社員誕生 火付け役はOpenClaw - 日経クロステック",
-          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBnY2dXZkF6THZQdGhQVzN5djcwUEFkc1A5S2U0MnhHVzhPWFE4WDNidjhQVFF0c0s1VURaZUVJVUVDZnZxQmZwQTNzQkVFMUtjZTdfRndESkFBcE5tQUNSajZrUWtiQjZ6MC04Vw?oc=5",
+          "title": "Notionが新基盤Developer Platformを発表、開発チームのAIによる生産性向上を全社へ波及させデータサイロを解消 - CodeZine",
+          "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE4wRk5teDBYZDQ5QVRlNjhRRVpQVVJDZnJ2TThNeWVaa1lFSEZYWFBFak02MF9xLWJhb2FqV084dF9FOHVUR19KTHJVeEdKUQ?oc=5",
+          "source": "CodeZine",
+          "pub_date": "2026-06-07T22:07:00+00:00",
+          "timeliness": 0.943,
+          "score": 0.837
+        },
+        {
+          "title": "「情シスが人事に」「AI費用は人件費に」、AI社員誕生 火付け役はOpenClaw（2ページ目） - 日経クロステック",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQM2h3SXRMVTJCQUJHVER3UVV0bXpRd2hVRWZOUHZRSXM0d3VDenp6ZjFMekwwWl9KdTh5djNfSGRfdmppN20yRDB2YkF2Qkp2S1BsWUFTZUxtRE5sb08wWXJFaDl0Q2Z6TjVrWExkemJIVHJhejY4dXVoazllbDhZWlIyWnhYZks3TGIxdWgwVW9KbEhkRzgwU2JB?oc=5",
           "source": "日経クロステック",
           "pub_date": "2026-06-07T20:00:00+00:00",
-          "timeliness": 0.954,
-          "score": 0.842
-        },
-        {
-          "title": "AIで進化するLaravel開発の世界――BoostとLaravel AI SDK - CodeZine",
-          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9PSVV5Zk84VjZTLW8yOEJNeUZrVGhJcE1wN3BRcHBkN09KLTZRV01OX0p5QUEyTFpwM3R0SzVuX2tKdi00ZFp2TUszRWpmNzlEd1E?oc=5",
-          "source": "CodeZine",
-          "pub_date": "2026-06-07T12:06:58+00:00",
-          "timeliness": 0.79,
-          "score": 0.776
+          "timeliness": 0.899,
+          "score": 0.82
         },
         {
           "title": "What is Claude Code?",
@@ -52,7 +52,7 @@
           "pub_date": null,
           "content_type": "video",
           "duration": "2:56",
-          "view_count": 2790967,
+          "view_count": 2806872,
           "timeliness": 0.1,
           "score": 0.71
         },
@@ -63,7 +63,7 @@
           "pub_date": null,
           "content_type": "video",
           "duration": "4:54",
-          "view_count": 44650,
+          "view_count": 49793,
           "timeliness": 0.1,
           "score": 0.61
         }
@@ -72,7 +72,7 @@
       "priority": 0.9,
       "tier": "S",
       "emotion_type": "heavy",
-      "lastChecked": "2026-06-07T22:12:21.482090+00:00"
+      "lastChecked": "2026-06-08T00:50:18.845246+00:00"
     },
     "llm_local": {
       "label": "ローカルLLM・オープンソースAI",
@@ -135,28 +135,40 @@
       "label": "ドジャース・大谷翔平",
       "items": [
         {
-          "title": "MLB standings reveal one team's remarkably quick turnaround, plus a new division leader - MSN",
-          "url": "https://news.google.com/rss/articles/CBMipgNBVV95cUxNbDhoZXVSNEVnNTAxeFZXTzhzNW1rXzZIdDR2U0tqZFBVZ2ZZV3RxUVpCdW1OdE9GQ09aN3l6MERwZ0ozel85ZkFoRlFVc2lhTVdDaDBmSFlpTmZJZm15dE5nRllDdlNScjJrancwTVFRanVvTGRneGtJWElQZUpTZ29iWkRJWnhEV3ZJV0hjQWU0NGxhS1lOeVFILWNteHdsWEdkUjVqSm1hZ1hYRi1OeEZoRElSSFoyNC1fQkNzb1BOYmhqU1V0VVdBcUlfSmJpbkRUOGMyMDNpb0Job09xWnBaV1p1OGl4MExPSVE1NXlNY1F5c0V0ZWdlQjY2TWhxMVVHNWE5VVhTNXdnNkk1eVQwRFVwR3hVdXdrdHV5UDZBeDBnRDlnRjExZnhjaDY5UVlXalBkeEpDZjlxR2ZpaUVlUUJNU1RCbklISVZWeTVpUDUwanhRZ3JtYTJnRjRGOWI5M2R3X3VwN0RrQ1phMmFMMHhLbE1ReEEyZlpEOWZHcnNER05HMmI0UFMtRVE2VnhEQmg1N3kxZkJJSklnaWpOUURxdw?oc=5",
-          "source": "MSN",
-          "pub_date": "2026-06-07T20:35:10+00:00",
-          "timeliness": 0.966,
-          "score": 0.77
-        },
-        {
-          "title": "【打者部門】大谷翔平は何位？ 2026年MLBナリーグ打撃成績ランキング - ベースボールチャンネル",
-          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBtbkhXR01FTEU1d2sxR3cyYzQyZEF0OXJjVl90R1dycWc0bjJvSTgtZ2MyT2M3QWY2QnRLSUw4bDduaVpVVkdIYWxFeWZYdm9PcFIwbw?oc=5",
+          "title": "【ドジャース対エンゼルス】今日の試合結果 大谷翔平・山本由伸・佐々木朗希の成績一覧｜MLB2026 - ベースボールチャンネル",
+          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBqc3d6XzJReGpsTFdhOHR3Wk81aTlKdEk2UTJROVI2VkVldWVpRU13SFBJeGl3VjNmcGt2bGxLWmVHRFN2S1JVWEVVdUpQX1VQeXQ2dQ?oc=5",
           "source": "ベースボールチャンネル",
-          "pub_date": "2026-06-07T19:48:19+00:00",
-          "timeliness": 0.95,
-          "score": 0.763
+          "pub_date": "2026-06-08T00:41:39+00:00",
+          "timeliness": 0.997,
+          "score": 0.782
         },
         {
-          "title": "Ohtani's Impact on the Dodgers: Key to Three-Peat Success? - Yahoo Sports",
-          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNbTF5ek9GTW5jMUxaenQwZ3UyRkRRUndjaDVpV2k4b0ppdVNETTNfeHJ6OG4zT251MVRLUjRxZzl6S1JYOTVmaDBOUWxOakMtVWllTS1GbHM2dWozWmxuT2plUk1HcEpzQ2pMN3dtTl81R19tMXpCenhTdjQ5Nnd4SU1yQ2E5dw?oc=5",
-          "source": "Yahoo Sports",
-          "pub_date": "2026-06-07T13:54:57+00:00",
-          "timeliness": 0.827,
-          "score": 0.714
+          "title": "大谷翔平、２戦連続マルチ安打もエンゼルスに大敗　９戦で７度目のマルチ安打で好調をキープ - ｄメニューニュース",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNNzBCLVBpVXFSbWNnQ0s1QUZveVpMQndlOHVwdGk0Z3huZTAwaFhuVnpNVDRpUElKaWdZNEpQVWs4akk1VjlwN2QwVnRFTlVwNnh5OHh4V3lrNEpMU3gyVmZ2OF96UzljQ2FJTk8xZHprWlJFVXRfUzJCOHNlekJ3V19wR21UN0E0TzQ1LVE0UWJUcWR2UkHSAZsBQVVfeXFMTWtCQzFLS3RlNGpOTi1kVUlUUVRhdldVdkNIUTlEWTBxNFVZTlJYbGRxN20wampBRk9NdjRvUzZObDhGX3ZpM1FiU2d5ejVsLVVoWmFibjVkZEdrVnVESFlYb3otWlNHQWN0bTA1cnBYQ2gzUUNGdkxLNFk5X2EzaTk1UERvVm9Tc1A4azRIa0VoS1JSN0pLRk1XVm8?oc=5",
+          "source": "ｄメニューニュース",
+          "pub_date": "2026-06-08T00:10:00+00:00",
+          "timeliness": 0.986,
+          "score": 0.778
+        },
+        {
+          "title": "【速報中】ドジャース・大谷翔平、2試合連続複数安打…「1番・DH」でスタメン出場 - サンスポ",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNT2JzWnRDRXdIUzhkc202R2FGR0I4NUdISUFjT2FfVldSbW5jX2h5MFhXRUdjMWxBaURmOHc5ZEQ4ZVAwWGhseERBUk5UdnFacU5vZlFCR0N2dWhfd0N3OFg1aFU5MDYxTGc4RkNFT0x3R1NLUHJUTWItWUR4MU8tRWFZV08tVF9ZYWJaSExudThPd9IBigFBVV95cUxPUEVUWGZtVFFTUG9aS01iNFFVYU1TLU9nS0pHOWZ1WFZaTjRmOW1ha2YwZFE5Qlo2aGVkOGMtbU45Nmc0NmRGS25MZzdWMUVfYmFGUFAyTGJzVVFRbXNrMUtrN1pJYTFKV2NqUnlOUE5iNXNqUFZTTWd1OWsxMEJIZFltclBEbU1zd2c?oc=5",
+          "source": "サンスポ",
+          "pub_date": "2026-06-07T22:45:00+00:00",
+          "timeliness": 0.956,
+          "score": 0.766
+        },
+        {
+          "title": "【大谷翔平 2点を追う3回に弾丸ライト前ヒットを放ち、“好走塁”捕ゴロで生還】エンゼルスvsドジャース MLB2026シーズン 6.8",
+          "url": "https://www.youtube.com/watch?v=Lsa1GsFMfAw",
+          "source": "SPOTVNOW",
+          "pub_date": null,
+          "content_type": "video",
+          "duration": "4:12",
+          "view_count": 189109,
+          "_discovery": true,
+          "timeliness": 0.1,
+          "score": 0.733
         },
         {
           "title": "【ミゲル・ロハス 本当に今季で引退!?衰え知らずの37歳が超絶プレーで佐々木を援護！】エンゼルスvsドジャース MLB2026シーズン 6.6",
@@ -165,18 +177,7 @@
           "pub_date": null,
           "content_type": "video",
           "duration": "7:20",
-          "view_count": 230168,
-          "timeliness": 0.1,
-          "score": 0.683
-        },
-        {
-          "title": "【イニングプレイバック｜1回裏】“6月男”大谷の第11号2ランなど初回に打線爆発の大量9得点！エンゼルスvsドジャース MLB2026シーズン 6.7",
-          "url": "https://www.youtube.com/watch?v=Tn5ruezt9pg",
-          "source": "SPOTVNOW",
-          "pub_date": null,
-          "content_type": "video",
-          "duration": "25:52",
-          "view_count": 592832,
+          "view_count": 230420,
           "timeliness": 0.1,
           "score": 0.683
         }
@@ -185,7 +186,7 @@
       "priority": 0.958,
       "tier": "S",
       "emotion_type": "light",
-      "lastChecked": "2026-06-07T22:13:11.780127+00:00"
+      "lastChecked": "2026-06-08T00:50:32.893365+00:00"
     },
     "campingcar": {
       "label": "キャンピングカー",
@@ -891,69 +892,85 @@
       "title": "【AIエージェント開発の現在地】「スキル」の登場とコーディングエージェントの進化から紐解く作業の設計 - CodeZine",
       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE85NnhzSFpWSnFkeVpxZ19kT0pHWExPZVNFek85ZTY4SXdERnZHOXZlLWRmY3RGMHoxQnp0Z0hMdjk5RHhkLTJTdUVsc0UwenJnS2c?oc=5",
       "source": "CodeZine",
-      "pub_date": "2026-06-07T21:28:18+00:00",
-      "timeliness": 0.985,
-      "score": 0.854,
+      "pub_date": "2026-06-07T23:27:00+00:00",
+      "timeliness": 0.971,
+      "score": 0.848,
       "category": "ai_agent",
       "categoryLabel": "AIエージェント",
       "priority": 0.9,
       "tier": "S"
     },
     {
-      "title": "「情シスが人事に」「AI費用は人件費に」、AI社員誕生 火付け役はOpenClaw - 日経クロステック",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBnY2dXZkF6THZQdGhQVzN5djcwUEFkc1A5S2U0MnhHVzhPWFE4WDNidjhQVFF0c0s1VURaZUVJVUVDZnZxQmZwQTNzQkVFMUtjZTdfRndESkFBcE5tQUNSajZrUWtiQjZ6MC04Vw?oc=5",
+      "title": "Notionが新基盤Developer Platformを発表、開発チームのAIによる生産性向上を全社へ波及させデータサイロを解消 - CodeZine",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE4wRk5teDBYZDQ5QVRlNjhRRVpQVVJDZnJ2TThNeWVaa1lFSEZYWFBFak02MF9xLWJhb2FqV084dF9FOHVUR19KTHJVeEdKUQ?oc=5",
+      "source": "CodeZine",
+      "pub_date": "2026-06-07T22:07:00+00:00",
+      "timeliness": 0.943,
+      "score": 0.837,
+      "category": "ai_agent",
+      "categoryLabel": "AIエージェント",
+      "priority": 0.9,
+      "tier": "S"
+    },
+    {
+      "title": "「情シスが人事に」「AI費用は人件費に」、AI社員誕生 火付け役はOpenClaw（2ページ目） - 日経クロステック",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQM2h3SXRMVTJCQUJHVER3UVV0bXpRd2hVRWZOUHZRSXM0d3VDenp6ZjFMekwwWl9KdTh5djNfSGRfdmppN20yRDB2YkF2Qkp2S1BsWUFTZUxtRE5sb08wWXJFaDl0Q2Z6TjVrWExkemJIVHJhejY4dXVoazllbDhZWlIyWnhYZks3TGIxdWgwVW9KbEhkRzgwU2JB?oc=5",
       "source": "日経クロステック",
       "pub_date": "2026-06-07T20:00:00+00:00",
-      "timeliness": 0.954,
-      "score": 0.842,
+      "timeliness": 0.899,
+      "score": 0.82,
       "category": "ai_agent",
       "categoryLabel": "AIエージェント",
       "priority": 0.9,
       "tier": "S"
     },
     {
-      "title": "AIで進化するLaravel開発の世界――BoostとLaravel AI SDK - CodeZine",
-      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9PSVV5Zk84VjZTLW8yOEJNeUZrVGhJcE1wN3BRcHBkN09KLTZRV01OX0p5QUEyTFpwM3R0SzVuX2tKdi00ZFp2TUszRWpmNzlEd1E?oc=5",
-      "source": "CodeZine",
-      "pub_date": "2026-06-07T12:06:58+00:00",
-      "timeliness": 0.79,
-      "score": 0.776,
-      "category": "ai_agent",
-      "categoryLabel": "AIエージェント",
-      "priority": 0.9,
-      "tier": "S"
-    },
-    {
-      "title": "MLB standings reveal one team's remarkably quick turnaround, plus a new division leader - MSN",
-      "url": "https://news.google.com/rss/articles/CBMipgNBVV95cUxNbDhoZXVSNEVnNTAxeFZXTzhzNW1rXzZIdDR2U0tqZFBVZ2ZZV3RxUVpCdW1OdE9GQ09aN3l6MERwZ0ozel85ZkFoRlFVc2lhTVdDaDBmSFlpTmZJZm15dE5nRllDdlNScjJrancwTVFRanVvTGRneGtJWElQZUpTZ29iWkRJWnhEV3ZJV0hjQWU0NGxhS1lOeVFILWNteHdsWEdkUjVqSm1hZ1hYRi1OeEZoRElSSFoyNC1fQkNzb1BOYmhqU1V0VVdBcUlfSmJpbkRUOGMyMDNpb0Job09xWnBaV1p1OGl4MExPSVE1NXlNY1F5c0V0ZWdlQjY2TWhxMVVHNWE5VVhTNXdnNkk1eVQwRFVwR3hVdXdrdHV5UDZBeDBnRDlnRjExZnhjaDY5UVlXalBkeEpDZjlxR2ZpaUVlUUJNU1RCbklISVZWeTVpUDUwanhRZ3JtYTJnRjRGOWI5M2R3X3VwN0RrQ1phMmFMMHhLbE1ReEEyZlpEOWZHcnNER05HMmI0UFMtRVE2VnhEQmg1N3kxZkJJSklnaWpOUURxdw?oc=5",
-      "source": "MSN",
-      "pub_date": "2026-06-07T20:35:10+00:00",
-      "timeliness": 0.966,
-      "score": 0.77,
-      "category": "dodgers",
-      "categoryLabel": "ドジャース・大谷翔平",
-      "priority": 0.958,
-      "tier": "S"
-    },
-    {
-      "title": "【打者部門】大谷翔平は何位？ 2026年MLBナリーグ打撃成績ランキング - ベースボールチャンネル",
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBtbkhXR01FTEU1d2sxR3cyYzQyZEF0OXJjVl90R1dycWc0bjJvSTgtZ2MyT2M3QWY2QnRLSUw4bDduaVpVVkdIYWxFeWZYdm9PcFIwbw?oc=5",
+      "title": "【ドジャース対エンゼルス】今日の試合結果 大谷翔平・山本由伸・佐々木朗希の成績一覧｜MLB2026 - ベースボールチャンネル",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBqc3d6XzJReGpsTFdhOHR3Wk81aTlKdEk2UTJROVI2VkVldWVpRU13SFBJeGl3VjNmcGt2bGxLWmVHRFN2S1JVWEVVdUpQX1VQeXQ2dQ?oc=5",
       "source": "ベースボールチャンネル",
-      "pub_date": "2026-06-07T19:48:19+00:00",
-      "timeliness": 0.95,
-      "score": 0.763,
+      "pub_date": "2026-06-08T00:41:39+00:00",
+      "timeliness": 0.997,
+      "score": 0.782,
       "category": "dodgers",
       "categoryLabel": "ドジャース・大谷翔平",
       "priority": 0.958,
       "tier": "S"
     },
     {
-      "title": "Ohtani's Impact on the Dodgers: Key to Three-Peat Success? - Yahoo Sports",
-      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNbTF5ek9GTW5jMUxaenQwZ3UyRkRRUndjaDVpV2k4b0ppdVNETTNfeHJ6OG4zT251MVRLUjRxZzl6S1JYOTVmaDBOUWxOakMtVWllTS1GbHM2dWozWmxuT2plUk1HcEpzQ2pMN3dtTl81R19tMXpCenhTdjQ5Nnd4SU1yQ2E5dw?oc=5",
-      "source": "Yahoo Sports",
-      "pub_date": "2026-06-07T13:54:57+00:00",
-      "timeliness": 0.827,
-      "score": 0.714,
+      "title": "大谷翔平、２戦連続マルチ安打もエンゼルスに大敗　９戦で７度目のマルチ安打で好調をキープ - ｄメニューニュース",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNNzBCLVBpVXFSbWNnQ0s1QUZveVpMQndlOHVwdGk0Z3huZTAwaFhuVnpNVDRpUElKaWdZNEpQVWs4akk1VjlwN2QwVnRFTlVwNnh5OHh4V3lrNEpMU3gyVmZ2OF96UzljQ2FJTk8xZHprWlJFVXRfUzJCOHNlekJ3V19wR21UN0E0TzQ1LVE0UWJUcWR2UkHSAZsBQVVfeXFMTWtCQzFLS3RlNGpOTi1kVUlUUVRhdldVdkNIUTlEWTBxNFVZTlJYbGRxN20wampBRk9NdjRvUzZObDhGX3ZpM1FiU2d5ejVsLVVoWmFibjVkZEdrVnVESFlYb3otWlNHQWN0bTA1cnBYQ2gzUUNGdkxLNFk5X2EzaTk1UERvVm9Tc1A4azRIa0VoS1JSN0pLRk1XVm8?oc=5",
+      "source": "ｄメニューニュース",
+      "pub_date": "2026-06-08T00:10:00+00:00",
+      "timeliness": 0.986,
+      "score": 0.778,
+      "category": "dodgers",
+      "categoryLabel": "ドジャース・大谷翔平",
+      "priority": 0.958,
+      "tier": "S"
+    },
+    {
+      "title": "【速報中】ドジャース・大谷翔平、2試合連続複数安打…「1番・DH」でスタメン出場 - サンスポ",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNT2JzWnRDRXdIUzhkc202R2FGR0I4NUdISUFjT2FfVldSbW5jX2h5MFhXRUdjMWxBaURmOHc5ZEQ4ZVAwWGhseERBUk5UdnFacU5vZlFCR0N2dWhfd0N3OFg1aFU5MDYxTGc4RkNFT0x3R1NLUHJUTWItWUR4MU8tRWFZV08tVF9ZYWJaSExudThPd9IBigFBVV95cUxPUEVUWGZtVFFTUG9aS01iNFFVYU1TLU9nS0pHOWZ1WFZaTjRmOW1ha2YwZFE5Qlo2aGVkOGMtbU45Nmc0NmRGS25MZzdWMUVfYmFGUFAyTGJzVVFRbXNrMUtrN1pJYTFKV2NqUnlOUE5iNXNqUFZTTWd1OWsxMEJIZFltclBEbU1zd2c?oc=5",
+      "source": "サンスポ",
+      "pub_date": "2026-06-07T22:45:00+00:00",
+      "timeliness": 0.956,
+      "score": 0.766,
+      "category": "dodgers",
+      "categoryLabel": "ドジャース・大谷翔平",
+      "priority": 0.958,
+      "tier": "S"
+    },
+    {
+      "title": "【大谷翔平 2点を追う3回に弾丸ライト前ヒットを放ち、“好走塁”捕ゴロで生還】エンゼルスvsドジャース MLB2026シーズン 6.8",
+      "url": "https://www.youtube.com/watch?v=Lsa1GsFMfAw",
+      "source": "SPOTVNOW",
+      "pub_date": null,
+      "content_type": "video",
+      "duration": "4:12",
+      "view_count": 189109,
+      "_discovery": true,
+      "timeliness": 0.1,
+      "score": 0.733,
       "category": "dodgers",
       "categoryLabel": "ドジャース・大谷翔平",
       "priority": 0.958,
@@ -966,7 +983,7 @@
       "pub_date": null,
       "content_type": "video",
       "duration": "2:56",
-      "view_count": 2790967,
+      "view_count": 2806872,
       "timeliness": 0.1,
       "score": 0.71,
       "category": "ai_agent",
@@ -1005,22 +1022,7 @@
       "pub_date": null,
       "content_type": "video",
       "duration": "7:20",
-      "view_count": 230168,
-      "timeliness": 0.1,
-      "score": 0.683,
-      "category": "dodgers",
-      "categoryLabel": "ドジャース・大谷翔平",
-      "priority": 0.958,
-      "tier": "S"
-    },
-    {
-      "title": "【イニングプレイバック｜1回裏】“6月男”大谷の第11号2ランなど初回に打線爆発の大量9得点！エンゼルスvsドジャース MLB2026シーズン 6.7",
-      "url": "https://www.youtube.com/watch?v=Tn5ruezt9pg",
-      "source": "SPOTVNOW",
-      "pub_date": null,
-      "content_type": "video",
-      "duration": "25:52",
-      "view_count": 592832,
+      "view_count": 230420,
       "timeliness": 0.1,
       "score": 0.683,
       "category": "dodgers",
@@ -1063,7 +1065,7 @@
       "pub_date": null,
       "content_type": "video",
       "duration": "4:54",
-      "view_count": 44650,
+      "view_count": 49793,
       "timeliness": 0.1,
       "score": 0.61,
       "category": "ai_agent",
