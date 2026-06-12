@@ -1,39 +1,6 @@
 {
   "entries": [
     {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "meeting_prep",
-      "interestCategory": "general",
-      "preview": "ね、Akiraさん。\n\nウェザーニュースに *「2026年 冬の南岸低気圧・夏は猛暑で台風発達？」* って予想動画が上がってたよ ☁️ 桜開花予想まで先出しされてるやつ。\n\n今朝梅雨入りって話したし、この夏どうなるか眺めておくのもいいかなと思って。15時の会議前にどうぞ。\nhttps://www.y",
-      "topic": "2026年天気大予想・夏は猛暑で台風発達",
-      "url": "https://www.youtube.com/watch?v=G2e696kigJw",
-      "candidateId": "url:https://www.youtube.com/watch?v=G2e696kigJw",
-      "sourceType": "ウェザーニュース",
-      "skill": "general",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/tokorozawa",
-        "local/saitama/tokorozawa/event",
-        "local/saitama/tokorozawa/event/flower-sakura"
-      ],
-      "themeKey": "local/saitama/tokorozawa/event/flower-sakura",
-      "inner_thought": "梅雨入り話題を今朝送ったし、今年の夏の天気大予想、15時前の息抜きに渡したい",
-      "plan": [
-        "天気大予想動画を共有",
-        "沈黙",
-        "M&A LegalAI記事を共有"
-      ],
-      "generate_score": [
-        0.74,
-        0.5,
-        0.52
-      ],
-      "evaluate_score": 0.71,
-      "sentAt": "2026-06-09T05:31:05.108Z"
-    },
-    {
       "botId": "mei",
       "botName": "Mei（メイ）",
       "category": "flashback",
@@ -1520,6 +1487,39 @@
       ],
       "themeKey": "personal/travel-tech/dev/tools",
       "sentAt": "2026-06-12T07:05:45.915Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "dodgers",
+      "preview": "おはよう、Akiraさん。\n\nYahoo!ニュースで *大谷翔平がデコピンの最新ショット* 公開してたよ 🐶 スタメン外だったみたいだけど、その分デコピンとの時間が癒されるね。\n\nhttps://news.google.com/rss/articles/CBMif0FVX3lxTE9fZGxuR0",
+      "topic": "大谷翔平デコピン最新写真",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9fZGxuR0tGcE5ZRndPeERZYjgtYjR1TUg4OW9SWlJYSFNjWWdSS0xSZTVtc1VCdDRTX0h5SGVnaXozU3oyOTZUQXh4bXNjUU05VE9rbUVqQ296RTNiOVBrazRMZ21XcWtLc3RYTGlYNUFqM0c0VjZHcFNtNnVOMTg?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMif0FVX3lxTE9fZGxuR0tGcE5ZRndPeERZYjgtYjR1TUg4OW9SWlJYSFNjWWdSS0xSZTVtc1VCdDRTX0h5SGVnaXozU3oyOTZUQXh4bXNjUU05VE9rbUVqQ296RTNiOVBrazRMZ21XcWtLc3RYTGlYNUFqM0c0VjZHcFNtNnVOMTg?oc=5",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/mlb",
+        "sports/mlb/dodgers",
+        "sports/mlb/dodgers/ohtani",
+        "sports/mlb/dodgers/ohtani/home-run"
+      ],
+      "themeKey": "sports/mlb/dodgers/ohtani/home-run",
+      "inner_thought": "昨日送りすぎた。今日は本当に絞りたい。でも大谷のデコピン投稿はAkiraさんの朝にちょうどいい温度",
+      "plan": [
+        "大谷デコピン投稿を共有",
+        "ユミの細胞たち放送開始を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.8,
+        0.45,
+        0.4
+      ],
+      "evaluate_score": 0.75,
+      "sentAt": "2026-06-12T23:01:27.001Z"
     }
   ]
 }
