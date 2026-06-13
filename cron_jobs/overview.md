@@ -26,6 +26,14 @@
 
 ---
 
+## 監視
+
+| ジョブ名 | スケジュール | 概要 | 送信先 |
+|---------|------------|------|--------|
+| scheduler-watchdog | 毎日 9:00〜23:30（毎時 :00/:30） | cron-history.jsonl の直近1h で proactive 系（proactive-checkin / proactive-checkin-eve / interest-scanner）の発火件数を**決定論スクリプト**で集計。0件なら scheduler 停止疑いで警告、1件以上なら無出力。**2026-06-14: LLM 起動を廃し command 型に移行**（旧 message 型は 120s タイムアウトで「Claude Code process aborted by user」偽アラートを出していた） | #secretary (C0AHPJMS5QE) |
+
+---
+
 ## スクリプト一覧
 
 | スクリプト | パス | 依存 |
@@ -34,6 +42,7 @@
 | campingcar_search.py | /Users/akira/workspace/ai-dev/web-search/campingcar_search.py | Python venv |
 | interest_scanner.py | /Users/akira/workspace/ai-dev/web-search/interest_scanner.py | Python venv |
 | gmail_to_drive.py | /Users/akira/workspace/claude-code-slack-bot/scripts/gmail_to_drive.py | Gmail API (motogami), Drive API (redperth) |
+| scheduler_watchdog.py | /Users/akira/workspace/ember/packages/slack-bot/scripts/scheduler_watchdog.py | stdlib のみ（依存なし） |
 
 ## 外部データファイル
 

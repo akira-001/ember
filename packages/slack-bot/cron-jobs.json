@@ -143,15 +143,15 @@
     {
       "name": "scheduler-watchdog",
       "summary": "スケジューラ発火監視（fire gap 検出）",
-      "description": "直近1h の cron-history.jsonl で proactive 系ジョブ（proactive-checkin / interest-scanner / proactive-checkin-eve）の発火件数を集計。0件なら scheduler 停止疑いで Slack に警告、1件以上なら NO_REPLY。proactive 系の活動時間帯（8-23時）に合わせ 9:00-23:30 のみ監視。",
+      "description": "直近1h の cron-history.jsonl で proactive 系ジョブ（proactive-checkin / interest-scanner / proactive-checkin-eve）の発火件数を決定論スクリプトで集計。0件なら scheduler 停止疑いで Slack 警告、1件以上なら無出力。LLM 起動を廃し、120s タイムアウト→「aborted by user」偽アラートを根絶（2026-06-14）。",
       "cron": "*/30 9-23 * * *",
       "tz": "Asia/Tokyo",
-      "message": "以下を実行してください。\n\n1. /Users/akira/workspace/ember/packages/slack-bot/data/cron-history.jsonl を読み、直近1h 以内に startedAt を持つエントリのうち jobName が proactive-checkin / interest-scanner / proactive-checkin-eve のいずれかであるものの件数を数える。\n2. 件数 >= 1 なら NO_REPLY。\n3. 件数 == 0 なら以下のテキストをメインチャンネル C0AHPJMS5QE に投稿:\n   「⚠️ scheduler-watchdog: 直近1h で proactive 系ジョブの発火が0件。scheduler 停止または cron ランナーハング疑い。要確認。」\n\n投稿は mei の bot token で行う（SLACK_BOT_TOKEN_MEI 環境変数）。",
+      "command": "python3 /Users/akira/workspace/ember/packages/slack-bot/scripts/scheduler_watchdog.py",
       "slackTarget": "C0AHPJMS5QE",
-      "timeoutSeconds": 120,
+      "timeoutSeconds": 30,
       "enabled": true,
       "botId": "mei",
-      "silentMode": true
+      "silentMode": false
     },
     {
       "name": "proactive-dedup-audit",

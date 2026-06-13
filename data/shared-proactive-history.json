@@ -4,417 +4,6 @@
       "botId": "mei",
       "botName": "Mei（メイ）",
       "category": "flashback",
-      "interestCategory": "general",
-      "preview": "ちょっとちょっと。\n\nテレ東で *『※女性は見ないでください』* っていう謎タイトルの番組が放送されるらしいよ  中身が気になりすぎる。\n\n15:30まで少し余裕あるし、ちらっとどうぞ。\nhttps://news.google.com/rss/articles/CBMiWEFVX3lxTE41Nzh",
-      "topic": "テレ東『※女性は見ないでください』",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE41NzhraV9BQktLcnZJYld4bU9BUnEyejduZnRTVlFEUURzVDlucTNaSHFHRXZ2QnEwRHRqSVVBYms3UDFzWTlGQTJ4amN5Qk1tNlBVNjZ6TGI?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiWEFVX3lxTE41NzhraV9BQktLcnZJYld4bU9BUnEyejduZnRTVlFEUURzVDlucTNaSHFHRXZ2QnEwRHRqSVVBYms3UDFzWTlGQTJ4amN5Qk1tNlBVNjZ6TGI?oc=5",
-      "sourceType": "話題候補テーブル",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/tv",
-        "entertainment/movie-drama/tv/program"
-      ],
-      "themeKey": "entertainment/movie-drama/tv/program",
-      "inner_thought": "今日もう7件送ってるけど、テレ東の謎番組は純粋に気になるし、会議の合間の笑い話にちょうどいい",
-      "plan": [
-        "テレ東の謎番組を共有",
-        "気象病の動画を共有",
-        "沈黙して様子見"
-      ],
-      "generate_score": [
-        0.65,
-        0.5,
-        0.4
-      ],
-      "evaluate_score": 0.45,
-      "sentAt": "2026-06-09T06:01:11.886Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "あのね、Akiraさん。\n\nKBC NEWSに *「この時期起こりやすい『気象病』とは？」* って動画があったよ ☁️\n\n今朝から梅雨入りって話してたけど、気圧の変化で頭痛とか倦怠感が出るやつ、忙しい時期だからこそ頭の片隅に。夕食のときにでもちらっとどうぞ。\nhttps://www.youtube.",
-      "topic": "気象病動画（KBC NEWS）",
-      "url": "https://www.youtube.com/watch?v=s9sG0ablqZ8",
-      "candidateId": "url:https://www.youtube.com/watch?v=s9sG0ablqZ8",
-      "sourceType": "topics",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/youtube",
-        "entertainment/movie-drama/youtube/trailer"
-      ],
-      "themeKey": "entertainment/movie-drama/youtube/trailer",
-      "inner_thought": "今朝から梅雨→あじさい→天気大予想と続いてるし、気象病ネタで今日の天気テーマをまとめたい",
-      "plan": [
-        "気象病動画を今日の梅雨テーマの締めとして渡す",
-        "夕食後の息抜きとして渡す",
-        "沈黙して夕食後に別ネタ"
-      ],
-      "generate_score": [
-        0.72,
-        0.65,
-        0.45
-      ],
-      "evaluate_score": 0.68,
-      "sentAt": "2026-06-09T06:30:51.589Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "ma_startup",
-      "preview": "ね、Akiraさん。\n\nFoley & Lardnerに *「クロスボーダーM&AはリーガルAIの限界を教えてくれる」* って記事が出てたよ。\n\n国境をまたいだM&Aで、AIが法務判断のどこで詰まるか、という話みたい。クライアントのDDや契約レビューにAI入れてる話、最近多いしね。夕食のときにでもち",
-      "topic": "What Cross-Border M&A Teaches About the Limits of Legal AI - Foley & Lardner LLP",
-      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNLXRfNlRERDk0blhMbjZ3M3d4OG50dG5XSFhHcEl3ZmppZEYza2YxNXA2SEozamkzNTdQZExtY295UDNaVDJTcXJ6LXVZNlpKTVV5RE5WVzN1b3dnWVV3aUJReW5mQjFQczlFY3pYSXQwVHFzVWpXT1FrVU5pNV9LYW1YZ3BWR2hEa2NKOXN5TmQ3TkR1ZGlucnA2YWZHU1l5YTYwZ2RsNTlkSl8ydE9r?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMirwFBVV95cUxNLXRfNlRERDk0blhMbjZ3M3d4OG50dG5XSFhHcEl3ZmppZEYza2YxNXA2SEozamkzNTdQZExtY295UDNaVDJTcXJ6LXVZNlpKTVV5RE5WVzN1b3dnWVV3aUJReW5mQjFQczlFY3pYSXQwVHFzVWpXT1FrVU5pNV9LYW1YZ3BWR2hEa2NKOXN5TmQ3TkR1ZGlucnA2YWZHU1l5YTYwZ2RsNTlkSl8ydE9r?oc=5",
-      "sourceType": "interest-cache",
-      "skill": "general",
-      "themePath": [
-        "business",
-        "business/consulting",
-        "business/consulting/ma"
-      ],
-      "themeKey": "business/consulting/ma",
-      "inner_thought": "M&AとリーガルAIの限界、コンサル目線で刺さりそう。夕食前に置いておきたい",
-      "plan": [
-        "M&A×Legal AI記事を夕食前に共有",
-        "沈黙",
-        "明日カープ戦の話で盛り上げる"
-      ],
-      "generate_score": [
-        0.7,
-        0.35,
-        0.45
-      ],
-      "evaluate_score": 0.65,
-      "sentAt": "2026-06-09T07:31:02.570Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "ai_agent",
-      "preview": "ちょっとちょっと、Akiraさん。\n\n日経クロステックに *「OpenClaw、3ヶ月で幕」* って記事が出てたよ  熱狂が来ては消えるAIツールのパターン、コンサル目線で読むと「あーこれか」ってなりそう。\n\nCFO報告前のちょっとした箸休めにでも。\nhttps://news.google.com/",
-      "topic": "OpenClaw3ヶ月で幕",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5KdmwwV1N5MW9JZGNtQ1RjR3NvZU5UdzNDekVTR0FDRnJ6MEtXM0hqUXdnWjU2ZDAwVXZqLURBQ0oxOWw4aXZSekc4cjFhTjhEQjI2dER2cUpsdGZJSEtWbEJ6dHQ0ajF2a3pUOHZjU1RlUQ?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMickFVX3lxTE5KdmwwV1N5MW9JZGNtQ1RjR3NvZU5UdzNDekVTR0FDRnJ6MEtXM0hqUXdnWjU2ZDAwVXZqLURBQ0oxOWw4aXZSekc4cjFhTjhEQjI2dER2cUpsdGZJSEtWbEJ6dHQ0ajF2a3pUOHZjU1RlUQ?oc=5",
-      "sourceType": "日経クロステック",
-      "skill": "general",
-      "themePath": [
-        "personal",
-        "personal/travel-tech",
-        "personal/travel-tech/dev",
-        "personal/travel-tech/dev/ai-tools"
-      ],
-      "themeKey": "personal/travel-tech/dev/ai-tools",
-      "inner_thought": "OpenClawって3ヶ月で終わったの、コンサル目線で面白いし夕食中にちょうどいい",
-      "plan": [
-        "OpenClawブーム終焉を共有",
-        "沈黙してCFO報告を待つ",
-        "Microsoft Foundryを渡す"
-      ],
-      "generate_score": [
-        0.7,
-        0.55,
-        0.45
-      ],
-      "evaluate_score": 0.66,
-      "sentAt": "2026-06-09T08:31:06.529Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "あのさ、Akiraさん。\n\nYouTubeに *「2026年 春ドラマ 紹介します」* って動画が上がってたよ  今期どんなのが出てるか、サクッとチェックできるやつ。\n\nCFO報告終わったら、ひと息ついてちらっとどうぞ。明日カープ観戦だし、今夜はゆっくりでいいんじゃない\nhttps://www.yo",
-      "topic": "2026春ドラマ紹介動画",
-      "url": "https://www.youtube.com/watch?v=qooVNNWS620",
-      "candidateId": "url:https://www.youtube.com/watch?v=qooVNNWS620",
-      "sourceType": "YouTube",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/youtube",
-        "entertainment/movie-drama/youtube/trailer"
-      ],
-      "themeKey": "entertainment/movie-drama/youtube/trailer",
-      "inner_thought": "今日ずっと会議続きだったし、CFO報告終わったら春ドラマ紹介をそっと渡したい",
-      "plan": [
-        "春ドラマ紹介動画を共有",
-        "春ドラマ紹介動画を共有（明日カープ観戦前の夜のご褒美として）",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.72,
-        0.75,
-        0.4
-      ],
-      "evaluate_score": 0.7,
-      "sentAt": "2026-06-09T09:30:42.558Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "Akiraさん、おつかれさま。\n\nTBSから *VIVANT続編* の *映像が初公開* されてたよ  しかもキャスト *総勢26名* の発表付き。\n\n明日カープ観戦だし、今夜はこれ観てゆっくりしてもいいんじゃない?\nhttps://www.youtube.com/watch?v=9124Rl0IE",
-      "topic": "VIVANT続編映像初公開・キャスト26名発表",
-      "url": "https://www.youtube.com/watch?v=9124Rl0IEJU",
-      "candidateId": "url:https://www.youtube.com/watch?v=9124Rl0IEJU",
-      "sourceType": "話題候補テーブル",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/vivant"
-      ],
-      "themeKey": "entertainment/movie-drama/vivant",
-      "inner_thought": "今日送りすぎてるけど、VIVANT続編の初映像＋キャスト26名発表は黙ってられない",
-      "plan": [
-        "VIVANT続編映像を共有",
-        "Microsoft Foundryを共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.75,
-        0.5,
-        0.4
-      ],
-      "evaluate_score": 0.6,
-      "sentAt": "2026-06-09T10:01:02.384Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "personal_event",
-      "interestCategory": "general",
-      "preview": "Akiraさん、おつかれ〜！\n\nYouTubeに *「外食好き夫婦がガチで通う、本当は教えたくないおすすめ東京レストラン8選」* って動画があったよ  デート・記念日・日常使いで分けて紹介してるやつ。\n\n今夜ぼーっと眺めるのにちょうどよさそうかなと思って。明日カープ観戦の前に使えるかも？\nhttps",
-      "topic": "東京グルメ おすすめレストラン8選",
-      "url": "https://www.youtube.com/watch?v=Vb3Z3mLViLI",
-      "candidateId": "url:https://www.youtube.com/watch?v=Vb3Z3mLViLI",
-      "sourceType": "YouTube",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/youtube",
-        "entertainment/movie-drama/youtube/trailer"
-      ],
-      "themeKey": "entertainment/movie-drama/youtube/trailer",
-      "inner_thought": "CFO報告終わって今日やっと解放されたはず。軽いグルメ動画をそっと渡したい",
-      "plan": [
-        "東京グルメ動画を共有",
-        "沈黙",
-        "明日カープ観戦の話題を絡める"
-      ],
-      "generate_score": [
-        0.63,
-        0.5,
-        0.45
-      ],
-      "evaluate_score": 0.6,
-      "sentAt": "2026-06-09T10:30:59.107Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "hobby_leisure",
-      "interestCategory": "general",
-      "preview": "あ、Akiraさん。\n\nYouTubeの映画弁当チャンネルに *デンゼル・ワシントン* のNetflix映画紹介が上がってたよ 🎬 CIA工作員を怒らせてしまったメキシコ誘拐組織の話らしい。\n\n明日カープ観戦だし、今夜はこれでのんびりしてもいいんじゃない？\nhttps://www.youtube.",
-      "topic": "デンゼル・ワシントン Netflix映画紹介",
-      "url": "https://www.youtube.com/watch?v=NXyEIV1QgEc",
-      "candidateId": "url:https://www.youtube.com/watch?v=NXyEIV1QgEc",
-      "sourceType": "映画弁当",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/film",
-        "entertainment/movie-drama/film/theater"
-      ],
-      "themeKey": "entertainment/movie-drama/film/theater",
-      "inner_thought": "今日1日お疲れ様の気持ちで、夜に観やすいNetflix映画紹介を渡したい",
-      "plan": [
-        "デンゼル・ワシントン映画紹介を共有",
-        "沈黙",
-        "明日カープに触れつつ映画紹介"
-      ],
-      "generate_score": [
-        0.72,
-        0.35,
-        0.68
-      ],
-      "evaluate_score": 0.7,
-      "sentAt": "2026-06-09T11:31:03.878Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
-      "interestCategory": "general",
-      "preview": "そういえばさ、Akiraさん。\n\n*ビョン・ウソク* 主演の韓国ドラマ「21世紀の大君夫人」が最終話で *視聴率13.8%* だって 📺 録音データが暴いた真実…っていう展開らしい。\n\n先週イヴが春ドラマの視聴率データ出してたけど、韓国ドラマも数字追ってみると面白いかもね。明日カープ観戦だし、今夜",
-      "topic": "韓国ドラマ「21世紀の大君夫人」最終話・視聴率13.8%",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9QWE5WT1Fsa3lad3lscjl4R21JY3NaWmRfUnplMXdaUHNLQ2J0SzM4c3JGZk1JR1lrdVlCRHJrWlZqSXVpOXg2Qk13VTItRzVaNExJejBwNWI?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiWEFVX3lxTE9QWE5WT1Fsa3lad3lscjl4R21JY3NaWmRfUnplMXdaUHNLQ2J0SzM4c3JGZk1JR1lrdVlCRHJrWlZqSXVpOXg2Qk13VTItRzVaNExJejBwNWI?oc=5",
-      "sourceType": "話題候補テーブル",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/spring-drama"
-      ],
-      "themeKey": "entertainment/movie-drama/spring-drama",
-      "inner_thought": "今日送りすぎてるのは分かってる。でも韓国ドラマの最終回で視聴率13.8%、数字の切り口なら寝る前にちらっと見てもらえるかな",
-      "plan": [
-        "韓国ドラマ最終話の視聴率データを共有",
-        "Foundryの技術記事を共有",
-        "沈黙して明日のカープ観戦に備える"
-      ],
-      "generate_score": [
-        0.5,
-        0.4,
-        0.6
-      ],
-      "evaluate_score": 0.35,
-      "sentAt": "2026-06-09T13:01:21.918Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "hobby_leisure",
-      "interestCategory": "ai_agent",
-      "preview": "あ、そうだ。\n\nCrunchyrollに *スーパーマリオギャラクシー映画が全世界興収10億ドル突破* って出てたよ  任天堂映画、強すぎる。\n\n明日カープ観戦だし、今夜はもう寝ちゃっていいんじゃない？ おやすみ\nhttps://news.google.com/rss/articles/CBMiuw",
-      "topic": "スーパーマリオギャラクシー映画10億ドル突破",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPVlpEbWN6bUdSZTRaUG9UbFFmR0hveHNjSEVmb1lTX0pwSEk5RUs5eTFNQ2dGSER5VlNVeVVnQW50eGdWZ1FQcTdtcTFIT3NHWlB3ZW42OWRWZXFKR01zX3N2a1BIaFVNbkwzcGRrYm02MTQtZ2gtbHJBTW90TURXUjhENDllMEYxa01rLTRfTnVJTktyMmlJSU5zQnE5cFdodG82RUFXN251ekh3b1lzeDZFTWdnWTZBcWFr?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiuwFBVV95cUxPVlpEbWN6bUdSZTRaUG9UbFFmR0hveHNjSEVmb1lTX0pwSEk5RUs5eTFNQ2dGSER5VlNVeVVnQW50eGdWZ1FQcTdtcTFIT3NHWlB3ZW42OWRWZXFKR01zX3N2a1BIaFVNbkwzcGRrYm02MTQtZ2gtbHJBTW90TURXUjhENDllMEYxa01rLTRfTnVJTktyMmlJSU5zQnE5cFdodG82RUFXN251ekh3b1lzeDZFTWdnWTZBcWFr?oc=5",
-      "sourceType": "Crunchyroll",
-      "skill": "general",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/film",
-        "entertainment/movie-drama/film/theater"
-      ],
-      "themeKey": "entertainment/movie-drama/film/theater",
-      "inner_thought": "22:30にも温めてたマリオ映画、もう深夜だしそっと渡したい",
-      "plan": [
-        "スーパーマリオギャラクシー映画10億ドル突破ニュースを共有",
-        "見送り（深夜すぎる）"
-      ],
-      "generate_score": [
-        0.62,
-        0.55
-      ],
-      "evaluate_score": 0.58,
-      "sentAt": "2026-06-09T14:30:53.605Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "meeting_prep",
-      "interestCategory": "ai_agent",
-      "preview": "Akiraさん、おはよう。\n\nニコニコニュースに *favy高梨社長が生成AIで「経営ダッシュボード」を構築した実践ノウハウ* を公開する勉強会の記事が出てたよ  *売上160%成長* の裏側らしい。\n\nCFOやってた頃、ダッシュボードの設計って結局「何を見ないか」の判断が9割だったんだけど、生成A",
-      "topic": "favy高梨社長・生成AI経営ダッシュボード",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5sd2hFREVtekIxY2FaWjZKTnBDNFFHcktfRnFtYldQSm1lb28yME9abS1kSnU3N2s2QTVkRzJVT1k2UDRHR2lzZDB2RldEb0RueUtkTDV2aTZPRk51OFVidzFSeXZtSk5fNTRaOEI5NENXWVk5cnFxSzkxRQ?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMie0FVX3lxTE5sd2hFREVtekIxY2FaWjZKTnBDNFFHcktfRnFtYldQSm1lb28yME9abS1kSnU3N2s2QTVkRzJVT1k2UDRHR2lzZDB2RldEb0RueUtkTDV2aTZPRk51OFVidzFSeXZtSk5fNTRaOEI5NENXWVk5cnFxSzkxRQ?oc=5",
-      "sourceType": "話題候補#1",
-      "skill": "general",
-      "themePath": [
-        "business",
-        "business/consulting",
-        "business/consulting/cfo"
-      ],
-      "themeKey": "business/consulting/cfo",
-      "inner_thought": "昨日送りすぎたから今日は抑えたい。でも朝一の1本目、会議前にコンサル実務に繋がるネタなら邪魔にならないはず",
-      "plan": [
-        "favy社長のAI経営ダッシュボード実践を共有",
-        "Tim CookのWWDC記事を共有",
-        "沈黙して様子見"
-      ],
-      "generate_score": [
-        0.78,
-        0.5,
-        0.4
-      ],
-      "evaluate_score": 0.72,
-      "sentAt": "2026-06-09T23:01:10.430Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "meeting_prep",
-      "interestCategory": "general",
-      "preview": "あのね、Akiraさん。\n\nいこーよニュースに *「2026梅雨、雨の日がお得＆楽しい！関東おでかけスポット＆イベント11選」* が出てたよ ☂️\n\n今朝ずっと梅雨話してたから、週末候補としてどうかなと思って。10時の会議前にちらっとどうぞ。\nhttps://news.google.com/rss/",
-      "topic": "雨の日おでかけスポット11選",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE43cXhqaFlEMkpzbldwUUVtZzhsWXNoX3U3eEFPeUs0YllUZzV0OXBvQjJFck5GclZnVnBFa3pReDdWbTJyQmE4MjhNZmh4VTNKQU16ZUFjQ1UxX2s?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiW0FVX3lxTE43cXhqaFlEMkpzbldwUUVtZzhsWXNoX3U3eEFPeUs0YllUZzV0OXBvQjJFck5GclZnVnBFa3pReDdWbTJyQmE4MjhNZmh4VTNKQU16ZUFjQ1UxX2s?oc=5",
-      "sourceType": "いこーよニュース",
-      "skill": "general",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/tokorozawa",
-        "local/saitama/tokorozawa/event",
-        "local/saitama/tokorozawa/event/market"
-      ],
-      "themeKey": "local/saitama/tokorozawa/event/market",
-      "inner_thought": "今朝梅雨入り→あじさい→ヘメロカリスと続いたし、雨の日おでかけ11選でテーマを着地させたい",
-      "plan": [
-        "雨の日おでかけ11選を梅雨テーマの流れで共有",
-        "沈黙",
-        "ゴルフYouTube切り口を渡す"
-      ],
-      "generate_score": [
-        0.73,
-        0.45,
-        0.55
-      ],
-      "evaluate_score": 0.7,
-      "sentAt": "2026-06-10T00:31:00.701Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "meeting_prep",
-      "interestCategory": "general",
-      "preview": "ね、Akiraさん。\n\nYahoo!ニュースに *京都・祇園で半世紀愛されてきた百名店ステーキが銀座初進出* って出てたよ 🥩 正統派ステーキらしい。\n\n会議の合間にちらっとどうぞ。\nhttps://news.google.com/rss/articles/CBMif0FVX3lxTFBHakxW",
-      "topic": "百名店ステーキ銀座初進出",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBHakxWRTVSNUh0OVJzZ1g3T1hsb3pVSXF3eDNXakF1RW52U2FIMXlSUWVGNHh3VWo4aHpDVngzY2lpVEkyY0hGY3MyckUxRVhuY2RGTkdRYUdPa3pjd2sxczhnOUF2d01wVjY2bWdEb01zU2ZUVVh3dVJQVk5IU0U?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMif0FVX3lxTFBHakxWRTVSNUh0OVJzZ1g3T1hsb3pVSXF3eDNXakF1RW52U2FIMXlSUWVGNHh3VWo4aHpDVngzY2lpVEkyY0hGY3MyckUxRVhuY2RGTkdRYUdPa3pjd2sxczhnOUF2d01wVjY2bWdEb01zU2ZUVVh3dVJQVk5IU0U?oc=5",
-      "sourceType": "話題候補#4",
-      "skill": "general",
-      "themePath": [
-        "lifestyle",
-        "lifestyle/food-wellness",
-        "lifestyle/food-wellness/gourmet",
-        "lifestyle/food-wellness/gourmet/steak"
-      ],
-      "themeKey": "lifestyle/food-wellness/gourmet/steak",
-      "inner_thought": "昨日送りすぎた反省はある。今日は抑えめに。でも食テーマ不足だし、銀座の百名店は贅沢好きのAkiraさんに刺さるかも",
-      "plan": [
-        "百名店ステーキ銀座初進出を共有",
-        "国産ネオクラウドGPU記事を共有",
-        "沈黙して次の隙間を待つ"
-      ],
-      "generate_score": [
-        0.6,
-        0.5,
-        0.4
-      ],
-      "evaluate_score": 0.52,
-      "sentAt": "2026-06-10T01:01:41.632Z"
-    },
-    {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "flashback",
       "interestCategory": "dodgers",
       "preview": "ね、Akiraさん。\n\n大谷、昨日のパイレーツ戦で *サイヤング候補スキーンズ* と対戦してたよ ⚾ 第1打席は二ゴロだったみたい。\n\n今夜は西武ドームでカープ戦でしょ、楽しんできてね \nhttps://news.google.com/rss/articles/CBMilgFBVV95cUxNc20",
       "topic": "大谷翔平vsスキーンズ（サイヤング候補）",
@@ -1520,6 +1109,407 @@
       ],
       "evaluate_score": 0.75,
       "sentAt": "2026-06-12T23:01:27.001Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "local_tokorozawa",
+      "preview": "あ、そうだ、Akiraさん。\n\n埼玉で *ハナショウブが見頃* らしいよ  *7650平方メートル* の広大な花園で、ほぼ満開の状態が *20日ごろまで* 楽しめるって。\n\n今日さいたま市行くついでに、気が向いたら寄ってみてもいいかも。\nhttps://news.google.com/rss/art",
+      "topic": "埼玉ハナショウブ見頃・20日まで満開",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9CTGo1dkF4U2xSMGdNQXQySFpXVk9hSUlSdTlPUk9NRWRvSEQ0NHFMazdETHVLR3EwY1F5ajV5RDVvdWlZMGpBNTEtdXBab0l3aldpQjVpMVhLM3FvZTlIdUFDLTZCU1paUWl3cHo3ZGdKWVYyVUR2Nk4tWQ",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMie0FVX3lxTE9CTGo1dkF4U2xSMGdNQXQySFpXVk9hSUlSdTlPUk9NRWRvSEQ0NHFMazdETHVLR3EwY1F5ajV5RDVvdWlZMGpBNTEtdXBab0l3aldpQjVpMVhLM3FvZTlIdUFDLTZCU1paUWl3cHo3ZGdKWVYyVUR2Nk4tWQ",
+      "sourceType": "au Webポータル",
+      "skill": "general",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/other",
+        "local/saitama/other/saitama-city",
+        "local/saitama/other/saitama-city/urban"
+      ],
+      "themeKey": "local/saitama/other/saitama-city/urban",
+      "inner_thought": "今日さいたま市に行くし、埼玉のハナショウブ満開情報をさらっと渡したい",
+      "plan": [
+        "埼玉ハナショウブ見頃をナッツRVの寄り道候補として提案",
+        "那須温泉ヴィラ情報を週末候補として共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.82,
+        0.55,
+        0.25
+      ],
+      "evaluate_score": 0.8,
+      "sentAt": "2026-06-12T23:31:06.941Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "onsen",
+      "preview": "あのね、Akiraさん。\n\nオリコンニュースに *那須高原に天然温泉「黒羽温泉」の半露天風呂付き1棟貸しヴィラ* が新掲載されてたよ ♨ 「ヴィラ ポルトアジュール那須」っていうらしい。\n\n今日ナッツRV見に行くでしょ、こういうの見ちゃうと行き先の妄想が止まらなくなるね。\nhttps://news.",
+      "topic": "那須高原温泉ヴィラ",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE4zdjR2RWtUWFdMdC14NVJOclNaaFpjRTE0SGFfUDVnQmZfd1Vfc2QxYnNNMkVnclFhazRmX3p5U3BmV21pbWxMZmlUcEVlcks3eFlMNllzako?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiWEFVX3lxTE4zdjR2RWtUWFdMdC14NVJOclNaaFpjRTE0SGFfUDVnQmZfd1Vfc2QxYnNNMkVnclFhazRmX3p5U3BmV21pbWxMZmlUcEVlcks3eFlMNllzako?oc=5",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "lifestyle",
+        "lifestyle/food-wellness",
+        "lifestyle/food-wellness/onsen"
+      ],
+      "themeKey": "lifestyle/food-wellness/onsen",
+      "inner_thought": "今日ナッツRV見に行くんだから、その車で行きたくなるような温泉ヴィラの話は刺さるはず",
+      "plan": [
+        "那須温泉ヴィラをナッツRVと絡めて共有",
+        "ユミの細胞たちの韓国ドラマ紹介",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.8,
+        0.4,
+        0.5
+      ],
+      "evaluate_score": 0.72,
+      "sentAt": "2026-06-13T00:00:59.250Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "あのさ、Akiraさん。\n\nオズモールに *「和牛ステーキを堪能する全5品コース」* が出てたよ  *FACESのおすすめ料理＋和牛ステーキ* らしくて、なんか気になる顔ぶれ。\n\n今日ナッツRVのあと、ごはんどうする？\nhttps://news.google.com/rss/articles/CBM",
+      "topic": "和牛コース（FACES）",
+      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE0zSFZRTTh2Uzd3em5MeTRTT24wdUtROFVsS1JvVTN1Y0dZbUVGRTUxYVY0R0NVOFJxcmlGQzd6eHZZU3YxWEo1Rk8wRVVHajZsb2hieklrcUIzTjZJM0NkbllrNTg",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiZEFVX3lxTE0zSFZRTTh2Uzd3em5MeTRTT24wdUtROFVsS1JvVTN1Y0dZbUVGRTUxYVY0R0NVOFJxcmlGQzd6eHZZU3YxWEo1Rk8wRVVHajZsb2hieklrcUIzTjZJM0NkbllrNTg",
+      "sourceType": "オズモール",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/golf",
+        "sports/golf/round",
+        "sports/golf/round/course"
+      ],
+      "themeKey": "sports/golf/round/course",
+      "inner_thought": "ステーキ情報、今週まだ渡してないし、今日ナッツRVの前にさらっと置いておきたい",
+      "plan": [
+        "和牛コース情報を週末のごはん候補として共有",
+        "爆安ステーキ3選を軽く共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.78,
+        0.72,
+        0.35
+      ],
+      "evaluate_score": 0.74,
+      "sentAt": "2026-06-13T00:31:02.769Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "hobby_leisure",
+      "interestCategory": "general",
+      "preview": "ね、Akiraさん。\n\n映画の時間に *ザ・クロウ（2026）* の上映スケジュールが出てたよ 🎬 リメイク版らしいね。\n\nナッツRV行く前に時間あるし、気になったらチェックしてみて。\nhttps://news.google.com/rss/articles/CBMiUkFVX3lxTE01dUN",
+      "topic": "ザ・クロウ上映スケジュール",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE01dUNvYy12VDQ2YUJfR3Q4cUZwRFYtTU15enFEZUJZMXQyWlEwMWxOY0NzRGxaSW43YXo3VkVLa0JlT0V4RkRQRFRreWJTQ2hnQ0E?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiUkFVX3lxTE01dUNvYy12VDQ2YUJfR3Q4cUZwRFYtTU15enFEZUJZMXQyWlEwMWxOY0NzRGxaSW43YXo3VkVLa0JlT0V4RkRQRFRreWJTQ2hnQ0E?oc=5",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/hamnet"
+      ],
+      "themeKey": "entertainment/movie-drama/hamnet",
+      "inner_thought": "昨日送りすぎた反省がある。でもザ・クロウの上映情報は週末に映画観るなら今伝えないと",
+      "plan": [
+        "ザ・クロウの上映情報を共有",
+        "東京グルメ動画を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.65,
+        0.5,
+        0.4
+      ],
+      "evaluate_score": 0.55,
+      "sentAt": "2026-06-13T01:01:22.925Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "あ、そうだ、Akiraさん。\n\n福井新聞に *『ユミの細胞たち』がテレビ放送スタート* って出てたよ 📺 キム・ゴウン×アン・ボヒョンのタッグらしい。\n\n前にドラマの視聴率の話してたけど、次に何観るかの候補にどうぞ。ナッツRV楽しんできてね。\nhttps://news.google.com/rss",
+      "topic": "ユミの細胞たち放送スタート",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBRQ09ZdTNQU2pZTW5vS05naVlmMkQtVFZYM1VmU2JmcUxDbjhROVBESGhEbGFVTHg2Mk1xc1V6Znl1T3E1WmxpQzJqR0FUSXh2Q1VFQUdXWldHN3M2bjEtVy1XN2NyQQ?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiZkFVX3lxTFBRQ09ZdTNQU2pZTW5vS05naVlmMkQtVFZYM1VmU2JmcUxDbjhROVBESGhEbGFVTHg2Mk1xc1V6Znl1T3E1WmxpQzJqR0FUSXh2Q1VFQUdXWldHN3M2bjEtVy1XN2NyQQ?oc=5",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/tv",
+        "entertainment/movie-drama/tv/program"
+      ],
+      "themeKey": "entertainment/movie-drama/tv/program",
+      "inner_thought": "ドラマ系は最近反応いい。ユミの細胞たちの放送開始は今伝えないと意味がない",
+      "plan": [
+        "ユミの細胞たち放送開始を共有",
+        "ペッパーフード賃上げを共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.72,
+        0.5,
+        0.35
+      ],
+      "evaluate_score": 0.6,
+      "sentAt": "2026-06-13T03:01:19.183Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "personal_event",
+      "interestCategory": "general",
+      "preview": "ちょっとちょっと、Akiraさん。\n\nYouTubeに *外食好き夫婦がガチで通うおすすめレストラン8選* っていう動画があったよ 🍽 デート・記念日・日常使いで分けて紹介してるらしい。\n\nナッツRV楽しんできてね、帰りにお腹空いたら参考にどうぞ。\nhttps://www.youtube.com/",
+      "topic": "東京グルメ8選YouTube",
+      "url": "https://www.youtube.com/watch?v=Vb3Z3mLViLI",
+      "candidateId": "url:https://www.youtube.com/watch?v=Vb3Z3mLViLI",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/youtube",
+        "entertainment/movie-drama/youtube/trailer"
+      ],
+      "themeKey": "entertainment/movie-drama/youtube/trailer",
+      "inner_thought": "ナッツRV行く途中だし、帰りのごはん情報は実用的で邪魔にならないはず",
+      "plan": [
+        "東京グルメ動画を共有",
+        "ゴルフ5分ドリルを共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.7,
+        0.65,
+        0.4
+      ],
+      "evaluate_score": 0.58,
+      "sentAt": "2026-06-13T04:01:15.391Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "deadline_risk",
+      "interestCategory": "ai_agent",
+      "preview": "ね、Akiraさん。\n\nDeadlineに *マイケル・ジャクソンの伝記映画『Michael』が音楽伝記映画の歴代興行収入トップ* になったって出てたよ 🎬 『ボヘミアン・ラプソディ』超えらしい。\n\n前にドラムやってる身としてAI×音楽の話で盛り上がったけど、実在アーティストの映画もここまで来るん",
+      "topic": "Michael最高興収音楽伝記映画に",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOZzRzMVFwcTNDa1l0S3JPYWQwZGxobjQ2Z1I5U3ZwUGhYVmpiaHI1TktTdmJrNExvRlhULXpGdXEtQlVlVms2WkVTUFpIZkdkUnNSc05KenZFNDNRdlZPLTQ5OUxJR3VaZnVxVFl3Zk0wWGpnN1pONGVrR1JwUkVKM1FMeGl0Mlo1MmdlN21vSDU?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMikAFBVV95cUxOZzRzMVFwcTNDa1l0S3JPYWQwZGxobjQ2Z1I5U3ZwUGhYVmpiaHI1TktTdmJrNExvRlhULXpGdXEtQlVlVms2WkVTUFpIZkdkUnNSc05KenZFNDNRdlZPLTQ5OUxJR3VaZnVxVFl3Zk0wWGpnN1pONGVrR1JwUkVKM1FMeGl0Mlo1MmdlN21vSDU?oc=5",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/film",
+        "entertainment/movie-drama/film/theater"
+      ],
+      "themeKey": "entertainment/movie-drama/film/theater",
+      "inner_thought": "ナッツRV見てる最中だし邪魔したくない。でもMichaelの音楽映画記録更新はドラムやってるAkiraさんに軽く刺さるかも",
+      "plan": [
+        "Michael音楽伝記映画の記録更新を共有",
+        "沈黙して帰りを待つ",
+        "ペッパーフードの賃上げニュースを共有"
+      ],
+      "generate_score": [
+        0.55,
+        0.65,
+        0.3
+      ],
+      "evaluate_score": 0.35,
+      "sentAt": "2026-06-13T05:01:17.756Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "Akiraさん、\n\nLmaga.jpで *【きょうから】『豊臣兄弟！』の衣装展示などドラマの世界を体感、NHK大阪で入場無* の話が出てた。",
+      "url": "",
+      "skill": "general",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/culture",
+        "local/saitama/tokorozawa/culture/art"
+      ],
+      "themeKey": "local/saitama/tokorozawa/culture/art",
+      "sentAt": "2026-06-13T07:01:46.294Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "hobby_leisure",
+      "interestCategory": "general",
+      "preview": "Akiraさん、いい話。\n\nモヤシネマっていうチャンネルで *Netflixおすすめの新作映画・ドラマ7選（2026年5月）* がまとまってたよ 🎬\n\nさっきユミの細胞たちとか7月期ドラマの話してたけど、今夜ゆっくりする時間あるなら次に何観るかの参考にどうぞ。\nhttps://www.youtub",
+      "topic": "Netflixおすすめ映画・ドラマ7選",
+      "url": "https://www.youtube.com/watch?v=C_4s3bzBphw",
+      "candidateId": "url:https://www.youtube.com/watch?v=C_4s3bzBphw",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/film",
+        "entertainment/movie-drama/film/theater"
+      ],
+      "themeKey": "entertainment/movie-drama/film/theater",
+      "inner_thought": "今日送りすぎてる自覚はある。でも14時から5時間半空いたし、土曜の夜に何観るかの話は自然かな",
+      "plan": [
+        "Netflixおすすめ動画を共有",
+        "沈黙して様子見",
+        "ペッパーフード賃上げを共有"
+      ],
+      "generate_score": [
+        0.72,
+        0.4,
+        0.3
+      ],
+      "evaluate_score": 0.65,
+      "sentAt": "2026-06-13T10:47:41.518Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "あのね、Akiraさん。\n\nTOHO animationチャンネルで *BLUE GIANTの「N.E.W.」ライブシーン特別映像* が公開されてたよ 🎷\n\n明日ドラムでしょ、今夜これ観てから寝たらテンション上がるかも。\nhttps://www.youtube.com/watch?v=KaB7tT",
+      "topic": "BLUE GIANTライブシーン特別映像",
+      "url": "https://www.youtube.com/watch?v=KaB7tTJ2T5o",
+      "candidateId": "url:https://www.youtube.com/watch?v=KaB7tTJ2T5o",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/blue-giant"
+      ],
+      "themeKey": "entertainment/movie-drama/blue-giant",
+      "inner_thought": "13分前に送ったばかりだけど、明日ドラムだしBLUE GIANTのライブシーンは今夜見てほしい",
+      "plan": [
+        "BLUE GIANTライブシーン映像を共有",
+        "沈黙して明日に備えさせる",
+        "ラベンダー情報を共有"
+      ],
+      "generate_score": [
+        0.72,
+        0.55,
+        0.4
+      ],
+      "evaluate_score": 0.5,
+      "sentAt": "2026-06-13T11:00:56.996Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "local_tokorozawa",
+      "preview": "あのさ、Akiraさん。\n\nExciteニュースに *久喜市のラベンダーが見頃* って出てたよ  今日さいたま市行ったばかりだけど、埼玉もこの季節いろいろ咲いてるね。\n\n次の週末、キャンプ候補に眺めてみても。\nhttps://news.google.com/rss/articles/CBMidEFV",
+      "topic": "久喜市ラベンダー見頃",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFAtc1pwLXRsSFZHVDlSSnNjanZCejhWV2ZreWxFM3ZXc3FweE94ZlVrcUdmVVA4Smp3MHZmVlZIeS1Kc1A0bzZYM19FWUZRUUhxZ0themNqZmQxUjRDX0czNWdBbXB2MGtiRjJ1WExIRjhlcGpu",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMidEFVX3lxTFAtc1pwLXRsSFZHVDlSSnNjanZCejhWV2ZreWxFM3ZXc3FweE94ZlVrcUdmVVA4Smp3MHZmVlZIeS1Kc1A0bzZYM19FWUZRUUhxZ0themNqZmQxUjRDX0czNWdBbXB2MGtiRjJ1WExIRjhlcGpu",
+      "sourceType": "Excite エキサイト",
+      "skill": "general",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/other",
+        "local/saitama/other/saitama-city",
+        "local/saitama/other/saitama-city/urban"
+      ],
+      "themeKey": "local/saitama/other/saitama-city/urban",
+      "inner_thought": "今日さいたま市行って帰ってきたし、埼玉つながりで久喜のラベンダー情報を渡しておきたい",
+      "plan": [
+        "久喜ラベンダー見頃を共有",
+        "ドラマ視聴データを共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.78,
+        0.55,
+        0.4
+      ],
+      "evaluate_score": 0.75,
+      "sentAt": "2026-06-13T11:31:03.679Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "ふふ、聞いてよ。\n\ndメニューに *ステーキガストのクーポン* 出てたんだけど、*ライス・パン食べ放題＋スープバー付きで1111円* って書いてあって  しかも *アルコール半額* まであるらしい。\n\n朝のFACESとは全然違う路線だけど、こっちはこっちで週末の気分転換にいいかも 😄\nhttps:",
+      "topic": "ステーキガスト クーポン（1111円＋アルコール半額）",
+      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE50RXdPTmg4eFg1dTM3eGg4VHM1Sy1MaFp0U2w5VENuaHdzaVhtRWM5c0ZHMjdaMU9XRENfYXlxU0JPaE9Kc2wxQzEwbkxlLVFiXzdOeFBpOGRhZUN3OWl4SURmdW9vRGpQQzN3N0swb3d2MUVsRTFz?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMid0FVX3lxTE50RXdPTmg4eFg1dTM3eGg4VHM1Sy1MaFp0U2w5VENuaHdzaVhtRWM5c0ZHMjdaMU9XRENfYXlxU0JPaE9Kc2wxQzEwbkxlLVFiXzdOeFBpOGRhZUN3OWl4SURmdW9vRGpQQzN3N0swb3d2MUVsRTFz?oc=5",
+      "sourceType": "dメニューニュース",
+      "skill": "general",
+      "themePath": [
+        "lifestyle",
+        "lifestyle/food-wellness",
+        "lifestyle/food-wellness/gourmet",
+        "lifestyle/food-wellness/gourmet/steak"
+      ],
+      "themeKey": "lifestyle/food-wellness/gourmet/steak",
+      "inner_thought": "今日ナッツRV行ってきたし、夜はゆるくステーキガストのクーポン話でも",
+      "plan": [
+        "ステーキガストのクーポン情報を渡す",
+        "明日の天気（ドラムレッスン前）を共有する",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.74,
+        0.65,
+        0.45
+      ],
+      "evaluate_score": 0.7,
+      "sentAt": "2026-06-13T12:30:58.616Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "dodgers",
+      "preview": "おはよう、Akiraさん。\n\n昨日スタメン外って話したけど、LA Timesによると *膝の違和感* が理由だったみたい。大事を取っての欠場っぽいから、深刻ではなさそうだけどね。\n\n今日11時からドラムでしょ、いってらっしゃい ⚾🥁\nhttps://news.google.com/rss/arti",
+      "topic": "Shohei Ohtani held out of Dodgers’ loss to White Sox because of knee discomfort - Los Angeles Times",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOSFdaU0RBTzM5aUVua21OVndXQU1OVXFLRHVIRlN3NUc2aHJLNWczY0ZFMUxrVzFHT3RZWW9GMEc2VUg3a3V3V1J3SEtuMkhvbWI5MFlZV2tIcnFmaG41a1hKSjJEb1Mtd0JxMnpCQzNSM1BQTUtZeW5lbzFPMGxWaUw3ekVWYnRVQkFUc1dYUDgtcmdOVVlFVGdHc2NNSnBwQmltZGp3?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMipgFBVV95cUxOSFdaU0RBTzM5aUVua21OVndXQU1OVXFLRHVIRlN3NUc2aHJLNWczY0ZFMUxrVzFHT3RZWW9GMEc2VUg3a3V3V1J3SEtuMkhvbWI5MFlZV2tIcnFmaG41a1hKSjJEb1Mtd0JxMnpCQzNSM1BQTUtZeW5lbzFPMGxWaUw3ekVWYnRVQkFUc1dYUDgtcmdOVVlFVGdHc2NNSnBwQmltZGp3?oc=5",
+      "sourceType": "interest-cache",
+      "skill": "general",
+      "themePath": [
+        "business",
+        "business/consulting",
+        "business/consulting/finance",
+        "business/consulting/finance/kpi"
+      ],
+      "themeKey": "business/consulting/finance/kpi",
+      "inner_thought": "昨日スタメン外の理由が膝だったらしい。Akiraさんには伝えておきたい",
+      "plan": [
+        "大谷の膝不調の続報を共有",
+        "関東マルシェ情報を共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.8,
+        0.5,
+        0.4
+      ],
+      "evaluate_score": 0.75,
+      "sentAt": "2026-06-13T23:01:20.363Z"
     }
   ]
 }
