@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "2026-06-21T09:50:00.783189+00:00",
+  "lastUpdated": "2026-06-21T10:50:49.601995+00:00",
   "priorities": {
     "ai_agent": 0.8,
     "llm_local": 0.364,
     "dev_tools": 0.326,
-    "business_strategy": 0.558,
+    "business_strategy": 0.658,
     "ma_startup": 0.28,
-    "dodgers": 1.0,
-    "golf": 0.607,
+    "dodgers": 0.858,
+    "golf": 0.557,
     "campingcar": 0.515,
-    "onsen": 0.457,
+    "onsen": 0.407,
     "cat_health": 0.468,
-    "food_dining": 0.31,
-    "local_tokorozawa": 0.554,
+    "food_dining": 0.26,
+    "local_tokorozawa": 0.504,
     "weather_seasonal": 0.12,
     "movie_theater": 0.299,
     "tv_drama": 0.2
@@ -26,24 +26,24 @@
           "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9PSVV5Zk84VjZTLW8yOEJNeUZrVGhJcE1wN3BRcHBkN09KLTZRV01OX0p5QUEyTFpwM3R0SzVuX2tKdi00ZFp2TUszRWpmNzlEd1E?oc=5",
           "source": "CodeZine",
           "pub_date": "2026-06-21T02:51:06+00:00",
-          "timeliness": 0.875,
-          "score": 0.77
+          "timeliness": 0.834,
+          "score": 0.753
         },
         {
           "title": "AWS Transform、技術的負債の自動分析や優先順位付けなどを行える新機能公開 - CodeZine",
           "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE01a3ZfVGNwMk1GNk15VjI5RkQzUDlXbk1UZWtoWE1CNDZkR2JEWDVKR2FoalI3cXR1V0ZmLThKLUlsUk5SM24yeGdwQWh5QQ?oc=5",
           "source": "CodeZine",
           "pub_date": "2026-06-21T00:12:43+00:00",
-          "timeliness": 0.82,
-          "score": 0.748
+          "timeliness": 0.779,
+          "score": 0.731
         },
         {
           "title": "AIエージェント活用の本丸はSoRにあり セゾンテクノロジーが「つなぐ技術」で挑む新サービス、その実力は - EnterpriseZine",
           "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5uTkt0S2pjZkpld0ZnZm9oTXAzdXR5dnVSbnk4bjV1dUxDbHhXaTFtQnlfU1FlT2lsV2p2TzYzajk0VU05SFpjZEdZNnFhQ0RQZGVacGw4X0xFZw?oc=5",
           "source": "EnterpriseZine",
           "pub_date": "2026-06-21T02:15:06+00:00",
-          "timeliness": 0.863,
-          "score": 0.665
+          "timeliness": 0.821,
+          "score": 0.648
         },
         {
           "title": "What is Claude Code?",
@@ -52,7 +52,7 @@
           "pub_date": null,
           "content_type": "video",
           "duration": "2:56",
-          "view_count": 3554650,
+          "view_count": 3557702,
           "timeliness": 0.1,
           "score": 0.67
         },
@@ -63,7 +63,7 @@
           "pub_date": null,
           "content_type": "video",
           "duration": "44:01",
-          "view_count": 100546,
+          "view_count": 100614,
           "_discovery": true,
           "timeliness": 0.1,
           "score": 0.62
@@ -73,7 +73,7 @@
       "priority": 0.8,
       "tier": "S",
       "emotion_type": "heavy",
-      "lastChecked": "2026-06-21T08:50:19.029028+00:00"
+      "lastChecked": "2026-06-21T10:50:18.403399+00:00"
     },
     "llm_local": {
       "label": "ローカルLLM・オープンソースAI",
@@ -140,24 +140,36 @@
           "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBtbkhXR01FTEU1d2sxR3cyYzQyZEF0OXJjVl90R1dycWc0bjJvSTgtZ2MyT2M3QWY2QnRLSUw4bDduaVpVVkdIYWxFeWZYdm9PcFIwbw?oc=5",
           "source": "ベースボールチャンネル",
           "pub_date": "2026-06-21T06:50:35+00:00",
-          "timeliness": 0.958,
-          "score": 0.783
+          "timeliness": 0.917,
+          "score": 0.71
         },
         {
-          "title": "Dad strength, indeed: Ohtani homers on eve of Father's Day after birth of 2nd child - MLB.com",
-          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5PTDFxVDJ6b29yajNxWW9HLUF1VkVHLVludFZsLXZxYWtqdlFRVGV1amRyNzFwa0dGSnh5dHNXZ0RlWGphMHl5aTZZX3lhd0xSNlZPZ01wUGw3N2U5bXQyTXJPb1NTeTlKcXBGX0l5c1RZUXVIbmfSAYIBQVVfeXFMUGFvWlc2b2g0NmJBQS1mMzM5YUhwbUNuZWZDMVBwcndNV2hUelJ5dUlGaE01Ui1MeVI1clVFbGp5aWVkZmVjcV95YzY2MUNjOUdodHhRVFd0dk1ldndKdVhKT2RwdFJscmt4MUVkOUtHVHUwcnp6b0FPRWM1aTYtMFltQQ?oc=5",
-          "source": "MLB.com",
-          "pub_date": "2026-06-21T06:13:27+00:00",
-          "timeliness": 0.945,
-          "score": 0.778
+          "title": "大谷翔平 今日の試合速報 - Goal.com",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOVy1vMkowX1pwMjRLT2ZaNFhfUndDcGpYWEpRWWlqTnJLbVM4SzA1OVhZb2U5RkpqWmlWY25CcXZsMnUwQWFFUDNKSGhDLVpFUWMwd3Rqb0gwTE03VlJaVnA2U3luaWZDMUdPTklEVUpnMHdTSWI5ZWJacDRVaElONFJmbzgtUkpfUFR5TUFaNFFoWVR4aG1lNUxsSlhiU0VOREd3aXcwMkRZZVhWT0xtS2g5bmRxRnFmdGw5T2g5OGtwbDRPTm1ObkNn?oc=5",
+          "source": "Goal.com",
+          "pub_date": "2026-06-21T06:28:32+00:00",
+          "timeliness": 0.909,
+          "score": 0.707
         },
         {
           "title": "Scores - MLB.com",
           "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBYV2FqSmNqQmZhdFZoV3ZwS0ZRYS1JRnFiWjQ4YzdQclZVeklnVHlBcEVSQ3VLSkhJczVSM1N2azZoZ2JxOTZKU3o2d29ERGNwZU9XcDktZWU?oc=5",
           "source": "MLB.com",
           "pub_date": "2026-06-21T06:01:51+00:00",
-          "timeliness": 0.941,
-          "score": 0.777
+          "timeliness": 0.9,
+          "score": 0.703
+        },
+        {
+          "title": "【大谷翔平 反撃の狼煙をあげる2試合連発の第16号ソロ！】オリオールズvsドジャース MLB2026シーズン 6.21",
+          "url": "https://www.youtube.com/watch?v=YiKjmxiU_Ng",
+          "source": "SPOTVNOW",
+          "pub_date": null,
+          "content_type": "video",
+          "duration": "2:27",
+          "view_count": 1275488,
+          "_discovery": true,
+          "timeliness": 0.1,
+          "score": 0.743
         },
         {
           "title": "大谷翔平の米知名度ランキングにMLBが大パニック！「まさかの数字だった…」野球人気が向上に全米も驚愕【海外の反応/MLB/メジャー/野球】",
@@ -166,28 +178,17 @@
           "pub_date": null,
           "content_type": "video",
           "duration": "18:54",
-          "view_count": 134197,
+          "view_count": 134656,
           "_discovery": true,
           "timeliness": 0.1,
-          "score": 0.75
-        },
-        {
-          "title": "【6回3失点 山本由伸 投球ダイジェスト】オリオールズvsドジャース MLB2026シーズン 6.21",
-          "url": "https://www.youtube.com/watch?v=k70L5VpXQpA",
-          "source": "SPOTVNOW",
-          "pub_date": null,
-          "content_type": "video",
-          "duration": "7:26",
-          "view_count": 138075,
-          "timeliness": 0.1,
-          "score": 0.7
+          "score": 0.693
         }
       ],
       "count": 5,
-      "priority": 1.0,
+      "priority": 0.858,
       "tier": "S",
       "emotion_type": "light",
-      "lastChecked": "2026-06-21T08:50:33.530977+00:00"
+      "lastChecked": "2026-06-21T10:50:46.945050+00:00"
     },
     "campingcar": {
       "label": "キャンピングカー",
@@ -409,37 +410,37 @@
       "label": "経営戦略・コンサル",
       "items": [
         {
+          "title": "TRUCKING KEYNOTE SPEAKERS FOR HIRE FOR CORPORATE MEETINGS & EVENTS - futuristsspeakers.com",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPdFY4cC1Na1czWEZlazhoc0pqeG1WeFlyV2Nad09qSHZ3LWh6MnFpSWRWOHh3YVphX3c0enY1Zk9wZEFnZ05KUnNoWG5lYXNnOGxDckhIb0theTAyTWNZRUl5X0U0YmhmUnZxeW9TclBueHdqcndWbklpcG13X2pnTWczYjU?oc=5",
+          "source": "futuristsspeakers.com",
+          "pub_date": "2026-06-21T10:41:24+00:00",
+          "timeliness": 0.997,
+          "score": 0.662
+        },
+        {
           "title": "起業の主役は47歳 株式会社の一強時代に変化、新設法人の3割が合同会社に - DXマガジン",
           "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1vVnE4d3NsTzNrWm9jMmNqUnpMcnlTZHFvMFNZcXNaZC14ekpuSW4xd3lHVHlLT3BjclRsckdkdFFzY0NBN21qRmpQVjVmSGc?oc=5",
           "source": "DXマガジン",
-          "pub_date": "2026-06-21T02:22:02+00:00",
-          "timeliness": 0.948,
-          "score": 0.643
+          "pub_date": "2026-06-21T02:22:34+00:00",
+          "timeliness": 0.824,
+          "score": 0.593
         },
         {
-          "title": "2040年の人材過不足をどう埋める？ 経産省×MUFG×NRIが語る“スキル基盤”と生成AIのリアル (3/3) - HRzine",
-          "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBmeEgyNmg3dm54TWZXMzdpbmg3MEVmNWtWTTNhOXF5WEhTUWliTUw1WEVhei1yUWpWQWp6Slo1aE9EV0xUWnlvRzRHemg1R2RkbE1F?oc=5",
-          "source": "HRzine",
-          "pub_date": "2026-06-20T23:49:40+00:00",
-          "timeliness": 0.896,
-          "score": 0.621
+          "title": "＜画像11 / 15＞生放送がさらに楽しく！ニコニコのVR新サービス「バーチャルキャスト」とは？ - ウォーカープラス",
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBaT3pDZEZZTXpHRDA4azlYaDgzV2VNeUVabkh0UHJYQlM3X0YyZEhremRiZ2tycmJmaXVlYUlVWVJfOUNjZllsRVhMUXNtcFVtVnBGVmNKNjZWbUVKWExHME81WEdNQnFjNU1lSGJuWjV2RUhvUXgxWngwbw?oc=5",
+          "source": "ウォーカープラス",
+          "pub_date": "2026-06-20T23:55:26+00:00",
+          "timeliness": 0.773,
+          "score": 0.572
         },
         {
-          "title": "マイクロソフトが提唱 「トークン資本経営」に反響 AI活用、人材にも相乗効果 - 日本経済新聞",
-          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBwdXBQWkJjZXAzd1dfSmxHTVV4RzVQVlJNMDBJN3h0RS1SNjh3UDFfekF2T19kdkxCeHNWeTJyUE1QRXJPemhVakZvRldobzdmdjB1QXgtWXZuZERNR0ppV1IwVzhqWm1CcHJlWg?oc=5",
-          "source": "日本経済新聞",
-          "pub_date": "2026-06-20T17:00:00+00:00",
-          "timeliness": 0.753,
-          "score": 0.565
-        },
-        {
-          "title": "【AI時代の出世法則】「間違えないエリート」の没落／量産型ホワイトカラーは負け組／野生的なリーダーの時代／スラムダンクと宇宙兄弟／コンサルは下火／JTCの価値上昇／転職の２つのミス／年収を下げる転職を",
-          "url": "https://www.youtube.com/watch?v=LF4yyYA4G-A",
-          "source": "PIVOT 公式チャンネル",
+          "title": "[Conclusion in the age of AI] If you do these four things, you'll be fine. You'll never go hungry.",
+          "url": "https://www.youtube.com/watch?v=YNT-KnjbVkU",
+          "source": "サラタメさん",
           "pub_date": null,
           "content_type": "video",
-          "duration": "47:45",
-          "view_count": 143843,
+          "duration": "48:40",
+          "view_count": 1044314,
           "timeliness": 0.1,
           "score": 0.563
         },
@@ -459,7 +460,7 @@
       "priority": 0.658,
       "tier": "A",
       "emotion_type": "heavy",
-      "lastChecked": "2026-06-21T04:50:34.240039+00:00"
+      "lastChecked": "2026-06-21T10:50:33.117717+00:00"
     },
     "local_tokorozawa": {
       "label": "所沢・地域イベント",
@@ -789,7 +790,7 @@
       "priority": 0.5,
       "tier": "B",
       "emotion_type": "light",
-      "lastChecked": "2026-06-21T09:50:00.783103+00:00"
+      "lastChecked": "2026-06-21T10:50:49.601867+00:00"
     },
     "movie_theater": {
       "label": "映画・上映中",
@@ -908,27 +909,67 @@
   },
   "topItems": [
     {
+      "title": "AIで進化するLaravel開発の世界――BoostとLaravel AI SDK - CodeZine",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9PSVV5Zk84VjZTLW8yOEJNeUZrVGhJcE1wN3BRcHBkN09KLTZRV01OX0p5QUEyTFpwM3R0SzVuX2tKdi00ZFp2TUszRWpmNzlEd1E?oc=5",
+      "source": "CodeZine",
+      "pub_date": "2026-06-21T02:51:06+00:00",
+      "timeliness": 0.834,
+      "score": 0.753,
+      "category": "ai_agent",
+      "categoryLabel": "AIエージェント",
+      "priority": 0.8,
+      "tier": "S"
+    },
+    {
+      "title": "【大谷翔平 反撃の狼煙をあげる2試合連発の第16号ソロ！】オリオールズvsドジャース MLB2026シーズン 6.21",
+      "url": "https://www.youtube.com/watch?v=YiKjmxiU_Ng",
+      "source": "SPOTVNOW",
+      "pub_date": null,
+      "content_type": "video",
+      "duration": "2:27",
+      "view_count": 1275488,
+      "_discovery": true,
+      "timeliness": 0.1,
+      "score": 0.743,
+      "category": "dodgers",
+      "categoryLabel": "ドジャース・大谷翔平",
+      "priority": 0.858,
+      "tier": "S"
+    },
+    {
+      "title": "AWS Transform、技術的負債の自動分析や優先順位付けなどを行える新機能公開 - CodeZine",
+      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE01a3ZfVGNwMk1GNk15VjI5RkQzUDlXbk1UZWtoWE1CNDZkR2JEWDVKR2FoalI3cXR1V0ZmLThKLUlsUk5SM24yeGdwQWh5QQ?oc=5",
+      "source": "CodeZine",
+      "pub_date": "2026-06-21T00:12:43+00:00",
+      "timeliness": 0.779,
+      "score": 0.731,
+      "category": "ai_agent",
+      "categoryLabel": "AIエージェント",
+      "priority": 0.8,
+      "tier": "S"
+    },
+    {
       "title": "【打者部門】大谷翔平は何位？ 2026年MLBナリーグ打撃成績ランキング - ベースボールチャンネル",
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBtbkhXR01FTEU1d2sxR3cyYzQyZEF0OXJjVl90R1dycWc0bjJvSTgtZ2MyT2M3QWY2QnRLSUw4bDduaVpVVkdIYWxFeWZYdm9PcFIwbw?oc=5",
       "source": "ベースボールチャンネル",
       "pub_date": "2026-06-21T06:50:35+00:00",
-      "timeliness": 0.958,
-      "score": 0.783,
+      "timeliness": 0.917,
+      "score": 0.71,
       "category": "dodgers",
       "categoryLabel": "ドジャース・大谷翔平",
-      "priority": 1.0,
+      "priority": 0.858,
       "tier": "S"
     },
     {
-      "title": "Dad strength, indeed: Ohtani homers on eve of Father's Day after birth of 2nd child - MLB.com",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5PTDFxVDJ6b29yajNxWW9HLUF1VkVHLVludFZsLXZxYWtqdlFRVGV1amRyNzFwa0dGSnh5dHNXZ0RlWGphMHl5aTZZX3lhd0xSNlZPZ01wUGw3N2U5bXQyTXJPb1NTeTlKcXBGX0l5c1RZUXVIbmfSAYIBQVVfeXFMUGFvWlc2b2g0NmJBQS1mMzM5YUhwbUNuZWZDMVBwcndNV2hUelJ5dUlGaE01Ui1MeVI1clVFbGp5aWVkZmVjcV95YzY2MUNjOUdodHhRVFd0dk1ldndKdVhKT2RwdFJscmt4MUVkOUtHVHUwcnp6b0FPRWM1aTYtMFltQQ?oc=5",
-      "source": "MLB.com",
-      "pub_date": "2026-06-21T06:13:27+00:00",
-      "timeliness": 0.945,
-      "score": 0.778,
+      "title": "大谷翔平 今日の試合速報 - Goal.com",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOVy1vMkowX1pwMjRLT2ZaNFhfUndDcGpYWEpRWWlqTnJLbVM4SzA1OVhZb2U5RkpqWmlWY25CcXZsMnUwQWFFUDNKSGhDLVpFUWMwd3Rqb0gwTE03VlJaVnA2U3luaWZDMUdPTklEVUpnMHdTSWI5ZWJacDRVaElONFJmbzgtUkpfUFR5TUFaNFFoWVR4aG1lNUxsSlhiU0VOREd3aXcwMkRZZVhWT0xtS2g5bmRxRnFmdGw5T2g5OGtwbDRPTm1ObkNn?oc=5",
+      "source": "Goal.com",
+      "pub_date": "2026-06-21T06:28:32+00:00",
+      "timeliness": 0.909,
+      "score": 0.707,
       "category": "dodgers",
       "categoryLabel": "ドジャース・大谷翔平",
-      "priority": 1.0,
+      "priority": 0.858,
       "tier": "S"
     },
     {
@@ -936,23 +977,11 @@
       "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBYV2FqSmNqQmZhdFZoV3ZwS0ZRYS1JRnFiWjQ4YzdQclZVeklnVHlBcEVSQ3VLSkhJczVSM1N2azZoZ2JxOTZKU3o2d29ERGNwZU9XcDktZWU?oc=5",
       "source": "MLB.com",
       "pub_date": "2026-06-21T06:01:51+00:00",
-      "timeliness": 0.941,
-      "score": 0.777,
+      "timeliness": 0.9,
+      "score": 0.703,
       "category": "dodgers",
       "categoryLabel": "ドジャース・大谷翔平",
-      "priority": 1.0,
-      "tier": "S"
-    },
-    {
-      "title": "AIで進化するLaravel開発の世界――BoostとLaravel AI SDK - CodeZine",
-      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9PSVV5Zk84VjZTLW8yOEJNeUZrVGhJcE1wN3BRcHBkN09KLTZRV01OX0p5QUEyTFpwM3R0SzVuX2tKdi00ZFp2TUszRWpmNzlEd1E?oc=5",
-      "source": "CodeZine",
-      "pub_date": "2026-06-21T02:51:06+00:00",
-      "timeliness": 0.875,
-      "score": 0.77,
-      "category": "ai_agent",
-      "categoryLabel": "AIエージェント",
-      "priority": 0.8,
+      "priority": 0.858,
       "tier": "S"
     },
     {
@@ -962,40 +991,13 @@
       "pub_date": null,
       "content_type": "video",
       "duration": "18:54",
-      "view_count": 134197,
+      "view_count": 134656,
       "_discovery": true,
       "timeliness": 0.1,
-      "score": 0.75,
+      "score": 0.693,
       "category": "dodgers",
       "categoryLabel": "ドジャース・大谷翔平",
-      "priority": 1.0,
-      "tier": "S"
-    },
-    {
-      "title": "AWS Transform、技術的負債の自動分析や優先順位付けなどを行える新機能公開 - CodeZine",
-      "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE01a3ZfVGNwMk1GNk15VjI5RkQzUDlXbk1UZWtoWE1CNDZkR2JEWDVKR2FoalI3cXR1V0ZmLThKLUlsUk5SM24yeGdwQWh5QQ?oc=5",
-      "source": "CodeZine",
-      "pub_date": "2026-06-21T00:12:43+00:00",
-      "timeliness": 0.82,
-      "score": 0.748,
-      "category": "ai_agent",
-      "categoryLabel": "AIエージェント",
-      "priority": 0.8,
-      "tier": "S"
-    },
-    {
-      "title": "【6回3失点 山本由伸 投球ダイジェスト】オリオールズvsドジャース MLB2026シーズン 6.21",
-      "url": "https://www.youtube.com/watch?v=k70L5VpXQpA",
-      "source": "SPOTVNOW",
-      "pub_date": null,
-      "content_type": "video",
-      "duration": "7:26",
-      "view_count": 138075,
-      "timeliness": 0.1,
-      "score": 0.7,
-      "category": "dodgers",
-      "categoryLabel": "ドジャース・大谷翔平",
-      "priority": 1.0,
+      "priority": 0.858,
       "tier": "S"
     },
     {
@@ -1005,7 +1007,7 @@
       "pub_date": null,
       "content_type": "video",
       "duration": "2:56",
-      "view_count": 3554650,
+      "view_count": 3557702,
       "timeliness": 0.1,
       "score": 0.67,
       "category": "ai_agent",
@@ -1014,40 +1016,28 @@
       "tier": "S"
     },
     {
+      "title": "TRUCKING KEYNOTE SPEAKERS FOR HIRE FOR CORPORATE MEETINGS & EVENTS - futuristsspeakers.com",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPdFY4cC1Na1czWEZlazhoc0pqeG1WeFlyV2Nad09qSHZ3LWh6MnFpSWRWOHh3YVphX3c0enY1Zk9wZEFnZ05KUnNoWG5lYXNnOGxDckhIb0theTAyTWNZRUl5X0U0YmhmUnZxeW9TclBueHdqcndWbklpcG13X2pnTWczYjU?oc=5",
+      "source": "futuristsspeakers.com",
+      "pub_date": "2026-06-21T10:41:24+00:00",
+      "timeliness": 0.997,
+      "score": 0.662,
+      "category": "business_strategy",
+      "categoryLabel": "経営戦略・コンサル",
+      "priority": 0.658,
+      "tier": "A"
+    },
+    {
       "title": "AIエージェント活用の本丸はSoRにあり セゾンテクノロジーが「つなぐ技術」で挑む新サービス、その実力は - EnterpriseZine",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5uTkt0S2pjZkpld0ZnZm9oTXAzdXR5dnVSbnk4bjV1dUxDbHhXaTFtQnlfU1FlT2lsV2p2TzYzajk0VU05SFpjZEdZNnFhQ0RQZGVacGw4X0xFZw?oc=5",
       "source": "EnterpriseZine",
       "pub_date": "2026-06-21T02:15:06+00:00",
-      "timeliness": 0.863,
-      "score": 0.665,
+      "timeliness": 0.821,
+      "score": 0.648,
       "category": "ai_agent",
       "categoryLabel": "AIエージェント",
       "priority": 0.8,
       "tier": "S"
-    },
-    {
-      "title": "起業の主役は47歳 株式会社の一強時代に変化、新設法人の3割が合同会社に - DXマガジン",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1vVnE4d3NsTzNrWm9jMmNqUnpMcnlTZHFvMFNZcXNaZC14ekpuSW4xd3lHVHlLT3BjclRsckdkdFFzY0NBN21qRmpQVjVmSGc?oc=5",
-      "source": "DXマガジン",
-      "pub_date": "2026-06-21T02:22:02+00:00",
-      "timeliness": 0.948,
-      "score": 0.643,
-      "category": "business_strategy",
-      "categoryLabel": "経営戦略・コンサル",
-      "priority": 0.658,
-      "tier": "A"
-    },
-    {
-      "title": "2040年の人材過不足をどう埋める？ 経産省×MUFG×NRIが語る“スキル基盤”と生成AIのリアル (3/3) - HRzine",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBmeEgyNmg3dm54TWZXMzdpbmg3MEVmNWtWTTNhOXF5WEhTUWliTUw1WEVhei1yUWpWQWp6Slo1aE9EV0xUWnlvRzRHemg1R2RkbE1F?oc=5",
-      "source": "HRzine",
-      "pub_date": "2026-06-20T23:49:40+00:00",
-      "timeliness": 0.896,
-      "score": 0.621,
-      "category": "business_strategy",
-      "categoryLabel": "経営戦略・コンサル",
-      "priority": 0.658,
-      "tier": "A"
     },
     {
       "title": "【2026年最新】AIは「この1つだけ」課金で失敗しない+中級者以上の最強構成も教えるで！",
@@ -1056,7 +1046,7 @@
       "pub_date": null,
       "content_type": "video",
       "duration": "44:01",
-      "view_count": 100546,
+      "view_count": 100614,
       "_discovery": true,
       "timeliness": 0.1,
       "score": 0.62,
@@ -1066,25 +1056,37 @@
       "tier": "S"
     },
     {
-      "title": "マイクロソフトが提唱 「トークン資本経営」に反響 AI活用、人材にも相乗効果 - 日本経済新聞",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBwdXBQWkJjZXAzd1dfSmxHTVV4RzVQVlJNMDBJN3h0RS1SNjh3UDFfekF2T19kdkxCeHNWeTJyUE1QRXJPemhVakZvRldobzdmdjB1QXgtWXZuZERNR0ppV1IwVzhqWm1CcHJlWg?oc=5",
-      "source": "日本経済新聞",
-      "pub_date": "2026-06-20T17:00:00+00:00",
-      "timeliness": 0.753,
-      "score": 0.565,
+      "title": "起業の主役は47歳 株式会社の一強時代に変化、新設法人の3割が合同会社に - DXマガジン",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1vVnE4d3NsTzNrWm9jMmNqUnpMcnlTZHFvMFNZcXNaZC14ekpuSW4xd3lHVHlLT3BjclRsckdkdFFzY0NBN21qRmpQVjVmSGc?oc=5",
+      "source": "DXマガジン",
+      "pub_date": "2026-06-21T02:22:34+00:00",
+      "timeliness": 0.824,
+      "score": 0.593,
       "category": "business_strategy",
       "categoryLabel": "経営戦略・コンサル",
       "priority": 0.658,
       "tier": "A"
     },
     {
-      "title": "【AI時代の出世法則】「間違えないエリート」の没落／量産型ホワイトカラーは負け組／野生的なリーダーの時代／スラムダンクと宇宙兄弟／コンサルは下火／JTCの価値上昇／転職の２つのミス／年収を下げる転職を",
-      "url": "https://www.youtube.com/watch?v=LF4yyYA4G-A",
-      "source": "PIVOT 公式チャンネル",
+      "title": "＜画像11 / 15＞生放送がさらに楽しく！ニコニコのVR新サービス「バーチャルキャスト」とは？ - ウォーカープラス",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBaT3pDZEZZTXpHRDA4azlYaDgzV2VNeUVabkh0UHJYQlM3X0YyZEhremRiZ2tycmJmaXVlYUlVWVJfOUNjZllsRVhMUXNtcFVtVnBGVmNKNjZWbUVKWExHME81WEdNQnFjNU1lSGJuWjV2RUhvUXgxWngwbw?oc=5",
+      "source": "ウォーカープラス",
+      "pub_date": "2026-06-20T23:55:26+00:00",
+      "timeliness": 0.773,
+      "score": 0.572,
+      "category": "business_strategy",
+      "categoryLabel": "経営戦略・コンサル",
+      "priority": 0.658,
+      "tier": "A"
+    },
+    {
+      "title": "[Conclusion in the age of AI] If you do these four things, you'll be fine. You'll never go hungry.",
+      "url": "https://www.youtube.com/watch?v=YNT-KnjbVkU",
+      "source": "サラタメさん",
       "pub_date": null,
       "content_type": "video",
-      "duration": "47:45",
-      "view_count": 143843,
+      "duration": "48:40",
+      "view_count": 1044314,
       "timeliness": 0.1,
       "score": 0.563,
       "category": "business_strategy",
