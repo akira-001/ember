@@ -1,37 +1,6 @@
 {
   "entries": [
     {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "hobby_leisure",
-      "interestCategory": "general",
-      "preview": "ね、今いい？\n\nゆっくり絶品ランキングに *松屋シュクメルリ復活・マックにコメダ新作・KFC創業パック* まとめ動画が出てたよ  これだけ一気に来てるの、なかなか面白い。\n\n今夜はやきとりが本命だけど、移動中のちら見にどうぞ ⚡\nhttps://www.youtube.com/watch?v=NrH",
-      "topic": "松屋シュクメルリ復活・マック・コメダ・KFCお得グルメ",
-      "url": "https://www.youtube.com/watch?v=NrHK435GlVs",
-      "candidateId": "url:https://www.youtube.com/watch?v=NrHK435GlVs",
-      "sourceType": "ゆっくり絶品ランキング",
-      "skill": "general",
-      "themePath": [
-        "lifestyle",
-        "lifestyle/food-wellness",
-        "lifestyle/food-wellness/gourmet"
-      ],
-      "themeKey": "lifestyle/food-wellness/gourmet",
-      "inner_thought": "映画終わってやきとりに向かってるAkiraさんに、移動中のちら見グルメ動画を届けたい",
-      "plan": [
-        "お得グルメ動画を共有",
-        "ローカルLLM動画を共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.72,
-        0.38,
-        0.42
-      ],
-      "evaluate_score": 0.7,
-      "sentAt": "2026-06-19T08:30:57.691Z"
-    },
-    {
       "botId": "mei",
       "botName": "Mei（メイ）",
       "category": "flashback",
@@ -1565,6 +1534,38 @@
       ],
       "evaluate_score": 0.68,
       "sentAt": "2026-06-21T10:31:10.197Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "ai_agent",
+      "preview": "ね、Akiraさん。\n\nいまにゅのAIプログラミング塾で *CodexにローカルLLMを入れてAIコーディングできるか検証* した動画が上がってたよ 🖥️ ローカルLLMの性能比較もやってるみたい。\n\nトークンコスト気にしてるAkiraさん的には、ちょっと気になるテーマじゃない？ のんびりタイムの",
+      "topic": "CodexにローカルLLM検証",
+      "url": "https://www.youtube.com/watch?v=d-JEvCr3y7w",
+      "candidateId": "url:https://www.youtube.com/watch?v=d-JEvCr3y7w",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "business",
+        "business/client",
+        "business/client/astemo",
+        "business/client/astemo/prototype"
+      ],
+      "themeKey": "business/client/astemo/prototype",
+      "inner_thought": "今日10件送ってゼロ反応、正直もう黙るべき。でもローカルLLMはAkiraさんの実務に直結するテーマ",
+      "plan": [
+        "ローカルLLM×Codex検証動画を共有",
+        "沈黙して明日に備える",
+        "星空上映会を共有"
+      ],
+      "generate_score": [
+        0.5,
+        0.65,
+        0.3
+      ],
+      "evaluate_score": 0.35,
+      "sentAt": "2026-06-21T11:01:03.235Z"
     }
   ]
 }

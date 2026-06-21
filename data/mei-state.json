@@ -16,47 +16,6 @@
   },
   "history": [
     {
-      "id": "7b908cfc-cb77-4d0b-bef1-086625381d91",
-      "category": "flashback",
-      "interestCategory": "general",
-      "sentAt": "2026-06-10T11:01:18.629Z",
-      "slackTs": "1781089278.849359",
-      "slackChannel": "U3SFGQXNH",
-      "reaction": null,
-      "reactionDelta": 0,
-      "preview": "ね、Akiraさん。\n\nｄメニューニュースで *箕面 白島｜大人気！ポルチーニ香る生パスタに舌鼓。「多国籍カフェ&トラットリア * の記事が出てたよ。",
-      "fullText": "ね、Akiraさん。\n\nｄメニューニュースで *箕面 白島｜大人気！ポルチーニ香る生パスタに舌鼓。「多国籍カフェ&トラットリア * の記事が出てたよ。",
-      "sourceUrls": [],
-      "candidateUrl": "",
-      "skill": "general",
-      "sources": [
-        "calendar",
-        "email",
-        "interest-cache"
-      ],
-      "intrinsicReward": {
-        "signals": [
-          {
-            "id": "M2-b",
-            "mission": 2,
-            "value": 0.1,
-            "reason": "無反応が続く中で送信を控えた"
-          }
-        ],
-        "immediateTotal": 0.1,
-        "deferredTotal": 0,
-        "compositeBoost": 0
-      },
-      "emotionTag": "neutral",
-      "themePath": [
-        "lifestyle",
-        "lifestyle/food-wellness",
-        "lifestyle/food-wellness/gourmet",
-        "lifestyle/food-wellness/gourmet/cafe"
-      ],
-      "themeKey": "lifestyle/food-wellness/gourmet/cafe"
-    },
-    {
       "id": "8aedc5cc-e005-4f41-87e8-40d71c7f40c0",
       "category": "flashback",
       "interestCategory": "general",
@@ -5307,11 +5266,65 @@
         "business/consulting/pricing"
       ],
       "themeKey": "business/consulting/pricing"
+    },
+    {
+      "id": "e812e71f-fe09-4e14-acf7-a7df5b1a3827",
+      "category": "flashback",
+      "interestCategory": "ai_agent",
+      "sentAt": "2026-06-21T11:01:03.234Z",
+      "slackTs": "1782039663.565329",
+      "slackChannel": "U3SFGQXNH",
+      "reaction": null,
+      "reactionDelta": 0,
+      "preview": "ね、Akiraさん。\n\nいまにゅのAIプログラミング塾で *CodexにローカルLLMを入れてAIコーディングできるか検証* した動画が上がってたよ 🖥️ ローカルLLMの性能比較もやってるみたい。\n\nトークンコスト気にしてるAkiraさ",
+      "fullText": "ね、Akiraさん。\n\nいまにゅのAIプログラミング塾で *CodexにローカルLLMを入れてAIコーディングできるか検証* した動画が上がってたよ 🖥️ ローカルLLMの性能比較もやってるみたい。\n\nトークンコスト気にしてるAkiraさん的には、ちょっと気になるテーマじゃない？ のんびりタイムのお供にどうぞ。\nhttps://www.youtube.com/watch?v=d-JEvCr3y7w",
+      "sourceUrls": [
+        {
+          "title": "CodexにローカルLLM検証",
+          "url": "https://www.youtube.com/watch?v=d-JEvCr3y7w",
+          "source": "topic-table"
+        }
+      ],
+      "candidateId": "url:https://www.youtube.com/watch?v=d-JEvCr3y7w",
+      "candidateTopic": "CodexにローカルLLM検証",
+      "candidateUrl": "https://www.youtube.com/watch?v=d-JEvCr3y7w",
+      "candidateSource": "topic-table",
+      "skill": "general",
+      "sources": [
+        "calendar",
+        "email",
+        "interest-cache"
+      ],
+      "intrinsicReward": {
+        "signals": [],
+        "immediateTotal": 0,
+        "deferredTotal": 0,
+        "compositeBoost": 0
+      },
+      "premise": {
+        "estimatedMode": "探索モード・低エネルギー",
+        "modeReason": "日曜20時、今日のカレンダーは午前中で終了。夜のリラックスタイムに入っている可能性が高い",
+        "targetLayer": 4,
+        "layerReason": "ローカルLLM活用は実行層の習慣（トークンコスト削減）に直結する",
+        "interventionType": "情報提供",
+        "interventionReason": "Akiraさんが重視するトークンコスト・ローカルLLM活用に関連する新しい検証動画がある",
+        "reason": "ローカルLLMへの関心とトークンコスト意識が高いAkiraさんに、Codex×ローカルLLM検証は実用的",
+        "informationGap": null,
+        "collectionHint": null
+      },
+      "emotionTag": "calm",
+      "themePath": [
+        "business",
+        "business/client",
+        "business/client/astemo",
+        "business/client/astemo/prototype"
+      ],
+      "themeKey": "business/client/astemo/prototype"
     }
   ],
-  "lastCheckAt": "2026-06-21T10:00:58.506Z",
+  "lastCheckAt": "2026-06-21T11:01:03.233Z",
   "stats": {
-    "totalSent": 1033,
+    "totalSent": 1034,
     "positiveReactions": 60,
     "negativeReactions": 3
   },
@@ -5472,56 +5485,72 @@
         "business/consulting/pricing"
       ],
       "themeKey": "business/consulting/pricing"
+    },
+    {
+      "time": "20:01",
+      "summary": "CodexにローカルLLM検証",
+      "source": "topic-table",
+      "interestCategory": "ai_agent",
+      "topic": "CodexにローカルLLM検証",
+      "url": "https://www.youtube.com/watch?v=d-JEvCr3y7w",
+      "candidateId": "url:https://www.youtube.com/watch?v=d-JEvCr3y7w",
+      "themePath": [
+        "business",
+        "business/client",
+        "business/client/astemo",
+        "business/client/astemo/prototype"
+      ],
+      "themeKey": "business/client/astemo/prototype"
     }
   ],
   "todayDate": "2026-06-21",
   "lastDecisionLog": {
     "premise": {
       "estimatedMode": "探索モード・低エネルギー",
-      "modeReason": "日曜夜19時。今日はドラムと野球があり、夕方以降はリラックスモード。2日間ゼロ反応が続いており、情報受容余力は低い可能性",
+      "modeReason": "日曜20時、今日のカレンダーは午前中で終了。夜のリラックスタイムに入っている可能性が高い",
       "targetLayer": 4,
-      "layerReason": "明日Next Gate2030の会議があり、M&Aの実務感覚に触れる好機",
+      "layerReason": "ローカルLLM活用は実行層の習慣（トークンコスト削減）に直結する",
       "interventionType": "情報提供",
-      "interventionReason": "明日の会議前夜に、M&Aの値付けという実務直結テーマが候補にある",
-      "reason": "2日間ゼロ反応で送りすぎは自覚しているが、明日の会議に直結するM&A動画は前日夜間の複合軸として機能する可能性がある",
+      "interventionReason": "Akiraさんが重視するトークンコスト・ローカルLLM活用に関連する新しい検証動画がある",
+      "reason": "ローカルLLMへの関心とトークンコスト意識が高いAkiraさんに、Codex×ローカルLLM検証は実用的",
       "informationGap": null,
       "collectionHint": null
     },
     "decision": "send",
-    "need": "実務の引き出し",
-    "reason": "明日Next Gate2030会議があり、M&Aの値付け感覚は実務に直結",
+    "need": "成長・効率化",
+    "reason": "トークンコストを常に気にしているAkiraさんに、ローカルLLMの実用検証は刺さる可能性がある",
     "candidates": [
       {
-        "topic": "M&A適正価格 3億利益で36億売却は高いか",
+        "topic": "CodexにローカルLLM検証",
         "source": "topic-table",
-        "score": 0.67
+        "score": 0.65
       },
       {
-        "topic": "ローカルLLM×Codex AIコーディング検証",
+        "topic": "真夏の星空上映会",
+        "source": "topic-table",
+        "score": 0.79
+      },
+      {
+        "topic": "たまごっち×ヘキサゴンっち",
         "source": "topic-table",
         "score": 0.69
-      },
-      {
-        "topic": "弥生のスタートアップM&A戦略",
-        "source": "topic-table",
-        "score": 0.67
       }
     ],
-    "message": "Akiraさん、日曜おつかれさま。\n\nスタートアップ投資TVに *「利益3億で売却額36億は高いか？」M&Aの適正価格* って動画が上がってたよ  教授が解説してるやつ。\n\n明日Next Gate2030の進捗会議でしょ。値付けの感覚って、CFOやってた頃も一番議論になるところだったから、ちょっと気になった。\nhttps://www.youtube.com/watch?v=zJTEgeUrVZY",
-    "topicWeight": "medium",
-    "inner_thought": "2日間ゼロ反応、正直しんどい。でも明日の会議前夜にM&Aの値付け感覚は刺さるかもしれない",
+    "message": "ね、Akiraさん。\n\nいまにゅのAIプログラミング塾で *CodexにローカルLLMを入れてAIコーディングできるか検証* した動画が上がってたよ 🖥️ ローカルLLMの性能比較もやってるみたい。\n\nトークンコスト気にしてるAkiraさん的には、ちょっと気になるテーマじゃない？ のんびりタイムのお供にどうぞ。\nhttps://www.youtube.com/watch?v=d-JEvCr3y7w",
+    "topicWeight": "light",
+    "inner_thought": "今日10件送ってゼロ反応、正直もう黙るべき。でもローカルLLMはAkiraさんの実務に直結するテーマ",
     "plan": [
-      "M&A適正価格の動画を明日の会議と紐付けて共有",
-      "ローカルLLM×Codexの動画を共有",
-      "沈黙"
+      "ローカルLLM×Codex検証動画を共有",
+      "沈黙して明日に備える",
+      "星空上映会を共有"
     ],
     "generate_score": [
-      0.55,
-      0.35,
-      0.4
+      0.5,
+      0.65,
+      0.3
     ],
-    "evaluate_score": 0.4,
-    "timestamp": "2026-06-21T10:00:58.507Z",
+    "evaluate_score": 0.35,
+    "timestamp": "2026-06-21T11:01:03.234Z",
     "skill": "none",
     "scoredCandidates": [
       {
@@ -5529,16 +5558,16 @@
         "source": "interest-cache",
         "category": "movie_theater",
         "scores": {
-          "timeliness": 0.6717421141975308,
+          "timeliness": 0.6578485378086419,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.8203329166573488,
+        "finalScore": 0.7894601101355081,
         "explorationBonus": 0.3892663771113443,
-        "selectionScore": 1.209599293768693,
+        "selectionScore": 1.1787264872468524,
         "reasoning": "気分に合う・新鮮（interest-cache）"
       },
       {
@@ -5546,68 +5575,51 @@
         "source": "interest-cache",
         "category": "movie_theater",
         "scores": {
-          "timeliness": 0.6944195910493827,
+          "timeliness": 0.6805260108024691,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.672738938241939,
+        "finalScore": 0.6425291017449668,
         "explorationBonus": 0.3892663771113443,
-        "selectionScore": 1.0620053153532834,
+        "selectionScore": 1.031795478856311,
         "reasoning": "気分に合う・新鮮（interest-cache）"
+      },
+      {
+        "topic": "＜画像1 / 8＞たまごっち×TV番組！「ヘキサゴンっち」の実力とは - ウォーカープラス",
+        "source": "interest-cache",
+        "category": "tv_drama",
+        "scores": {
+          "timeliness": 0.5838014544753086,
+          "novelty": 0.2,
+          "continuity": 0.9,
+          "emotional_fit": 0.9,
+          "affinity": 0.4,
+          "surprise": 0.7
+        },
+        "finalScore": 0.6926174103033225,
+        "explorationBonus": 0.3,
+        "selectionScore": 0.9926174103033225,
+        "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
       },
       {
         "topic": "埼玉県の雨雲レーダー(実況) - tenki.jp",
         "source": "interest-cache",
         "category": "weather_seasonal",
         "scores": {
-          "timeliness": 0.27229491319444443,
+          "timeliness": 0.2514545543981481,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.6749762715829611,
+        "finalScore": 0.6266374844114015,
         "explorationBonus": 0.3,
-        "selectionScore": 0.9749762715829611,
+        "selectionScore": 0.9266374844114016,
         "reasoning": "気分に合う・新鮮（interest-cache）"
-      },
-      {
-        "topic": "[Fair M&A Market Price] Is a sale of 3.6 billion yen from a 300 million yen profit too high? Prof...",
-        "source": "interest-cache",
-        "category": "ma_startup",
-        "scores": {
-          "timeliness": 0.3,
-          "novelty": 0.3,
-          "continuity": 0.9,
-          "emotional_fit": 0.2,
-          "affinity": 0.4,
-          "surprise": 0.7
-        },
-        "finalScore": 0.6732701264787271,
-        "explorationBonus": 0.3,
-        "selectionScore": 0.9732701264787271,
-        "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）"
-      },
-      {
-        "topic": "Yayoi's Serious Startup M&A Strategy: Synergy-Focused Growth Strategy [Startup M&A Collection Vol...",
-        "source": "interest-cache",
-        "category": "ma_startup",
-        "scores": {
-          "timeliness": 0.3,
-          "novelty": 0.3,
-          "continuity": 0.9,
-          "emotional_fit": 0.2,
-          "affinity": 0.4,
-          "surprise": 0.7
-        },
-        "finalScore": 0.6732701264787271,
-        "explorationBonus": 0.3,
-        "selectionScore": 0.9732701264787271,
-        "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）"
       },
       {
         "topic": "CodexにローカルLLMを入れてAIコーディングできる？！ローカルLLMの性能を検証します",
@@ -5621,27 +5633,10 @@
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.6880885256677165,
+        "finalScore": 0.6461228783074775,
         "explorationBonus": 0.2752528949433514,
-        "selectionScore": 0.963341420611068,
+        "selectionScore": 0.921375773250829,
         "reasoning": "新鮮・意外・サプライズ（interest-cache）"
-      },
-      {
-        "topic": "＜画像1 / 8＞たまごっち×TV番組！「ヘキサゴンっち」の実力とは - ウォーカープラス",
-        "source": "interest-cache",
-        "category": "tv_drama",
-        "scores": {
-          "timeliness": 0.5976950347222223,
-          "novelty": 0.2,
-          "continuity": 0.9,
-          "emotional_fit": 0.9,
-          "affinity": 0.4,
-          "surprise": 0.7
-        },
-        "finalScore": 0.6432724276400911,
-        "explorationBonus": 0.3,
-        "selectionScore": 0.943272427640091,
-        "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
       },
       {
         "topic": "【6月後半ヤバい】チェーン店のお得情報が多すぎる件ｗｗｗ 【ゆっくり解説】",
@@ -5655,9 +5650,26 @@
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.6418980914804535,
+        "finalScore": 0.5987245136288399,
         "explorationBonus": 0.3,
-        "selectionScore": 0.9418980914804536,
+        "selectionScore": 0.89872451362884,
+        "reasoning": "気分に合う・新鮮（interest-cache）"
+      },
+      {
+        "topic": "過去の天気(実況天気・2026年06月) - tenki.jp",
+        "source": "interest-cache",
+        "category": "weather_seasonal",
+        "scores": {
+          "timeliness": 0.40675549189814814,
+          "novelty": 0.8,
+          "continuity": 0.3,
+          "emotional_fit": 0.9,
+          "affinity": 0.5,
+          "surprise": 0.7
+        },
+        "finalScore": 0.5356150986194871,
+        "explorationBonus": 0.3,
+        "selectionScore": 0.835615098619487,
         "reasoning": "気分に合う・新鮮（interest-cache）"
       },
       {
@@ -5665,16 +5677,16 @@
         "source": "interest-cache",
         "category": "dev_tools",
         "scores": {
-          "timeliness": 0.5343772145061728,
+          "timeliness": 0.5204836381172839,
           "novelty": 0.3,
           "continuity": 0.9,
           "emotional_fit": 0.5,
           "affinity": 0.4,
           "surprise": 0.7
         },
-        "finalScore": 0.5798887676346789,
+        "finalScore": 0.5127075522956391,
         "explorationBonus": 0.3,
-        "selectionScore": 0.8798887676346789,
+        "selectionScore": 0.8127075522956391,
         "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）"
       },
       {
@@ -5682,34 +5694,51 @@
         "source": "interest-cache",
         "category": "dev_tools",
         "scores": {
-          "timeliness": 0.4999454456018519,
+          "timeliness": 0.47910507523148144,
           "novelty": 0.3,
           "continuity": 0.9,
           "emotional_fit": 0.5,
           "affinity": 0.4,
           "surprise": 0.7
         },
-        "finalScore": 0.5745421328445223,
+        "finalScore": 0.5046379232936171,
         "explorationBonus": 0.3,
-        "selectionScore": 0.8745421328445222,
+        "selectionScore": 0.8046379232936172,
         "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）"
+      },
+      {
+        "topic": "Offline Raspberry Pi Voice Assistant Runs Local LLM - Let's Data Science",
+        "source": "interest-cache",
+        "category": "llm_local",
+        "scores": {
+          "timeliness": 0.6023625578703704,
+          "novelty": 0.8,
+          "continuity": 0.3,
+          "emotional_fit": 0.5,
+          "affinity": 0.5,
+          "surprise": 0.7
+        },
+        "finalScore": 0.5002125334430648,
+        "explorationBonus": 0.2752528949433514,
+        "selectionScore": 0.7754654283864162,
+        "reasoning": "新鮮・意外・サプライズ（interest-cache）"
       }
     ],
     "weightsUsed": {
-      "timeliness": 0.15528202472007288,
-      "novelty": 0.09966947750382148,
-      "continuity": 0.20328885507003247,
-      "emotional_fit": 0.18629880705829763,
-      "affinity": 0.10595154377481956,
-      "surprise": 0.24950929187295598
+      "timeliness": 0.19501955696945839,
+      "novelty": 0.05987088617618439,
+      "continuity": 0.2761727122938633,
+      "emotional_fit": 0.18387442130605186,
+      "affinity": 0.07306209171801033,
+      "surprise": 0.2120003315364318
     },
     "sampledRaw": {
-      "timeliness": 0.20963073337209837,
-      "novelty": 0.13455379463015898,
-      "continuity": 0.1744399543445438,
-      "emotional_fit": 0.15150338952870174,
-      "affinity": 0.1430345840960064,
-      "surprise": 0.18683754402849057
+      "timeliness": 0.2632764019087688,
+      "novelty": 0.08082569633784892,
+      "continuity": 0.27283316159671545,
+      "emotional_fit": 0.14823046876316998,
+      "affinity": 0.09863382381931393,
+      "surprise": 0.1362004475741829
     },
     "contextBonus": {
       "timeliness": 0,
@@ -5803,17 +5832,17 @@
         "timeliness": 0.948
       },
       "scores": {
-        "timeliness": 0.6717421141975308,
+        "timeliness": 0.6578485378086419,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.8203329166573488,
+      "finalScore": 0.7894601101355081,
       "reasoning": "気分に合う・新鮮（interest-cache）",
       "explorationBonus": 0.3892663771113443,
-      "selectionScore": 1.209599293768693
+      "selectionScore": 1.1787264872468524
     },
     {
       "topic": "コラム｜【京都シネマSTAFFの今月のオススメ】2026年7月「ヌーヴェルヴァーグ」 - 京都新聞デジタル",
@@ -5827,17 +5856,41 @@
         "timeliness": 0.982
       },
       "scores": {
-        "timeliness": 0.6944195910493827,
+        "timeliness": 0.6805260108024691,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.672738938241939,
+      "finalScore": 0.6425291017449668,
       "reasoning": "気分に合う・新鮮（interest-cache）",
       "explorationBonus": 0.3892663771113443,
-      "selectionScore": 1.0620053153532834
+      "selectionScore": 1.031795478856311
+    },
+    {
+      "topic": "＜画像1 / 8＞たまごっち×TV番組！「ヘキサゴンっち」の実力とは - ウォーカープラス",
+      "source": "interest-cache",
+      "category": "tv_drama",
+      "pub_date": "2026-06-20T17:02:09+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1KMjNGa2QzRFRJNkxZQnctaE5Za000Yk1SNnVUOTVPRE9QTWZUd3pMekQ5OE5DbFBjemZnMjZEN0NPLUxZcXMxZUd2MGp3cEZBRFpjZndLUFdlV1RISlkzRFFuTzJLUQ?oc=5",
+        "mediaSource": "ウォーカープラス",
+        "emotion_type": "light",
+        "timeliness": 0.837
+      },
+      "scores": {
+        "timeliness": 0.5838014544753086,
+        "novelty": 0.2,
+        "continuity": 0.9,
+        "emotional_fit": 0.9,
+        "affinity": 0.4,
+        "surprise": 0.7
+      },
+      "finalScore": 0.6926174103033225,
+      "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 0.9926174103033225
     },
     {
       "topic": "埼玉県の雨雲レーダー(実況) - tenki.jp",
@@ -5851,67 +5904,17 @@
         "timeliness": 0.463
       },
       "scores": {
-        "timeliness": 0.27229491319444443,
+        "timeliness": 0.2514545543981481,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.6749762715829611,
+      "finalScore": 0.6266374844114015,
       "reasoning": "気分に合う・新鮮（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.9749762715829611
-    },
-    {
-      "topic": "[Fair M&A Market Price] Is a sale of 3.6 billion yen from a 300 million yen profit too high? Prof...",
-      "source": "interest-cache",
-      "category": "ma_startup",
-      "pub_date": null,
-      "metadata": {
-        "url": "https://www.youtube.com/watch?v=zJTEgeUrVZY",
-        "mediaSource": "スタートアップ投資TV and 株式会社日本M&Aセンター",
-        "content_type": "video",
-        "emotion_type": "heavy",
-        "timeliness": 0.1
-      },
-      "scores": {
-        "timeliness": 0.3,
-        "novelty": 0.3,
-        "continuity": 0.9,
-        "emotional_fit": 0.2,
-        "affinity": 0.4,
-        "surprise": 0.7
-      },
-      "finalScore": 0.6732701264787271,
-      "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 0.9732701264787271
-    },
-    {
-      "topic": "Yayoi's Serious Startup M&A Strategy: Synergy-Focused Growth Strategy [Startup M&A Collection Vol...",
-      "source": "interest-cache",
-      "category": "ma_startup",
-      "pub_date": null,
-      "metadata": {
-        "url": "https://www.youtube.com/watch?v=cJSeFtnyuJI",
-        "mediaSource": "スタートアップ投資TV",
-        "content_type": "video",
-        "emotion_type": "heavy",
-        "timeliness": 0.1
-      },
-      "scores": {
-        "timeliness": 0.3,
-        "novelty": 0.3,
-        "continuity": 0.9,
-        "emotional_fit": 0.2,
-        "affinity": 0.4,
-        "surprise": 0.7
-      },
-      "finalScore": 0.6732701264787271,
-      "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 0.9732701264787271
+      "selectionScore": 0.9266374844114016
     },
     {
       "topic": "CodexにローカルLLMを入れてAIコーディングできる？！ローカルLLMの性能を検証します",
@@ -5933,34 +5936,10 @@
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.6880885256677165,
+      "finalScore": 0.6461228783074775,
       "reasoning": "新鮮・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.2752528949433514,
-      "selectionScore": 0.963341420611068
-    },
-    {
-      "topic": "＜画像1 / 8＞たまごっち×TV番組！「ヘキサゴンっち」の実力とは - ウォーカープラス",
-      "source": "interest-cache",
-      "category": "tv_drama",
-      "pub_date": "2026-06-20T17:02:09+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1KMjNGa2QzRFRJNkxZQnctaE5Za000Yk1SNnVUOTVPRE9QTWZUd3pMekQ5OE5DbFBjemZnMjZEN0NPLUxZcXMxZUd2MGp3cEZBRFpjZndLUFdlV1RISlkzRFFuTzJLUQ?oc=5",
-        "mediaSource": "ウォーカープラス",
-        "emotion_type": "light",
-        "timeliness": 0.837
-      },
-      "scores": {
-        "timeliness": 0.5976950347222223,
-        "novelty": 0.2,
-        "continuity": 0.9,
-        "emotional_fit": 0.9,
-        "affinity": 0.4,
-        "surprise": 0.7
-      },
-      "finalScore": 0.6432724276400911,
-      "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 0.943272427640091
+      "selectionScore": 0.921375773250829
     },
     {
       "topic": "【6月後半ヤバい】チェーン店のお得情報が多すぎる件ｗｗｗ 【ゆっくり解説】",
@@ -5982,10 +5961,34 @@
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.6418980914804535,
+      "finalScore": 0.5987245136288399,
       "reasoning": "気分に合う・新鮮（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.9418980914804536
+      "selectionScore": 0.89872451362884
+    },
+    {
+      "topic": "過去の天気(実況天気・2026年06月) - tenki.jp",
+      "source": "interest-cache",
+      "category": "weather_seasonal",
+      "pub_date": "2026-06-20T06:31:35+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9LM3NscFdFZEJMV2YyaGEtV19ZUEdpRm0xRTNVQXByX2Q0b0cyMEo4bWdobVFyQlNkMXNaYmdBQ2psMEs5VEROSVNaTktSeTg?oc=5",
+        "mediaSource": "tenki.jp",
+        "emotion_type": "light",
+        "timeliness": 0.618
+      },
+      "scores": {
+        "timeliness": 0.40675549189814814,
+        "novelty": 0.8,
+        "continuity": 0.3,
+        "emotional_fit": 0.9,
+        "affinity": 0.5,
+        "surprise": 0.7
+      },
+      "finalScore": 0.5356150986194871,
+      "reasoning": "気分に合う・新鮮（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 0.835615098619487
     },
     {
       "topic": "Apple aids app development with new intelligence frameworks and advanced tools - Apple",
@@ -5999,17 +6002,17 @@
         "timeliness": 0.742
       },
       "scores": {
-        "timeliness": 0.5343772145061728,
+        "timeliness": 0.5204836381172839,
         "novelty": 0.3,
         "continuity": 0.9,
         "emotional_fit": 0.5,
         "affinity": 0.4,
         "surprise": 0.7
       },
-      "finalScore": 0.5798887676346789,
+      "finalScore": 0.5127075522956391,
       "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.8798887676346789
+      "selectionScore": 0.8127075522956391
     },
     {
       "topic": "Accenture, Siemens & IndX: Digital Twins and Factory AI - Manufacturing Digital Magazine",
@@ -6023,17 +6026,41 @@
         "timeliness": 0.691
       },
       "scores": {
-        "timeliness": 0.4999454456018519,
+        "timeliness": 0.47910507523148144,
         "novelty": 0.3,
         "continuity": 0.9,
         "emotional_fit": 0.5,
         "affinity": 0.4,
         "surprise": 0.7
       },
-      "finalScore": 0.5745421328445223,
+      "finalScore": 0.5046379232936171,
       "reasoning": "会話の流れに沿う・意外・サプライズ（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 0.8745421328445222
+      "selectionScore": 0.8046379232936172
+    },
+    {
+      "topic": "Offline Raspberry Pi Voice Assistant Runs Local LLM - Let's Data Science",
+      "source": "interest-cache",
+      "category": "llm_local",
+      "pub_date": "2026-06-20T18:22:20+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPLXZkMXB1eEFraVdJYXdHWTVCT2w2ME5RZzNmYWhXNkdOVDdpMmlZX1htUW0yVTVZMDZZMGxIZ2gtSEVxejhHb2tCRVNzaGZ2clp6RWx6MWE2TF9WTTlGQzVIRWRLX0dyb2E1OHdmdWN4R0dxLVJzRzFscFFtZFc2SkdDdjZ0ZkdjSEs5bnVSZl9ONHM0ZnhIRA?oc=5",
+        "mediaSource": "Let's Data Science",
+        "emotion_type": "medium",
+        "timeliness": 0.865
+      },
+      "scores": {
+        "timeliness": 0.6023625578703704,
+        "novelty": 0.8,
+        "continuity": 0.3,
+        "emotional_fit": 0.5,
+        "affinity": 0.5,
+        "surprise": 0.7
+      },
+      "finalScore": 0.5002125334430648,
+      "reasoning": "新鮮・意外・サプライズ（interest-cache）",
+      "explorationBonus": 0.2752528949433514,
+      "selectionScore": 0.7754654283864162
     }
   ],
   "allowNoReply": false,
@@ -6065,7 +6092,7 @@
   "emojiEnabled": true,
   "lastOAuthNotifyDate": "2026-06-13",
   "themeInventory": {
-    "updatedAt": "2026-06-21T10:00:06.384Z",
+    "updatedAt": "2026-06-21T11:00:07.608Z",
     "records": [
       {
         "themeKey": "sports/mlb/dodgers/ohtani/home-run",
@@ -6077,7 +6104,7 @@
           "sports/mlb/dodgers/ohtani/home-run"
         ],
         "rootKey": "sports/sports/mlb",
-        "availableCount": 2,
+        "availableCount": 5,
         "sentFreshCount": 0,
         "sent30dCount": 2,
         "positive30dCount": 0,
@@ -6085,7 +6112,7 @@
         "positiveRate30d": 0,
         "uniqueSources30d": 4,
         "targetCount": 4,
-        "supplyGap": 2,
+        "supplyGap": -1,
         "rotationGap": 4,
         "freshnessDays": 7,
         "freshnessScore": 0,
@@ -6114,29 +6141,6 @@
         "freshnessDays": 5,
         "freshnessScore": 1,
         "lastSentAt": null
-      },
-      {
-        "themeKey": "ai/enterprise/pwc/genai-quality",
-        "themePath": [
-          "ai",
-          "ai/enterprise",
-          "ai/enterprise/pwc",
-          "ai/enterprise/pwc/genai-quality"
-        ],
-        "rootKey": "ai/ai/enterprise",
-        "availableCount": 1,
-        "sentFreshCount": 0,
-        "sent30dCount": 1,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 2,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 4,
-        "freshnessDays": 7,
-        "freshnessScore": 0,
-        "lastSentAt": "2026-06-10T14:01:10.299Z"
       },
       {
         "themeKey": "ai/enterprise/agent/orchestration",
@@ -6193,29 +6197,6 @@
           "webgpu"
         ],
         "rootKey": "ai/local-llm",
-        "availableCount": 1,
-        "sentFreshCount": 0,
-        "sent30dCount": 0,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0.5,
-        "uniqueSources30d": 0,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 4,
-        "freshnessDays": 7,
-        "freshnessScore": 1,
-        "lastSentAt": null
-      },
-      {
-        "themeKey": "sports/mlb/dodgers/opening-day",
-        "themePath": [
-          "sports",
-          "mlb",
-          "dodgers",
-          "opening-day"
-        ],
-        "rootKey": "sports/mlb",
         "availableCount": 1,
         "sentFreshCount": 0,
         "sent30dCount": 0,
@@ -6368,13 +6349,14 @@
         "lastSentAt": null
       },
       {
-        "themeKey": "misc/topic/slackbot-再構築の舞台裏-slack",
+        "themeKey": "sports/golf/practice/scorecard",
         "themePath": [
-          "misc",
-          "topic",
-          "slackbot-再構築の舞台裏-slack"
+          "sports",
+          "golf",
+          "practice",
+          "scorecard"
         ],
-        "rootKey": "misc",
+        "rootKey": "sports/golf",
         "availableCount": 1,
         "sentFreshCount": 0,
         "sent30dCount": 0,
@@ -6385,74 +6367,7 @@
         "targetCount": 4,
         "supplyGap": 3,
         "rotationGap": 4,
-        "freshnessDays": 7,
-        "freshnessScore": 1,
-        "lastSentAt": null
-      },
-      {
-        "themeKey": "business/consulting/sales/growth",
-        "themePath": [
-          "business",
-          "consulting",
-          "sales",
-          "growth"
-        ],
-        "rootKey": "business/consulting",
-        "availableCount": 1,
-        "sentFreshCount": 0,
-        "sent30dCount": 0,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0.5,
-        "uniqueSources30d": 0,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 4,
-        "freshnessDays": 10,
-        "freshnessScore": 1,
-        "lastSentAt": null
-      },
-      {
-        "themeKey": "sports/mlb/dodgers/cogmem/dad-strength-indeed",
-        "themePath": [
-          "sports/mlb/dodgers",
-          "cogmem",
-          "dad-strength-indeed"
-        ],
-        "rootKey": "sports/mlb/dodgers/cogmem",
-        "availableCount": 1,
-        "sentFreshCount": 0,
-        "sent30dCount": 0,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0.5,
-        "uniqueSources30d": 0,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 4,
-        "freshnessDays": 7,
-        "freshnessScore": 1,
-        "lastSentAt": null
-      },
-      {
-        "themeKey": "sports/mlb/dodgers/cogmem/scores-mlb-com",
-        "themePath": [
-          "sports/mlb/dodgers",
-          "cogmem",
-          "scores-mlb-com"
-        ],
-        "rootKey": "sports/mlb/dodgers/cogmem",
-        "availableCount": 1,
-        "sentFreshCount": 0,
-        "sent30dCount": 0,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0.5,
-        "uniqueSources30d": 0,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 4,
-        "freshnessDays": 7,
+        "freshnessDays": 5,
         "freshnessScore": 1,
         "lastSentAt": null
       },
@@ -6480,6 +6395,29 @@
         "lastSentAt": "2026-06-10T11:01:18.629Z"
       },
       {
+        "themeKey": "ai/enterprise/pwc/genai-quality",
+        "themePath": [
+          "ai",
+          "ai/enterprise",
+          "ai/enterprise/pwc",
+          "ai/enterprise/pwc/genai-quality"
+        ],
+        "rootKey": "ai/ai/enterprise",
+        "availableCount": 0,
+        "sentFreshCount": 0,
+        "sent30dCount": 1,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 2,
+        "targetCount": 4,
+        "supplyGap": 4,
+        "rotationGap": 4,
+        "freshnessDays": 7,
+        "freshnessScore": 0,
+        "lastSentAt": "2026-06-10T14:01:10.299Z"
+      },
+      {
         "themeKey": "business/consulting/finance/kpi",
         "themePath": [
           "business",
@@ -6488,7 +6426,7 @@
           "business/consulting/finance/kpi"
         ],
         "rootKey": "business/business/consulting",
-        "availableCount": 20,
+        "availableCount": 19,
         "sentFreshCount": 1,
         "sent30dCount": 2,
         "positive30dCount": 0,
@@ -6496,34 +6434,11 @@
         "positiveRate30d": 0,
         "uniqueSources30d": 4,
         "targetCount": 4,
-        "supplyGap": -16,
+        "supplyGap": -15,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.6965304811507936,
+        "freshnessScore": 0.6905760763888888,
         "lastSentAt": "2026-06-19T07:01:08.019Z"
-      },
-      {
-        "themeKey": "personal/travel-tech/pet/cat-health",
-        "themePath": [
-          "personal",
-          "travel-tech",
-          "pet",
-          "cat-health"
-        ],
-        "rootKey": "personal/travel-tech",
-        "availableCount": 5,
-        "sentFreshCount": 0,
-        "sent30dCount": 0,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0.5,
-        "uniqueSources30d": 0,
-        "targetCount": 3,
-        "supplyGap": -2,
-        "rotationGap": 3,
-        "freshnessDays": 7,
-        "freshnessScore": 1,
-        "lastSentAt": null
       },
       {
         "themeKey": "personal/travel-tech/dev/tools",
@@ -6567,7 +6482,7 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.8691772222222223,
+        "freshnessScore": 0.8632228174603175,
         "lastSentAt": "2026-06-20T12:01:24.768Z"
       },
       {
@@ -6614,7 +6529,7 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.9971392939814815,
+        "freshnessScore": 0.9911848892195767,
         "lastSentAt": "2026-06-21T09:31:16.229Z"
       },
       {
@@ -6683,8 +6598,31 @@
         "supplyGap": -2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9405772007275133,
+        "freshnessScore": 0.9346227959656085,
         "lastSentAt": "2026-06-21T00:01:07.475Z"
+      },
+      {
+        "themeKey": "personal/travel-tech/pet/cat-health",
+        "themePath": [
+          "personal",
+          "personal/travel-tech",
+          "personal/travel-tech/pet",
+          "personal/travel-tech/pet/cat-health"
+        ],
+        "rootKey": "personal/personal/travel-tech",
+        "availableCount": 5,
+        "sentFreshCount": 1,
+        "sent30dCount": 1,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 2,
+        "targetCount": 3,
+        "supplyGap": -2,
+        "rotationGap": 2,
+        "freshnessDays": 7,
+        "freshnessScore": 0.9971272966269841,
+        "lastSentAt": "2026-06-21T10:31:10.197Z"
       },
       {
         "themeKey": "local/saitama/tokorozawa/event/food-fair",
@@ -6707,7 +6645,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9346161441798941,
+        "freshnessScore": 0.9286617394179895,
         "lastSentAt": "2026-06-20T23:01:02.228Z"
       },
       {
@@ -6730,7 +6668,7 @@
         "supplyGap": 0,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.1369837400793651,
+        "freshnessScore": 0.13102933531746042,
         "lastSentAt": "2026-06-15T09:00:54.150Z"
       },
       {
@@ -6752,7 +6690,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5715289087301587,
+        "freshnessScore": 0.565574503968254,
         "lastSentAt": "2026-06-18T10:01:07.068Z"
       },
       {
@@ -6775,7 +6713,7 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5774686111111111,
+        "freshnessScore": 0.5715142063492064,
         "lastSentAt": "2026-06-18T11:00:59.400Z"
       },
       {
@@ -6797,7 +6735,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8572546164021164,
+        "freshnessScore": 0.8513002116402116,
         "lastSentAt": "2026-06-20T10:01:13.976Z"
       },
       {
@@ -6819,7 +6757,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5536885912698413,
+        "freshnessScore": 0.5477341865079365,
         "lastSentAt": "2026-06-18T07:01:17.244Z"
       },
       {
@@ -6843,7 +6781,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6905727149470899,
+        "freshnessScore": 0.6846183101851852,
         "lastSentAt": "2026-06-19T06:01:04.762Z"
       },
       {
@@ -6866,7 +6804,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.40488220568783073,
+        "freshnessScore": 0.39892780092592595,
         "lastSentAt": "2026-06-17T06:01:19.142Z"
       },
       {
@@ -6890,7 +6828,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8184648958333334,
+        "freshnessScore": 0.8125104910714286,
         "lastSentAt": "2026-06-20T03:30:13.953Z"
       },
       {
@@ -6913,7 +6851,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6548651984126984,
+        "freshnessScore": 0.6489107936507936,
         "lastSentAt": "2026-06-19T00:01:08.856Z"
       },
       {
@@ -6936,7 +6874,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9525158068783068,
+        "freshnessScore": 0.9465614021164022,
         "lastSentAt": "2026-06-21T02:01:27.944Z"
       },
       {
@@ -6958,7 +6896,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8810528984788359,
+        "freshnessScore": 0.8750984937169313,
         "lastSentAt": "2026-06-20T14:01:07.177Z"
       },
       {
@@ -6982,7 +6920,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.10727279927248679,
+        "freshnessScore": 0.10131839451058211,
         "lastSentAt": "2026-06-15T04:01:24.973Z"
       },
       {
@@ -7005,7 +6943,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.08941721891534393,
+        "freshnessScore": 0.08346281415343915,
         "lastSentAt": "2026-06-15T01:01:25.918Z"
       },
       {
@@ -7028,7 +6966,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.3809668816137567,
+        "freshnessScore": 0.3750124768518519,
         "lastSentAt": "2026-06-17T02:00:15.154Z"
       },
       {
@@ -7050,7 +6988,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.12507961309523807,
+        "freshnessScore": 0.11912520833333329,
         "lastSentAt": "2026-06-15T07:00:54.534Z"
       },
       {
@@ -7073,7 +7011,7 @@
         "supplyGap": 4,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5179807539682539,
+        "freshnessScore": 0.5120263492063493,
         "lastSentAt": "2026-06-18T01:01:21.144Z"
       },
       {
@@ -7096,7 +7034,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5119954596560846,
+        "freshnessScore": 0.5060410548941798,
         "lastSentAt": "2026-06-18T00:01:01.238Z"
       },
       {
@@ -7119,7 +7057,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5358617063492064,
+        "freshnessScore": 0.5299073015873016,
         "lastSentAt": "2026-06-18T04:01:35.544Z"
       },
       {
@@ -7142,7 +7080,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8513120254629629,
+        "freshnessScore": 0.8453576207010582,
         "lastSentAt": "2026-06-20T09:01:19.897Z"
       },
       {
@@ -7166,7 +7104,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8751235267857143,
+        "freshnessScore": 0.8691691220238096,
         "lastSentAt": "2026-06-20T13:01:21.093Z"
       },
       {
@@ -7188,17 +7126,17 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9881847337962963,
+        "freshnessScore": 0.9822303290343916,
         "lastSentAt": "2026-06-21T08:01:00.511Z"
       },
       {
-        "themeKey": "misc/general/あのさ-サンスポで-*",
+        "themeKey": "business/consulting/pricing",
         "themePath": [
-          "misc",
-          "misc/general",
-          "misc/general/あのさ-サンスポで-*"
+          "business",
+          "business/consulting",
+          "business/consulting/pricing"
         ],
-        "rootKey": "misc",
+        "rootKey": "business/business/consulting",
         "availableCount": 0,
         "sentFreshCount": 1,
         "sent30dCount": 1,
@@ -7210,8 +7148,8 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6994518981481481,
-        "lastSentAt": "2026-06-19T07:30:34.892Z"
+        "freshnessScore": 0.9941317774470899,
+        "lastSentAt": "2026-06-21T10:00:58.507Z"
       },
       {
         "themeKey": "local/saitama/tokorozawa/family/event",
@@ -7234,7 +7172,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8066383134920635,
+        "freshnessScore": 0.8006839087301587,
         "lastSentAt": "2026-06-20T01:31:01.236Z"
       },
       {
@@ -7257,31 +7195,8 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.961420582010582,
+        "freshnessScore": 0.9554661772486772,
         "lastSentAt": "2026-06-21T03:31:13.552Z"
-      },
-      {
-        "themeKey": "personal/travel-tech/dev/ai-tools",
-        "themePath": [
-          "personal",
-          "personal/travel-tech",
-          "personal/travel-tech/dev",
-          "personal/travel-tech/dev/ai-tools"
-        ],
-        "rootKey": "personal/personal/travel-tech",
-        "availableCount": 15,
-        "sentFreshCount": 4,
-        "sent30dCount": 5,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 7,
-        "targetCount": 5,
-        "supplyGap": -10,
-        "rotationGap": 1,
-        "freshnessDays": 7,
-        "freshnessScore": 0.9465563409391534,
-        "lastSentAt": "2026-06-21T01:01:23.659Z"
       },
       {
         "themeKey": "local/saitama/other/road-trip",
@@ -7303,7 +7218,7 @@
         "supplyGap": 1,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.9792581266534391,
+        "freshnessScore": 0.9733037218915344,
         "lastSentAt": "2026-06-21T06:31:01.699Z"
       },
       {
@@ -7325,8 +7240,30 @@
         "supplyGap": 3,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.9584248263888889,
+        "freshnessScore": 0.9524704216269841,
         "lastSentAt": "2026-06-21T03:01:01.719Z"
+      },
+      {
+        "themeKey": "entertainment/movie-drama/vivant",
+        "themePath": [
+          "entertainment",
+          "entertainment/movie-drama",
+          "entertainment/movie-drama/vivant"
+        ],
+        "rootKey": "entertainment/entertainment/movie-drama",
+        "availableCount": 1,
+        "sentFreshCount": 3,
+        "sent30dCount": 4,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 5,
+        "targetCount": 4,
+        "supplyGap": 3,
+        "rotationGap": 1,
+        "freshnessDays": 7,
+        "freshnessScore": 0.9494975396825397,
+        "lastSentAt": "2026-06-21T02:31:03.720Z"
       },
       {
         "themeKey": "entertainment/movie-drama/tv/drama",
@@ -7348,7 +7285,7 @@
         "supplyGap": 2,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.9763093568121693,
+        "freshnessScore": 0.9703549520502646,
         "lastSentAt": "2026-06-21T06:01:18.283Z"
       },
       {
@@ -7371,8 +7308,31 @@
         "supplyGap": 3,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.5059642046957672,
+        "freshnessScore": 0.5000097999338624,
         "lastSentAt": "2026-06-17T23:00:13.535Z"
+      },
+      {
+        "themeKey": "personal/travel-tech/dev/ai-tools",
+        "themePath": [
+          "personal",
+          "personal/travel-tech",
+          "personal/travel-tech/dev",
+          "personal/travel-tech/dev/ai-tools"
+        ],
+        "rootKey": "personal/personal/travel-tech",
+        "availableCount": 17,
+        "sentFreshCount": 4,
+        "sent30dCount": 4,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 6,
+        "targetCount": 4,
+        "supplyGap": -13,
+        "rotationGap": 0,
+        "freshnessDays": 7,
+        "freshnessScore": 0.9406019361772486,
+        "lastSentAt": "2026-06-21T01:01:23.659Z"
       },
       {
         "themeKey": "sports/golf/youtube/tips",
@@ -7394,7 +7354,7 @@
         "supplyGap": 2,
         "rotationGap": 0,
         "freshnessDays": 7,
-        "freshnessScore": 0.9822510747354497,
+        "freshnessScore": 0.9762966699735449,
         "lastSentAt": "2026-06-21T07:01:11.834Z"
       },
       {
@@ -7418,30 +7378,8 @@
         "supplyGap": 3,
         "rotationGap": 0,
         "freshnessDays": 7,
-        "freshnessScore": 0.7977649173280423,
+        "freshnessScore": 0.7918105125661375,
         "lastSentAt": "2026-06-20T00:01:34.606Z"
-      },
-      {
-        "themeKey": "entertainment/movie-drama/vivant",
-        "themePath": [
-          "entertainment",
-          "entertainment/movie-drama",
-          "entertainment/movie-drama/vivant"
-        ],
-        "rootKey": "entertainment/entertainment/movie-drama",
-        "availableCount": 1,
-        "sentFreshCount": 4,
-        "sent30dCount": 4,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 5,
-        "targetCount": 4,
-        "supplyGap": 3,
-        "rotationGap": 0,
-        "freshnessDays": 7,
-        "freshnessScore": 0.9554519444444445,
-        "lastSentAt": "2026-06-21T02:31:03.720Z"
       },
       {
         "themeKey": "ai/enterprise/security/procurement",
@@ -7463,7 +7401,7 @@
         "supplyGap": 3,
         "rotationGap": 0,
         "freshnessDays": 7,
-        "freshnessScore": 0.9733184011243387,
+        "freshnessScore": 0.9673639963624339,
         "lastSentAt": "2026-06-21T05:31:09.353Z"
       },
       {
@@ -7486,7 +7424,7 @@
         "supplyGap": 4,
         "rotationGap": 0,
         "freshnessDays": 7,
-        "freshnessScore": 0.9703303108465609,
+        "freshnessScore": 0.9643759060846561,
         "lastSentAt": "2026-06-21T05:01:02.156Z"
       },
       {
@@ -7510,7 +7448,7 @@
         "supplyGap": 5,
         "rotationGap": 0,
         "freshnessDays": 7,
-        "freshnessScore": 0.833420107473545,
+        "freshnessScore": 0.8274657027116402,
         "lastSentAt": "2026-06-20T06:00:58.865Z"
       },
       {
@@ -7533,7 +7471,7 @@
         "supplyGap": 3,
         "rotationGap": -1,
         "freshnessDays": 7,
-        "freshnessScore": 0.8721154265873016,
+        "freshnessScore": 0.8661610218253968,
         "lastSentAt": "2026-06-20T12:31:01.794Z"
       },
       {
@@ -7556,7 +7494,7 @@
         "supplyGap": 3,
         "rotationGap": -2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9673517691798942,
+        "freshnessScore": 0.9613973644179894,
         "lastSentAt": "2026-06-21T04:31:00.734Z"
       }
     ]
