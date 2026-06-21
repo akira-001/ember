@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-19T14:30:08.867Z",
+  "updatedAt": "2026-06-21T00:30:08.036Z",
   "records": [
     {
       "themeKey": "local/saitama/tokorozawa/recreation/nature",
@@ -24,76 +24,6 @@
       "freshnessDays": 4,
       "freshnessScore": 1,
       "lastSentAt": null
-    },
-    {
-      "themeKey": "sports/mlb/dodgers/opening-day",
-      "themePath": [
-        "sports",
-        "mlb",
-        "dodgers",
-        "opening-day"
-      ],
-      "rootKey": "sports/mlb",
-      "availableCount": 3,
-      "sentFreshCount": 0,
-      "sent30dCount": 0,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0.5,
-      "uniqueSources30d": 0,
-      "targetCount": 4,
-      "supplyGap": 1,
-      "rotationGap": 4,
-      "freshnessDays": 7,
-      "freshnessScore": 1,
-      "lastSentAt": null
-    },
-    {
-      "themeKey": "business/consulting/sales/growth",
-      "themePath": [
-        "business",
-        "consulting",
-        "sales",
-        "growth"
-      ],
-      "rootKey": "business/consulting",
-      "availableCount": 3,
-      "sentFreshCount": 0,
-      "sent30dCount": 0,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0.5,
-      "uniqueSources30d": 0,
-      "targetCount": 4,
-      "supplyGap": 1,
-      "rotationGap": 4,
-      "freshnessDays": 10,
-      "freshnessScore": 1,
-      "lastSentAt": null
-    },
-    {
-      "themeKey": "local/saitama/tokorozawa/history/landmark",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/tokorozawa",
-        "local/saitama/tokorozawa/history",
-        "local/saitama/tokorozawa/history/landmark"
-      ],
-      "rootKey": "local/local/saitama/local/saitama/tokorozawa",
-      "availableCount": 1,
-      "sentFreshCount": 0,
-      "sent30dCount": 1,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0,
-      "uniqueSources30d": 2,
-      "targetCount": 4,
-      "supplyGap": 3,
-      "rotationGap": 4,
-      "freshnessDays": 7,
-      "freshnessScore": 0,
-      "lastSentAt": "2026-06-09T00:30:58.562Z"
     },
     {
       "themeKey": "ai/enterprise/agent/orchestration",
@@ -188,6 +118,51 @@
       "lastSentAt": null
     },
     {
+      "themeKey": "business/consulting/ipo",
+      "themePath": [
+        "business",
+        "consulting",
+        "ipo"
+      ],
+      "rootKey": "business/consulting",
+      "availableCount": 1,
+      "sentFreshCount": 0,
+      "sent30dCount": 0,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0.5,
+      "uniqueSources30d": 0,
+      "targetCount": 4,
+      "supplyGap": 3,
+      "rotationGap": 4,
+      "freshnessDays": 10,
+      "freshnessScore": 1,
+      "lastSentAt": null
+    },
+    {
+      "themeKey": "sports/mlb/dodgers/back-to-back",
+      "themePath": [
+        "sports",
+        "mlb",
+        "dodgers",
+        "back-to-back"
+      ],
+      "rootKey": "sports/mlb",
+      "availableCount": 1,
+      "sentFreshCount": 0,
+      "sent30dCount": 0,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0.5,
+      "uniqueSources30d": 0,
+      "targetCount": 4,
+      "supplyGap": 3,
+      "rotationGap": 4,
+      "freshnessDays": 7,
+      "freshnessScore": 1,
+      "lastSentAt": null
+    },
+    {
       "themeKey": "ai/local-llm/deploy/server",
       "themePath": [
         "ai",
@@ -211,13 +186,12 @@
       "lastSentAt": null
     },
     {
-      "themeKey": "sports/mlb/dodgers/schedule/preview",
+      "themeKey": "sports/mlb/dodgers/fan-reaction",
       "themePath": [
         "sports",
         "mlb",
         "dodgers",
-        "schedule",
-        "preview"
+        "fan-reaction"
       ],
       "rootKey": "sports/mlb",
       "availableCount": 1,
@@ -235,12 +209,12 @@
       "lastSentAt": null
     },
     {
-      "themeKey": "entertainment/movie-drama/theater/release",
+      "themeKey": "entertainment/movie-drama/tv/program",
       "themePath": [
         "entertainment",
         "movie-drama",
-        "theater",
-        "release"
+        "tv",
+        "program"
       ],
       "rootKey": "entertainment/movie-drama",
       "availableCount": 1,
@@ -258,11 +232,11 @@
       "lastSentAt": null
     },
     {
-      "themeKey": "misc/calendar/休日-2026-06",
+      "themeKey": "misc/calendar/11-00ドラム月謝-2026",
       "themePath": [
         "misc",
         "calendar",
-        "休日-2026-06"
+        "11-00ドラム月謝-2026"
       ],
       "rootKey": "misc",
       "availableCount": 1,
@@ -280,11 +254,35 @@
       "lastSentAt": null
     },
     {
-      "themeKey": "misc/calendar/18-30やきとり炭壱2号店-2026",
+      "themeKey": "local/saitama/other/chichibu/nature",
+      "themePath": [
+        "local",
+        "saitama",
+        "other",
+        "chichibu",
+        "nature"
+      ],
+      "rootKey": "local/saitama/other",
+      "availableCount": 1,
+      "sentFreshCount": 0,
+      "sent30dCount": 0,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0.5,
+      "uniqueSources30d": 0,
+      "targetCount": 4,
+      "supplyGap": 3,
+      "rotationGap": 4,
+      "freshnessDays": 5,
+      "freshnessScore": 1,
+      "lastSentAt": null
+    },
+    {
+      "themeKey": "misc/calendar/the-next-gate2030",
       "themePath": [
         "misc",
         "calendar",
-        "18-30やきとり炭壱2号店-2026"
+        "the-next-gate2030"
       ],
       "rootKey": "misc",
       "availableCount": 1,
@@ -324,14 +322,82 @@
       "lastSentAt": null
     },
     {
-      "themeKey": "sports/golf/driver/long-shot",
+      "themeKey": "business/consulting/sales/growth",
       "themePath": [
-        "sports",
-        "sports/golf",
-        "sports/golf/driver",
-        "sports/golf/driver/long-shot"
+        "business",
+        "consulting",
+        "sales",
+        "growth"
       ],
-      "rootKey": "sports/sports/golf",
+      "rootKey": "business/consulting",
+      "availableCount": 1,
+      "sentFreshCount": 0,
+      "sent30dCount": 0,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0.5,
+      "uniqueSources30d": 0,
+      "targetCount": 4,
+      "supplyGap": 3,
+      "rotationGap": 4,
+      "freshnessDays": 10,
+      "freshnessScore": 1,
+      "lastSentAt": null
+    },
+    {
+      "themeKey": "sports/mlb/dodgers/cogmem/dodgers-6-5",
+      "themePath": [
+        "sports/mlb/dodgers",
+        "cogmem",
+        "dodgers-6-5"
+      ],
+      "rootKey": "sports/mlb/dodgers/cogmem",
+      "availableCount": 1,
+      "sentFreshCount": 0,
+      "sent30dCount": 0,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0.5,
+      "uniqueSources30d": 0,
+      "targetCount": 4,
+      "supplyGap": 3,
+      "rotationGap": 4,
+      "freshnessDays": 7,
+      "freshnessScore": 1,
+      "lastSentAt": null
+    },
+    {
+      "themeKey": "sports/mlb/dodgers/cogmem/dodgers-star-shohei",
+      "themePath": [
+        "sports/mlb/dodgers",
+        "cogmem",
+        "dodgers-star-shohei"
+      ],
+      "rootKey": "sports/mlb/dodgers/cogmem",
+      "availableCount": 1,
+      "sentFreshCount": 0,
+      "sent30dCount": 0,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0.5,
+      "uniqueSources30d": 0,
+      "targetCount": 4,
+      "supplyGap": 3,
+      "rotationGap": 4,
+      "freshnessDays": 7,
+      "freshnessScore": 1,
+      "lastSentAt": null
+    },
+    {
+      "themeKey": "local/saitama/tokorozawa/station/commute",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/station",
+        "local/saitama/tokorozawa/station/commute"
+      ],
+      "rootKey": "local/local/saitama/local/saitama/tokorozawa",
       "availableCount": 0,
       "sentFreshCount": 0,
       "sent30dCount": 1,
@@ -344,15 +410,15 @@
       "rotationGap": 4,
       "freshnessDays": 7,
       "freshnessScore": 0,
-      "lastSentAt": "2026-06-08T01:30:48.088Z"
+      "lastSentAt": "2026-06-10T03:31:11.774Z"
     },
     {
-      "themeKey": "personal/travel-tech/campingcar/route",
+      "themeKey": "personal/travel-tech/dev/tools",
       "themePath": [
         "personal",
         "personal/travel-tech",
-        "personal/travel-tech/campingcar",
-        "personal/travel-tech/campingcar/route"
+        "personal/travel-tech/dev",
+        "personal/travel-tech/dev/tools"
       ],
       "rootKey": "personal/personal/travel-tech",
       "availableCount": 2,
@@ -361,69 +427,23 @@
       "positive30dCount": 0,
       "negative30dCount": 0,
       "positiveRate30d": 0,
-      "uniqueSources30d": 3,
+      "uniqueSources30d": 4,
       "targetCount": 4,
       "supplyGap": 2,
       "rotationGap": 3,
       "freshnessDays": 7,
-      "freshnessScore": 0.5298600479497355,
-      "lastSentAt": "2026-06-16T07:31:08.224Z"
+      "freshnessScore": 0.42273743055555557,
+      "lastSentAt": "2026-06-16T23:31:19.634Z"
     },
     {
-      "themeKey": "sports/golf/youtube/tips",
+      "themeKey": "business/consulting/ma",
       "themePath": [
-        "sports",
-        "sports/golf",
-        "sports/golf/youtube",
-        "sports/golf/youtube/tips"
+        "business",
+        "business/consulting",
+        "business/consulting/ma"
       ],
-      "rootKey": "sports/sports/golf",
+      "rootKey": "business/business/consulting",
       "availableCount": 2,
-      "sentFreshCount": 2,
-      "sent30dCount": 5,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0,
-      "uniqueSources30d": 7,
-      "targetCount": 5,
-      "supplyGap": 3,
-      "rotationGap": 3,
-      "freshnessDays": 7,
-      "freshnessScore": 0.5655623082010582,
-      "lastSentAt": "2026-06-16T13:31:00.951Z"
-    },
-    {
-      "themeKey": "personal/travel-tech/travel",
-      "themePath": [
-        "personal",
-        "travel-tech",
-        "travel"
-      ],
-      "rootKey": "personal/travel-tech",
-      "availableCount": 2,
-      "sentFreshCount": 0,
-      "sent30dCount": 0,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0.5,
-      "uniqueSources30d": 0,
-      "targetCount": 3,
-      "supplyGap": 1,
-      "rotationGap": 3,
-      "freshnessDays": 7,
-      "freshnessScore": 1,
-      "lastSentAt": null
-    },
-    {
-      "themeKey": "local/saitama/other/road-trip",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/other",
-        "local/saitama/other/road-trip"
-      ],
-      "rootKey": "local/local/saitama/local/saitama/other",
-      "availableCount": 0,
       "sentFreshCount": 1,
       "sent30dCount": 2,
       "positive30dCount": 0,
@@ -431,11 +451,81 @@
       "positiveRate30d": 0,
       "uniqueSources30d": 4,
       "targetCount": 4,
-      "supplyGap": 4,
+      "supplyGap": 2,
       "rotationGap": 3,
       "freshnessDays": 7,
-      "freshnessScore": 0.9435578935185185,
-      "lastSentAt": "2026-06-19T05:01:12.681Z"
+      "freshnessScore": 0.34532290509259256,
+      "lastSentAt": "2026-06-16T10:30:59.329Z"
+    },
+    {
+      "themeKey": "local/saitama/tokorozawa/event/flower-sakura",
+      "themePath": [
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/event",
+        "local/saitama/tokorozawa/event/flower-sakura"
+      ],
+      "rootKey": "local/local/saitama/local/saitama/tokorozawa",
+      "availableCount": 1,
+      "sentFreshCount": 1,
+      "sent30dCount": 2,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0,
+      "uniqueSources30d": 4,
+      "targetCount": 4,
+      "supplyGap": 3,
+      "rotationGap": 3,
+      "freshnessDays": 7,
+      "freshnessScore": 0.931668416005291,
+      "lastSentAt": "2026-06-20T13:01:21.094Z"
+    },
+    {
+      "themeKey": "ai/enterprise/kpmg/report",
+      "themePath": [
+        "ai",
+        "ai/enterprise",
+        "ai/enterprise/kpmg",
+        "ai/enterprise/kpmg/report"
+      ],
+      "rootKey": "ai/ai/enterprise",
+      "availableCount": 1,
+      "sentFreshCount": 0,
+      "sent30dCount": 1,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0,
+      "uniqueSources30d": 2,
+      "targetCount": 3,
+      "supplyGap": 2,
+      "rotationGap": 3,
+      "freshnessDays": 7,
+      "freshnessScore": 0,
+      "lastSentAt": "2026-06-11T01:30:57.060Z"
+    },
+    {
+      "themeKey": "sports/golf/round/course",
+      "themePath": [
+        "sports",
+        "sports/golf",
+        "sports/golf/round",
+        "sports/golf/round/course"
+      ],
+      "rootKey": "sports/sports/golf",
+      "availableCount": 1,
+      "sentFreshCount": 1,
+      "sent30dCount": 4,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0,
+      "uniqueSources30d": 7,
+      "targetCount": 4,
+      "supplyGap": 3,
+      "rotationGap": 3,
+      "freshnessDays": 7,
+      "freshnessScore": 0.7650038558201058,
+      "lastSentAt": "2026-06-19T09:01:22.368Z"
     },
     {
       "themeKey": "lifestyle/food-wellness/lunch",
@@ -456,102 +546,8 @@
       "supplyGap": 4,
       "rotationGap": 3,
       "freshnessDays": 7,
-      "freshnessScore": 0.5000825644841269,
+      "freshnessScore": 0.2977029861111111,
       "lastSentAt": "2026-06-16T02:30:58.802Z"
-    },
-    {
-      "themeKey": "personal/travel-tech/dev/tools",
-      "themePath": [
-        "personal",
-        "personal/travel-tech",
-        "personal/travel-tech/dev",
-        "personal/travel-tech/dev/tools"
-      ],
-      "rootKey": "personal/personal/travel-tech",
-      "availableCount": 0,
-      "sentFreshCount": 1,
-      "sent30dCount": 2,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0,
-      "uniqueSources30d": 4,
-      "targetCount": 4,
-      "supplyGap": 4,
-      "rotationGap": 3,
-      "freshnessDays": 7,
-      "freshnessScore": 0.6251170089285715,
-      "lastSentAt": "2026-06-16T23:31:19.634Z"
-    },
-    {
-      "themeKey": "local/saitama/tokorozawa/event/flower-sakura",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/tokorozawa",
-        "local/saitama/tokorozawa/event",
-        "local/saitama/tokorozawa/event/flower-sakura"
-      ],
-      "rootKey": "local/local/saitama/local/saitama/tokorozawa",
-      "availableCount": 0,
-      "sentFreshCount": 0,
-      "sent30dCount": 1,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0,
-      "uniqueSources30d": 2,
-      "targetCount": 3,
-      "supplyGap": 3,
-      "rotationGap": 3,
-      "freshnessDays": 7,
-      "freshnessScore": 0,
-      "lastSentAt": "2026-06-09T05:31:05.107Z"
-    },
-    {
-      "themeKey": "local/saitama/tokorozawa/station/commute",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/tokorozawa",
-        "local/saitama/tokorozawa/station",
-        "local/saitama/tokorozawa/station/commute"
-      ],
-      "rootKey": "local/local/saitama/local/saitama/tokorozawa",
-      "availableCount": 0,
-      "sentFreshCount": 0,
-      "sent30dCount": 1,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0,
-      "uniqueSources30d": 2,
-      "targetCount": 3,
-      "supplyGap": 3,
-      "rotationGap": 3,
-      "freshnessDays": 7,
-      "freshnessScore": 0,
-      "lastSentAt": "2026-06-10T03:31:11.774Z"
-    },
-    {
-      "themeKey": "ai/enterprise/kpmg/report",
-      "themePath": [
-        "ai",
-        "ai/enterprise",
-        "ai/enterprise/kpmg",
-        "ai/enterprise/kpmg/report"
-      ],
-      "rootKey": "ai/ai/enterprise",
-      "availableCount": 0,
-      "sentFreshCount": 0,
-      "sent30dCount": 1,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0,
-      "uniqueSources30d": 2,
-      "targetCount": 3,
-      "supplyGap": 3,
-      "rotationGap": 3,
-      "freshnessDays": 7,
-      "freshnessScore": 0,
-      "lastSentAt": "2026-06-11T01:30:57.060Z"
     },
     {
       "themeKey": "entertainment/movie-drama/anime/series",
@@ -577,27 +573,28 @@
       "lastSentAt": "2026-06-11T05:30:50.960Z"
     },
     {
-      "themeKey": "personal/travel-tech/dev/ai-tools",
+      "themeKey": "local/saitama/other/saitama-city/urban",
       "themePath": [
-        "personal",
-        "personal/travel-tech",
-        "personal/travel-tech/dev",
-        "personal/travel-tech/dev/ai-tools"
+        "local",
+        "local/saitama",
+        "local/saitama/other",
+        "local/saitama/other/saitama-city",
+        "local/saitama/other/saitama-city/urban"
       ],
-      "rootKey": "personal/personal/travel-tech",
-      "availableCount": 25,
-      "sentFreshCount": 3,
-      "sent30dCount": 6,
+      "rootKey": "local/local/saitama/local/saitama/other",
+      "availableCount": 0,
+      "sentFreshCount": 1,
+      "sent30dCount": 3,
       "positive30dCount": 0,
       "negative30dCount": 0,
       "positiveRate30d": 0,
-      "uniqueSources30d": 6,
-      "targetCount": 5,
-      "supplyGap": -20,
-      "rotationGap": 2,
+      "uniqueSources30d": 4,
+      "targetCount": 4,
+      "supplyGap": 4,
+      "rotationGap": 3,
       "freshnessDays": 7,
-      "freshnessScore": 0.997121853505291,
-      "lastSentAt": "2026-06-19T14:01:08.164Z"
+      "freshnessScore": 0.3334099851190476,
+      "lastSentAt": "2026-06-16T08:30:54.395Z"
     },
     {
       "themeKey": "business/consulting/finance/kpi",
@@ -608,7 +605,7 @@
         "business/consulting/finance/kpi"
       ],
       "rootKey": "business/business/consulting",
-      "availableCount": 16,
+      "availableCount": 20,
       "sentFreshCount": 1,
       "sent30dCount": 1,
       "positive30dCount": 0,
@@ -616,11 +613,34 @@
       "positiveRate30d": 0,
       "uniqueSources30d": 2,
       "targetCount": 3,
-      "supplyGap": -13,
+      "supplyGap": -17,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.9554549487433862,
+      "freshnessScore": 0.7530753703703703,
       "lastSentAt": "2026-06-19T07:01:08.020Z"
+    },
+    {
+      "themeKey": "ai/enterprise/openai/models",
+      "themePath": [
+        "ai",
+        "ai/enterprise",
+        "ai/enterprise/openai",
+        "ai/enterprise/openai/models"
+      ],
+      "rootKey": "ai/ai/enterprise",
+      "availableCount": 4,
+      "sentFreshCount": 2,
+      "sent30dCount": 2,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0,
+      "uniqueSources30d": 3,
+      "targetCount": 4,
+      "supplyGap": 0,
+      "rotationGap": 2,
+      "freshnessDays": 7,
+      "freshnessScore": 0.9078569146825397,
+      "lastSentAt": "2026-06-20T09:01:19.898Z"
     },
     {
       "themeKey": "sports/mlb/dodgers/ohtani/stats",
@@ -632,19 +652,65 @@
         "sports/mlb/dodgers/ohtani/stats"
       ],
       "rootKey": "sports/sports/mlb",
-      "availableCount": 6,
+      "availableCount": 4,
+      "sentFreshCount": 2,
+      "sent30dCount": 2,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0,
+      "uniqueSources30d": 3,
+      "targetCount": 4,
+      "supplyGap": 0,
+      "rotationGap": 2,
+      "freshnessDays": 7,
+      "freshnessScore": 0.8543098065476191,
+      "lastSentAt": "2026-06-20T00:01:34.607Z"
+    },
+    {
+      "themeKey": "lifestyle/food-wellness/gourmet/steak",
+      "themePath": [
+        "lifestyle",
+        "lifestyle/food-wellness",
+        "lifestyle/food-wellness/gourmet",
+        "lifestyle/food-wellness/gourmet/steak"
+      ],
+      "rootKey": "lifestyle/lifestyle/food-wellness",
+      "availableCount": 3,
       "sentFreshCount": 2,
       "sent30dCount": 3,
       "positive30dCount": 0,
       "negative30dCount": 0,
       "positiveRate30d": 0,
-      "uniqueSources30d": 4,
+      "uniqueSources30d": 3,
       "targetCount": 4,
-      "supplyGap": -2,
+      "supplyGap": 1,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.9078687566137567,
-      "lastSentAt": "2026-06-18T23:01:27.891Z"
+      "freshnessScore": 0.44643756613756613,
+      "lastSentAt": "2026-06-17T03:30:13.476Z"
+    },
+    {
+      "themeKey": "personal/travel-tech/campingcar/route",
+      "themePath": [
+        "personal",
+        "personal/travel-tech",
+        "personal/travel-tech/campingcar",
+        "personal/travel-tech/campingcar/route"
+      ],
+      "rootKey": "personal/personal/travel-tech",
+      "availableCount": 3,
+      "sentFreshCount": 1,
+      "sent30dCount": 1,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0,
+      "uniqueSources30d": 2,
+      "targetCount": 3,
+      "supplyGap": 0,
+      "rotationGap": 2,
+      "freshnessDays": 7,
+      "freshnessScore": 0.3274804695767195,
+      "lastSentAt": "2026-06-16T07:31:08.224Z"
     },
     {
       "themeKey": "local/saitama/tokorozawa/event/food-fair",
@@ -656,75 +722,53 @@
         "local/saitama/tokorozawa/event/food-fair"
       ],
       "rootKey": "local/local/saitama/local/saitama/tokorozawa",
-      "availableCount": 2,
+      "availableCount": 3,
       "sentFreshCount": 2,
-      "sent30dCount": 4,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0,
-      "uniqueSources30d": 6,
-      "targetCount": 4,
-      "supplyGap": 2,
-      "rotationGap": 2,
-      "freshnessDays": 7,
-      "freshnessScore": 0.8244821412037038,
-      "lastSentAt": "2026-06-18T09:00:55.666Z"
-    },
-    {
-      "themeKey": "business/consulting/ma",
-      "themePath": [
-        "business",
-        "business/consulting",
-        "business/consulting/ma"
-      ],
-      "rootKey": "business/business/consulting",
-      "availableCount": 2,
-      "sentFreshCount": 2,
-      "sent30dCount": 3,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0,
-      "uniqueSources30d": 5,
-      "targetCount": 4,
-      "supplyGap": 2,
-      "rotationGap": 2,
-      "freshnessDays": 7,
-      "freshnessScore": 0.8304533763227513,
-      "lastSentAt": "2026-06-18T10:01:07.069Z"
-    },
-    {
-      "themeKey": "local/saitama/tokorozawa/event/market",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/tokorozawa",
-        "local/saitama/tokorozawa/event",
-        "local/saitama/tokorozawa/event/market"
-      ],
-      "rootKey": "local/local/saitama/local/saitama/tokorozawa",
-      "availableCount": 2,
-      "sentFreshCount": 1,
       "sent30dCount": 2,
       "positive30dCount": 0,
       "negative30dCount": 0,
       "positiveRate30d": 0,
-      "uniqueSources30d": 2,
-      "targetCount": 3,
+      "uniqueSources30d": 3,
+      "targetCount": 4,
       "supplyGap": 1,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.8155406960978836,
-      "lastSentAt": "2026-06-18T07:30:47.880Z"
+      "freshnessScore": 0.9911610317460318,
+      "lastSentAt": "2026-06-20T23:01:02.228Z"
     },
     {
-      "themeKey": "ai/enterprise/openai/models",
+      "themeKey": "sports/mlb/dodgers/ohtani/home-run",
       "themePath": [
-        "ai",
-        "ai/enterprise",
-        "ai/enterprise/openai",
-        "ai/enterprise/openai/models"
+        "sports",
+        "sports/mlb",
+        "sports/mlb/dodgers",
+        "sports/mlb/dodgers/ohtani",
+        "sports/mlb/dodgers/ohtani/home-run"
       ],
-      "rootKey": "ai/ai/enterprise",
+      "rootKey": "sports/sports/mlb",
+      "availableCount": 2,
+      "sentFreshCount": 2,
+      "sent30dCount": 2,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0,
+      "uniqueSources30d": 3,
+      "targetCount": 4,
+      "supplyGap": 2,
+      "rotationGap": 2,
+      "freshnessDays": 7,
+      "freshnessScore": 0.488277607473545,
+      "lastSentAt": "2026-06-17T10:31:58.333Z"
+    },
+    {
+      "themeKey": "sports/golf/tournament/news",
+      "themePath": [
+        "sports",
+        "sports/golf",
+        "sports/golf/tournament",
+        "sports/golf/tournament/news"
+      ],
+      "rootKey": "sports/sports/golf",
       "availableCount": 2,
       "sentFreshCount": 1,
       "sent30dCount": 1,
@@ -736,16 +780,15 @@
       "supplyGap": 1,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.208448986441799,
-      "lastSentAt": "2026-06-14T01:31:18.814Z"
+      "freshnessScore": 0.6310440575396825,
+      "lastSentAt": "2026-06-18T10:31:03.482Z"
     },
     {
-      "themeKey": "entertainment/movie-drama/tv/drama",
+      "themeKey": "entertainment/movie-drama/hamnet",
       "themePath": [
         "entertainment",
         "entertainment/movie-drama",
-        "entertainment/movie-drama/tv",
-        "entertainment/movie-drama/tv/drama"
+        "entertainment/movie-drama/hamnet"
       ],
       "rootKey": "entertainment/entertainment/movie-drama",
       "availableCount": 2,
@@ -759,31 +802,31 @@
       "supplyGap": 2,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.9257115261243386,
-      "lastSentAt": "2026-06-19T02:01:19.198Z"
+      "freshnessScore": 0.9375977876984127,
+      "lastSentAt": "2026-06-20T14:01:07.178Z"
     },
     {
-      "themeKey": "sports/golf/lesson/coach",
+      "themeKey": "local/saitama/other/road-trip",
       "themePath": [
-        "sports",
-        "sports/golf",
-        "sports/golf/lesson",
-        "sports/golf/lesson/coach"
+        "local",
+        "local/saitama",
+        "local/saitama/other",
+        "local/saitama/other/road-trip"
       ],
-      "rootKey": "sports/sports/golf",
-      "availableCount": 1,
-      "sentFreshCount": 2,
-      "sent30dCount": 3,
+      "rootKey": "local/local/saitama/local/saitama/other",
+      "availableCount": 2,
+      "sentFreshCount": 1,
+      "sent30dCount": 1,
       "positive30dCount": 0,
       "negative30dCount": 0,
       "positiveRate30d": 0,
-      "uniqueSources30d": 5,
-      "targetCount": 4,
-      "supplyGap": 3,
+      "uniqueSources30d": 2,
+      "targetCount": 3,
+      "supplyGap": 1,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.9286528108465608,
-      "lastSentAt": "2026-06-19T02:30:58.087Z"
+      "freshnessScore": 0.7411783151455027,
+      "lastSentAt": "2026-06-19T05:01:12.681Z"
     },
     {
       "themeKey": "personal/travel-tech/campingcar",
@@ -804,7 +847,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.2872966997354497,
+      "freshnessScore": 0.0849171213624339,
       "lastSentAt": "2026-06-14T14:46:05.911Z"
     },
     {
@@ -826,41 +869,66 @@
       "supplyGap": 2,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.8512627843915344,
+      "freshnessScore": 0.6488832060185186,
       "lastSentAt": "2026-06-18T13:30:52.599Z"
     },
     {
-      "themeKey": "lifestyle/food-wellness/spa/king-queen",
+      "themeKey": "local/saitama/tokorozawa/culture/art",
       "themePath": [
-        "lifestyle",
-        "lifestyle/food-wellness",
-        "lifestyle/food-wellness/spa",
-        "lifestyle/food-wellness/spa/king-queen"
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/culture",
+        "local/saitama/tokorozawa/culture/art"
       ],
-      "rootKey": "lifestyle/lifestyle/food-wellness",
+      "rootKey": "local/local/saitama/local/saitama/tokorozawa",
+      "availableCount": 1,
+      "sentFreshCount": 1,
+      "sent30dCount": 2,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0,
+      "uniqueSources30d": 1,
+      "targetCount": 3,
+      "supplyGap": 2,
+      "rotationGap": 2,
+      "freshnessDays": 7,
+      "freshnessScore": 0.8750097817460317,
+      "lastSentAt": "2026-06-20T03:30:13.952Z"
+    },
+    {
+      "themeKey": "entertainment/movie-drama/tv/drama",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/tv",
+        "entertainment/movie-drama/tv/drama"
+      ],
+      "rootKey": "entertainment/entertainment/movie-drama",
       "availableCount": 1,
       "sentFreshCount": 2,
       "sent30dCount": 2,
       "positive30dCount": 0,
       "negative30dCount": 0,
       "positiveRate30d": 0,
-      "uniqueSources30d": 4,
+      "uniqueSources30d": 3,
       "targetCount": 4,
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.9137896676587302,
-      "lastSentAt": "2026-06-19T00:01:08.858Z"
+      "freshnessScore": 0.7233319477513227,
+      "lastSentAt": "2026-06-19T02:01:19.198Z"
     },
     {
-      "themeKey": "sports/golf/tournament/news",
+      "themeKey": "local/saitama/tokorozawa/family/event",
       "themePath": [
-        "sports",
-        "sports/golf",
-        "sports/golf/tournament",
-        "sports/golf/tournament/news"
+        "local",
+        "local/saitama",
+        "local/saitama/tokorozawa",
+        "local/saitama/tokorozawa/family",
+        "local/saitama/tokorozawa/family/event"
       ],
-      "rootKey": "sports/sports/golf",
+      "rootKey": "local/local/saitama/local/saitama/tokorozawa",
       "availableCount": 1,
       "sentFreshCount": 1,
       "sent30dCount": 1,
@@ -872,31 +940,8 @@
       "supplyGap": 2,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.8334236359126984,
-      "lastSentAt": "2026-06-18T10:31:03.482Z"
-    },
-    {
-      "themeKey": "business/consulting/market/report",
-      "themePath": [
-        "business",
-        "business/consulting",
-        "business/consulting/market",
-        "business/consulting/market/report"
-      ],
-      "rootKey": "business/business/consulting",
-      "availableCount": 1,
-      "sentFreshCount": 2,
-      "sent30dCount": 2,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0,
-      "uniqueSources30d": 4,
-      "targetCount": 4,
-      "supplyGap": 3,
-      "rotationGap": 2,
-      "freshnessDays": 7,
-      "freshnessScore": 0.9405686392195767,
-      "lastSentAt": "2026-06-19T04:31:04.780Z"
+      "freshnessScore": 0.8631831994047618,
+      "lastSentAt": "2026-06-20T01:31:01.235Z"
     },
     {
       "themeKey": "ai/enterprise/security/procurement",
@@ -908,28 +953,6 @@
       ],
       "rootKey": "ai/ai/enterprise",
       "availableCount": 1,
-      "sentFreshCount": 2,
-      "sent30dCount": 2,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0,
-      "uniqueSources30d": 4,
-      "targetCount": 4,
-      "supplyGap": 3,
-      "rotationGap": 2,
-      "freshnessDays": 7,
-      "freshnessScore": 0.8483033019179894,
-      "lastSentAt": "2026-06-18T13:01:02.704Z"
-    },
-    {
-      "themeKey": "entertainment/movie-drama/hamnet",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/hamnet"
-      ],
-      "rootKey": "entertainment/entertainment/movie-drama",
-      "availableCount": 1,
       "sentFreshCount": 1,
       "sent30dCount": 1,
       "positive30dCount": 0,
@@ -940,8 +963,8 @@
       "supplyGap": 2,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.9316555158730159,
-      "lastSentAt": "2026-06-19T03:01:14.123Z"
+      "freshnessScore": 0.8929551537698412,
+      "lastSentAt": "2026-06-20T06:31:07.313Z"
     },
     {
       "themeKey": "local/saitama/tokorozawa/recreation/park-walk",
@@ -964,19 +987,17 @@
       "supplyGap": 2,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.9494971808862434,
+      "freshnessScore": 0.7471176025132276,
       "lastSentAt": "2026-06-19T06:01:04.762Z"
     },
     {
-      "themeKey": "sports/mlb/dodgers/roki/support",
+      "themeKey": "entertainment/movie-drama/blue-giant",
       "themePath": [
-        "sports",
-        "sports/mlb",
-        "sports/mlb/dodgers",
-        "sports/mlb/dodgers/roki",
-        "sports/mlb/dodgers/roki/support"
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/blue-giant"
       ],
-      "rootKey": "sports/sports/mlb",
+      "rootKey": "entertainment/entertainment/movie-drama",
       "availableCount": 1,
       "sentFreshCount": 1,
       "sent30dCount": 1,
@@ -988,55 +1009,32 @@
       "supplyGap": 2,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.9911794527116402,
-      "lastSentAt": "2026-06-19T13:01:14.200Z"
+      "freshnessScore": 0.9137995056216931,
+      "lastSentAt": "2026-06-20T10:01:13.977Z"
     },
     {
-      "themeKey": "sports/golf/round/course",
-      "themePath": [
-        "sports",
-        "sports/golf",
-        "sports/golf/round",
-        "sports/golf/round/course"
-      ],
-      "rootKey": "sports/sports/golf",
-      "availableCount": 0,
-      "sentFreshCount": 2,
-      "sent30dCount": 4,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0,
-      "uniqueSources30d": 7,
-      "targetCount": 4,
-      "supplyGap": 4,
-      "rotationGap": 2,
-      "freshnessDays": 7,
-      "freshnessScore": 0.9673834341931217,
-      "lastSentAt": "2026-06-19T09:01:22.368Z"
-    },
-    {
-      "themeKey": "local/saitama/tokorozawa/culture/art",
+      "themeKey": "local/saitama/tokorozawa/event/market",
       "themePath": [
         "local",
         "local/saitama",
         "local/saitama/tokorozawa",
-        "local/saitama/tokorozawa/culture",
-        "local/saitama/tokorozawa/culture/art"
+        "local/saitama/tokorozawa/event",
+        "local/saitama/tokorozawa/event/market"
       ],
       "rootKey": "local/local/saitama/local/saitama/tokorozawa",
       "availableCount": 0,
       "sentFreshCount": 1,
-      "sent30dCount": 1,
+      "sent30dCount": 2,
       "positive30dCount": 0,
       "negative30dCount": 0,
       "positiveRate30d": 0,
-      "uniqueSources30d": 1,
+      "uniqueSources30d": 2,
       "targetCount": 3,
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.09837537367724869,
-      "lastSentAt": "2026-06-13T07:01:46.293Z"
+      "freshnessScore": 0.6131611177248677,
+      "lastSentAt": "2026-06-18T07:30:47.880Z"
     },
     {
       "themeKey": "local/saitama/tokorozawa/food/ramen",
@@ -1059,7 +1057,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.23225468584656084,
+      "freshnessScore": 0.02987510747354505,
       "lastSentAt": "2026-06-14T05:31:16.501Z"
     },
     {
@@ -1082,7 +1080,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.35127450066137567,
+      "freshnessScore": 0.14889492228835977,
       "lastSentAt": "2026-06-15T01:30:59.685Z"
     },
     {
@@ -1105,7 +1103,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.3631831233465609,
+      "freshnessScore": 0.160803544973545,
       "lastSentAt": "2026-06-15T03:31:02.020Z"
     },
     {
@@ -1128,7 +1126,7 @@
       "supplyGap": 4,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.7857841137566137,
+      "freshnessScore": 0.5834045353835979,
       "lastSentAt": "2026-06-18T02:30:51.099Z"
     },
     {
@@ -1151,32 +1149,8 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.4822335830026455,
+      "freshnessScore": 0.2798540046296296,
       "lastSentAt": "2026-06-15T23:31:03.738Z"
-    },
-    {
-      "themeKey": "sports/mlb/dodgers/ohtani/home-run",
-      "themePath": [
-        "sports",
-        "sports/mlb",
-        "sports/mlb/dodgers",
-        "sports/mlb/dodgers/ohtani",
-        "sports/mlb/dodgers/ohtani/home-run"
-      ],
-      "rootKey": "sports/sports/mlb",
-      "availableCount": 0,
-      "sentFreshCount": 2,
-      "sent30dCount": 2,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0,
-      "uniqueSources30d": 3,
-      "targetCount": 4,
-      "supplyGap": 4,
-      "rotationGap": 2,
-      "freshnessDays": 7,
-      "freshnessScore": 0.6906571858465609,
-      "lastSentAt": "2026-06-17T10:31:58.333Z"
     },
     {
       "themeKey": "business/client/kyocera/proposal",
@@ -1188,18 +1162,18 @@
       ],
       "rootKey": "business/business/client",
       "availableCount": 0,
-      "sentFreshCount": 2,
-      "sent30dCount": 2,
+      "sentFreshCount": 1,
+      "sent30dCount": 1,
       "positive30dCount": 0,
       "negative30dCount": 0,
       "positiveRate30d": 0,
-      "uniqueSources30d": 4,
-      "targetCount": 4,
-      "supplyGap": 4,
+      "uniqueSources30d": 2,
+      "targetCount": 3,
+      "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.7769052215608465,
-      "lastSentAt": "2026-06-18T01:01:21.145Z"
+      "freshnessScore": 0.309606455026455,
+      "lastSentAt": "2026-06-16T04:30:58.020Z"
     },
     {
       "themeKey": "ai/local-llm/model/comparison",
@@ -1221,7 +1195,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.6548335978835979,
+      "freshnessScore": 0.45245401951058206,
       "lastSentAt": "2026-06-17T04:30:52.227Z"
     },
     {
@@ -1243,8 +1217,77 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.7678645585317461,
+      "freshnessScore": 0.5654849801587302,
       "lastSentAt": "2026-06-17T23:30:13.352Z"
+    },
+    {
+      "themeKey": "sports/golf/lesson/coach",
+      "themePath": [
+        "sports",
+        "sports/golf",
+        "sports/golf/lesson",
+        "sports/golf/lesson/coach"
+      ],
+      "rootKey": "sports/sports/golf",
+      "availableCount": 0,
+      "sentFreshCount": 2,
+      "sent30dCount": 2,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0,
+      "uniqueSources30d": 4,
+      "targetCount": 4,
+      "supplyGap": 4,
+      "rotationGap": 2,
+      "freshnessDays": 7,
+      "freshnessScore": 0.726273232473545,
+      "lastSentAt": "2026-06-19T02:30:58.087Z"
+    },
+    {
+      "themeKey": "lifestyle/food-wellness/spa/king-queen",
+      "themePath": [
+        "lifestyle",
+        "lifestyle/food-wellness",
+        "lifestyle/food-wellness/spa",
+        "lifestyle/food-wellness/spa/king-queen"
+      ],
+      "rootKey": "lifestyle/lifestyle/food-wellness",
+      "availableCount": 0,
+      "sentFreshCount": 2,
+      "sent30dCount": 2,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0,
+      "uniqueSources30d": 4,
+      "targetCount": 4,
+      "supplyGap": 4,
+      "rotationGap": 2,
+      "freshnessDays": 7,
+      "freshnessScore": 0.7114100892857143,
+      "lastSentAt": "2026-06-19T00:01:08.858Z"
+    },
+    {
+      "themeKey": "business/consulting/market/report",
+      "themePath": [
+        "business",
+        "business/consulting",
+        "business/consulting/market",
+        "business/consulting/market/report"
+      ],
+      "rootKey": "business/business/consulting",
+      "availableCount": 0,
+      "sentFreshCount": 1,
+      "sent30dCount": 1,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0,
+      "uniqueSources30d": 2,
+      "targetCount": 3,
+      "supplyGap": 3,
+      "rotationGap": 2,
+      "freshnessDays": 7,
+      "freshnessScore": 0.7381890608465609,
+      "lastSentAt": "2026-06-19T04:31:04.780Z"
     },
     {
       "themeKey": "business/consulting/transformation",
@@ -1265,7 +1308,7 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.9465214715608465,
+      "freshnessScore": 0.7441418931878307,
       "lastSentAt": "2026-06-19T05:31:05.053Z"
     },
     {
@@ -1287,18 +1330,17 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.9583763624338625,
+      "freshnessScore": 0.7559967840608466,
       "lastSentAt": "2026-06-19T07:30:34.891Z"
     },
     {
-      "themeKey": "lifestyle/food-wellness/gourmet/sushi",
+      "themeKey": "business/consulting/cfo",
       "themePath": [
-        "lifestyle",
-        "lifestyle/food-wellness",
-        "lifestyle/food-wellness/gourmet",
-        "lifestyle/food-wellness/gourmet/sushi"
+        "business",
+        "business/consulting",
+        "business/consulting/cfo"
       ],
-      "rootKey": "lifestyle/lifestyle/food-wellness",
+      "rootKey": "business/business/consulting",
       "availableCount": 0,
       "sentFreshCount": 1,
       "sent30dCount": 1,
@@ -1310,74 +1352,8 @@
       "supplyGap": 3,
       "rotationGap": 2,
       "freshnessDays": 7,
-      "freshnessScore": 0.7947861722883598,
-      "lastSentAt": "2026-06-18T04:01:35.544Z"
-    },
-    {
-      "themeKey": "entertainment/movie-drama/spring-drama",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/spring-drama"
-      ],
-      "rootKey": "entertainment/entertainment/movie-drama",
-      "availableCount": 0,
-      "sentFreshCount": 1,
-      "sent30dCount": 1,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0,
-      "uniqueSources30d": 2,
-      "targetCount": 3,
-      "supplyGap": 3,
-      "rotationGap": 2,
-      "freshnessDays": 7,
-      "freshnessScore": 0.8126130572089947,
-      "lastSentAt": "2026-06-18T07:01:17.244Z"
-    },
-    {
-      "themeKey": "entertainment/movie-drama/blue-giant",
-      "themePath": [
-        "entertainment",
-        "entertainment/movie-drama",
-        "entertainment/movie-drama/blue-giant"
-      ],
-      "rootKey": "entertainment/entertainment/movie-drama",
-      "availableCount": 0,
-      "sentFreshCount": 1,
-      "sent30dCount": 1,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0,
-      "uniqueSources30d": 2,
-      "targetCount": 3,
-      "supplyGap": 3,
-      "rotationGap": 2,
-      "freshnessDays": 7,
-      "freshnessScore": 0.8542499338624339,
-      "lastSentAt": "2026-06-18T14:00:59.227Z"
-    },
-    {
-      "themeKey": "lifestyle/food-wellness/onsen",
-      "themePath": [
-        "lifestyle",
-        "lifestyle/food-wellness",
-        "lifestyle/food-wellness/onsen"
-      ],
-      "rootKey": "lifestyle/lifestyle/food-wellness",
-      "availableCount": 7,
-      "sentFreshCount": 3,
-      "sent30dCount": 4,
-      "positive30dCount": 0,
-      "negative30dCount": 0,
-      "positiveRate30d": 0,
-      "uniqueSources30d": 6,
-      "targetCount": 4,
-      "supplyGap": -3,
-      "rotationGap": 1,
-      "freshnessDays": 7,
-      "freshnessScore": 0.6727086574074074,
-      "lastSentAt": "2026-06-17T07:31:03.063Z"
+      "freshnessScore": 0.925722111441799,
+      "lastSentAt": "2026-06-20T12:01:24.769Z"
     },
     {
       "themeKey": "personal/travel-tech/pet/cat-health",
@@ -1388,7 +1364,7 @@
         "personal/travel-tech/pet/cat-health"
       ],
       "rootKey": "personal/personal/travel-tech",
-      "availableCount": 6,
+      "availableCount": 4,
       "sentFreshCount": 3,
       "sent30dCount": 3,
       "positive30dCount": 0,
@@ -1396,10 +1372,10 @@
       "positiveRate30d": 0,
       "uniqueSources30d": 4,
       "targetCount": 4,
-      "supplyGap": -2,
+      "supplyGap": 0,
       "rotationGap": 1,
       "freshnessDays": 7,
-      "freshnessScore": 0.9227340426587302,
+      "freshnessScore": 0.7203544642857143,
       "lastSentAt": "2026-06-19T01:31:18.416Z"
     },
     {
@@ -1410,7 +1386,7 @@
         "lifestyle/food-wellness/gourmet"
       ],
       "rootKey": "lifestyle/lifestyle/food-wellness",
-      "availableCount": 2,
+      "availableCount": 1,
       "sentFreshCount": 3,
       "sent30dCount": 3,
       "positive30dCount": 0,
@@ -1418,58 +1394,79 @@
       "positiveRate30d": 0,
       "uniqueSources30d": 4,
       "targetCount": 4,
-      "supplyGap": 2,
+      "supplyGap": 3,
       "rotationGap": 1,
       "freshnessDays": 7,
-      "freshnessScore": 0.9792688293650794,
+      "freshnessScore": 0.7768892509920635,
       "lastSentAt": "2026-06-19T11:01:10.655Z"
     },
     {
-      "themeKey": "local/saitama/other/saitama-city/urban",
+      "themeKey": "personal/travel-tech/dev/ai-tools",
       "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/other",
-        "local/saitama/other/saitama-city",
-        "local/saitama/other/saitama-city/urban"
+        "personal",
+        "personal/travel-tech",
+        "personal/travel-tech/dev",
+        "personal/travel-tech/dev/ai-tools"
       ],
-      "rootKey": "local/local/saitama/local/saitama/other",
-      "availableCount": 0,
-      "sentFreshCount": 3,
-      "sent30dCount": 3,
+      "rootKey": "personal/personal/travel-tech",
+      "availableCount": 12,
+      "sentFreshCount": 5,
+      "sent30dCount": 7,
       "positive30dCount": 0,
       "negative30dCount": 0,
       "positiveRate30d": 0,
-      "uniqueSources30d": 4,
-      "targetCount": 4,
-      "supplyGap": 4,
-      "rotationGap": 1,
+      "uniqueSources30d": 9,
+      "targetCount": 5,
+      "supplyGap": -7,
+      "rotationGap": 0,
       "freshnessDays": 7,
-      "freshnessScore": 0.5357895634920635,
-      "lastSentAt": "2026-06-16T08:30:54.395Z"
+      "freshnessScore": 0.9167560152116402,
+      "lastSentAt": "2026-06-20T10:31:02.074Z"
     },
     {
-      "themeKey": "lifestyle/food-wellness/gourmet/steak",
+      "themeKey": "lifestyle/food-wellness/onsen",
       "themePath": [
         "lifestyle",
         "lifestyle/food-wellness",
-        "lifestyle/food-wellness/gourmet",
-        "lifestyle/food-wellness/gourmet/steak"
+        "lifestyle/food-wellness/onsen"
       ],
       "rootKey": "lifestyle/lifestyle/food-wellness",
-      "availableCount": 3,
-      "sentFreshCount": 4,
-      "sent30dCount": 4,
+      "availableCount": 7,
+      "sentFreshCount": 5,
+      "sent30dCount": 5,
       "positive30dCount": 0,
       "negative30dCount": 0,
       "positiveRate30d": 0,
-      "uniqueSources30d": 4,
-      "targetCount": 4,
-      "supplyGap": 1,
+      "uniqueSources30d": 7,
+      "targetCount": 5,
+      "supplyGap": -2,
       "rotationGap": 0,
       "freshnessDays": 7,
-      "freshnessScore": 0.8363930787037037,
-      "lastSentAt": "2026-06-18T11:00:59.401Z"
+      "freshnessScore": 0.9971220882936508,
+      "lastSentAt": "2026-06-21T00:01:07.475Z"
+    },
+    {
+      "themeKey": "sports/golf/youtube/tips",
+      "themePath": [
+        "sports",
+        "sports/golf",
+        "sports/golf/youtube",
+        "sports/golf/youtube/tips"
+      ],
+      "rootKey": "sports/sports/golf",
+      "availableCount": 1,
+      "sentFreshCount": 5,
+      "sent30dCount": 8,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0,
+      "uniqueSources30d": 11,
+      "targetCount": 5,
+      "supplyGap": 4,
+      "rotationGap": 0,
+      "freshnessDays": 7,
+      "freshnessScore": 0.9941151025132275,
+      "lastSentAt": "2026-06-20T23:30:48.850Z"
     },
     {
       "themeKey": "business/client/nichias/maintenance",
@@ -1491,8 +1488,32 @@
       "supplyGap": 3,
       "rotationGap": 0,
       "freshnessDays": 7,
-      "freshnessScore": 0.8096138921957672,
+      "freshnessScore": 0.6072343138227514,
       "lastSentAt": "2026-06-18T06:31:03.349Z"
+    },
+    {
+      "themeKey": "sports/mlb/dodgers/roki/support",
+      "themePath": [
+        "sports",
+        "sports/mlb",
+        "sports/mlb/dodgers",
+        "sports/mlb/dodgers/roki",
+        "sports/mlb/dodgers/roki/support"
+      ],
+      "rootKey": "sports/sports/mlb",
+      "availableCount": 0,
+      "sentFreshCount": 5,
+      "sent30dCount": 5,
+      "positive30dCount": 0,
+      "negative30dCount": 0,
+      "positiveRate30d": 0,
+      "uniqueSources30d": 7,
+      "targetCount": 5,
+      "supplyGap": 5,
+      "rotationGap": 0,
+      "freshnessDays": 7,
+      "freshnessScore": 0.8899649950396825,
+      "lastSentAt": "2026-06-20T06:00:58.865Z"
     },
     {
       "themeKey": "entertainment/movie-drama/film/theater",
@@ -1503,7 +1524,7 @@
         "entertainment/movie-drama/film/theater"
       ],
       "rootKey": "entertainment/entertainment/movie-drama",
-      "availableCount": 2,
+      "availableCount": 1,
       "sentFreshCount": 7,
       "sent30dCount": 9,
       "positive30dCount": 0,
@@ -1511,11 +1532,11 @@
       "positiveRate30d": 0,
       "uniqueSources30d": 11,
       "targetCount": 5,
-      "supplyGap": 3,
+      "supplyGap": 4,
       "rotationGap": -2,
       "freshnessDays": 7,
-      "freshnessScore": 0.9822089285714286,
-      "lastSentAt": "2026-06-19T11:30:48.827Z"
+      "freshnessScore": 0.9286603141534392,
+      "lastSentAt": "2026-06-20T12:31:01.794Z"
     },
     {
       "themeKey": "entertainment/movie-drama/youtube/trailer",
@@ -1526,19 +1547,19 @@
         "entertainment/movie-drama/youtube/trailer"
       ],
       "rootKey": "entertainment/entertainment/movie-drama",
-      "availableCount": 3,
-      "sentFreshCount": 9,
-      "sent30dCount": 17,
+      "availableCount": 1,
+      "sentFreshCount": 10,
+      "sent30dCount": 18,
       "positive30dCount": 0,
       "negative30dCount": 0,
       "positiveRate30d": 0,
       "uniqueSources30d": 14,
       "targetCount": 6,
-      "supplyGap": 3,
-      "rotationGap": -3,
+      "supplyGap": 5,
+      "rotationGap": -4,
       "freshnessDays": 7,
-      "freshnessScore": 0.9852242791005291,
-      "lastSentAt": "2026-06-19T12:01:12.511Z"
+      "freshnessScore": 0.9227182208994709,
+      "lastSentAt": "2026-06-20T11:31:08.016Z"
     }
   ]
 }
