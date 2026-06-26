@@ -265,6 +265,63 @@
       "firstObservedAt": "2026-06-21T08:01:00.510Z",
       "promotedAt": "",
       "sampleText": "グランドハイアット東京オークドア新料理長"
+    },
+    {
+      "signature": "misc/profiling-task/physicalenergy収集-週次プロファイリング",
+      "fallbackPath": [
+        "misc",
+        "profiling-task",
+        "physicalenergy収集-週次プロファイリング"
+      ],
+      "promotedPath": [
+        "promoted",
+        "misc",
+        "profiling-task",
+        "physicalenergy収集-週次プロファイリング"
+      ],
+      "label": "misc > profiling-task > physicalenergy収集-週次プロファイリング",
+      "count": 1,
+      "firstObservedAt": "2026-06-21T23:30:59.954Z",
+      "promotedAt": "",
+      "sampleText": "physicalEnergy収集（週次プロファイリング）"
+    },
+    {
+      "signature": "misc/general/ね-akiraさん-サンスポで",
+      "fallbackPath": [
+        "misc",
+        "general",
+        "ね-akiraさん-サンスポで"
+      ],
+      "promotedPath": [
+        "promoted",
+        "misc",
+        "general",
+        "ね-akiraさん-サンスポで"
+      ],
+      "label": "misc > general > ね-akiraさん-サンスポで",
+      "count": 1,
+      "firstObservedAt": "2026-06-23T14:01:11.688Z",
+      "promotedAt": "",
+      "sampleText": "ね、Akiraさん。\n\nサンスポで *医療体制のターニングポイントとなるか？令和８年度新設「看護・多職種協働加算」に注* の記事が出てたよ。"
+    },
+    {
+      "signature": "misc/precious-jp/東京會舘銀座スカイビアテラス2026",
+      "fallbackPath": [
+        "misc",
+        "precious-jp",
+        "東京會舘銀座スカイビアテラス2026"
+      ],
+      "promotedPath": [
+        "promoted",
+        "misc",
+        "precious-jp",
+        "東京會舘銀座スカイビアテラス2026"
+      ],
+      "label": "misc > precious-jp > 東京會舘銀座スカイビアテラス2026",
+      "count": 1,
+      "firstObservedAt": "2026-06-24T13:31:02.776Z",
+      "promotedAt": "",
+      "sampleText": "東京會舘銀座スカイビアテラス2026"
     }
   ]
 }

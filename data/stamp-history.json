@@ -729,6 +729,29 @@
           "timestamp": "2026-06-05T12:58:40.230Z"
         }
       ]
+    },
+    {
+      "scores": {
+        "mei": 1,
+        "eve": 1
+      },
+      "weekStart": "2026-06-14T15:00:00.000Z",
+      "stamps": [
+        {
+          "botId": "mei",
+          "emoji": "+1",
+          "messageTs": "1781838471.780789",
+          "channel": "C0AHPJMS5QE",
+          "timestamp": "2026-06-19T12:18:18.240Z"
+        },
+        {
+          "botId": "eve",
+          "emoji": "+1",
+          "messageTs": "1781838471.780789",
+          "channel": "C0AHPJMS5QE",
+          "timestamp": "2026-06-19T12:18:18.854Z"
+        }
+      ]
     }
   ]
 }
