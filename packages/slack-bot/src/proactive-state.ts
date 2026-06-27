@@ -1753,8 +1753,14 @@ export function parseResponse(response: string): string | null {
 
 export function parseDecisionLog(response: string): DecisionLog | null {
   const trimmed = response.trim();
-  // Strip markdown code block if present
-  const jsonStr = trimmed.replace(/^```json?\n?/, '').replace(/\n?```$/, '').trim();
+  // Strip a leading markdown code fence (```json / ``` 等の言語タグ全般) と末尾フェンス、
+  // さらに素の "json" プレフィックスを剥がして {...} に正規化する。
+  //   例: "```json\n{...}```" / "json\n{...}" → どちらも "{...}"
+  const jsonStr = trimmed
+    .replace(/^```[a-zA-Z]*\n?/, '')
+    .replace(/\n?```$/, '')
+    .replace(/^json\s*\n?/i, '')
+    .trim();
 
   try {
     const parsed = JSON.parse(jsonStr);
@@ -1861,8 +1867,19 @@ export function extractMessage(response: string, decisionLog: DecisionLog | null
     return null;
   }
 
-  // P4: raw JSON string that parseDecisionLog couldn't parse -> prevent sending raw JSON
-  if (trimmed.startsWith('{')) {
+  // P4: parseDecisionLog が失敗したが、内部 decision-log ダンプに見える応答は絶対に投稿しない。
+  //   従来は `{` 始まりしか弾かなかったため、LLM が ```json フェンスや "json" プレフィックスを付け、
+  //   かつ JSON が壊れて（message 内の \n エスケープ忘れ等）decisionLog=null になると、
+  //   "json\n{...}" のような非 `{` 始まりがこのガードをすり抜けて生JSONが Slack に投稿されていた。
+  //   内部キーの有無で判定し、あらゆる前置き（フェンス/"json"/"Here is the JSON:" 等）を捕捉する。
+  const looksLikeDecisionLog =
+    /"(decision|generate_score|evaluate_score|inner_thought|premise)"\s*:/.test(trimmed);
+  if (
+    trimmed.startsWith('{') ||
+    trimmed.startsWith('```') ||
+    /^json\b/i.test(trimmed) ||
+    looksLikeDecisionLog
+  ) {
     return null;
   }
 
