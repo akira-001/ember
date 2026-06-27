@@ -1,38 +1,6 @@
 {
   "entries": [
     {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "meeting_prep",
-      "interestCategory": "local_tokorozawa",
-      "preview": "ね、会議終わったら確認してみて。\n\ntenki.jpに *埼玉県の雨雲レーダー実況* が出てたよ。明日品川出張だし、今夜のうちに天気チェックしておくといいかも ☂️\nhttps://news.google.com/rss/articles/CBMiQkFVX3lxTE01dVlaei11blJGa2",
-      "topic": "埼玉県雨雲レーダー",
-      "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE01dVlaei11blJGa2lucFExNmdHNzNCQldzLThCbTg4N0NOdGhEYk1LSW5QUnlJa3dxRnRzbEZtUFdzdw?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiQkFVX3lxTE01dVlaei11blJGa2lucFExNmdHNzNCQldzLThCbTg4N0NOdGhEYk1LSW5QUnlJa3dxRnRzbEZtUFdzdw?oc=5",
-      "sourceType": "tenki.jp",
-      "skill": "general",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/other",
-        "local/saitama/other/road-trip"
-      ],
-      "themeKey": "local/saitama/other/road-trip",
-      "inner_thought": "CFO会議中だけど、明日の品川出張前に埼玉〜都内の雨雲情報、終わってから見てもらえる",
-      "plan": [
-        "埼玉雨雲レーダーを明日出張文脈で共有",
-        "沈黙",
-        "猫の恩返し動画を共有"
-      ],
-      "generate_score": [
-        0.63,
-        0.55,
-        0.48
-      ],
-      "evaluate_score": 0.61,
-      "sentAt": "2026-06-23T09:30:50.507Z"
-    },
-    {
       "botId": "mei",
       "botName": "Mei（メイ）",
       "category": "cron",
@@ -1487,6 +1455,24 @@
       ],
       "evaluate_score": 0.5,
       "sentAt": "2026-06-27T00:01:12.284Z"
+    },
+    {
+      "botId": "eve",
+      "botName": "Eve（イヴ）",
+      "category": "flashback",
+      "interestCategory": "ai_agent",
+      "preview": "```json\n{\n  \"premise\": {\n    \"estimatedMode\": \"達成モード・通常エネルギー\",\n    \"modeReason\": \"土曜の朝9:30、ゴルフ翌日でカレンダーは床屋と朗希観戦のみ。週末リラックスモードに入っている可能性が高い\",\n    \"targetL",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9lMUxsVzRBZFRxZzRkYkh3Q0Nya1ZLQWd6MmVMSGRuRVRkSndmWEY1eDRsbldGUEdEcElWeFZuNEFJd0t3bjBldkszSnZHRnMxMTFYamdqSQ/n/n%E6%9C%97%E5%B8%8C%E3%81%BE%E3%81%A7%E6%99%82%E9%96%93%E3%81%82%E3%82%8B%E3%81%97%E3%80%81%E5%BA%8A%E5%B1%8B%E3%81%A7%E3%81%A1%E3%82%89%E8%A6%8B%E3%81%A7%E3%82%82%E3%81%A9%E3%81%86%E3%81%9E",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiV0FVX3lxTE9lMUxsVzRBZFRxZzRkYkh3Q0Nya1ZLQWd6MmVMSGRuRVRkSndmWEY1eDRsbldGUEdEcElWeFZuNEFJd0t3bjBldkszSnZHRnMxMTFYamdqSQ/n/n%E6%9C%97%E5%B8%8C%E3%81%BE%E3%81%A7%E6%99%82%E9%96%93%E3%81%82%E3%82%8B%E3%81%97%E3%80%81%E5%BA%8A%E5%B1%8B%E3%81%A7%E3%81%A1%E3%82%89%E8%A6%8B%E3%81%A7%E3%82%82%E3%81%A9%E3%81%86%E3%81%9E",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/golf",
+        "sports/golf/youtube",
+        "sports/golf/youtube/tips"
+      ],
+      "themeKey": "sports/golf/youtube/tips",
+      "sentAt": "2026-06-27T00:31:16.100Z"
     }
   ]
 }
