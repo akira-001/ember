@@ -1,24 +1,6 @@
 {
   "entries": [
     {
-      "botId": "mei",
-      "botName": "Mei（メイ）",
-      "category": "cron",
-      "preview": ":rotating_light: *Cron Error* — `haru-nightly-reflection`\n<@U3SFGQXNH>\n```Token refresh failed: {\"error\":{\"message\":\"Your refresh token has already be",
-      "topic": "Cron Error",
-      "url": "",
-      "sourceType": "scheduler",
-      "skill": "haru-nightly-reflection",
-      "themePath": [
-        "personal",
-        "personal/travel-tech",
-        "personal/travel-tech/dev",
-        "personal/travel-tech/dev/ai-tools"
-      ],
-      "themeKey": "personal/travel-tech/dev/ai-tools",
-      "sentAt": "2026-06-23T10:31:02.378Z"
-    },
-    {
       "botId": "eve",
       "botName": "Eve（イヴ）",
       "category": "hobby_leisure",
@@ -1473,6 +1455,23 @@
       ],
       "themeKey": "sports/golf/youtube/tips",
       "sentAt": "2026-06-27T00:31:16.100Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "ね、Akiraさん。\n\nライブドアニュースで *軸がぶれない前傾キープのコツ！女性コーチが解説 (2026年6月27日掲載) -* の記事が出てたよ。",
+      "url": "",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/golf",
+        "sports/golf/lesson",
+        "sports/golf/lesson/coach"
+      ],
+      "themeKey": "sports/golf/lesson/coach",
+      "sentAt": "2026-06-27T01:00:51.323Z"
     }
   ]
 }
