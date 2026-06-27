@@ -3,71 +3,6 @@
     {
       "botId": "eve",
       "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "business_strategy",
-      "preview": "そういえばさ、Akiraさん。\n\nSTARTUP LOGに *インドの会員制フィンテックプラットフォーム「CRED」が9億ドルの資金調達* って出てたよ。\n\n昨夜のVC断層線記事（地域格差・成熟市場vs新興市場）の話とちょうどつながる気がして。インドのフィンテックがこの規模で動いてるの、クライアント",
-      "topic": "CREDが9億ドル資金調達",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9TMzVUdXBJVG9FM0szWUc1R0FLU2VjZEk3dGtmeWJwbDdpV3pMVzE2ZExvVnFhdWNhTzM0RDFGODFJMXJRZjJjVEJELWU2R0U?oc=5",
-      "candidateId": "url:https://news.google.com/rss/articles/CBMiT0FVX3lxTE9TMzVUdXBJVG9FM0szWUc1R0FLU2VjZEk3dGtmeWJwbDdpV3pMVzE2ZExvVnFhdWNhTzM0RDFGODFJMXJRZjJjVEJELWU2R0U?oc=5",
-      "sourceType": "STARTUP LOG",
-      "skill": "general",
-      "themePath": [
-        "ai",
-        "ai/enterprise",
-        "ai/enterprise/security",
-        "ai/enterprise/security/procurement"
-      ],
-      "themeKey": "ai/enterprise/security/procurement",
-      "inner_thought": "昨夜のVC断層線記事と続けて、CREDの9億ドル調達、コンサル目線で面白いかも",
-      "plan": [
-        "CRED資金調達をVC断層線記事と連ねて共有",
-        "埼玉雨雲レーダーで明日の出張前に天気確認を提案",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.72,
-        0.55,
-        0.3
-      ],
-      "evaluate_score": 0.68,
-      "sentAt": "2026-06-23T06:31:04.731Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
-      "category": "flashback",
-      "interestCategory": "local_tokorozawa",
-      "preview": "ちょっとちょっと、Akiraさん。\n\nYouTubeで *川崎山王祭 2026* がライブ配信されてるよ ⛩️ 神社大神輿の宮入りって、眺めてるだけで夏の空気になるやつ。\n\n夕食の30分にどうぞ。\nhttps://www.youtube.com/watch?v=8ePsAIQXs9g",
-      "topic": "川崎山王祭 Kawasaki Sanno Festival 2026（⛩️神社大神輿 宮入り⛩️）【お祭りライブ配信⛩️】",
-      "url": "https://www.youtube.com/watch?v=8ePsAIQXs9g",
-      "candidateId": "url:https://www.youtube.com/watch?v=8ePsAIQXs9g",
-      "sourceType": "interest-cache",
-      "skill": "general",
-      "themePath": [
-        "local",
-        "local/saitama",
-        "local/saitama/other",
-        "local/saitama/other/chichibu",
-        "local/saitama/other/chichibu/nature"
-      ],
-      "themeKey": "local/saitama/other/chichibu/nature",
-      "inner_thought": "夕食の30分、眺めるだけのお祭り動画をそっと置いておきたい",
-      "plan": [
-        "川崎山王祭のライブ動画を夕食のお供として共有",
-        "所沢駅西口動画をローカルネタとして共有",
-        "沈黙"
-      ],
-      "generate_score": [
-        0.72,
-        0.62,
-        0.4
-      ],
-      "evaluate_score": 0.7,
-      "sentAt": "2026-06-23T07:30:46.280Z"
-    },
-    {
-      "botId": "eve",
-      "botName": "Eve（イヴ）",
       "category": "meeting_prep",
       "interestCategory": "local_tokorozawa",
       "preview": "ね、会議終わったら確認してみて。\n\ntenki.jpに *埼玉県の雨雲レーダー実況* が出てたよ。明日品川出張だし、今夜のうちに天気チェックしておくといいかも ☂️\nhttps://news.google.com/rss/articles/CBMiQkFVX3lxTE01dVlaei11blJGa2",
@@ -1489,6 +1424,69 @@
       ],
       "evaluate_score": 0.82,
       "sentAt": "2026-06-26T11:30:58.633Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "hobby_leisure",
+      "interestCategory": "golf",
+      "preview": "Akiraさん、1本だけ。\n\nYouTubeで *片山プロの特別ゴルフレッスン* が出てたよ ⛳\n\n今日の日本カントリーの感覚が残ってるうちに、寝る前にちら見するのもいいかも。\nhttps://www.youtube.com/watch?v=f9kPQxDehTk",
+      "topic": "片山プロ ゴルフレッスン動画",
+      "url": "https://www.youtube.com/watch?v=f9kPQxDehTk",
+      "candidateId": "url:https://www.youtube.com/watch?v=f9kPQxDehTk",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "sports",
+        "sports/golf",
+        "sports/golf/youtube",
+        "sports/golf/youtube/tips"
+      ],
+      "themeKey": "sports/golf/youtube/tips",
+      "inner_thought": "正直もう今日は送りすぎた。でも今日ラウンドした直後の片山プロ動画なら、体が覚えてるうちに見る価値がある",
+      "plan": [
+        "片山プロのゴルフレッスン動画を共有",
+        "Netflix韓国ドラマを共有",
+        "沈黙"
+      ],
+      "generate_score": [
+        0.4,
+        0.3,
+        0.75
+      ],
+      "evaluate_score": 0.2,
+      "sentAt": "2026-06-26T12:01:03.476Z"
+    },
+    {
+      "botId": "mei",
+      "botName": "Mei（メイ）",
+      "category": "flashback",
+      "interestCategory": "general",
+      "preview": "Akiraさん、おはよう。\n\n海外ドラマNAVIで *2026年Netflixの新作・人気韓国ドラマのラインナップ* がまとまってたよ 🎬\n\n前にイヴが春ドラマの視聴率データ送ってたけど、今度は韓国ドラマの方。週末にざっと眺めるのにちょうどいいかも。\nhttps://news.google.com",
+      "topic": "Netflix韓国ドラマ2026年ラインナップ",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE4zelBTYm5vSUxUTGMxZFVrdGVnaGdncGRydEJXR0VUeWdDWHJoS09Xc3J0VXY2QnVjWm93Ry12MFdPcG00THYtSA?oc=5",
+      "candidateId": "url:https://news.google.com/rss/articles/CBMiSEFVX3lxTE4zelBTYm5vSUxUTGMxZFVrdGVnaGdncGRydEJXR0VUeWdDWHJoS09Xc3J0VXY2QnVjWm93Ry12MFdPcG00THYtSA?oc=5",
+      "sourceType": "topic-table",
+      "skill": "general",
+      "themePath": [
+        "entertainment",
+        "entertainment/movie-drama",
+        "entertainment/movie-drama/spring-drama"
+      ],
+      "themeKey": "entertainment/movie-drama/spring-drama",
+      "inner_thought": "前に春ドラマ視聴率で反応あったし、韓国ドラマのラインナップは週末の朝に自然に届けられる",
+      "plan": [
+        "Netflix韓国ドラマを春ドラマの流れで共有",
+        "雨雲レーダーを床屋の外出と絡めて共有",
+        "沈黙して様子見"
+      ],
+      "generate_score": [
+        0.6,
+        0.5,
+        0.35
+      ],
+      "evaluate_score": 0.5,
+      "sentAt": "2026-06-27T00:01:12.284Z"
     }
   ]
 }

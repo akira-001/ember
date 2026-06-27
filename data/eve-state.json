@@ -5271,7 +5271,7 @@
       "themeKey": "lifestyle/food-wellness/gourmet/steak"
     }
   ],
-  "lastCheckAt": "2026-06-26T11:30:58.632Z",
+  "lastCheckAt": "2026-06-26T14:58:42.964Z",
   "stats": {
     "totalSent": 1024,
     "positiveReactions": 31,
@@ -5390,28 +5390,28 @@
   "todayDate": "2026-06-26",
   "lastScoredCandidates": [
     {
-      "topic": "ステーキガストの「肉の日」対象メニュー4つが最大290円お得！6月26日から30日まで開催。（東京バーゲンマニア） - ｄメニューニュース",
+      "topic": "外国人材への安全教育が変わる 建設現場で注目されるオフライン同時通訳システム｜建設円陣PLUS - note",
       "source": "interest-cache",
-      "category": "food_dining",
-      "pub_date": "2026-06-26T09:16:49+00:00",
+      "category": "_wildcard",
+      "pub_date": "2026-06-24T06:56:19+00:00",
       "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1NdGU5YWE5SDdDck1BRWVXY3hmUnBWS0lwUF9UazJIQjFhd0pFZG1EbFdDMHJGOWl0TDRmQlZPYXlSZFBrY21LdldkSmY1eFFjSkdfWXk1dXRYcFIwOTc0bjlhS2JPWndSZ1BFX2lpVDBCazhHWDJz?oc=5",
-        "mediaSource": "ｄメニューニュース",
+        "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBVWTVQMmRNbFFiQ190eDJWWGFnZ04tbHBNeHNxUXdYVmxHaHlRY251cEZKbGJ3Z2JrLWcxdmlOOHZOUFBtWVNjN240SEtSRk1kcWFpZjVySQ?oc=5",
+        "mediaSource": "note",
         "emotion_type": "light",
-        "timeliness": 0.967
+        "timeliness": 0.898
       },
       "scores": {
-        "timeliness": 0.9073872569444444,
-        "novelty": 0.3,
-        "continuity": 0.9,
+        "timeliness": 0,
+        "novelty": 0.8,
+        "continuity": 0.3,
         "emotional_fit": 0.9,
-        "affinity": 0.4,
-        "surprise": 0.7
+        "affinity": 0.5,
+        "surprise": 0.8
       },
-      "finalScore": 0.9246190681575978,
-      "reasoning": "タイムリー・会話の流れに沿う（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.2246190681575977
+      "finalScore": 0.7168568307234633,
+      "reasoning": "気分に合う・新鮮（interest-cache）",
+      "explorationBonus": 0.44999999999999996,
+      "selectionScore": 1.1668568307234632
     },
     {
       "topic": "肉の罠(居酒屋)の写真 - ホットペッパーグルメ",
@@ -5425,65 +5425,17 @@
         "timeliness": 0.67
       },
       "scores": {
-        "timeliness": 0.6047579359567901,
+        "timeliness": 0.5630950077160494,
         "novelty": 0.3,
         "continuity": 0.9,
         "emotional_fit": 0.9,
         "affinity": 0.4,
         "surprise": 0.7
       },
-      "finalScore": 0.8802118802478649,
+      "finalScore": 0.8598138404838938,
       "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.180211880247865
-    },
-    {
-      "topic": "＜画像1 / 3＞コスパ最強！東京「爆安ステーキ」3選 - ウォーカープラス",
-      "source": "interest-cache",
-      "category": "food_dining",
-      "pub_date": "2026-06-25T19:02:27+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9VakMwYWNKNkdtazc1R1l2QW1LZ1JaeVVQSDBOQXlWa3VVczVUQ0s3SGJ4Q2ltRFFhX2tqcnIxZ2xUOGVZUlZJRHF5YTV5Z3NPcWgzWDBZalNNa0tXdlVOem52YTVKYzlK?oc=5",
-        "mediaSource": "ウォーカープラス",
-        "emotion_type": "light",
-        "timeliness": 0.67
-      },
-      "scores": {
-        "timeliness": 0.6046923533950617,
-        "novelty": 0.3,
-        "continuity": 0.9,
-        "emotional_fit": 0.9,
-        "affinity": 0.4,
-        "surprise": 0.7
-      },
-      "finalScore": 0.852709083798335,
-      "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
-      "explorationBonus": 0.3,
-      "selectionScore": 1.152709083798335
-    },
-    {
-      "topic": "KPMGコンサルティング、マネージドサービスの最新動向調査を発表 - Biz/Zine",
-      "source": "interest-cache",
-      "category": "business_strategy",
-      "pub_date": "2026-06-26T07:15:00+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5oNDVMWHRvREtuV0xDZlVHTS0xa2htLWJLXzJIVjdrc0l0ZkRKU2MzRnJQMEhKTnVlN2xuRXA1TnIyR20xam5abUtuTWdsYU52?oc=5",
-        "mediaSource": "Biz/Zine",
-        "emotion_type": "heavy",
-        "timeliness": 0.925
-      },
-      "scores": {
-        "timeliness": 0.8227925,
-        "novelty": 0.3,
-        "continuity": 0.9,
-        "emotional_fit": 0.5,
-        "affinity": 0.4,
-        "surprise": 0.7
-      },
-      "finalScore": 0.8916739541973453,
-      "reasoning": "会話の流れに沿う・タイムリー（interest-cache）",
-      "explorationBonus": 0.22474304761170502,
-      "selectionScore": 1.1164170018090502
+      "selectionScore": 1.1598138404838938
     },
     {
       "topic": "Netflixで配信予定の新作・人気韓国ドラマ ラインナップ【2026年最新】 - 海外ドラマNAVI",
@@ -5497,17 +5449,41 @@
         "timeliness": 0.905
       },
       "scores": {
-        "timeliness": 0.7833477893518519,
+        "timeliness": 0.7194529976851852,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.9,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.8092699583773943,
+      "finalScore": 0.827478620617065,
       "reasoning": "気分に合う・新鮮（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.1092699583773944
+      "selectionScore": 1.127478620617065
+    },
+    {
+      "topic": "角心菜「ギャバい」TV番組出演姿が話題「透明感がすごい」夏には出演映画公開の注目次世代女優 - 日刊スポーツ",
+      "source": "interest-cache",
+      "category": "tv_drama",
+      "pub_date": "2026-06-26T05:03:36+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1tbmlkMHpVb2Iya3RiUnpsdk5xWERUUGFzcUJ6aTNQcWRieHJaakJhWFpVZC0yNEVaVVRZUS1JVG5Qak1EWUFvOV9KMzNGZkcxM3lYWGlIb3RHaGlha0ZmSGVPdnlEeHlBZFdGYWFOUVczby1yOW9pQmljUURXNVXSAX9BVV95cUxNbW5pZDB6VW9iMmt0YlJ6bHZOcVhEVFBhc3FCemkzUHFkYnhyWmpCYVhaVWQtMjRFWlVUWVEtSVRuUGpNRFlBbzlfSjMzRmZHMTN5WFhpSG90R2hpYWtGZkhlT3Z5RHh5QWRXRmFhTlFXM28tcjlvaUJpY1FEVzVV?oc=5",
+        "mediaSource": "日刊スポーツ",
+        "emotion_type": "light",
+        "timeliness": 0.879
+      },
+      "scores": {
+        "timeliness": 0.7021844598765432,
+        "novelty": 0.8,
+        "continuity": 0.3,
+        "emotional_fit": 0.9,
+        "affinity": 0.5,
+        "surprise": 0.7
+      },
+      "finalScore": 0.8097372182254483,
+      "reasoning": "気分に合う・新鮮（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 1.1097372182254484
     },
     {
       "topic": "【お得情報】6月後半の外食グルメ情報12選！今週の神クーポンほか 【ゆっくり解説】",
@@ -5529,10 +5505,10 @@
         "affinity": 0.4,
         "surprise": 0.7
       },
-      "finalScore": 0.8078117897572805,
+      "finalScore": 0.8085594623226275,
       "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.1078117897572806
+      "selectionScore": 1.1085594623226276
     },
     {
       "topic": "【東京グルメ】外食好き夫婦がガチで通う、本当は教えたくないおすすめレストラン8選🍽デート/記念日/日常使い",
@@ -5554,217 +5530,222 @@
         "affinity": 0.4,
         "surprise": 0.7
       },
-      "finalScore": 0.8078117897572805,
+      "finalScore": 0.8085594623226275,
       "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.1078117897572806
+      "selectionScore": 1.1085594623226276
     },
     {
-      "topic": "Interactions API: our primary interface for Gemini models and agents - blog.google",
+      "topic": "韓国ドラマNOW≫「21世紀の大君夫人」最終話（第12話）、“録音データ”が暴いた真実…ビョン・ウソクが最後に選んだ道＝視聴率13.8％、あらすじ・ネタバレ - wowKorea",
       "source": "interest-cache",
-      "category": "dev_tools",
-      "pub_date": "2026-06-26T09:03:23+00:00",
+      "category": "tv_drama",
+      "pub_date": "2026-06-26T02:16:54+00:00",
       "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxObk5aTGR6dzNhLXZBWEpOY3Q2bHBDNk92amdBSXVmS1B6aVB3akFfd1VadWxUQk50bHl6Y2ZwNkdTaFNjclc1cmhDcjk2UG14VUZhM1MtaG42TUJEakZqZWkxelpGdS1YUEJGMkhBWUpPWjlLRnhHMHpXRUZRQnZDU19SdU51QnZmYURMejFtZ2lKWERCUks3OHNnLW93b1kyaEF3UHg4OA?oc=5",
-        "mediaSource": "blog.google",
-        "emotion_type": "medium",
-        "timeliness": 0.963
+        "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9QWE5WT1Fsa3lad3lscjl4R21JY3NaWmRfUnplMXdaUHNLQ2J0SzM4c3JGZk1JR1lrdVlCRHJrWlZqSXVpOXg2Qk13VTItRzVaNExJejBwNWI?oc=5",
+        "mediaSource": "wowKorea",
+        "emotion_type": "light",
+        "timeliness": 0.821
       },
       "scores": {
-        "timeliness": 0.8980586111111111,
+        "timeliness": 0.6635964930555556,
+        "novelty": 0.8,
+        "continuity": 0.3,
+        "emotional_fit": 0.9,
+        "affinity": 0.5,
+        "surprise": 0.7
+      },
+      "finalScore": 0.7967196362787328,
+      "reasoning": "気分に合う・新鮮（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 1.0967196362787328
+    },
+    {
+      "topic": "＜画像1 / 15＞春の絶景が埼玉に！青空、桜、菜の花のコントラスト - ウォーカープラス",
+      "source": "interest-cache",
+      "category": "weather_seasonal",
+      "pub_date": "2026-06-25T22:06:48+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE56SmlJQkRKZjkwTFFyMTFvdTRfSkxKN21mSS13WUxZN3BvNjBLMWk3dS1IRE1ZS0I3ZTJ1WnNsOU1CeWloUEFEbU95bmJnMERmMzNYY01Zc2p0dWQ1SUVhX0RweW0xdzd4?oc=5",
+        "mediaSource": "ウォーカープラス",
+        "emotion_type": "light",
+        "timeliness": 0.734
+      },
+      "scores": {
+        "timeliness": 0.6057030131172839,
+        "novelty": 0.8,
+        "continuity": 0.3,
+        "emotional_fit": 0.9,
+        "affinity": 0.5,
+        "surprise": 0.7
+      },
+      "finalScore": 0.7955605993956067,
+      "reasoning": "気分に合う・新鮮（interest-cache）",
+      "explorationBonus": 0.3,
+      "selectionScore": 1.0955605993956068
+    },
+    {
+      "topic": "ギズモード編集部の“AI疲れ”を救ったのは、AMDの最新GPU・CPUを駆使したローカルAI環境でした - Gizmodo",
+      "source": "interest-cache",
+      "category": "llm_local",
+      "pub_date": "2026-06-26T10:00:00+00:00",
+      "metadata": {
+        "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9lMUxsVzRBZFRxZzRkYkh3Q0Nya1ZLQWd6MmVMSGRuRVRkSndmWEY1eDRsbldGUEdEcElWeFZuNEFJd0t3bjBldkszSnZHRnMxMTFYamdqSQ?oc=5",
+        "mediaSource": "Gizmodo",
+        "emotion_type": "medium",
+        "timeliness": 0.982
+      },
+      "scores": {
+        "timeliness": 0.8123872916666667,
         "novelty": 0.8,
         "continuity": 0.3,
         "emotional_fit": 0.5,
         "affinity": 0.5,
         "surprise": 0.7
       },
-      "finalScore": 0.7961858354650992,
+      "finalScore": 0.7932528398103158,
       "reasoning": "タイムリー・新鮮（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.0961858354650993
+      "selectionScore": 1.0932528398103158
     },
     {
-      "topic": "#48【超必見】片山プロに教わる‼️特別ゴルフレッスン⛳",
+      "topic": "＜画像1 / 3＞コスパ最強！東京「爆安ステーキ」3選 - ウォーカープラス",
       "source": "interest-cache",
-      "category": "golf",
-      "pub_date": null,
+      "category": "food_dining",
+      "pub_date": "2026-06-25T19:02:27+00:00",
       "metadata": {
-        "url": "https://www.youtube.com/watch?v=f9kPQxDehTk",
-        "mediaSource": "ハマちゃんとコージのお上手です",
-        "content_type": "video",
+        "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9VakMwYWNKNkdtazc1R1l2QW1LZ1JaeVVQSDBOQXlWa3VVczVUQ0s3SGJ4Q2ltRFFhX2tqcnIxZ2xUOGVZUlZJRHF5YTV5Z3NPcWgzWDBZalNNa0tXdlVOem52YTVKYzlK?oc=5",
+        "mediaSource": "ウォーカープラス",
         "emotion_type": "light",
-        "timeliness": 0.1
+        "timeliness": 0.67
       },
       "scores": {
-        "timeliness": 0.3,
+        "timeliness": 0.563029425154321,
         "novelty": 0.3,
         "continuity": 0.9,
         "emotional_fit": 0.9,
         "affinity": 0.4,
         "surprise": 0.7
       },
-      "finalScore": 0.8078117897572805,
+      "finalScore": 0.7890900139373138,
       "reasoning": "会話の流れに沿う・気分に合う（interest-cache）",
-      "explorationBonus": 0.2752528949433514,
-      "selectionScore": 1.083064684700632
-    },
-    {
-      "topic": "埼玉県の雨雲レーダー(実況) - tenki.jp",
-      "source": "interest-cache",
-      "category": "weather_seasonal",
-      "pub_date": "2026-06-26T10:08:14+00:00",
-      "metadata": {
-        "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE01dVlaei11blJGa2lucFExNmdHNzNCQldzLThCbTg4N0NOdGhEYk1LSW5QUnlJa3dxRnRzbEZtUFdzdw?oc=5",
-        "mediaSource": "tenki.jp",
-        "emotion_type": "light",
-        "timeliness": 0.985
-      },
-      "scores": {
-        "timeliness": 0.9430932175925926,
-        "novelty": 0.8,
-        "continuity": 0.3,
-        "emotional_fit": 0.9,
-        "affinity": 0.5,
-        "surprise": 0.7
-      },
-      "finalScore": 0.7721036091624663,
-      "reasoning": "タイムリー・気分に合う（interest-cache）",
       "explorationBonus": 0.3,
-      "selectionScore": 1.0721036091624663
+      "selectionScore": 1.0890900139373139
     }
   ],
   "lastDecisionLog": {
     "premise": {
       "estimatedMode": "達成モード・低エネルギー",
-      "modeReason": "ゴルフ（日本カントリー）が終わり帰宅後の金曜夜20:30。肉体的疲労はあるが気分は良いはず",
+      "modeReason": "23:30、ゴルフ+懇親会+会議11本という超ヘビーな一日の終盤。直前の23:30に気象病動画を送信済みで、追加接触のリスクが高い",
       "targetLayer": 5,
-      "layerReason": "疲れた身体への軽いご褒美候補として、実行層よりも現在状態への癒しアプローチが適切",
-      "interventionType": "提案",
-      "interventionReason": "ゴルフ後の空腹感・ご褒美欲に刺さるタイムリーな食情報がある",
-      "reason": "ゴルフ帰り・空腹タイミングにお得なステーキ情報",
+      "layerReason": "深夜帯・極低エネルギー状態。状態層（休息・回復）を最優先",
+      "interventionType": "沈黙",
+      "interventionReason": "23:30に送信済みで連続接触になる。深夜はいかなる候補も過剰になる可能性が高い",
       "informationGap": null,
       "collectionHint": null
     },
-    "decision": "send",
-    "need": "ご褒美・楽しみ",
-    "reason": "ゴルフ後のお腹空きタイミングにお得なステーキ情報が刺さる",
+    "decision": "no_reply",
+    "need": "休息",
+    "reason": "23:30に送信済み。連続接触は深夜帯の疲労ピークに追い打ちをかける",
     "candidates": [
       {
-        "topic": "ステーキガスト肉の日・6/26〜30最大290円お得",
-        "source": "dメニューニュース",
-        "score": 0.92
+        "topic": "肉の罠(居酒屋) - ホットペッパーグルメ",
+        "source": "topics",
+        "score": 0.86
       },
       {
-        "topic": "東京爆安ステーキ3選",
-        "source": "ウォーカープラス",
-        "score": 0.85
+        "topic": "Netflix韓国ドラマ2026年最新ラインナップ",
+        "source": "topics",
+        "score": 0.83
       },
       {
-        "topic": "外食グルメ情報12選動画",
-        "source": "YouTube",
+        "topic": "6月後半外食グルメ12選",
+        "source": "topics",
         "score": 0.81
       }
     ],
-    "message": "あ、そうだ。\n\ndメニューに *ステーキガストが「肉の日」で最大290円引き* って出てたよ 🥩 6月26日から30日までらしいから、今日〜今週末でまだ使えるやつ。\n\nラウンド後のお腹、もう空いてきてない？笑\nhttps://news.google.com/rss/articles/CBMid0FVX3lxTE1NdGU5YWE5SDdDck1BRWVXY3hmUnBWS0lwUF9UazJIQjFhd0pFZG1EbFdDMHJGOWl0TDRmQlZPYXlSZFBrY21LdldkSmY1eFFjSkdfWXk1dXRYcFIwOTc0bjlhS2JPWndSZ1BFX2lpVDBCazhHWDJz?oc=5",
+    "message": null,
     "topicWeight": "light",
-    "inner_thought": "ゴルフ終わってお腹空いてそうだし、肉の日お得情報さらっと渡したい",
+    "inner_thought": "さっき気象病動画を送ったばかりだし、もう黙っていたい",
     "plan": [
-      "ステーキガスト肉の日お得情報を共有",
-      "グルメ動画（外食おすすめ）を共有",
-      "沈黙"
+      "肉の罠居酒屋を明日候補として渡す",
+      "沈黙",
+      "Netflix韓国ドラマを就寝前に"
     ],
     "generate_score": [
-      0.88,
-      0.65,
-      0.3
+      0.42,
+      0.85,
+      0.35
     ],
-    "evaluate_score": 0.82,
-    "timestamp": "2026-06-26T11:30:58.632Z",
+    "evaluate_score": 0.25,
+    "timestamp": "2026-06-26T14:58:42.971Z",
     "skill": "none",
     "scoredCandidates": [
       {
-        "topic": "ステーキガストの「肉の日」対象メニュー4つが最大290円お得！6月26日から30日まで開催。（東京バーゲンマニア） - ｄメニューニュース",
+        "topic": "外国人材への安全教育が変わる 建設現場で注目されるオフライン同時通訳システム｜建設円陣PLUS - note",
         "source": "interest-cache",
-        "category": "food_dining",
+        "category": "_wildcard",
         "scores": {
-          "timeliness": 0.9073872569444444,
-          "novelty": 0.3,
-          "continuity": 0.9,
+          "timeliness": 0,
+          "novelty": 0.8,
+          "continuity": 0.3,
           "emotional_fit": 0.9,
-          "affinity": 0.4,
-          "surprise": 0.7
+          "affinity": 0.5,
+          "surprise": 0.8
         },
-        "finalScore": 0.9246190681575978,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.2246190681575977,
-        "reasoning": "タイムリー・会話の流れに沿う（interest-cache）"
+        "finalScore": 0.7168568307234633,
+        "explorationBonus": 0.44999999999999996,
+        "selectionScore": 1.1668568307234632,
+        "reasoning": "気分に合う・新鮮（interest-cache）"
       },
       {
         "topic": "肉の罠(居酒屋)の写真 - ホットペッパーグルメ",
         "source": "interest-cache",
         "category": "food_dining",
         "scores": {
-          "timeliness": 0.6047579359567901,
+          "timeliness": 0.5630950077160494,
           "novelty": 0.3,
           "continuity": 0.9,
           "emotional_fit": 0.9,
           "affinity": 0.4,
           "surprise": 0.7
         },
-        "finalScore": 0.8802118802478649,
+        "finalScore": 0.8598138404838938,
         "explorationBonus": 0.3,
-        "selectionScore": 1.180211880247865,
+        "selectionScore": 1.1598138404838938,
         "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
-      },
-      {
-        "topic": "＜画像1 / 3＞コスパ最強！東京「爆安ステーキ」3選 - ウォーカープラス",
-        "source": "interest-cache",
-        "category": "food_dining",
-        "scores": {
-          "timeliness": 0.6046923533950617,
-          "novelty": 0.3,
-          "continuity": 0.9,
-          "emotional_fit": 0.9,
-          "affinity": 0.4,
-          "surprise": 0.7
-        },
-        "finalScore": 0.852709083798335,
-        "explorationBonus": 0.3,
-        "selectionScore": 1.152709083798335,
-        "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
-      },
-      {
-        "topic": "KPMGコンサルティング、マネージドサービスの最新動向調査を発表 - Biz/Zine",
-        "source": "interest-cache",
-        "category": "business_strategy",
-        "scores": {
-          "timeliness": 0.8227925,
-          "novelty": 0.3,
-          "continuity": 0.9,
-          "emotional_fit": 0.5,
-          "affinity": 0.4,
-          "surprise": 0.7
-        },
-        "finalScore": 0.8916739541973453,
-        "explorationBonus": 0.22474304761170502,
-        "selectionScore": 1.1164170018090502,
-        "reasoning": "会話の流れに沿う・タイムリー（interest-cache）"
       },
       {
         "topic": "Netflixで配信予定の新作・人気韓国ドラマ ラインナップ【2026年最新】 - 海外ドラマNAVI",
         "source": "interest-cache",
         "category": "movie_theater",
         "scores": {
-          "timeliness": 0.7833477893518519,
+          "timeliness": 0.7194529976851852,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.9,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.8092699583773943,
+        "finalScore": 0.827478620617065,
         "explorationBonus": 0.3,
-        "selectionScore": 1.1092699583773944,
+        "selectionScore": 1.127478620617065,
+        "reasoning": "気分に合う・新鮮（interest-cache）"
+      },
+      {
+        "topic": "角心菜「ギャバい」TV番組出演姿が話題「透明感がすごい」夏には出演映画公開の注目次世代女優 - 日刊スポーツ",
+        "source": "interest-cache",
+        "category": "tv_drama",
+        "scores": {
+          "timeliness": 0.7021844598765432,
+          "novelty": 0.8,
+          "continuity": 0.3,
+          "emotional_fit": 0.9,
+          "affinity": 0.5,
+          "surprise": 0.7
+        },
+        "finalScore": 0.8097372182254483,
+        "explorationBonus": 0.3,
+        "selectionScore": 1.1097372182254484,
         "reasoning": "気分に合う・新鮮（interest-cache）"
       },
       {
@@ -5779,9 +5760,9 @@
           "affinity": 0.4,
           "surprise": 0.7
         },
-        "finalScore": 0.8078117897572805,
+        "finalScore": 0.8085594623226275,
         "explorationBonus": 0.3,
-        "selectionScore": 1.1078117897572806,
+        "selectionScore": 1.1085594623226276,
         "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
       },
       {
@@ -5796,83 +5777,100 @@
           "affinity": 0.4,
           "surprise": 0.7
         },
-        "finalScore": 0.8078117897572805,
+        "finalScore": 0.8085594623226275,
         "explorationBonus": 0.3,
-        "selectionScore": 1.1078117897572806,
+        "selectionScore": 1.1085594623226276,
         "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
       },
       {
-        "topic": "Interactions API: our primary interface for Gemini models and agents - blog.google",
+        "topic": "韓国ドラマNOW≫「21世紀の大君夫人」最終話（第12話）、“録音データ”が暴いた真実…ビョン・ウソクが最後に選んだ道＝視聴率13.8％、あらすじ・ネタバレ - wowKorea",
         "source": "interest-cache",
-        "category": "dev_tools",
+        "category": "tv_drama",
         "scores": {
-          "timeliness": 0.8980586111111111,
+          "timeliness": 0.6635964930555556,
+          "novelty": 0.8,
+          "continuity": 0.3,
+          "emotional_fit": 0.9,
+          "affinity": 0.5,
+          "surprise": 0.7
+        },
+        "finalScore": 0.7967196362787328,
+        "explorationBonus": 0.3,
+        "selectionScore": 1.0967196362787328,
+        "reasoning": "気分に合う・新鮮（interest-cache）"
+      },
+      {
+        "topic": "＜画像1 / 15＞春の絶景が埼玉に！青空、桜、菜の花のコントラスト - ウォーカープラス",
+        "source": "interest-cache",
+        "category": "weather_seasonal",
+        "scores": {
+          "timeliness": 0.6057030131172839,
+          "novelty": 0.8,
+          "continuity": 0.3,
+          "emotional_fit": 0.9,
+          "affinity": 0.5,
+          "surprise": 0.7
+        },
+        "finalScore": 0.7955605993956067,
+        "explorationBonus": 0.3,
+        "selectionScore": 1.0955605993956068,
+        "reasoning": "気分に合う・新鮮（interest-cache）"
+      },
+      {
+        "topic": "ギズモード編集部の“AI疲れ”を救ったのは、AMDの最新GPU・CPUを駆使したローカルAI環境でした - Gizmodo",
+        "source": "interest-cache",
+        "category": "llm_local",
+        "scores": {
+          "timeliness": 0.8123872916666667,
           "novelty": 0.8,
           "continuity": 0.3,
           "emotional_fit": 0.5,
           "affinity": 0.5,
           "surprise": 0.7
         },
-        "finalScore": 0.7961858354650992,
+        "finalScore": 0.7932528398103158,
         "explorationBonus": 0.3,
-        "selectionScore": 1.0961858354650993,
+        "selectionScore": 1.0932528398103158,
         "reasoning": "タイムリー・新鮮（interest-cache）"
       },
       {
-        "topic": "#48【超必見】片山プロに教わる‼️特別ゴルフレッスン⛳",
+        "topic": "＜画像1 / 3＞コスパ最強！東京「爆安ステーキ」3選 - ウォーカープラス",
         "source": "interest-cache",
-        "category": "golf",
+        "category": "food_dining",
         "scores": {
-          "timeliness": 0.3,
+          "timeliness": 0.563029425154321,
           "novelty": 0.3,
           "continuity": 0.9,
           "emotional_fit": 0.9,
           "affinity": 0.4,
           "surprise": 0.7
         },
-        "finalScore": 0.8078117897572805,
-        "explorationBonus": 0.2752528949433514,
-        "selectionScore": 1.083064684700632,
-        "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
-      },
-      {
-        "topic": "埼玉県の雨雲レーダー(実況) - tenki.jp",
-        "source": "interest-cache",
-        "category": "weather_seasonal",
-        "scores": {
-          "timeliness": 0.9430932175925926,
-          "novelty": 0.8,
-          "continuity": 0.3,
-          "emotional_fit": 0.9,
-          "affinity": 0.5,
-          "surprise": 0.7
-        },
-        "finalScore": 0.7721036091624663,
+        "finalScore": 0.7890900139373138,
         "explorationBonus": 0.3,
-        "selectionScore": 1.0721036091624663,
-        "reasoning": "タイムリー・気分に合う（interest-cache）"
+        "selectionScore": 1.0890900139373139,
+        "reasoning": "会話の流れに沿う・気分に合う（interest-cache）"
       }
     ],
     "weightsUsed": {
-      "timeliness": 0.23756589065772316,
-      "novelty": 0.11236192675128476,
-      "continuity": 0.28814628905996936,
-      "emotional_fit": 0.10083875362903247,
-      "affinity": 0.03338030605638878,
-      "surprise": 0.2277068338456015
+      "timeliness": 0.19481319165350167,
+      "novelty": 0.11895315389171358,
+      "continuity": 0.21182280669516074,
+      "emotional_fit": 0.13082651807836548,
+      "affinity": 0.04821288137997223,
+      "surprise": 0.29537144830128637
     },
     "sampledRaw": {
-      "timeliness": 0.29695736332215394,
-      "novelty": 0.14045240843910595,
-      "continuity": 0.26018286132496166,
-      "emotional_fit": 0.1260484420362906,
-      "affinity": 0.041725382570485976,
-      "surprise": 0.13463354230700192
+      "timeliness": 0.2240351704015269,
+      "novelty": 0.1367961269754706,
+      "continuity": 0.24359622769943484,
+      "emotional_fit": 0.1504504957901203,
+      "affinity": 0.05544481358696807,
+      "surprise": 0.1896771655464793
     },
     "contextBonus": {
       "timeliness": 0,
       "novelty": 0,
-      "continuity": 0.1,
+      "continuity": 0,
       "emotional_fit": 0,
       "affinity": 0,
       "surprise": 0.15
@@ -5912,7 +5910,7 @@
   },
   "lastOAuthNotifyDate": "2026-06-06",
   "themeInventory": {
-    "updatedAt": "2026-06-26T11:30:10.689Z",
+    "updatedAt": "2026-06-26T14:30:09.712Z",
     "records": [
       {
         "themeKey": "lifestyle/food-wellness/gourmet/izakaya",
@@ -5970,7 +5968,7 @@
           "server"
         ],
         "rootKey": "ai/local-llm",
-        "availableCount": 3,
+        "availableCount": 4,
         "sentFreshCount": 0,
         "sent30dCount": 0,
         "positive30dCount": 0,
@@ -5978,7 +5976,7 @@
         "positiveRate30d": 0.5,
         "uniqueSources30d": 0,
         "targetCount": 4,
-        "supplyGap": 1,
+        "supplyGap": 0,
         "rotationGap": 4,
         "freshnessDays": 7,
         "freshnessScore": 1,
@@ -6416,7 +6414,7 @@
         "supplyGap": 1,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.6935605076058201,
+        "freshnessScore": 0.6757049801587302,
         "lastSentAt": "2026-06-24T08:01:16.084Z"
       },
       {
@@ -6463,8 +6461,31 @@
         "supplyGap": 2,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.8125987665343916,
+        "freshnessScore": 0.7947432390873016,
         "lastSentAt": "2026-06-25T04:01:10.423Z"
+      },
+      {
+        "themeKey": "entertainment/movie-drama/film/theater",
+        "themePath": [
+          "entertainment",
+          "entertainment/movie-drama",
+          "entertainment/movie-drama/film",
+          "entertainment/movie-drama/film/theater"
+        ],
+        "rootKey": "entertainment/entertainment/movie-drama",
+        "availableCount": 2,
+        "sentFreshCount": 2,
+        "sent30dCount": 6,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 8,
+        "targetCount": 5,
+        "supplyGap": 3,
+        "rotationGap": 3,
+        "freshnessDays": 7,
+        "freshnessScore": 0.6905684143518518,
+        "lastSentAt": "2026-06-24T10:31:05.489Z"
       },
       {
         "themeKey": "personal/travel-tech/campingcar",
@@ -6530,7 +6551,7 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.3750682919973546,
+        "freshnessScore": 0.3572127645502645,
         "lastSentAt": "2026-06-22T02:30:51.992Z"
       },
       {
@@ -6575,7 +6596,7 @@
         "supplyGap": 4,
         "rotationGap": 3,
         "freshnessDays": 7,
-        "freshnessScore": 0.7828326471560847,
+        "freshnessScore": 0.7649771197089947,
         "lastSentAt": "2026-06-24T23:01:07.874Z"
       },
       {
@@ -6688,7 +6709,7 @@
         "supplyGap": -13,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.4107959193121694,
+        "freshnessScore": 0.39294039186507934,
         "lastSentAt": "2026-06-22T08:31:00.061Z"
       },
       {
@@ -6710,7 +6731,7 @@
         "supplyGap": -3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8007278968253968,
+        "freshnessScore": 0.7828723693783068,
         "lastSentAt": "2026-06-25T02:01:30.921Z"
       },
       {
@@ -6733,7 +6754,7 @@
         "supplyGap": 0,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.6905296527777778,
+        "freshnessScore": 0.6726741253306878,
         "lastSentAt": "2026-06-24T07:30:43.023Z"
       },
       {
@@ -6746,7 +6767,7 @@
         "rootKey": "business/business/consulting",
         "availableCount": 2,
         "sentFreshCount": 1,
-        "sent30dCount": 2,
+        "sent30dCount": 1,
         "positive30dCount": 0,
         "negative30dCount": 0,
         "positiveRate30d": 0,
@@ -6755,54 +6776,8 @@
         "supplyGap": 1,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5656293187830688,
+        "freshnessScore": 0.5477737913359788,
         "lastSentAt": "2026-06-23T10:31:43.301Z"
-      },
-      {
-        "themeKey": "lifestyle/food-wellness/gourmet/steak",
-        "themePath": [
-          "lifestyle",
-          "lifestyle/food-wellness",
-          "lifestyle/food-wellness/gourmet",
-          "lifestyle/food-wellness/gourmet/steak"
-        ],
-        "rootKey": "lifestyle/lifestyle/food-wellness",
-        "availableCount": 2,
-        "sentFreshCount": 2,
-        "sent30dCount": 3,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 3,
-        "targetCount": 4,
-        "supplyGap": 2,
-        "rotationGap": 2,
-        "freshnessDays": 7,
-        "freshnessScore": 0.9378195932539682,
-        "lastSentAt": "2026-06-26T01:03:23.979Z"
-      },
-      {
-        "themeKey": "entertainment/movie-drama/film/theater",
-        "themePath": [
-          "entertainment",
-          "entertainment/movie-drama",
-          "entertainment/movie-drama/film",
-          "entertainment/movie-drama/film/theater"
-        ],
-        "rootKey": "entertainment/entertainment/movie-drama",
-        "availableCount": 2,
-        "sentFreshCount": 3,
-        "sent30dCount": 6,
-        "positive30dCount": 0,
-        "negative30dCount": 0,
-        "positiveRate30d": 0,
-        "uniqueSources30d": 8,
-        "targetCount": 5,
-        "supplyGap": 3,
-        "rotationGap": 2,
-        "freshnessDays": 7,
-        "freshnessScore": 0.7084239417989417,
-        "lastSentAt": "2026-06-24T10:31:05.489Z"
       },
       {
         "themeKey": "entertainment/movie-drama/hamnet",
@@ -6823,7 +6798,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9971240013227514,
+        "freshnessScore": 0.9792684738756614,
         "lastSentAt": "2026-06-26T11:01:11.285Z"
       },
       {
@@ -6847,7 +6822,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.44057160218253966,
+        "freshnessScore": 0.4227160747354498,
         "lastSentAt": "2026-06-22T13:31:08.394Z"
       },
       {
@@ -6870,7 +6845,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5357980522486772,
+        "freshnessScore": 0.5179425248015873,
         "lastSentAt": "2026-06-23T05:31:01.351Z"
       },
       {
@@ -6894,7 +6869,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5892939798280423,
+        "freshnessScore": 0.5714384523809524,
         "lastSentAt": "2026-06-23T14:30:15.688Z"
       },
       {
@@ -6917,7 +6892,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8334205175264551,
+        "freshnessScore": 0.8155649900793651,
         "lastSentAt": "2026-06-25T07:31:03.418Z"
       },
       {
@@ -6940,7 +6915,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7173612152777777,
+        "freshnessScore": 0.6995056878306878,
         "lastSentAt": "2026-06-24T12:01:10.752Z"
       },
       {
@@ -6962,7 +6937,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7888045403439153,
+        "freshnessScore": 0.7709490128968254,
         "lastSentAt": "2026-06-25T00:01:19.675Z"
       },
       {
@@ -6984,7 +6959,7 @@
         "supplyGap": 2,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8066515327380952,
+        "freshnessScore": 0.7887960052910052,
         "lastSentAt": "2026-06-25T03:01:13.536Z"
       },
       {
@@ -7007,7 +6982,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.36353861772486773,
+        "freshnessScore": 0.34568309027777777,
         "lastSentAt": "2026-06-22T00:34:38.845Z"
       },
       {
@@ -7031,7 +7006,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.0834169080687831,
+        "freshnessScore": 0.06556138062169314,
         "lastSentAt": "2026-06-20T01:31:01.235Z"
       },
       {
@@ -7055,7 +7030,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.09524349041005287,
+        "freshnessScore": 0.07738796296296291,
         "lastSentAt": "2026-06-20T03:30:13.952Z"
       },
       {
@@ -7078,7 +7053,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.2381991765873016,
+        "freshnessScore": 0.22034364914021165,
         "lastSentAt": "2026-06-21T03:31:13.551Z"
       },
       {
@@ -7101,7 +7076,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.2739178885582011,
+        "freshnessScore": 0.256062361111111,
         "lastSentAt": "2026-06-21T09:31:16.228Z"
       },
       {
@@ -7123,7 +7098,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.3572243138227513,
+        "freshnessScore": 0.3393687863756615,
         "lastSentAt": "2026-06-21T23:30:59.954Z"
       },
       {
@@ -7146,7 +7121,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.3810319411375661,
+        "freshnessScore": 0.36317641369047615,
         "lastSentAt": "2026-06-22T03:30:58.807Z"
       },
       {
@@ -7170,7 +7145,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.4048345486111111,
+        "freshnessScore": 0.38697902116402116,
         "lastSentAt": "2026-06-22T07:30:54.624Z"
       },
       {
@@ -7194,7 +7169,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5476778951719576,
+        "freshnessScore": 0.5298223677248677,
         "lastSentAt": "2026-06-23T07:30:46.280Z"
       },
       {
@@ -7216,7 +7191,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7143781779100529,
+        "freshnessScore": 0.6965226504629629,
         "lastSentAt": "2026-06-24T11:31:06.611Z"
       },
       {
@@ -7238,7 +7213,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7262766005291006,
+        "freshnessScore": 0.7084210730820106,
         "lastSentAt": "2026-06-24T13:31:02.777Z"
       },
       {
@@ -7262,7 +7237,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.9941334259259259,
+        "freshnessScore": 0.976277898478836,
         "lastSentAt": "2026-06-26T10:31:02.585Z"
       },
       {
@@ -7285,7 +7260,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5685363277116402,
+        "freshnessScore": 0.5506808002645502,
         "lastSentAt": "2026-06-23T11:01:01.460Z"
       },
       {
@@ -7307,7 +7282,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.5864103835978836,
+        "freshnessScore": 0.5685548561507936,
         "lastSentAt": "2026-06-23T14:01:11.689Z"
       },
       {
@@ -7331,7 +7306,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.7947537086640212,
+        "freshnessScore": 0.7768981812169312,
         "lastSentAt": "2026-06-25T01:01:17.732Z"
       },
       {
@@ -7354,7 +7329,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8185301190476191,
+        "freshnessScore": 0.8006745916005291,
         "lastSentAt": "2026-06-25T05:00:57.705Z"
       },
       {
@@ -7376,7 +7351,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8364076802248677,
+        "freshnessScore": 0.8185521527777777,
         "lastSentAt": "2026-06-25T08:01:10.054Z"
       },
       {
@@ -7399,7 +7374,7 @@
         "supplyGap": 3,
         "rotationGap": 2,
         "freshnessDays": 7,
-        "freshnessScore": 0.8424058316798941,
+        "freshnessScore": 0.8245503042328042,
         "lastSentAt": "2026-06-25T09:01:37.736Z"
       },
       {
@@ -7423,7 +7398,7 @@
         "supplyGap": 0,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.797697111441799,
+        "freshnessScore": 0.779841583994709,
         "lastSentAt": "2026-06-25T01:30:57.902Z"
       },
       {
@@ -7446,8 +7421,31 @@
         "supplyGap": 1,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.9866550016534391,
+        "freshnessScore": 0.9687994742063492,
         "lastSentAt": "2026-06-26T09:15:39.634Z"
+      },
+      {
+        "themeKey": "lifestyle/food-wellness/gourmet/steak",
+        "themePath": [
+          "lifestyle",
+          "lifestyle/food-wellness",
+          "lifestyle/food-wellness/gourmet",
+          "lifestyle/food-wellness/gourmet/steak"
+        ],
+        "rootKey": "lifestyle/lifestyle/food-wellness",
+        "availableCount": 2,
+        "sentFreshCount": 3,
+        "sent30dCount": 4,
+        "positive30dCount": 0,
+        "negative30dCount": 0,
+        "positiveRate30d": 0,
+        "uniqueSources30d": 4,
+        "targetCount": 4,
+        "supplyGap": 2,
+        "rotationGap": 1,
+        "freshnessDays": 7,
+        "freshnessScore": 0.9822237450396826,
+        "lastSentAt": "2026-06-26T11:30:58.633Z"
       },
       {
         "themeKey": "sports/golf/tournament/news",
@@ -7469,7 +7467,7 @@
         "supplyGap": 2,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.7024766666666666,
+        "freshnessScore": 0.6846211392195767,
         "lastSentAt": "2026-06-24T09:31:08.577Z"
       },
       {
@@ -7492,7 +7490,7 @@
         "supplyGap": 3,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.5595896461640212,
+        "freshnessScore": 0.5417341187169312,
         "lastSentAt": "2026-06-23T09:30:50.507Z"
       },
       {
@@ -7515,7 +7513,7 @@
         "supplyGap": 4,
         "rotationGap": 1,
         "freshnessDays": 7,
-        "freshnessScore": 0.7917727595899471,
+        "freshnessScore": 0.7739172321428571,
         "lastSentAt": "2026-06-25T00:31:14.854Z"
       },
       {
@@ -7537,7 +7535,7 @@
         "supplyGap": 2,
         "rotationGap": 0,
         "freshnessDays": 7,
-        "freshnessScore": 0.7203138409391534,
+        "freshnessScore": 0.7024583134920634,
         "lastSentAt": "2026-06-24T12:30:56.500Z"
       },
       {
@@ -7549,7 +7547,7 @@
           "personal/travel-tech/dev/ai-tools"
         ],
         "rootKey": "personal/personal/travel-tech",
-        "availableCount": 17,
+        "availableCount": 16,
         "sentFreshCount": 6,
         "sent30dCount": 8,
         "positive30dCount": 0,
@@ -7557,10 +7555,10 @@
         "positiveRate30d": 0,
         "uniqueSources30d": 11,
         "targetCount": 5,
-        "supplyGap": -12,
+        "supplyGap": -11,
         "rotationGap": -1,
         "freshnessDays": 7,
-        "freshnessScore": 0.8096197569444444,
+        "freshnessScore": 0.7917642294973545,
         "lastSentAt": "2026-06-25T03:31:08.718Z"
       },
       {
@@ -7578,13 +7576,13 @@
         "positive30dCount": 0,
         "negative30dCount": 0,
         "positiveRate30d": 0,
-        "uniqueSources30d": 11,
+        "uniqueSources30d": 10,
         "targetCount": 5,
         "supplyGap": 2,
         "rotationGap": -1,
         "freshnessDays": 7,
-        "freshnessScore": 0.8245144890873015,
-        "lastSentAt": "2026-06-25T06:01:17.052Z"
+        "freshnessScore": 0.9852079431216931,
+        "lastSentAt": "2026-06-26T12:01:03.476Z"
       },
       {
         "themeKey": "ai/enterprise/security/procurement",
@@ -7606,7 +7604,7 @@
         "supplyGap": 5,
         "rotationGap": -3,
         "freshnessDays": 7,
-        "freshnessScore": 0.7858005042989418,
+        "freshnessScore": 0.7679449768518518,
         "lastSentAt": "2026-06-24T23:31:02.834Z"
       },
       {
@@ -7629,7 +7627,7 @@
         "supplyGap": 5,
         "rotationGap": -4,
         "freshnessDays": 7,
-        "freshnessScore": 0.7322126355820106,
+        "freshnessScore": 0.7143571081349207,
         "lastSentAt": "2026-06-24T14:30:52.891Z"
       }
     ]
