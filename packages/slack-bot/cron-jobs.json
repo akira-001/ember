@@ -52,7 +52,7 @@
       "message": "以下のコマンドを実行してください。結果をイヴとして自然な口調で、Akiraさんにおすすめ物件を伝える形で報告してください。\n\ncd /Users/akira/workspace/ai-dev/web-search && .venv/bin/python campingcar_search.py",
       "slackTarget": "U3SFGQXNH",
       "timeoutSeconds": 600,
-      "enabled": true,
+      "enabled": false,
       "botId": "eve"
     },
     {

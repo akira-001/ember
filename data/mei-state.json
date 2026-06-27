@@ -4674,8 +4674,8 @@
       "sentAt": "2026-06-25T01:01:17.731Z",
       "slackTs": "1782349278.016869",
       "slackChannel": "U3SFGQXNH",
-      "reaction": null,
-      "reactionDelta": 0,
+      "reaction": "+1",
+      "reactionDelta": 0.3,
       "preview": "Akiraさん、ひとつだけ。\n\nいこーよニュースで *関東の今週末（6/27-28）無料イベント19選* が出てたよ。大規模フェスやお祭りもあるみたい。\n\n明日のゴルフ以降でいいやつ 🏌️\nhttps://news.google.com/",
       "fullText": "Akiraさん、ひとつだけ。\n\nいこーよニュースで *関東の今週末（6/27-28）無料イベント19選* が出てたよ。大規模フェスやお祭りもあるみたい。\n\n明日のゴルフ以降でいいやつ 🏌️\nhttps://news.google.com/rss/articles/CBMiUkFVX3lxTE9KMEFrZ3Blb3J2NVhVV2ZPOVQ2cWJhSS1aaUhQU19DOFRpX3BwZ3k1U1VMNEdkSXdBOUxZMlRld01Jb0lLQmloV0o1SFlGVzc5d3c?oc=5",
       "sourceUrls": [
@@ -4720,7 +4720,16 @@
         "local/saitama/other/kawagoe",
         "local/saitama/other/kawagoe/festival"
       ],
-      "themeKey": "local/saitama/other/kawagoe/festival"
+      "themeKey": "local/saitama/other/kawagoe/festival",
+      "rewardLog": [
+        {
+          "type": "reaction",
+          "signal": "+1",
+          "value": 0.3,
+          "reason": "+1 リアクション → Thompson Sampling 更新",
+          "timestamp": "2026-06-27T00:09:11.713Z"
+        }
+      ]
     },
     {
       "id": "7836473e-4cd2-43e6-a10f-853570c3dbe9",
@@ -5060,8 +5069,8 @@
       "sentAt": "2026-06-25T09:01:37.735Z",
       "slackTs": "1782378098.004809",
       "slackChannel": "U3SFGQXNH",
-      "reaction": null,
-      "reactionDelta": 0,
+      "reaction": "+1",
+      "reactionDelta": 0.3,
       "preview": "Akiraさん、今日おつかれさま。\n\neeoで *2026年夏アニメのおすすめ25選* が出てたよ。編集部イチ推しの注目作が一覧でまとまってるやつ。\n\n明日お休みだし、帰りの電車でざっと眺めるのにちょうどいいかも 🎬\nhttps://ne",
       "fullText": "Akiraさん、今日おつかれさま。\n\neeoで *2026年夏アニメのおすすめ25選* が出てたよ。編集部イチ推しの注目作が一覧でまとまってるやつ。\n\n明日お休みだし、帰りの電車でざっと眺めるのにちょうどいいかも 🎬\nhttps://news.google.com/rss/articles/CBMiVEFVX3lxTE5BUFdkOXRhbHU1Y3dxT3Y5ZXktM1B5R2NpbnZwbVgwWFVSemc5emp4bG5fUkVEc1lBLUtWUk9LTmNaVXJlZFQ2UmF0ZzJtampOVk1CeQ?oc=5",
       "sourceUrls": [
@@ -5105,7 +5114,16 @@
         "entertainment/movie-drama/anime",
         "entertainment/movie-drama/anime/series"
       ],
-      "themeKey": "entertainment/movie-drama/anime/series"
+      "themeKey": "entertainment/movie-drama/anime/series",
+      "rewardLog": [
+        {
+          "type": "reaction",
+          "signal": "+1",
+          "value": 0.3,
+          "reason": "+1 リアクション → Thompson Sampling 更新",
+          "timestamp": "2026-06-27T00:11:27.277Z"
+        }
+      ]
     },
     {
       "id": "2efdc8f4-4fcb-4409-9d6f-bec800a2f7a2",
@@ -5310,7 +5328,7 @@
   "lastCheckAt": "2026-06-27T00:01:12.283Z",
   "stats": {
     "totalSent": 1074,
-    "positiveReactions": 60,
+    "positiveReactions": 62,
     "negativeReactions": 3
   },
   "todayMessages": [

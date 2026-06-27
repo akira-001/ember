@@ -90,11 +90,25 @@ def gmail_api(token, path, method="GET", body=None):
         return json.loads(r.read())
 
 
-def search_emails(token, query, max_results=20):
-    """メッセージIDのリストを返す"""
-    q = urllib.parse.urlencode({"q": query, "maxResults": max_results})
-    result = gmail_api(token, f"messages?{q}")
-    return [m["id"] for m in result.get("messages", [])]
+def search_emails(token, query, max_results=None, page_size=100):
+    """クエリにマッチするメッセージIDのリストを返す。
+
+    nextPageToken をたどって全件取得する。max_results=None なら全件、
+    指定時はその件数で打ち切る（長期 backfill で 1 ページ上限に取りこぼさないため）。
+    """
+    ids = []
+    page_token = None
+    while True:
+        params = {"q": query, "maxResults": page_size}
+        if page_token:
+            params["pageToken"] = page_token
+        result = gmail_api(token, f"messages?{urllib.parse.urlencode(params)}")
+        ids.extend(m["id"] for m in result.get("messages", []))
+        if max_results is not None and len(ids) >= max_results:
+            return ids[:max_results]
+        page_token = result.get("nextPageToken")
+        if not page_token:
+            return ids
 
 
 def read_email(token, msg_id):
@@ -270,8 +284,25 @@ def upload_to_drive(access_token, file_path, file_name, folder_id):
 
 PROCESSED_LABEL_NAME = "drive-saved"
 
-RECEIPT_QUERY = 'in:anywhere newer_than:8d -label:drive-saved (subject:(領収書 OR receipt OR "your receipt") OR from:(stripe.com OR invoice))'
-INVOICE_QUERY = "in:anywhere newer_than:8d -label:drive-saved subject:(請求書 OR invoice OR INV)"
+# 検索する過去日数。通常運用は8日（cron 週次で十分カバー）。
+# 長期 backfill 時は環境変数で拡張: BACKFILL_DAYS=90 python3 gmail_to_drive.py
+BACKFILL_DAYS = int(os.environ.get("BACKFILL_DAYS", "8"))
+
+
+def build_queries(days):
+    """過去 days 日分の領収書・請求書 Gmail 検索クエリを返す (receipt, invoice)。"""
+    receipt = (
+        f'in:anywhere newer_than:{days}d -label:drive-saved '
+        f'(subject:(領収書 OR receipt OR "your receipt") OR from:(stripe.com OR invoice))'
+    )
+    invoice = (
+        f"in:anywhere newer_than:{days}d -label:drive-saved "
+        f"subject:(請求書 OR invoice OR INV)"
+    )
+    return receipt, invoice
+
+
+RECEIPT_QUERY, INVOICE_QUERY = build_queries(BACKFILL_DAYS)
 
 EXCLUDE_PATTERNS = [
     r"datumix",
@@ -316,6 +347,7 @@ def process_emails(query, kind, gmail_token, drive_token, label_id=None, manual_
     saved = []
 
     msg_ids = search_emails(gmail_token, query)
+    print(f"[{kind}] 検索ヒット: {len(msg_ids)}件（window={BACKFILL_DAYS}d）")
 
     for msg_id in msg_ids:
         msg = read_email(gmail_token, msg_id)
@@ -400,7 +432,7 @@ def process_emails(query, kind, gmail_token, drive_token, label_id=None, manual_
 
 
 if __name__ == "__main__":
-    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M')}] Gmail -> Drive 同期開始")
+    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M')}] Gmail -> Drive 同期開始 (window={BACKFILL_DAYS}d)")
 
     if not DRIVE_CLIENT_ID or not DRIVE_CLIENT_SECRET:
         print("ERROR: GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET が設定されていません", file=sys.stderr)
