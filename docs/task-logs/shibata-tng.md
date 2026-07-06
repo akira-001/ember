@@ -57,6 +57,8 @@
 
 ## 運用メモ
 
-- 週次報告が届いたら本ファイルの週次テーブルに1行追記する
-- 月が締まったら月次集計テーブルに稼働時間と時間単価を追記する
-- 元データの確認: Slack 検索 `from:<@U0AHHBZM1EK> になります`
+- **自動更新**: 毎週火曜 09:00 JST にクラウドルーチン `weekly-shibata-tng-log` が Slack チャンネル C0AJT8XU8G0 から週次報告を取得し、本ファイルに追記して main に push する
+  - ルーチン管理: https://claude.ai/code/routines/trig_018oSJvK5E1b1A3M56Ee1wj6
+  - 最新版は origin/main 側にある（ローカルで見る時は `git fetch origin main` を先に）
+- 月次集計は前月分が揃った最初の火曜に自動追記される（単価 = 300,000 ÷ 月間稼働h）
+- 元データ: チャンネル C0AJT8XU8G0（2026-07-06 以前は DM 検索 `from:<@U0AHHBZM1EK> になります`）
